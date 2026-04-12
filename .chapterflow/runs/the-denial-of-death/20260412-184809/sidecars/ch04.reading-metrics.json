@@ -1,0 +1,39 @@
+{
+  "chapterId": "ch04-human-character-as-a-vital-lie",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-12T18:51:02Z",
+  "chapterNumber": 4,
+  "editedDraftWordCount": 660,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 398,
+      "avgWordsPerTone": 133
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 792,
+      "avgWordsPerTone": 264
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 889,
+      "avgWordsPerTone": 296
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "work": 2,
+    "personal": 2,
+    "school": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "698b1903088d01afa5c754eed97d40e146fc39cdeb2e7c24294a7700784da877",
+  "validationStatus": "PASS",
+  "patchesApplied": 1,
+  "patchNotes": [
+    "Patched syntax, contamination leak, thesis-first openings, reinforcement echoes, duplicate recap line, and a hard moreDetails restatement before validation pass."
+  ]
+}

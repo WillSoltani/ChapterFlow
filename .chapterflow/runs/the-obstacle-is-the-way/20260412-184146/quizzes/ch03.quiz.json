@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's core distinction about emotion?",
+      "choices": [
+        "A) Emotion is either weakness or strength",
+        "B) Emotion can be signal without being command",
+        "C) Emotion disappears once nerves are steady"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reject feeling. It separates emotional information from emotional rule.",
+        "direct": "Correct. The split is signal versus command authority.",
+        "competitive": "Feelings become expensive when they move from witness to ruler."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter treat uncontrolled emotion as an obstacle multiplier?",
+      "choices": [
+        "A) Because emotion always proves the situation is worse than it looks",
+        "B) Because it turns one pressure into a larger reaction-driven problem",
+        "C) Because it removes all useful information from the moment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Uncontrolled emotion does not only react to the obstacle. It can enlarge it by distorting the next move.",
+        "direct": "Emotion multiplies the obstacle when it starts governing interpretation and response.",
+        "competitive": "The event is one problem. Emotional rule builds a second one inside the response."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How is Rockefeller used in this chapter's frozen support?",
+      "choices": [
+        "A) As a narrow model of governance under pressure",
+        "B) As proof that emotion should be hidden from everyone",
+        "C) As evidence that all strong feelings are irrational"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses Rockefeller narrowly to support steadiness that keeps feeling from becoming policy.",
+        "direct": "Right. The lesson is governance under pressure, not emotional emptiness.",
+        "competitive": "Rockefeller matters here because the hit can register without getting command authority."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Hana is angry at a dismissive message and already has a sharp reply drafted. What best fits the chapter's method?",
+      "choices": [
+        "A) Send the message quickly so the anger does not build further",
+        "B) Admit the anger and stop it from choosing the reply",
+        "C) Pretend she is not angry and answer in the same tone anyway"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks Hana to notice the anger without letting it own the response.",
+        "direct": "She needs governance, not obedience or suppression.",
+        "competitive": "Offense can register. It does not get first edit rights."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement best avoids a major misreading of the chapter?",
+      "choices": [
+        "A) Emotional control means feeling less than other people",
+        "B) Emotional control means keeping the feeling present but denying it command",
+        "C) Emotional control means replacing all strong feeling with logic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not ask for numbness or total replacement. It asks for governance.",
+        "direct": "Correct. The feeling stays present, but judgment keeps authority.",
+        "competitive": "If the chapter starts sounding anti-feeling, it has already drifted."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is suppression not treated as mastery in this chapter?",
+      "choices": [
+        "A) Because hidden emotion often keeps shaping behavior indirectly",
+        "B) Because suppression always makes people less intelligent",
+        "C) Because strong people should express everything immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Suppression hides the feeling, but the feeling often leaks back out through tone, distance, or self-punishment.",
+        "direct": "Suppression fails because it changes visibility while leaving influence intact.",
+        "competitive": "A buried feeling still looks for power. It just finds uglier routes."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Naomi gets a disappointing exam grade and shame starts telling her she is not built for the subject. What should she do first?",
+      "choices": [
+        "A) Accept the shame as accurate because strong emotion reveals the truth",
+        "B) Keep the grade and identity separate before deciding what the result means",
+        "C) Ignore the grade entirely because emotion is never useful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The grade may be real, but shame does not get to turn one result into a verdict on Naomi's whole capacity.",
+        "direct": "She needs to govern the shame so it stays data-adjacent rather than identity-defining.",
+        "competitive": "Do not let one number and one feeling team up to sentence the whole self."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Grant keeps replaying an argument an hour after it ended and wants to reopen the fight. What chapter principle best applies?",
+      "choices": [
+        "A) Once the visible conflict ends, the emotion no longer matters",
+        "B) The after-feeling may still be trying to govern the next move",
+        "C) Reopening the argument is healthy because lingering anger should be expressed immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that loss of control often continues after the visible moment through slower obedience to emotion.",
+        "direct": "This is emotional rule in the aftershock, not a new fact demanding action.",
+        "competitive": "The room is quiet, but the feeling is still trying to grab authority."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A leader says, \"I never let anger affect my decisions,\" but her team experiences her as cold, punitive, and sarcastic after conflict. According to the chapter, what is the most likely explanation?",
+      "choices": [
+        "A) Her suppression is hiding the anger's visibility, not removing its influence",
+        "B) Her team is mistaking objectivity for weakness",
+        "C) Her anger must not actually be very strong if she stays controlled"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says suppression often leaks through indirect behavior even when the emotion is not openly expressed.",
+        "direct": "This is the counterfeit version of control. The anger is concealed, but still governing tone and punishment.",
+        "competitive": "Invisible emotion can still run the room if judgment never took the chair back."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If this chapter succeeds, what becomes more reachable in the next chapter?",
+      "choices": [
+        "A) Tactical aggression under pressure",
+        "B) Cleaner objectivity because feelings no longer hold veto power",
+        "C) Full acceptance of every obstacle"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once feelings are no longer ruling the response, the situation becomes easier to see more clearly.",
+        "direct": "The bridge is explicit: governed emotion prepares the ground for objectivity.",
+        "competitive": "When feelings lose the bench, the field gets clearer."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

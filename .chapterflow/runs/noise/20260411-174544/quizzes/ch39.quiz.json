@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch39-q01",
+      "prompt": "What is the main claim of `Correcting Predictions`?",
+      "choices": [
+        "Better forecasts come from disciplined correction rather than from intuition worship",
+        "The chapter promises perfect prediction",
+        "Confidence alone is enough to improve forecasts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter closes by making revision central.",
+        "direct": "Correct. It argues that structured correction improves prediction more than faith in instinct alone.",
+        "competitive": "Right. The chapter makes the room revise the forecast instead of worshiping the hunch."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch39-q02",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That the chapter promises perfect forecasts",
+        "That predictions can be revised",
+        "That intuition alone is weaker than structured correction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter is bounded rather than utopian.",
+        "direct": "It rejects the idea that disciplined prediction repair ends in certainty.",
+        "competitive": "The chapter does not sell heaven with a forecast sheet."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch39-q03",
+      "prompt": "Why does the chapter criticize intuition worship?",
+      "choices": [
+        "Because confidence alone is weaker than structured revision when forecasts need repair",
+        "Because intuition is always worthless",
+        "Because prediction should become purely automatic"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter separates instinct from disciplined updating.",
+        "direct": "It argues that strong forecasts come from correction, not from protecting initial confidence.",
+        "competitive": "The room has to revise the line instead of kneeling to the first hunch."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch39-q04",
+      "prompt": "Elena revises a forecast after structured feedback. What lesson fits best?",
+      "choices": [
+        "Prediction improves when revision is disciplined rather than resisted by confidence",
+        "Any revision guarantees certainty",
+        "The chapter now rejects all intuition entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The example shows repair rather than instinct worship.",
+        "direct": "It shows why forecast quality rises when people update judgments with structure.",
+        "competitive": "The line gets better when the room edits it instead of defending its pride."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch39-q05",
+      "prompt": "Why does a school expectation reset matter in this chapter?",
+      "choices": [
+        "It keeps prediction repair concrete by showing how structured review can change a forecast",
+        "It proves schools can predict perfectly",
+        "It introduces an exact correction formula from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter stays practical and bounded.",
+        "direct": "The reset matters because it shows forecasts becoming more defensible through deliberate revision.",
+        "competitive": "The table rewrites the expectation with receipts instead of swagger."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch39-q06",
+      "prompt": "What distinction does the chapter insist on?",
+      "choices": [
+        "Noticing error is weaker than revising a prediction through disciplined method",
+        "Correction and intuition are identical",
+        "Confidence alone is a correction method"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter separates error awareness from actual repair.",
+        "direct": "Its key distinction is that better prediction depends on structured updating rather than on simply admitting something felt off.",
+        "competitive": "The chapter splits seeing the miss from fixing the line."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch39-q07",
+      "prompt": "Why does the chapter avoid promising certainty?",
+      "choices": [
+        "Because predictions can improve through structure without becoming perfect",
+        "Because forecasts can never improve",
+        "Because all prediction should be abandoned"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps repair realistic.",
+        "direct": "It preserves the value of disciplined correction without claiming flawless prediction.",
+        "competitive": "The room gets a better line without a halo."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch39-q08",
+      "prompt": "What does prediction repair mean here?",
+      "choices": [
+        "Deliberate revision of forecasts in light of better structure and feedback",
+        "Defending the original forecast more confidently",
+        "Ignoring feedback once a prediction is made"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter defines correction as structured updating.",
+        "direct": "It means improving forecasts by revising them methodically rather than protecting initial confidence.",
+        "competitive": "It is the room editing the line with evidence instead of ego."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch39-q09",
+      "prompt": "Which statement best captures the chapter's strongest conclusion?",
+      "choices": [
+        "Better forecasts come from structured correction rather than from faith in instinct",
+        "Perfect prediction is the final goal already achieved",
+        "Forecast repair means intuition should disappear completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter closes on disciplined revision.",
+        "direct": "Its conclusion is that prediction quality depends on correction, not on intuition worship.",
+        "competitive": "The room has to revise the line, not pray over it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch39-q10",
+      "prompt": "What is the cleanest way to describe the book's closing move?",
+      "choices": [
+        "The book ends by turning judgment discipline into practical prediction repair",
+        "The book closes by abandoning structure",
+        "The book ends with a promise of certainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The close is practical rather than mystical.",
+        "direct": "The final move is to show that disciplined judgment culminates in the repair of forecasts.",
+        "competitive": "The book exits with a repair kit, not a shrine to instinct."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What central distinction does Chapter 5 make about perspective?",
+      "choices": [
+        "A) It changes the angle of interpretation without changing the facts",
+        "B) It replaces painful facts with more motivating ones",
+        "C) It lowers the emotional cost of reality by ignoring some of it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps perspective tied to truth. The facts stay put. What changes is the angle from which they are read.",
+        "direct": "Correct. The chapter's core split is altered angle versus altered facts.",
+        "competitive": "Real perspective widens the read. It does not doctor the evidence."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "When the chapter says a different angle can reveal hidden room, what does that mean?",
+      "choices": [
+        "A) It means every setback secretly contains a benefit if you wait long enough",
+        "B) It means a setback may hold leverage, information, or direction that the first read missed",
+        "C) It means facts become less important once your mindset improves"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Hidden room means options or meaning that the first trapped reading did not notice.",
+        "direct": "Correct. The chapter argues that a wider angle can expose usable meaning without erasing cost.",
+        "competitive": "The first read often traps you. Better angle, more room. Same facts."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How is Dwight D. Eisenhower used in this chapter's frozen support?",
+      "choices": [
+        "A) As proof that detailed wartime plans always create optimism",
+        "B) As a narrow model of seeing opportunity where others saw only disaster",
+        "C) As evidence that perspective matters more than preparation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses Eisenhower carefully and narrowly. He points to seeing opportunity under pressure, not to broad historical claims.",
+        "direct": "Right. Eisenhower is a bounded anchor for opportunity-seeing under pressure.",
+        "competitive": "The anchor is small but clear: same danger, different read, more usable room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "June's project launch is delayed because the client changed the requirements at the last minute. Which reading best fits the chapter's work scenario on reframing a blocked plan?",
+      "choices": [
+        "A) The delay proves the project was doomed from the beginning",
+        "B) The delay should be ignored so morale stays high",
+        "C) The delay may expose weak assumptions and create a chance to rebuild the plan more accurately"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not deny the delay. It asks what useful information the delay may now reveal.",
+        "direct": "Correct. The better reading treats the obstacle as diagnostic rather than only humiliating.",
+        "competitive": "Blocked plan, better angle: use the stall to find what was weak before the market does."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which choice is the chapter most likely to call counterfeit perspective?",
+      "choices": [
+        "A) Admitting the setback is real and asking what else it might mean",
+        "B) Claiming the setback is not really a loss because negativity is unhelpful",
+        "C) Looking for leverage after separating facts from panic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Counterfeit perspective sounds hopeful, but it edits the facts to get that hope.",
+        "direct": "Correct. Denial is fake perspective because it changes the evidence instead of the frame.",
+        "competitive": "If the reframe needs a lie, it is not a reframe."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What boundary keeps perspective from sliding into self-deception?",
+      "choices": [
+        "A) The new reading must stay supported by the facts that are actually present",
+        "B) The new reading must reduce stress immediately",
+        "C) The new reading must sound more confident than the old one"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter allows perspective to widen meaning, but not to leave reality behind.",
+        "direct": "Correct. The tether is factual support.",
+        "competitive": "No tether, no perspective. Just polished delusion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Rafael gets a disappointing exam result and immediately decides it proves he is not capable of succeeding in the subject. According to the chapter, what would a better school reframe do first?",
+      "choices": [
+        "A) Treat the result as information about preparation or fit before treating it as fate",
+        "B) Assume the grading was unfair so confidence stays intact",
+        "C) Stop caring about the result because grades measure the wrong thing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter suggests widening the meaning of the result without pretending the result disappeared.",
+        "direct": "Correct. One score can become information instead of a life verdict.",
+        "competitive": "Do not let one data point declare destiny before you classify it properly."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mina's relationship conversation ends badly, and she tells herself the conflict proves the other person is simply attacking her. Which judgment best matches the chapter's personal setback scenario?",
+      "choices": [
+        "A) The conflict should be reframed as harmless because tension is normal",
+        "B) The conflict may still be painful while also revealing an unmet need or a pattern worth seeing",
+        "C) The conflict matters only if both people agree on what it means right away"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter leaves pain intact while allowing the meaning to widen.",
+        "direct": "Correct. A broader angle can expose need or pattern without denying hurt.",
+        "competitive": "Pain stays. But pain may still be carrying information your first read missed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures the chapter's hardest claim about truthful reframing?",
+      "choices": [
+        "A) The first interpretation is usually the most realistic because it is emotionally honest",
+        "B) Every obstacle can be turned into opportunity if you are disciplined enough",
+        "C) One obstacle may support more than one truthful reading, but only readings still grounded in fact count"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not promise opportunity every time. It argues that the first reading may not be the only honest one.",
+        "direct": "Correct. The hard edge is plurality without dishonesty.",
+        "competitive": "More than one true read can exist. Fantasy is not one of them."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the chapter end by pointing toward control?",
+      "choices": [
+        "A) Because once the angle changes, emotional difficulty usually disappears",
+        "B) Because a wider and cleaner read makes it easier to see what can still be acted on",
+        "C) Because control matters only after perspective has removed uncertainty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A better angle does not solve everything, but it can reveal the part of the situation that is still workable.",
+        "direct": "Correct. Perspective prepares action by clarifying usable room.",
+        "competitive": "New angle, cleaner map, sharper sense of what is still yours to move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

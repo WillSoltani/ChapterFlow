@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What shift does Chapter 4 make in how grit should be treated?",
+      "choices": [
+        "From admiration to observation",
+        "From effort to talent",
+        "From repeated evidence to first impressions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says grit should be examined through evidence, not praised as a vague halo.",
+        "direct": "Chapter 4 turns grit from admired label into observable pattern.",
+        "competitive": "Stop worshipping grit and start tracking it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why is one dramatic moment not enough to prove someone is gritty?",
+      "choices": [
+        "Because grit must be inferred from repeated return across time",
+        "Because dramatic moments never matter",
+        "Because grit can only be measured at school"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns against snapshot judgments and asks for patterns over time.",
+        "direct": "One scene is too thin; the chapter wants repeated evidence.",
+        "competitive": "One highlight is not a whole file."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "A manager labels someone gritty after one visible comeback. What chapter mistake is happening?",
+      "choices": [
+        "Observation is being replaced by a quick label",
+        "Repeated evidence is being gathered correctly",
+        "The manager is proving grit does not exist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 4 says a quick label can outrun the available evidence.",
+        "direct": "The manager is confusing a dramatic snapshot with a stable pattern.",
+        "competitive": "They are crowning grit on one clip."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "What makes self-assessment difficult in this chapter?",
+      "choices": [
+        "People are neutral and slow judges of themselves",
+        "Recent stumbles or successes can distort judgment",
+        "Self-assessment is impossible in every case"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says recent events can feel bigger than the longer pattern.",
+        "direct": "Self-judgment gets distorted by recency and overconfidence.",
+        "competitive": "One recent hit or miss can hijack the whole story in your head."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Why does the chapter resist treating grit as a fixed badge?",
+      "choices": [
+        "Because people can show persistence unevenly across domains and over time",
+        "Because grit has nothing to do with behavior",
+        "Because labels always improve judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps complexity alive instead of flattening people into tidy types.",
+        "direct": "A fixed badge hides variation, context, and developing recovery patterns.",
+        "competitive": "One label is too cheap for a moving pattern."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Which claim would Chapter 4 reject?",
+      "choices": [
+        "Repeated evidence matters more than a single scene",
+        "A score or quick impression is the whole truth about a person",
+        "Observation can be helpful when it stays narrow"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that measurement can become distortive when it hardens into total truth.",
+        "direct": "It rejects score worship and totalizing labels.",
+        "competitive": "A label is not a life sentence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "What kind of questions does the chapter recommend asking yourself?",
+      "choices": [
+        "Questions about repeated return, follow-through, and recovery",
+        "Questions that prove your final worth immediately",
+        "Questions that ignore boredom and setbacks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter prefers pattern questions such as whether you returned after boredom or frustration.",
+        "direct": "It recommends tracking follow-through across time instead of hunting for a fixed inner label.",
+        "competitive": "Ask for receipts, not a flattering identity story."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "What is the risk in trying to measure grit?",
+      "choices": [
+        "Measurement always destroys understanding",
+        "Measurement can clarify behavior or oversimplify people",
+        "Measurement makes repeated evidence unnecessary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says measurement can help if it stays narrow, but it can also become reductive.",
+        "direct": "This is the hard tension: clarification versus oversimplification.",
+        "competitive": "The tool can sharpen judgment or turn into a cheap weapon."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Why does Chapter 4 keep moral humility in the frame?",
+      "choices": [
+        "Because grit is being examined as persistence, not as final human worth",
+        "Because moral questions never matter",
+        "Because persistence cannot be observed at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates trait observation from total value judgment.",
+        "direct": "It refuses to turn grit into a ranking of human worth.",
+        "competitive": "Tracking persistence is not the same as sentencing a person."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Why does Chapter 4 lead into Chapter 5?",
+      "choices": [
+        "Because once grit is observed more carefully, the next question is whether it can grow",
+        "Because the book is finished with grit as a topic",
+        "Because observation makes growth impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If grit can be watched patiently, the next question is whether it can develop.",
+        "direct": "The bridge is from observation to growth.",
+        "competitive": "Once the pattern is visible, the next fight is whether it can be trained."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

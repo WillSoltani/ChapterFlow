@@ -243,6 +243,52 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason: "One of the clearest bridges between attention management and everyday execution.",
     similarBookId: "essentialism",
   },
+  "make-it-stick": {
+    authorCredentials:
+      "Learning scientists and memory researchers translating cognitive science into practical study design and durable retention.",
+    coverGradient: "linear-gradient(135deg, #991b1b 0%, #111827 100%)",
+    hook:
+      "Build memory that lasts by choosing methods that strengthen retrieval, discrimination, and transfer instead of chasing fluency.",
+    description:
+      "A practical guide to learning science: why rereading and cramming mislead, how retrieval, spacing, interleaving, generation, and feedback build durable memory, and where desirable difficulty turns into overload instead of growth.",
+    whatYoullLearn: [
+      "How retrieval practice, spacing, and interleaving strengthen long-term retention more reliably than smooth review",
+      "How to distinguish desirable difficulty from overload by checking for correction, support, and another attempt",
+      "How to calibrate your learning by testing understanding instead of trusting familiarity, confidence, or effort alone",
+    ],
+    bestFor: ["students", "professionals", "teachers", "lifelong learners"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 1720,
+    completionRate: 80,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "The strongest learning-science book in the library for separating durable memory from study habits that only feel effective.",
+    similarBookId: "the-power-of-habit",
+  },
+  "made-to-stick": {
+    authorCredentials:
+      "Chip Heath and Dan Heath write on communication, decision-making, and what makes ideas memorable enough to survive real-world retelling.",
+    coverGradient: "linear-gradient(135deg, #7c2d12 0%, #1f2937 100%)",
+    hook:
+      "Design messages people can remember, believe, care about, and actually repeat after the room changes.",
+    description:
+      "A practical guide to the SUCCESs framework: building ideas that stay simple without becoming simplistic, earn attention and trust, feel meaningful, and travel through stories instead of dying as explanation.",
+    whatYoullLearn: [
+      "How simplicity, surprise, concreteness, credibility, emotion, and stories each solve a different failure mode in communication",
+      "How to turn a correct idea into a message that still works after attention shifts and retelling begins",
+      "How to sharpen a message without drifting into gimmickry, manipulation, or empty slogans",
+    ],
+    bestFor: ["leaders", "teachers", "marketers", "founders"],
+    category: "Communication",
+    difficulty: "medium",
+    readerCount: 1740,
+    completionRate: 81,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest books in the library for turning abstract communication advice into repeatable message design choices.",
+    similarBookId: "talk-like-ted",
+  },
   essentialism: {
     authorCredentials:
       "Leadership thinker and author focused on trade-offs, priority design, and disciplined exclusion.",
@@ -374,6 +420,75 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
       "One of the clearest operator books in the library for leadership when the company is under real strain.",
     similarBookId: "the-prince",
   },
+  "thinking-in-bets": {
+    authorCredentials:
+      "Former professional poker player and decision strategist writing about probabilistic judgment, resulting, and truth-seeking under uncertainty.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
+    hook:
+      "Separate decision quality from outcome quality before hindsight and social comfort turn bad reasoning into false certainty.",
+    description:
+      "A practical guide to better judgment under uncertainty: treating choices as bets, updating beliefs in percentages instead of absolutes, using disagreement to surface hidden evidence, and planning for risk before luck tells a simpler story.",
+    whatYoullLearn: [
+      "How to judge a decision by the information and process behind it instead of by the outcome alone",
+      "How probabilistic language, calibration, and truth-seeking disagreement improve judgment when certainty is not available",
+      "How to spot false consensus, separate evidential challenge from ego conflict, and use mental time travel to prepare for uncertainty",
+    ],
+    bestFor: ["leaders", "operators", "investors", "curious readers"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 1740,
+    completionRate: 79,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the sharpest books in the library for learning how better decisions survive uncertainty, disagreement, and noisy outcomes.",
+    similarBookId: "thinking-fast-and-slow",
+  },
+  superforecasting: {
+    authorCredentials:
+      "Political scientist Philip E. Tetlock and science writer Dan Gardner writing on probabilistic judgment, forecasting tournaments, and institutional accountability under uncertainty.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
+    hook:
+      "Learn to think in probabilities before pundit certainty and hindsight turn the future into theater.",
+    description:
+      "A practical guide to better forecasting: keeping score, updating in small steps, breaking big questions into tractable parts, working in teams, and building institutions that reward calibration over confident performance.",
+    whatYoullLearn: [
+      "How superforecasters think in probabilities, revise without ego, and keep track of what the record actually says",
+      "How scorekeeping, decomposition, and team process improve judgment more than confident punditry does",
+      "How forecasting stays useful even with black swans, institutional resistance, and the hard limits of long-range certainty",
+    ],
+    bestFor: ["leaders", "operators", "investors", "curious readers"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 1760,
+    completionRate: 78,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the strongest books in the library for turning judgment under uncertainty into a trainable, scoreable practice.",
+    similarBookId: "thinking-in-bets",
+  },
+  "the-black-swan": {
+    authorCredentials:
+      "Essayist, trader, and risk thinker writing on uncertainty, rare events, probability, and the limits of prediction in complex systems.",
+    coverGradient: "linear-gradient(135deg, #111827 0%, #1d4ed8 100%)",
+    hook:
+      "See how rare events reshape history before tidy stories and expert confidence trick you into thinking the world was predictable.",
+    description:
+      "A practical reading of Taleb's argument about black swans: why consequential surprises dominate history, why narrative and statistical habits hide that fact, and how to live with more asymmetry, less ruin, and less faith in polished forecasts.",
+    whatYoullLearn: [
+      "How black swan events differ from ordinary uncertainty and why hindsight makes them feel falsely explainable",
+      "How narrative fallacy, silent evidence, and extremistan distort judgment in markets, careers, and public thinking",
+      "How to build a practical posture around capped downside, optionality, and skepticism toward phony precision",
+    ],
+    bestFor: ["investors", "operators", "leaders", "curious readers"],
+    category: "Psychology",
+    difficulty: "hard",
+    readerCount: 1910,
+    completionRate: 74,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the strongest books in the library for learning where prediction breaks and how better risk posture begins.",
+    similarBookId: "superforecasting",
+  },
   influence: {
     authorCredentials:
       "Social psychologist Robert B. Cialdini, PhD, writing from decades of research on persuasion, compliance, and the cue patterns behind automatic judgment.",
@@ -396,6 +511,28 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
       "One of the most durable books in the library for seeing how small cues scale into real compliance before you notice the mechanism.",
     similarBookId: "thinking-fast-and-slow",
   },
+  "built-to-last": {
+    authorCredentials:
+      "Business researchers Jim Collins and Jerry I. Porras writing on visionary companies, institutional durability, and the management habits that outlast charismatic founders.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #14532d 100%)",
+    hook: "Build an institution that can outlast its founders before success hardens into drift, ego, or short-termism.",
+    description:
+      "A practical guide to institutional durability: preserving core ideology while stimulating progress, developing leaders from within, testing ideas through action, and designing companies to keep compounding across decades.",
+    whatYoullLearn: [
+      "How clock building shifts attention from one heroic leader toward systems a company can keep using after the founder is gone",
+      "How core ideology and experimentation can coexist so a company protects what matters while still adapting in motion",
+      "How mechanisms like home-grown management, aligned goals, and productive discomfort help a strong institution endure",
+    ],
+    bestFor: ["founders", "leaders", "operators", "team leads"],
+    category: "Leadership",
+    difficulty: "hard",
+    readerCount: 1730,
+    completionRate: 74,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the strongest institution-building books in the library for separating durable company design from founder mythology.",
+    similarBookId: "good-to-great",
+  },
   "leaders-eat-last": {
     authorCredentials:
       "Leadership speaker and organizational thinker focused on trust, culture, belonging, and the human biology behind cooperation.",
@@ -417,6 +554,144 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason:
       "One of the strongest culture books in the library for turning trust from rhetoric into operating practice.",
     similarBookId: "the-hard-thing-about-hard-things",
+  },
+  limitless: {
+    authorCredentials:
+      "Brain coach and learning strategist focused on memory, focus, speed reading, mindset, and practical cognitive performance.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook:
+      "Upgrade how you learn before old beliefs, weak methods, and scattered attention keep deciding your ceiling.",
+    description:
+      "A practical guide to learning as a trainable system: reshaping mindset, building motivation, improving methods, protecting focus, strengthening memory, and reading faster without sacrificing comprehension.",
+    whatYoullLearn: [
+      "How to stop treating intelligence as fixed by rebuilding beliefs about learning, energy, and personal capability",
+      "How motivation becomes more reliable when purpose, identity, and small wins support the work instead of waiting for inspiration",
+      "How focus, memory, note-taking, and speed reading can become repeatable methods instead of occasional bursts",
+    ],
+    bestFor: ["students", "professionals", "self-improvers", "lifelong learners"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 1860,
+    completionRate: 80,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest practical books in the library for turning learning ability into a trainable system instead of a fixed trait.",
+    similarBookId: "make-it-stick",
+  },
+  peak: {
+    authorCredentials:
+      "K. Anders Ericsson was a psychologist known for expertise and deliberate-practice research; Robert Pool was a science writer focused on translating that research for general readers.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook:
+      "Build skill with deliberate practice before talent stories convince you that your ceiling is fixed.",
+    description:
+      "A practical guide to expertise: why improvement depends on purposeful and deliberate practice, how adaptation and mental representations support growth, where coaching matters, and why the structure of a field changes what practice can produce.",
+    whatYoullLearn: [
+      "How deliberate practice differs from repetition by demanding specific targets, feedback, stretch, and redesign",
+      "How mental representations, adaptation, and domain structure explain why experts notice, remember, and correct differently",
+      "How teachers, coaches, and training design shape whether effort becomes real improvement or just more time spent",
+    ],
+    bestFor: ["students", "coaches", "professionals", "self-improvers"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 1680,
+    completionRate: 78,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "The clearest expertise book in the library for replacing talent myths with a mechanism-driven account of skill growth.",
+    similarBookId: "make-it-stick",
+  },
+  "the-first-20-hours": {
+    authorCredentials:
+      "Josh Kaufman is a business educator and author focused on rapid skill acquisition, practical learning systems, and lowering the barrier to starting useful new skills.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook:
+      "Get to usable performance faster by designing the first twenty hours instead of worshipping mastery from the start.",
+    description:
+      "A practical guide to rapid skill acquisition: choosing a lovable project, deconstructing the skill, removing barriers to practice, and building early repetitions that get you to real performance faster.",
+    whatYoullLearn: [
+      "How to lower the entry cost of a new skill by narrowing the target and choosing a real performance threshold",
+      "How to deconstruct a complex skill into trainable parts, feedback loops, and shorter practice windows",
+      "How the book's case studies turn rapid skill acquisition into usable action across learning, habit repair, and real-world practice",
+    ],
+    bestFor: ["self-improvers", "students", "professionals", "generalists"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 1640,
+    completionRate: 80,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest books in the library for turning learning ambition into an actual early-stage practice system.",
+    similarBookId: "peak",
+  },
+  "the-innovators-dilemma": {
+    authorCredentials:
+      "Clayton M. Christensen was a Harvard Business School professor and innovation theorist whose work defined disruptive innovation and incumbent failure under structural change.",
+    coverGradient: "linear-gradient(135deg, #111827 0%, #0f766e 100%)",
+    hook:
+      "See why strong firms can fail rationally before disruption makes good management feel like the trap itself.",
+    description:
+      "A mechanism-driven guide to disruptive innovation: why incumbents miss it, how value networks and market size shape response, and what organizational design, capability appraisal, and strategy process have to do differently.",
+    whatYoullLearn: [
+      "How disruptive innovation differs from sustaining improvement and why incumbents can still fail while listening to customers",
+      "How value networks, small-market economics, and organizational fit shape what looks rational inside the core business",
+      "How to respond through structure, market discovery, capability realism, and a strategy process that can learn under uncertainty",
+    ],
+    bestFor: ["strategists", "operators", "founders", "leaders"],
+    category: "Strategy",
+    difficulty: "hard",
+    readerCount: 1680,
+    completionRate: 73,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the foundational strategy books in the library for explaining why competent incumbents can still get disruption badly wrong.",
+    similarBookId: "playing-to-win",
+  },
+  "competing-against-luck": {
+    authorCredentials:
+      "Clayton M. Christensen was a Harvard Business School professor and innovation theorist; Taddy Hall, Karen Dillon, and David S. Duncan helped translate Jobs Theory into practical innovation research and operating choices.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #0f766e 100%)",
+    hook:
+      "See what customers are really hiring before feature talk, segmentation, and product certainty blur the job.",
+    description:
+      "A practical strategy book on Jobs Theory: how customer progress drives choice, why products compete against hidden alternatives, how to hear causal demand more clearly, and what organizations must change to build around jobs instead of categories.",
+    whatYoullLearn: [
+      "How to define a job around customer progress, circumstance, and tradeoffs instead of product attributes or demographics",
+      "How to uncover causal demand by tracing what customers pull into their lives and what competing solutions they are firing",
+      "How to translate jobs thinking into innovation choices, messaging, integration, and organization design",
+    ],
+    bestFor: ["strategists", "product teams", "founders", "operators"],
+    category: "Strategy",
+    difficulty: "hard",
+    readerCount: 1540,
+    completionRate: 75,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest books in the library for turning vague customer research into a sharper mechanism for innovation choice.",
+    similarBookId: "the-innovators-dilemma",
+  },
+  "playing-to-win": {
+    authorCredentials:
+      "A.G. Lafley is the former CEO of Procter & Gamble; Roger L. Martin is a strategy scholar and former Rotman School dean focused on integrated strategic choice.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #0f766e 100%)",
+    hook:
+      "Make strategy a set of choices before vague ambition, generic planning, and internal busyness pretend to be winning.",
+    description:
+      "A practical guide to strategy as an integrated cascade of choices: defining a winning aspiration, choosing where to play, deciding how to win, building the capabilities that support that choice, and using management systems to keep the whole game coherent.",
+    whatYoullLearn: [
+      "How to turn strategy from broad goals into a disciplined sequence of interconnected choices",
+      "How where-to-play and how-to-win decisions shape the capabilities and systems a company actually needs",
+      "How to think through strategy under uncertainty by generating options, testing conditions, and shortening the odds instead of waiting for certainty",
+    ],
+    bestFor: ["strategists", "operators", "leaders", "founders"],
+    category: "Strategy",
+    difficulty: "hard",
+    readerCount: 1860,
+    completionRate: 77,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest strategy books in the library for turning competitive ambition into a coherent set of reinforcing choices.",
+    similarBookId: "good-to-great",
   },
   "the-one-thing": {
     authorCredentials:
@@ -506,6 +781,74 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason:
       "One of the cleanest books in the library for separating loud business success from disciplined institutional strength.",
     similarBookId: "leaders-eat-last",
+  },
+  "seven-powers": {
+    authorCredentials:
+      "Strategy scholar and investor Hamilton Helmer writing on durable competitive advantage, strategic sequencing, and the conditions that make power persist.",
+    coverGradient: "linear-gradient(135deg, #111827 0%, #1d4ed8 100%)",
+    hook:
+      "See which moats actually endure before strategy talk drifts into slogans, wishful thinking, or category confusion.",
+    description:
+      "A practical guide to Hamilton Helmer's seven powers: scale economies, network economies, counter-positioning, switching costs, branding, cornered resource, and process power, plus the path and timing logic that determine when those advantages can still be built.",
+    whatYoullLearn: [
+      "How each of the seven powers works, why it persists, and what has to be true before it becomes strategically real",
+      "How to distinguish operational improvement from genuine power, including when a move changes the route toward a moat instead of polishing exposed competition",
+      "How stage and timing constrain strategy by making some advantages plausible early, others plausible later, and some effectively unavailable once the window has closed",
+    ],
+    bestFor: ["strategists", "founders", "operators", "leaders"],
+    category: "Strategy",
+    difficulty: "hard",
+    readerCount: 1870,
+    completionRate: 74,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the sharpest strategy books in the library for separating real durable advantage from generic competitive ambition.",
+    similarBookId: "good-to-great",
+  },
+  "the-outsiders": {
+    authorCredentials:
+      "Investor and business writer William N. Thorndike Jr. writing on capital allocation, CEO performance, and long-term value creation.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
+    hook:
+      "Study the rare CEOs who compounded value rationally before prestige habits and empire-building distort the scorecard.",
+    description:
+      "A practical guide to outsider-style leadership through nine chapters on capital allocation, decentralization, disciplined restraint, selective acquisitions, buybacks, and the managerial habits that drove exceptional shareholder returns.",
+    whatYoullLearn: [
+      "How outsider CEOs used per-share value, not executive theater or raw size, as the operating scorecard that kept decisions honest",
+      "How lean headquarters, delegated operators, and patient capital allocation reinforced each other across very different businesses",
+      "How to recognize the limits of thrift, dealmaking, and decentralization so discipline stays rational instead of turning into dogma",
+    ],
+    bestFor: ["leaders", "operators", "investors", "founders"],
+    category: "Leadership",
+    difficulty: "hard",
+    readerCount: 1780,
+    completionRate: 76,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the strongest leadership books in the library for showing how capital allocation and managerial restraint actually compound together.",
+    similarBookId: "seven-powers",
+  },
+  ultralearning: {
+    authorCredentials:
+      "Writer and self-education researcher focused on aggressive skill acquisition, direct practice, and self-directed learning design.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #1e3a8a 100%)",
+    hook: "Learn hard skills faster by designing projects that force proof instead of passive familiarity.",
+    description:
+      "A practical guide to self-directed skill acquisition through metalearning, directness, drill design, retrieval, feedback, retention, intuition, and experimentation.",
+    whatYoullLearn: [
+      "How to scope a serious learning project before enthusiasm turns into drift",
+      "How to use direct practice, feedback, and drills to turn weak spots into usable skill",
+      "How to retain, experiment, and sustain effort long enough for hard learning to compound",
+    ],
+    bestFor: ["students", "career switchers", "self-improvers", "builders"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 1760,
+    completionRate: 80,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "It gives the clearest end-to-end playbook in the library for turning ambition into a testable learning project.",
+    similarBookId: "make-it-stick",
   },
   "never-split-the-difference": {
     authorCredentials:
@@ -706,6 +1049,52 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason:
       "One of the most rigorous classical strategy texts in the library for connecting ancient military logic to modern competitive decisions.",
     similarBookId: "the-prince",
+  },
+  "the-war-of-art": {
+    authorCredentials:
+      "Steven Pressfield is a novelist and nonfiction writer focused on creative resistance, professional discipline, and the inner life of making serious work.",
+    coverGradient: "linear-gradient(135deg, #111827 0%, #7c2d12 100%)",
+    hook:
+      "Beat the inner resistance that keeps meaningful work unreal before delay, vanity, and fear quietly bury the thing you are meant to make.",
+    description:
+      "A practical guide to creative resistance: naming the force that blocks meaningful work, learning to turn pro through disciplined return, and finally treating the work as service to something larger than ego or self-display.",
+    whatYoullLearn: [
+      "How to recognize Resistance as the force that grows strongest around work that actually matters",
+      "How turning pro changes the day from mood-based waiting into disciplined return and repeated labor",
+      "How to keep the work from becoming vanity theater by treating it as service, stewardship, and faithful delivery",
+    ],
+    bestFor: ["writers", "builders", "artists", "self-improvers"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 1760,
+    completionRate: 77,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest books in the library for moving from blocked intention to serious creative labor without collapsing into grind rhetoric.",
+    similarBookId: "deep-work",
+  },
+  "the-33-strategies-of-war": {
+    authorCredentials:
+      "Robert Greene is a strategy and power writer known for synthesizing historical case material into modern frameworks for conflict, leverage, positioning, and self-command.",
+    coverGradient: "linear-gradient(135deg, #111827 0%, #7c2d12 100%)",
+    hook:
+      "Learn when to escalate, flank, negotiate, disappear, or refuse the game before conflict starts choosing for you.",
+    description:
+      "A modern reading of Robert Greene's thirty-three strategy chapters on polarity, momentum, intelligence, maneuver, moral positioning, hidden pressure, and the ethical limits of strategic thinking when the field stops being a battlefield.",
+    whatYoullLearn: [
+      "How to read a conflict for terrain, tempo, leverage, morale, and hidden asymmetry before you commit to a move",
+      "How to use strategy families such as presence, maneuver, negotiation, deception, pressure, and timing without collapsing them into reflexive aggression",
+      "How to recognize the ethical edge of the framework and put it down in intimacy, grief, collaboration, and other settings where the other side is not an opponent",
+    ],
+    bestFor: ["strategists", "operators", "leaders", "readers who think competitively"],
+    category: "Strategy",
+    difficulty: "hard",
+    readerCount: 2140,
+    completionRate: 69,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "It is the sharpest modern strategy package in the library for separating legitimate competitive moves from ego, cruelty, and overreach.",
+    similarBookId: "the-art-of-war",
   },
   "atomic-habits": {
     authorCredentials:

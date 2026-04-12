@@ -1,0 +1,38 @@
+{
+  "chapterId": "ch18-how-to-be-rational-about-rationality",
+  "chapterNumber": 18,
+  "title": "How to Be Rational About Rationality",
+  "supportLevel": "narrow-frozen-basis",
+  "frozenSources": [
+    {
+      "id": "toc-json",
+      "path": "source-freeze/toc.json",
+      "role": "chapter-map"
+    },
+    {
+      "id": "source-heading-index",
+      "path": "sidecars/source/source-heading-index.json",
+      "role": "chapter-identity"
+    },
+    {
+      "id": "book-source-md",
+      "path": "source-freeze/book-source.md",
+      "role": "freeze-boundary-and-theme"
+    },
+    {
+      "id": "book-skeleton",
+      "path": "skeleton/book-skeleton.md",
+      "role": "chapter-intent"
+    }
+  ],
+  "allowedMoves": [
+    "paraphrase-first",
+    "survival-based rationality framing",
+    "revealed-preference test for rationality"
+  ],
+  "disallowedMoves": [
+    "exact quotes",
+    "unsupported named philosophical disputes",
+    "generic decision-theory exposition"
+  ]
+}

@@ -6,6 +6,10 @@ import {
   THE_POWER_OF_HABIT_RAW_CHAPTERS,
   getMakeTimePackageForTone,
   MAKE_TIME_RAW_CHAPTERS,
+  getMakeItStickPackageForTone,
+  MAKE_IT_STICK_RAW_CHAPTERS,
+  getMadeToStickPackageForTone,
+  MADE_TO_STICK_RAW_CHAPTERS,
   getCrucialConversationsPackageForTone,
   CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
   getDifficultConversationsPackageForTone,
@@ -24,6 +28,8 @@ import {
   SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS,
   getPredictablyIrrationalPackageForTone,
   PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
+  getThinkingInBetsPackageForTone,
+  THINKING_IN_BETS_RAW_CHAPTERS,
   getTheLawsOfHumanNaturePackageForTone,
   THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
   getTheAlmanackOfNavalRavikantPackageForTone,
@@ -32,8 +38,20 @@ import {
   THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
   getInfluencePackageForTone,
   INFLUENCE_RAW_CHAPTERS,
+  getTheInnovatorsDilemmaPackageForTone,
+  THE_INNOVATORS_DILEMMA_RAW_CHAPTERS,
+  getBuiltToLastPackageForTone,
+  BUILT_TO_LAST_RAW_CHAPTERS,
+  getCompetingAgainstLuckPackageForTone,
+  COMPETING_AGAINST_LUCK_RAW_CHAPTERS,
   getLeadersEatLastPackageForTone,
   LEADERS_EAT_LAST_RAW_CHAPTERS,
+  getLimitlessPackageForTone,
+  LIMITLESS_RAW_CHAPTERS,
+  getPeakPackageForTone,
+  PEAK_RAW_CHAPTERS,
+  getPlayingToWinPackageForTone,
+  PLAYING_TO_WIN_RAW_CHAPTERS,
   getTheOneThingPackageForTone,
   THE_ONE_THING_RAW_CHAPTERS,
   getTheCharismaMythPackageForTone,
@@ -44,6 +62,8 @@ import {
   GOOD_TO_GREAT_RAW_CHAPTERS,
   getHowToTalkToAnyonePackageForTone,
   HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
+  getSevenPowersPackageForTone,
+  SEVEN_POWERS_RAW_CHAPTERS,
   getTalkLikeTedPackageForTone,
   TALK_LIKE_TED_RAW_CHAPTERS,
   getNeverSplitTheDifferencePackageForTone,
@@ -52,6 +72,8 @@ import {
   PRE_SUASION_RAW_CHAPTERS,
   getSuperThinkingPackageForTone,
   SUPER_THINKING_RAW_CHAPTERS,
+  getSuperforecastingPackageForTone,
+  SUPERFORECASTING_RAW_CHAPTERS,
   getYouCantHurtMePackageForTone,
   YOU_CANT_HURT_ME_RAW_CHAPTERS,
   getIndistractablePackageForTone,
@@ -60,10 +82,22 @@ import {
   EXTREME_OWNERSHIP_RAW_CHAPTERS,
   getTheArtOfWarPackageForTone,
   THE_ART_OF_WAR_RAW_CHAPTERS,
+  getTheWarOfArtPackageForTone,
+  THE_WAR_OF_ART_RAW_CHAPTERS,
+  getThe33StrategiesOfWarPackageForTone,
+  THE_33_STRATEGIES_OF_WAR_RAW_CHAPTERS,
   getAtomicHabitsPackageForTone,
   ATOMIC_HABITS_RAW_CHAPTERS,
   getTheGreatMentalModelsVol1PackageForTone,
   THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS,
+  getTheBlackSwanPackageForTone,
+  THE_BLACK_SWAN_RAW_CHAPTERS,
+  getTheFirst20HoursPackageForTone,
+  THE_FIRST_20_HOURS_RAW_CHAPTERS,
+  getTheOutsidersPackageForTone,
+  THE_OUTSIDERS_RAW_CHAPTERS,
+  getUltralearningPackageForTone,
+  ULTRALEARNING_RAW_CHAPTERS,
   isV12BookPackage,
   resolveTone,
   type BookPackage,
@@ -979,6 +1013,14 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getMakeTimePackageForTone,
     getRaw: () => MAKE_TIME_RAW_CHAPTERS,
   },
+  "make-it-stick": {
+    getPackage: getMakeItStickPackageForTone,
+    getRaw: () => MAKE_IT_STICK_RAW_CHAPTERS,
+  },
+  "made-to-stick": {
+    getPackage: getMadeToStickPackageForTone,
+    getRaw: () => MADE_TO_STICK_RAW_CHAPTERS,
+  },
   "crucial-conversations": {
     getPackage: getCrucialConversationsPackageForTone,
     getRaw: () => CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
@@ -1015,6 +1057,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getPredictablyIrrationalPackageForTone,
     getRaw: () => PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
   },
+  "thinking-in-bets": {
+    getPackage: getThinkingInBetsPackageForTone,
+    getRaw: () => THINKING_IN_BETS_RAW_CHAPTERS,
+  },
   "the-almanack-of-naval-ravikant": {
     getPackage: getTheAlmanackOfNavalRavikantPackageForTone,
     getRaw: () => THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS,
@@ -1031,9 +1077,33 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getInfluencePackageForTone,
     getRaw: () => INFLUENCE_RAW_CHAPTERS,
   },
+  "the-innovators-dilemma": {
+    getPackage: getTheInnovatorsDilemmaPackageForTone,
+    getRaw: () => THE_INNOVATORS_DILEMMA_RAW_CHAPTERS,
+  },
+  "built-to-last": {
+    getPackage: getBuiltToLastPackageForTone,
+    getRaw: () => BUILT_TO_LAST_RAW_CHAPTERS,
+  },
+  "competing-against-luck": {
+    getPackage: getCompetingAgainstLuckPackageForTone,
+    getRaw: () => COMPETING_AGAINST_LUCK_RAW_CHAPTERS,
+  },
   "leaders-eat-last": {
     getPackage: getLeadersEatLastPackageForTone,
     getRaw: () => LEADERS_EAT_LAST_RAW_CHAPTERS,
+  },
+  limitless: {
+    getPackage: getLimitlessPackageForTone,
+    getRaw: () => LIMITLESS_RAW_CHAPTERS,
+  },
+  peak: {
+    getPackage: getPeakPackageForTone,
+    getRaw: () => PEAK_RAW_CHAPTERS,
+  },
+  "playing-to-win": {
+    getPackage: getPlayingToWinPackageForTone,
+    getRaw: () => PLAYING_TO_WIN_RAW_CHAPTERS,
   },
   "the-one-thing": {
     getPackage: getTheOneThingPackageForTone,
@@ -1055,6 +1125,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getHowToTalkToAnyonePackageForTone,
     getRaw: () => HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
   },
+  "seven-powers": {
+    getPackage: getSevenPowersPackageForTone,
+    getRaw: () => SEVEN_POWERS_RAW_CHAPTERS,
+  },
   "talk-like-ted": {
     getPackage: getTalkLikeTedPackageForTone,
     getRaw: () => TALK_LIKE_TED_RAW_CHAPTERS,
@@ -1070,6 +1144,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
   "super-thinking": {
     getPackage: getSuperThinkingPackageForTone,
     getRaw: () => SUPER_THINKING_RAW_CHAPTERS,
+  },
+  superforecasting: {
+    getPackage: getSuperforecastingPackageForTone,
+    getRaw: () => SUPERFORECASTING_RAW_CHAPTERS,
   },
   indistractable: {
     getPackage: getIndistractablePackageForTone,
@@ -1087,6 +1165,14 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getTheArtOfWarPackageForTone,
     getRaw: () => THE_ART_OF_WAR_RAW_CHAPTERS,
   },
+  "the-war-of-art": {
+    getPackage: getTheWarOfArtPackageForTone,
+    getRaw: () => THE_WAR_OF_ART_RAW_CHAPTERS,
+  },
+  "the-33-strategies-of-war": {
+    getPackage: getThe33StrategiesOfWarPackageForTone,
+    getRaw: () => THE_33_STRATEGIES_OF_WAR_RAW_CHAPTERS,
+  },
   "atomic-habits": {
     getPackage: getAtomicHabitsPackageForTone,
     getRaw: () => ATOMIC_HABITS_RAW_CHAPTERS,
@@ -1094,6 +1180,22 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
   "the-great-mental-models-vol-1": {
     getPackage: getTheGreatMentalModelsVol1PackageForTone,
     getRaw: () => THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS,
+  },
+  "the-black-swan": {
+    getPackage: getTheBlackSwanPackageForTone,
+    getRaw: () => THE_BLACK_SWAN_RAW_CHAPTERS,
+  },
+  "the-first-20-hours": {
+    getPackage: getTheFirst20HoursPackageForTone,
+    getRaw: () => THE_FIRST_20_HOURS_RAW_CHAPTERS,
+  },
+  "the-outsiders": {
+    getPackage: getTheOutsidersPackageForTone,
+    getRaw: () => THE_OUTSIDERS_RAW_CHAPTERS,
+  },
+  ultralearning: {
+    getPackage: getUltralearningPackageForTone,
+    getRaw: () => ULTRALEARNING_RAW_CHAPTERS,
   },
 };
 

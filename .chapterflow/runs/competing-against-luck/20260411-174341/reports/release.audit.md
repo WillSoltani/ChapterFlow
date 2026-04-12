@@ -1,6 +1,6 @@
 # Release Audit Report
 
-Audited at: 2026-04-12T01:11:37Z
+Audited at: 2026-04-12T20:32:54Z
 Release Path: .chapterflow/runs/competing-against-luck/20260411-174341/release/competing-against-luck.modern.json
 
 Inventory:
@@ -19,6 +19,7 @@ Audit findings:
 Deviation repairs logged:
 - repaired Chapter 9 continuity hash mismatch against its validated payload before Chapter 10 work continued
 - repaired run-wide continuity sealing to the release guard canonical hash form before final release validation
+- repaired thin release metadata by backfilling canonical title and author, categories, tags, fuller edition detail, and explicit chapter scope from the locked source bundle
 
 Remaining warnings:
 - none

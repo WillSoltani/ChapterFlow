@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Rogers mainly trying to show in this chapter?",
+      "choices": [
+        "That therapy follows one fixed stage order for everyone",
+        "That therapy shows recurring direction without becoming a rigid script",
+        "That therapy should avoid any visible change until the end"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter is about direction in therapy, not a strict ladder.",
+        "direct": "Rogers argues for recognizable movement without collapsing therapy into one fixed sequence.",
+        "competitive": "He wants direction, not a script."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is one early direction Rogers sees in therapy?",
+      "choices": [
+        "Greater concern with pleasing authority",
+        "A loosening of defensiveness",
+        "A move toward more polished self-presentation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The person becomes less organized around defense.",
+        "direct": "Rogers treats reduced defensiveness as one of the clearest directions of therapeutic movement.",
+        "competitive": "Less armor is one of the real signs the process is moving."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is visible emotion weak evidence by itself in this chapter?",
+      "choices": [
+        "Because Rogers rejects feeling altogether",
+        "Because emotional intensity alone does not prove a changed relationship to experience",
+        "Because therapy should stay emotionally flat"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares about openness to experience, not emotion by itself.",
+        "direct": "Rogers is tracking whether experience is more directly felt and owned, not whether the session simply looks intense.",
+        "competitive": "Noise is not the same thing as movement."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elias seems uneven in therapy: one week more open, the next week guarded again. Which reading best fits the chapter?",
+      "choices": [
+        "The movement was false because progress was not smooth",
+        "Unevenness does not erase real direction if defensiveness is loosening overall",
+        "The therapist should force a clearer progress sequence immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows uneven progress without calling it fake.",
+        "direct": "Rogers describes therapeutic directions as tendencies, so reversals do not automatically cancel movement.",
+        "competitive": "A stumble does not erase the direction of travel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the strongest correction to turning this chapter into a stage theory?",
+      "choices": [
+        "Therapy has no recognizable pattern at all",
+        "The directions are tendencies, not a mechanical staircase every person must climb the same way",
+        "Clients should be judged only by emotional honesty in sessions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Rogers sees direction without demanding one universal order.",
+        "direct": "The chapter rejects any rigid ladder that would force every life into one approved progress script.",
+        "competitive": "Direction survives without becoming a staircase."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What change in appraisal does Rogers connect to therapy movement here?",
+      "choices": [
+        "Greater reliance on outside approval",
+        "Greater reliance on inner experience as a center of evaluation",
+        "Complete indifference to every outside perspective"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The person becomes less dependent on outside judgment alone.",
+        "direct": "Rogers links movement in therapy to a shift toward evaluating life more from lived inner experience.",
+        "competitive": "The center of appraisal starts moving inward."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can a forced progress script distort therapy itself?",
+      "choices": [
+        "Because clients may perform change instead of living it",
+        "Because all therapists should stop looking for patterns entirely",
+        "Because therapy works only when nothing is named"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that forced scripts can train performance instead of real movement.",
+        "direct": "If the therapist expects one approved sequence, the client may start producing the appearance of progress rather than the lived process itself.",
+        "competitive": "A bad map can teach the person to fake the journey."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Nia notices that she is saying the right reflective words in therapy but still not really owning the feelings underneath them. What distinction from the chapter matters most?",
+      "choices": [
+        "The difference between outward compliance and more direct openness to experience",
+        "The difference between objectivity and subjectivity only",
+        "The difference between silence and speech only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter cares about more owned contact with experience, not just correct language.",
+        "direct": "Rogers is tracking movement toward more directly felt and personally claimed experience rather than polished compliance.",
+        "competitive": "Saying the right words is weak progress if the experience is still being dodged."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which judgment best fits the chapter's deepest claim?",
+      "choices": [
+        "Therapy should be measured only by linear visible progress",
+        "Therapy can show real direction without offering one rigid map for every person",
+        "Therapy has no recognizable movement beyond emotional release"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Rogers gives a way to recognize movement without forcing one universal pattern.",
+        "direct": "The chapter holds together two truths: therapeutic change has recognizable direction, and that direction is not a mechanical script.",
+        "competitive": "The process is trackable without being templated."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once these directions of movement are visible, what question naturally comes next?",
+      "choices": [
+        "What it means to become a person through that movement",
+        "Why therapy should stop using inward experience",
+        "How to turn the directions into a strict universal ladder"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points forward to the meaning of becoming through these directions.",
+        "direct": "The next step is to ask what this movement amounts to in human terms, not how to rigidify it.",
+        "competitive": "Once motion is visible, the next question is what kind of personhood that motion is making possible."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the fire image at the start of Book IV teach?",
+      "choices": [
+        "That a strong ruling part can use opposition as material for purpose",
+        "That every obstacle is secretly pleasant if understood correctly",
+        "That adversity should always be increased to build character faster"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Marcus is teaching adaptive strength, not forced cheerfulness.",
+        "direct": "The ruling part can incorporate resistance into action instead of treating it as automatic defeat.",
+        "competitive": "A stronger fire uses what a weaker fire blames."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Marcus recommend retreat into the self?",
+      "choices": [
+        "To avoid public duty whenever circumstances become frustrating",
+        "To recover order quickly through brief principles before returning to action",
+        "To prove that external relationships never matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The retreat is for renewal, not disappearance.",
+        "direct": "Book IV uses inward retreat as rapid reordering under disturbance.",
+        "competitive": "It is a reset, not an exit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does common reason change the meaning of inner retreat in Book IV?",
+      "choices": [
+        "It means retreat should return a person to justice and citizenship, not private comfort alone",
+        "It means every inward principle should be voted on by the crowd first",
+        "It means retreat is only justified for political leaders"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Marcus keeps the inner life tied to a shared world.",
+        "direct": "Common reason prevents retreat from becoming private luxury or moral isolation.",
+        "competitive": "A better mind is supposed to come back as a better citizen."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya's project is blocked by delayed client data. Which response best fits Book IV?",
+      "choices": [
+        "Treat the whole day as lost until the original plan becomes possible again",
+        "Use the changed condition as material for the best next useful action",
+        "Complain first so the frustration feels fully acknowledged"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks what can now be done with the resistance rather than only what was prevented.",
+        "direct": "Book IV's adaptation redirects purpose through what remains possible.",
+        "competitive": "The block stops being boss once command stays with her."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Jonah notices his complaint about a cancelled dinner has grown into a larger story of personal diminishment. What has Book IV exposed?",
+      "choices": [
+        "That every inconvenience is already proof of moral harm",
+        "That grievance often survives on an added opinion beyond the original event",
+        "That social plans should never matter to a serious person"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter separates the outer event from the inner sentence attached to it.",
+        "direct": "Book IV locates complaint at the point where judgment turns inconvenience into deeper harm.",
+        "competitive": "The verdict is feeding the grievance more than the event is."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Elena says she needs to step back from a tense group project for ten minutes and return with cleaner judgment. How should that move be judged by Book IV?",
+      "choices": [
+        "As retreat in the healthy sense, if it returns quickly to shared duty under better order",
+        "As evidence that she is abandoning the common work entirely",
+        "As unnecessary because inward order can never affect public action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Retreat is sound when it restores justice and useful return.",
+        "direct": "Book IV distinguishes withdrawal from quick inward reordering for cleaner public action.",
+        "competitive": "If she returns sharper, the retreat did its job."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does Marcus shrink the importance of fame in Book IV?",
+      "choices": [
+        "Because public memory is too unstable and short-lived to outrank reason",
+        "Because all public recognition is automatically unjust",
+        "Because only private approval counts as morally serious"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Time and unstable human memory make praise too small a ruler for the soul.",
+        "direct": "The chapter demotes fame by exposing the weakness of the crowd and the shortness of remembrance.",
+        "competitive": "Applause decays too fast to hold first place."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does 'Take away thy opinion' mean in Book IV?",
+      "choices": [
+        "Erase facts and pain by pretending they were never there",
+        "Challenge the judgment that turns an event into inward grievance",
+        "Stop thinking altogether whenever strong emotion appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Marcus is not denying facts. He is examining the verdict layered onto them.",
+        "direct": "The line targets the opinion that converts outer trouble into a complaint of deeper harm.",
+        "competitive": "Strip the lazy verdict, and the grievance loses fuel."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the hardest balance Book IV asks for?",
+      "choices": [
+        "Adapt to resistance without turning adaptation into passive surrender",
+        "Seek inner calm by withdrawing from all shared obligations",
+        "Treat every obstacle as evidence that nothing should be changed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter joins flexibility with justice rather than confusing flexibility with softness.",
+        "direct": "Book IV wants adaptive order that still returns to common law, duty, and reason.",
+        "competitive": "Use the wave without letting it turn you into driftwood."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Book IV prepare the movement into Book V?",
+      "choices": [
+        "By replacing human function with inward stillness as the highest good",
+        "By teaching the mind to recover principle quickly so it can meet even its own reluctance under reason",
+        "By proving that work becomes unnecessary once inward retreat is mastered"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Book IV restores inward order so the next chapter can face reluctance and duty more directly.",
+        "direct": "Adaptive recovery and quick return to reason prepare the ground for Book V's work-and-function pressure.",
+        "competitive": "First you learn to use resistance. Next you face resistance inside your own reluctance."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

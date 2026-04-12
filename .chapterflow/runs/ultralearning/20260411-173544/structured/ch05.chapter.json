@@ -3,7 +3,40 @@
     "bookId": "ultralearning",
     "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
     "author": "Scott H. Young",
-    "variantFamily": "EMH"
+    "categories": [
+      "Education",
+      "Learning",
+      "Self-Improvement",
+      "Career Development"
+    ],
+    "tags": [
+      "ultralearning",
+      "self-directed learning",
+      "skill acquisition",
+      "deliberate practice",
+      "career adaptation"
+    ],
+    "edition": {
+      "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+      "translator": "",
+      "publishedYear": 2019,
+      "translationYear": null,
+      "publishedDate": "2019-08-06",
+      "publisher": "Harper Business",
+      "imprintFamily": [
+        "Harper Business",
+        "HarperCollins",
+        "HarperCollins UK / Thorsons"
+      ],
+      "language": "English",
+      "isbn10": "006285268X",
+      "isbn13": "9780062852687",
+      "openLibraryEdition": "OL28302824M",
+      "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+      "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Chapter 5 only"
   },
   "chapterId": "ch05-principle-2-focus-sharpen-your-knife",
   "number": 5,
@@ -17,9 +50,27 @@
         "competitive": "The chapter hits a problem disciplined people underestimate: they think good intentions will carry attention farther than they do. Young treats focus as a weapon that has to be sharpened before hard learning can use it. Start the work before friction talks you out of it. Stay with it long enough for the task to push back. Protect it from interruptions that make every session shallow again. The chapter matters because distracted effort can still feel serious while staying weak. A learner may log hours and still avoid the depth where mistakes become visible. Young cuts through that by treating concentration as something structured instead of admired. He also refuses to let protection turn theatrical. Boundaries matter when they keep attention on the target. They fail when they become another polished way to avoid the work itself."
       },
       "keyTakeaways": [
-        {"point": {"gentle": "Focus means starting, sustaining, and protecting concentration.", "direct": "Attention has to be managed across the whole session.", "competitive": "Hard learning needs more than a burst of intention."}},
-        {"point": {"gentle": "Interruptions damage concentration more than they seem to on the surface.", "direct": "Broken sessions rarely stay deep enough to compound.", "competitive": "Shallow reentry makes effort look serious while keeping it weak."}},
-        {"point": {"gentle": "Protection helps only when it keeps the learner in contact with the task.", "direct": "Focus structure should serve work rather than replace it.", "competitive": "Do not turn concentration rituals into camouflage."}}
+        {
+          "point": {
+            "gentle": "Focus means starting, sustaining, and protecting concentration.",
+            "direct": "Attention has to be managed across the whole session.",
+            "competitive": "Hard learning needs more than a burst of intention."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Interruptions damage concentration more than they seem to on the surface.",
+            "direct": "Broken sessions rarely stay deep enough to compound.",
+            "competitive": "Shallow reentry makes effort look serious while keeping it weak."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Protection helps only when it keeps the learner in contact with the task.",
+            "direct": "Focus structure should serve work rather than replace it.",
+            "competitive": "Do not turn concentration rituals into camouflage."
+          }
+        }
       ],
       "oneMinuteRecap": {
         "gentle": "Focus matters because ultralearning needs concentration that can begin, hold, and survive interruption. Young turns attention into a practical condition rather than a lucky mood. Start the work, stay with it, protect it, and keep the protections tied to the task itself.",
@@ -34,11 +85,66 @@
         "competitive": "Scott Young makes the focus chapter matter by attacking a weakness that hides inside apparently serious effort. People think they are losing battles to distraction in a trivial way, as if the problem were a few wasted minutes here and there. Young treats it as strategic. If attention will not start, hold, and survive, the work never gets deep enough to fight back.\n\nStart is the first cut because many sessions die before contact. Friction speaks, the learner listens, and the hard block turns into drift. One more check. One cleaner mood. One smaller task first. Young's point is not that motivation never matters. It is that hard learning cannot wait for perfect weather. The learner has to get into the task before internal bargaining eats the session.\n\nSustain is the second cut because shallow contact is one of the easiest ways to mistake activity for progress. Difficult work takes time to expose confusion. If attention keeps breaking early, the learner keeps circling the surface where everything still feels manageable. Young wants the session long enough and steady enough that the task can actually resist.\n\nProtect is the third cut because interruption destroys costly concentration states fast. That is why a buzzing phone or an easy side path matters more than it seems to. The learner loses not only a minute but the depth that minute shattered. Reentry is expensive. A project built from constant reentry can look industrious while staying strategically weak.\n\nYoung's strength here is that he refuses to turn focus into mystical talent. Build conditions. Lower start friction. Defend the session. Stop pretending attention will protect itself. The point is operational control, not admiration for people who seem naturally intense.\n\nHe also keeps a knife at the chapter's throat. Protection can become theater. The learner can spend all morning arranging perfect silence, cleaner tools, and stricter rules, then quietly avoid the actual task. Focus only deserves respect when it makes the work more likely to happen and more likely to stay deep. Everything else is just decorative seriousness."
       },
       "keyTakeaways": [
-        {"point": {"gentle": "Focus is the ability to start, sustain, and protect concentration during serious work.", "direct": "Young treats attention as a practical operating condition.", "competitive": "Depth requires control over the whole session, not only the intention to begin."}, "moreDetails": {"gentle": "The chapter breaks concentration into parts so the learner can see where attention is failing.", "direct": "Start, sustain, and protect describe different failure points inside the same session.", "competitive": "If one part breaks, the whole block weakens."}},
-        {"point": {"gentle": "Starting matters because delay can kill a session before real work begins.", "direct": "The threshold into work has to become easier to cross.", "competitive": "Friction wins when the learner keeps negotiating with it."}, "moreDetails": {"gentle": "A project that waits for the perfect mood will often keep stalling at the front edge.", "direct": "Young assumes serious learning cannot depend on feeling ideal first.", "competitive": "Hesitation is often distraction wearing polite clothes."}},
-        {"point": {"gentle": "Sustaining matters because hard learning needs enough time for difficulty to surface.", "direct": "Broken sessions rarely reach the depth where improvement happens.", "competitive": "Surface-level motion can hide the absence of real contact."}, "moreDetails": {"gentle": "Brief fragments may feel busy while keeping the task easier than it really is.", "direct": "The learner has to stay with the work long enough for confusion and weakness to become visible.", "competitive": "If the task never gets to push back, the learner is probably still too shallow."}},
-        {"point": {"gentle": "Protecting attention matters because interruption destroys a costly state quickly.", "direct": "The damage of interruption includes the depth that now has to be rebuilt.", "competitive": "Cheap distractions can wreck expensive concentration."}, "moreDetails": {"gentle": "The chapter treats distractions as structural threats rather than tiny annoyances.", "direct": "Minutes lost are only part of the problem; reentry cost is the larger one.", "competitive": "A project built from repeated resets will usually stay weaker than it looks."}},
-        {"point": {"gentle": "Focus structures help only while they keep the learner in contact with the task.", "direct": "Protection becomes weak when it turns into ritualized delay.", "competitive": "Decorative seriousness is still avoidance."}, "moreDetails": {"gentle": "A useful boundary is one that makes concentration more reliable without becoming the main event.", "direct": "Young keeps the principle practical by tying every focus move back to work quality.", "competitive": "If the ritual grows while the task waits, the learner has drifted again."}}
+        {
+          "point": {
+            "gentle": "Focus is the ability to start, sustain, and protect concentration during serious work.",
+            "direct": "Young treats attention as a practical operating condition.",
+            "competitive": "Depth requires control over the whole session, not only the intention to begin."
+          },
+          "moreDetails": {
+            "gentle": "The chapter breaks concentration into parts so the learner can see where attention is failing.",
+            "direct": "Start, sustain, and protect describe different failure points inside the same session.",
+            "competitive": "If one part breaks, the whole block weakens."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Starting matters because delay can kill a session before real work begins.",
+            "direct": "The threshold into work has to become easier to cross.",
+            "competitive": "Friction wins when the learner keeps negotiating with it."
+          },
+          "moreDetails": {
+            "gentle": "A project that waits for the perfect mood will often keep stalling at the front edge.",
+            "direct": "Young assumes serious learning cannot depend on feeling ideal first.",
+            "competitive": "Hesitation is often distraction wearing polite clothes."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Sustaining matters because hard learning needs enough time for difficulty to surface.",
+            "direct": "Broken sessions rarely reach the depth where improvement happens.",
+            "competitive": "Surface-level motion can hide the absence of real contact."
+          },
+          "moreDetails": {
+            "gentle": "Brief fragments may feel busy while keeping the task easier than it really is.",
+            "direct": "The learner has to stay with the work long enough for confusion and weakness to become visible.",
+            "competitive": "If the task never gets to push back, the learner is probably still too shallow."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Protecting attention matters because interruption destroys a costly state quickly.",
+            "direct": "The damage of interruption includes the depth that now has to be rebuilt.",
+            "competitive": "Cheap distractions can wreck expensive concentration."
+          },
+          "moreDetails": {
+            "gentle": "The chapter treats distractions as structural threats rather than tiny annoyances.",
+            "direct": "Minutes lost are only part of the problem; reentry cost is the larger one.",
+            "competitive": "A project built from repeated resets will usually stay weaker than it looks."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Focus structures help only while they keep the learner in contact with the task.",
+            "direct": "Protection becomes weak when it turns into ritualized delay.",
+            "competitive": "Decorative seriousness is still avoidance."
+          },
+          "moreDetails": {
+            "gentle": "A useful boundary is one that makes concentration more reliable without becoming the main event.",
+            "direct": "Young keeps the principle practical by tying every focus move back to work quality.",
+            "competitive": "If the ritual grows while the task waits, the learner has drifted again."
+          }
+        }
       ],
       "activationPrompt": {
         "gentle": "Choose one study or work block and ask where it usually fails first: starting, sustaining, or protection.",
@@ -75,11 +181,66 @@
         "competitive": "Scott Young makes the focus chapter hit by exposing how often people waste force while feeling diligent. They sit down, gesture toward the work, break attention fast, rebuild it badly, and call the whole thing effort. Young treats that softness as expensive. If attention will not start, hold, and survive interruption, the project keeps grazing the surface.\n\nStart is the first cut because friction kills more sessions than difficulty does. The learner bargains, delays, and asks for cleaner conditions before the first real contact. Young's response is blunt: hard learning cannot wait for perfect mood. If the threshold into work stays too costly, serious projects will keep getting edited down into easier substitutes.\n\nSustain is the second cut because shallow contact is one of the safest places to hide. The learner can remain busy, touch the material, and still avoid the stretch where confusion becomes undeniable. Young wants attention to hold long enough that the task actually resists. Without that resistance, improvement stays mostly imaginary.\n\nProtect is the third cut because interruption wrecks an attention state faster than most learners admit. A buzzing phone, a side check, or an easy distraction steals more than a moment. It blows apart the depth the learner just spent effort building. Reentry is expensive, and a project built from constant reentry can look hardworking while remaining strategically weak.\n\nYoung's advantage here is that he refuses to mystify concentration. Build conditions. Lower start friction. Defend the block. Stop pretending attention will protect itself. Focus becomes a design problem, not a personality cult.\n\nHe also keeps a blade pointed inward. Protection can become theater. The learner can perfect the room, the tools, the ritual, and the rules while quietly avoiding the task that made focus necessary in the first place. Young's standard is ruthless and simple: if the structure is not making the work more likely to happen and more likely to stay deep, it is decoration.\n\nThat is why focus belongs early in the book. Before directness, drill, or feedback can do much, the learner has to stop bleeding attention at the edges. Sharpen the knife, then use it. Do not spend all day polishing steel while the real cut never comes."
       },
       "keyTakeaways": [
-        {"point": {"gentle": "Focus means making attention stable enough for hard learning to begin, deepen, and survive.", "direct": "Young treats concentration as an operating condition, not a lucky mood.", "competitive": "Unstable attention turns serious effort into surface contact."}, "moreDetails": {"gentle": "The chapter breaks focus into start, sustain, and protect so failures become easier to diagnose.", "direct": "This keeps attention practical instead of mystical.", "competitive": "If one part fails repeatedly, the whole session weakens."}},
-        {"point": {"gentle": "Starting matters because resistance often kills the session at the front edge.", "direct": "The threshold into work has to be easier to cross.", "competitive": "Friction beats intention when the learner keeps negotiating with it."}, "moreDetails": {"gentle": "Waiting for a cleaner mood can quietly postpone real work over and over.", "direct": "Young assumes difficult learning needs entry conditions better than hope.", "competitive": "Delay is often avoidance wearing respectable language."}},
-        {"point": {"gentle": "Sustaining matters because the task needs time to expose confusion and weakness.", "direct": "Depth appears after the easy layer burns off.", "competitive": "If the work never gets to push back, the session stayed too shallow."}, "moreDetails": {"gentle": "The learner has to remain with the task long enough for the real problem to become visible.", "direct": "Broken attention keeps the session active while preventing serious correction.", "competitive": "Surface motion is one of the safest disguises for stalled improvement."}},
-        {"point": {"gentle": "Protecting matters because interruption destroys a costly state and forces reentry.", "direct": "The damage of distraction includes the depth that must now be rebuilt.", "competitive": "Cheap interruptions can wreck expensive concentration."}, "moreDetails": {"gentle": "Young treats distraction as a structural threat because serious attention takes time to assemble.", "direct": "Minutes lost are only part of the cost; the deeper loss is the reset of the learning state.", "competitive": "A project stitched together from repeated resets will usually stay weaker than it appears."}},
-        {"point": {"gentle": "Focus structures help only while they make contact with the work more reliable.", "direct": "Protection becomes drift when the ritual overtakes the task.", "competitive": "Polished setup is still avoidance if the work keeps waiting."}, "moreDetails": {"gentle": "The useful routine is the one that serves concentration without becoming the center of the learner's identity.", "direct": "Young keeps the principle bounded by tying every focus move back to learning quality.", "competitive": "If the room keeps improving while the task stays untouched, the learner has drifted into decoration."}}
+        {
+          "point": {
+            "gentle": "Focus means making attention stable enough for hard learning to begin, deepen, and survive.",
+            "direct": "Young treats concentration as an operating condition, not a lucky mood.",
+            "competitive": "Unstable attention turns serious effort into surface contact."
+          },
+          "moreDetails": {
+            "gentle": "The chapter breaks focus into start, sustain, and protect so failures become easier to diagnose.",
+            "direct": "This keeps attention practical instead of mystical.",
+            "competitive": "If one part fails repeatedly, the whole session weakens."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Starting matters because resistance often kills the session at the front edge.",
+            "direct": "The threshold into work has to be easier to cross.",
+            "competitive": "Friction beats intention when the learner keeps negotiating with it."
+          },
+          "moreDetails": {
+            "gentle": "Waiting for a cleaner mood can quietly postpone real work over and over.",
+            "direct": "Young assumes difficult learning needs entry conditions better than hope.",
+            "competitive": "Delay is often avoidance wearing respectable language."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Sustaining matters because the task needs time to expose confusion and weakness.",
+            "direct": "Depth appears after the easy layer burns off.",
+            "competitive": "If the work never gets to push back, the session stayed too shallow."
+          },
+          "moreDetails": {
+            "gentle": "The learner has to remain with the task long enough for the real problem to become visible.",
+            "direct": "Broken attention keeps the session active while preventing serious correction.",
+            "competitive": "Surface motion is one of the safest disguises for stalled improvement."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Protecting matters because interruption destroys a costly state and forces reentry.",
+            "direct": "The damage of distraction includes the depth that must now be rebuilt.",
+            "competitive": "Cheap interruptions can wreck expensive concentration."
+          },
+          "moreDetails": {
+            "gentle": "Young treats distraction as a structural threat because serious attention takes time to assemble.",
+            "direct": "Minutes lost are only part of the cost; the deeper loss is the reset of the learning state.",
+            "competitive": "A project stitched together from repeated resets will usually stay weaker than it appears."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Focus structures help only while they make contact with the work more reliable.",
+            "direct": "Protection becomes drift when the ritual overtakes the task.",
+            "competitive": "Polished setup is still avoidance if the work keeps waiting."
+          },
+          "moreDetails": {
+            "gentle": "The useful routine is the one that serves concentration without becoming the center of the learner's identity.",
+            "direct": "Young keeps the principle bounded by tying every focus move back to learning quality.",
+            "competitive": "If the room keeps improving while the task stays untouched, the learner has drifted into decoration."
+          }
+        }
       ],
       "activationPrompt": {
         "gentle": "Look at one recent work block and identify whether the first break happened before starting, during sustaining, or through interruption.",
@@ -87,8 +248,16 @@
         "competitive": "Name the leak that keeps your concentration expensive to build and cheap to destroy."
       },
       "selfCheckPrompts": [
-        {"gentle": "Why can a learner feel productive and still fail the focus standard in this chapter?", "direct": "What kind of wasted effort does the start-sustain-protect frame expose?", "competitive": "How can diligence hide shallow contact?"},
-        {"gentle": "When would a focus ritual stop helping and start becoming another delay?", "direct": "What sign shows the setup is now more emotionally rewarding than the work?", "competitive": "When does protection turn decorative?"}
+        {
+          "gentle": "Why can a learner feel productive and still fail the focus standard in this chapter?",
+          "direct": "What kind of wasted effort does the start-sustain-protect frame expose?",
+          "competitive": "How can diligence hide shallow contact?"
+        },
+        {
+          "gentle": "When would a focus ritual stop helping and start becoming another delay?",
+          "direct": "What sign shows the setup is now more emotionally rewarding than the work?",
+          "competitive": "When does protection turn decorative?"
+        }
       ],
       "predictionPrompt": {
         "gentle": "If attention can finally hold, what question about practice comes next?",
@@ -115,44 +284,462 @@
     }
   },
   "examples": [
-    {"exampleId": "ch05-ex01-morning-block", "title": "Rowan Reclaims a Morning Block Before Slack Opens", "category": "work", "format": "decision_point", "endingType": "boundary_gain", "contexts": ["calendar", "interruptions", "deep-work"], "scenario": {"gentle": "Rowan watches the sun hit the office window while Slack stays unopened for the first half hour of the day. He has realized his most demanding learning block keeps dissolving the moment other people can reach him.", "direct": "Rowan has the right project, but his learning block keeps losing to early interruptions. He has to decide whether to protect the start of the session instead of trusting willpower.", "competitive": "Rowan keeps handing his sharpest hour to other people and calling the leftovers focus."}, "whatToDo": {"gentle": "Protect the first block long enough to start the hardest work before opening low-priority channels.", "direct": "Use structure to lower start friction and protect early concentration.", "competitive": "Defend the front edge of the session before the day strips it."}, "whyItMatters": {"gentle": "The chapter shows that starting attention often needs environmental help, not just better intention.", "direct": "This is focus as design: protect the threshold so real work begins.", "competitive": "If the block never starts cleanly, the depth never arrives."}},
-    {"exampleId": "ch05-ex02-lab-partner", "title": "Elise and a Lab Partner Notice How Fast Shallow Reentry Weakens Work", "category": "school", "format": "dialogue", "endingType": "mechanism_seen", "contexts": ["lab", "reentry", "attention"], "scenario": {"gentle": "At a lab bench cluttered with notes and half-run trials, Elise tells her partner that every interruption makes the experiment feel simpler when they return, but only because they keep losing the thread of the harder questions.", "direct": "Elise and her partner notice that broken attention is not just annoying. It keeps them from staying with uncertainty long enough for the real problem to show up.", "competitive": "Each interruption lets Elise escape the part of the work that was about to get interesting."}, "whatToDo": {"gentle": "Protect longer stretches so the work can stay difficult instead of constantly resetting to easier contact.", "direct": "Treat reentry cost as part of the problem, not as harmless background noise.", "competitive": "Stop paying to rebuild depth every ten minutes."}, "whyItMatters": {"gentle": "The chapter's sustaining logic becomes visible once the learner sees how shallow reentry masks difficulty.", "direct": "Depth depends on attention lasting long enough for confusion to surface.", "competitive": "Constant resets keep the task polite and weak."}},
-    {"exampleId": "ch05-ex03-mood-waiting", "title": "Mateo Stops Waiting for the Perfect Mood to Begin", "category": "personal", "format": "dilemma", "endingType": "threshold_crossed", "contexts": ["procrastination", "mood", "entry-friction"], "scenario": {"gentle": "Mateo closes browser tabs one by one and notices the same pattern again: his practice sessions keep starting late because he waits to feel mentally ready instead of beginning while the task still looks inconvenient.", "direct": "Mateo has confused clean motivation with the ability to start. The delay keeps eating the best part of the session.", "competitive": "Mateo keeps asking mood to do a job that structure should be doing."}, "whatToDo": {"gentle": "Make the entry into practice simpler and begin before the mind finishes bargaining.", "direct": "Lower start friction instead of waiting for perfect internal weather.", "competitive": "Cross the threshold before hesitation writes the session off."}, "whyItMatters": {"gentle": "The chapter treats starting as a real concentration problem, not a trivial warm-up issue.", "direct": "Young's point is that serious work often begins against resistance, not after it disappears.", "competitive": "Front-edge hesitation is one of the cleanest ways to lose depth cheap."}},
-    {"exampleId": "ch05-ex04-notification-reset", "title": "Priya Realizes the Buzzing Phone Is Costing More Than Minutes", "category": "work", "format": "reset_moment", "endingType": "cost_reframe", "contexts": ["notifications", "reentry", "analysis"], "scenario": {"gentle": "Priya hears her phone buzzing inside a backpack during a study block and feels the whole session thin out after each glance. By the third interruption, she notices she is rebuilding the same line of thought again and again.", "direct": "Priya finally sees that the cost of interruption is not only the glance itself. It is the depth that has to be reconstructed afterward.", "competitive": "Priya is not losing seconds. She is losing the expensive state those seconds keep detonating."}, "whatToDo": {"gentle": "Move the interruption source out of the session so concentration does not keep collapsing and restarting.", "direct": "Protect the block from predictable leaks that reset depth.", "competitive": "Stop letting cheap alerts blow up costly attention."}, "whyItMatters": {"gentle": "The chapter's protection logic depends on recognizing reentry cost as real.", "direct": "Focus is easier to defend once interruption is seen as destructive rather than minor.", "competitive": "You defend what you finally price correctly."}},
-    {"exampleId": "ch05-ex05-study-environment", "title": "Darius Chooses the Quiet Floor Because the Task Finally Deserves It", "category": "school", "format": "planning_choice", "endingType": "fit_improved", "contexts": ["library", "environment", "study-block"], "scenario": {"gentle": "Darius stands between a lively table of friends and a silent library floor with a timer already running in his hand. The chapter's question is suddenly concrete: which setting makes sustained attention more likely for the task in front of him?", "direct": "Darius has to choose an environment that matches the difficulty of the work rather than the comfort of the social setting.", "competitive": "Darius can keep picking the room that flatters his mood, or he can pick the one that protects the task."}, "whatToDo": {"gentle": "Choose the setting that gives the session the best chance to start, hold, and stay protected.", "direct": "Match the environment to concentration demands instead of habit.", "competitive": "Stop choosing convenience when the task needs containment."}, "whyItMatters": {"gentle": "The chapter treats focus as something that can be designed around practically.", "direct": "Protection is often a question of fit between task and setting.", "competitive": "The right room can be the difference between drift and depth."}},
-    {"exampleId": "ch05-ex06-ritual-overbuild", "title": "Hannah Recovers After Her Focus Setup Becomes More Elaborate Than the Practice", "category": "personal", "format": "mistake_recovery", "endingType": "limit_condition", "contexts": ["ritual", "avoidance", "setup"], "scenario": {"gentle": "Hannah has a perfectly arranged desk, a playlist queued, tea steeping, and a timer ready, yet the actual work keeps starting later than planned. She can feel the setup turning into the emotionally satisfying part of the session.", "direct": "Hannah has overbuilt her focus ritual until the setup now feels more rewarding than the task itself.", "competitive": "Hannah polished the runway so carefully that the plane never left."}, "whatToDo": {"gentle": "Keep only the parts of the setup that improve concentration, then begin before the ritual swells again.", "direct": "Cut the focus routine down to what genuinely supports contact with the task.", "competitive": "Strip the ceremony until the work has nowhere left to hide."}, "whyItMatters": {"gentle": "The chapter stays honest by treating rituals as tools rather than achievements.", "direct": "This is the boundary condition on protection: setup must remain subordinate to work.", "competitive": "Decorative seriousness is still drift."}}
+    {
+      "exampleId": "ch05-ex01-morning-block",
+      "title": "Rowan Reclaims a Morning Block Before Slack Opens",
+      "category": "work",
+      "format": "decision_point",
+      "endingType": "boundary_gain",
+      "contexts": [
+        "calendar",
+        "interruptions",
+        "deep-work"
+      ],
+      "scenario": {
+        "gentle": "Rowan watches the sun hit the office window while Slack stays unopened for the first half hour of the day. He has realized his most demanding learning block keeps dissolving the moment other people can reach him.",
+        "direct": "Rowan has the right project, but his learning block keeps losing to early interruptions. He has to decide whether to protect the start of the session instead of trusting willpower.",
+        "competitive": "Rowan keeps handing his sharpest hour to other people and calling the leftovers focus."
+      },
+      "whatToDo": {
+        "gentle": "Protect the first block long enough to start the hardest work before opening low-priority channels.",
+        "direct": "Use structure to lower start friction and protect early concentration.",
+        "competitive": "Defend the front edge of the session before the day strips it."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter shows that starting attention often needs environmental help, not just better intention.",
+        "direct": "This is focus as design: protect the threshold so real work begins.",
+        "competitive": "If the block never starts cleanly, the depth never arrives."
+      }
+    },
+    {
+      "exampleId": "ch05-ex02-lab-partner",
+      "title": "Elise and a Lab Partner Notice How Fast Shallow Reentry Weakens Work",
+      "category": "school",
+      "format": "dialogue",
+      "endingType": "mechanism_seen",
+      "contexts": [
+        "lab",
+        "reentry",
+        "attention"
+      ],
+      "scenario": {
+        "gentle": "At a lab bench cluttered with notes and half-run trials, Elise tells her partner that every interruption makes the experiment feel simpler when they return, but only because they keep losing the thread of the harder questions.",
+        "direct": "Elise and her partner notice that broken attention is not just annoying. It keeps them from staying with uncertainty long enough for the real problem to show up.",
+        "competitive": "Each interruption lets Elise escape the part of the work that was about to get interesting."
+      },
+      "whatToDo": {
+        "gentle": "Protect longer stretches so the work can stay difficult instead of constantly resetting to easier contact.",
+        "direct": "Treat reentry cost as part of the problem, not as harmless background noise.",
+        "competitive": "Stop paying to rebuild depth every ten minutes."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter's sustaining logic becomes visible once the learner sees how shallow reentry masks difficulty.",
+        "direct": "Depth depends on attention lasting long enough for confusion to surface.",
+        "competitive": "Constant resets keep the task polite and weak."
+      }
+    },
+    {
+      "exampleId": "ch05-ex03-mood-waiting",
+      "title": "Mateo Stops Waiting for the Perfect Mood to Begin",
+      "category": "personal",
+      "format": "dilemma",
+      "endingType": "threshold_crossed",
+      "contexts": [
+        "procrastination",
+        "mood",
+        "entry-friction"
+      ],
+      "scenario": {
+        "gentle": "Mateo closes browser tabs one by one and notices the same pattern again: his practice sessions keep starting late because he waits to feel mentally ready instead of beginning while the task still looks inconvenient.",
+        "direct": "Mateo has confused clean motivation with the ability to start. The delay keeps eating the best part of the session.",
+        "competitive": "Mateo keeps asking mood to do a job that structure should be doing."
+      },
+      "whatToDo": {
+        "gentle": "Make the entry into practice simpler and begin before the mind finishes bargaining.",
+        "direct": "Lower start friction instead of waiting for perfect internal weather.",
+        "competitive": "Cross the threshold before hesitation writes the session off."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter treats starting as a real concentration problem, not a trivial warm-up issue.",
+        "direct": "Young's point is that serious work often begins against resistance, not after it disappears.",
+        "competitive": "Front-edge hesitation is one of the cleanest ways to lose depth cheap."
+      }
+    },
+    {
+      "exampleId": "ch05-ex04-notification-reset",
+      "title": "Priya Realizes the Buzzing Phone Is Costing More Than Minutes",
+      "category": "work",
+      "format": "reset_moment",
+      "endingType": "cost_reframe",
+      "contexts": [
+        "notifications",
+        "reentry",
+        "analysis"
+      ],
+      "scenario": {
+        "gentle": "Priya hears her phone buzzing inside a backpack during a study block and feels the whole session thin out after each glance. By the third interruption, she notices she is rebuilding the same line of thought again and again.",
+        "direct": "Priya finally sees that the cost of interruption is not only the glance itself. It is the depth that has to be reconstructed afterward.",
+        "competitive": "Priya is not losing seconds. She is losing the expensive state those seconds keep detonating."
+      },
+      "whatToDo": {
+        "gentle": "Move the interruption source out of the session so concentration does not keep collapsing and restarting.",
+        "direct": "Protect the block from predictable leaks that reset depth.",
+        "competitive": "Stop letting cheap alerts blow up costly attention."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter's protection logic depends on recognizing reentry cost as real.",
+        "direct": "Focus is easier to defend once interruption is seen as destructive rather than minor.",
+        "competitive": "You defend what you finally price correctly."
+      }
+    },
+    {
+      "exampleId": "ch05-ex05-study-environment",
+      "title": "Darius Chooses the Quiet Floor Because the Task Finally Deserves It",
+      "category": "school",
+      "format": "planning_choice",
+      "endingType": "fit_improved",
+      "contexts": [
+        "library",
+        "environment",
+        "study-block"
+      ],
+      "scenario": {
+        "gentle": "Darius stands between a lively table of friends and a silent library floor with a timer already running in his hand. The chapter's question is suddenly concrete: which setting makes sustained attention more likely for the task in front of him?",
+        "direct": "Darius has to choose an environment that matches the difficulty of the work rather than the comfort of the social setting.",
+        "competitive": "Darius can keep picking the room that flatters his mood, or he can pick the one that protects the task."
+      },
+      "whatToDo": {
+        "gentle": "Choose the setting that gives the session the best chance to start, hold, and stay protected.",
+        "direct": "Match the environment to concentration demands instead of habit.",
+        "competitive": "Stop choosing convenience when the task needs containment."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter treats focus as something that can be designed around practically.",
+        "direct": "Protection is often a question of fit between task and setting.",
+        "competitive": "The right room can be the difference between drift and depth."
+      }
+    },
+    {
+      "exampleId": "ch05-ex06-ritual-overbuild",
+      "title": "Hannah Recovers After Her Focus Setup Becomes More Elaborate Than the Practice",
+      "category": "personal",
+      "format": "mistake_recovery",
+      "endingType": "limit_condition",
+      "contexts": [
+        "ritual",
+        "avoidance",
+        "setup"
+      ],
+      "scenario": {
+        "gentle": "Hannah has a perfectly arranged desk, a playlist queued, tea steeping, and a timer ready, yet the actual work keeps starting later than planned. She can feel the setup turning into the emotionally satisfying part of the session.",
+        "direct": "Hannah has overbuilt her focus ritual until the setup now feels more rewarding than the task itself.",
+        "competitive": "Hannah polished the runway so carefully that the plane never left."
+      },
+      "whatToDo": {
+        "gentle": "Keep only the parts of the setup that improve concentration, then begin before the ritual swells again.",
+        "direct": "Cut the focus routine down to what genuinely supports contact with the task.",
+        "competitive": "Strip the ceremony until the work has nowhere left to hide."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter stays honest by treating rituals as tools rather than achievements.",
+        "direct": "This is the boundary condition on protection: setup must remain subordinate to work.",
+        "competitive": "Decorative seriousness is still drift."
+      }
+    }
   ],
   "quiz": {
     "passingScorePercent": 80,
     "questions": [
-      {"questionId": "ch05-q01", "prompt": "How does this chapter define focus?", "choices": ["As starting, sustaining, and protecting concentration", "As natural talent for intense thinking", "As studying only in total silence"], "correctIndex": 0, "explanation": {"gentle": "Young treats focus as a practical sequence: start the work, stay with it, and protect it from interruption.", "direct": "A is correct because the chapter defines focus through the whole lifecycle of concentration, not through personality or absolute conditions.", "competitive": "The chapter wants usable control, not a myth about gifted intensity."}, "bloomsLevel": "remember-understand", "depthLevel": "easy"},
-      {"questionId": "ch05-q02", "prompt": "Which part of focus does the chapter say often fails before the task even gets difficult?", "choices": ["Protecting", "Starting", "Sustaining"], "correctIndex": 1, "explanation": {"gentle": "Many sessions die at the front edge because the learner delays or bargains instead of beginning.", "direct": "B fits the chapter's claim that resistance often wins before real contact starts.", "competitive": "Friction kills plenty of sessions before difficulty gets a turn."}, "bloomsLevel": "remember-understand", "depthLevel": "easy"},
-      {"questionId": "ch05-q03", "prompt": "Rowan keeps losing his deepest block once messages start coming in. What move best follows the chapter?", "choices": ["Protect the first part of the session from interruption", "Wait for stronger motivation", "Switch to easier tasks during interruptions"], "correctIndex": 0, "explanation": {"gentle": "The chapter would protect the start of the block so concentration can actually form.", "direct": "A fits Young's structural approach to focus: defend the session instead of trusting willpower alone.", "competitive": "Guard the front edge or keep donating your sharpest hour."}, "bloomsLevel": "apply-analyze", "depthLevel": "medium"},
-      {"questionId": "ch05-q04", "prompt": "Why does the chapter treat interruption as more serious than a few lost minutes?", "choices": ["Because it can destroy a costly concentration state", "Because interruptions are morally weak", "Because deep work should always happen at night"], "correctIndex": 0, "explanation": {"gentle": "The chapter says interruption also destroys the depth that now has to be rebuilt.", "direct": "A captures the reentry-cost logic at the center of the protection argument.", "competitive": "The real loss is the depth that just got blown apart."}, "bloomsLevel": "understand", "depthLevel": "medium"},
-      {"questionId": "ch05-q05", "prompt": "What mistake is Mateo making when he waits to feel mentally perfect before beginning?", "choices": ["He is confusing focus with mood", "He is protecting attention too aggressively", "He is sustaining attention too long"], "correctIndex": 0, "explanation": {"gentle": "The chapter warns that serious work cannot depend on perfect internal weather before it starts.", "direct": "A is right because Young treats start friction as a structural problem, not as something mood should solve.", "competitive": "He is asking emotion to do a job that structure should handle."}, "bloomsLevel": "apply-analyze", "depthLevel": "medium"},
-      {"questionId": "ch05-q06", "prompt": "What limit does the chapter place on focus rituals?", "choices": ["They should become stricter over time no matter what", "They should support contact with the task rather than replace it", "They matter only for beginners"], "correctIndex": 1, "explanation": {"gentle": "Young keeps a boundary in place so setup does not become the main event.", "direct": "B states the chapter's limit: focus structures matter only while they improve real work.", "competitive": "If the ritual grows while the task waits, the learner has drifted."}, "bloomsLevel": "understand", "depthLevel": "medium"},
-      {"questionId": "ch05-q07", "prompt": "Darius must choose between a lively table and a quiet floor for hard study. Which choice matches the chapter?", "choices": ["Pick the setting that best protects sustained attention for the task", "Choose the livelier option to build distraction tolerance", "Stay where friends are so the work feels easier to start"], "correctIndex": 0, "explanation": {"gentle": "The chapter treats focus as a design problem, so the better setting is the one that supports concentration.", "direct": "A follows the principle by matching environment to the demands of the work.", "competitive": "Pick the room that serves the task, not the mood."}, "bloomsLevel": "apply-analyze", "depthLevel": "medium"},
-      {"questionId": "ch05-q08", "prompt": "What does the chapter suggest when a session keeps breaking before the hard part of the work appears?", "choices": ["Shorten the session so it feels easier", "Sustain attention long enough for confusion to surface", "Switch tasks whenever resistance rises"], "correctIndex": 1, "explanation": {"gentle": "The chapter says difficult learning often needs time before the real problem becomes visible.", "direct": "B matches Young's claim that shallow contact can hide the very difficulty the learner needs to face.", "competitive": "Stay long enough for the task to push back."}, "bloomsLevel": "apply-analyze", "depthLevel": "hard"},
-      {"questionId": "ch05-q09", "prompt": "Why doesn't the chapter treat stronger focus rituals as automatically better?", "choices": ["Because rituals can become decorative seriousness", "Because distraction is actually useful", "Because concentration should never be structured"], "correctIndex": 0, "explanation": {"gentle": "The chapter values protection, but only while it makes work more likely and more reliable.", "direct": "A fits the boundary between useful focus structure and ritualized avoidance.", "competitive": "Polished setup can still be camouflage."}, "bloomsLevel": "evaluate", "depthLevel": "hard"},
-      {"questionId": "ch05-q10", "prompt": "If Chapter 5 protects attention, what question naturally follows next?", "choices": ["How to keep practicing closer to the real target itself", "How to avoid all interruptions forever", "How to map more subskills before starting"], "correctIndex": 0, "explanation": {"gentle": "Once focus can hold, the next step is asking whether practice is pointed at the real thing that needs to be learned.", "direct": "A is the right bridge because concentration only matters fully when it is aimed at the target context.", "competitive": "After attention holds, accuracy of arena becomes the next fight."}, "bloomsLevel": "evaluate-create", "depthLevel": "hard"}
+      {
+        "questionId": "ch05-q01",
+        "prompt": "How does this chapter define focus?",
+        "choices": [
+          "As starting, sustaining, and protecting concentration",
+          "As natural talent for intense thinking",
+          "As studying only in total silence"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Young treats focus as a practical sequence: start the work, stay with it, and protect it from interruption.",
+          "direct": "A is correct because the chapter defines focus through the whole lifecycle of concentration, not through personality or absolute conditions.",
+          "competitive": "The chapter wants usable control, not a myth about gifted intensity."
+        },
+        "bloomsLevel": "remember-understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch05-q02",
+        "prompt": "Which part of focus does the chapter say often fails before the task even gets difficult?",
+        "choices": [
+          "Protecting",
+          "Starting",
+          "Sustaining"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Many sessions die at the front edge because the learner delays or bargains instead of beginning.",
+          "direct": "B fits the chapter's claim that resistance often wins before real contact starts.",
+          "competitive": "Friction kills plenty of sessions before difficulty gets a turn."
+        },
+        "bloomsLevel": "remember-understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch05-q03",
+        "prompt": "Rowan keeps losing his deepest block once messages start coming in. What move best follows the chapter?",
+        "choices": [
+          "Protect the first part of the session from interruption",
+          "Wait for stronger motivation",
+          "Switch to easier tasks during interruptions"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter would protect the start of the block so concentration can actually form.",
+          "direct": "A fits Young's structural approach to focus: defend the session instead of trusting willpower alone.",
+          "competitive": "Guard the front edge or keep donating your sharpest hour."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch05-q04",
+        "prompt": "Why does the chapter treat interruption as more serious than a few lost minutes?",
+        "choices": [
+          "Because it can destroy a costly concentration state",
+          "Because interruptions are morally weak",
+          "Because deep work should always happen at night"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter says interruption also destroys the depth that now has to be rebuilt.",
+          "direct": "A captures the reentry-cost logic at the center of the protection argument.",
+          "competitive": "The real loss is the depth that just got blown apart."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch05-q05",
+        "prompt": "What mistake is Mateo making when he waits to feel mentally perfect before beginning?",
+        "choices": [
+          "He is confusing focus with mood",
+          "He is protecting attention too aggressively",
+          "He is sustaining attention too long"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter warns that serious work cannot depend on perfect internal weather before it starts.",
+          "direct": "A is right because Young treats start friction as a structural problem, not as something mood should solve.",
+          "competitive": "He is asking emotion to do a job that structure should handle."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch05-q06",
+        "prompt": "What limit does the chapter place on focus rituals?",
+        "choices": [
+          "They should become stricter over time no matter what",
+          "They should support contact with the task rather than replace it",
+          "They matter only for beginners"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Young keeps a boundary in place so setup does not become the main event.",
+          "direct": "B states the chapter's limit: focus structures matter only while they improve real work.",
+          "competitive": "If the ritual grows while the task waits, the learner has drifted."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch05-q07",
+        "prompt": "Darius must choose between a lively table and a quiet floor for hard study. Which choice matches the chapter?",
+        "choices": [
+          "Pick the setting that best protects sustained attention for the task",
+          "Choose the livelier option to build distraction tolerance",
+          "Stay where friends are so the work feels easier to start"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter treats focus as a design problem, so the better setting is the one that supports concentration.",
+          "direct": "A follows the principle by matching environment to the demands of the work.",
+          "competitive": "Pick the room that serves the task, not the mood."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch05-q08",
+        "prompt": "What does the chapter suggest when a session keeps breaking before the hard part of the work appears?",
+        "choices": [
+          "Shorten the session so it feels easier",
+          "Sustain attention long enough for confusion to surface",
+          "Switch tasks whenever resistance rises"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter says difficult learning often needs time before the real problem becomes visible.",
+          "direct": "B matches Young's claim that shallow contact can hide the very difficulty the learner needs to face.",
+          "competitive": "Stay long enough for the task to push back."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch05-q09",
+        "prompt": "Why doesn't the chapter treat stronger focus rituals as automatically better?",
+        "choices": [
+          "Because rituals can become decorative seriousness",
+          "Because distraction is actually useful",
+          "Because concentration should never be structured"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter values protection, but only while it makes work more likely and more reliable.",
+          "direct": "A fits the boundary between useful focus structure and ritualized avoidance.",
+          "competitive": "Polished setup can still be camouflage."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch05-q10",
+        "prompt": "If Chapter 5 protects attention, what question naturally follows next?",
+        "choices": [
+          "How to keep practicing closer to the real target itself",
+          "How to avoid all interruptions forever",
+          "How to map more subskills before starting"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Once focus can hold, the next step is asking whether practice is pointed at the real thing that needs to be learned.",
+          "direct": "A is the right bridge because concentration only matters fully when it is aimed at the target context.",
+          "competitive": "After attention holds, accuracy of arena becomes the next fight."
+        },
+        "bloomsLevel": "evaluate-create",
+        "depthLevel": "hard"
+      }
     ]
   },
   "implementationPlan": {
-    "coreSkill": {"gentle": "The core skill is making concentration easier to start, hold, and protect.", "direct": "This chapter teaches structural control over attention.", "competitive": "The skill is stopping serious work from bleeding depth at the edges."},
+    "coreSkill": {
+      "gentle": "The core skill is making concentration easier to start, hold, and protect.",
+      "direct": "This chapter teaches structural control over attention.",
+      "competitive": "The skill is stopping serious work from bleeding depth at the edges."
+    },
     "ifThenPlans": [
-      {"context": "work", "plan": {"gentle": "If a learning block keeps dissolving once messages arrive, then protect the front edge of the session before opening those channels.", "direct": "If work interruptions keep resetting depth, then defend the block structurally instead of relying on willpower.", "competitive": "If other people keep stealing your sharpest hour, stop leaving the door open."}},
-      {"context": "school", "plan": {"gentle": "If the task needs sustained attention, then choose the setting that best helps concentration hold.", "direct": "If a study session stays shallow, then match the environment to the work rather than to habit.", "competitive": "If the room keeps feeding drift, change the room or keep paying for it."}},
-      {"context": "personal", "plan": {"gentle": "If the ritual is growing while the practice keeps waiting, then cut the setup down to what actually helps and begin.", "direct": "If focus prep becomes more satisfying than the task, then simplify it until work starts sooner.", "competitive": "If the runway looks better than the flight, strip the runway."}}
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If a learning block keeps dissolving once messages arrive, then protect the front edge of the session before opening those channels.",
+          "direct": "If work interruptions keep resetting depth, then defend the block structurally instead of relying on willpower.",
+          "competitive": "If other people keep stealing your sharpest hour, stop leaving the door open."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If the task needs sustained attention, then choose the setting that best helps concentration hold.",
+          "direct": "If a study session stays shallow, then match the environment to the work rather than to habit.",
+          "competitive": "If the room keeps feeding drift, change the room or keep paying for it."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If the ritual is growing while the practice keeps waiting, then cut the setup down to what actually helps and begin.",
+          "direct": "If focus prep becomes more satisfying than the task, then simplify it until work starts sooner.",
+          "competitive": "If the runway looks better than the flight, strip the runway."
+        }
+      }
     ],
-    "twentyFourHourChallenge": {"gentle": "Within the next day, identify whether your next serious block usually fails at starting, sustaining, or protection.", "direct": "In the next 24 hours, run one session with a single adjustment aimed at its biggest concentration leak.", "competitive": "Before tomorrow ends, expose and patch the exact leak that keeps your work shallow."},
-    "weeklyPractice": {"gentle": "Once this week, review a work block and ask which part of focus broke first.", "direct": "Run a weekly concentration audit: entry friction, sustained depth, and interruption cost.", "competitive": "Track where your attention actually bleeds instead of where you prefer to blame it."}
+    "twentyFourHourChallenge": {
+      "gentle": "Within the next day, identify whether your next serious block usually fails at starting, sustaining, or protection.",
+      "direct": "In the next 24 hours, run one session with a single adjustment aimed at its biggest concentration leak.",
+      "competitive": "Before tomorrow ends, expose and patch the exact leak that keeps your work shallow."
+    },
+    "weeklyPractice": {
+      "gentle": "Once this week, review a work block and ask which part of focus broke first.",
+      "direct": "Run a weekly concentration audit: entry friction, sustained depth, and interruption cost.",
+      "competitive": "Track where your attention actually bleeds instead of where you prefer to blame it."
+    }
   },
   "reviewCards": [
-    {"cardId": "ch05-rc01", "difficulty": "easy", "front": {"gentle": "How does this chapter define focus?", "direct": "What three parts make up concentration here?", "competitive": "What keeps serious effort from staying shallow?"}, "back": {"gentle": "Focus means starting, sustaining, and protecting attention.", "direct": "The chapter defines focus through entry, duration, and protection of concentration.", "competitive": "Start it, hold it, defend it."}},
-    {"cardId": "ch05-rc02", "difficulty": "easy", "front": {"gentle": "Why does starting matter so much?", "direct": "What often kills the session before difficulty appears?", "competitive": "Where does friction usually win first?"}, "back": {"gentle": "Because many sessions fail before the work really begins.", "direct": "Start friction can defeat concentration at the front edge.", "competitive": "At the threshold into the task."}},
-    {"cardId": "ch05-rc03", "difficulty": "medium", "front": {"gentle": "Why does sustaining attention matter?", "direct": "What does shallow contact prevent?", "competitive": "Why is brief motion often not enough?"}, "back": {"gentle": "Because difficult learning needs enough time for confusion and weakness to surface.", "direct": "Broken sessions rarely reach the depth where the task can reveal what needs fixing.", "competitive": "Because the real fight starts after the easy layer burns off."}},
-    {"cardId": "ch05-rc04", "difficulty": "medium", "front": {"gentle": "Why does the chapter treat interruption as costly?", "direct": "What gets lost besides the minute itself?", "competitive": "What does a buzzing phone actually blow up?"}, "back": {"gentle": "It also destroys the concentration state the learner was building.", "direct": "Interruption carries reentry cost because depth must be rebuilt.", "competitive": "Expensive attention."}},
-    {"cardId": "ch05-rc05", "difficulty": "hard", "front": {"gentle": "What boundary keeps focus structures useful?", "direct": "When does setup stop helping?", "competitive": "What turns protection into decoration?"}, "back": {"gentle": "They help only while they make contact with the task more reliable.", "direct": "Setup stops helping when it becomes more important than the work itself.", "competitive": "When the ritual grows and the task still waits."}}
+    {
+      "cardId": "ch05-rc01",
+      "difficulty": "easy",
+      "front": {
+        "gentle": "How does this chapter define focus?",
+        "direct": "What three parts make up concentration here?",
+        "competitive": "What keeps serious effort from staying shallow?"
+      },
+      "back": {
+        "gentle": "Focus means starting, sustaining, and protecting attention.",
+        "direct": "The chapter defines focus through entry, duration, and protection of concentration.",
+        "competitive": "Start it, hold it, defend it."
+      }
+    },
+    {
+      "cardId": "ch05-rc02",
+      "difficulty": "easy",
+      "front": {
+        "gentle": "Why does starting matter so much?",
+        "direct": "What often kills the session before difficulty appears?",
+        "competitive": "Where does friction usually win first?"
+      },
+      "back": {
+        "gentle": "Because many sessions fail before the work really begins.",
+        "direct": "Start friction can defeat concentration at the front edge.",
+        "competitive": "At the threshold into the task."
+      }
+    },
+    {
+      "cardId": "ch05-rc03",
+      "difficulty": "medium",
+      "front": {
+        "gentle": "Why does sustaining attention matter?",
+        "direct": "What does shallow contact prevent?",
+        "competitive": "Why is brief motion often not enough?"
+      },
+      "back": {
+        "gentle": "Because difficult learning needs enough time for confusion and weakness to surface.",
+        "direct": "Broken sessions rarely reach the depth where the task can reveal what needs fixing.",
+        "competitive": "Because the real fight starts after the easy layer burns off."
+      }
+    },
+    {
+      "cardId": "ch05-rc04",
+      "difficulty": "medium",
+      "front": {
+        "gentle": "Why does the chapter treat interruption as costly?",
+        "direct": "What gets lost besides the minute itself?",
+        "competitive": "What does a buzzing phone actually blow up?"
+      },
+      "back": {
+        "gentle": "It also destroys the concentration state the learner was building.",
+        "direct": "Interruption carries reentry cost because depth must be rebuilt.",
+        "competitive": "Expensive attention."
+      }
+    },
+    {
+      "cardId": "ch05-rc05",
+      "difficulty": "hard",
+      "front": {
+        "gentle": "What boundary keeps focus structures useful?",
+        "direct": "When does setup stop helping?",
+        "competitive": "What turns protection into decoration?"
+      },
+      "back": {
+        "gentle": "They help only while they make contact with the task more reliable.",
+        "direct": "Setup stops helping when it becomes more important than the work itself.",
+        "competitive": "When the ritual grows and the task still waits."
+      }
+    }
   ],
-  "keyTakeawayCard": {"gentle": "Focus means making attention stable enough to start, hold, and survive interruption so hard learning can become deep.", "direct": "Young turns concentration into a practical condition for serious learning.", "competitive": "Sharpen attention, then stop letting shallow drift call itself effort."}
+  "keyTakeawayCard": {
+    "gentle": "Focus means making attention stable enough to start, hold, and survive interruption so hard learning can become deep.",
+    "direct": "Young turns concentration into a practical condition for serious learning.",
+    "competitive": "Sharpen attention, then stop letting shallow drift call itself effort."
+  }
 }

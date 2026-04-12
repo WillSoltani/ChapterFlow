@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about health, money, and family concerns?",
+      "choices": [
+        "They often deepen conversation more naturally than abstract networking topics",
+        "They should be introduced as quickly as possible in most conversations",
+        "They work mainly because they are universally safe topics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats recurring human concerns as deeper common ground.",
+        "direct": "Its core claim is that real-life stakes often give conversation more signal than abstraction does.",
+        "competitive": "Human stakes beat empty abstraction."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do these concerns deepen conversation so effectively in the chapter?",
+      "choices": [
+        "Because they are durable parts of how many people actually live",
+        "Because they are always appropriate to ask about immediately",
+        "Because they make conversations more emotionally intense by default"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values these topics because they connect to ongoing real life.",
+        "direct": "Health, money, and family carry durable relevance that abstract networking chatter often lacks.",
+        "competitive": "Real life has more stakes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Elena is in a work conversation that feels abstract. What best fits this chapter?",
+      "choices": [
+        "Notice whether a real-life concern is already present and respond with care rather than keeping the talk abstract",
+        "Push quickly into personal questions to force authenticity",
+        "Stay on generic networking talk because it is safer and stronger"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors natural deepening with care over prying or endless abstraction.",
+        "direct": "A real concern can deepen the exchange when it is handled respectfully.",
+        "competitive": "Follow the human stakes, not the script."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At a parent weekend event, Marcus hears Professor Moore mention family pressure. What is the strongest move?",
+      "choices": [
+        "Respond with care and let the concern deepen the conversation naturally",
+        "Treat the topic as a cue to ask for more personal detail immediately",
+        "Steer away because recurring concerns never belong in relationship-building talk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants responsive care, not avoidance or intrusion.",
+        "direct": "A careful response fits the chapter better than probing or pretending the concern does not matter.",
+        "competitive": "Respect the signal without grabbing it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What abstraction trap does this chapter criticize?",
+      "choices": [
+        "That networking topics often stay floating and low-stakes compared with real human concerns",
+        "That real-life concerns always create too much emotion for good conversation",
+        "That abstract conversation is always useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter notices that abstract talk can stay detached from how people actually live.",
+        "direct": "Its critique is that networking chatter often lacks the durable signal of real concerns.",
+        "competitive": "Abstract can stay weightless too long."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That recurring life concerns can deepen conversation",
+        "That invasive questioning is the right way to use these subjects",
+        "That care matters in how these topics are handled"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter draws a hard line against prying.",
+        "direct": "These topics are not permission for intrusive fast intimacy.",
+        "competitive": "Depth is not an excuse to pry."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Priya worries that responding to a family or money concern will sound invasive. What would this chapter tell her?",
+      "choices": [
+        "Ignore the topic and stay abstract to avoid any risk",
+        "Follow the person's lead and let care outrun curiosity",
+        "Ask broader questions until the other person opens fully"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants responsive care rather than pressure or retreat.",
+        "direct": "The right move is to let the person's own lead determine how far the conversation goes.",
+        "competitive": "Care follows, it does not force."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a careful response to a real concern stronger than a generic networking topic in this chapter?",
+      "choices": [
+        "Because it connects the conversation to something with actual stakes and human relevance",
+        "Because personal topics always create trust faster",
+        "Because it removes the need for future conversational ease"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values real-life signal over floating abstraction.",
+        "direct": "A human concern can deepen the exchange because it matters beyond the room itself.",
+        "competitive": "Stakes make the room real."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between care and depth?",
+      "choices": [
+        "Depth becomes relationally strong only when concern is handled with respect instead of appetite",
+        "Care mainly matters because it keeps the conversation emotionally calm",
+        "Depth and care are separate issues in this chapter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties deeper conversation to respectful human response.",
+        "direct": "Real-life concerns only help when care stays ahead of curiosity and opportunism.",
+        "competitive": "Care keeps depth from turning predatory."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How to create value across communities through insight, introductions, and pattern-spotting",
+        "How to make every conversation personal more quickly",
+        "How to replace real-life concerns with safer abstract topics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from deeper human conversation to creating useful value across people and groups.",
+        "direct": "After recurring concerns comes the question of cross-community insight and introductions.",
+        "competitive": "Next: turn insight into value."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

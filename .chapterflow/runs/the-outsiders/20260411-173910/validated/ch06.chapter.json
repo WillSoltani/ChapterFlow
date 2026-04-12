@@ -3,7 +3,35 @@
     "bookId": "the-outsiders",
     "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
     "author": "William N. Thorndike Jr.",
-    "variantFamily": "EMH"
+    "categories": [
+      "business",
+      "leadership",
+      "investing",
+      "management"
+    ],
+    "tags": [
+      "capital allocation",
+      "ceos",
+      "shareholder returns",
+      "decentralization",
+      "conglomerates",
+      "value creation"
+    ],
+    "edition": {
+      "name": "2012 English Harvard Business Review Press trade-family edition",
+      "publisher": "Harvard Business Review Press",
+      "publishedDate": "2012-10-23",
+      "publishedYear": 2012,
+      "translationYear": null,
+      "language": "English",
+      "format": "Hardcover / ebook / trade-family edition",
+      "isbn13": "9781422187586",
+      "translator": "",
+      "sourceText": ".chapterflow/runs/the-outsiders/20260411-173910/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle from authorized O'Reilly preview pages, Google Books bibliographic record, and reputable secondary ABC acquisition context."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Main-text chapters 1-9: Murphy, Singleton, Anders, Malone, Graham, Stiritz, Smith, Buffett, and Radical Rationality synthesis"
   },
   "chapterId": "ch06-a-public-lbo",
   "number": 6,

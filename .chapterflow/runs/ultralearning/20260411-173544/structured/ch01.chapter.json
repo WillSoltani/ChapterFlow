@@ -3,7 +3,40 @@
     "bookId": "ultralearning",
     "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
     "author": "Scott H. Young",
-    "variantFamily": "EMH"
+    "categories": [
+      "Education",
+      "Learning",
+      "Self-Improvement",
+      "Career Development"
+    ],
+    "tags": [
+      "ultralearning",
+      "self-directed learning",
+      "skill acquisition",
+      "deliberate practice",
+      "career adaptation"
+    ],
+    "edition": {
+      "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+      "translator": "",
+      "publishedYear": 2019,
+      "translationYear": null,
+      "publishedDate": "2019-08-06",
+      "publisher": "Harper Business",
+      "imprintFamily": [
+        "Harper Business",
+        "HarperCollins",
+        "HarperCollins UK / Thorsons"
+      ],
+      "language": "English",
+      "isbn10": "006285268X",
+      "isbn13": "9780062852687",
+      "openLibraryEdition": "OL28302824M",
+      "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+      "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Chapter 1 only"
   },
   "chapterId": "ch01-mit-challenge",
   "number": 1,
@@ -257,7 +290,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["career", "curriculum", "portfolio"],
+      "contexts": [
+        "career",
+        "curriculum",
+        "portfolio"
+      ],
       "scenario": {
         "gentle": "At 11:40 p.m., Elena is staring at twelve browser tabs on product design, analytics, and front-end development. She has been telling friends she is pivoting into UX for six months, but her laptop is still full of disconnected courses and saved articles. A recruiter told her last week that her portfolio is thin. Elena can keep collecting resources, or she can borrow a respected UX curriculum, set a ten-week deadline, and decide what proof will count.",
         "direct": "Elena says she is transitioning into UX, but her effort is scattered across random tutorials and bookmarked essays. After a recruiter points out that she has no real portfolio pieces, she faces a choice: keep studying loosely or adopt an outside curriculum with a fixed deadline and portfolio standard.",
@@ -280,7 +317,11 @@
       "category": "school",
       "format": "dialogue",
       "endingType": "hidden_cost",
-      "contexts": ["advising", "syllabus", "independent-study"],
+      "contexts": [
+        "advising",
+        "syllabus",
+        "independent-study"
+      ],
       "scenario": {
         "gentle": "Priya spreads printed course outlines across the advising-office desk. She wants to learn machine learning before summer research starts, but she cannot fit the official class into her schedule. Her adviser asks, \"So what exactly are you proposing to do on your own?\" Priya can answer with enthusiasm, or she can point to a borrowed syllabus, a sequence of weekly milestones, and one final project she will submit for review.",
         "direct": "Priya wants an independent-study approval for a machine-learning push outside the normal course sequence. In the advising office, she can either describe her motivation or show an outside syllabus, a timeline, and a project that will serve as proof.",
@@ -303,7 +344,11 @@
       "category": "personal",
       "format": "dilemma",
       "endingType": "identity_shift",
-      "contexts": ["music", "practice", "self-assessment"],
+      "contexts": [
+        "music",
+        "practice",
+        "self-assessment"
+      ],
       "scenario": {
         "gentle": "Malik has kept a guitar-learning app streak alive for 173 days. He feels diligent every time the flame icon lights up, but when his cousin asks him to play three full songs at a family barbecue next month, his stomach drops. He knows bits of riffs and exercises, not a performable set. Malik has to decide whether to protect the streak or rebuild his practice around a concrete performance standard.",
         "direct": "Malik's long app streak makes him feel disciplined, but an upcoming family performance reveals the gap. He has fragments of skill, not evidence he can actually play through a set. He now has to choose between maintaining the streak and switching to a project judged by performance.",
@@ -326,7 +371,11 @@
       "category": "work",
       "format": "reset_moment",
       "endingType": "risk_reframe",
-      "contexts": ["analytics", "deadline", "scope"],
+      "contexts": [
+        "analytics",
+        "deadline",
+        "scope"
+      ],
       "scenario": {
         "gentle": "Devon has been telling his manager he is teaching himself data engineering. His notebook page is split into timeline, benchmark, and evidence columns, but all three are crowded with half-written plans. The quarterly review is six weeks away. He can keep pretending the entire field is his target, or he can cut the mission down to one pipeline build with a borrowed reference architecture and a demo date.",
         "direct": "Devon's self-directed data project is collapsing under too much scope. With review season close, he has to decide whether to keep claiming a huge goal or reset around one build, one standard, and one demo deadline.",
@@ -349,7 +398,11 @@
       "category": "school",
       "format": "planning_choice",
       "endingType": "downstream_consequence",
-      "contexts": ["study-planning", "math", "sequence"],
+      "contexts": [
+        "study-planning",
+        "math",
+        "sequence"
+      ],
       "scenario": {
         "gentle": "Sofia wants to catch up in linear algebra before next term. Her friend sends a playlist of charismatic videos. Her professor posts a full course syllabus with problem sets and exam dates from last year's class. Sofia has one quiet Saturday afternoon to decide what will guide her summer work.",
         "direct": "Sofia can organize her summer review around scattered explanatory videos or around a full course syllabus that includes sequence, assignments, and exam checkpoints.",
@@ -372,7 +425,11 @@
       "category": "personal",
       "format": "mistake_recovery",
       "endingType": "boundary_condition",
-      "contexts": ["coding", "practice", "portfolio"],
+      "contexts": [
+        "coding",
+        "practice",
+        "portfolio"
+      ],
       "scenario": {
         "gentle": "Marcus spent three months on coding tutorials and can explain concepts more smoothly than before. Then a friend asks to see something he has built, and Marcus realizes he has no finished app, script, or repository he can point to. The silence after the question tells him more than the tutorials did.",
         "direct": "Marcus confused steady tutorial completion with software skill. When someone asks for a finished build, he has nothing concrete to show. He now has to recover by designing proof into the project.",

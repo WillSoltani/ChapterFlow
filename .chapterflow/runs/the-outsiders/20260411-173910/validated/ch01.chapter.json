@@ -3,7 +3,35 @@
     "bookId": "the-outsiders",
     "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
     "author": "William N. Thorndike Jr.",
-    "variantFamily": "EMH"
+    "categories": [
+      "business",
+      "leadership",
+      "investing",
+      "management"
+    ],
+    "tags": [
+      "capital allocation",
+      "ceos",
+      "shareholder returns",
+      "decentralization",
+      "conglomerates",
+      "value creation"
+    ],
+    "edition": {
+      "name": "2012 English Harvard Business Review Press trade-family edition",
+      "publisher": "Harvard Business Review Press",
+      "publishedDate": "2012-10-23",
+      "publishedYear": 2012,
+      "translationYear": null,
+      "language": "English",
+      "format": "Hardcover / ebook / trade-family edition",
+      "isbn13": "9781422187586",
+      "translator": "",
+      "sourceText": ".chapterflow/runs/the-outsiders/20260411-173910/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle from authorized O'Reilly preview pages, Google Books bibliographic record, and reputable secondary ABC acquisition context."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Main-text chapters 1-9: Murphy, Singleton, Anders, Malone, Graham, Stiritz, Smith, Buffett, and Radical Rationality synthesis"
   },
   "chapterId": "ch01-perpetual-motion-machine",
   "number": 1,
@@ -257,7 +285,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["operations", "budget", "team design"],
+      "contexts": [
+        "operations",
+        "budget",
+        "team design"
+      ],
       "scenario": {
         "gentle": "Elena manages a regional service team. A budget spreadsheet glows on the conference-room screen while supervisors explain why every local purchase now needs three approvals. Costs are rising anyway, and field managers keep waiting for head office answers before fixing small problems.",
         "direct": "Elena's group added new approval layers to control spending. Instead, decisions slowed, local judgment weakened, and the budget still got worse.",
@@ -280,7 +312,11 @@
       "category": "school",
       "format": "postmortem",
       "endingType": "self_directed_question",
-      "contexts": ["student leadership", "publishing", "approval"],
+      "contexts": [
+        "student leadership",
+        "publishing",
+        "approval"
+      ],
       "scenario": {
         "gentle": "Layout proofs are taped across the student newspaper wall, but Priya notices that nothing goes to print unless the top editor signs off on every caption and headline. The room looks busy, yet local judgment has almost disappeared.",
         "direct": "The paper misses deadlines because every edit climbs to one person, even when section editors already know what good work looks like.",
@@ -303,7 +339,11 @@
       "category": "personal",
       "format": "dialogue",
       "endingType": "surprising_implication",
-      "contexts": ["family", "money", "coordination"],
+      "contexts": [
+        "family",
+        "money",
+        "coordination"
+      ],
       "scenario": {
         "gentle": "Marcus spreads grocery receipts and utility bills across the dining table. He complains that nobody else in the house helps manage spending, but every choice still routes through him.",
         "direct": "Marcus says he wants shared responsibility, yet he keeps holding every spending decision and every update himself.",
@@ -326,7 +366,11 @@
       "category": "work",
       "format": "predict_reveal",
       "endingType": "cross_domain",
-      "contexts": ["procurement", "investment", "timing"],
+      "contexts": [
+        "procurement",
+        "investment",
+        "timing"
+      ],
       "scenario": {
         "gentle": "Devon's department has a modest equipment budget. He is tempted to spread it across several visible upgrades, even though one older machine is the real bottleneck holding revenue back.",
         "direct": "The team can either fund a handful of cosmetic improvements or make one investment that actually changes output.",
@@ -349,7 +393,11 @@
       "category": "school",
       "format": "dilemma",
       "endingType": "common_trap",
-      "contexts": ["clubs", "budgeting", "tradeoffs"],
+      "contexts": [
+        "clubs",
+        "budgeting",
+        "tradeoffs"
+      ],
       "scenario": {
         "gentle": "Sofia leads a student club with limited funding. One option is a flashy public event that will look impressive for a week. The other is basic equipment and software that will make the club run better all year.",
         "direct": "She can spend for status now or spend for operating strength later.",
@@ -372,7 +420,11 @@
       "category": "personal",
       "format": "before_after",
       "endingType": "perspective_reframe",
-      "contexts": ["family systems", "planning", "ownership"],
+      "contexts": [
+        "family systems",
+        "planning",
+        "ownership"
+      ],
       "scenario": {
         "gentle": "Before: Malik writes a detailed weekend schedule for everyone and spends half his time policing it. After: he gives each person one owned responsibility and keeps only the shared constraints in the middle.",
         "direct": "Before, Malik centralizes every decision. After, he keeps the standards but stops treating himself as the entire system.",

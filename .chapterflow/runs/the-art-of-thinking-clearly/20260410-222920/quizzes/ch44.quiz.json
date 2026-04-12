@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch44-q01",
+      "prompt": "What is the core problem in omission bias?",
+      "choices": [
+        "Passive harm is judged more gently than comparable active harm",
+        "Every action and inaction are always morally identical",
+        "Only direct action can ever cause harm"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Passive harm is getting too much moral softness.",
+        "direct": "Correct. Non-action is receiving leniency because it looks less direct.",
+        "competitive": "That is the scam. Stillness is sneaking out with a softer sentence."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch44-q02",
+      "prompt": "Why is this bias persuasive?",
+      "choices": [
+        "Because omission hides agency more than direct action does",
+        "Because non-action always causes less harm",
+        "Because silence removes responsibility completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Passive agency feels less visible.",
+        "direct": "Exactly. Omission obscures the causal line and can make blame feel softer.",
+        "competitive": "That is it. The quiet route wears camouflage while direct action stands in the light."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch44-q03",
+      "prompt": "Which example best fits this chapter?",
+      "choices": [
+        "A coworker stays silent about a preventable problem and feels less blameworthy than someone who caused a similar problem directly",
+        "A coworker makes a harmless joke",
+        "A student changes a homework date"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Silence is receiving a softer judgment than it deserves.",
+        "direct": "Correct. The omission is getting moral leniency because it looks less active.",
+        "competitive": "Exactly. The quiet route is trying to walk out with a cleaner shirt."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch44-q04",
+      "prompt": "A student avoids reporting a harmful situation because non-action feels less severe. What is the better move?",
+      "choices": [
+        "Compare the harm allowed by silence with the harm that direct action would create",
+        "Assume silence is morally safer because it is passive",
+        "Treat every omission as equal to every action automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The outcomes and duties should be compared directly.",
+        "direct": "Correct. The key is separating true consequence difference from passive appearance.",
+        "competitive": "That is the move. Make the silence answer for the damage it helps keep alive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch44-q05",
+      "prompt": "What boundary matters in this chapter?",
+      "choices": [
+        "Action and inaction are not always identical, but passivity should not get automatic leniency",
+        "Every omission is automatically worse than every action",
+        "Passivity removes moral duty completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter is not flattening every case.",
+        "direct": "Exactly. The warning is against giving passivity a free moral discount.",
+        "competitive": "Yes. Context still matters, but stillness does not get a free halo."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch44-q06",
+      "prompt": "Why can non-action feel morally cleaner than it really is?",
+      "choices": [
+        "Because lower visibility of agency can soften blame even when the outcome is still serious",
+        "Because quiet choices never matter",
+        "Because passive harm is always small"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The outcome can stay serious even while the path feels passive.",
+        "direct": "Correct. The mind can discount comparable responsibility when agency is less visible.",
+        "competitive": "That is the bruise. The quiet route can keep the damage and still steal the discount."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch44-q07",
+      "prompt": "What is the hard diagnostic question in this chapter?",
+      "choices": [
+        "Am I judging the omission more gently because it feels less active, or because its outcome is truly different?",
+        "How can I make inaction look more moral?",
+        "Why should I erase all difference between action and inaction?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The softer judgment should answer to outcome, not to passive appearance alone.",
+        "direct": "Correct. The test asks whether leniency comes from real consequence difference or from reduced visibility of agency.",
+        "competitive": "Exactly. Ask whether the quiet route looks cleaner because it is quieter or because it actually leaves different wreckage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch44-q08",
+      "prompt": "Why does omission bias matter for behavior and not just feeling?",
+      "choices": [
+        "Because people tolerate preventable harm more easily when it arrives through silence or delay",
+        "Because bias changes only private feelings",
+        "Because non-action never affects real outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The bias can change real choices and tolerances.",
+        "direct": "Exactly. It weakens responsibility by making passive harm easier to excuse.",
+        "competitive": "That is the damage. Silence starts getting mercy while harm keeps working."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch44-q09",
+      "prompt": "Which response best counters omission bias?",
+      "choices": [
+        "Judge action and inaction on the same scale of consequence and duty when outcomes are comparable",
+        "Trust the passive path because it feels calmer",
+        "Assume all direct action is morally worse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The same scale should be used for both paths.",
+        "direct": "Correct. Better judgment compares comparable omissions and actions without rewarding passivity for appearance alone.",
+        "competitive": "Exactly. Put the quiet path under the same lamp and make it answer."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch44-q10",
+      "prompt": "What distinction does this chapter ask you to preserve?",
+      "choices": [
+        "Passive appearance is different from lower responsibility",
+        "Less visible agency means no responsibility",
+        "Silence always equals innocence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Stillness can look lighter without actually being lighter.",
+        "direct": "Correct. The chapter protects the difference between reduced visibility and reduced moral responsibility.",
+        "competitive": "That is the split. Quiet is not the same thing as clean."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

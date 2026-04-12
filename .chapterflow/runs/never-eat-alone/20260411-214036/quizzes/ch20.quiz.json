@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about pinging all the time?",
+      "choices": [
+        "Light regular outreach can keep living relationships warm between larger moments",
+        "Frequent contact is strong even when the notes are low-value",
+        "Silence is usually safer than small maintenance signals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats small relevant signals as relationship maintenance.",
+        "direct": "Its core claim is that living threads need occasional signs of life between major moments.",
+        "competitive": "Small signal can keep the thread alive."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does light maintenance outreach matter so much here?",
+      "choices": [
+        "Because long silence can quietly cool a relationship into dormancy",
+        "Because every relationship needs constant contact",
+        "Because bigger gestures usually fail without frequent reminders"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter notices how relationships cool in long gaps.",
+        "direct": "Ferrazzi is responding to the way silence hardens into distance between bigger moments.",
+        "competitive": "Silence can chill the thread."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Maya has not spoken with a work contact in a while but has one relevant reason to reach out. What best fits this chapter?",
+      "choices": [
+        "Send a short note that fits the thread rather than waiting for a larger need",
+        "Hold silence until a major ask appears",
+        "Start a frequent check-in routine regardless of fit"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors relevant small signals over long silence or cadence worship.",
+        "direct": "A brief fitting note matches the chapter better than dormancy or spammy maintenance.",
+        "competitive": "Small real contact beats long cold silence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In an alumni email chain, Trevor wants to keep a relationship from going dormant. What is his strongest move?",
+      "choices": [
+        "Send an occasional low-pressure note that actually relates to the shared thread",
+        "Message repeatedly so the relationship never drops from view",
+        "Wait until he needs something important"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants living maintenance, not noise or neglect.",
+        "direct": "A relevant light note fits better than repetition or silence-until-need.",
+        "competitive": "Keep it warm, not loud."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What silence-cooling trap does this chapter emphasize?",
+      "choices": [
+        "That some relationships cool because nothing happens between larger moments",
+        "That major asks usually strengthen dormant threads",
+        "That silence is the best proof of respect"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps returning to quiet cooling across long gaps.",
+        "direct": "Its warning is that dormancy often arrives by absence rather than by conflict.",
+        "competitive": "Threads die quietly in the gap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That relevance matters more than raw frequency",
+        "That any cadence is good if it is regular enough",
+        "That small notes can help living relationships stay alive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter draws a hard line against frequency being mistaken for care.",
+        "direct": "Regularity without fit is weak maintenance, not strong relationship life.",
+        "competitive": "Cadence alone is fake care."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lila is tempted to send a low-value \"just checking in\" note only to avoid silence. What would this chapter tell her?",
+      "choices": [
+        "Send it because any ping is better than none",
+        "Wait until the note can carry some actual fit or relevance",
+        "Replace the note with a bigger ask so the contact feels more meaningful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants signals of life, not empty resurfacing.",
+        "direct": "A weak check-in can create drag instead of warmth if it lacks relationship fit.",
+        "competitive": "Do not ping empty just to prove existence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a short relevant note stronger than a routine repetitive check-in in this chapter?",
+      "choices": [
+        "Because it maintains continuity without turning the thread into noise",
+        "Because shorter messages always feel more caring",
+        "Because repetition makes later contact impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values fit and continuity over visible cadence.",
+        "direct": "A relevant note serves the thread while repetitive checking-in can hollow it out.",
+        "competitive": "Useful signal beats empty rhythm."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between continuity and relevance?",
+      "choices": [
+        "A relationship stays more alive when small contact fits the thread instead of merely interrupting silence",
+        "Continuity mainly depends on how often messages are sent",
+        "Relevance matters only in larger moments, not maintenance moments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties warm continuity to signals that feel like real attention.",
+        "direct": "Light outreach only helps when it fits the person and the relationship rather than proving a cadence system exists.",
+        "competitive": "Warmth needs fit, not just motion."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "Which few anchor relationships deserve deeper sustained investment because they stabilize the wider network",
+        "How to increase outreach volume without increasing relevance",
+        "How to keep every thread equally active all the time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from many lightly maintained threads to the few relationships that deserve heavier investment.",
+        "direct": "After maintenance comes the question of anchor relationships.",
+        "competitive": "Next: which ties deserve the deepest feed."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

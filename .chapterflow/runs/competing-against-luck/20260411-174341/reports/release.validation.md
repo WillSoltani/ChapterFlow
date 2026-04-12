@@ -2,7 +2,7 @@
 
 Book: competing-against-luck
 Mode: release_gate
-Validated at: 2026-04-12T01:11:37Z
+Validated at: 2026-04-12T20:32:54Z
 
 Release inputs checked:
 - validated chapter set present for chapters 1-10
@@ -24,4 +24,5 @@ Gate decision:
 Notes:
 - Release package contains 10 chapters assembled in chapter-number order.
 - Release package chapters match the full validated chapter payloads exactly.
+- Release metadata now carries canonical title and author, non-empty categories and tags, fuller edition detail, and explicit chapter scope from the source-locked run metadata.
 - Continuity seals were repaired to the release guard canonical hash form before final release validation passed.

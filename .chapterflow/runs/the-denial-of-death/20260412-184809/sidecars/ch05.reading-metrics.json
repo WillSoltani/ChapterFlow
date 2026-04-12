@@ -1,0 +1,39 @@
+{
+  "chapterId": "ch05-the-psychoanalyst-kierkegaard",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-12T18:51:02Z",
+  "chapterNumber": 5,
+  "editedDraftWordCount": 655,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 251,
+      "avgWordsPerTone": 84
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 798,
+      "avgWordsPerTone": 266
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 1143,
+      "avgWordsPerTone": 381
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "school": 2,
+    "personal": 2,
+    "work": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "a5b334c592234f7e8ac6070f5bf748683697bda6b346dbf7237784b1712b60c2",
+  "validationStatus": "PASS",
+  "patchesApplied": 1,
+  "patchNotes": [
+    "Embedded the full quiz payload and patched repeated scaffolds and reusable reinforcement stems before validation pass."
+  ]
+}

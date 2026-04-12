@@ -256,7 +256,7 @@
       "title": "Maya Rewrites the Monday Memo Before Her Team Drowns in Setup",
       "category": "work",
       "format": "decision_point",
-      "endingType": "warning",
+      "endingType": "broader_principle",
       "scenario": {
         "gentle": "Maya is finishing a Monday update for her department. The draft opens with three paragraphs of background, then a chart, then a paragraph about delays, and only near the bottom does it say that the team needs approval to pause one feature. Her manager has five minutes between meetings and usually reads on a phone in the elevator.",
         "direct": "Maya's memo buries the real ask under context, charts, and status notes. The actual decision request appears late even though the manager will skim it between meetings.",
@@ -278,7 +278,7 @@
       "title": "Priya Stops Reading Notes Aloud and Opens With Her Real Claim",
       "category": "school",
       "format": "dialogue",
-      "endingType": "reframing",
+      "endingType": "self_directed_question",
       "scenario": {
         "gentle": "Priya walks into her thesis meeting with six tabs open and four pages of notes. She starts summarizing everything she found in the archive, but halfway through her advisor asks, 'What are you trying to prove?' Priya realizes she has gathered material without deciding what it adds up to.",
         "direct": "Priya enters the meeting prepared with evidence but not with a top line. Her advisor interrupts the summary and asks for the argument she wants the evidence to support.",
@@ -300,7 +300,7 @@
       "title": "Ethan Explains the Weekend Budget Without Reading the Spreadsheet First",
       "category": "personal",
       "format": "dilemma",
-      "endingType": "cost",
+      "endingType": "quiet_reversal",
       "scenario": {
         "gentle": "Ethan and Gloria are trying to decide whether they can afford a short family trip next month. Ethan starts listing card balances, fuel costs, and school fees in the order he checked them. Gloria keeps asking, 'So are you saying yes or no?' The kitchen table is covered with a calendar, receipts, and one half-folded budget sheet.",
         "direct": "Ethan explains the budget in the order he researched it. Gloria still does not know the conclusion and keeps asking for the actual answer.",
@@ -321,8 +321,8 @@
       "exampleId": "ch01-ex04-status-slide",
       "title": "Jordan Learns That a Perfect Slide Deck Can Still Hide the Point",
       "category": "work",
-      "format": "mistake",
-      "endingType": "leverage",
+      "format": "mistake_recovery",
+      "endingType": "warning_turn",
       "scenario": {
         "gentle": "Jordan builds a polished project deck with color-coded charts and a timeline on every slide. During the review, the vice president asks in the first minute, 'Are we ahead, behind, or blocked?' Jordan realizes the answer is implied somewhere in the middle but never stated cleanly.",
         "direct": "The deck looks complete, but the governing message is missing. The VP has to ask for the conclusion because the slides only display pieces.",
@@ -343,8 +343,8 @@
       "exampleId": "ch01-ex05-study-groups",
       "title": "Lena Groups Her Exam Notes and Stops Forgetting the Thread",
       "category": "school",
-      "format": "coaching",
-      "endingType": "relief",
+      "format": "reset_moment",
+      "endingType": "concrete_next_step",
       "scenario": {
         "gentle": "Lena is studying at a library table with highlighted pages spread in a loose semicircle. She keeps rereading terms one by one and still loses the thread when she tries to explain them to a classmate. Her tutor asks her to stop listing points and start grouping them into a few related sets.",
         "direct": "Lena has the material, but her notes are flat. She can recite details yet cannot explain how they belong together.",
@@ -365,8 +365,8 @@
       "exampleId": "ch01-ex06-premature-answer",
       "title": "Omar Wants to Lead With the Conclusion Before the Thinking Is Ready",
       "category": "personal",
-      "format": "planning",
-      "endingType": "bridge",
+      "format": "planning_choice",
+      "endingType": "repair_commitment",
       "scenario": {
         "gentle": "Omar is drafting a message to his siblings about selling their late father's house. He wants to sound decisive, so he starts with 'We should sell immediately,' but he has not yet sorted the emotional, legal, and repair issues underneath that statement. The half-finished note feels forceful and shaky at the same time.",
         "direct": "Omar tries to write the answer first, but the support beneath it is still mixed and incomplete.",

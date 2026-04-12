@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "In Book Two, what best separates the amateur posture from the professional posture?",
+      "choices": [
+        "The amateur has less natural talent, while the professional has more",
+        "The amateur waits for readiness, while the professional returns because the work is scheduled",
+        "The amateur cares about quality, while the professional ignores quality concerns"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter emphasizes posture, not giftedness. The professional keeps the appointment even when the feeling is weak.",
+        "direct": "Book Two contrasts bargaining with duty. The key shift is from mood-based permission to scheduled return.",
+        "competitive": "This is not talent talk. One posture negotiates; the other clocks in."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does routine matter so much in this chapter?",
+      "choices": [
+        "Because routine guarantees that the work will feel inspired",
+        "Because routine proves the person is more serious than everyone else",
+        "Because routine reduces daily renegotiation and keeps mood from governing entry"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Routine helps by protecting the work on uneven days, not by creating a perfect feeling.",
+        "direct": "Resistance gains power when the terms are reopened each morning. A fixed return shortens that argument.",
+        "competitive": "The calendar matters because it closes the courtroom before your excuses finish their opening statement."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Naomi says she should wait to draft until she feels clearer and more confident. According to Book Two, what is the stronger response?",
+      "choices": [
+        "Begin the scheduled session and let judgment happen from inside the work",
+        "Delay until confidence returns so the work starts from a cleaner place",
+        "Replace the draft hour with more preparation to avoid forcing weak pages"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the work hour should not depend on a better mood arriving first.",
+        "direct": "Turning pro means entering the labor before confidence gives permission, then evaluating quality from within contact with the task.",
+        "competitive": "Do not ask fear for clearance. Start, then let the pages tell you what needs work."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Samir's shipping log shows gaps on the same days he wrote that he did not feel sharp enough to ship. What does Book Two suggest this pattern reveals?",
+      "choices": [
+        "Mood has been silently deciding whether meaningful work gets completed",
+        "His standards are probably too high to allow any consistent output",
+        "He should stop tracking the pattern because logs make the work mechanical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The log exposes that feeling has become the hidden manager of the work.",
+        "direct": "Book Two warns against giving emotional weather veto power over whether labor becomes real that day.",
+        "competitive": "The pattern shows your nerves have been running release policy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which option best fits the chapter's idea of turning pro without drifting into hustle rhetoric?",
+      "choices": [
+        "Treating all fatigue as weakness and forcing maximum output every day",
+        "Keeping the work appointment calmly, even when the day feels unimpressive",
+        "Using discipline mainly to prove toughness to yourself and others"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The professional stance is steady and practical, not showy or punishing.",
+        "direct": "Book Two defines professionalism as repeated return, not macho overwork or identity theater.",
+        "competitive": "The clean version works without cosplay. It just keeps the hour."
+      },
+      "bloomsLevel": "distinguish",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What warning keeps Book Two from turning routine into a total answer?",
+      "choices": [
+        "Routine is useful only for people in artistic jobs",
+        "Discipline can become sterile grind if it loses contact with the calling",
+        "Routine should be abandoned once the person becomes more confident"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values discipline, but it warns that structure can become hollow if the work's deeper reason disappears.",
+        "direct": "Professionalism is necessary here, yet the chapter explicitly leaves purpose unresolved so routine does not become a false religion.",
+        "competitive": "The engine matters, but it can turn into a shrine if you forget what it was built to serve."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "After a discouraging rehearsal, Victor considers skipping practice because he doubts it would be useful. What response best matches the chapter?",
+      "choices": [
+        "Keep the practice block and use it as craft maintenance even if the mood is poor",
+        "Wait until his confidence recovers so the session has a better chance of going well",
+        "Replace the session with extra planning so he does not reinforce mistakes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The point is to keep the appointment without needing the perfect emotional setup.",
+        "direct": "Book Two lowers the ego charge around bad days so the next session can still happen on schedule.",
+        "competitive": "Do not let bruised pride cancel the block. Use the block to reset the terms."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Elise loves thinking of herself as a future novelist, but she writes only when the week feels emotionally clean. What shift would Book Two most likely ask for?",
+      "choices": [
+        "Find a stronger inspiration routine before trying to write consistently",
+        "Convert the identity story into a fixed writing cadence that survives uneven evenings",
+        "Stop caring so much about the novel and treat it as a low-stakes hobby"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter moves from self-description to repeatable labor.",
+        "direct": "Turning pro means replacing fantasy-of-readiness with a standing return to the page.",
+        "competitive": "Drop the flattering future tense and let the calendar make the claim real."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is routine a stronger answer than inspiration in this chapter?",
+      "choices": [
+        "Because routine eliminates fear once it has been practiced long enough",
+        "Because routine keeps the work alive across uneven days without requiring emotional permission first",
+        "Because routine lets the person avoid ever thinking about purpose or meaning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Inspiration may help, but the chapter does not trust it to arrive on command when the work needs to live.",
+        "direct": "Routine matters because it preserves contact with the task even when discouragement, boredom, or doubt are present.",
+        "competitive": "Inspiration is a visitor. Routine is the structure that keeps the place open."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Book Two ends by pointing toward which unfinished question?",
+      "choices": [
+        "How to build a more efficient daily schedule than other people",
+        "Whether true professionalism means never needing rest again",
+        "What the labor ultimately serves once routine is no longer the main problem"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Once return becomes steadier, the next issue is the deeper reason the work matters.",
+        "direct": "The chapter deliberately leaves purpose unresolved so Book Three can ask what the labor serves beyond ego or fear.",
+        "competitive": "After you stop worshiping readiness, the real question is what authority the work finally answers to."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

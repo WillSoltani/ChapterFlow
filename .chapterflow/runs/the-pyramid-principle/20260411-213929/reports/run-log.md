@@ -194,3 +194,62 @@ Chapter 8 gate complete.
 - repo artifact guard written
 
 Wave 04 complete.
+
+## 2026-04-12 Chapter 9 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 9 gate complete.
+
+## 2026-04-12 Chapter 10 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 10 gate complete.
+
+## 2026-04-12 Wave 05 Clean Guard
+
+- chapters 9 and 10 verified fully clean
+- repo artifact guard written
+
+Wave 05 complete.
+
+## 2026-04-12 Release Gate
+
+- release assembled from validated chapters only
+- source guard passed
+- release lint passed
+- release guard passed
+- release validation report written
+- release audit report written
+
+Release gate complete.
+
+## 2026-04-12 Repo Wiring And Build
+
+- release wired into book-packages/the-pyramid-principle.modern.json
+- repo validator passed
+- repo-level release lint passed
+- production build passed
+
+Phase 8 complete.

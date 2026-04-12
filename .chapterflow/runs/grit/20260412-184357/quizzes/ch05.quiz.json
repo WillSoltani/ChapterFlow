@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What main claim does Chapter 5 make about grit?",
+      "choices": [
+        "It is better treated as developable than fixed",
+        "It only appears in people who succeed early",
+        "It can be measured from one strong week"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter argues that persistence can strengthen over time rather than being a sealed trait.",
+        "direct": "Chapter 5 defends trainability, not fixedness.",
+        "competitive": "The pattern stays alive enough to change."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why does the chapter reject miracle-growth language?",
+      "choices": [
+        "Because growth is impossible",
+        "Because honest change is usually slow and uneven",
+        "Because only schools can build persistence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps slowness and uneven progress visible so hope stays credible.",
+        "direct": "Miracle talk fails because real development is messy and gradual.",
+        "competitive": "If the climb looks effortless, the sales pitch has replaced the truth."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What danger comes from treating one weak stretch as a fixed trait?",
+      "choices": [
+        "It can shut down experimentation and slower improvement",
+        "It guarantees faster recovery",
+        "It proves grit never mattered"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A fixed verdict can make people stop trying the behaviors that might have changed the pattern.",
+        "direct": "Fatalism closes options before the evidence is complete.",
+        "competitive": "Call the case closed too early and the reps die."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Nina sees heavy revision notes in the writing lab and says, \"I am just not a persistent student.\" Which response best fits Chapter 5?",
+      "choices": [
+        "Treat the rough assignment as proof that the trait is missing",
+        "Challenge the fixed wording and watch the pattern across more than one assignment",
+        "Ignore the assignment because judgment is always harmful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says one rough moment should not harden into permanent identity.",
+        "direct": "Chapter 5 would replace a fixed claim with a longer view of trainable persistence.",
+        "competitive": "Do not let one bruising page write the final verdict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Omar is reviewing a coworker after one uneven month. What chapter mistake would happen if he called the person's grit permanently low?",
+      "choices": [
+        "He would be treating current evidence as finished identity",
+        "He would be respecting the chapter's caution about growth",
+        "He would be proving that observation no longer matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns against freezing a pattern too early.",
+        "direct": "A fixed trait verdict mistakes provisional evidence for final truth.",
+        "competitive": "He would turn a rough month into a cage."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Which sign would Chapter 5 accept as meaningful growth even if it is not dramatic?",
+      "choices": [
+        "Perfect consistency after one reset",
+        "Quicker recovery after setbacks even while some inconsistency remains",
+        "A promise that change will be fast next time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows narrower gains such as faster return after mistakes.",
+        "direct": "Improvement in recovery can count even before full steadiness appears.",
+        "competitive": "A quicker comeback matters more than a fake clean streak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "How should Caleb respond after overpromising himself instant change and then stumbling again?",
+      "choices": [
+        "Conclude that change is impossible",
+        "Drop the miracle expectation and return with a slower standard for growth",
+        "Decide that persistence only belongs to naturally gifted people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says exaggerated hope can backfire, so the repair is a narrower and steadier standard.",
+        "direct": "He should fix the expectation before judging the whole pattern.",
+        "competitive": "Kill the fantasy, then go back to real reps."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Why does the chapter insist on keeping slowness and unevenness visible?",
+      "choices": [
+        "So the growth claim stays honest instead of turning into theater",
+        "So people will expect failure in every domain",
+        "So the book can avoid discussing interest later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter protects hope by keeping friction in view.",
+        "direct": "Visible limits are what keep the growth claim credible.",
+        "competitive": "Hide the cost and the whole argument turns fake."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "How does Chapter 4 help Chapter 5 make a stronger claim?",
+      "choices": [
+        "It proves growth is automatic once grit is measured",
+        "It first treats grit as an observable pattern, which gives the growth question a real object",
+        "It removes the need for caution about fixedness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Because Chapter 4 made grit a pattern to watch, Chapter 5 can ask whether that pattern changes.",
+        "direct": "Observation comes first so developability is not attached to a vague halo.",
+        "competitive": "The file had to exist before the file could go on trial for growth."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "Why does Chapter 5 lead into Chapter 6?",
+      "choices": [
+        "Because once growth is possible, the next question is what keeps return alive early on",
+        "Because the chapter decides grit is irrelevant without interest",
+        "Because fixed traits become easier to prove in the next chapter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens the question of what helps persistence begin and keep returning.",
+        "direct": "Interest appears next as a possible early fuel for developing grit.",
+        "competitive": "Once the door opens, the next fight is fuel."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

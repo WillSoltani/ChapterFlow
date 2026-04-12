@@ -4,10 +4,25 @@
   "schoolSettingUsage": {},
   "wordFrequency": {},
   "phraseFrequency": {},
-  "openerRegistry": { "gentle": {}, "direct": {}, "competitive": {} },
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
   "titleTemplateRegistry": {},
   "endingPatternRegistry": {},
   "withinChapterNames": {},
-  "approvedChapterHashes": {},
-  "baselineQuality": {}
+  "approvedChapterHashes": {
+    "ch01": "dab0a6cc8ee998a3e12de9c0d520c63ee970e9d497f6560a25e532a43506d6f9",
+    "ch02": "71bfdea91b06292421dc5d5418e5855d0ccd304b1779b515a6994abe36c8e332",
+    "ch03": "c7f144f3f6651f7e5d8bba75ab27205814ed8abfc6e51fed490da949e3a88074",
+    "ch04": "698b1903088d01afa5c754eed97d40e146fc39cdeb2e7c24294a7700784da877",
+    "ch05": "a5b334c592234f7e8ac6070f5bf748683697bda6b346dbf7237784b1712b60c2",
+    "ch06": "d5d0c21fd9e32e3ff7dcb5a17e0f4ec4d333fb4ab74c8e35c3ae6245c37c2a27",
+    "ch07": "1291bb518cf6376107bd58f8a4261d8d01ea1b0cc52af4e6e49aee53b00e9530"
+  },
+  "baselineQuality": {
+    "ch01": "validated baseline chapter",
+    "ch02": "validated baseline chapter"
+  }
 }

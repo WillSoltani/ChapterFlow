@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch33-q01",
+      "prompt": "What is the main claim of `Dignity`?",
+      "choices": [
+        "Noise reduction can carry a human cost when standardization weakens respectful treatment",
+        "Dignity requires abandoning structured process",
+        "Respect matters only when consistency fails"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter brings human treatment into the design stakes.",
+        "direct": "Correct. It argues that lower noise does not settle whether people are treated with dignity.",
+        "competitive": "Right. The chapter makes the room answer for how the system treats the person."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch33-q02",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That dignity means rules should disappear everywhere",
+        "That rigid treatment can feel degrading",
+        "That standardization can improve consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter does not turn dignity into a blanket rejection of rules.",
+        "direct": "It rejects the idea that humane treatment requires structure to vanish.",
+        "competitive": "The chapter does not smash the system just because it asks for respect."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch33-q03",
+      "prompt": "Why does the chapter turn to dignity after discussing process costs?",
+      "choices": [
+        "Because burden alone does not capture what it feels like to be treated as a case rather than a person",
+        "Because the book now abandons noise reduction",
+        "Because dignity is a numerical measure of review delay"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter moves from process burden to human meaning.",
+        "direct": "It asks what tighter process costs in the experience of treatment, not only in time or effort.",
+        "competitive": "The bill becomes personal once the room asks what the system does to people."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch33-q04",
+      "prompt": "Elena leaves a scripted review feeling unseen. What lesson fits best?",
+      "choices": [
+        "A process can become more consistent while still damaging dignity",
+        "Any scripted process is automatically unjust",
+        "Consistency and respectful treatment cannot coexist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The example shows how respect can be lost even when process becomes cleaner.",
+        "direct": "It shows that reduced variation does not excuse treatment that feels flattening or indifferent.",
+        "competitive": "The line may steady while the person still gets erased."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q05",
+      "prompt": "Why does a school placement meeting matter in this chapter?",
+      "choices": [
+        "It keeps the dignity question concrete by showing how rigid procedure can shape treatment",
+        "It proves schools should never use standards",
+        "It introduces a formal dignity doctrine from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter wants the human stake visible in a real setting.",
+        "direct": "The meeting matters because procedure can feel degrading even when it aims at consistency.",
+        "competitive": "The table and forms make the respect question impossible to dodge."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q06",
+      "prompt": "What narrow distinction does the chapter insist on?",
+      "choices": [
+        "Lower noise can matter while humane treatment still has to be judged separately",
+        "Respect matters only when noise stays high",
+        "Dignity is identical to flexibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps consistency and humane treatment in the same frame.",
+        "direct": "Its key distinction is that structure can help judgments while still needing moral scrutiny about treatment.",
+        "competitive": "The chapter keeps the steadier line and the respect test on the same page."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q07",
+      "prompt": "Why does the chapter resist turning dignity into an anti-rule slogan?",
+      "choices": [
+        "Because it is asking how structure should treat people, not whether structure should disappear",
+        "Because rules never affect treatment",
+        "Because any loss of dignity is worth lower noise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter stays disciplined rather than absolute.",
+        "direct": "It preserves the value of standardization while insisting that treatment remains morally relevant.",
+        "competitive": "The chapter wants the room to fix the system, not just burn the manual."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q08",
+      "prompt": "What does respectful standardization mean in this chapter?",
+      "choices": [
+        "Reducing variation without erasing the person inside the process",
+        "Avoiding all consistent procedures",
+        "Replacing standards with improvisation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter wants structure that still treats people as people.",
+        "direct": "It means designing process so the gains of consistency do not depend on degrading treatment.",
+        "competitive": "The room can tighten the line without flattening the person."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q09",
+      "prompt": "Which statement best captures the chapter's strongest conclusion?",
+      "choices": [
+        "Structure must answer not only for consistency but also for how it treats the person before it",
+        "Dignity always outweighs every reduction gain",
+        "Standardization is morally empty if it lowers noise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter ties judgment quality to humane treatment.",
+        "direct": "Its conclusion is that design must be evaluated for respect as well as for reduced variation.",
+        "competitive": "The system does not get credit for steadiness if it treats people like furniture."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch33-q10",
+      "prompt": "What is the cleanest bridge from `Dignity` into `Rules or Standards?`?",
+      "choices": [
+        "Once the human stake is visible, the book can ask which governance form carries consistency and respect more responsibly",
+        "The next chapter drops dignity and returns to pure abstraction",
+        "The next chapter proves one governance form always wins"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The governance question follows once the human stakes are clear.",
+        "direct": "The bridge works because dignity turns the tradeoff into a design question about rules and standards.",
+        "competitive": "Once the room feels the human cost, it has to decide what kind of structure to build."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

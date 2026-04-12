@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What contrast does the chapter place at the center of the argument?",
+      "choices": [
+        "Passion versus discipline",
+        "Learning versus ignorance",
+        "Status versus money"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says emotional intensity is not the same thing as durable steadiness.",
+        "direct": "Its main distinction is passion against discipline as the governing force.",
+        "competitive": "Heat versus fuel."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does ego like passion so much according to the chapter?",
+      "choices": [
+        "Because it is easier to display and admire",
+        "Because it guarantees discipline automatically",
+        "Because it removes all boredom from long work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Passion is visible, and visible seriousness is easy to reward.",
+        "direct": "Ego prefers intensity because intensity turns commitment into a display.",
+        "competitive": "The loud fuel looks expensive."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Devon only writes when he feels fired up. What is the chapter's diagnosis?",
+      "choices": [
+        "He is wisely waiting for authentic commitment",
+        "His work is too dependent on unstable fuel",
+        "He should talk more about writing first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The habit is being governed by mood rather than by steadiness.",
+        "direct": "Emotional charge is acting like the engine, which makes the effort fragile.",
+        "competitive": "The feeling is running the project."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Which move best fits the chapter when a team's excitement is high but follow-through is inconsistent?",
+      "choices": [
+        "Add more hype meetings to keep the energy up",
+        "Build a repeatable routine that survives flat emotional days",
+        "Assume the team's visible passion is enough evidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants structure that still works after the excitement fades.",
+        "direct": "Discipline is the stronger operating model because it survives mood change.",
+        "competitive": "Build the engine, not another spark."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's main limit or correction about passion?",
+      "choices": [
+        "Deep care is bad and should be removed",
+        "Passion is dangerous when it starts substituting for standard and steadiness",
+        "Only calm people can do serious work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not anti-care. It is against emotional spectacle replacing durable commitment.",
+        "direct": "The problem begins when intensity acts like proof that the work will hold.",
+        "competitive": "Keep the care, fire the theater."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

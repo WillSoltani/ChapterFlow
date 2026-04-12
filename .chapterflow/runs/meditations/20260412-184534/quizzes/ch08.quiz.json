@@ -1,0 +1,177 @@
+{
+  "chapterId": "ch08",
+  "title": "Book VIII",
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What does Marcus reject at the start of Book VIII?",
+      "choices": [
+        "The need to perform or seem philosophical",
+        "The practice of self-examination",
+        "The idea that virtue matters in ordinary acts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He cuts off appearance-management, not virtue itself.",
+        "direct": "Book VIII opens by rejecting the wish to seem philosophical.",
+        "competitive": "The costume goes first."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Why is choosing to be good tomorrow a serious problem in Book VIII?",
+      "choices": [
+        "Because Marcus thinks planning is always irrational",
+        "Because delayed reform often shelters the present self from obedience",
+        "Because tomorrow does not exist in Stoicism"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The future promise can hide refusal today.",
+        "direct": "Marcus treats delay as a moral tactic, not neutral timing.",
+        "competitive": "Tomorrow can be an excuse with a calendar."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "How does Book VIII tell Marcus to respond when something goes wrong?",
+      "choices": [
+        "Start by identifying who deserves blame",
+        "Correct the cause or thing if possible instead of feeding complaint",
+        "Withdraw from the shared task until emotions cool"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correction matters more than fault-finding.",
+        "direct": "The chapter redirects judgment toward repair and usefulness.",
+        "competitive": "Fix beats blame."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "What does \u201cwipe out imaginations\u201d target in this chapter?",
+      "choices": [
+        "All planning about future events",
+        "The second layer of commentary that enlarges the event",
+        "Any emotional response to pain or loss"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Marcus is cutting away extra enlargement, not denying every feeling.",
+        "direct": "He separates first appearances from the added verdict that makes them total.",
+        "competitive": "He goes after the homemade sequel."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Why does Marcus reduce the value of fame in Book VIII?",
+      "choices": [
+        "Because public trust never matters",
+        "Because fame depends on unstable and short-lived minds",
+        "Because renown automatically corrupts political life"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Fame is scaled down because the minds carrying it are weak and passing.",
+        "direct": "The chapter cuts fame to size by attacking the instability of its audience.",
+        "competitive": "Weak memory is a bad throne."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "What is the best summary of Book VIII's view of complaint?",
+      "choices": [
+        "Complaint is useful when it shows moral seriousness",
+        "Complaint is acceptable only after all action has stopped forever",
+        "Complaint that does not become correction adds nothing useful"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps asking what complaint actually repairs.",
+        "direct": "Marcus opposes bitterness that does not redirect into action or judgment.",
+        "competitive": "If it repairs nothing, it is just extra weight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "Why is the anti-seeming opening philosophically important?",
+      "choices": [
+        "It turns visible moral failure into a test of present reform instead of a new identity",
+        "It proves Marcus no longer believes in Stoicism",
+        "It shows that reputation is always harmful in politics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The confession matters only if it destroys performance and starts obedience.",
+        "direct": "Book VIII blocks the drift from honest failure into refined self-display.",
+        "competitive": "The admission must kill the mask, not upgrade it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "How are delay, blame, and imagination connected in Book VIII?",
+      "choices": [
+        "They all help the present self avoid useful reform",
+        "They all show that emotions should be suppressed entirely",
+        "They all prove that external events do not matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Each one can keep the soul from doing the next useful thing.",
+        "direct": "Delay postpones obedience, blame flatters superiority, and imagination enlarges disturbance.",
+        "competitive": "Same regime, different uniforms."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "What does obstacle-use mean in the closing movement of Book VIII?",
+      "choices": [
+        "Pretending the obstacle is pleasant",
+        "Treating hindrance as material for redirected action",
+        "Abandoning the original aim as soon as anything resists it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The blocked plan changes the work but does not cancel duty.",
+        "direct": "Marcus transfers effort rather than letting frustration authorize complaint.",
+        "competitive": "Blocked route, same job."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "Which statement best captures Book VIII as a whole?",
+      "choices": [
+        "Virtue is mainly a matter of private feeling once the world goes badly",
+        "Book VIII demands plain, present, anti-complaint goodness rather than performed seriousness or postponed reform",
+        "The chapter teaches that pain and loss are illusions created by language alone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps driving back to useful goodness now.",
+        "direct": "Its pressure falls on present reform, correction, first appearances, and obstacle-use.",
+        "competitive": "No costume, no delay, no drama tax."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

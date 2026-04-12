@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch38-q01",
+      "prompt": "What is the main claim of `A Checklist for a Decision Observer`?",
+      "choices": [
+        "A structured checklist helps observers notice live conditions that shape variability",
+        "Casual watching is enough to understand decision conditions",
+        "The checklist replaces all later analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter turns observation into a practical tool.",
+        "direct": "Correct. It argues that structured observation can catch conditions casual watching misses.",
+        "competitive": "Right. The chapter puts live eyes on the machine with a prompt sheet in hand."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch38-q02",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That the checklist solves everything by itself and replaces later review",
+        "That observers can notice conditions during live judgment",
+        "That structured watching is stronger than casual watching"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter does not turn the checklist into a total replacement for analysis.",
+        "direct": "It rejects the idea that live observation eliminates the need for broader review and interpretation.",
+        "competitive": "The chapter does not crown the checklist king of the whole kingdom."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch38-q03",
+      "prompt": "Why does the chapter emphasize live observation?",
+      "choices": [
+        "Because some variability-producing conditions can only be noticed while the process is unfolding",
+        "Because audits make observation unnecessary",
+        "Because every context uses one universal observer script"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter values conditions visible only in the moment.",
+        "direct": "It argues that some influences on variability appear only while decisions are actually happening.",
+        "competitive": "The machine reveals some of its tricks only while it runs."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch38-q04",
+      "prompt": "Nadia watches an interview with a note sheet. What lesson fits best?",
+      "choices": [
+        "Structured observation can catch live conditions casual watching would miss",
+        "Any note sheet automatically solves variability",
+        "The chapter now rejects later analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The example shows why a checklist strengthens live attention.",
+        "direct": "It shows how an observer can notice relevant conditions more reliably with prompts than with memory alone.",
+        "competitive": "The sheet keeps the live eyes from drifting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q05",
+      "prompt": "Why does a school meeting observer matter in this chapter?",
+      "choices": [
+        "It keeps the observer role concrete by showing how live conditions can be noticed during judgment",
+        "It proves every meeting should follow one fixed script",
+        "It introduces an exact observer scoring system from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter stays practical and situational.",
+        "direct": "The observer matters because some conditions shaping variability appear during the meeting itself.",
+        "competitive": "The chair in the room sees what the file alone cannot."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q06",
+      "prompt": "What distinction does the chapter insist on?",
+      "choices": [
+        "Structured observation is different from casual watching",
+        "Live observation makes audits unnecessary",
+        "A checklist is the same as a universal script"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter separates disciplined noticing from ordinary attention.",
+        "direct": "Its key distinction is that a checklist organizes what an observer notices instead of leaving it to chance.",
+        "competitive": "The chapter turns watching from drifting into work."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q07",
+      "prompt": "Why does the chapter avoid claiming the checklist solves everything?",
+      "choices": [
+        "Because observation helps but still works alongside broader audit and analysis",
+        "Because live conditions never matter",
+        "Because the checklist is meant to replace all judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps the tool bounded.",
+        "direct": "It preserves the value of live observation without pretending that one prompt sheet eliminates all later interpretation.",
+        "competitive": "The room gets a tool, not a magic wand."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q08",
+      "prompt": "What does a decision observer mean here?",
+      "choices": [
+        "Someone who watches judgment conditions for signs of avoidable variability",
+        "Someone who decides cases for everyone else",
+        "A role that uses no structure or prompts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter defines an observer as someone who notices variability-producing conditions in real time.",
+        "direct": "It means a person using structured prompts to watch how judgment conditions unfold.",
+        "competitive": "It is the live eye beside the machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q09",
+      "prompt": "Which statement best captures the chapter's strongest conclusion?",
+      "choices": [
+        "Better judgment needs structured observation during live processes as well as later review",
+        "A checklist is enough to eliminate variability on its own",
+        "Retrospective analysis should replace live observation entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter adds observation to the discipline of judgment improvement.",
+        "direct": "Its conclusion is that better judgment depends on noticing live conditions, not only reviewing outcomes after the fact.",
+        "competitive": "The room needs eyes during the run, not only reports after it ends."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch38-q10",
+      "prompt": "What is the cleanest bridge from `A Checklist for a Decision Observer` into `Correcting Predictions`?",
+      "choices": [
+        "Once live observation is visible, the book can turn to repairing predictive judgments more directly",
+        "The next chapter abandons structured judgment tools",
+        "The next chapter replaces prediction repair with casual intuition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Prediction repair follows once the live observation tool is in place.",
+        "direct": "The bridge works because structured observation prepares the reader to correct predictive judgments more deliberately.",
+        "competitive": "Once the room can watch the machine live, it can start fixing the forecast line itself."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does the chapter say some activities are more flow-friendly than others?",
+      "choices": [
+        "Because their structure offers clearer goals, feedback, and manageable challenge",
+        "Because only prestigious activities can produce flow",
+        "Because flow depends entirely on talent rather than design"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter starts by saying structure changes the odds of deep involvement.",
+        "direct": "Its first move is practical: some tasks are designed in ways that help attention organize itself.",
+        "competitive": "Better terrain helps the beam hold. Prestige has nothing to do with it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What do clear goals and feedback do in a flow-friendly activity?",
+      "choices": [
+        "They let attention know what to do next and whether the move worked",
+        "They make every task relaxing instead of demanding",
+        "They matter only after external rewards are offered"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Goals and feedback help attention stay oriented inside the activity.",
+        "direct": "They give the task a target and reply loop rather than leaving effort vague.",
+        "competitive": "They stop the system from guessing blind and leaking force."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Marcus works hard on a project, but priorities keep shifting and useful feedback comes too late. Which chapter idea best explains why the work never became absorbing?",
+      "choices": [
+        "The problem is only Marcus's weak desire to focus",
+        "The task lacked conditions that help attention organize around a stable target",
+        "Any work project is automatically poor ground for flow"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says effort can be real while the conditions for deep involvement are still weak.",
+        "direct": "Late feedback and shifting goals keep the activity from becoming flow-friendly.",
+        "competitive": "He burned effort in a field with no stable target or answer-back."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why does Talia find one role more engaging than another even though both require hard work?",
+      "choices": [
+        "Because the better role is less demanding",
+        "Because the better role has clearer next moves and faster feedback",
+        "Because work quality depends only on personal optimism"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The more engaging role gives attention clearer support.",
+        "direct": "The chapter ties deeper involvement to structure, not to simple effort level.",
+        "competitive": "One role gives the beam traction. The other keeps it scrambling."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which misreading about autotelic personality does the chapter reject?",
+      "choices": [
+        "It is a fixed gift that belongs only to naturally superior people",
+        "It is a tendency to notice challenge and build better conditions",
+        "It affects how a person responds to the field they are in"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter refuses to turn this idea into a ranking of special people.",
+        "direct": "Autotelic personality is presented as trainable disposition, not destiny.",
+        "competitive": "If you hear elite bloodline here, you missed the point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A robotics lab gives Noor visible error lights and immediate debugging cues. What chapter claim does this illustrate most clearly?",
+      "choices": [
+        "Local environment can support concentration before motivation has to do all the work",
+        "Flow appears only in technical subjects",
+        "Good settings matter only after talent has already been proven"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The setup itself helps attention gather around the next move.",
+        "direct": "The chapter keeps environment visible as a real contributor to involvement.",
+        "competitive": "The field is feeding the beam usable information."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does the chapter treat culture?",
+      "choices": [
+        "As irrelevant because flow is purely private",
+        "As a limited but real influence on whether concentration is supported or obstructed",
+        "As a total explanation that decides whether flow can ever happen"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The claim is moderate: culture can help or hinder without deciding everything.",
+        "direct": "Social conditions alter the odds of engagement, but they do not erase personal response.",
+        "competitive": "The field matters, but it is not absolute fate."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Damon keeps waiting for motivation even though the room is noisy and the task has no clear entry point. What is the strongest chapter-based response?",
+      "choices": [
+        "He should wait longer because motivation must arrive before setup matters",
+        "He should redesign conditions first, since weak involvement is not always a character failure",
+        "He should assume the activity can never produce flow"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks the reader to look at conditions before turning every failure into self-blame.",
+        "direct": "Setup and structure deserve inspection before motivation gets treated as the whole problem.",
+        "competitive": "Fix the field before you accuse the system."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does the chapter mean by calling someone a person of flow?",
+      "choices": [
+        "A person whose life contains more repeated arrangements and habits that support deep involvement",
+        "A person who never experiences distraction or poor conditions",
+        "A person whose social status protects them from ordinary effort"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The phrase points to repeated conditions and habits, not perfection.",
+        "direct": "The chapter frames these people through arrangements and responses rather than through status alone.",
+        "competitive": "More of their field cooperates with lock-in, and they use that field well."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 4 build on Chapter 3?",
+      "choices": [
+        "It abandons enjoyment and shifts to pure social theory",
+        "It asks what conditions make the fuller state described in Chapter 3 more likely to occur again",
+        "It argues that pleasure and enjoyment stop mattering once culture enters the picture"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 3 described the lived quality of richer involvement. Chapter 4 asks what helps it recur.",
+        "direct": "The chapter moves from felt quality to repeatable conditions.",
+        "competitive": "Chapter 3 showed the deeper state from inside. Chapter 4 asks how to build the field that helps it happen."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

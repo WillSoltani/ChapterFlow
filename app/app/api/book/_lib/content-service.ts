@@ -112,23 +112,34 @@ export function sanitizeQuizForClient(
     explanation?: string;
   }>;
 } {
+  const sanitizeQuestion = (q: ChapterQuizPayload["questions"][number]) => {
+    const prompt =
+      typeof q.prompt === "string"
+        ? q.prompt
+        : typeof q.stem === "string"
+          ? q.stem
+          : "";
+    const choices = Array.isArray(q.choices)
+      ? q.choices
+      : Array.isArray(q.options)
+        ? q.options
+        : [];
+
+    return {
+      questionId: q.questionId,
+      prompt,
+      choices,
+      explanation: typeof q.explanation === "string" ? q.explanation : undefined,
+    };
+  };
+
   return {
     chapterId: quiz.chapterId,
     number: quiz.number,
     title: quiz.title,
     passingScorePercent: quiz.passingScorePercent,
-    questions: quiz.questions.map((q) => ({
-      questionId: q.questionId,
-      prompt: q.prompt,
-      choices: q.choices,
-      explanation: q.explanation,
-    })),
-    retryQuestions: (quiz.retryQuestions ?? []).map((q) => ({
-      questionId: q.questionId,
-      prompt: q.prompt,
-      choices: q.choices,
-      explanation: q.explanation,
-    })),
+    questions: quiz.questions.map(sanitizeQuestion),
+    retryQuestions: (quiz.retryQuestions ?? []).map(sanitizeQuestion),
   };
 }
 

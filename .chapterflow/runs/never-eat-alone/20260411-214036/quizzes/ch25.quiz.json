@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about being interesting?",
+      "choices": [
+        "Interestingness depends more on curiosity, range, and substance than on social polish alone",
+        "The most interesting people are simply the most charismatic performers",
+        "Novelty matters more than depth"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats interestingness as a product of fuller substance.",
+        "direct": "Its core claim is that real curiosity and range matter more than polished performance.",
+        "competitive": "Depth beats polish."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do richer inputs matter so much here?",
+      "choices": [
+        "Because they give conversations more real material and texture",
+        "Because social style is basically irrelevant",
+        "Because only unusual experiences create interestingness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values what a fuller life can bring into contact.",
+        "direct": "Richer inputs matter because they thicken what a person can offer in conversation.",
+        "competitive": "More life creates more texture."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Lena can either sound more polished or bring a deeper idea into a work conversation. What best fits this chapter?",
+      "choices": [
+        "Bring the deeper idea because substance matters more than polish alone",
+        "Choose polish because interestingness is mainly delivery",
+        "Say something more unusual even if it is thin"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors richer substance over smoother performance.",
+        "direct": "A deeper input fits this chapter better than surface style or novelty theater.",
+        "competitive": "Choose depth over gloss."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At a seminar dinner, Marcus notices the strongest conversation is being driven by real curiosity and wider interests. What is his strongest move?",
+      "choices": [
+        "Follow the thread where real substance is carrying the exchange",
+        "Shift attention to whoever sounds most polished",
+        "Treat the conversation as a chance to perform a sharper persona"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values fuller life and curiosity over social flash.",
+        "direct": "A rich thread matters here because it brings more real material into the room.",
+        "competitive": "Go where the depth is."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What charisma trap does this chapter criticize?",
+      "choices": [
+        "Treating polish or borrowed quirks as substitutes for real substance",
+        "Letting real curiosity shape a conversation",
+        "Developing wider reading and experience"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects persona tricks as replacements for richer inputs.",
+        "direct": "Charisma shortcuts can create notice without creating depth.",
+        "competitive": "The act is the trap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That a fuller life makes conversation more memorable",
+        "That interestingness is mainly performance and wit",
+        "That curiosity and range strengthen encounters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter refuses to reduce interestingness to social technique.",
+        "direct": "Performance can imitate depth without supplying it.",
+        "competitive": "Style is not the core."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Avery is tempted to sound more unusual than she really is in order to seem interesting. What would this chapter tell her?",
+      "choices": [
+        "Keep the act going because memorability matters most",
+        "Refuse the performance move and build the real substance instead",
+        "Add more quirks so the persona feels complete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants real depth, not costumed interestingness.",
+        "direct": "Borrowed persona can make you noticeable without making you substantial.",
+        "competitive": "Kill the act. Build the life."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a richer life stronger than a polished persona in this chapter?",
+      "choices": [
+        "Because substance gives conversations more genuine material than performance alone can",
+        "Because persona is always dishonest",
+        "Because interestingness depends only on being well read"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values richer inputs because they change what you can really bring.",
+        "direct": "A fuller life matters here because it creates real texture and range in conversation.",
+        "competitive": "Real inputs outrun stagecraft."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between substance and memorability?",
+      "choices": [
+        "Encounters become more memorable when a person brings genuine curiosity, range, and depth into them",
+        "Memorability mainly depends on performance energy",
+        "Substance matters only if it feels unusual"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties memorable exchange to fuller life and richer attention.",
+        "direct": "Real depth leaves a stronger trace than social polish alone can leave.",
+        "competitive": "Depth stays after the room clears."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How that real substance becomes recognizable enough to form a brand or reputation",
+        "How to make the interestingness performance more consistent",
+        "How to sound more unusual in larger rooms"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from real substance to recognizability over time.",
+        "direct": "After being interesting comes the question of building a brand around real value.",
+        "competitive": "Next: show the pattern."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

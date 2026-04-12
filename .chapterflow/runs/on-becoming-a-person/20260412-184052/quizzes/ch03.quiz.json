@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Rogers's clearest test for whether a relationship is genuinely helpful?",
+      "choices": [
+        "Whether it feels calm and emotionally supportive from the start",
+        "Whether it lets the other person say more truth with less defensiveness and less pressure",
+        "Whether the helper can guide the conversation toward a clear solution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Rogers tests help by what becomes possible for the other person inside the relationship.",
+        "direct": "The chapter judges helpfulness by whether honesty, self-contact, and freer movement become more possible.",
+        "competitive": "If the person can tell more truth with less armor, the relationship is doing real work."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does trust matter so much in this chapter?",
+      "choices": [
+        "Because trust makes disagreement unnecessary",
+        "Because trust lets the helper ask more personal questions faster",
+        "Because trust lowers the cost of truth and makes more of the person sayable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Right. Trust matters because it makes honest speech less dangerous.",
+        "direct": "Rogers treats trust as a change in what the person can admit without so much self-protection.",
+        "competitive": "Trust earns more truth, not just a nicer mood."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A mentor sounds warm but keeps nudging every conversation toward the same lesson he wants the student to learn. What problem is the chapter exposing?",
+      "choices": [
+        "The mentor is showing too much empathy",
+        "The mentor is turning help into subtle control",
+        "The mentor is being too objective to build trust"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that polite guidance can still become controlling.",
+        "direct": "Warmth is not enough when the helper is quietly steering the other's process toward a preferred outcome.",
+        "competitive": "Good manners do not cancel takeover."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris notices that her employee answers every question politely but never says what is actually bothering him. According to this chapter, what is the strongest inference?",
+      "choices": [
+        "The relationship may still feel supportive while making truth too costly to say",
+        "The employee probably needs firmer correction first",
+        "The conversation is healthy because conflict stayed low"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Politeness can hide guardedness when the room does not feel usable for truth.",
+        "direct": "Rogers would treat strategic speech as evidence that the relationship is not yet reducing defensiveness enough.",
+        "competitive": "Smooth answers are weak evidence if the truth is still too expensive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a seminar, Hana keeps discussions friendly by smoothing over every tense comment before anyone has to stay with it. What does the chapter suggest this may cost?",
+      "choices": [
+        "It may protect pleasantness while reducing honest self-contact",
+        "It may make the class too research-oriented",
+        "It may increase empathy beyond what students can handle"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Keeping the room easy can stop the deeper truth from being faced.",
+        "direct": "Pleasantness alone proves little if the relationship no longer carries the pressure needed for honest exploration.",
+        "competitive": "She may be buying comfort by selling away the real conversation."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What best corrects the idea that a helping relationship is simply a warm one?",
+      "choices": [
+        "A helping relationship keeps everyone comfortable at all times",
+        "A helping relationship is measured by lowered defensiveness and freer movement, not by pleasant feeling alone",
+        "A helping relationship matters only when the helper shares personal feelings openly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Warmth matters only if it helps the person face more truth.",
+        "direct": "Rogers treats reduced defensiveness and greater sayability as stronger evidence than comfort by itself.",
+        "competitive": "Nice is cheap. Usable honesty is the real test."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can a calm, supportive relationship still fail Rogers's test?",
+      "choices": [
+        "Because calmness always weakens trust",
+        "Because it may still keep the other person strategic, guarded, or subtly managed",
+        "Because therapy requires visible conflict in every session"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A relationship can feel safe while still leaving the person too managed or guarded to say what matters.",
+        "direct": "The chapter's hard edge is that supportive atmosphere alone does not prove growth-facilitating contact.",
+        "competitive": "Calm can be real help, or it can be control with softer lighting."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mateo wants to 'help' his partner by steering the conversation toward the decision he thinks is wisest. Which response fits Rogers's logic best?",
+      "choices": [
+        "If the advice is good, the steering does not matter",
+        "He should first ask whether the relationship is leaving enough room for the partner's own movement and ownership",
+        "He should become more emotionally neutral so the partner will trust him"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares about whether the other person can move from within, not just whether the helper sounds wise.",
+        "direct": "Rogers would ask whether Mateo is reducing distortion or quietly replacing the partner's process with his own agenda.",
+        "competitive": "If your help steals ownership, it is not help yet."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which description best captures the chapter's deepest boundary?",
+      "choices": [
+        "A relationship is helpful whenever it avoids discomfort and open tension",
+        "A relationship is helpful only when the helper remains fully passive",
+        "A relationship is helpful when it refuses domination without collapsing into passivity and makes more reality bearable to face"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter wants contact that is neither dominating nor empty.",
+        "direct": "Rogers's standard is a relationship steady enough for hard truth without becoming controlling or merely pleasant.",
+        "competitive": "The win is not softness. It is non-dominating contact strong enough to carry reality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once the characteristics of a helping relationship are clear, what question naturally follows next?",
+      "choices": [
+        "How psychotherapy can be known objectively and subjectively from outside and inside the relationship",
+        "Whether the helping relationship is more important than every other part of psychotherapy",
+        "How to measure warmth and trust without paying attention to inward experience"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points forward to what can be known about psychotherapy once real helping contact is in view.",
+        "direct": "The next step is to ask what psychotherapy looks like from objective observation and from lived inward experience.",
+        "competitive": "Once the relationship test is set, the next fight is over what counts as knowledge about it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

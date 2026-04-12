@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does Chapter 10 address after the structure is already sound?",
+      "choices": [
+        "Whether the source freeze should be changed",
+        "Whether the words let the reader receive the structure easily",
+        "Whether examples should replace the outline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "It focuses on readable expression of an already-earned structure.",
+        "direct": "The issue is transmission through words, not structural invention.",
+        "competitive": "The structure is earned; the wording still has to carry it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the first move Chapter 10 recommends before choosing sentences?",
+      "choices": [
+        "Create a clear image of the structure and relationships",
+        "Add more examples to the page",
+        "Shorten every sentence automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The writer first needs to see the structure clearly.",
+        "direct": "Clear wording depends on a clear image of the relationships.",
+        "competitive": "See the shape before you try to phrase it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does it mean to copy the image in words?",
+      "choices": [
+        "Decorate the writing with more adjectives",
+        "Replace the structure with smoother language",
+        "Preserve the structural picture in the phrasing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The wording should keep the same relationships the writer can already see.",
+        "direct": "Phrasing should transmit the structure instead of blurring it.",
+        "competitive": "The sentence should carry the shape, not hide it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why is readability described as a transmission problem?",
+      "choices": [
+        "Because readers dislike all abstraction",
+        "Because readers do not already possess the writer’s private structural picture",
+        "Because only spoken language can carry structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The words have to bring the structure across to the reader.",
+        "direct": "The reader needs the language to carry the pattern clearly.",
+        "competitive": "The reader cannot borrow the writer’s hidden map."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What happens when the writer cannot see the image clearly before drafting?",
+      "choices": [
+        "The wording often becomes generic or blurry",
+        "The structure becomes automatically stronger",
+        "The page no longer needs a summary line"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Unclear image often leads to unclear phrasing.",
+        "direct": "Generic wording is often a translation of weak visual understanding.",
+        "competitive": "Fog in the image becomes fog in the sentence."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "If the relationship is contrast, what should the sentence do?",
+      "choices": [
+        "Hide the difference inside a broad label",
+        "Turn the contrast into a sequence automatically",
+        "Let the contrast appear clearly in the wording"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The words should preserve the contrast instead of flattening it.",
+        "direct": "Readable language should match the structural relationship it carries.",
+        "competitive": "If the shape is contrast, let the sentence show the clash."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A writer uses smooth, padded language to cover a vague summary line. What is the likely mistake?",
+      "choices": [
+        "The language is too concrete",
+        "Readable words are being used as a substitute for structural repair",
+        "The page has too much structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Smooth wording cannot fix a weak structure underneath.",
+        "direct": "Readable phrasing helps transmit structure, but it cannot invent it.",
+        "competitive": "Polish is being asked to do surgery."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the chapter’s hardest warning about readable wording?",
+      "choices": [
+        "Readable sentences should always be shorter than ten words",
+        "Readable words cannot rescue weak structure after the fact",
+        "Readers never understand abstract terms"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good wording helps only when the structure underneath is already sound.",
+        "direct": "Language can transmit earned logic, but it cannot replace it.",
+        "competitive": "Polish does not manufacture architecture."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What practical gain comes from seeing the image clearly and copying it faithfully into words?",
+      "choices": [
+        "The writer no longer needs grouped points",
+        "The summary line becomes optional",
+        "The reader can move through the page more easily without losing the structure"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The page becomes easier to read while keeping its precision.",
+        "direct": "Clear wording lets the reader receive the structure without rebuilding it silently.",
+        "competitive": "The reader gets the shape without doing unpaid reconstruction."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 10 close the main sequence?",
+      "choices": [
+        "By showing how readable language should serve an already-earned structure",
+        "By replacing structure with style",
+        "By reopening the source-selection question"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "It shows how words should carry the structure clearly to the reader.",
+        "direct": "It ends the sequence by translating earned logic into readable phrasing.",
+        "competitive": "The close is not style over structure. It is structure speaking clearly."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

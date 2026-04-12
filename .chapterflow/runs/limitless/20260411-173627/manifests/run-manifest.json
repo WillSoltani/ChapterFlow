@@ -27,25 +27,39 @@
   "editionSelectionMode": "ask_if_ambiguous",
   "sourcePolicy": "public_or_authorized_plus_secondary",
   "bookRequest": {
-    "title": "“Limitless“",
-    "author": "“Jim-Kwik”",
+    "title": "Limitless",
+    "author": "Jim Kwik",
     "editionPreference": "ask_if_ambiguous"
   },
   "book": {
     "bookId": "limitless",
-    "title": "“Limitless“",
-    "author": "“Jim-Kwik”",
-    "categories": [],
-    "tags": [],
+    "title": "Limitless",
+    "author": "Jim Kwik",
+    "categories": [
+      "Learning",
+      "Self-Improvement",
+      "Productivity",
+      "Cognitive Performance"
+    ],
+    "tags": [
+      "mindset",
+      "motivation",
+      "focus",
+      "study",
+      "memory",
+      "speed-reading",
+      "thinking",
+      "learning-how-to-learn"
+    ],
     "edition": {
-      "name": "",
+      "name": "Limitless: Upgrade Your Brain, Learn Anything Faster, and Unlock Your Exceptional Life",
       "translator": "",
-      "publishedYear": null,
+      "publishedYear": 2020,
       "translationYear": null,
-      "sourceText": ".chapterflow/runs/limitless/20260411-173627/source-freeze/book-source.txt",
-      "sourceProvenance": ""
+      "sourceText": ".chapterflow/runs/limitless/20260411-173627/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle from Open Library base-edition metadata and TOC, Google Books expanded-edition divergence check, Hay House publisher page, and SuperSummary secondary summaries."
     },
     "variantFamily": "EMH",
-    "chapterRange": ""
+    "chapterRange": "1-15"
   }
 }

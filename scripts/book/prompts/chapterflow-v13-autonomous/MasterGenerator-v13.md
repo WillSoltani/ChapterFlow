@@ -194,6 +194,7 @@ Read and follow:
 Write:
 - manifests/source-ledger.json
 - manifests/edition-lock.json
+- RUN_ROOT/manifests/run-manifest.json book metadata refresh after the edition lock is known
 - source-freeze/source-discovery.md
 - source-freeze/source-freeze-report.md
 - source-freeze/book-source.txt or source-freeze/book-source.md when a full or partial text is available
@@ -205,6 +206,8 @@ Rules:
 - otherwise prefer official / authorized sample or preview plus reputable secondary sources
 - ask the user only if edition ambiguity materially changes chapter structure or interpretation
 - if one dominant edition exists, lock it automatically and explain why in edition-lock.json
+- after edition lock, rewrite `RUN_ROOT/manifests/run-manifest.json` `book` from locked source metadata rather than leaving the launch placeholder
+- the refreshed `book` object must carry canonical title and author, non-empty categories and tags when the frozen bundle supports them, a fuller edition object at least as complete as `edition-lock.json`, and an explicit chapter scope such as `Chapters 1-10`
 - exact quotes require verified support in the frozen source bundle
 - if support is thin, stay narrow rather than inventing
 

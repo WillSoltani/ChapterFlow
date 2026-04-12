@@ -23,6 +23,7 @@ import {
   getSegmentKeys,
   getTimeOfDay,
   chapterBodySegmentS3Key,
+  buildTakeawayText,
   BODY_SEGMENT_TYPES,
   type BodySegmentType,
   type NarrationContext,
@@ -92,23 +93,28 @@ function extractSegmentText(
     }
     case "takeaways": {
       const keyTakeaways = v.keyTakeaways;
-      if (keyTakeaways && Array.isArray(keyTakeaways)) {
+      if (keyTakeaways && Array.isArray(keyTakeaways) && keyTakeaways.length > 0) {
+        // Extract structured takeaways with point + moreDetails
+        const structured: Array<{ point: string; moreDetails: string }> = [];
         for (const t of keyTakeaways) {
-          if (typeof t === "string") {
-            parts.push(t);
+          if (typeof t === "string" && t.trim()) {
+            structured.push({ point: t, moreDetails: "" });
           } else if (t && typeof t === "object") {
             const point = resolveText((t as Record<string, unknown>).point, tone);
-            if (point) parts.push(point);
             const details = resolveText((t as Record<string, unknown>).moreDetails, tone);
-            if (details) parts.push(details);
+            if (point) structured.push({ point, moreDetails: details });
           }
         }
-      }
-      // Fallback to plain takeaways
-      const takeaways = v.takeaways;
-      if ((!keyTakeaways || !Array.isArray(keyTakeaways) || keyTakeaways.length === 0) && Array.isArray(takeaways)) {
-        for (const t of takeaways) {
-          if (typeof t === "string" && t.trim()) parts.push(t);
+        // Build text with natural connectors baked in
+        const connectedText = buildTakeawayText(structured);
+        if (connectedText) parts.push(connectedText);
+      } else {
+        // Fallback to plain takeaways (no connectors — just read them)
+        const takeaways = v.takeaways;
+        if (Array.isArray(takeaways)) {
+          for (const t of takeaways) {
+            if (typeof t === "string" && t.trim()) parts.push(t);
+          }
         }
       }
       break;
@@ -179,7 +185,7 @@ async function generateAndCacheBodySegment(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "tts-1",
+        model: "tts-1-hd",
         input: chunk,
         voice: "nova",
         response_format: "mp3",

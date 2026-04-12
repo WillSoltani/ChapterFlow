@@ -6,6 +6,7 @@ Goal: build a lawful, high-signal source bundle from the internet without requir
 Write before any chapter work:
 - `manifests/source-ledger.json`
 - `manifests/edition-lock.json`
+- refreshed `manifests/run-manifest.json` `book` metadata after the edition decision is locked
 - `source-freeze/source-discovery.md`
 - `source-freeze/source-freeze-report.md`
 - `source-freeze/toc.json`
@@ -23,6 +24,8 @@ Prefer sources in this order:
 - Freeze the chosen source bundle inside `RUN_ROOT/source-freeze/`.
 - Record every source used in `source-ledger.json` with title, type, role, confidence, and notes.
 - Record the chosen edition / translation in `edition-lock.json`.
+- After the edition is locked, refresh `run-manifest.json.book` from the frozen source metadata.
+- Do not leave launch-placeholder book metadata in place once title, author, edition details, categories, tags, and chapter scope are known.
 - If the text is public domain and complete, save it locally into the source freeze.
 - If the text is not fully available, save the preview or sample plus the chapter map and secondary research bundle.
 - Use paraphrase-first unless exact quote support is verified in the frozen source.

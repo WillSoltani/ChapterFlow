@@ -14,67 +14,97 @@
   "withinChapterNames": {},
   "approvedChapterHashes": {
     "ch01": {
-      "sha256": "0fb4f6c788aa6b5429e87b6732bfb11f661515eba37028550733b7b3004053bc",
+      "sha256": "16c1b72c13024dbfb96971f80a5391939b2e55fef216cdb172d374a168d14d39",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch02": {
-      "sha256": "9a4c8adae9bb581d544916f881c177121ca60049f0a6673620829f6786f1cfaf",
+      "sha256": "0c697e8eb21d5399fc7e9a44c127f7cb8459c5823f5110b6de01a5aa738048f5",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch03": {
-      "sha256": "9b060b80fa345998803e2a1cbdde33ca4537137c0346067dbe30a70e9941bee7",
+      "sha256": "6f2c704e84fc217433f88912e16a7d4615df3cc4c79a0e66abf5521d97932119",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch04": {
-      "sha256": "235fc83fa0b118a76c91f2ef22754ea3e965886365c6f79c3dbdd501bb86a940",
+      "sha256": "e92af5ac9a8803d67666fc2b36423d39de60379ff9b1e88af7557a0fa96df49f",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch05": {
-      "sha256": "7258e54c7a32724987491fcbe4ec78f9d21459934f9efeac4f3c673e94f3f466",
+      "sha256": "945690e1230053da64427c3bf3849ab553e8d962c40aca0b8b4670b9c2643caa",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch06": {
-      "sha256": "5f83fa24711d422a78ac522d9e40ddda0b027a595614f337bb450213baba4420",
+      "sha256": "2e4ab21a6ff87e0447765afcda83d13601d5465e408988f3e8daa12c1026b419",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch07": {
-      "sha256": "76a82da614eff964176820622a9831496ad3f771850dfc2ce1a60dc1d8ec6c14",
+      "sha256": "a1e03fbd68003ac253f0319b7f314baa1068318d84ec19b829b492b034e3e6e8",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch08": {
-      "sha256": "4c1a4712d874464b35230782129c9e9c24eb23e4762df8cff9542e2c8d29370c",
+      "sha256": "7f2714f6e39edb0aee52277e0c7241fb5160fd94510cbc5295e40e5c950665b6",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch09": {
-      "sha256": "cba658d358958892b91f685bb90fd547d9f23658e4beff95917ba5c9cea5f20c",
+      "sha256": "c2130f8c59e7e4c99e6339c6e3b3322f414f2cf5598260539c175e163f150586",
       "validatedAt": "2026-04-11",
       "status": "chapter_gate_passed"
     },
     "ch10": {
-      "sha256": "55f84fe149d43b02a443dda3297c8229887a4752a2c276a1ac31c10ad53c1f55",
+      "sha256": "7ea21425ebadf0ca3dd08cc492e9f3627180cd41d976bb231e804dd2e6fc8808",
       "validatedAt": "2026-04-12",
       "status": "chapter_gate_passed"
     },
     "ch11": {
-      "sha256": "ca6e25aeeb23cf990b5b54e32e73014fa7fc375313079b0cc8126fa0a715f7ef",
+      "sha256": "901a3fee87acb89b534da7a349fc1d9f7d118fc177f731418b52e1b80883a0f2",
       "validatedAt": "2026-04-12",
       "status": "chapter_gate_passed"
     },
     "ch12": {
-      "sha256": "e087f88c41aedef18df421bba86732dc90163ef4f0859748366bb80cf5193dcf",
+      "sha256": "15e95d800f22cd1b0723f40507ddd11bf604f4e3155299812a188eb6b1a15525",
       "validatedAt": "2026-04-12",
       "status": "chapter_gate_passed"
     },
     "ch13": {
-      "sha256": "a54c20bdd7c4c6bcb5be718993800c55677fba7c41f9cc5c11132f130478e519",
+      "sha256": "09052836fc027c37119e569549def054abd1d1d55544139373fef5114ab88866",
+      "validatedAt": "2026-04-12",
+      "status": "chapter_gate_passed"
+    },
+    "ch14": {
+      "sha256": "d8f79136e238f966eee27ec0a5becbe6783120304439ae563a01c0abc83d8b63",
+      "validatedAt": "2026-04-12",
+      "status": "chapter_gate_passed"
+    },
+    "ch15": {
+      "sha256": "caa96e203873f210fe865b31dc22c82a80ba39a139b345600c42e76a0f675940",
+      "validatedAt": "2026-04-12",
+      "status": "chapter_gate_passed"
+    },
+    "ch16": {
+      "sha256": "bc771291d09abde7bb153ecb0066ca6b8a32e0a1e9a546dedc022b79f7eec7e4",
+      "validatedAt": "2026-04-12",
+      "status": "chapter_gate_passed"
+    },
+    "ch17": {
+      "sha256": "a89fd4b43918104c518e6f0471ca3fd70c2b3eb06bb696c19448a1acdd800eb4",
+      "validatedAt": "2026-04-12",
+      "status": "chapter_gate_passed"
+    },
+    "ch18": {
+      "sha256": "5fb250eeafc2c0af2317b112fdac26b5d2a791bcf0803860a5e497ac9b093ca9",
+      "validatedAt": "2026-04-12",
+      "status": "chapter_gate_passed"
+    },
+    "ch19": {
+      "sha256": "471a7584a82978c7bc11c51622a4e5ae9d8fd1ff70f85e2aae4a6a9b7ce1bf28",
       "validatedAt": "2026-04-12",
       "status": "chapter_gate_passed"
     }

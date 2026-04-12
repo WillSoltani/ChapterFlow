@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What posture does the chapter ask ambition to take?",
+      "choices": [
+        "Studenthood",
+        "Permanent certainty",
+        "Visible authority"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants ambition to remain teachable.",
+        "direct": "Its answer to premature certainty is studenthood.",
+        "competitive": "Stay trainable."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does acting established too early weaken growth?",
+      "choices": [
+        "Because expertise should never exist",
+        "Because feedback starts feeling like a threat to identity",
+        "Because confidence always confuses other people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The person begins protecting the self instead of improving the work.",
+        "direct": "Premature authority turns correction into embarrassment and defense.",
+        "competitive": "Fake mastery taxes every lesson."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Elena gets a memo back full of edits. Which move fits the chapter best?",
+      "choices": [
+        "Defend the memo so she still looks sharp",
+        "Use the review to let the stronger standard improve the work",
+        "Ignore the edits because authority should already be settled"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Studenthood puts the work above the discomfort of correction.",
+        "direct": "The right move is teachability, not image defense.",
+        "competitive": "Take the better standard over the safer ego."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why can studenthood look weaker in some rooms even when it is stronger for the work?",
+      "choices": [
+        "Because teachability often sounds less impressive than certainty",
+        "Because students never contribute anything important",
+        "Because unfinishedness automatically lowers standards"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The room may reward confidence faster than correction.",
+        "direct": "Status-driven environments often prefer sounding settled to being revisable.",
+        "competitive": "Short-term social reward can favor the worse operating model."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's main difference between studenthood and generic curiosity?",
+      "choices": [
+        "Studenthood means liking more books",
+        "Studenthood means remaining correctable under pressure",
+        "Studenthood means staying uncertain forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants more than a pleasant interest in new ideas.",
+        "direct": "Its standard is revisability when image is on the line.",
+        "competitive": "Openness counts only when it costs something."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

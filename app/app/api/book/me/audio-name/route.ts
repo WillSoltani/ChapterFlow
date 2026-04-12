@@ -4,20 +4,25 @@ import { requireUser } from "@/app/app/api/_lib/auth";
 import { bookOk, bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
-import { S3Client, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
-import { userNameS3Key } from "@/app/app/api/book/_lib/audio-narration";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  userGreetingS3Key,
+  getUserGreetingScript,
+  type TimeOfDay,
+} from "@/app/app/api/book/_lib/audio-narration";
 
 export const runtime = "nodejs";
 
 const s3 = new S3Client({});
 
+const TIMES_OF_DAY: TimeOfDay[] = ["morning", "afternoon", "evening"];
+
 /**
  * POST /api/book/me/audio-name
  * Body: { name: string }
  *
- * Generates a TTS clip of the user's name and stores it in S3.
- * Called once (on Pro signup or when user changes display name).
- * Idempotent — re-generating overwrites the previous clip.
+ * Generates 3 TTS greeting clips ("Good morning, Will." / afternoon / evening)
+ * and stores them in S3. Called once on Pro signup or when user changes display name.
  */
 export async function POST(req: Request) {
   try {
@@ -35,42 +40,49 @@ export async function POST(req: Request) {
     }
 
     const bucket = await getBookContentBucket();
-    const key = userNameS3Key(user.sub);
+    const results: Array<{ timeOfDay: TimeOfDay; key: string; bytes: number }> = [];
 
-    // Generate TTS of just the name
-    const ttsResponse = await fetch("https://api.openai.com/v1/audio/speech", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${openaiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "tts-1",
-        input: name,
-        voice: "nova",
-        response_format: "mp3",
-      }),
-    });
+    for (const tod of TIMES_OF_DAY) {
+      const script = getUserGreetingScript(name, tod);
+      const key = userGreetingS3Key(user.sub, tod);
 
-    if (!ttsResponse.ok) {
-      return bookErr(req, 502, "tts_error", "Failed to generate name audio");
+      const ttsResponse = await fetch("https://api.openai.com/v1/audio/speech", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${openaiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "tts-1-hd",
+          input: script,
+          voice: "nova",
+          response_format: "mp3",
+        }),
+      });
+
+      if (!ttsResponse.ok) {
+        console.error(`[audio-name] TTS failed for ${tod}: ${ttsResponse.status}`);
+        return bookErr(req, 502, "tts_error", `Failed to generate ${tod} greeting`);
+      }
+
+      const audioBuffer = Buffer.from(await ttsResponse.arrayBuffer());
+
+      await s3.send(
+        new PutObjectCommand({
+          Bucket: bucket,
+          Key: key,
+          Body: audioBuffer,
+          ContentType: "audio/mpeg",
+          CacheControl: "public, max-age=31536000",
+        }),
+      );
+
+      results.push({ timeOfDay: tod, key, bytes: audioBuffer.length });
     }
 
-    const audioBuffer = Buffer.from(await ttsResponse.arrayBuffer());
-
-    await s3.send(
-      new PutObjectCommand({
-        Bucket: bucket,
-        Key: key,
-        Body: audioBuffer,
-        ContentType: "audio/mpeg",
-        CacheControl: "public, max-age=31536000",
-      }),
-    );
-
-    return bookOk({ generated: true, key, bytes: audioBuffer.length });
+    return bookOk({ generated: true, clips: results });
   } catch (err) {
     console.error("[audio-name] Error:", err);
-    return bookErr(req, 500, "internal_error", "Name audio generation failed");
+    return bookErr(req, 500, "internal_error", "Greeting generation failed");
   }
 }

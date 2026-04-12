@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch37-q01",
+      "prompt": "What is the main claim of `How to Conduct a Noise Audit`?",
+      "choices": [
+        "A noise audit measures variability through structured comparison of comparable judgments",
+        "A noise audit is just a discussion about impressions",
+        "The chapter offers one universal formula for every context"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter turns concern into measured comparison.",
+        "direct": "Correct. It argues that variability has to be examined through disciplined assessment rather than guesswork.",
+        "competitive": "Right. The chapter puts matched cases on the table instead of trusting vibes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch37-q02",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That suspicion alone is enough evidence of variability",
+        "That comparable cases should be reviewed together",
+        "That measurement can support noise reduction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter does not treat intuition as a substitute for evidence.",
+        "direct": "It rejects the idea that sensing inconsistency is already the same as measuring it.",
+        "competitive": "The chapter refuses to let a hunch cosplay as an audit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch37-q03",
+      "prompt": "Why does the chapter turn to measurement?",
+      "choices": [
+        "Because concern about inconsistency is weaker than organized evidence",
+        "Because measurement makes tradeoffs disappear",
+        "Because every audit produces a universal threshold"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter wants variability made visible rather than merely suspected.",
+        "direct": "It argues that reduction work needs disciplined assessment, not only concern.",
+        "competitive": "The room needs a table of comparisons, not another shrug."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch37-q04",
+      "prompt": "Elena lays out parallel case sheets. What lesson fits best?",
+      "choices": [
+        "Comparable judgments need to be observed and compared in an organized way",
+        "Any stack of files automatically counts as an audit",
+        "The chapter now prefers intuition over evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The example shows how structure turns concern into measurement.",
+        "direct": "It shows why a real audit depends on organized comparison across similar cases.",
+        "competitive": "The chapter wants the room lining up cases, not waving at them."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch37-q05",
+      "prompt": "Why does a school placement comparison set matter in this chapter?",
+      "choices": [
+        "It keeps the audit idea concrete by showing how variability can be measured across matched decisions",
+        "It proves schools should use one perfect formula",
+        "It introduces an exact statistical benchmark from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter stays procedural and concrete.",
+        "direct": "The comparison set matters because it turns suspected inconsistency into observable variation across similar cases.",
+        "competitive": "The matched files let the room see the wobble instead of guessing at it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch37-q06",
+      "prompt": "What distinction does the chapter insist on?",
+      "choices": [
+        "Concern about variability is weaker than measured evidence from structured comparison",
+        "Every measurement settles every judgment question",
+        "An audit removes the need for interpretation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter separates suspicion from disciplined assessment.",
+        "direct": "Its key distinction is that people can suspect inconsistency long before they measure it credibly.",
+        "competitive": "The chapter splits the hunch from the table of evidence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch37-q07",
+      "prompt": "Why does the chapter avoid promising a universal formula?",
+      "choices": [
+        "Because disciplined measurement matters without invented precision beyond the supported basis",
+        "Because audits should remain casual",
+        "Because variability can never be examined directly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter is procedural, not pseudo-mathematical.",
+        "direct": "It preserves the need for structured assessment without inventing unsupported exactness.",
+        "competitive": "The room needs method, not fake algebra."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch37-q08",
+      "prompt": "What does a noise audit mean here?",
+      "choices": [
+        "A structured examination of how much judgments vary across comparable cases",
+        "A live checklist that replaces later review",
+        "A guarantee that disagreement will disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter defines the audit as disciplined comparison.",
+        "direct": "It means organized observation and comparison of similar judgments to measure variability.",
+        "competitive": "It is the room lining up cases and reading the gap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch37-q09",
+      "prompt": "Which statement best captures the chapter's strongest conclusion?",
+      "choices": [
+        "Reduction work begins with disciplined audit practice rather than with casual impression",
+        "Only exact formulas can support better judgment",
+        "Measurement makes observer tools unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter makes assessment the first serious step.",
+        "direct": "Its conclusion is that serious work on noise starts by measuring variation in an organized way.",
+        "competitive": "The room has to build an audit table before it can brag about reform."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch37-q10",
+      "prompt": "What is the cleanest bridge from `How to Conduct a Noise Audit` into `A Checklist for a Decision Observer`?",
+      "choices": [
+        "Once measurement is visible, the book can show what to notice while judgments are still unfolding",
+        "The next chapter abandons observation and returns to theory",
+        "The next chapter replaces audits with intuition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Live observation follows naturally from the audit method.",
+        "direct": "The bridge works because the next step asks what an observer should notice in real time to support disciplined assessment.",
+        "competitive": "Once the room learns to measure the wobble, it needs eyes on the live machine."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

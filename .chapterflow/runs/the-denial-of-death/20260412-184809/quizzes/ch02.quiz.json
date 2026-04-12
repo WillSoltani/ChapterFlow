@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is Becker's main claim about fear of death in Chapter 2?",
+      "choices": [
+        "It appears only in moments of crisis",
+        "It is universal but usually indirect",
+        "It fades once people reach adulthood"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That matches the chapter. Becker says the fear is widespread, but people usually live it through defenses rather than open confession.",
+        "direct": "Correct. Universality and indirectness are compatible here. The fear stays active while direct awareness is reduced.",
+        "competitive": "Right. The terror is everywhere and rarely obvious."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does Becker make childhood so important in this chapter?",
+      "choices": [
+        "Because children think about funerals more often than adults do",
+        "Because childhood is when helplessness, dependence, and weak control are first lived directly",
+        "Because Becker thinks adult fear is mostly imaginary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The child feels exposed before having the concepts to explain that exposure cleanly.",
+        "direct": "Childhood is central because vulnerability is first experienced there as bodily weakness and dependence on stronger others.",
+        "competitive": "Exactly. The self learns exposure early, long before it learns theory."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "A person keeps turning broad uncertainty into one repeated ritual they can control. Which Chapter 2 idea best explains that move?",
+      "choices": [
+        "Repression can narrow a larger fear into smaller, manageable forms",
+        "Real courage always starts with repetitive discipline",
+        "Fear of death mainly shows up as love of routine for its own sake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's mechanism. A wider pressure becomes easier to carry when it is squeezed into something smaller.",
+        "direct": "Becker's repression here works by reducing direct exposure and relocating fear into channels the self can manage.",
+        "competitive": "Correct. The mind swaps a huge terror for a winnable task."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Elena keeps rechecking the same project plan late at night even after the useful work is done. Which reading best fits Chapter 2?",
+      "choices": [
+        "The extra checking may be calming exposure, not only improving the task",
+        "The extra checking proves she has stronger standards than her team",
+        "The extra checking means she does not care about sleep or health"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits Becker's logic. Order can provide emotional relief that goes beyond the practical problem.",
+        "direct": "The chapter suggests that control habits may manage hidden helplessness as much as the actual work demand.",
+        "competitive": "Right. She is buying containment, not just accuracy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "What is the strongest reason Chapter 2 treats repression as necessary rather than simply blameworthy?",
+      "choices": [
+        "Because people need some way to keep overwhelming terror from flooding ordinary functioning",
+        "Because Becker thinks repression always leads to wisdom",
+        "Because repression removes fear permanently once it begins"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter presents repression as part of how life keeps moving under pressure that would otherwise be too much.",
+        "direct": "Repression is functional here. It reduces direct exposure enough for action to continue, even though it does not resolve the source.",
+        "competitive": "Correct. The system needs cover or it stalls."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "A reader says, \"If Becker is right, then any routine or attachment must be pathological.\" What is the best correction?",
+      "choices": [
+        "Becker means only childhood attachments are unhealthy",
+        "The chapter says routines can be useful while also carrying defensive relief",
+        "The chapter rejects structure completely in favor of total freedom"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the more accurate reading. Becker is suspicious of what routines may be carrying, not automatically hostile to order itself.",
+        "direct": "The chapter keeps a boundary condition in view: structure can be both practical and defensive at the same time.",
+        "competitive": "Exactly. Useful does not mean innocent, and defensive does not mean worthless."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Priya discovers that her perfect planning system is partly shielding her from the feeling that one bad grade could collapse the future. Which chapter insight does that show?",
+      "choices": [
+        "Good planning always reflects a stable self",
+        "Adult discipline can contain hidden helplessness from earlier vulnerability",
+        "School stress matters more than mortality in Becker's framework"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's perspective shift. An admirable habit can still be helping the self avoid a deeper feeling of exposure.",
+        "direct": "The example shows how mature-looking order can include defensive management of helplessness.",
+        "competitive": "Right. The planner is competence with camouflage mixed in."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Why might freedom feel less appealing than it seems in Chapter 2's logic?",
+      "choices": [
+        "Because people are naturally lazy and dislike effort",
+        "Because freedom increases uncertainty, which can let buried helplessness return",
+        "Because Becker thinks authority is morally superior to autonomy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That fits the chapter. More freedom can also mean fewer boundaries keeping exposure contained.",
+        "direct": "Freedom is difficult here because uncertainty weakens the structures that had been calming hidden fear.",
+        "competitive": "Correct. Options expand just as cover thins out."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Suppose an adult is composed, productive, and socially steady. According to Chapter 2, what should you avoid assuming too quickly?",
+      "choices": [
+        "That the person has fully integrated the deepest source of fear rather than built effective cover around it",
+        "That the person has learned any useful habits at all",
+        "That the person is capable of caring for other people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's hard caution. Stability may reflect growth, concealment, or some mixture of both.",
+        "direct": "Becker leaves maturity under suspicion without dismissing it. Good functioning alone cannot prove deep reconciliation.",
+        "competitive": "Right. Composure is not a clean verdict."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If Chapter 2 is right that people often hide mortality fear inside ordinary life, what question most naturally leads into Chapter 3?",
+      "choices": [
+        "Why do humans keep inventing more complicated school systems?",
+        "What is unusual about being a bodily creature with a symbolic self that makes this terror so hard to face directly?",
+        "How can routines be optimized to remove all forms of anxiety?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the right bridge. Becker has named the hidden pressure, so the next move is to ask why human beings are built to feel it this way.",
+        "direct": "Chapter 3 follows by explaining the human split that makes mortality terror especially intense and difficult to integrate.",
+        "competitive": "Exactly. Once the hidden climate is clear, you ask what kind of creature needs this much cover."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

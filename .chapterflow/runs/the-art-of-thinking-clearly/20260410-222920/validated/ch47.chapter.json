@@ -1,0 +1,669 @@
+{
+  "book": {
+    "bookId": "the-art-of-thinking-clearly",
+    "title": "The Art of Thinking Clearly",
+    "author": "Rolf Dobelli",
+    "categories": [
+      "psychology",
+      "decision-making",
+      "critical-thinking"
+    ],
+    "tags": [
+      "cognitive-bias",
+      "judgment",
+      "sampling",
+      "thinking"
+    ],
+    "edition": "English trade edition chapter map",
+    "variantFamily": "flagship_v4_compatible",
+    "chapterRange": "full-book"
+  },
+  "chapterId": "ch47",
+  "number": 47,
+  "title": "Self-Selection Bias",
+  "readingTimeMinutes": 6,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "You see a page full of complaints, a room full of fans, or a survey answered by volunteers, and it can feel as if the whole group has spoken. Often it has not. The people who showed up were usually the people with the strongest reason to show up.\n\nThat is self-selection bias. The sample is already tilted before interpretation begins because participation was voluntary.\n\nPeople with strong feelings, special interest, extra time, or personal stakes are more likely to rate, answer, attend, or complain. The quieter majority may stay invisible.\n\nBetter judgment asks who is missing before trusting the pattern on display.",
+        "direct": "A visible group can look representative even when it was built by voluntary participation. A survey answered by volunteers, a page of reviews, or a room full of enthusiasts may reflect the people most motivated to appear, not the full population.\n\nThat is self-selection bias. The distortion enters before analysis because the sample was filtered by who chose to respond.\n\nPeople with stronger feelings, stronger incentives, or more time are more likely to show up. Silence from everyone else is not proof that they feel the same way.\n\nThe correction is to ask who had reason to appear and who had no reason to participate.",
+        "competitive": "A wall of furious comments, a room full of true believers, or a volunteer survey can look like the voice of the people. Usually it is the voice of the people who cared enough, hurt enough, loved enough, or bothered enough to show up.\n\nThat is self-selection bias. The sample got rigged before you even started reading it because entry was optional.\n\nThe loud slice is not the whole pie. Strong incentives pull some people forward while everyone else stays offstage.\n\nBetter judgment asks who never walked into the frame."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Volunteers are often not a random slice of everyone else.",
+            "direct": "Visible participants may not represent the whole population.",
+            "competitive": "The people onstage are not automatically the whole crowd."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Strong feelings make some people much more likely to show up.",
+            "direct": "Participation is shaped by incentives, emotion, and effort.",
+            "competitive": "The hottest opinions usually arrive first."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Ask who is missing before trusting the sample.",
+            "direct": "Check the absent group before believing the visible pattern.",
+            "competitive": "Count the missing people before obeying the noise."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Self-selection bias happens when the people who volunteer are unlike the people who stay silent.",
+        "direct": "An opt-in sample can distort what the whole group seems to think.",
+        "competitive": "If entry was optional, the sample may already be crooked."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "A page full of bad reviews can make a product look terrible. A room full of enthusiasts can make an idea look universally loved. A survey answered by volunteers can seem like a fair reading of what people think. The visible pattern feels persuasive because it is concrete and easy to see. But a crucial question usually arrives too late: who chose to appear here?\n\nThat is self-selection bias. The sample is shaped by voluntary participation before you begin drawing conclusions. The people who answer, complain, attend, join, or rate something are often different from the people who remain silent. They may have stronger feelings, more time, more dissatisfaction, more loyalty, or a more direct stake in the outcome.\n\nThis is why visible feedback can be real and still misleading. The angry customers may be real customers. The enthusiastic attendees may be genuinely enthusiastic. The distortion is not that the visible group is fictional. The distortion is that the visible group is treated as if it were a random slice of everyone else. It usually is not.\n\nThe chapter stays narrow. It does not say reviews, surveys, or sign-ups are useless. They can contain signal. Complaints can reveal defects. Enthusiasm can reveal appeal. The warning is different: voluntary participation changes the mix of who appears, and that changes what the sample seems to prove. Silence is not neutral confirmation. It may simply mean indifference, weak incentives, limited time, or lower emotional intensity.\n\nThe practical correction is to ask who had a reason to show up and who had no reason to appear. Once that question becomes standard, the visible sample stops looking like automatic proof and starts looking like a filtered slice that must be interpreted with care.",
+        "direct": "Self-selection bias appears when a sample is built by voluntary participation and then misread as representative. A set of reviews, an internal feedback form, a workshop full of volunteers, or a survey answered by whoever felt like responding may look like evidence about a whole population. Often it is only evidence about the subgroup most motivated to participate.\n\nThe mechanism is simple. Participation is not evenly distributed. People with stronger incentives, stronger emotions, more available time, more commitment, or more dissatisfaction are more likely to show up. People with weaker feelings or weaker incentives often stay silent. Once that filter operates, the visible sample stops being a neutral slice of the broader group.\n\nThis matters because the visible responses can still be sincere and still produce a misleading inference. Ten angry reviews may reflect real frustration, but they do not automatically tell you how typical that frustration is. A room full of eager volunteers may reflect genuine enthusiasm, but not how the absent majority would behave. A feedback form answered by only the most engaged employees may distort what the organization seems to think.\n\nThe chapter is not dismissing these signals. Self-selected responses can reveal problems, preferences, or intensity. The error begins when they are treated as if they also reveal proportion and representativeness without further checking. That jump is too quick.\n\nThe correction is to inspect the entry filter. Who had reason to respond? Who had reason not to bother? Who was missing because the cost of participation was too high, the emotional stakes were too low, or the channel mainly attracted one kind of person? Better judgment comes from reading the visible sample and the invisible selection process together.",
+        "competitive": "You see a review wall full of rage, a room full of believers, or a volunteer survey full of strong opinions, and the brain wants to declare the case closed. The people have spoken. No, the people who felt enough, wanted enough, or bothered enough have spoken. That is a very different claim.\n\nThat is self-selection bias. The sample gets filtered before analysis because entry was optional. The people who show up are not randomly pulled from the full population. They are pulled by motive. Strong emotion, direct stakes, spare time, identity investment, and dissatisfaction all act like magnets. Everyone else is easier to miss because silence leaves no dramatic footprint.\n\nThis is why self-selected evidence can be honest and still dangerous to overread. The angry comments may be real. The superfans may be real. The volunteers may be real. The trap is treating them like a fair cross-section instead of what they actually are: a group shaped by reasons for appearing.\n\nThat matters in work, school, and personal judgment. An optional feedback channel can fill with the most agitated voices. A club or workshop can look more popular than it really is because the attendees are the people already inclined to care. A class survey can sound decisive while mostly capturing the students most eager to answer. If you ignore the selection filter, you start confusing visible intensity with population truth.\n\nThe correction is brutally practical. Ask what kind of person had a reason to show up here, and who had no reason to appear. Once you ask that, the evidence changes status. It stops being the whole story and becomes a filtered story. That does not make it worthless. It makes it interpretable."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Opt-in participation changes who becomes visible.",
+            "direct": "Voluntary response filters the sample before analysis.",
+            "competitive": "Optional entry rigs the lineup before you read the results."
+          },
+          "moreDetails": {
+            "gentle": "The people who appear are often the ones with more reason, energy, or emotion to step forward.",
+            "direct": "Participation is driven by incentives and intensity, not even distribution across the full group.",
+            "competitive": "The sample gets built by motive long before it gets judged by logic."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Visible voices can be sincere without being representative.",
+            "direct": "Real responses do not automatically reveal population proportion.",
+            "competitive": "Honest noise can still be crooked evidence."
+          },
+          "moreDetails": {
+            "gentle": "A strong visible pattern can still overstate how common that pattern really is.",
+            "direct": "The subgroup may accurately show intensity while badly misrepresenting typicality.",
+            "competitive": "The loud slice may tell you who is fired up, not what the whole crowd thinks."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Silence is not proof of agreement.",
+            "direct": "Missing responses may reflect low incentive rather than shared opinion.",
+            "competitive": "Quiet people are not automatic votes for the visible side."
+          },
+          "moreDetails": {
+            "gentle": "People may stay absent because they are busy, indifferent, mildly satisfied, or only weakly affected.",
+            "direct": "Nonparticipation often carries practical or motivational explanations that should not be misread as endorsement.",
+            "competitive": "A missing comment can mean no time, no energy, or no urge to fight, not blind agreement."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Self-selected samples can still contain useful signal.",
+            "direct": "Selection bias does not erase information; it limits what kind of claim the sample can support.",
+            "competitive": "Biased evidence is not trash, but it does not get to wear the crown of representativeness."
+          },
+          "moreDetails": {
+            "gentle": "Complaints can reveal problems and enthusiasm can reveal appeal, even when neither shows the full distribution.",
+            "direct": "The sample may reveal what some participants strongly experience without justifying a claim about everyone else.",
+            "competitive": "The evidence can show where the heat is without proving the whole map is on fire."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Ask who had reason to appear and who stayed invisible.",
+            "direct": "Interrogate the entry filter before trusting the visible pattern.",
+            "competitive": "Read the selection gate before you salute the sample."
+          },
+          "moreDetails": {
+            "gentle": "That question helps visible feedback become more useful and less misleading.",
+            "direct": "Once the selection process is made explicit, the sample can be interpreted with narrower and safer conclusions.",
+            "competitive": "The frame gets less manipulative once you count the people it never caught."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Self-selection bias means volunteers can make a visible sample look more extreme than the full group really is.",
+        "direct": "The key error is treating an opt-in group as if it were representative without checking who stayed out.",
+        "competitive": "If motive built the sample, do not pretend randomness did."
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "Imagine trying to understand a whole group by looking only at the people who chose to step forward. The problem is not only that some voices are louder. The deeper problem is that the act of stepping forward already tells you something important about the people in view. They had a reason to participate. That reason may be enthusiasm, frustration, identity, time, commitment, fear, hope, or direct personal stake. Once participation becomes voluntary, the sample begins carrying those motives inside it.\n\nThat is why self-selection bias is more than a surface-level warning about noisy people. It is a warning about hidden filtering. A review page, volunteer survey, optional workshop, complaint inbox, or club roster may seem to reveal what a population is like. Often it reveals what the population looks like after one important sieve has already done its work: only some kinds of people bothered to appear.\n\nThe visible group can still be telling the truth about its own experience. Angry reviewers may really be angry. Enthusiastic participants may really be enthusiastic. That is not the issue. The problem appears when truthful intensity gets mistaken for representativeness. A self-selected group can be accurate about itself while still being misleading about everyone else.\n\nThis matters because judgment often slides from signal to proportion without noticing the jump. A burst of complaints becomes proof that most users are unhappy. Strong attendance becomes proof that broad demand exists. A volunteer feedback form becomes proof that the organization thinks one way. In each case, the sample may reveal a real pocket of reality. But it may also hide the quieter majority, the mildly affected middle, or the people with too little reason to participate at all.\n\nThe hard diagnostic test from the outline belongs exactly here: what kind of person had a reason to show up here, and who had no reason to appear? That question exposes the architecture of the evidence. It makes you inspect incentives, friction, emotional intensity, access, and identity investment. It also introduces a boundary. Self-selected evidence is not useless. It can reveal what draws passion, pain, loyalty, or outrage. But it cannot automatically answer how typical those reactions are.\n\nThere is a practical cost to ignoring this. Once visible participants are treated as representative, decisions start overreacting to whoever is most motivated to enter the channel. Resources get misallocated, priorities get distorted, and the silent population gets interpreted through the emotions of the vocal minority.\n\nBetter judgment means reading two things at once: the visible responses and the invisible entry filter. The first tells you what appeared. The second tells you why that appearance may be tilted. Without both, a self-selected slice keeps getting promoted into the voice of the whole.",
+        "direct": "Self-selection bias occurs when voluntary participation shapes a sample and the resulting sample is then treated as representative of a broader population. The central distortion is not merely that some people speak more loudly than others. It is that the sample already contains a hidden selection mechanism: appearing required motive, effort, access, time, emotion, or stake. Those requirements sort people before analysis ever begins.\n\nThis is why self-selected groups are tricky. They can contain real information and still support false inference. A cluster of reviews can accurately reveal what motivated reviewers experienced. A workshop full of volunteers can accurately reveal what interested attendees care about. A complaint channel can accurately surface sharp failures. But accuracy about participants is not the same as representativeness about nonparticipants. The visible group may be truthful and still systematically untypical.\n\nThe hidden structure matters because judgment often upgrades a filtered sample into a population claim without pricing the filter. Strong emotion, strong incentives, and low participation friction make some kinds of people much more likely to appear. Weak feeling, moderate satisfaction, limited time, and low perceived stake make others much less likely to participate. Once that asymmetry exists, the sample no longer answers the question many people want it to answer. It may show intensity, but not proportion. It may show motivated experience, but not typical distribution.\n\nA second boundary is important. The chapter is not saying opt-in feedback should be discarded. Self-selected evidence can reveal defects, enthusiasm, pain points, loyalty, or emerging demand. The failure mode begins when that evidence is stretched past what its selection process can justify. The sample can often answer what motivated participants are experiencing. It cannot automatically answer what everyone is experiencing.\n\nThe hard question is straightforward and structural: what kind of person had reason to show up here, and who had no reason to appear? That question forces you to inspect incentives, emotional intensity, cost of participation, and access constraints. It also makes silence harder to misuse. Absence may reflect indifference, mild satisfaction, low urgency, or simple friction rather than hidden agreement.\n\nIgnoring this bias has predictable costs. Leaders can mistake complaint volume for prevalence. Teachers can mistake volunteer feedback for class consensus. Communities can mistake active members for the whole membership. Markets can mistake reviewers for the customer base. In each case, a visible minority can hijack interpretation because its reasons for appearing are left unexamined.\n\nBetter judgment requires reading the evidence and its entry gate together. If the gate favored one kind of participant, then the conclusions must stay narrow enough to respect that filter. The right move is not cynicism. It is disciplined interpretation of what the sample can and cannot honestly prove.",
+        "competitive": "A self-selected sample is a trap with good lighting. It looks like evidence from the people, but it is often evidence from the people who were motivated enough, angry enough, thrilled enough, bored enough, available enough, or invested enough to walk through the door. That difference matters more than most readers admit.\n\nThe cheap mistake is to say the loud group is biased and stop there. The deeper mistake is failing to see that the gate itself already shaped the evidence. Optional participation is a sorting machine. It rewards some motives and filters out others. Once that machine runs, the sample is no longer a fair slice of the population. It is a slice carved by incentives.\n\nThis is why honest evidence can still mislead. The furious reviews may be real. The superfan turnout may be real. The volunteer survey may be real. None of that saves you if you smuggle in the extra claim that these people stand in for everyone else. They might stand in for the people who cared enough to appear. That is a much narrower and much safer statement.\n\nIgnore that boundary and interpretation goes off the rails fast. Complaint volume gets mistaken for population frequency. Workshop attendance gets mistaken for broad demand. Optional feedback gets mistaken for consensus. The visible sample starts carrying far more authority than its entry rules deserve. Meanwhile the quiet middle, the mildly satisfied majority, and the low-stakes nonparticipants vanish from the picture because they did not create dramatic evidence.\n\nThe hard question cuts the whole performance down to size: what kind of person had a reason to show up here, and who had no reason to appear? That question exposes motive, friction, access, and emotional intensity. It also forces a cost check. If participation required unusual effort or unusually strong feeling, then the resulting sample comes preloaded with distortion.\n\nThe practical consequence is brutal. When leaders, teachers, managers, or buyers skip this step, they let the most motivated slice script reality for everybody else. Resources get aimed at the loudest heat, not necessarily the broadest need.\n\nBetter judgment means reading the sample and the gate at the same time. Ask what the evidence reveals about the people who entered, then ask what the entrance rules hid. If you skip the second part, you end up calling a motivated minority the voice of the crowd and then acting surprised when reality refuses to match the noise."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Voluntary participation smuggles motive into the sample before analysis begins.",
+            "direct": "A self-selected sample already contains a hidden selection mechanism.",
+            "competitive": "Optional entry loads the dice before the first conclusion rolls."
+          },
+          "moreDetails": {
+            "gentle": "The hidden structure is that appearing required some combination of time, emotion, interest, or stake that others did not share.",
+            "direct": "The boundary is that the sample reveals not only opinions but also the incentives needed to become visible.",
+            "competitive": "The lineup tells you who crossed the gate, which also tells you what kind of pressure or payoff pulled them there."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Truthful participants can still create a misleading population picture.",
+            "direct": "Accuracy about participants is not the same as representativeness about nonparticipants.",
+            "competitive": "Real voices can still sell a fake map of the crowd."
+          },
+          "moreDetails": {
+            "gentle": "The contradiction disappears once you see that honest reports from a filtered group can still overstate how typical that group is.",
+            "direct": "The failure mode is sliding from authentic participant experience into unsupported claims about prevalence or consensus.",
+            "competitive": "The evidence can be clean at the microphone and crooked at the population level."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Silence often reflects low motive, not hidden agreement.",
+            "direct": "Nonappearance may be caused by friction, indifference, or weak stakes rather than shared belief.",
+            "competitive": "Quiet is often just low fuel, not a vote for the loud side."
+          },
+          "moreDetails": {
+            "gentle": "That matters because invisible people are easy to misread when only dramatic participation leaves evidence behind.",
+            "direct": "A major cost is that absent groups get interpreted through the motives of the people who entered the channel.",
+            "competitive": "Once the loud minority writes the transcript, the silent majority gets ventriloquized without consent."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Self-selected evidence still has value when its limits stay clear.",
+            "direct": "A biased sample can reveal intensity, pain points, or appeal without proving distribution.",
+            "competitive": "Filtered evidence can show where the heat is without proving the whole city is burning."
+          },
+          "moreDetails": {
+            "gentle": "The useful move is to keep the claim narrow enough to match what the sample honestly captures.",
+            "direct": "The synthesis is to preserve signal while refusing to overclaim representativeness.",
+            "competitive": "Respect the data for what it actually caught, not for the empire you want to build on top of it."
+          }
+        },
+        {
+          "point": {
+            "gentle": "The right test is to inspect who had reason to show up and who had no reason to appear.",
+            "direct": "Interpretation improves when the entry gate is analyzed alongside the visible responses.",
+            "competitive": "Read the gate before you salute the crowd."
+          },
+          "moreDetails": {
+            "gentle": "That question reveals both the missing people and the motives that shaped the sample you can see.",
+            "direct": "Once entry conditions are explicit, conclusions become narrower, safer, and more decision-useful.",
+            "competitive": "The sample stops bossing you around once you expose the rules that built it."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Self-selection bias warns that voluntary participants can be real voices without being a fair picture of everyone.",
+        "direct": "The hidden problem is not only what respondents said but which incentives determined who became respondents at all.",
+        "competitive": "If motive built the crowd, do not let the crowd pretend it was chosen by fate."
+      }
+    }
+  },
+  "examples": [
+    {
+      "exampleId": "ch47-ex01-review-page",
+      "title": "A Review Page Looks Like The Whole Customer Base",
+      "category": "work",
+      "format": "decision_point",
+      "endingType": "broader_principle",
+      "contexts": [
+        "work",
+        "reviews",
+        "customers"
+      ],
+      "scenario": {
+        "gentle": "A team sees a page of intense reviews and assumes most customers must feel the same way.",
+        "direct": "Visible reviewers are being treated as representative of the entire customer base without checking who bothered to post.",
+        "competitive": "The comment wall is getting promoted to spokesperson for everyone who bought the product."
+      },
+      "whatToDo": {
+        "gentle": "Ask what kinds of customers were most likely to leave a review and who stayed silent.",
+        "direct": "Separate the signal in the reviews from the unsupported claim that reviewers represent the full population.",
+        "competitive": "Read the selection gate before bowing to the noise."
+      },
+      "whyItMatters": {
+        "gentle": "This keeps strong feedback useful without overreading how typical it is.",
+        "direct": "It prevents intensity from being mistaken for prevalence.",
+        "competitive": "Otherwise the loud slice gets to cosplay as the whole market."
+      }
+    },
+    {
+      "exampleId": "ch47-ex02-volunteer-workshop",
+      "title": "A Full Workshop Looks Like Broad Demand",
+      "category": "work",
+      "format": "postmortem",
+      "endingType": "twist",
+      "contexts": [
+        "work",
+        "attendance",
+        "interest"
+      ],
+      "scenario": {
+        "gentle": "A well-attended optional workshop makes leaders think everyone wants more of the same.",
+        "direct": "Volunteers with high interest are being confused with the broader workforce.",
+        "competitive": "A room full of people who chose to come is being misread as proof the whole company would care."
+      },
+      "whatToDo": {
+        "gentle": "Check what kinds of employees had reason and freedom to attend.",
+        "direct": "Inspect the attendance filter before turning turnout into a population claim.",
+        "competitive": "Audit who could show up, who wanted to, and who never had a shot."
+      },
+      "whyItMatters": {
+        "gentle": "Attendance can show interest without proving universal demand.",
+        "direct": "It protects against building strategy on a self-selected subgroup.",
+        "competitive": "Otherwise the eager corner writes the company script."
+      }
+    },
+    {
+      "exampleId": "ch47-ex03-class-survey",
+      "title": "A Volunteer Survey Sounds Like The Whole Class",
+      "category": "school",
+      "format": "dilemma",
+      "endingType": "clear_rule",
+      "contexts": [
+        "school",
+        "survey",
+        "class"
+      ],
+      "scenario": {
+        "gentle": "A teacher reads answers from a voluntary class survey and treats them as class consensus.",
+        "direct": "Respondents are being treated as representative even though the survey depended on who chose to answer.",
+        "competitive": "The kids who bothered to click the form are getting drafted as the whole class legislature."
+      },
+      "whatToDo": {
+        "gentle": "Ask which students had enough motivation or time to respond and which students stayed out.",
+        "direct": "Use the survey as partial signal, not automatic consensus, until the response filter is understood.",
+        "competitive": "Respect the answers, but stop pretending the silent majority signed them too."
+      },
+      "whyItMatters": {
+        "gentle": "This keeps useful feedback from becoming an exaggerated conclusion.",
+        "direct": "It reduces the risk of mistaking response intensity for class-wide prevalence.",
+        "competitive": "Otherwise the opt-in minority starts grading reality for everyone else."
+      }
+    },
+    {
+      "exampleId": "ch47-ex04-club-interest",
+      "title": "Early Sign-Ups Make A Club Look Universally Appealing",
+      "category": "school",
+      "format": "predict_reveal",
+      "endingType": "broader_principle",
+      "contexts": [
+        "school",
+        "club",
+        "sign-up"
+      ],
+      "scenario": {
+        "gentle": "A burst of early sign-ups makes organizers assume the whole student body is highly interested.",
+        "direct": "The most motivated students are being used as a proxy for the wider student population.",
+        "competitive": "The fastest joiners are getting mistaken for the average student."
+      },
+      "whatToDo": {
+        "gentle": "Predict how different the visible sign-ups might look from the quieter majority.",
+        "direct": "Separate early enthusiasm from a broader claim about representative demand.",
+        "competitive": "Do not let the first obsessed wave pretend it is the ocean."
+      },
+      "whyItMatters": {
+        "gentle": "This helps organizers plan around real reach instead of visible excitement alone.",
+        "direct": "It prevents self-selected interest from being inflated into general participation expectations.",
+        "competitive": "Otherwise the hype crew writes a forecast the rest of campus never agreed to."
+      }
+    },
+    {
+      "exampleId": "ch47-ex05-family-feedback",
+      "title": "Only The Most Irritated Relatives Speak Up",
+      "category": "personal",
+      "format": "before_after",
+      "endingType": "twist",
+      "contexts": [
+        "personal",
+        "family",
+        "feedback"
+      ],
+      "scenario": {
+        "gentle": "Someone hears feedback only from the relatives who felt strongly enough to say something and assumes everyone agrees.",
+        "direct": "The most motivated personal feedback is being misread as full-group consensus.",
+        "competitive": "The relatives with the hottest takes are being cast as the whole family jury."
+      },
+      "whatToDo": {
+        "gentle": "Notice who chose to speak and who had no reason to start the conversation.",
+        "direct": "Treat outspoken feedback as real input without assuming silent people share it.",
+        "competitive": "Respect the heat, but stop calling it unanimous weather."
+      },
+      "whyItMatters": {
+        "gentle": "This prevents a few strong voices from standing in for everyone else.",
+        "direct": "It reduces overreaction to a self-selected slice of personal opinion.",
+        "competitive": "Otherwise the loud table starts impersonating the whole house."
+      }
+    },
+    {
+      "exampleId": "ch47-ex06-online-group",
+      "title": "An Online Group Looks Like The General Public",
+      "category": "personal",
+      "format": "dialogue",
+      "endingType": "clear_rule",
+      "contexts": [
+        "personal",
+        "online",
+        "community"
+      ],
+      "scenario": {
+        "gentle": "A person reads comments inside an online group and starts believing they reflect what most people think.",
+        "direct": "A self-selected online community is being treated as if it were the broader population.",
+        "competitive": "A niche room on the internet is getting mistaken for the human race."
+      },
+      "whatToDo": {
+        "gentle": "Ask what kind of person joined, stayed active, and kept posting there.",
+        "direct": "Inspect the reasons for joining and participating before treating the group as representative.",
+        "competitive": "Read the entrance rules before you let the room redefine reality."
+      },
+      "whyItMatters": {
+        "gentle": "This keeps a strong local signal from being overstretched into a broad claim.",
+        "direct": "It protects judgment from confusing motivated community voices with general opinion.",
+        "competitive": "Otherwise a curated tribe starts wearing the mask of the crowd."
+      }
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": {
+      "gentle": "Notice when a visible group was formed by voluntary participation rather than by fair representation.",
+      "direct": "Train yourself to inspect the entry filter before trusting an opt-in sample.",
+      "competitive": "Stop letting motivated volunteers pass as the voice of everybody."
+    },
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If work feedback comes from volunteers, then I will ask who had the strongest reason to respond.",
+          "direct": "If I see an opt-in work sample, then I will separate participant signal from population claims.",
+          "competitive": "If a work channel gets loud, then I will read the gate before saluting the crowd."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If a school survey or sign-up is voluntary, then I will ask which students were most likely to appear.",
+          "direct": "If a school sample depends on opting in, then I will inspect who stayed silent before trusting the pattern.",
+          "competitive": "If the school sample built itself through motivation, then I will stop pretending randomness built it."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If only a few personal voices are visible, then I will ask who had reason to speak and who had no reason to show up.",
+          "direct": "If a personal sample is self-selected, then I will treat it as partial evidence rather than full consensus.",
+          "competitive": "If the loud slice shows up first, then I will count the missing people before I obey the noise."
+        }
+      }
+    ],
+    "twentyFourHourChallenge": {
+      "gentle": "Within the next day, examine one visible group and write down who was likely missing from it.",
+      "direct": "In the next 24 hours, test one opt-in sample by naming the participation filter that shaped it.",
+      "competitive": "By tomorrow, catch one noisy sample and expose the gate that built it."
+    },
+    "weeklyPractice": {
+      "gentle": "Once this week, take one set of reviews, sign-ups, or feedback and ask who had reason to appear.",
+      "direct": "Use one weekly reflection to compare what a visible sample shows with what its selection process hides.",
+      "competitive": "Each week, force one loud sample to explain who never made it into the frame."
+    }
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch47-rc01",
+      "difficulty": "easy",
+      "front": {
+        "gentle": "What is the core problem in self-selection bias?",
+        "direct": "What gets distorted before analysis even starts?",
+        "competitive": "What gets crooked before the evidence even talks?"
+      },
+      "back": {
+        "gentle": "The visible sample was built by volunteers who may not represent everyone else.",
+        "direct": "Participation filtered the sample before interpretation began.",
+        "competitive": "The gate sorted the crowd before the conclusions started swinging."
+      }
+    },
+    {
+      "cardId": "ch47-rc02",
+      "difficulty": "easy",
+      "front": {
+        "gentle": "Why is silence dangerous to misread?",
+        "direct": "What does missing participation not automatically mean?",
+        "competitive": "What lie does silence tempt you to buy?"
+      },
+      "back": {
+        "gentle": "It does not automatically mean agreement.",
+        "direct": "Nonparticipation may reflect low incentive, low urgency, or friction rather than shared opinion.",
+        "competitive": "Quiet is not a secret vote for the loud side."
+      }
+    },
+    {
+      "cardId": "ch47-rc03",
+      "difficulty": "medium",
+      "front": {
+        "gentle": "What useful question should come before trusting an opt-in sample?",
+        "direct": "How do you make a self-selected sample safer to interpret?",
+        "competitive": "What question strips the costume off a volunteer crowd?"
+      },
+      "back": {
+        "gentle": "Ask who had a reason to show up and who stayed invisible.",
+        "direct": "Inspect the entry filter before making population claims from visible participants.",
+        "competitive": "Read the gate before you let the crowd call itself everyone."
+      }
+    },
+    {
+      "cardId": "ch47-rc04",
+      "difficulty": "medium",
+      "front": {
+        "gentle": "What boundary should stay intact here?",
+        "direct": "What is the chapter not claiming?",
+        "competitive": "What overreaction should you reject?"
+      },
+      "back": {
+        "gentle": "It is not saying all reviews, surveys, or feedback are worthless.",
+        "direct": "Self-selected evidence can still contain signal; the limit is representativeness, not total uselessness.",
+        "competitive": "Do not trash the data, just stop letting it wear a fake crown."
+      }
+    },
+    {
+      "cardId": "ch47-rc05",
+      "difficulty": "hard",
+      "front": {
+        "gentle": "What is the hard distinction this chapter protects?",
+        "direct": "What difference must stay visible at depth?",
+        "competitive": "What split keeps loud evidence from hijacking reality?"
+      },
+      "back": {
+        "gentle": "Truthful participant experience is not the same as representative population evidence.",
+        "direct": "A self-selected sample may show real intensity without justifying a claim about typical distribution.",
+        "competitive": "Real voices can still draw a fake map of the crowd."
+      }
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "A visible sample formed by volunteers may tell you who cared enough to appear, not what everyone thinks.",
+    "direct": "Before trusting an opt-in sample, inspect the participation filter that built it.",
+    "competitive": "If the gate chose the crowd, do not let the crowd pretend it chose itself."
+  },
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch47-q01",
+        "prompt": "What is self-selection bias?",
+        "choices": [
+          "A visible group formed by volunteers is treated as if it represents everyone",
+          "A random sample is too small",
+          "People forget to answer a question once"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The problem begins when volunteers are treated like a fair slice of everyone else.",
+          "direct": "Correct. Voluntary participation distorts the sample before interpretation begins.",
+          "competitive": "Right. The crowd walked through a gate and then pretended it was the whole city."
+        },
+        "bloomsLevel": "remember-understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch47-q02",
+        "prompt": "Which case best fits this chapter?",
+        "choices": [
+          "A volunteer survey is used as proof of what the whole group thinks",
+          "A textbook has a typo",
+          "A manager changes a deadline"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The visible respondents may not represent everyone else.",
+          "direct": "Correct. An opt-in sample is being overread as representative.",
+          "competitive": "That is it. Volunteers got promoted into a fake population mirror."
+        },
+        "bloomsLevel": "remember-understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch47-q03",
+        "prompt": "Why are visible participants often misleading to overtrust?",
+        "choices": [
+          "Because people with stronger motives are more likely to appear",
+          "Because all participants are dishonest",
+          "Because silence always means happiness"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. Strong reasons to participate change who becomes visible.",
+          "direct": "Correct. Incentives and emotional intensity shape who enters the sample.",
+          "competitive": "Exactly. Motive builds the lineup before logic reads it."
+        },
+        "bloomsLevel": "remember-understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch47-q04",
+        "prompt": "What is wrong with treating angry reviews as population proof?",
+        "choices": [
+          "They may show real anger without showing how typical that anger is",
+          "Angry reviews are always fake",
+          "Reviews never contain useful information"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The reviews can be real without representing everyone.",
+          "direct": "Correct. Intensity from participants does not automatically reveal prevalence in the full population.",
+          "competitive": "Right. Real heat does not prove the whole map is burning."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch47-q05",
+        "prompt": "What should silence from nonparticipants usually mean first?",
+        "choices": [
+          "It may reflect low incentive or low urgency, not agreement",
+          "It proves the visible sample is representative",
+          "It shows everyone else fully approves"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. Missing voices are not automatic agreement.",
+          "direct": "Correct. Nonappearance often has motivational or practical explanations.",
+          "competitive": "Exactly. Quiet is not a secret endorsement stamp."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch47-q06",
+        "prompt": "What is the better judgment move when you see an opt-in sample?",
+        "choices": [
+          "Ask who had reason to show up and who stayed out",
+          "Trust the visible pattern immediately",
+          "Throw away the evidence entirely"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. Start by checking the participation filter.",
+          "direct": "Correct. The sample becomes safer to interpret when the entry gate is made explicit.",
+          "competitive": "Right. Read the gate before you obey the crowd."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch47-q07",
+        "prompt": "What deeper mistake happens when truthful participant voices are treated as representative?",
+        "choices": [
+          "Accuracy about participants is confused with accuracy about the whole population",
+          "Participants stop being honest",
+          "The sample becomes random over time"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. A group can describe itself honestly and still mislead about everyone else.",
+          "direct": "Correct. Participant truth does not erase the representativeness problem.",
+          "competitive": "That is the trap. Real voices can still sell a fake crowd map."
+        },
+        "bloomsLevel": "analyze-evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch47-q08",
+        "prompt": "What is the hard diagnostic question in this chapter?",
+        "choices": [
+          "What kind of person had reason to show up here, and who had no reason to appear?",
+          "How can I make everyone answer next time?",
+          "Did the visible group use strong language?"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. That question reveals the participation filter.",
+          "direct": "Correct. The chapter asks you to inspect incentives for appearing and incentives for remaining absent.",
+          "competitive": "That is the knife. It cuts the gate open so the sample stops bluffing."
+        },
+        "bloomsLevel": "analyze-evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch47-q09",
+        "prompt": "Why should a biased sample not be discarded automatically?",
+        "choices": [
+          "Because it can still reveal real pain points, appeal, or intensity",
+          "Because biased samples are always representative in the end",
+          "Because selection bias disappears if the sample is loud enough"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The sample may still show something real about participants.",
+          "direct": "Correct. Selection bias limits the claim, but it does not erase all signal.",
+          "competitive": "Right. Filtered evidence can still show where the heat actually is."
+        },
+        "bloomsLevel": "analyze-evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch47-q10",
+        "prompt": "Which conclusion best fits this chapter?",
+        "choices": [
+          "Read the visible sample and the participation gate together",
+          "Assume every loud group speaks for everyone",
+          "Treat all feedback as worthless"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. You need both the visible evidence and the missing-group question.",
+          "direct": "Correct. Better judgment combines the responses you can see with the selection process that shaped them.",
+          "competitive": "Exactly. Read the crowd and the gate at the same time."
+        },
+        "bloomsLevel": "analyze-evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  }
+}

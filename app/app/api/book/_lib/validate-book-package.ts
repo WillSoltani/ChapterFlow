@@ -48,10 +48,14 @@ const EDITION_KEYS = new Set([
   "publishedYear",
   "publisher",
   "publishedDate",
+  "imprintFamily",
+  "isbn10",
   "isbn13",
   "format",
+  "language",
   "translator",
   "translationYear",
+  "openLibraryEdition",
   "sourceText",
   "sourceProvenance",
 ]);
@@ -61,6 +65,7 @@ const CHAPTER_KEYS = new Set([
   "number",
   "title",
   "readingTimeMinutes",
+  "contentHash",
   "contentVariants",
   "examples",
   "quiz",
@@ -117,6 +122,14 @@ function hasOnlyKeys(obj: Record<string, unknown>, allowed: Set<string>, path: s
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function slugifyIdPart(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function readString(
@@ -285,6 +298,19 @@ function parseEdition(
           max: 40,
         })
       : undefined,
+    imprintFamily: readStringArray(value.imprintFamily, `${path}.imprintFamily`, issues, {
+      optional: true,
+      minItems: 0,
+      maxItems: 12,
+      itemMax: 200,
+    }),
+    isbn10: value.isbn10
+      ? readString(value.isbn10, `${path}.isbn10`, issues, {
+          optional: true,
+          min: 1,
+          max: 40,
+        })
+      : undefined,
     isbn13: value.isbn13
       ? readString(value.isbn13, `${path}.isbn13`, issues, {
           optional: true,
@@ -299,6 +325,13 @@ function parseEdition(
           max: 120,
         })
       : undefined,
+    language: value.language
+      ? readString(value.language, `${path}.language`, issues, {
+          optional: true,
+          min: 1,
+          max: 80,
+        })
+      : undefined,
     translator:
       value.translator != null
         ? readString(value.translator, `${path}.translator`, issues, {
@@ -308,6 +341,13 @@ function parseEdition(
           })
         : undefined,
     translationYear,
+    openLibraryEdition: value.openLibraryEdition
+      ? readString(value.openLibraryEdition, `${path}.openLibraryEdition`, issues, {
+          optional: true,
+          min: 1,
+          max: 80,
+        })
+      : undefined,
     sourceText: value.sourceText
       ? readString(value.sourceText, `${path}.sourceText`, issues, {
           optional: true,
@@ -593,15 +633,98 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
   }
 
   // Parse modern chapter-level fields
-  const implementationPlan = isRecord(chapterRaw.implementationPlan)
-    ? (chapterRaw.implementationPlan as BookPackageChapter["implementationPlan"])
-    : undefined;
+  let implementationPlan: BookPackageChapter["implementationPlan"] | undefined;
+  if (isRecord(chapterRaw.implementationPlan)) {
+    const planRaw = chapterRaw.implementationPlan as Record<string, unknown>;
+    implementationPlan = {
+      coreSkill:
+        parseToneKeyed(planRaw.coreSkill, `${path}.implementationPlan.coreSkill`, issues) ??
+        parseToneKeyed(planRaw.concreteAction, `${path}.implementationPlan.concreteAction`, issues) ??
+        undefined,
+      concreteAction:
+        parseToneKeyed(planRaw.concreteAction, `${path}.implementationPlan.concreteAction`, issues) ??
+        undefined,
+      ifThenPlans: Array.isArray(planRaw.ifThenPlans)
+        ? planRaw.ifThenPlans
+            .map((item, index) => {
+              if (!isRecord(item)) {
+                issues.push({
+                  path: `${path}.implementationPlan.ifThenPlans[${index}]`,
+                  message: "Each ifThenPlan must be an object.",
+                });
+                return null;
+              }
+              return {
+                context: readString(
+                  item.context,
+                  `${path}.implementationPlan.ifThenPlans[${index}].context`,
+                  issues,
+                  { max: 240 }
+                ),
+                plan:
+                  parseToneKeyed(item.plan, `${path}.implementationPlan.ifThenPlans[${index}].plan`, issues) ??
+                  { gentle: "", direct: "", competitive: "" },
+              };
+            })
+            .filter((item): item is NonNullable<typeof item> => Boolean(item))
+        : undefined,
+      ifThenPlan:
+        parseToneKeyed(planRaw.ifThenPlan, `${path}.implementationPlan.ifThenPlan`, issues) ?? undefined,
+      twentyFourHourChallenge:
+        parseToneKeyed(
+          planRaw.twentyFourHourChallenge,
+          `${path}.implementationPlan.twentyFourHourChallenge`,
+          issues
+        ) ?? undefined,
+      weeklyPractice:
+        parseToneKeyed(planRaw.weeklyPractice, `${path}.implementationPlan.weeklyPractice`, issues) ??
+        undefined,
+      friction:
+        parseToneKeyed(planRaw.friction, `${path}.implementationPlan.friction`, issues) ?? undefined,
+      checkpoint:
+        parseToneKeyed(planRaw.checkpoint, `${path}.implementationPlan.checkpoint`, issues) ?? undefined,
+    };
+  }
 
   const reviewCards = Array.isArray(chapterRaw.reviewCards)
-    ? (chapterRaw.reviewCards as BookPackageChapter["reviewCards"])
+    ? (chapterRaw.reviewCards as NonNullable<BookPackageChapter["reviewCards"]>).reduce<NonNullable<BookPackageChapter["reviewCards"]>>(
+        (cards, card, index) => {
+          if (!isRecord(card)) return cards;
+          cards.push({
+            cardId:
+              typeof card.cardId === "string"
+                ? readString(card.cardId, `${path}.reviewCards[${index}].cardId`, issues, {
+                    optional: true,
+                    min: 1,
+                    max: 120,
+                  })
+                : undefined,
+            front:
+              parseToneKeyed(card.front, `${path}.reviewCards[${index}].front`, issues) ??
+              { gentle: "", direct: "", competitive: "" },
+            back:
+              parseToneKeyed(card.back, `${path}.reviewCards[${index}].back`, issues) ??
+              { gentle: "", direct: "", competitive: "" },
+            difficulty:
+              card.difficulty === "easy" || card.difficulty === "medium" || card.difficulty === "hard"
+                ? card.difficulty
+                : undefined,
+          });
+          return cards;
+        },
+        []
+      )
     : undefined;
 
   const keyTakeawayCard = parseToneKeyed(chapterRaw.keyTakeawayCard, `${path}.keyTakeawayCard`, issues) ?? undefined;
+  const chapterId = readString(chapterRaw.chapterId, `${path}.chapterId`, issues, { max: 120 });
+  const normalizedExamples = examples.map((example, index) => ({
+    ...example,
+    exampleId:
+      example.exampleId && example.exampleId.trim()
+        ? example.exampleId
+        : `${slugifyIdPart(chapterId || `chapter-${index + 1}`)}-ex${String(index + 1).padStart(2, "0")}`,
+  }));
 
   return {
     book: chapterBookRaw
@@ -632,15 +755,23 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
               : undefined,
         }
       : undefined,
-    chapterId: readString(chapterRaw.chapterId, `${path}.chapterId`, issues, { max: 120 }),
+    chapterId,
     number: readInteger(chapterRaw.number, `${path}.number`, issues, { min: 1, max: 5000 }),
     title: readString(chapterRaw.title, `${path}.title`, issues, { max: 200 }),
     readingTimeMinutes: readInteger(chapterRaw.readingTimeMinutes, `${path}.readingTimeMinutes`, issues, {
       min: 1,
       max: 360,
     }),
+    contentHash:
+      typeof chapterRaw.contentHash === "string"
+        ? readString(chapterRaw.contentHash, `${path}.contentHash`, issues, {
+            optional: true,
+            min: 1,
+            max: 128,
+          })
+        : undefined,
     contentVariants,
-    examples,
+    examples: normalizedExamples,
     quiz,
     implementationPlan,
     reviewCards,
@@ -719,9 +850,33 @@ function parseExample(exampleRaw: unknown, path: string, issues: ValidationIssue
     });
   }
 
+  const pathSuffix = path.split(".").at(-1)?.replace(/[\[\]]/g, "") ?? "0";
+  const fallbackCategory =
+    typeof exampleRaw.category === "string" && exampleRaw.category.trim()
+      ? exampleRaw.category.trim()
+      : "example";
+  const fallbackFormat =
+    typeof exampleRaw.format === "string" && exampleRaw.format.trim()
+      ? exampleRaw.format.trim()
+      : fallbackCategory;
+
   return {
-    exampleId: readString(exampleRaw.exampleId, `${path}.exampleId`, issues, { max: 120 }),
-    title: readString(exampleRaw.title, `${path}.title`, issues, { max: 240 }),
+    exampleId:
+      typeof exampleRaw.exampleId === "string"
+        ? readString(exampleRaw.exampleId, `${path}.exampleId`, issues, {
+            optional: true,
+            min: 1,
+            max: 120,
+          })
+        : `${fallbackFormat}-${pathSuffix}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    title:
+      typeof exampleRaw.title === "string"
+        ? readString(exampleRaw.title, `${path}.title`, issues, {
+            optional: true,
+            min: 1,
+            max: 240,
+          })
+        : `${fallbackFormat.replace(/[-_]+/g, " ")} ${pathSuffix}`.replace(/\b\w/g, (c) => c.toUpperCase()),
     scenario: parseStringOrToneKeyed(exampleRaw.scenario, `${path}.scenario`, issues),
     whatToDo,
     whyItMatters: parseStringOrToneKeyed(exampleRaw.whyItMatters, `${path}.whyItMatters`, issues),
@@ -1001,13 +1156,15 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
 
     const exampleIds = new Set<string>();
     for (const example of chapter.examples) {
-      if (exampleIds.has(example.exampleId)) {
+      const exampleId = example.exampleId ?? "";
+      if (!exampleId) continue;
+      if (exampleIds.has(exampleId)) {
         issues.push({
-          path: `chapters.${chapter.number}.examples.${example.exampleId}`,
+          path: `chapters.${chapter.number}.examples.${exampleId}`,
           message: "exampleId must be unique within chapter.",
         });
       }
-      exampleIds.add(example.exampleId);
+      exampleIds.add(exampleId);
     }
   }
 }

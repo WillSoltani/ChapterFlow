@@ -3,7 +3,40 @@
     "bookId": "ultralearning",
     "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
     "author": "Scott H. Young",
-    "variantFamily": "EMH"
+    "categories": [
+      "Education",
+      "Learning",
+      "Self-Improvement",
+      "Career Development"
+    ],
+    "tags": [
+      "ultralearning",
+      "self-directed learning",
+      "skill acquisition",
+      "deliberate practice",
+      "career adaptation"
+    ],
+    "edition": {
+      "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+      "translator": "",
+      "publishedYear": 2019,
+      "translationYear": null,
+      "publishedDate": "2019-08-06",
+      "publisher": "Harper Business",
+      "imprintFamily": [
+        "Harper Business",
+        "HarperCollins",
+        "HarperCollins UK / Thorsons"
+      ],
+      "language": "English",
+      "isbn10": "006285268X",
+      "isbn13": "9780062852687",
+      "openLibraryEdition": "OL28302824M",
+      "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+      "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Chapter 3 only"
   },
   "chapterId": "ch03-how-to-become-an-ultralearner",
   "number": 3,
@@ -257,7 +290,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["career-pivot", "scope", "planning"],
+      "contexts": [
+        "career-pivot",
+        "scope",
+        "planning"
+      ],
       "scenario": {
         "gentle": "Marisol writes \"move into tech\" across the top of a whiteboard and stares at the empty space below it. By the end of the hour, the board is crowded with design, coding, project management, and data work. The list feels energizing, but it also feels impossible. She can keep calling the whole blur her project, or she can cut it down to one role and one first proof target.",
         "direct": "Marisol wants a career pivot, but her project scope is too wide to produce a visible result. She has to choose between keeping the big identity statement and narrowing to one first target.",
@@ -280,7 +317,11 @@
       "category": "school",
       "format": "dialogue",
       "endingType": "hidden_cost",
-      "contexts": ["advising", "focus", "scope"],
+      "contexts": [
+        "advising",
+        "focus",
+        "scope"
+      ],
       "scenario": {
         "gentle": "In a library study room, Devin spreads three project drafts across the table: one for machine learning, one for public speaking, and one for web design. His adviser reads them quietly, then taps the stack and says, \"These are all interesting. Which one are you actually willing to make measurable this month?\"",
         "direct": "Devin wants to run three parallel ultralearning projects, but his adviser sees that his hours and attention will not support them all. The conversation forces a real choice.",
@@ -303,7 +344,11 @@
       "category": "personal",
       "format": "dilemma",
       "endingType": "identity_shift",
-      "contexts": ["beginner-project", "scope", "realism"],
+      "contexts": [
+        "beginner-project",
+        "scope",
+        "realism"
+      ],
       "scenario": {
         "gentle": "Camille wants to learn illustration and immediately imagines a full graphic novel. The idea thrills her, but her desk is still covered with unopened drawing books and blank paper. She can cling to the big image, or she can make her first project a ten-illustration series with one style and one deadline.",
         "direct": "Camille's first instinct is grand scope. She has to decide whether the emotional excitement of the larger dream is helping or whether it is blocking a real beginning.",
@@ -326,7 +371,11 @@
       "category": "work",
       "format": "reset_moment",
       "endingType": "risk_reframe",
-      "contexts": ["schedule", "pilot-week", "energy"],
+      "contexts": [
+        "schedule",
+        "pilot-week",
+        "energy"
+      ],
       "scenario": {
         "gentle": "Aaron builds a color-coded calendar with two study blocks before work and three after dinner every day. It looks clean and fierce on Sunday night. By Tuesday, a late meeting, a missed lunch, and one exhausted commute have blown three blocks apart. Aaron sits at his desk and sees the problem clearly for the first time: the plan was exciting, not survivable.",
         "direct": "Aaron's project schedule looked disciplined on paper, but a real week shows it cannot absorb ordinary disruption. He has to reset before the full push begins.",
@@ -349,7 +398,11 @@
       "category": "school",
       "format": "planning_choice",
       "endingType": "downstream_consequence",
-      "contexts": ["format-choice", "semester", "hours"],
+      "contexts": [
+        "format-choice",
+        "semester",
+        "hours"
+      ],
       "scenario": {
         "gentle": "Zoe sits in the career center with a planner open beside a part-time job schedule and two lab commitments. She wants to build a portfolio before recruiting season. Full-time immersion sounds romantic. Her actual week says otherwise. She now has to choose between the project format she admires and the one she can carry.",
         "direct": "Zoe compares full-time, fixed-schedule, and fixed-hour options against her real semester. The chapter's question lands directly: which frame keeps repeated contact believable?",
@@ -372,7 +425,11 @@
       "category": "personal",
       "format": "mistake_recovery",
       "endingType": "boundary_condition",
-      "contexts": ["preparation", "avoidance", "launch"],
+      "contexts": [
+        "preparation",
+        "avoidance",
+        "launch"
+      ],
       "scenario": {
         "gentle": "Nia has folders full of articles, a long note on learning methods, and a shopping cart with half her materials already purchased. What she does not have is a first real study session. Every night she tells herself she is still getting ready. The desk is organized. The project has not begun.",
         "direct": "Nia followed the chapter's preparation advice and then kept going past the useful point. Research and setup have become a substitute for contact.",

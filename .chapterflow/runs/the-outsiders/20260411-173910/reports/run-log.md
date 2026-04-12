@@ -110,3 +110,11 @@
 - `chapterflow_v13_release_guard.py` returned `FAIL=0 WARN=0` after repair.
 - `chapterflow_v13_artifact_guard.py` returned `FAIL=0 WARN=0`.
 - Release validation and release audit reports completed.
+
+2026-04-12T20:27:59Z
+- Metadata repair applied to the locked manifest and propagated into every validated chapter payload and review wrapper.
+- Added populated `categories` and `tags`, promoted fuller edition detail from `manifests/edition-lock.json`, and tightened `chapterRange` to the actual nine-chapter CEO case sequence.
+- Release reassembled from `validated/ch01.chapter.json` through `validated/ch09.chapter.json` only after the validated payload repair.
+- Continuity seals were recomputed on the repaired validated chapter payloads.
+- `chapterflow_v13_release_guard.py` returned `FAIL=0 WARN=0`.
+- `chapterflow_v13_artifact_guard.py` returned `FAIL=0 WARN=0`.

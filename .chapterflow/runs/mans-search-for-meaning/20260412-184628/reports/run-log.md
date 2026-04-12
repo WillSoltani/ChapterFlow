@@ -61,3 +61,75 @@ Phase 3 complete.
 - quiz quality scorer: PASS (overall 0.84)
 
 Phase 4 complete.
+
+## Phase 5 - Chapter 2 automatic gate package
+
+- pre-writer artifacts written and verified on disk
+- writer pass complete
+- editor pass complete
+- critic gate complete: 10/12
+- structured chapter and quiz written
+- local structured repair applied for opener/scaffold/echo issues
+- quiz questions `q01` and `q03` regenerated after scorer failure
+- chapter lint: PASS
+- prose audit: PASS
+- quiz quality scorer: PASS (overall 0.85)
+- baseline quality written for chapters 1 and 2
+
+Phase 5 complete.
+
+## Phase 6 - Wave 2, Chapter 3
+
+- pre-writer artifacts written and verified on disk
+- writer pass complete
+- editor pass complete
+- critic gate complete: 10/12
+- structured chapter and quiz written
+- chapter lint: PASS
+- prose audit: PASS
+- quiz quality scorer: PASS (overall 0.85)
+
+Chapter 3 complete.
+
+## Phase 6 - Wave 2, Chapter 4
+
+- pre-writer artifacts written and verified on disk
+- writer pass complete
+- editor pass complete
+- critic gate complete: 10/12
+- structured chapter and quiz written
+- local structured repair applied for repeated phrase / reinforcement stem issues
+- chapter lint: PASS
+- prose audit: PASS
+- quiz quality scorer: PASS (overall 0.86)
+
+Chapter 4 complete.
+
+## Phase 7 - Final wave close, Chapter 5
+
+- pre-writer artifacts written and verified on disk
+- writer pass complete
+- editor pass complete
+- critic gate complete: 10/12
+- structured chapter and quiz written
+- local structured repair applied for repeated support-surface phrasing
+- quiz question `q10` regenerated after scorer failure
+- chapter lint: PASS
+- prose audit: PASS
+- quiz quality scorer: PASS (overall 0.81)
+- validated chapter, review package, reading metrics, and validation report present
+
+Chapter 5 complete.
+
+## Phase 8 - Release repair and assembly
+
+- detected deviation: `reports/ch05.validation.md` was missing even though the validated chapter artifacts existed
+- repaired missing validation report and re-ran artifact guard
+- detected release-gate drift: continuity seal hashes did not match the validated chapter payloads
+- repaired tone-substance alignment in structured and validated chapter payloads, then mirrored the full payload into each review package
+- re-ran chapter lint and prose audit for chapters 1-5: PASS
+- re-ran semantic diversity checker on the rebuilt release package: PASS
+- continuity seal re-issued from validated chapter payload hashes
+- release assembled strictly from `validated/ch01.chapter.json` through `validated/ch05.chapter.json`
+
+Phase 8 complete.

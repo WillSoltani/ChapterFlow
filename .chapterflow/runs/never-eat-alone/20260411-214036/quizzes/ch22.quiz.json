@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about the fringe?",
+      "choices": [
+        "Looser ties can bring in fresh information and access that the inner circle lacks",
+        "The strongest networks ignore weak ties and focus only on the core",
+        "Any new contact is automatically useful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats edge ties as sources of reach and freshness.",
+        "direct": "Its core claim is that peripheral relationships can add what the inner ring does not already contain.",
+        "competitive": "The edge widens the map."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the fringe matter so much here?",
+      "choices": [
+        "Because close circles can start repeating the same information and paths",
+        "Because weak ties are morally better than strong ties",
+        "Because new people should always replace old relationships"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter notices the limits of a familiar center.",
+        "direct": "The fringe matters because the core can become repetitive.",
+        "competitive": "The inner ring can loop."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Mara sees that a loose contact from another field may know a route her inner circle has missed. What best fits this chapter?",
+      "choices": [
+        "Reopen the tie if it truly widens information or access",
+        "Ignore the contact because peripheral ties are too weak to matter",
+        "Pursue every loose contact equally to maximize reach"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors selective openness to edge ties that add difference.",
+        "direct": "A fringe relationship matters when it brings real reach instead of random volume.",
+        "competitive": "Use the edge if it changes the map."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At a visiting-speaker reception, Owen finds a peripheral campus contact tied to a different circle. What is his strongest move?",
+      "choices": [
+        "Stay open to the tie because it may widen access beyond his usual network",
+        "Dismiss the contact because the inner circle is enough",
+        "Collect as many new contacts as possible regardless of fit"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values edge ties when they connect to different rooms.",
+        "direct": "A useful fringe tie expands reach beyond the familiar center.",
+        "competitive": "A new room just opened."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What novelty trap does this chapter criticize?",
+      "choices": [
+        "Treating every new or peripheral contact as valuable just because it is unfamiliar",
+        "Using weaker ties to learn about different circles",
+        "Noticing that the core and the fringe solve different problems"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects novelty for novelty's sake.",
+        "direct": "Random accumulation is not the same as intelligent reach.",
+        "competitive": "New is not enough."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That edge ties can widen information and access",
+        "That volume alone is a good substitute for disciplined openness",
+        "That a network needs both a stable core and a useful edge"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter refuses to equate more contacts with more value.",
+        "direct": "Contact volume without judgment produces clutter rather than reach.",
+        "competitive": "More names is not more intelligence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Zuri is considering reconnecting with a peripheral acquaintance. What would this chapter tell her?",
+      "choices": [
+        "Reconnect automatically because every fringe tie matters",
+        "Reconnect only if the tie adds real difference beyond novelty",
+        "Stay permanently inside the inner circle to preserve depth"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants disciplined openness, not automatic revival of every loose tie.",
+        "direct": "A peripheral tie matters when it widens the map, not when it only feels new.",
+        "competitive": "No difference, no chase."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a useful fringe tie stronger than a random new contact in this chapter?",
+      "choices": [
+        "Because it adds real access or information rather than just volume",
+        "Because old contacts are always less valuable than new ones",
+        "Because weak ties require less maintenance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values difference with fit.",
+        "direct": "A strong fringe tie expands reach intelligently instead of merely enlarging the contact list.",
+        "competitive": "Reach beats clutter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between openness and judgment?",
+      "choices": [
+        "The fringe helps only when peripheral ties add real difference beyond the core",
+        "Openness means treating all edge contacts as equally important",
+        "Judgment matters only after a fringe tie becomes a close one"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties openness to selective usefulness.",
+        "direct": "Edge ties strengthen the network when they widen access with fit rather than simply adding novelty.",
+        "competitive": "Open the edge, keep the filter."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How ideas, curation, and content help someone stay visible and useful across a broader field",
+        "How to eliminate the core and rely only on weak ties",
+        "How to collect fringe contacts faster"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from wider reach to visible usefulness across that wider field.",
+        "direct": "After fringe ties comes the question of content and curation.",
+        "competitive": "Next: become signal."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

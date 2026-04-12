@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the chapter recommend instead of demanding direct credit first?",
+      "choices": [
+        "Strengthening the larger work through the canvas strategy",
+        "Avoiding ambition completely",
+        "Waiting until recognition arrives naturally"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants ambition to help the work move before centering the self.",
+        "direct": "Its answer is the canvas strategy: create room and support the larger effort.",
+        "competitive": "Build the stage before chasing the spotlight."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can support work feel difficult to ego even when it is strategically strong?",
+      "choices": [
+        "Because support work is always exploitation",
+        "Because recognition may be delayed or land on someone else first",
+        "Because useful people should never be ambitious"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The visible praise may not appear right away, and that can feel frustrating.",
+        "direct": "Ego dislikes the role because contribution and public credit may arrive on different timelines.",
+        "competitive": "You can build the win and miss the flash."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A student team is fighting over presentation roles while no one owns the backstage checklist. What best fits the chapter?",
+      "choices": [
+        "Step back completely and let the team fail on its own",
+        "Keep competing for the front role because visibility matters most",
+        "Take the setup role that makes the presentation reliable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter values the hidden support move that makes success more likely.",
+        "direct": "The right response is to secure the support layer rather than chase attention first.",
+        "competitive": "Win the checklist before you try to win the room."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What important limit does the chapter place on service?",
+      "choices": [
+        "Service means your ambition should disappear",
+        "Service is strategic movement, not passive self-erasure",
+        "Service only matters if nobody ever notices you"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not want the reader to vanish or become easy to use.",
+        "direct": "Its version of service is tactical and selective, not passive surrender.",
+        "competitive": "This is sideways force, not shrinking."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "How does this chapter prepare the next move in the book?",
+      "choices": [
+        "By making ambition more able to tolerate lower visibility and act with restraint",
+        "By proving that recognition never matters again",
+        "By showing that supporting work removes the need for discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If the self can help the work without spotlight every time, quieter control becomes easier.",
+        "direct": "Strategic service weakens the need for immediate proof and prepares restraint.",
+        "competitive": "Delayed applause trains the nerves for quieter power."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

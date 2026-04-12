@@ -35,12 +35,18 @@ export function scoreQuizSubmission(
   for (let i = 0; i < quiz.questions.length; i += 1) {
     const question = quiz.questions[i];
     const selected = answers[i];
+    const choices: string[] = Array.isArray(question.choices)
+      ? question.choices
+      : Array.isArray(question.options)
+        ? question.options
+        : [];
+    const correctIndex: number = question.correctAnswerIndex ?? question.correctIndex ?? 0;
     if (
       typeof selected !== "number" ||
       !Number.isFinite(selected) ||
       Math.floor(selected) !== selected ||
       selected < 0 ||
-      selected >= question.choices.length
+      selected >= choices.length
     ) {
       throw new BookApiError(
         400,
@@ -48,12 +54,12 @@ export function scoreQuizSubmission(
         `answers[${i}] is out of range for question ${question.questionId}.`
       );
     }
-    const isCorrect = selected === question.correctAnswerIndex;
+    const isCorrect = selected === correctIndex;
     if (isCorrect) correct += 1;
     review.push({
       questionId: question.questionId,
       selectedIndex: selected,
-      correctIndex: question.correctAnswerIndex,
+      correctIndex,
       isCorrect,
     });
   }
@@ -127,19 +133,25 @@ export function scoreQuizResponsesByQuestionId(
     if (!question) {
       throw new BookApiError(400, "invalid_answers", `Unknown questionId ${questionId}.`);
     }
-    if (selected < 0 || selected >= question.choices.length) {
+    const choices: string[] = Array.isArray(question.choices)
+      ? question.choices
+      : Array.isArray(question.options)
+        ? question.options
+        : [];
+    const correctIndex: number = question.correctAnswerIndex ?? question.correctIndex ?? 0;
+    if (selected < 0 || selected >= choices.length) {
       throw new BookApiError(
         400,
         "invalid_answers",
         `responses[${index}].selectedIndex is out of range for question ${questionId}.`
       );
     }
-    const isCorrect = selected === question.correctAnswerIndex;
+    const isCorrect = selected === correctIndex;
     if (isCorrect) correct += 1;
     review.push({
       questionId,
       selectedIndex: selected,
-      correctIndex: question.correctAnswerIndex,
+      correctIndex,
       isCorrect,
     });
   }

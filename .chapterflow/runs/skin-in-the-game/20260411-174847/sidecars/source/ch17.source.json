@@ -1,0 +1,38 @@
+{
+  "chapterId": "ch17-is-the-pope-atheist",
+  "chapterNumber": 17,
+  "title": "Is the Pope Atheist?",
+  "supportLevel": "narrow-frozen-basis",
+  "frozenSources": [
+    {
+      "id": "toc-json",
+      "path": "source-freeze/toc.json",
+      "role": "chapter-map"
+    },
+    {
+      "id": "source-heading-index",
+      "path": "sidecars/source/source-heading-index.json",
+      "role": "chapter-identity"
+    },
+    {
+      "id": "book-source-md",
+      "path": "source-freeze/book-source.md",
+      "role": "freeze-boundary-and-theme"
+    },
+    {
+      "id": "book-skeleton",
+      "path": "skeleton/book-skeleton.md",
+      "role": "chapter-intent"
+    }
+  ],
+  "allowedMoves": [
+    "paraphrase-first",
+    "revealed-preference framing inside religion",
+    "institutional belief tested through action"
+  ],
+  "disallowedMoves": [
+    "exact quotes",
+    "unsupported named church episodes",
+    "generic hypocrisy rhetoric"
+  ]
+}

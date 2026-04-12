@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What distinction does the chapter draw first?",
+      "choices": [
+        "Pleasure and enjoyment are different qualities of experience",
+        "Pleasure is worthless and should be avoided",
+        "Enjoyment happens only during leisure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens by separating two kinds of good experience without condemning either one.",
+        "direct": "Its first move is conceptual: pleasure and enjoyment overlap but do different jobs.",
+        "competitive": "The chapter breaks the lazy equation that treats every good feeling as the same win."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do clear goals and feedback matter for enjoyment?",
+      "choices": [
+        "They give attention a structure to inhabit and a sign of progress",
+        "They guarantee that every task becomes relaxing",
+        "They matter only when external rewards are high"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Goals and feedback help the mind stay oriented instead of drifting.",
+        "direct": "They organize effort by showing what the activity is aiming at and whether response is working.",
+        "competitive": "Without them the task gets muddy fast, so the beam leaks instead of locking on."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A demanding activity feels fuller than passive comfort. Which chapter idea best explains that?",
+      "choices": [
+        "Enjoyment often involves challenge and response rather than relief alone",
+        "Pleasure becomes deeper when it stays effortless",
+        "Any hard activity automatically creates flow"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The richer feeling comes from being more fully involved, not just more comfortable.",
+        "direct": "The chapter links enjoyment to structured challenge rather than passive satisfaction alone.",
+        "competitive": "The experience feels bigger because consciousness had to engage instead of coast."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira takes a warm takeout lunch break and feels pleasant for a while, then returns to a difficult design problem that ends up feeling more memorable and more alive. What is the strongest chapter-based reading?",
+      "choices": [
+        "The lunch was fake pleasure while the design problem was the only real good",
+        "The lunch was pleasant, but the design problem became enjoyment because it involved deeper structured involvement",
+        "The design problem mattered only because it lasted longer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows both experiences to be good while still saying they are different.",
+        "direct": "Pleasure can soothe, but enjoyment often leaves a deeper trace because the self is more fully engaged.",
+        "competitive": "One moment relieved pressure. The other actually occupied the system."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which misreading about control does the chapter reject?",
+      "choices": [
+        "Enjoyment requires total domination over every condition",
+        "Control can mean a felt capacity to respond inside the activity",
+        "A sense of control can support concentration"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not promise total power over every circumstance.",
+        "direct": "Control here means workable response, not absolute command.",
+        "competitive": "If you turn this into god-mode agency, you missed the chapter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a campus practice room, metronome clicks and immediate correction make a rehearsal feel more alive than passive downtime. What element is being illustrated most clearly?",
+      "choices": [
+        "Goals and feedback help ordered attention stay engaged",
+        "Enjoyment appears only when a person performs publicly",
+        "Passive rest becomes enjoyment when it lasts long enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The structure of the practice session helps attention stay with the task.",
+        "direct": "Clear targets and usable response loops are part of what makes enjoyment possible.",
+        "competitive": "The session has a target and an answer back, so the mind can actually lock in."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does the chapter treat altered time or reduced self-consciousness?",
+      "choices": [
+        "As guaranteed signs that must appear in every enjoyable activity",
+        "As consequences that can emerge when attention is deeply absorbed",
+        "As proof that enjoyment is mystical rather than ordinary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "These changes can happen, but the chapter does not turn them into a universal formula.",
+        "direct": "They are effects of deep involvement, not separate tricks to force.",
+        "competitive": "They are byproducts of locked-in attention, not magic badges."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A hobby starts losing its richness once a person becomes obsessed only with metrics, rewards, and approval. Which chapter concept best explains the loss?",
+      "choices": [
+        "Autotelic value weakens when the activity becomes only instrumental",
+        "Enjoyment improves when external rewards fully replace involvement",
+        "Pleasure and enjoyment are still interchangeable in this case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The activity may still have rewards, but the experience itself stops being the center.",
+        "direct": "The chapter warns that external rewards can crowd out the lived richness of doing the task.",
+        "competitive": "The scoreboard took over, and the activity itself got hollowed out."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the autotelic experience?",
+      "choices": [
+        "An experience valued partly for its own sake rather than only for a later payoff",
+        "Any activity that produces comfort with no challenge",
+        "A mood state caused mainly by praise from others"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The doing itself becomes one of the goods being pursued.",
+        "direct": "Autotelic means the activity has internal value, not merely instrumental value.",
+        "competitive": "The act stops feeling like a toll and starts feeling like part of the prize."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 3 build on Chapter 2?",
+      "choices": [
+        "It abandons ordered consciousness and replaces it with pleasure alone",
+        "It shows what ordered consciousness feels like in lived experience",
+        "It argues that attention no longer matters once challenge appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 2 mapped the machinery. Chapter 3 describes the lived quality of that ordered state.",
+        "direct": "The chapter turns architecture into felt experience by showing how enjoyment and flow appear from the inside.",
+        "competitive": "Chapter 2 built the operating system. Chapter 3 shows what it feels like when it actually runs well."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

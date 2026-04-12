@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch29-q01",
+      "prompt": "What is the main claim of `The Sources of Noise`?",
+      "choices": [
+        "Noise has multiple contributors that need to be gathered into one broader view",
+        "One final cause explains all noise once the chapter arrives",
+        "The source map removes ambiguity from judgment completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter gathers different contributors into one wider picture.",
+        "direct": "Correct. Its main claim is that noise requires a plural source map rather than a one-cause explanation.",
+        "competitive": "Right. The chapter builds a field map, not a throne for one cause."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q02",
+      "prompt": "Which misreading does the chapter reject about noise sources?",
+      "choices": [
+        "That one source now explains everything",
+        "That multiple contributors can be viewed together",
+        "That a broader map can clarify the picture"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter resists a one-cause simplification.",
+        "direct": "It rejects the idea that the wider synthesis produces a single master explanation for all noise.",
+        "competitive": "One cause does not get the crown just because the map got bigger."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q03",
+      "prompt": "Why does the chapter gather sources into one view?",
+      "choices": [
+        "Because understanding noise requires seeing multiple contributors together",
+        "Because every source matters equally in every case",
+        "Because the chapter wants to replace earlier chapters with one final diagram"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The goal is synthesis, not replacement.",
+        "direct": "The chapter gathers sources together so the reader can see a broader conceptual map of how noise arises.",
+        "competitive": "The chapter pulls the scattered pieces onto one board without pretending the board is the whole universe."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q04",
+      "prompt": "Elena sees several contributors in one workflow. What lesson fits best?",
+      "choices": [
+        "Multiple contributors can be present in the same noise-producing process",
+        "One hidden source must explain everything if examined long enough",
+        "A broad source view makes workflow details irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter allows several contributors to sit in the same picture.",
+        "direct": "A workflow can involve multiple contributors at once, which is why the chapter builds a broader source map.",
+        "competitive": "The process can have several engines on the board at once."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q05",
+      "prompt": "Why does a school workflow plus recurring habit matter in this chapter?",
+      "choices": [
+        "It shows how different kinds of contributors can appear together in one account of noise",
+        "It proves schools are the only useful setting for source analysis",
+        "It introduces an official ranked taxonomy from the source bundle"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The example keeps the synthesis concrete and plural.",
+        "direct": "A workflow plus habit matters because it shows that process and recurring-tendency contributors can belong in the same broader view.",
+        "competitive": "The school case puts more than one engine on the same map."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q06",
+      "prompt": "What narrow distinction does the chapter insist on?",
+      "choices": [
+        "A broader source map can clarify noise without becoming a final key",
+        "Once sources are gathered, total control is achieved",
+        "The widest map must assign exact weights to every source"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps clarity and limit together.",
+        "direct": "Its key distinction is that synthesis improves understanding without becoming a final or total explanation.",
+        "competitive": "The map gets broader without turning into a magic key."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q07",
+      "prompt": "Why does the chapter resist a one-cause explanation?",
+      "choices": [
+        "Because noise arises through multiple contributors rather than one master source",
+        "Because source maps are never useful",
+        "Because every source matters equally in every judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter holds onto plurality.",
+        "direct": "It resists one-cause rhetoric because the book is now gathering multiple contributors into one conceptual map.",
+        "competitive": "The field is too crowded to be ruled by one emperor-engine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q08",
+      "prompt": "Why is synthesis not the same as mastery in this chapter?",
+      "choices": [
+        "Because seeing several contributors together does not eliminate ambiguity or difficulty",
+        "Because broader maps are less informative than narrow ones",
+        "Because the chapter rejects all conceptual organization"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter values a broader view without overpromising control.",
+        "direct": "Synthesis is not mastery because a wider source map clarifies the picture without abolishing complexity or uncertainty.",
+        "competitive": "The board gets clearer, but the game does not become trivial."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q09",
+      "prompt": "Which statement best captures the chapter's strongest conclusion?",
+      "choices": [
+        "Noise should be understood through a plural source map rather than one final cause",
+        "The chapter proves one ranked taxonomy can solve source analysis",
+        "Once sources are gathered, diagnosis is finished forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter insists on plural synthesis instead of final closure.",
+        "direct": "Its conclusion is that understanding noise requires multiple contributors in view rather than a single master explanation.",
+        "competitive": "The field map wins over the one-cause throne."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch29-q10",
+      "prompt": "What is the cleanest bridge from `The Sources of Noise` into `The Mediating Assessments Protocol`?",
+      "choices": [
+        "Once the sources are gathered, the book can turn from diagnosis to a structured remedy path",
+        "The next chapter abandons structure and returns to abstract theory",
+        "The next chapter proves that source mapping removes the need for judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move turns from diagnosis toward repair.",
+        "direct": "The bridge works because once the noise sources are visible, the book can introduce a disciplined protocol for responding to them.",
+        "competitive": "Once the field is mapped, the next stop is the repair kit."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

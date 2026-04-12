@@ -1,0 +1,39 @@
+{
+  "chapterId": "ch02-the-terror-of-death",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-12T18:51:02Z",
+  "chapterNumber": 2,
+  "editedDraftWordCount": 828,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 387,
+      "avgWordsPerTone": 129
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 850,
+      "avgWordsPerTone": 283
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 919,
+      "avgWordsPerTone": 306
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "work": 2,
+    "school": 2,
+    "personal": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "71bfdea91b06292421dc5d5418e5855d0ccd304b1779b515a6994abe36c8e332",
+  "validationStatus": "PASS",
+  "patchesApplied": 1,
+  "patchNotes": [
+    "Patched thesis-first openings, one reinforcement echo, and one duplicate retrieval line before validation pass."
+  ]
+}

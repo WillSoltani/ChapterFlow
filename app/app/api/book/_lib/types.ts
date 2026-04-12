@@ -47,10 +47,15 @@ export type ChapterVariantContent = {
 
 export type BookPackageQuizQuestion = {
   questionId: string;
-  prompt: string;
-  choices: string[];
-  correctAnswerIndex: number;
-  explanation?: string;
+  prompt?: string;
+  stem?: string;
+  choices?: string[];
+  options?: string[];
+  correctAnswerIndex?: number;
+  correctIndex?: number;
+  explanation?: string | ToneKeyed;
+  bloomsLevel?: string;
+  depthLevel?: string;
 };
 
 export type BookPackageQuiz = {
@@ -64,8 +69,8 @@ export type BookPackageQuiz = {
 };
 
 export type BookPackageExample = {
-  exampleId: string;
-  title: string;
+  exampleId?: string;
+  title?: string;
   scenario: string | ToneKeyed;
   whatToDo: string[] | ToneKeyed;
   whyItMatters: string | ToneKeyed;
@@ -77,7 +82,7 @@ export type BookPackageExample = {
 
 /** Tone-keyed review card for spaced repetition */
 export type ReviewCard = {
-  cardId: string;
+  cardId?: string;
   front: ToneKeyed;
   back: ToneKeyed;
   difficulty?: "easy" | "medium" | "hard";
@@ -85,13 +90,17 @@ export type ReviewCard = {
 
 /** Tone-keyed implementation plan */
 export type ImplementationPlan = {
-  coreSkill: ToneKeyed;
+  coreSkill?: ToneKeyed;
+  concreteAction?: ToneKeyed;
   ifThenPlans?: Array<{
     context: string;
     plan: ToneKeyed;
   }>;
+  ifThenPlan?: ToneKeyed;
   twentyFourHourChallenge?: ToneKeyed;
   weeklyPractice?: ToneKeyed;
+  friction?: ToneKeyed;
+  checkpoint?: ToneKeyed;
 };
 
 export type BookPackageChapter = {
@@ -104,6 +113,7 @@ export type BookPackageChapter = {
   number: number;
   title: string;
   readingTimeMinutes: number;
+  contentHash?: string;
   contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
   examples: BookPackageExample[];
   quiz: BookPackageQuiz;
@@ -117,10 +127,14 @@ export type BookPackageEdition = {
   publishedYear?: number | null;
   publisher?: string;
   publishedDate?: string;
+  imprintFamily?: string[];
+  isbn10?: string;
   isbn13?: string;
   format?: string;
+  language?: string;
   translator?: string;
   translationYear?: number | null;
+  openLibraryEdition?: string;
   sourceText?: string;
   sourceProvenance?: string;
 };

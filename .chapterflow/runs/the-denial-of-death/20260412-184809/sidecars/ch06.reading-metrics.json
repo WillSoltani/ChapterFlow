@@ -1,0 +1,39 @@
+{
+  "chapterId": "ch06-the-problem-of-freuds-character-noch-einmal",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-12T18:51:02Z",
+  "chapterNumber": 6,
+  "editedDraftWordCount": 622,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 230,
+      "avgWordsPerTone": 77
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 795,
+      "avgWordsPerTone": 265
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 1054,
+      "avgWordsPerTone": 351
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "work": 2,
+    "personal": 2,
+    "school": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "d5d0c21fd9e32e3ff7dcb5a17e0f4ec4d333fb4ab74c8e35c3ae6245c37c2a27",
+  "validationStatus": "PASS",
+  "patchesApplied": 1,
+  "patchNotes": [
+    "Embedded the full quiz payload and patched one repeated scaffold, one duplicate recap prompt, one review-card echo, and the weakest quiz item before validation pass."
+  ]
+}

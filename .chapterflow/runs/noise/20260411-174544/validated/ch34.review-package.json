@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "noise-ch34-rules-or-standards",
+  "createdAt": "2026-04-12T16:10:00-03:00",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "noise",
+    "title": "Noise: A Flaw in Human Judgment",
+    "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Little, Brown illustrated edition",
+      "publisher": "Little, Brown",
+      "publishedYear": 2021,
+      "isbn13": "9780316451383",
+      "isbn10": "031645138X",
+      "format": "Authorized Google Books metadata and preview-backed print/digital reference edition",
+      "sourceText": ".chapterflow/runs/noise/20260411-174544/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle: Google Books authorized preview and metadata, the official Noise site, and a Barron's interview with Daniel Kahneman."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-39"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch34-rules-or-standards",
+      "number": 34,
+      "title": "Rules or Standards?",
+      "readingTimeMinutes": 8,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Once dignity is visible, the book can ask what kind of structure should carry the tradeoff. The chapter turns to rules or standards.\n\nThat matters because tighter rules and looser standards do not shape judgment in the same way.",
+            "direct": "The chapter compares rules and standards as governance tools. It argues that each handles consistency and discretion differently.\n\nThat is the main move. Institutions have to weigh the tradeoff rather than assume a winner.",
+            "competitive": "The chapter puts two rulebooks on the table and makes the room compare what each one costs.\n\nThat pressure matters because architecture decides how the line and the room behave."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Rules and standards are different governance tools.",
+                "direct": "The chapter compares two ways to structure judgment.",
+                "competitive": "Two rulebooks enter the room."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Rules can reduce variation.",
+                "direct": "Explicit requirements can narrow discretion.",
+                "competitive": "Tighter rails can steady the line."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Standards preserve more context.",
+                "direct": "Flexibility can protect judgment while leaving more room for noise.",
+                "competitive": "Looser rails keep room for interpretation."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter says rules and standards carry different tradeoffs in consistency and discretion.",
+            "direct": "Institutions must weigh what rules gain and what standards preserve.",
+            "competitive": "The chapter makes the room compare two machines instead of chanting for one."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Once dignity is visible, the book can ask what kind of structure should carry the tradeoff. The chapter turns to rules or standards.\n\nThat matters because tighter rules and looser standards do not shape judgment in the same way. Rules can reduce variation, while standards can preserve more context.\n\nThis is where the governance tradeoff becomes more explicit. Rules can steady the line but harden into rigidity. Standards can preserve discretion but leave more room for uneven judgment.\n\nThe chapter keeps one useful limit visible. It does not declare a universal winner. It compares what each form gains and loses.\n\nThat is what earns the next move. Once the governance tradeoff is visible, the book can turn to taking noise seriously.",
+            "direct": "The chapter compares rules and standards as governance tools. It argues that each handles consistency and discretion differently.\n\nThat matters because institutions often have to choose between explicit constraints and interpretive flexibility.\n\nThis is the distinction it has to protect. Rules can lower noise by narrowing discretion, but they may also increase rigidity. Standards can preserve context, but they may also allow more variation.\n\nThe limit stays visible. The chapter is not crowning one form for every setting. It is making the governance tradeoff explicit enough to judge.\n\nThat prepares the next step. Once the architecture choice is clear, the book can ask what it means to take noise seriously at the institutional level.",
+            "competitive": "The chapter puts two rulebooks on the table and makes the room compare what each one costs.\n\nThat matters because tighter rails can steady the line while looser rails keep more space for judgment.\n\nThis is where the chapter sharpens its balance. The book refuses both the fantasy that rules solve everything and the opposite fantasy that standards are automatically wiser just because they bend.\n\nThe discipline stays narrow on purpose. No doctrine enters, and no one gets to hand one machine a permanent crown.\n\nThat is what sets up the next step. Once the architecture fight is clear, the room can ask whether it is serious enough about noise to choose deliberately."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Rules and standards are contrasting governance tools.",
+                "direct": "The chapter compares two ways institutions structure judgment.",
+                "competitive": "The room has to compare two machines."
+              },
+              "moreDetails": {
+                "gentle": "The chapter turns the moral tension into a design question.",
+                "direct": "It asks how different governance forms distribute consistency, flexibility, and human cost.",
+                "competitive": "The architecture itself becomes the next argument."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Rules can reduce variation.",
+                "direct": "Explicit requirements can narrow discretion and steady decisions.",
+                "competitive": "Tighter rails can calm the wobble."
+              },
+              "moreDetails": {
+                "gentle": "That matters because rules often gain consistency by limiting interpretation.",
+                "direct": "The chapter keeps this gain visible instead of treating rules as mere bureaucracy.",
+                "competitive": "The tighter machine can make the line behave more cleanly."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Standards preserve context.",
+                "direct": "Interpretive flexibility can protect judgment in complex cases.",
+                "competitive": "Looser rails keep room for the driver."
+              },
+              "moreDetails": {
+                "gentle": "The chapter gives standards their real strength without pretending they erase cost.",
+                "direct": "It shows that standards can preserve responsiveness while also leaving more room for variation.",
+                "competitive": "The looser machine can read the road better, but it can also drift."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Neither form is free.",
+                "direct": "Rules can stiffen and standards can wobble.",
+                "competitive": "Every machine charges its own fee."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the chapter comparative instead of doctrinal.",
+                "direct": "The argument remains coherent by treating both governance forms as tradeoff-bearing rather than as pure solutions.",
+                "competitive": "The room has to read both invoices before it picks a machine."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next step is taking noise seriously.",
+                "direct": "Once governance options are visible, institutional seriousness becomes the next question.",
+                "competitive": "After the rulebook fight comes the seriousness test."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the next chapter asks what institutions do once they stop treating noise as casual background.",
+                "direct": "Taking noise seriously follows once rules and standards have shown that architecture choices carry real consequences.",
+                "competitive": "Once the room sees the machines clearly, it has to decide whether it is serious about the problem at all."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one system you know. Where does it rely on hard rules, and where does it rely on standards?",
+            "direct": "Take one institution and ask how it distributes discretion between explicit requirements and open standards.",
+            "competitive": "Pick one rulebook around you and ask where the rails are tight and where they still bend."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why the chapter compares rules and standards without crowning one?",
+            "direct": "How does the chapter keep the gains of rules and the strengths of standards in the same frame?",
+            "competitive": "Why does the room need to compare the machines instead of chanting for one?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Recall the chain: rules and standards compared, rules reduce variation, standards preserve context, neither is free, taking noise seriously next.",
+              "direct": "Name the structure: governance tools contrasted, discretion distributed differently, rigidity and wobble visible, no universal winner, seriousness next.",
+              "competitive": "What happens after the rulebook fight and before the seriousness test?"
+            },
+            "connect": {
+              "gentle": "Where have you seen hard rules help consistency but reduce flexibility?",
+              "direct": "Identify one setting where standards preserved judgment while allowing more variation.",
+              "competitive": "Which machine around you steadies the line, and which one keeps more play in the steering?"
+            },
+            "preview": {
+              "gentle": "If the architecture choice is clearer now, how might the next chapter ask whether institutions really take noise seriously?",
+              "direct": "How does this chapter set up the move into `Taking Noise Seriously`?",
+              "competitive": "Once the machines are visible, what seriousness question lands next?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Once dignity is visible, the book can ask what kind of structure should carry the tradeoff. The chapter turns to rules or standards.\n\nThat matters because tighter rules and looser standards do not shape judgment in the same way. Rules can reduce variation, while standards can preserve more context.\n\nHard depth sharpens the point. The chapter is not merely listing pros and cons. It is asking what institutions are choosing when they distribute discretion through one form rather than the other.\n\nThe chapter keeps one strict limit visible. Rules are not automatic heroes, and standards are not automatic human saviors. Each form shifts noise, rigidity, and human cost differently.\n\nThis is what changes after dignity. The reader now moves from moral stakes into governance architecture.\n\nThat is what earns the next move. Once the architecture choice is visible, the book can turn to taking noise seriously.",
+            "direct": "The chapter compares rules and standards as governance tools. It argues that each handles consistency and discretion differently.\n\nThat matters because institutions often decide judgment quality by how much interpretation they leave inside the system.\n\nThis is the harder distinction it wants to preserve. Rules may lower noise by constraining discretion, but they can also harden into rigidity. Standards may preserve context and judgment, but they can also leave more room for unevenness.\n\nThe limit remains essential. The chapter does not solve the tradeoff with a slogan or universal ranking. It forces institutions to choose what kind of cost they are willing to carry.\n\nThat is what sets up the next move. After the governance tradeoff is explicit, the book can ask what institutional seriousness about noise requires.",
+            "competitive": "The chapter puts two rulebooks on the table and makes the room compare what each one does to the line and to the people living under it.\n\nThat matters because one machine tightens the rails while the other leaves more steering in human hands.\n\nThis is where the chapter gets sharp. The book refuses both the cult of hard rails and the romance of pure discretion.\n\nThe discipline stays tight. No doctrine hands out a crown, and no one gets to pretend that either machine comes without wobble or stiffness.\n\nThat is what earns the next step. Once the rulebook fight is honest, the room has to decide whether it is serious enough about noise to govern on purpose."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Rules and standards allocate discretion differently.",
+                "direct": "Governance form shapes how judgment is distributed.",
+                "competitive": "The architecture changes the steering."
+              },
+              "moreDetails": {
+                "gentle": "The chapter moves from moral stakes into the institutional design of judgment.",
+                "direct": "It asks what happens to consistency, flexibility, and treatment when discretion is locked down by rules or left open by standards.",
+                "competitive": "The room stops arguing feelings and starts inspecting the machinery."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Rules can reduce noise while raising rigidity.",
+                "direct": "Explicit requirements often steady decisions but can harden the process.",
+                "competitive": "Tighter rails can calm the wobble and stiffen the ride."
+              },
+              "moreDetails": {
+                "gentle": "The chapter preserves the real gain of rules without hiding their cost.",
+                "direct": "This matters because institutions may choose rules for consistency and then discover the price in inflexibility or narrowed judgment.",
+                "competitive": "The hard-rail machine steadies the line, but it can stop the room from taking a curve."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Standards can preserve judgment while leaving more room for noise.",
+                "direct": "Flexible guidance protects context but may allow uneven outcomes.",
+                "competitive": "Looser rails keep steering and invite drift."
+              },
+              "moreDetails": {
+                "gentle": "The chapter gives standards their due without pretending they solve the problem.",
+                "direct": "It keeps the value of contextual judgment visible while acknowledging that preserved discretion can also preserve variation.",
+                "competitive": "The bendable machine can read the road better, but it can also wobble more."
+              }
+            },
+            {
+              "point": {
+                "gentle": "No governance form is a universal winner.",
+                "direct": "Institutions choose tradeoffs, not perfection.",
+                "competitive": "No machine gets the permanent crown."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the chapter comparative instead of ideological.",
+                "direct": "The chapter stays defensible by treating rules and standards as tradeoff-bearing choices whose costs depend on what the institution is trying to protect.",
+                "competitive": "The room has to choose its machine with receipts, not slogans."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next chapter asks whether institutions take noise seriously enough to govern deliberately.",
+                "direct": "`Taking Noise Seriously` follows once the architecture choice is clear.",
+                "competitive": "After the rulebook fight comes the seriousness exam."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the next step turns architecture awareness into institutional commitment.",
+                "direct": "The seriousness question emerges once the book has shown that governance design changes how noise is carried rather than merely how it is described.",
+                "competitive": "Once the machines are visible, the room has to decide whether it is serious enough to choose one on purpose."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one institution you know and ask where hard rules help it and where standards protect it.",
+            "direct": "Take one system and test how its governance form distributes discretion, rigidity, and variation.",
+            "competitive": "Pick one machine around you and ask where the rails are too hard and where the steering is too loose."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter compare rules and standards as tradeoff-bearing forms rather than as moral opposites?",
+              "direct": "How can rules lower noise while standards preserve judgment without either form becoming a universal answer?",
+              "competitive": "Why does the room need receipts from both machines before it chooses?"
+            },
+            {
+              "gentle": "Why does the chapter reject the idea that dignity alone settles the governance question?",
+              "direct": "How does the chapter carry humane treatment into architecture without crowning standards automatically?",
+              "competitive": "Why does feeling the cold room not automatically hand the crown to the looser rulebook?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If governance form changes how noise is carried, what might the next chapter ask about taking noise seriously?",
+            "direct": "How does `Rules or Standards?` prepare the move into `Taking Noise Seriously`?",
+            "competitive": "Once the machines are visible, what seriousness test should the room face next?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Name the chain: governance forms compared, rules tighten discretion, standards preserve context, neither is free, seriousness next.",
+              "direct": "Rebuild the structure: architecture choice visible, rigidity and variation distributed differently, no universal winner, institutional seriousness next.",
+              "competitive": "What does the room learn from the rulebook fight before the seriousness exam begins?"
+            },
+            "connect": {
+              "gentle": "Where have you seen hard rules improve consistency but weaken contextual judgment?",
+              "direct": "Identify one setting where standards preserved context while also allowing more unevenness.",
+              "competitive": "Which machine around you rides straighter, and which one reads the road better?"
+            },
+            "preview": {
+              "gentle": "If the architecture choice is now visible, how might the next chapter ask whether institutions are serious about noise?",
+              "direct": "How does this chapter point from governance tradeoffs into `Taking Noise Seriously`?",
+              "competitive": "Once the machines are on the table, what seriousness question should hit the room next?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "title": "Nadia Chooses Between a Rubric and a Principle",
+          "format": "decision_point",
+          "category": "work",
+          "endingType": "warning",
+          "scenario": {
+            "gentle": "Nadia helps design a hiring process and has to choose between a hard scoring rubric and a looser principle-based review.",
+            "direct": "A work design choice shows how governance form changes the balance between consistency and discretion.",
+            "competitive": "Nadia has two machines in front of her and only one can run the room."
+          },
+          "whatToDo": {
+            "gentle": "Use the choice to compare what rules gain in steadiness and what standards preserve in judgment.",
+            "direct": "Treat the design problem as a tradeoff between reduced variation and preserved context.",
+            "competitive": "Make the room read both invoices before it picks a machine."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter turns dignity into a governance question.",
+            "direct": "The example matters because architecture decides how discretion is carried.",
+            "competitive": "The rulebook choice changes the whole ride."
+          }
+        },
+        {
+          "title": "Felix Fights Over a Rigid Conduct Rule",
+          "format": "conflict",
+          "category": "personal",
+          "endingType": "reveal",
+          "scenario": {
+            "gentle": "Felix argues that a conduct rule is too rigid, while someone else argues that without it similar cases will drift apart.",
+            "direct": "A conflict shows what rules gain in consistency and what they risk in rigidity.",
+            "competitive": "Felix watches a hard rail steady the line and pinch the curve at the same time."
+          },
+          "whatToDo": {
+            "gentle": "Use the disagreement to compare what the rule protects and what it may flatten.",
+            "direct": "Treat the conflict as evidence that governance choices trade discretion for steadiness in visible ways.",
+            "competitive": "Force the room to say what kind of stiffness it is willing to buy."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter keeps rules inside a real tradeoff.",
+            "direct": "The example matters because explicit requirements can help and harden at once.",
+            "competitive": "The hard rail gains control and loses bend."
+          }
+        },
+        {
+          "title": "Priya Debriefs a Placement Standard Against a Cutoff",
+          "format": "debrief",
+          "category": "school",
+          "endingType": "correction",
+          "scenario": {
+            "gentle": "Priya compares a school cutoff with a broader placement standard and sees that each handles borderline students differently.",
+            "direct": "A school example shows how rules and standards distribute consistency and contextual judgment differently.",
+            "competitive": "Priya watches one machine sort by hard line while the other keeps more steering in human hands."
+          },
+          "whatToDo": {
+            "gentle": "Treat the comparison as a way to see what each governance form protects and what each one risks.",
+            "direct": "Use the debrief to ask whether the setting needs tighter consistency or more contextual reading.",
+            "competitive": "Put the cutoff and the open standard side by side and make the room explain its choice."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter makes the tradeoff concrete.",
+            "direct": "The example matters because governance design changes how noise and rigidity appear in practice.",
+            "competitive": "The two machines make different mistakes for different reasons."
+          }
+        },
+        {
+          "title": "Elena Compares Two Governance Styles",
+          "format": "comparison",
+          "category": "work",
+          "endingType": "pressure_test",
+          "scenario": {
+            "gentle": "Elena compares two teams facing similar cases, one governed by hard rules and one by open standards.",
+            "direct": "A comparison shows how rule-heavy and standards-heavy systems create different strengths and vulnerabilities.",
+            "competitive": "Elena watches one room ride straighter and the other read the road better."
+          },
+          "whatToDo": {
+            "gentle": "Use the comparison to see that governance form changes both variation and flexibility.",
+            "direct": "Ask what each system gains, what it loses, and what kind of mistakes it invites.",
+            "competitive": "Make the room compare the wobble bill to the rigidity bill."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter treats architecture as a real design choice.",
+            "direct": "The example matters because neither governance style is free of cost.",
+            "competitive": "Every machine sends its own invoice."
+          }
+        },
+        {
+          "title": "Jonah Revises the Standards Always Feel Better Idea",
+          "format": "reversal",
+          "category": "personal",
+          "endingType": "tradeoff",
+          "scenario": {
+            "gentle": "Jonah had assumed standards were always more humane, then realizes that preserved discretion can also leave people exposed to uneven treatment.",
+            "direct": "A reversal shows why flexibility can protect context without solving the noise problem.",
+            "competitive": "Jonah learns that the looser machine can feel warmer and wobble more."
+          },
+          "whatToDo": {
+            "gentle": "Treat the realization as a reason to compare costs on both sides of the governance choice.",
+            "direct": "Use the reversal to keep standards inside the tradeoff frame rather than treating them as automatic moral winners.",
+            "competitive": "Make the room stop handing the crown to the softer machine for free."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter rejects a romantic view of standards.",
+            "direct": "The example matters because discretion can preserve context and variation together.",
+            "competitive": "The softer machine still drifts."
+          }
+        },
+        {
+          "title": "Dana Adds a Discretion Check to the Observer Sheet",
+          "format": "checklist",
+          "category": "school",
+          "endingType": "bridge",
+          "scenario": {
+            "gentle": "Dana adds a question to an observer sheet: where must discretion remain open, and where should the process narrow it?",
+            "direct": "A checklist prompt turns rules-or-standards into an explicit institutional design test.",
+            "competitive": "Dana writes the steering question directly onto the audit sheet."
+          },
+          "whatToDo": {
+            "gentle": "Use the question to make governance choices deliberate rather than habitual.",
+            "direct": "Add a standing review of where rules should tighten and where standards should stay open.",
+            "competitive": "Force the room to mark where it wants rails and where it wants steering."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter points directly toward institutional seriousness about noise.",
+            "direct": "The example matters because taking noise seriously requires conscious governance choices.",
+            "competitive": "The audit sheet now points straight at the seriousness exam."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch34-q01",
+            "prompt": "What is the main claim of `Rules or Standards?`?",
+            "choices": [
+              "Institutions must weigh rules and standards as different ways of carrying consistency, discretion, and human cost",
+              "Rules always win because they reduce variation",
+              "Standards always win because they preserve humanity"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The chapter compares governance forms rather than crowning one.",
+              "direct": "Correct. It treats rules and standards as tradeoff-bearing design choices.",
+              "competitive": "Right. The chapter makes the room compare rulebooks instead of kneeling to one."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch34-q02",
+            "prompt": "Which misreading does the chapter reject?",
+            "choices": [
+              "That one governance form is universally best in every setting",
+              "That rules can reduce variation",
+              "That standards can preserve context"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter resists a universal winner.",
+              "direct": "It rejects the idea that rules or standards can be crowned once and for all.",
+              "competitive": "The chapter does not hand one side the permanent trophy."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch34-q03",
+            "prompt": "Why do rules matter in this chapter?",
+            "choices": [
+              "Because they can narrow discretion and reduce variation",
+              "Because they eliminate every human cost",
+              "Because they make standards unnecessary everywhere"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. Rules matter for consistency gains.",
+              "direct": "They matter because explicit requirements can lower noise by constraining discretion.",
+              "competitive": "Rules matter because they tighten the line."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch34-q04",
+            "prompt": "A hiring team switches from a principle to a hard rubric. What lesson fits best?",
+            "choices": [
+              "Rules can reduce variation but may also increase rigidity",
+              "Rules always improve every part of judgment",
+              "The chapter now rejects standards completely"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Good. The example captures the gain-and-loss structure.",
+              "direct": "It shows why rule-heavy design can steady decisions while also hardening the process.",
+              "competitive": "The line gets cleaner, but the room may stiffen."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch34-q05",
+            "prompt": "Why does a school cutoff versus a placement standard matter here?",
+            "choices": [
+              "It shows how governance design changes the balance between consistency and contextual judgment",
+              "It proves schools should never use cutoffs",
+              "It introduces an exact governance formula from the sources"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The example keeps the tradeoff concrete.",
+              "direct": "The contrast matters because it shows what rules gain and what standards preserve.",
+              "competitive": "The cutoff and the open standard make the architecture fight visible."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch34-q06",
+            "prompt": "What distinction does the chapter insist on?",
+            "choices": [
+              "Rules and standards distribute discretion, rigidity, and noise differently",
+              "Rules are neutral while standards are moral",
+              "Standards eliminate variation without cost"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Correct. The chapter compares distributions of tradeoffs.",
+              "direct": "Its key distinction is that each governance form carries different costs and protections.",
+              "competitive": "The chapter asks what each machine does to the line and the room."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch34-q07",
+            "prompt": "Why does the chapter resist a blanket defense of standards?",
+            "choices": [
+              "Because preserved discretion can also leave more room for uneven judgment",
+              "Because standards eliminate dignity concerns",
+              "Because rules never matter for consistency"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter keeps standards inside the tradeoff frame.",
+              "direct": "It recognizes that flexibility can protect context while also allowing more noise.",
+              "competitive": "The chapter knows that a looser room can wobble more."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch34-q08",
+            "prompt": "What does a rule-heavy design mean in this chapter?",
+            "choices": [
+              "A governance choice that narrows discretion through explicit requirements",
+              "Any process that treats people respectfully",
+              "A system with no standards at all"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That fits. The chapter defines rule-heavy design by how tightly it constrains interpretation.",
+              "direct": "It means governance that relies on explicit requirements to reduce variation.",
+              "competitive": "It is the machine with tighter rails."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch34-q09",
+            "prompt": "Which statement best captures the chapter's strongest conclusion?",
+            "choices": [
+              "Institutions choose tradeoffs, not a universal winner, when deciding between rules and standards",
+              "Rules should replace standards everywhere",
+              "Standards should replace rules whenever dignity matters"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter keeps the choice comparative and sober.",
+              "direct": "Its conclusion is that governance must weigh consistency, discretion, and human cost together rather than assume one permanent answer.",
+              "competitive": "The room has to choose its machinery with eyes open, not by slogan."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch34-q10",
+            "prompt": "What is the cleanest bridge from `Rules or Standards?` into `Taking Noise Seriously`?",
+            "choices": [
+              "Once the governance tradeoff is visible, the book can ask what it means to confront noise institutionally rather than casually",
+              "The next chapter stops caring about governance design",
+              "The next chapter proves standards are superior"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. Institutional seriousness follows the governance comparison.",
+              "direct": "The bridge works because choosing rules or standards leads naturally into the question of how seriously institutions will address noise.",
+              "competitive": "Once the room sees the rulebook fight clearly, it has to decide whether it is serious about noise at all."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ]
+}

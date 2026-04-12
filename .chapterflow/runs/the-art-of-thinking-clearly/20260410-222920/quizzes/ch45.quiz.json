@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch45-q01",
+      "prompt": "What is the core problem in self-serving bias?",
+      "choices": [
+        "Success is explained inward while failure is explained outward by different standards",
+        "Every success is fake",
+        "Every failure is entirely personal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Credit and blame are being assigned unevenly.",
+        "direct": "Correct. The explanation changes to protect the self.",
+        "competitive": "That is the scam. Wins get adopted and losses get reassigned."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch45-q02",
+      "prompt": "Why is this bias persuasive?",
+      "choices": [
+        "Because the mind wants to protect self-image",
+        "Because context never matters",
+        "Because people always lie about outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The ego likes flattering stories.",
+        "direct": "Exactly. Identity protection makes some explanations feel easier to accept.",
+        "competitive": "That is it. The ego likes medals more than audits."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch45-q03",
+      "prompt": "Which example best fits this chapter?",
+      "choices": [
+        "A student treats a strong grade as proof of ability but a weak grade as unfair timing",
+        "A student studies for an exam",
+        "A manager changes a schedule"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The result is being explained by different rules.",
+        "direct": "Correct. Success is internalized while failure is externalized.",
+        "competitive": "Exactly. The A becomes genius and the bad grade becomes bad weather."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch45-q04",
+      "prompt": "A person takes full credit for a promotion but blames conditions for missing the next target. What is the better move?",
+      "choices": [
+        "Apply the same causal standard to both outcomes",
+        "Trust the flattering explanation because it feels good",
+        "Reject all personal credit entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Wins and losses should face the same rules.",
+        "direct": "Correct. The key is symmetry in explanation across outcomes.",
+        "competitive": "That is the move. Make both scorelines pass the same audit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch45-q05",
+      "prompt": "What boundary matters in this chapter?",
+      "choices": [
+        "Skill, luck, and context can matter, but they should not be applied asymmetrically to protect ego",
+        "All success should be denied",
+        "Every failure must be owned completely regardless of context"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter is not denying real causes.",
+        "direct": "Exactly. The warning is against self-favoring double standards, not against nuance.",
+        "competitive": "Yes. Keep reality, lose the two rulebooks."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch45-q06",
+      "prompt": "Why can self-serving bias block learning?",
+      "choices": [
+        "Because it protects identity instead of evaluating causes evenly",
+        "Because confidence always blocks growth",
+        "Because external factors never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Uneven stories make it harder to learn accurately.",
+        "direct": "Correct. When wins are overclaimed and failures underowned, feedback gets distorted.",
+        "competitive": "That is the bruise. The ego gets comfort while the learning loop gets bad data."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch45-q07",
+      "prompt": "What is the hard diagnostic question in this chapter?",
+      "choices": [
+        "Would I use the same explanation if the result had gone the other way?",
+        "How can I protect my confidence more effectively?",
+        "Why should I ignore all praise and blame?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The story should survive a reversal if it is honest.",
+        "direct": "Correct. The test is whether the attribution standard stays stable when the result flips.",
+        "competitive": "Exactly. Ask whether the replay still works after a scoreboard reversal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch45-q08",
+      "prompt": "Why does self-serving bias matter for behavior and not just self-image?",
+      "choices": [
+        "Because distorted outcome stories weaken accountability and learning",
+        "Because bias changes only language",
+        "Because ego protection never affects decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The bias changes how people learn and respond.",
+        "direct": "Exactly. It corrupts feedback loops by making explanation serve identity instead of accuracy.",
+        "competitive": "That is the damage. The ego edits the tape and the mind trains on bad film."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch45-q09",
+      "prompt": "Which response best counters self-serving bias?",
+      "choices": [
+        "Audit wins and losses by the same standard of evidence and contribution",
+        "Trust the story that feels most flattering",
+        "Assume all good outcomes are luck"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Symmetry helps keep explanation honest.",
+        "direct": "Correct. Better judgment uses one evidentiary standard for both positive and negative outcomes.",
+        "competitive": "Exactly. Make both scorelines face the same fact check."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch45-q10",
+      "prompt": "What distinction does this chapter ask you to preserve?",
+      "choices": [
+        "Protecting self-image is different from explaining outcomes accurately",
+        "Confidence is the same thing as accuracy",
+        "Flattering stories are always true"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A comforting story is not always the most accurate one.",
+        "direct": "Correct. The chapter protects the difference between ego defense and causal honesty.",
+        "competitive": "That is the split. A good-looking replay is not always the true one."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

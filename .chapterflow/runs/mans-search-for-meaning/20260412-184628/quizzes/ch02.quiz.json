@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+            "prompt": "When Frankl names shock as the first camp phase, what is he mainly describing?",
+            "choices": [
+                "A condition in which reality is already acting while understanding still lags behind it",
+                "A later numbness that arrives only after camp routine becomes familiar",
+                "An early moral clarity that lets prisoners judge events calmly from the start"
+            ],
+            "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The first phase is shock because reality strikes before the mind can settle into understanding.",
+        "direct": "Frankl names shock first because camp arrival breaks ordinary comprehension before any steadier posture forms.",
+        "competitive": "Shock gets there before analysis has a chance."
+      },
+            "bloomsLevel": "apply-analyze",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is arrival at Auschwitz described as psychologically unstable in this chapter?",
+      "choices": [
+        "Because the prisoners immediately understand every danger in front of them",
+        "Because reality is already acting while comprehension is still fragmentary",
+        "Because the main problem is boredom rather than terror"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's core pressure. The danger is real before the mind has built a full picture of it.",
+        "direct": "Selection and death proximity are already working on the prisoner while understanding is still broken into fragments.",
+        "competitive": "The machinery moves faster than the map in the mind."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+            "prompt": "Which situation best captures the delusion of reprieve in this chapter?",
+            "choices": [
+                "A prisoner immediately accepts the full danger and starts planning around it",
+                "A prisoner clings to a narrower explanation because the full truth has arrived too violently to absorb cleanly",
+                "A prisoner stops feeling fear because fear has become irrational"
+            ],
+            "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The reprieve story is false, but it briefly protects the mind from total overload.",
+        "direct": "Frankl treats reprieve-thinking as a human survival reflex under unbearable pressure, not as simple stupidity.",
+        "competitive": "The psyche cuts truth down to a size it can survive for one more moment."
+      },
+            "bloomsLevel": "remember-understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A fire alarm goes off during Maya's study session, and she keeps telling herself it is probably just a harmless mistake even while the hallway empties quickly. Which reading fits the chapter best?",
+      "choices": [
+        "Her mind may be bargaining for a safer story because the real danger arrived too fast to absorb cleanly",
+        "She is calm because she has already moved beyond shock into wisdom",
+        "Her response proves that first reactions in emergencies are usually reliable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That safer story can be a first reflex when a hard reality arrives all at once.",
+        "direct": "The chapter would read Maya's reaction as reprieve-thinking rather than as clear analysis.",
+        "competitive": "She is buying psychic time, not reading the room accurately."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a crisis meeting, Elias keeps insisting the collapsing numbers must be a reporting glitch, even after multiple checks confirm them. What does Frankl's first-phase logic suggest?",
+      "choices": [
+        "Elias is wisely keeping morale high by delaying judgment",
+        "Elias is using a reprieve story because the full bad reality is still difficult to integrate",
+        "Elias has already reached the emotional numbness of later camp phases"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter helps explain why people bargain against bad news when it first lands.",
+        "direct": "This is the same structure as reprieve-thinking: a smaller interpretation is briefly easier to hold than the full truth.",
+        "competitive": "The glitch story is the room's protective lie."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the strongest misreading of this chapter's early camp psychology?",
+      "choices": [
+        "That the first phase should look like immediate moral clarity and calm courage",
+        "That selection introduces death before prisoners can understand it fully",
+        "That the chapter distinguishes shock from later routine"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Frankl does not flatten first reactions into heroism.",
+        "direct": "The chapter is about disorientation, bargaining, and survival narrowing, not instant philosophical poise.",
+        "competitive": "Clean courage is the wrong fantasy for first contact with horror."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Noor remembers focusing on the pattern of floor tiles after a family emergency instead of grasping the whole event. How does the chapter help interpret that memory?",
+      "choices": [
+        "It suggests she was being avoidant in a morally blameworthy way",
+        "It treats narrowed perception as part of shock when the larger reality is too much to hold at once",
+        "It proves that details always matter more than the larger event"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The fragment-focus can be part of first impact rather than a failure of character.",
+        "direct": "Frankl's first-phase psychology explains how the mind may shrink toward pieces when the whole event is overwhelming.",
+        "competitive": "Her attention grabbed what it could afford while the larger truth was still too expensive."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Ben is briefing a stunned team after a sudden failure. He can offer easy reassurance or speak only from what is verified. Which option fits this chapter best?",
+      "choices": [
+        "Offer the reassurance first, because shock always needs a smaller story",
+        "Speak only from what is verified, because respecting the bargaining reflex does not require feeding it",
+        "Avoid saying anything until the team stops showing emotion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter understands reprieve-thinking without endorsing invented certainty.",
+        "direct": "A leader can recognize shock and still refuse to build response on false reassurance.",
+        "competitive": "Do not turn the room's defensive lie into official strategy."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest tension around early adjustment?",
+      "choices": [
+        "Adjustment is purely good because it lets the person keep functioning",
+        "Adjustment is purely bad because it proves the self is already broken",
+        "Adjustment protects survival while already threatening older emotional and moral responsiveness"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the live tension the chapter keeps open. The shield helps and costs at the same time.",
+        "direct": "Frankl presents contraction as adaptive under shock while also warning that it may begin deadening earlier parts of the self.",
+        "competitive": "The shield keeps you standing and starts charging you for the privilege."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the next chapter need to move beyond shock into a later phase of camp life?",
+      "choices": [
+        "Because the memoir must show what happens when first-impact terror hardens into routine rather than staying new",
+        "Because shock has already answered every major question about inner life",
+        "Because the early phase is mainly historical setup with little psychological value"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first shield cannot remain fresh forever, so the memoir has to follow what it becomes.",
+        "direct": "Moving forward matters because later camp routine changes the psychology from shock to a more durable condition.",
+        "competitive": "First collision is only the opening bill. The next chapter tracks what the hardened shield becomes."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

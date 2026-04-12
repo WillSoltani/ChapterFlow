@@ -1,23 +1,45 @@
 {
   "packageId": "ultralearning.modern",
-  "createdAt": "2026-04-12T00:10:00Z",
+  "createdAt": "2026-04-12T00:18:00Z",
   "contentOwner": "ChapterFlow",
   "book": {
     "bookId": "ultralearning",
     "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
     "author": "Scott H. Young",
-    "categories": [],
-    "tags": [],
+    "categories": [
+      "Education",
+      "Learning",
+      "Self-Improvement",
+      "Career Development"
+    ],
+    "tags": [
+      "ultralearning",
+      "self-directed learning",
+      "skill acquisition",
+      "deliberate practice",
+      "career adaptation"
+    ],
     "edition": {
-      "name": "2019 English first edition / Harper Business hardcover text family",
+      "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
       "translator": "",
       "publishedYear": 2019,
       "translationYear": null,
+      "publishedDate": "2019-08-06",
+      "publisher": "Harper Business",
+      "imprintFamily": [
+        "Harper Business",
+        "HarperCollins",
+        "HarperCollins UK / Thorsons"
+      ],
+      "language": "English",
+      "isbn10": "006285268X",
+      "isbn13": "9780062852687",
+      "openLibraryEdition": "OL28302824M",
       "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
-      "sourceProvenance": "Locked from Open Library first-edition metadata and table of contents, Google Books / Google Play bibliographic and description pages, the Scott H. Young MIT Challenge and TEDx materials, and secondary principle notes recorded in manifests/source-ledger.json."
+      "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
     },
     "variantFamily": "EMH",
-    "chapterRange": "Ch. 1-14"
+    "chapterRange": "Chapters 1-14"
   },
   "chapters": [
     {
@@ -25,7 +47,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 1 only"
       },
       "chapterId": "ch01-mit-challenge",
       "number": 1,
@@ -737,7 +792,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 2 only"
       },
       "chapterId": "ch02-why-ultralearning-matters",
       "number": 2,
@@ -1449,7 +1537,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 3 only"
       },
       "chapterId": "ch03-how-to-become-an-ultralearner",
       "number": 3,
@@ -2161,7 +2282,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 4 only"
       },
       "chapterId": "ch04-principle-1-metalearning-first-draw-a-map",
       "number": 4,
@@ -2873,7 +3027,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 5 only"
       },
       "chapterId": "ch05-principle-2-focus-sharpen-your-knife",
       "number": 5,
@@ -3585,7 +3772,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 6 only"
       },
       "chapterId": "ch06-principle-3-directness-go-straight-ahead",
       "number": 6,
@@ -4297,7 +4517,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 7 only"
       },
       "chapterId": "ch07-principle-4-drill-attack-your-weakest-point",
       "number": 7,
@@ -5009,7 +5262,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 8 only"
       },
       "chapterId": "ch08-principle-5-retrieval-test-to-learn",
       "number": 8,
@@ -5721,7 +6007,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 9 only"
       },
       "chapterId": "ch09-principle-6-feedback-dont-dodge-the-punches",
       "number": 9,
@@ -6433,7 +6752,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 10 only"
       },
       "chapterId": "ch10-principle-7-retention-dont-fill-a-leaky-bucket",
       "number": 10,
@@ -7145,7 +7497,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 11 only"
       },
       "chapterId": "ch11-principle-8-intuition-dig-deep-before-building-up",
       "number": 11,
@@ -7857,7 +8242,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 12 only"
       },
       "chapterId": "ch12-principle-9-experimentation-explore-outside-your-comfort-zone",
       "number": 12,
@@ -8569,7 +8987,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 13 only"
       },
       "chapterId": "ch13-your-first-ultralearning-project",
       "number": 13,
@@ -9281,7 +9732,40 @@
         "bookId": "ultralearning",
         "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
         "author": "Scott H. Young",
-        "variantFamily": "EMH"
+        "categories": [
+          "Education",
+          "Learning",
+          "Self-Improvement",
+          "Career Development"
+        ],
+        "tags": [
+          "ultralearning",
+          "self-directed learning",
+          "skill acquisition",
+          "deliberate practice",
+          "career adaptation"
+        ],
+        "edition": {
+          "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+          "translator": "",
+          "publishedYear": 2019,
+          "translationYear": null,
+          "publishedDate": "2019-08-06",
+          "publisher": "Harper Business",
+          "imprintFamily": [
+            "Harper Business",
+            "HarperCollins",
+            "HarperCollins UK / Thorsons"
+          ],
+          "language": "English",
+          "isbn10": "006285268X",
+          "isbn13": "9780062852687",
+          "openLibraryEdition": "OL28302824M",
+          "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+          "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "Chapter 14 only"
       },
       "chapterId": "ch14-an-unconventional-education",
       "number": 14,

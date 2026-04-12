@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does Book Three address that Book Two leaves unfinished?",
+      "choices": [
+        "How to increase raw output speed once routine exists",
+        "How to keep the work from being distorted by ego even after discipline is learned",
+        "How to stop all criticism from affecting the worker emotionally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Book Three starts after routine exists and asks what the work is serving.",
+        "direct": "The final movement is about motive and allegiance, not about making the calendar even stricter.",
+        "competitive": "You can win the schedule and still lose the work to vanity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which description best fits the chapter's idea of the higher realm?",
+      "choices": [
+        "A license to ignore ordinary craft because the work comes from a special source",
+        "A frame that treats the work as answering to something larger than ego or self-display",
+        "A promise that praise will feel satisfying enough once calling is discovered"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses larger language to move the self out of the center of the labor.",
+        "direct": "The higher frame changes allegiance. It does not cancel discipline or guarantee emotional comfort.",
+        "competitive": "This is about authority, not aura."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A worker keeps the schedule faithfully but still uses each outcome to decide whether they are impressive enough. What would Book Three most likely say?",
+      "choices": [
+        "They have learned routine but not yet reordered the work beyond ego",
+        "They should stop caring about quality so the self has less to lose",
+        "They need a more demanding calendar rather than a different frame"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says showing up is not the last issue if the work is still being used as identity proof.",
+        "direct": "Book Three focuses on possession and motive after discipline has already been established.",
+        "competitive": "The calendar is not the problem if the ego still owns the artifact."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Imani notices that her final presentation slide makes her look sharper but makes the recommendation less clear. Which response best matches the chapter?",
+      "choices": [
+        "Keep the sharper slide because the worker's confidence is part of the message",
+        "Remove the flourish and keep the version that best serves the truth of the task",
+        "Delay the meeting until she feels completely pure in motive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks the worker to serve the task instead of using it for self-decoration.",
+        "direct": "Faithful delivery outranks ego polish once the work is treated as entrusted rather than possessed.",
+        "competitive": "Cut the vanity and keep the truth."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which option shows a mistaken reading of the higher-realm idea?",
+      "choices": [
+        "Treating the larger frame as a reason to become more exact and humble in the work",
+        "Treating calling language as permission to drift into vague uplift and weaker craft",
+        "Treating service as a way to lower the ego temperature around feedback"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that larger language becomes false if it weakens craft or flatters the self.",
+        "direct": "Book Three rejects mystical inflation and chosen-artist theater. The bigger frame must stay answerable to discipline.",
+        "competitive": "If the frame makes you airy and sloppy, ego has changed costumes."
+      },
+      "bloomsLevel": "distinguish",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter keep discipline in force instead of replacing it with inspiration or spiritual feeling?",
+      "choices": [
+        "Because the higher frame is honest only if it increases humility, labor, and craft",
+        "Because spiritual language is useful only in corporate settings",
+        "Because discipline guarantees that praise and criticism will stop hurting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The book keeps the habit because a larger purpose should make the work cleaner, not softer.",
+        "direct": "Book Three does not discard Book Two. It gives discipline a truer object and keeps craft standards severe.",
+        "competitive": "The real frame pushes you lower into the work, not out of it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lucas wants his capstone project to make the room notice how original he is. What response best fits the chapter?",
+      "choices": [
+        "Ask what the project itself needs and cut elements that exist mainly to flatter the maker",
+        "Add even more cleverness so the approval he wants is secured before critique begins",
+        "Detach from all feedback because service means no longer listening to others at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Book Three redirects the work toward the task instead of toward approval hunger.",
+        "direct": "Service becomes concrete when it changes studio decisions and removes vanity-driven additions.",
+        "competitive": "Make the piece answer its job, not your insecurity."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Renee keeps asking whether a song will raise her status. What shift would Book Three most likely require?",
+      "choices": [
+        "Treat the song as entrusted work and judge choices by faithful delivery instead of image gain",
+        "Stop caring about the song so status no longer matters",
+        "Wait for a stronger mystical sign before deciding how to record it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter pushes the artist from self-branding toward stewardship of the work itself.",
+        "direct": "The issue is not whether she values the song, but whether the song is being used to certify identity.",
+        "competitive": "Move from aura management to clean delivery."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does service steady the worker more than ambition does in this chapter?",
+      "choices": [
+        "Because service makes criticism impossible to feel",
+        "Because service points outward to the task instead of letting praise, fear, and comparison rule interpretation",
+        "Because service removes the need for standards or competition entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Service helps because it keeps the work aimed at the task instead of at self-display.",
+        "direct": "Ambition rises and falls with feedback, while stewardship gives the worker a more stable relation to praise and blame.",
+        "competitive": "Service is harder for vanity to bribe."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What closing change does the book ultimately ask of the worker?",
+      "choices": [
+        "To become indifferent to craft because purpose now matters more than execution",
+        "To move the self beneath the work so faithful delivery matters more than self-glorification",
+        "To avoid all praise and criticism by withdrawing from public work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The book closes by reordering the self under the task rather than by erasing the self or softening the work.",
+        "direct": "Faithful delivery becomes the final measure once ego is no longer the master of interpretation.",
+        "competitive": "The endgame is custody, not image."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

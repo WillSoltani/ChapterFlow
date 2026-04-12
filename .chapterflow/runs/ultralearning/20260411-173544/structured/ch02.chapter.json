@@ -3,7 +3,40 @@
     "bookId": "ultralearning",
     "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
     "author": "Scott H. Young",
-    "variantFamily": "EMH"
+    "categories": [
+      "Education",
+      "Learning",
+      "Self-Improvement",
+      "Career Development"
+    ],
+    "tags": [
+      "ultralearning",
+      "self-directed learning",
+      "skill acquisition",
+      "deliberate practice",
+      "career adaptation"
+    ],
+    "edition": {
+      "name": "2019 English first-edition family / Harper Business hardcover with aligned HarperCollins and Thorsons variants",
+      "translator": "",
+      "publishedYear": 2019,
+      "translationYear": null,
+      "publishedDate": "2019-08-06",
+      "publisher": "Harper Business",
+      "imprintFamily": [
+        "Harper Business",
+        "HarperCollins",
+        "HarperCollins UK / Thorsons"
+      ],
+      "language": "English",
+      "isbn10": "006285268X",
+      "isbn13": "9780062852687",
+      "openLibraryEdition": "OL28302824M",
+      "sourceText": ".chapterflow/runs/ultralearning/20260411-173544/source-freeze/book-source.txt",
+      "sourceProvenance": "Locked from Open Library first-edition metadata and canonical table of contents, Google Books and Google Play bibliographic records, and the run edition lock in manifests/edition-lock.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Chapter 2 only"
   },
   "chapterId": "ch02-why-ultralearning-matters",
   "number": 2,
@@ -257,7 +290,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["career-change", "reskilling", "time-blocking"],
+      "contexts": [
+        "career-change",
+        "reskilling",
+        "time-blocking"
+      ],
       "scenario": {
         "gentle": "Tasha's company has started automating the work she has done for six years. She has spent four months reading about data analysis in spare moments, but her calendar still has no protected block and no finished project. Her manager asks where she sees herself in a year. Tasha can keep treating the subject like background interest, or she can turn it into the main learning project of the next season.",
         "direct": "Tasha knows her current role is shrinking, yet her attempt to move into analytics is still built from scattered articles and weekend curiosity. She has to decide whether the goal remains exploratory or whether it now deserves protected time and a real project structure.",
@@ -280,7 +317,11 @@
       "category": "school",
       "format": "dialogue",
       "endingType": "hidden_cost",
-      "contexts": ["advising", "focus", "project-choice"],
+      "contexts": [
+        "advising",
+        "focus",
+        "project-choice"
+      ],
       "scenario": {
         "gentle": "Liam is in the internship office with three notebooks open on the desk. One is for coding, one for design, and one for language study. He tells his adviser he wants to become more competitive by summer. The adviser studies the spread of half-started plans and asks, \"Which one of these are you actually willing to make serious?\"",
         "direct": "Liam wants faster growth before internship season, but his effort is divided across too many parallel interests. In the advising meeting, he is pressed to decide whether any one of them matters enough to deserve concentrated attention.",
@@ -303,7 +344,11 @@
       "category": "personal",
       "format": "dilemma",
       "endingType": "identity_shift",
-      "contexts": ["hobby", "craft", "commitment-boundary"],
+      "contexts": [
+        "hobby",
+        "craft",
+        "commitment-boundary"
+      ],
       "scenario": {
         "gentle": "Noor loves taking Saturday pottery classes. Her friend tells her she should go all in, build a side business, and treat ceramics like an ultralearning project. Noor looks at the quiet shelf of bowls she made for herself and feels two different truths at once: she cares about the craft, and she also loves that it has not become an obligation.",
         "direct": "Noor enjoys pottery deeply, but she is unsure whether that enjoyment should turn into a serious production push. She has to decide whether the goal remains exploratory and restorative or whether it now deserves the weight of structured commitment.",
@@ -326,7 +371,11 @@
       "category": "work",
       "format": "reset_moment",
       "endingType": "risk_reframe",
-      "contexts": ["promotion", "leadership", "skill-gap"],
+      "contexts": [
+        "promotion",
+        "leadership",
+        "skill-gap"
+      ],
       "scenario": {
         "gentle": "Isaac has just moved into a team-lead role. His new calendar is packed, and he keeps telling himself he will learn the managerial parts gradually. After a tense one-on-one goes badly, he sits at his desk long after the office empties and realizes gradual is starting to mean avoidant.",
         "direct": "A promotion exposes Isaac's leadership gap. He has been assuming that slow exposure will be enough, but a failed conversation makes the cost of drift obvious.",
@@ -349,7 +398,11 @@
       "category": "school",
       "format": "planning_choice",
       "endingType": "downstream_consequence",
-      "contexts": ["semester-planning", "priority", "calendar"],
+      "contexts": [
+        "semester-planning",
+        "priority",
+        "calendar"
+      ],
       "scenario": {
         "gentle": "Maya's study lounge table is covered with flashcards for language study, design notes for a club project, and prep books for a technical interview. Her calendar has three colored blocks, none of them large enough to push one skill far. Registration week is ending tonight, and Maya has to decide whether this semester will stay broad or finally get sharp.",
         "direct": "Maya wants to improve in several directions at once, but her calendar is too fractured for deep movement. She has to choose whether one goal gets concentrated energy while the others drop to maintenance mode.",
@@ -372,7 +425,11 @@
       "category": "personal",
       "format": "mistake_recovery",
       "endingType": "boundary_condition",
-      "contexts": ["overcommitment", "energy", "goal-selection"],
+      "contexts": [
+        "overcommitment",
+        "energy",
+        "goal-selection"
+      ],
       "scenario": {
         "gentle": "Jordan read about ultralearning and tried to launch intense projects in coding, guitar, and fitness all at once. By week three, the kitchen counter is covered with abandoned plans and he feels guilty every time he walks past them. The problem is not lack of effort. It is that he treated every curiosity as if it deserved the same level of commitment.",
         "direct": "Jordan overapplies the chapter's message by forcing multiple interests into high-intensity mode at the same time. Burnout and confusion show that the strategy has been used without a filter.",

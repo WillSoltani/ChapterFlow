@@ -14,52 +14,74 @@
   "withinChapterNames": {},
   "approvedChapterHashes": {
     "ch01": {
-      "hash": "ab2bda8d8ab15b9fffbc492b5a34ce109561e9b138eed5d2323bfcfe78d19cbb",
-      "validatedAt": "2026-04-11",
+      "hash": "a0d985515a7018734fc1f0fbf8caae20e2c7e6883d413aaa279a802bbb601801",
+      "validatedAt": "2026-04-12",
       "title": "Why a pyramid structure",
-      "chapterId": "ch01-why-a-pyramid-structure"
+      "chapterId": "ch01-why-a-pyramid-structure",
+      "chapterSha256": "7555de4fbc150f8368528f51f008c0ef4ca8509fe06bd4a699a1ecb026144ab7"
     },
     "ch02": {
-      "hash": "87b600529ea5adc98e0b956065b10e4534b084a7ad4e47fef0f43acf00b354a8",
-      "validatedAt": "2026-04-11",
+      "hash": "ab0ea24d1cd22fef1ea81baa9a6bf3df187c92cd7c5cd2e0c7717c98c7ca36c1",
+      "validatedAt": "2026-04-12",
       "title": "The substructures within the pyramid",
-      "chapterId": "ch02-substructures-within-the-pyramid"
+      "chapterId": "ch02-substructures-within-the-pyramid",
+      "chapterSha256": "c22f0d09c6e0da67049eeb271d54971ee14097df706f59892368c3d796352d6b"
     },
     "ch03": {
-      "hash": "9af5aee14550ce16de03e5cd7efb8f310f014594066b5e58780de4eb04d16e32",
-      "validatedAt": "2026-04-11",
+      "hash": "3ada91402f38cd0608ae5dd1c8149ee2ff80237cd6fe32f69e4363cfd1821e73",
+      "validatedAt": "2026-04-12",
       "title": "How to build a pyramid structure",
-      "chapterId": "ch03-how-to-build-a-pyramid-structure"
+      "chapterId": "ch03-how-to-build-a-pyramid-structure",
+      "chapterSha256": "04cb5576e76ba9d3e3aa9bd8db6259f20c6ed38959f008f04ecdea81edf84795"
     },
     "ch04": {
-      "hash": "e0e6bead8135354441fc80259d1a298950f554a58ad82d9979c1bed38cd983b4",
+      "hash": "a6af5af1456209a7bd813d231d4e6811d51915ac07a91eb2caa300e2fc7e4c07",
       "validatedAt": "2026-04-12",
       "title": "Fine points of introductions",
-      "chapterId": "ch04-fine-points-of-introductions"
+      "chapterId": "ch04-fine-points-of-introductions",
+      "chapterSha256": "144ebeab764ffba2ddc03cafeadbd1e6da063bbe07c7d9f427b7f1b2bf73ca3e"
     },
     "ch05": {
-      "hash": "ccbd1a98fde544f03c61230a4b284cc03e43c8b30dfce7121c595cc861a4c9a7",
+      "hash": "0dbb12101d6376951bc0a37e9e014414646695c7f46cdd6d75475248e271b8ca",
       "validatedAt": "2026-04-12",
       "title": "Deduction and induction: the difference",
-      "chapterId": "ch05-deduction-and-induction-the-difference"
+      "chapterId": "ch05-deduction-and-induction-the-difference",
+      "chapterSha256": "51d035de7fcf660eb90232f517d8057097165dc7117775f99f28cc3519d48d9a"
     },
     "ch06": {
-      "hash": "aaca59159276521b019186cf455a44c042a6cb6bbdfd0617f7c0de72639931e4",
+      "hash": "16f29749b8d462fdc2995e63eab04f70506d13dc67fef0eb4f8e1c0d91034768",
       "validatedAt": "2026-04-12",
       "title": "How to highlight the structure",
-      "chapterId": "ch06-how-to-highlight-the-structure"
+      "chapterId": "ch06-how-to-highlight-the-structure",
+      "chapterSha256": "c6fc22694d77affd62f0da42048f083ac2ae794ac4703277eb5ed68c8efea86d"
     },
     "ch07": {
-      "hash": "857d1441198165c29c513ce30206bc6a936374852c9195297d086a6d4b03f2d3",
+      "hash": "905ff9e2726dbbbf58f9fe1964072f3d484e837bb0bb46cf1b551ec91c8036f8",
       "validatedAt": "2026-04-12",
       "title": "Questioning the order of a grouping",
-      "chapterId": "ch07-questioning-the-order-of-a-grouping"
+      "chapterId": "ch07-questioning-the-order-of-a-grouping",
+      "chapterSha256": "24d3a1b84a7c3069f62aff1b944642b91a886d93dd4cf411c846635a5c7f78e2"
     },
     "ch08": {
-      "hash": "d359f82ed8c98d8ddc80c769b11a7ae83fc8652d566f24c4301a4fe470268984",
+      "hash": "6d81b390d1f3ee7ca1a221272f70aff8e7a5f186bc0b876a1c560a7ed3c7ed8f",
       "validatedAt": "2026-04-12",
       "title": "Questioning the problem-solving process",
-      "chapterId": "ch08-questioning-the-problem-solving-process"
+      "chapterId": "ch08-questioning-the-problem-solving-process",
+      "chapterSha256": "c9685b2cf62f6e08b8693a2f00dd05e1bfd816657064f028bc6268eac7faba50"
+    },
+    "ch09": {
+      "hash": "7831c576d73004307dd858e849851c8b5be60b1b25279b49bc6aab49be200938",
+      "validatedAt": "2026-04-12",
+      "title": "Questioning the summary statement",
+      "chapterId": "ch09-questioning-the-summary-statement",
+      "chapterSha256": "7a0fe675ae37ea203e90ff19f6407644289a9f00989f2061dbc4c003d6763c94"
+    },
+    "ch10": {
+      "hash": "62671fba22c1d58acdd25f1eb59b20547e5a9b7b3673bdea472037b94ba2a147",
+      "chapterSha256": "a867bbada2e334b16774376ee1996b793315712f3bff8d21b98398321383cb7a",
+      "validatedAt": "2026-04-12",
+      "title": "Putting it into readable words",
+      "chapterId": "ch10-putting-it-into-readable-words"
     }
   },
   "baselineQuality": {

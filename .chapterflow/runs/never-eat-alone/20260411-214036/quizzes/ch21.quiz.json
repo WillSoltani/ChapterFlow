@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about anchor tenants?",
+      "choices": [
+        "A few relationships stabilize a wider network and deserve deeper care",
+        "The best networking move is to focus only on the most prestigious people",
+        "Light maintenance is enough for every important relationship"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats some ties as structural supports for the wider network.",
+        "direct": "Its core claim is that certain relationships deserve deeper investment because they stabilize more than themselves.",
+        "competitive": "A few ties hold the structure up."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do some relationships matter more in this chapter?",
+      "choices": [
+        "Because they quietly support trust, access, and continuity across a broader circle",
+        "Because they are always the highest-status people available",
+        "Because they require more frequent messaging than everyone else"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values stabilizing weight, not glamour.",
+        "direct": "Some ties matter because they hold together more of the network.",
+        "competitive": "They carry structural load."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Celeste notices that one reliable colleague quietly makes several work transitions easier. What best fits this chapter?",
+      "choices": [
+        "Invest more deeply in that stabilizing tie before a need appears",
+        "Ignore the colleague and pursue a flashier contact instead",
+        "Treat all relationships as identical so no one feels favored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors deeper care for ties that stabilize the wider structure.",
+        "direct": "A quiet pillar deserves investment before pressure turns the move transactional.",
+        "competitive": "Feed the real support."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In a mentor cohort, Amir sees one quieter relationship opening several practical paths. What is his strongest move?",
+      "choices": [
+        "Treat that relationship as an anchor worth deeper care",
+        "Shift attention to the most visible mentor in the room",
+        "Keep the relationship at surface level because deeper care looks strategic"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks for judgment about which ties actually hold things together.",
+        "direct": "Structural importance beats visible status here.",
+        "competitive": "Back the real pillar."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What prestige trap does this chapter criticize?",
+      "choices": [
+        "Reducing anchor care to elite chasing and hierarchy worship",
+        "Building trust through durable care",
+        "Recognizing that not every tie plays the same role"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects feeding relationships mainly because they look impressive.",
+        "direct": "Once anchor logic becomes ladder-climbing, the chapter collapses.",
+        "competitive": "Idol logic kills the architecture."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That some ties deserve deeper investment because they stabilize the network",
+        "That anchor relationships are simply the most socially superior people",
+        "That durable care should arrive before a request appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter refuses to equate importance with visible prestige.",
+        "direct": "An anchor is not automatically the flashiest or most powerful contact.",
+        "competitive": "Shiny is not structural."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Ronan is tempted to neglect a dependable friend while chasing impressive new contacts. What would this chapter tell him?",
+      "choices": [
+        "Stay focused on the impressive contacts because reach matters most",
+        "Return care to the tie that more reliably stabilizes trust and continuity",
+        "Split attention evenly so no relationship is prioritized"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against taking real anchors for granted while chasing prestige.",
+        "direct": "A dependable stabilizing tie may deserve more investment than a glamorous new contact.",
+        "competitive": "Do not drop the pillar for the sparkle."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is an anchor relationship stronger than a glamorous contact in this chapter?",
+      "choices": [
+        "Because stabilizing value matters more than visible status",
+        "Because glamorous contacts should always be avoided",
+        "Because quieter relationships are morally purer than influential ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats structural support as the main test.",
+        "direct": "A relationship is strong here because it holds things together, not because it flatters ambition.",
+        "competitive": "Support beats shine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between care and structure?",
+      "choices": [
+        "Durable care should go toward the ties that quietly stabilize wider trust and continuity",
+        "Every relationship should receive the same level of investment",
+        "Care matters only when it leads directly to access"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter connects deeper care to the relationships carrying hidden structural weight.",
+        "direct": "Investment belongs where the wider network is being stabilized, not where status merely looks exciting.",
+        "competitive": "Feed what holds the structure."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "What looser fringe ties add that the anchored core cannot provide alone",
+        "How to reduce the network to only the most useful people",
+        "How to make anchor ties more exclusive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from core stability to the fresh reach of the network fringe.",
+        "direct": "After anchors comes the question of edge ties and surprise.",
+        "competitive": "Next: work the edge."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

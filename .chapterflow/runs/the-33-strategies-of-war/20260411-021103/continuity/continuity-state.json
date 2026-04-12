@@ -743,6 +743,54 @@
     ],
     "Rivka": [
       "ch31"
+    ],
+    "Kestrel": [
+      "ch32"
+    ],
+    "Noor": [
+      "ch32"
+    ],
+    "Harlan": [
+      "ch32"
+    ],
+    "Tovah": [
+      "ch32"
+    ],
+    "Orin": [
+      "ch32"
+    ],
+    "Darian": [
+      "ch32"
+    ],
+    "Lysander": [
+      "ch32"
+    ],
+    "Amira": [
+      "ch32"
+    ],
+    "Viren": [
+      "ch33"
+    ],
+    "Calla": [
+      "ch33"
+    ],
+    "Tariq": [
+      "ch33"
+    ],
+    "Isla": [
+      "ch33"
+    ],
+    "Jules": [
+      "ch33"
+    ],
+    "Ari": [
+      "ch33"
+    ],
+    "Zora": [
+      "ch33"
+    ],
+    "Aster": [
+      "ch33"
     ]
   },
   "formatCategoryHistory": [],
@@ -839,6 +887,12 @@
     ],
     "graduate-organizational-psychology-seminar": [
       "ch31"
+    ],
+    "graduate-conflict-resolution-lab": [
+      "ch32"
+    ],
+    "graduate-risk-analysis-seminar": [
+      "ch33"
     ]
   },
   "wordFrequency": {},
@@ -1160,39 +1214,62 @@
       "Thalia",
       "Maelle",
       "Rivka"
+    ],
+    "ch32": [
+      "Kestrel",
+      "Noor",
+      "Harlan",
+      "Tovah",
+      "Orin",
+      "Darian",
+      "Lysander",
+      "Amira"
+    ],
+    "ch33": [
+      "Viren",
+      "Calla",
+      "Tariq",
+      "Isla",
+      "Jules",
+      "Ari",
+      "Zora",
+      "Aster"
     ]
   },
   "approvedChapterHashes": {
-    "ch01": "7ce5f39131717fcc5f4682cf9234eb5aece84fe649faf28e007f9f6a7b61b14d",
-    "ch02": "e1b4bb329c7f0e0ded1ef06dc11b241585e4ef64a6c7342a2861a7b38d490221",
-    "ch03": "142e8cbf92835a1a316d1643c768b6e65929ece7e0a26a6ca3dda9b69fd00459",
-    "ch04": "d18eb11242d833d3b41e74e2341b8e1432e3b473a31e6f2b0737bc427f6dadd7",
-    "ch05": "a19b1b6982b89aa5eb3665aaa422dcf5fefc79687ae2311962b470a35cbc191e",
-    "ch06": "0265d785abc9527ce9f6de147f088e22b1788ac0321250910daef8152ca5d683",
-    "ch07": "2bd344c986ad39a10aeae6e166bed0eda92f3ed1755b4ddc9fafc80de6c714e5",
-    "ch08": "6b9da0a89d267c1f3928c7050e0074361ce32ab09795a6049fa0ec917c50a25f",
-    "ch09": "4f0bd49054f2ab254ac19e76aa12ea2ef5f09fd135d59f432229952a0fa5e274",
-    "ch10": "16f8a50af77a03c3ebda5f327ea06972928da6dce60ee75dc7d3d56673f95db1",
-    "ch11": "17ef882f6796deb83f8e2666f2f810cf7d242a82d2242ea3bb6b83c89bf579f2",
-    "ch12": "b7fff59d2fd73802b1fd3689b7594988fa578e772962495a03263fda6551124d",
-    "ch13": "9801d387a69d1e3e2da9569925f4cd4da3e6cd3b6e241fbb436ca56a2a8054a7",
-    "ch14": "eb8315a1d581188e97746f189897a2a5286b242a43bab3d3b15de72f532fcd5d",
-    "ch15": "679a58348eb01b0246d8486136f84a62a8a78f93ad56945c6fdd19eb054f00fb",
-    "ch16": "19a81913bbc1ce5f701ea66d4fda4ef8f9f3d95e6fa45f8d3d9e6ca223d98aa8",
-    "ch17": "cabd4e80e4adc2a4e1975ac2697d9a0dd4d6abd94d20d972bf89b5604c0a9325",
-    "ch18": "a593a6b9cd0d439b7c8960a3664058155a56f019e6237d80b52b8396d781ac01",
-    "ch19": "9a038d59db3f0acbd35b6e9e6f67e534dda815f91f47e589c58926dd2a09b39c",
-    "ch20": "767702af94d274203ff75900102b6f61058cb5a26f519cf6cffa7f16e47d9870",
-    "ch21": "5ecba7571c5c24262b14b9fb41fc23b528790ca6b11bd4d66bd0d2a7a9e42a47",
-    "ch22": "fa7d7bd6086cca6e3450a2323e831fe79aefeff792ca723614d0f07c82e0ae3b",
-    "ch23": "fe00c344a7f249a528ad53533a6a8d124e1e031e6269b2fc381d3aff0b73c921",
-    "ch24": "51a933a72a61132ef0ca0ba1bd4b3a5d0827cfb3375ab6f4871a60ab5c4bd1a4",
-    "ch25": "2498e045d3da1dc2ffb9d8690cb9a2679892b705f075eb1a413c2ed09444eebd",
-    "ch26": "e4cd468851f1bdc3fb10cab9dfb97b04853df9e038c3088ab5e0d94de148ad6b",
-    "ch27": "0f73e0f4cd622549867f1e8cdc9dbc0976efa0bf58aea12d71f6ab1af1a2b4fb",
-    "ch28": "8362ac89be082a5dca50f612b2058cf0df6094957a226c528e45703d35c2b58c",
-    "ch29": "4aa4db177aad76d272ec92f8b1706ca6eeded7a2a198d499a86bf1e88b9cbd77",
-    "ch30": "58fa9e659d1977de64b08ccb29f466a60056bedb5d6b719de50b8aefd98fe0d8"
+    "ch01": "f472e81fcd7e0c60f503ede97a8e1762b7bfad6c3fe279858c43fbfbd7a885cc",
+    "ch02": "30653c83fd9e86565fe0e644e6ab2570637855f840961dadfa61a693291fae3b",
+    "ch03": "2523d99c940051433a306cf829492f73742b5b84ac05429ead7a18198694c800",
+    "ch04": "380cc9ce2725aa761300f54c96b5b01077878da0e8e8225f2174fead981db22f",
+    "ch05": "51cebaeaa3c9e2b829ab1ae8b2cdafaa265580c178bf5a9a398c9405bc8448cc",
+    "ch06": "cfd666dec171977f8c5525b2dff3ed4470ceaac66411f2253bd352c5192d016c",
+    "ch07": "695937f4b8b7c42060077245c0a3edd13dd5930e6d5d3c06389552b29dad0a49",
+    "ch08": "f9c80c5ae1e4d9ef2af4808259118afd96fc6e4f2fc86a8be7ff9260b80c6ee8",
+    "ch09": "a78c5e2f9c8658831d26d493897299070d1d7e59e7b17bb23b823adef74141eb",
+    "ch10": "958176b5dfc9fc79b330b17fafc9b992035a23ae80fb34ac2d2f30b9f6e27184",
+    "ch11": "47f990c443059a00600e83a17769005a5adc5fb33b5e525a4a7b04e4a573e311",
+    "ch12": "fcbe65042ccc69ad2ea6a44e0b8f24c27c67dcf86754422ce2c1a121b9718221",
+    "ch13": "0169f63ccff004814b9941a97d3486cca16c9bb57c260ab5d3408df3c2776be8",
+    "ch14": "c963782a88a40f37d054cdf0642ccc5192cbe326b862b98bb6b06bb44e1b34e3",
+    "ch15": "d578d50ffb1a4156dc12ce20a5908356c0cdc7543c97f1c67b1fef61ade92e74",
+    "ch16": "644a0b8614ef7851e6962ec188df9508e82cb2cd8ba97028ffaf13b49978034e",
+    "ch17": "8663b473ce4f110f854c3cc853713b682069128b9324e12f7ed29740530c485a",
+    "ch18": "6adafaaa7650dd3ba4c9ee96ca1ed4801845359fa46ea2a85f627fd9f2692595",
+    "ch19": "c093e397a7b2a61855c26786faf805ae375cf341c5bc2754ddedbf280a1c5aef",
+    "ch20": "489c83bcbbaac94e42e24d58ff90bd3006c2bf2b05c185dd20d912fd9df4045f",
+    "ch21": "c65dfb6fe2fdeea71f4f31f32f61df8641be4d8cb2d817502c49b20ecfe2509e",
+    "ch22": "1451a68af1df11a91611b6fe45faed0c832e31a2bb370c2e181301b7dd59246d",
+    "ch23": "187701e57651febb67714f1b1d915192a02fa3b08a08ecc988aa41179ffc5e6e",
+    "ch24": "9b83d68a50f0cf187302b2114bcbf4fdc2ca89d200edfb346d4a993a19c5b551",
+    "ch25": "01abad3f3505da8cbb568a9cba60ef370232e75fd14c20d23ec4c07694cc5fea",
+    "ch26": "ee1ad1add2c3380661221c546a215cb809d53aa706a93df615861de84120bac1",
+    "ch27": "516d8dd5037c73ea281f49e38f2b2821a7d896950c1585b62ec005daaa91c6f8",
+    "ch28": "a46da9e689d3886c51d7743b04f595c1b822023f3c3539ff8a64568d27f327cd",
+    "ch29": "14afd71bc37d565b96e2e0698131fdcaf70a2688d849fd7cf052de104e0491aa",
+    "ch30": "29ca16c14a906ccb84dcc2ec3d5c26b8ef79e9f3ca57189373fd154190131f66",
+    "ch31": "7f633f4ccbf53337cad6688d1ca95a85bae2d53375c6c96c15b28b871e3f6fcb",
+    "ch32": "e67b060f0cb5cbe9d718ce906718b54b04f62c95eb5de1db8b8975d8739194c5",
+    "ch33": "817a599239eea4821c151f40afb62ae4c3bafc9318b0ca1d61ef2eafc3e52fac"
   },
   "baselineQuality": {}
 }

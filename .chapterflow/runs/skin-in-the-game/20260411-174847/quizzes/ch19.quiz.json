@@ -1,0 +1,175 @@
+{
+  "chapterId": "ch19-the-logic-of-risk-taking",
+  "questions": [
+    {
+      "questionId": "ch19-q01",
+      "prompt": "What stronger test of risk taking drives this chapter?",
+      "choices": [
+        "Whether the upside looks exciting",
+        "Whether the downside can cause ruin and end the game",
+        "Whether the decision feels bold"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter judges risk by survivability, not by glamour.",
+        "direct": "Taleb ranks ruin sensitivity above upside excitement.",
+        "competitive": "If it can end the game, stop admiring the swagger."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q02",
+      "prompt": "Why do leverage and nonlinear downside matter so much here?",
+      "choices": [
+        "Because they can turn small-looking risks into terminal losses",
+        "Because leverage always increases wisdom",
+        "Because upside and downside are usually symmetrical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The danger is that loss can accelerate and erase recovery.",
+        "direct": "Taleb treats leverage as a key path from ordinary risk to ruin.",
+        "competitive": "A little leverage can build a very big grave."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q03",
+      "prompt": "What makes a risk attractive but still irrational in Taleb’s frame?",
+      "choices": [
+        "If it has any upside at all",
+        "If the upside is bright but the downside can wipe out future participation",
+        "If it feels emotionally difficult"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is game-ending downside, not the existence of reward.",
+        "direct": "A risk can look exciting and still fail the ruin test.",
+        "competitive": "A shiny upside does not cancel a kill shot."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q04",
+      "prompt": "A choice offers large upside but can also erase the ability to continue. What would Chapter 19 emphasize?",
+      "choices": [
+        "The upside justifies the exposure automatically",
+        "The risk is suspect because losing can end the game",
+        "The decision cannot be judged"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks whether you can keep playing after a bad outcome.",
+        "direct": "Taleb wants game-ending downside ruled out before boldness is admired.",
+        "competitive": "If one loss ends the story, the upside is bait."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q05",
+      "prompt": "How does this chapter connect to the rest of the book?",
+      "choices": [
+        "It closes by applying the asymmetry test to risk itself",
+        "It abandons exposure and downside concerns",
+        "It argues that all caution is weakness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same asymmetry logic now becomes the closing rule for risk.",
+        "direct": "Taleb returns to who gets the upside and who eats the downside.",
+        "competitive": "The whole book cashes out in the ruin ledger here."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q06",
+      "prompt": "Why is precaution central to sensible risk taking here?",
+      "choices": [
+        "Because it helps rule out exposures that can erase recovery",
+        "Because it removes all uncertainty from life",
+        "Because risk should never be taken"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Precaution protects continued participation.",
+        "direct": "Taleb wants bounded downside before upside-seeking begins.",
+        "competitive": "First survive, then get clever."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q07",
+      "prompt": "Why is this chapter not a blanket rejection of risk?",
+      "choices": [
+        "Because the target is ruinous exposure, not bounded risk that leaves room to continue",
+        "Because every bold gamble is wise",
+        "Because leverage makes all risk safe"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter distinguishes bounded risk from terminal exposure.",
+        "direct": "Taleb is attacking ruin, not forbidding all uncertainty.",
+        "competitive": "He is humiliating suicidal bravado, not banning live bets."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch19-q08",
+      "prompt": "What stronger question should a reader ask before admiring a bold risk?",
+      "choices": [
+        "Does it sound courageous?",
+        "Does it preserve optionality and the ability to stay in the game after loss?",
+        "Does it impress spectators?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The stronger question is about survivable downside.",
+        "direct": "Taleb wants boldness checked against optionality preservation.",
+        "competitive": "Ask whether you can still play after the hit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch19-q09",
+      "prompt": "What is the deeper lesson of Chapter 19?",
+      "choices": [
+        "Real risk intelligence protects against ruin while allowing future participation",
+        "Only the largest upside matters",
+        "Caution and courage can never coexist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties good risk taking to survival and continuation.",
+        "direct": "Sensible risk is bounded enough to keep optionality alive.",
+        "competitive": "The smart bet is the one that does not erase the bettor."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch19-q10",
+      "prompt": "Which sentence best captures the chapter’s lesson?",
+      "choices": [
+        "The boldest-looking risk is usually the best one",
+        "Take risks that leave you in the game and distrust those that can end it for good",
+        "Leverage is mainly a sign of seriousness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants survival treated as part of courage.",
+        "direct": "Taleb upgrades bounded risk and demotes game-ending exposure.",
+        "competitive": "If the bet can delete you, it is not brave enough to respect."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deep"
+    }
+  ]
+}

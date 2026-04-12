@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the chapter mean by restraint?",
+      "choices": [
+        "Control over timing before expression becomes action",
+        "Removing all personality from serious work",
+        "Avoiding strong feeling entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats restraint as governed timing, not as emptiness.",
+        "direct": "Its core move is to keep impulse under judgment before expression is released.",
+        "competitive": "Command the beat before you spend the force."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Priya has written a sharp late-night email. Which response best fits the chapter?",
+      "choices": [
+        "Send it immediately so the feeling stays authentic",
+        "Leave it unsent until timing and usefulness can be judged",
+        "Delete it because expression is always dangerous"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the reaction held long enough for judgment to work.",
+        "direct": "Restraint protects the task by refusing immediate release automatic authority.",
+        "competitive": "Do not let the draft choose the beat."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "In a seminar discussion, what most clearly shows strategic restraint?",
+      "choices": [
+        "Saying nothing all period so you cannot be wrong",
+        "Interrupting early so the room knows you care",
+        "Waiting to speak until the timing improves the discussion"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is not anti-speaking. It wants speaking governed by timing.",
+        "direct": "The stronger move is to let usefulness, not identity pressure, decide when to enter.",
+        "competitive": "Own the beat instead of racing for it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What limit does the chapter place on restraint?",
+      "choices": [
+        "Restraint should become permanent silence",
+        "Restraint is just fear presented in better language",
+        "Restraint is strong only when it remains governed expression rather than suppression"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps expression available. It only refuses to let impulse choose the timing automatically.",
+        "direct": "Its limit is clear: restraint must not collapse into timidity or deadened self-erasure.",
+        "competitive": "Command is not the same thing as going flat."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "How does this chapter prepare the next chapter's concern?",
+      "choices": [
+        "By showing that quieter outward expression makes inward self-reference easier to notice",
+        "By proving that ambition should avoid all discussion from now on",
+        "By replacing ego entirely with perfect discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the self is less busy reacting outwardly, its inward looping becomes easier to see.",
+        "direct": "Restraint lowers one kind of ego noise and exposes another.",
+        "competitive": "Lower the broadcast and the inner loop gets louder."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

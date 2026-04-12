@@ -1,8 +1,8 @@
 {
   "nameUsage": {
-    "Elena": 2,
-    "Marcus": 4,
-    "Priya": 4,
+    "Elena": 3,
+    "Marcus": 5,
+    "Priya": 5,
     "Diego": 1,
     "Naomi": 1,
     "Evan": 2,
@@ -22,8 +22,8 @@
     "Chris": 1,
     "Alia": 1,
     "Dev": 1,
-    "Serena": 2,
-    "Malik": 2,
+    "Serena": 3,
+    "Malik": 3,
     "June": 1,
     "Theo": 2,
     "Paula": 1,
@@ -35,26 +35,26 @@
     "Carla": 1,
     "Jin": 1,
     "Brooke": 1,
-    "Andre": 3,
+    "Andre": 4,
     "Mina": 1,
     "Scott": 1,
-    "Dana": 1,
+    "Dana": 2,
     "Professor Shah": 1,
-    "Lila": 2,
+    "Lila": 3,
     "Victor": 2,
     "Rosa": 1,
     "Ethan": 1,
     "Lena": 1,
     "Marcos": 1,
     "Professor Velasquez": 1,
-    "Imani": 1,
+    "Imani": 2,
     "Priyanka": 2,
     "Caleb": 2,
     "Joel": 1,
     "Ruby": 1,
     "Aaron": 1,
-    "Sonia": 3,
-    "Maya": 2,
+    "Sonia": 4,
+    "Maya": 3,
     "Vincent": 1,
     "Leon": 1,
     "Professor Ahmed": 1,
@@ -78,7 +78,7 @@
     "Professor Singh": 1,
     "Leila": 2,
     "Marisol": 1,
-    "Jonah": 1,
+    "Jonah": 2,
     "Vanessa": 1,
     "Paige": 1,
     "Natalie": 1,
@@ -111,7 +111,18 @@
     "Meera": 1,
     "Seth": 1,
     "Professor Ruiz": 1,
-    "Bianca": 1
+    "Bianca": 1,
+    "Avery": 1,
+    "Julian": 1,
+    "Mira": 1,
+    "Elias": 1,
+    "Professor Kent": 1,
+    "Tania": 1,
+    "Professor Moore": 1,
+    "Camille": 1,
+    "Trevor": 2,
+    "Professor Flores": 1,
+    "Professor Diaz": 1
   },
   "formatCategoryHistory": [
     {
@@ -289,6 +300,116 @@
         "reflection:school",
         "conflict:personal"
       ]
+    },
+    {
+      "chapter": "ch17",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch18",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch19",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch20",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch21",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch22",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch23",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch24",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch25",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch26",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
     }
   ],
   "schoolSettingUsage": {
@@ -322,7 +443,15 @@
     "guest lecture reception": 1,
     "career trek": 1,
     "cross-campus panel": 1,
-    "alumni workshop": 1
+    "alumni workshop": 1,
+    "orientation mixer": 1,
+    "campus shuttle line": 1,
+    "parent weekend": 1,
+    "faculty fundraiser": 1,
+    "interdisciplinary panel": 1,
+    "alumni board meeting": 1,
+    "alumni email chain": 1,
+    "advising office follow-up": 1
   },
   "wordFrequency": {},
   "phraseFrequency": {},
@@ -458,6 +587,38 @@
       "test",
       "warning",
       "comparison",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch17": [
+      "comparison",
+      "bridge",
+      "warning",
+      "test",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch18": [
+      "warning",
+      "comparison",
+      "bridge",
+      "test",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch19": [
+      "test",
+      "comparison",
+      "bridge",
+      "warning",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch20": [
+      "warning",
+      "bridge",
+      "comparison",
+      "test",
       "tradeoff",
       "reframing"
     ]
@@ -642,6 +803,86 @@
       "Seth",
       "Professor Ruiz",
       "Bianca"
+    ],
+    "ch17": [
+      "Avery",
+      "Julian",
+      "Mira",
+      "Elias",
+      "Professor Kent",
+      "Tania"
+    ],
+    "ch18": [
+      "Elena",
+      "Marcus",
+      "Professor Moore",
+      "Priya",
+      "Jonah",
+      "Camille"
+    ],
+    "ch19": [
+      "Sonia",
+      "Malik",
+      "Dana",
+      "Trevor",
+      "Professor Flores",
+      "Imani"
+    ],
+    "ch20": [
+      "Maya",
+      "Trevor",
+      "Lila",
+      "Andre",
+      "Professor Diaz",
+      "Serena"
+    ],
+    "ch21": [
+      "Celeste",
+      "Amir",
+      "Ronan",
+      "Harper",
+      "Professor Bennett",
+      "Yvette"
+    ],
+    "ch22": [
+      "Mara",
+      "Owen",
+      "Zuri",
+      "Felix",
+      "Professor Becker",
+      "Nia"
+    ],
+    "ch23": [
+      "Elise",
+      "Dev",
+      "Carmen",
+      "Julian",
+      "Professor Ames",
+      "Noor"
+    ],
+    "ch24": [
+      "Tamsin",
+      "Leo",
+      "Priya",
+      "Gavin",
+      "Professor Hart",
+      "Simone"
+    ],
+    "ch25": [
+      "Lena",
+      "Marcus",
+      "Avery",
+      "Omar",
+      "Professor Vale",
+      "Nadine"
+    ],
+    "ch26": [
+      "Mira",
+      "Caleb",
+      "Sienna",
+      "Aaron",
+      "Professor Rowan",
+      "Nina"
     ]
   },
   "approvedChapterHashes": {
@@ -660,7 +901,17 @@
     "ch13": "eb5a5134980118edb3404aa8387fe41938a688ea6b0eed6d78022b670a9624b2",
     "ch14": "fbb73269be4754e15d1a7f72d1680f35d652578bd7678faad92601b4b1515b34",
     "ch15": "42da4d356d9ad6e573758ea3530660128fc145ff72988c27e193814aac71d11e",
-    "ch16": "0dc60c18fed91a8db8142a90fea2f9ffb3fcabe4c481587d67f697333a0930ca"
+    "ch16": "0dc60c18fed91a8db8142a90fea2f9ffb3fcabe4c481587d67f697333a0930ca",
+    "ch17": "5aa21fb89b1712b2033b8b3b9ade338bf528ea5bc99a9c3198f9006e0145f200",
+    "ch18": "ee0f0f40db1dd36f58373ee0442550c5661f730147074cfbd471f76ff0c04ae5",
+    "ch19": "54af333f92254846c6eb1e5c203d65c6ef3cd51271e558b5d0fa52c5d81d78e8",
+    "ch20": "29be5a650f468f5263c2ab11143a62a9bee3c03c549657fb47580a7a7f02447b",
+    "ch21": "efe0324074ed313f9b1c6401cb657f54915160cc7db756caaea1f942084efd5b",
+    "ch22": "9a81107c24bc215398025348c5b4575ef390940fd9fbe458e5ab080149da8191",
+    "ch23": "0ad473461f6047fbec0a2035068c42adeb4c3f5a0f051f432f9778590dd47ce6",
+    "ch24": "2b96958ec502930c30a9fddd83dd4ce2e3e08ae79088f35a1b5b870e51133a1d",
+    "ch25": "6de348f02736cfea61c19bd38c08ddcb23ac0224015e01c2a8d12b9cd168ceea",
+    "ch26": "a4b1d3599b33a3ab5afabdeffcb433b671be6e5f0c0165639348d4830eeaa67a"
   },
   "baselineQuality": {
     "ch01": {
@@ -746,6 +997,56 @@
       "validation": "pass"
     },
     "ch16": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch17": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch18": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch19": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch20": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch21": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch22": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch23": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch24": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch25": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch26": {
       "criticScore": 10,
       "status": "passed",
       "validation": "pass"

@@ -13,7 +13,29 @@
   "endingPatternRegistry": {},
   "withinChapterNames": {},
   "approvedChapterHashes": {
-    "ch01": "196cad176d93ff443d8b0fa34f2346177a65f2fd53ffc5fc62ddbbaa6a11fe56"
+    "ch01": "196cad176d93ff443d8b0fa34f2346177a65f2fd53ffc5fc62ddbbaa6a11fe56",
+    "ch02": "a8b505991c8daa025cb45afb221ea3fadc30aa90f61bd650fb00d7342a1e2adb",
+    "ch03": "7d85bdf0f01b3162318cb74a8167add3a965e655c8bdfb33b07331740c5daf50",
+    "ch04": "a90f866993145fc5575824201d26de8d68dca9cd929fe250a21067af27cf10a5",
+    "ch05": "bd7c9fe3cbaa3970ba2b1ae708428566e660e5d83b425dc2b154d9851a6e59a6",
+    "ch06": "6d8a48f11bdbcc982bac583fb5872227ab39659841f3394a317f7587018bcb7c",
+    "ch07": "9d4e9ee1050efd1d7ee162f8fb748565ce9b9c3e2ada3d875fd6ab65acaf1184",
+    "ch08": "71b606df031377ef91ef09dec80385776c9b3b2c60000ba92341eecb0b9a9d27",
+    "ch09": "33f5d1d901365fbcad7a21b555b3e2ca2e8c48cfe51e4ef5969827ad54c4f991"
   },
-  "baselineQuality": {}
+  "baselineQuality": {
+    "establishedThroughChapter": 2,
+    "chapters": {
+      "ch01": {
+        "criticScore": 11,
+        "validatedChapterSha256": "196cad176d93ff443d8b0fa34f2346177a65f2fd53ffc5fc62ddbbaa6a11fe56"
+      },
+      "ch02": {
+        "criticScore": 11,
+        "validatedChapterSha256": "a8b505991c8daa025cb45afb221ea3fadc30aa90f61bd650fb00d7342a1e2adb"
+      }
+    },
+    "qualityDecayStopDelta": 1.5,
+    "reportPath": ".chapterflow/runs/ego-is-the-enemy/20260412-184236/reports/baseline-quality.md"
+  }
 }

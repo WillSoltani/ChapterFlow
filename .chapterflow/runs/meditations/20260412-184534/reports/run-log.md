@@ -7,3 +7,10 @@
 - 2026-04-12T18:45:34-03:00 Chapter 1 passed chapter gate. Artifact guard clean. Hash sealed for `ch01`.
 - 2026-04-12T18:45:34-03:00 Chapter 2 passed chapter gate. Artifact guard clean. Hash sealed for `ch02`.
 - 2026-04-12T18:45:34-03:00 Baseline quality established from Chapters 1 and 2. Wave 1 clean.
+- 2026-04-12T18:45:34-03:00 Chapter 3 passed chapter gate. Validated chapter and review package linted clean. Hash sealed for `ch03`.
+- 2026-04-12T18:45:34-03:00 Chapter 4 repaired repeated scaffold and recap duplication issues, then passed chapter gate. Validated chapter and review package linted clean. Hash sealed for `ch04`.
+- 2026-04-12T18:45:34-03:00 Chapter 5 completed the full chain from pre-writer artifacts through validated package. One duplicated support-surface sentence was repaired before final validation. Hash sealed for `ch05`.
+- 2026-04-12T18:45:34-03:00 Chapter 6 completed the full chain from pre-writer artifacts through validated package. Three structured-surface issues were repaired before final validation. Hash sealed for `ch06`.
+- 2026-04-12T18:45:34-03:00 Chapter 7 completed the full chain from pre-writer artifacts through validated package. One repeated phrase chunk and two weak `moreDetails` lines were repaired before final validation. Hash sealed for `ch07`.
+- 2026-04-12T18:45:34-03:00 Chapter 8 completed the full chain from pre-writer artifacts through validated package. Structured and validated artifacts passed clean on first validation. Hash sealed for `ch08`.
+- 2026-04-12T18:45:34-03:00 Chapter 9 completed the full chain from pre-writer artifacts through validated package. One repeated clause scaffold and one duplicated prompt were repaired before final validation. Hash sealed for `ch09`.

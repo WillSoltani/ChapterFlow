@@ -1,13 +1,179 @@
 {
-  "nameUsage": {},
+  "nameUsage": {
+    "Maya": [
+      "ch01"
+    ],
+    "Owen": [
+      "ch01",
+      "ch04"
+    ],
+    "Priya": [
+      "ch01"
+    ],
+    "Elena": [
+      "ch01"
+    ],
+    "Marcus": [
+      "ch01"
+    ],
+    "Nadia": [
+      "ch01"
+    ],
+    "Rhea": [
+      "ch02"
+    ],
+    "Tomas": [
+      "ch02"
+    ],
+    "Violet": [
+      "ch02"
+    ],
+    "Soren": [
+      "ch02"
+    ],
+    "Leila": [
+      "ch02"
+    ],
+    "Naomi": [
+      "ch02"
+    ],
+    "Iris": [
+      "ch03"
+    ],
+    "Mateo": [
+      "ch03"
+    ],
+    "Hana": [
+      "ch03"
+    ],
+    "Colin": [
+      "ch03"
+    ],
+    "Farah": [
+      "ch03"
+    ],
+    "Zoe": [
+      "ch03"
+    ],
+    "Kira": [
+      "ch04"
+    ],
+    "Laila": [
+      "ch04"
+    ],
+    "Devon": [
+      "ch04"
+    ],
+    "Mira": [
+      "ch04"
+    ],
+    "Seth": [
+      "ch04"
+    ],
+    "Elias": [
+      "ch05"
+    ],
+    "Nia": [
+      "ch05"
+    ],
+    "Rowan": [
+      "ch05"
+    ],
+    "Petra": [
+      "ch05"
+    ],
+    "Caleb": [
+      "ch05"
+    ],
+    "June": [
+      "ch05"
+    ]
+  },
   "formatCategoryHistory": [],
   "schoolSettingUsage": {},
   "wordFrequency": {},
   "phraseFrequency": {},
-  "openerRegistry": { "gentle": {}, "direct": {}, "competitive": {} },
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
   "titleTemplateRegistry": {},
   "endingPatternRegistry": {},
-  "withinChapterNames": {},
-  "approvedChapterHashes": {},
-  "baselineQuality": {}
+  "withinChapterNames": {
+    "ch01": [
+      "Maya",
+      "Owen",
+      "Priya",
+      "Elena",
+      "Marcus",
+      "Nadia"
+    ],
+    "ch02": [
+      "Rhea",
+      "Tomas",
+      "Violet",
+      "Soren",
+      "Leila",
+      "Naomi"
+    ],
+    "ch03": [
+      "Iris",
+      "Mateo",
+      "Hana",
+      "Colin",
+      "Farah",
+      "Zoe"
+    ],
+    "ch04": [
+      "Kira",
+      "Owen",
+      "Laila",
+      "Devon",
+      "Mira",
+      "Seth"
+    ],
+    "ch05": [
+      "Elias",
+      "Nia",
+      "Rowan",
+      "Petra",
+      "Caleb",
+      "June"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "bd505116633a742c95a8800af92836238b08a740802780e09df8f34fafcd57ec",
+      "validatedAt": "2026-04-12T19:43:49Z"
+    },
+    "ch02": {
+      "sha256": "1dac3bfd78bb0de299a4e42c706b6827acc8b0c02bcab7dfe91fed6c91fc99e5",
+      "validatedAt": "2026-04-12T20:00:42Z"
+    },
+    "ch03": {
+      "sha256": "96b8ac8a7da3e4db4765ae6c2f3c8c3d505b1f770528267a2020ec832afd67d2",
+      "validatedAt": "2026-04-12T20:13:05Z"
+    },
+    "ch04": {
+      "sha256": "6a3b40e39ff60e3c22b2f4e485da8faee55c1f1520248bec1502c63a42893d3e",
+      "validatedAt": "2026-04-12T20:58:31Z"
+    },
+    "ch05": {
+      "sha256": "ec8773b6f71f71be47377e62aef065a4a3c2333f3f3efd388054d7be3cea94e8",
+      "validatedAt": "2026-04-12T22:31:28Z"
+    }
+  },
+  "baselineQuality": {
+    "establishedAt": "2026-04-12T20:00:42Z",
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "criticScores": {
+      "ch01": 10,
+      "ch02": 10
+    },
+    "qualityFloor": "Wave baseline established from Chapter 1 and Chapter 2 approved critic scores."
+  }
 }

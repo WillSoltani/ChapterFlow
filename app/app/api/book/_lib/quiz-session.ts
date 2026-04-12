@@ -142,7 +142,14 @@ export function buildQuizAttemptQuestions(params: {
   const chosen = preserveAuthoredOrder ? [...baseQuestions] : shuffle(baseQuestions, rand);
 
   return chosen.map((question) => {
-    const choicePool = question.choices.map((text, canonicalIndex) => ({
+    const authoredChoices: string[] = Array.isArray(question.choices)
+      ? question.choices
+      : Array.isArray(question.options)
+        ? question.options
+        : [];
+    const authoredCorrectIndex: number =
+      question.correctAnswerIndex ?? question.correctIndex ?? 0;
+    const choicePool = authoredChoices.map((text, canonicalIndex) => ({
       text,
       canonicalIndex,
     }));
@@ -153,15 +160,21 @@ export function buildQuizAttemptQuestions(params: {
       canonicalIndex: choice.canonicalIndex,
     }));
     const correctIndex = choices.findIndex(
-      (choice) => choice.canonicalIndex === question.correctAnswerIndex
+      (choice) => choice.canonicalIndex === authoredCorrectIndex
     );
     const correctChoiceId =
       choices[correctIndex]?.choiceId ??
-      `${question.questionId}::choice::${question.correctAnswerIndex}`;
+      `${question.questionId}::choice::${authoredCorrectIndex}`;
+    const prompt =
+      typeof question.prompt === "string"
+        ? question.prompt
+        : typeof question.stem === "string"
+          ? question.stem
+          : "";
     return {
       questionId: question.questionId,
-      prompt: question.prompt,
-      explanation: question.explanation,
+      prompt,
+      explanation: typeof question.explanation === "string" ? question.explanation : undefined,
       choices,
       correctChoiceId,
       correctIndex: Math.max(0, correctIndex),

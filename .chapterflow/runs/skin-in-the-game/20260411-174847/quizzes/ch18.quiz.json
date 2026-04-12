@@ -1,0 +1,175 @@
+{
+  "chapterId": "ch18-how-to-be-rational-about-rationality",
+  "questions": [
+    {
+      "questionId": "ch18-q01",
+      "prompt": "How does this chapter mainly redefine rationality?",
+      "choices": [
+        "As formal elegance above all else",
+        "As what survives consequence and avoids ruin",
+        "As whatever sounds most consistent in debate"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ties rationality to survival under real consequence.",
+        "direct": "Taleb treats endurance and ruin-avoidance as stronger tests than neat theory alone.",
+        "competitive": "If it blows you up, it was not rational enough."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch18-q02",
+      "prompt": "Why does revealed preference matter in this chapter?",
+      "choices": [
+        "Because what people do under exposure can reveal practical rationality",
+        "Because theory is always useless",
+        "Because consistency never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Action under pressure can reveal more than verbal reasoning alone.",
+        "direct": "Taleb uses behavior under consequence as evidence of what actually works.",
+        "competitive": "Watch the move under stress, not the lecture in safety."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch18-q03",
+      "prompt": "What makes a polished theory weak under Taleb’s test?",
+      "choices": [
+        "If it flatters logic while leaving the agent fragile",
+        "If it is mathematically precise",
+        "If it is hard to explain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is fragility under consequence, not precision itself.",
+        "direct": "A theory loses rank when elegance outruns survival value.",
+        "competitive": "Beautiful logic that makes you brittle is a trap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch18-q04",
+      "prompt": "A messy heuristic keeps someone out of ruin while a cleaner model increases downside exposure. What would Chapter 18 emphasize?",
+      "choices": [
+        "The cleaner model is automatically more rational",
+        "The heuristic may be more rational because it preserves survival",
+        "Neither approach can be judged"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prioritizes what keeps the agent intact.",
+        "direct": "Survival value can outrank formal neatness under asymmetry.",
+        "competitive": "The uglier rule just beat the prettier coffin."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch18-q05",
+      "prompt": "How does this chapter connect to the rest of the book?",
+      "choices": [
+        "It applies the same skin-in-the-game realism test to rationality itself",
+        "It abandons asymmetry and ruin concerns",
+        "It argues that theory should always be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same realism test now governs judgments about reason.",
+        "direct": "Rationality joins other domains that must answer to consequence.",
+        "competitive": "Now abstract reason gets dragged into the downside audit too."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch18-q06",
+      "prompt": "Why does Taleb care about bounded rationality here?",
+      "choices": [
+        "Because agents make choices under limited knowledge and asymmetric risk",
+        "Because limits make all reasoning irrational",
+        "Because bounded rationality removes the need for judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Real agents reason under constraint, not from perfect knowledge.",
+        "direct": "Bounded rationality matters because survival occurs under incomplete information.",
+        "competitive": "You reason in the fog, not in the textbook vacuum."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch18-q07",
+      "prompt": "Why is this chapter not an attack on logic itself?",
+      "choices": [
+        "Because the target is detached elegance that fails reality, not reasoning as such",
+        "Because contradiction is always acceptable",
+        "Because every habit counts as rational"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants a stricter reality test, not the end of thought.",
+        "direct": "Taleb is attacking fragility disguised as reason, not reason itself.",
+        "competitive": "He is humiliating brittle cleverness, not banning thinking."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch18-q08",
+      "prompt": "What stronger question should a reader ask before praising a theory as rational?",
+      "choices": [
+        "Does it sound elegant?",
+        "Does it help an agent survive and stay intact under exposure?",
+        "Does it win academic approval?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The stronger question is about consequence-tested survival.",
+        "direct": "Taleb wants rationality checked against operational endurance.",
+        "competitive": "Ask whether it keeps you alive before admiring the symmetry."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch18-q09",
+      "prompt": "What is the deeper lesson of Chapter 18?",
+      "choices": [
+        "Real rationality is operational and consequence-tested rather than merely elegant",
+        "Only theory matters for sound judgment",
+        "Every survival strategy is automatically wise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points to rationality shown through survival and action.",
+        "direct": "Operational endurance is stronger evidence than abstract neatness alone.",
+        "competitive": "The rational move is the one that still exists after pressure."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch18-q10",
+      "prompt": "Which sentence best captures the chapter’s lesson?",
+      "choices": [
+        "Rationality belongs to the cleanest-looking theory",
+        "What keeps agents intact under real consequence deserves more credit than formal polish alone",
+        "Messiness is always superior to rigor"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ties rationality to consequence-tested survival.",
+        "direct": "Taleb upgrades what works under exposure over what only looks tidy.",
+        "competitive": "If pressure kills the model, stop worshipping its elegance."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deep"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Frankl mean by apathy in the second camp phase?",
+      "choices": [
+        "A stable peace that replaces fear once prisoners understand the camp",
+        "A survival numbness that protects the psyche while shrinking emotional range",
+        "A proof that prisoners have stopped caring about anything at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Apathy helps the prisoner keep going, but it is not the same thing as health or calm.",
+        "direct": "Frankl presents apathy as a protective narrowing under routine horror, not as wisdom or simple indifference.",
+        "competitive": "The shield keeps the person functional by making the self feel less."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter keep chance visible when Frankl talks about camp survival?",
+      "choices": [
+        "Because arbitrary fate prevents survival from becoming a clean story about merit or desert",
+        "Because chance matters only in the very first days and not later",
+        "Because Frankl wants to deny that any response freedom exists at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The memoir stays honest by refusing any flattering story in which outcomes simply reflect worth.",
+        "direct": "Frankl includes fate to block false moral bookkeeping about who lived and who died.",
+        "competitive": "Luck keeps wrecking the fantasy that outcome equals deserving."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is Frankl's narrow claim about inner freedom in this chapter?",
+      "choices": [
+        "Prisoners retained broad control over their circumstances if they stayed mentally strong",
+        "Prisoners could not control events, but the final inward response was not fully erased",
+        "Inner freedom mattered only after liberation, not during camp life"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the careful middle line. Circumstances remained brutal, but response was not completely confiscated.",
+        "direct": "Frankl's claim is about constrained attitude and bearing, not about controlling the system or outcomes.",
+        "competitive": "The strip of agency survives only at the level of final response, not command over events."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris notices that after weeks of strain she feels flatter and less upset by things that used to hit her hard. Which reading fits the chapter best?",
+      "choices": [
+        "Her numbness may be a survival adaptation that protects her while also reducing her emotional range",
+        "Her numbness proves she has grown beyond the need for ordinary feeling",
+        "Her numbness means she was never as affected as she claimed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would read this as a shield with a cost, not as pure strength.",
+        "direct": "Apathy logic helps explain how repeated stress can create functional numbness without making that numbness healthy.",
+        "competitive": "The flatter self may be easier to run, but it is still paying for the efficiency."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Mateo thinks his exhausted team sounds cold after a brutal quarter. What does Frankl's second-phase logic suggest he should ask first?",
+      "choices": [
+        "Whether the flat tone is partly protective numbness under prolonged strain rather than simple lack of care",
+        "Whether the team should be pushed to display more emotion immediately",
+        "Whether emotional flatness always means the team is morally checked out"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That question respects the possibility that numbness can be protective before it is judged as indifference.",
+        "direct": "The chapter distinguishes reduced emotional display from complete disengagement by reading apathy as a mixed state.",
+        "competitive": "A smaller range can still hide a real cost and a real effort to keep functioning."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the strongest misreading of Frankl's freedom claim in this chapter?",
+      "choices": [
+        "That some inward response remained despite severe limits",
+        "That prisoners were broadly responsible for responding well enough to atrocity",
+        "That fate shaped survival in arbitrary ways"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. That reading turns a narrow dignity claim into blame.",
+        "direct": "The chapter becomes cruel if inner freedom is inflated into broad responsibility for conditions prisoners never controlled.",
+        "competitive": "Make the claim too large and it starts doing the oppressor's moral work."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Leila reviews a competitive placement and realizes timing and luck mattered more than the public story of merit admits. Why does this fit the chapter?",
+      "choices": [
+        "Because Frankl says character never matters under pressure",
+        "Because the chapter insists that fate can shape outcomes in ways clean moral stories cannot explain",
+        "Because the chapter treats all success as meaningless once luck appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The point is not that effort disappears. It is that chance often stays in the story whether people want it there or not.",
+        "direct": "Frankl includes arbitrary fate precisely to block tidy accounts in which outcome mirrors worth.",
+        "competitive": "Luck ruins the comforting fiction that every result is a verdict."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Quinn notices a stripe of winter light during a hard week and feels briefly steadier even though nothing is solved. What does that moment mean in the logic of this chapter?",
+      "choices": [
+        "It proves beauty can cancel suffering if noticed correctly",
+        "It shows that small human interruptions can matter without redeeming the larger damage",
+        "It suggests the pain was never as serious as it looked"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The moment matters as contrast, not as rescue.",
+        "direct": "Frankl's beauty and decency fragments show that the inner world is damaged without being fully erased.",
+        "competitive": "The fragment counts because the damage is still there."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Rosa wants to speak about agency to someone in a severe crisis without adding blame. What is the chapter's deepest guidance?",
+      "choices": [
+        "Avoid all talk of response because any agency language is automatically cruel",
+        "Speak about one narrow response that remains available while keeping the limits and injustice fully visible",
+        "Emphasize that a strong inner attitude can usually overcome the situation itself"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That keeps dignity alive without pretending the crisis is controlled by the sufferer.",
+        "direct": "The chapter's freedom claim works only when agency stays narrow, pressured, and clearly separated from responsibility for the event.",
+        "competitive": "The strip of choice has to stay thin enough not to become accusation."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the book need to turn from memoir witness to explicit theory after this chapter?",
+      "choices": [
+        "Because the memoir has now raised a tension between apathy, fate, and constrained freedom that needs explanation",
+        "Because the memoir material has reached its limit and no longer matters",
+        "Because theory is mainly a separate book pasted on after the real story ends"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The witness has done its work of raising the hard problem. Now the framework has to explain what has been seen.",
+        "direct": "The next chapter matters because memoir evidence has established a narrow freedom under pressure that now requires explicit interpretation.",
+        "competitive": "The facts are on the table. Theory now has to carry their weight without betraying them."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

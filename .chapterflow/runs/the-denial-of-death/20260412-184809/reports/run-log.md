@@ -3,3 +3,27 @@
 - 2026-04-12T18:51:02Z Phase 0 manifest lock confirmed for `The Denial of Death` by `Ernest Becker`; defaults preserved from run manifest.
 - 2026-04-12T18:51:02Z Phase 1 source discovery completed. Locked the 1997 Free Press paperback as the working edition family after confirming no material chapter-structure ambiguity against the 1973 original.
 - 2026-04-12T18:51:02Z Source freeze written: `source-ledger.json`, `edition-lock.json`, `source-discovery.md`, `source-freeze-report.md`, `book-source.md`, `toc.json`, and `source-heading-index.json`.
+- 2026-04-12T18:51:02Z Phase 2 memory compilation written for style, quality, and role cards.
+- 2026-04-12T18:51:02Z Phase 3 whole-book skeleton written with chapter order, source richness, concept density, risk notes, and rotation plans.
+- 2026-04-12T18:51:02Z Phase 4 and Phase 5 pre-writer artifacts written for Chapters 1 and 2: briefs, outlines, quiz blueprints, and source sidecars.
+- 2026-04-12T18:51:02Z Chapter 1 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 1 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Chapter 2 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 2 structured conversion, quiz generation, validation, review wrapper, reading metrics, baseline-quality report, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Wave 2 pre-writer artifacts written for Chapters 3 and 4: briefs, outlines, quiz blueprints, and source sidecars.
+- 2026-04-12T18:51:02Z Chapter 3 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 3 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Chapter 4 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 4 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Wave 2 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 3.
+- 2026-04-12T18:51:02Z Wave 3 pre-writer artifacts written for Chapters 5 and 6: briefs, outlines, quiz blueprints, and source sidecars.
+- 2026-04-12T18:51:02Z Chapter 5 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 5 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Chapter 6 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 6 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Wave 3 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 4.
+- 2026-04-12T18:51:02Z Wave 4 pre-writer artifacts written for Chapters 7 and 8: briefs, outlines, quiz blueprints, and source sidecars.
+- 2026-04-12T18:51:02Z Chapter 7 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 7 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Chapter 4 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-12T18:51:02Z Wave 2 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 3.

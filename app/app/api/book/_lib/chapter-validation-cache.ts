@@ -84,7 +84,9 @@ export async function getCachedChapterValidation(params: {
   ]);
 
   const exampleIds: ReadonlySet<string> = new Set(
-    chapter.examples.map((example) => example.exampleId)
+    chapter.examples
+      .map((example) => example.exampleId)
+      .filter((exampleId): exampleId is string => Boolean(exampleId))
   );
   const entry: CacheEntry = {
     exampleIds,

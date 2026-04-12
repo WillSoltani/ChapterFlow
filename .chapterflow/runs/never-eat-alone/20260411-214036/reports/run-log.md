@@ -123,7 +123,50 @@ Phase 0 complete.
 
 ### Wave 9: Chapters 17 and 18
 
-- Wrote `briefs/ch17.md`, `outlines/ch17.md`, `quiz-blueprints/ch17.md`, `sidecars/source/ch17.source.txt`, and `sidecars/source/ch17.source.json` before any prose work.
-- Wrote `briefs/ch18.md`, `outlines/ch18.md`, `quiz-blueprints/ch18.md`, `sidecars/source/ch18.source.txt`, and `sidecars/source/ch18.source.json` before any prose work.
-- Verified the `ch17` and `ch18` source sidecar JSON files lint clean.
-- Wave 9 is opened on the strict path and ready for prose.
+- Wrote pre-writer artifacts for `ch17` and `ch18` before prose work.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch17`.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch18`.
+- Verified the validated review-package chapter payload matches the full validated chapter payload for both chapters.
+- Verified the wave bundle on disk after validation.
+- Verified source controls still exist and sealed chapter hashes remain intact.
+- Wave 9 is clean and ready for continuation.
+
+### Wave 10: Chapters 19 and 20
+
+- Wrote pre-writer artifacts for `ch19` and `ch20` before prose work.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch19`.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch20`.
+- Verified the validated review-package chapter payload matches the full validated chapter payload for both chapters.
+- Verified the wave bundle on disk after validation.
+- Verified source controls still exist and sealed chapter hashes remain intact.
+- Wave 10 is clean and ready for continuation.
+
+### Wave 11: Chapters 21 and 22
+
+- Wrote pre-writer artifacts for `ch21` and `ch22` before prose work.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch21`.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch22`.
+- Verified the validated review-package chapter payload matches the full validated chapter payload for both chapters.
+- Verified the wave bundle on disk after validation.
+- Verified source controls still exist and sealed chapter hashes remain intact.
+- Wave 11 is clean and ready for continuation.
+
+### Wave 12: Chapters 23 and 24
+
+- Wrote pre-writer artifacts for `ch23` and `ch24` before prose work.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch23`.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch24`.
+- Verified the validated review-package chapter payload matches the full validated chapter payload for both chapters.
+- Verified the wave bundle on disk after validation.
+- Verified source controls still exist and sealed chapter hashes remain intact.
+- Wave 12 is clean and ready for continuation.
+
+### Wave 13: Chapters 25 and 26
+
+- Wrote pre-writer artifacts for `ch25` and `ch26` before prose work.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch25`.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch26`.
+- Verified the validated review-package chapter payload matches the full validated chapter payload for both chapters.
+- Verified the wave bundle on disk after validation.
+- Verified source controls still exist and sealed chapter hashes remain intact.
+- Wave 13 is clean and ready for continuation.

@@ -32,20 +32,37 @@
     "editionPreference": "ask_if_ambiguous"
   },
   "book": {
+    "metadataStatus": "source_locked_enriched",
     "bookId": "competing-against-luck",
-    "title": "“Competing-Against-Luck“",
-    "author": "“Clayton-Christensen”",
-    "categories": [],
-    "tags": [],
+    "title": "Competing Against Luck: The Story of Innovation and Customer Choice",
+    "author": "Clayton M. Christensen, Taddy Hall, Karen Dillon, David S. Duncan",
+    "categories": [
+      "Business",
+      "Innovation",
+      "Strategy",
+      "Customer Research"
+    ],
+    "tags": [
+      "jobs theory",
+      "customer choice",
+      "customer progress",
+      "causal demand",
+      "innovation"
+    ],
     "edition": {
-      "name": "",
+      "name": "Competing Against Luck: The Story of Innovation and Customer Choice",
+      "publisher": "HarperBusiness / HarperCollins Publishers",
+      "publishedDate": "2016-10-04",
+      "isbn13": "9780062435613",
+      "format": "First-edition English hardcover / ebook trade family",
+      "language": "English",
       "translator": "",
-      "publishedYear": null,
+      "publishedYear": 2016,
       "translationYear": null,
-      "sourceText": ".chapterflow/runs/competing-against-luck/20260411-174341/source-freeze/book-source.txt",
-      "sourceProvenance": ""
+      "sourceText": ".chapterflow/runs/competing-against-luck/20260411-174341/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle from Google Books official preview metadata, Indiana University catalog contents listing, Open Library edition metadata, Christensen Institute Jobs Theory framework support, and limited secondary chapter summaries for narrow interpretation only."
     },
     "variantFamily": "EMH",
-    "chapterRange": ""
+    "chapterRange": "Chapters 1-10"
   }
 }

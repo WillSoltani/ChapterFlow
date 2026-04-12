@@ -1,0 +1,38 @@
+{
+  "chapterId": "ch15-they-dont-know-what-they-are-talking-about-when-they-talk-about-religion",
+  "chapterNumber": 15,
+  "title": "They Don't Know What They Are Talking About When They Talk About Religion",
+  "supportLevel": "narrow-frozen-basis",
+  "frozenSources": [
+    {
+      "id": "toc-json",
+      "path": "source-freeze/toc.json",
+      "role": "chapter-map"
+    },
+    {
+      "id": "source-heading-index",
+      "path": "sidecars/source/source-heading-index.json",
+      "role": "chapter-identity"
+    },
+    {
+      "id": "book-source-md",
+      "path": "source-freeze/book-source.md",
+      "role": "freeze-boundary-and-theme"
+    },
+    {
+      "id": "book-skeleton",
+      "path": "skeleton/book-skeleton.md",
+      "role": "chapter-intent"
+    }
+  ],
+  "allowedMoves": [
+    "paraphrase-first",
+    "outsider-versus-embedded-practice framing",
+    "ritual-and-function logic"
+  ],
+  "disallowedMoves": [
+    "exact quotes",
+    "unsupported religious anecdotes",
+    "generic theology debate"
+  ]
+}

@@ -129,3 +129,5 @@
 - 2026-04-11T21:49:06-03:00 Drift detected at release gate: continuity seal hashes were stored in a non-canonical form that did not match release-guard canonical validated chapter hashes.
 - 2026-04-11T21:49:06-03:00 Release repair complete. Continuity seal hashes normalized to canonical validated chapter hashes for Chapters 1-15.
 - 2026-04-11T21:49:06-03:00 Release gate complete. Source guard, artifact guard, and release guard all passed cleanly. Release validation and audit reports written.
+
+- 2026-04-12T17:35:25-03:00 Metadata polish repair complete for Limitless only. Normalized book title/author, populated categories/tags, filled edition metadata, and restored chapter-scope metadata in run manifest, review packages, and release artifacts.

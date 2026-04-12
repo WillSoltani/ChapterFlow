@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does Rogers see in help that moves too quickly to advice or correction?",
+      "choices": [
+        "It often serves the helper's need to settle uncertainty before growth conditions are in place",
+        "It is too emotionally soft to challenge the other person",
+        "It works only in family situations, not in therapy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter starts by questioning help that acts before the relationship is ready to carry honest movement.",
+        "direct": "Rogers treats fast intervention as suspect because it may calm the helper more than it facilitates the other person's growth.",
+        "competitive": "Quick advice often reveals who in the room cannot tolerate uncertainty."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which three conditions sit at the center of Rogers's hypothesis here?",
+      "choices": [
+        "Warmth, confidence, and consistent interpretation",
+        "Genuineness, warm acceptance, and empathic understanding",
+        "Authority, calmness, and emotional regulation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That trio is the heart of the chapter's answer to the question of how to help growth.",
+        "direct": "Rogers builds the hypothesis around congruence, acceptance, and understanding from within the other's frame.",
+        "competitive": "He is not arming the helper with more control. He is demanding a harder kind of relationship."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A coach listens carefully but keeps reducing an employee to 'the problem person on the team.' Which condition is the coach most clearly violating?",
+      "choices": [
+        "Warm acceptance of the person as more than the immediate problem",
+        "Genuineness, because the coach did not share enough personal feeling",
+        "Empathy, because all conflict should be fully agreed with"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns against shrinking a person to the difficulty attached to them.",
+        "direct": "Acceptance fails when the other person is received mainly as a problem category rather than as a distinct person.",
+        "competitive": "Once you turn someone into a case label, defense is already on the way."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Rhea feels advice rising before she has really understood what happened in a difficult client call. What response fits Rogers's logic best?",
+      "choices": [
+        "Give the advice while the moment is still emotionally open",
+        "Ask what the call felt like from the employee's side before solving it",
+        "Reassure the employee that everyone has bad calls and move on"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Rhea helps more by building understanding before management.",
+        "direct": "The chapter pushes the helper to create contact strong enough to lower defensiveness before moving toward solution.",
+        "competitive": "Earn the right to advise by entering the frame first."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Tomas notices that his accurate red-ink corrections left a student more shut down than clearer. What does the chapter suggest he missed?",
+      "choices": [
+        "He should have lowered the threat of judgment before correction",
+        "He should have been less accurate so the student would stay comfortable",
+        "He should have shared more of his own school struggles first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Accuracy is not enough when the relationship climate pushes the student straight into defense.",
+        "direct": "Rogers would say the correction lacked the acceptance needed to keep self-protection from taking over.",
+        "competitive": "He fixed the paper and strengthened the armor."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the strongest correction to the idea that acceptance means permissiveness?",
+      "choices": [
+        "Acceptance means never challenging the other person directly",
+        "Acceptance lowers condemnation without erasing all discernment or boundary",
+        "Acceptance only matters when a person has already agreed with the helper"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter does not flatten acceptance into indulgence.",
+        "direct": "Rogers treats acceptance as a change in relational threat, not as the disappearance of standards or distinctions.",
+        "competitive": "No condemnation is not the same thing as no edge."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is genuineness demanding rather than casual in this chapter?",
+      "choices": [
+        "Because it asks the helper not to hide behind a role while still avoiding self-display",
+        "Because it requires telling the other person every feeling as it happens",
+        "Because it matters only after empathy has already solved the relationship"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks for real presence, not emotional spilling.",
+        "direct": "Genuineness is hard because it rejects both polished acting and undisciplined expressiveness.",
+        "competitive": "You have to lose the mask without turning the room into your stage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Violet thinks understanding her friend would mean agreeing with everything the friend feels. Which answer best reflects Rogers's view?",
+      "choices": [
+        "She is right, because empathy requires emotional alignment on every point",
+        "She should avoid deep understanding so she can stay objective",
+        "She can understand from within the friend's frame without surrendering her own judgment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Understanding and agreement are not the same thing here.",
+        "direct": "Rogers's empathy is disciplined perception from within, not collapse into approval.",
+        "competitive": "You can drop the distance without dropping your spine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A relationship feels warm, open, and emotionally safe, but the helper quietly uses that warmth to steer the other person toward the helper's preferred outcome. What does this chapter say about that case?",
+      "choices": [
+        "It still counts as growth-facilitating because warmth matters most",
+        "It fails because humane language can still hide control and manipulation",
+        "It only fails if the other person notices the steering immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This is the chapter's hard boundary. Warmth helps only when it stays real and non-controlling.",
+        "direct": "Rogers explicitly leaves room for counterfeit versions of empathy and acceptance that sound humane while still managing the other person.",
+        "competitive": "Soft control is still control."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once Rogers names the conditions that facilitate growth, what question naturally comes next?",
+      "choices": [
+        "How many of these conditions must be present in every conversation",
+        "What a helping relationship actually looks like when these conditions are present",
+        "Whether students, staff, and family members should all be treated exactly like therapy clients"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ends by moving from named conditions toward the practical shape of a helping relationship.",
+        "direct": "The next step is to recognize what these qualities look like in real encounter rather than leaving them as abstract labels.",
+        "competitive": "Once the trio is named, the bluff check is obvious: show the relationship carrying it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

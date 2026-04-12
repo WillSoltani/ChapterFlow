@@ -31,6 +31,7 @@ const SEVERITY_ORDER = {
 };
 
 const FAILURE_SEVERITIES = new Set(["CRITICAL", "HIGH", "MEDIUM", "LOW"]);
+const SUPPORTED_SCHEMA_VERSIONS = new Set(["1.1.0", "chapterflow-v13-release"]);
 const TONE_KEYS = ["gentle", "direct", "competitive"];
 const SO_GOOD_GUIDED_CHAPTERS = new Set([2, 6, 10, 12, 14]);
 const DEPTHS = ["easy", "medium", "hard"];
@@ -47,13 +48,29 @@ const PROSE_STOPWORDS = new Set([
   "how", "if", "in", "into", "is", "it", "of", "on", "or", "so", "that", "the",
   "their", "there", "this", "to", "was", "what", "when", "which", "with", "you", "your",
 ]);
-const CANONICAL_FORMATS = [
+const LEGACY_CANONICAL_FORMATS = [
   "decision_point",
   "postmortem",
   "dialogue",
   "predict_reveal",
   "dilemma",
   "before_after",
+];
+const V13_ALLOWED_FORMATS = [
+  "decision_point",
+  "postmortem",
+  "dialogue",
+  "predict_reveal",
+  "audit",
+  "dilemma",
+  "before_after",
+  "reset_moment",
+  "planning_choice",
+  "mistake_recovery",
+  "synthesis_check",
+  "inner_monologue",
+  "contrast",
+  "vignette",
 ];
 const CONTAMINATION_PHRASES = [
   "keep the prose narrow and concrete",
@@ -161,6 +178,45 @@ const DEPTH_RULES = {
   },
 };
 
+const V13_AUTONOMOUS_DEPTH_RULES = {
+  easy: {
+    minTakeaways: 3,
+    maxTakeaways: 3,
+    minWords: 75,
+    maxWords: 180,
+    requireMoreDetails: false,
+    requireActivationPrompt: false,
+    requireSelfCheckPrompt: false,
+    requireSelfCheckPrompts: false,
+    requirePredictionPrompt: false,
+    recapShape: "flat",
+  },
+  medium: {
+    minTakeaways: 5,
+    maxTakeaways: 6,
+    minWords: 240,
+    maxWords: 450,
+    requireMoreDetails: true,
+    requireActivationPrompt: true,
+    requireSelfCheckPrompt: true,
+    requireSelfCheckPrompts: false,
+    requirePredictionPrompt: false,
+    recapShape: "either",
+  },
+  hard: {
+    minTakeaways: 5,
+    maxTakeaways: 7,
+    minWords: 280,
+    maxWords: 650,
+    requireMoreDetails: true,
+    requireActivationPrompt: true,
+    requireSelfCheckPrompt: false,
+    requireSelfCheckPrompts: true,
+    requirePredictionPrompt: false,
+    recapShape: "either",
+  },
+};
+
 function usage() {
   console.error("Usage: node scripts/book/validate-book.mjs <package-path>");
   process.exit(1);
@@ -188,6 +244,72 @@ function isToneObject(value) {
   if (keys.length !== 3) return false;
   if (keys.join(",") !== TONE_KEYS.slice().sort().join(",")) return false;
   return TONE_KEYS.every((key) => isNonEmptyString(value[key]));
+}
+
+function hasGeneratedImplementationShape(value) {
+  return isRecord(value) && (
+    isToneObject(value.concreteAction) ||
+    isToneObject(value.ifThenPlan) ||
+    isToneObject(value.friction) ||
+    isToneObject(value.checkpoint)
+  );
+}
+
+function getPackageChapters(pkg) {
+  return Array.isArray(pkg?.chapters) ? pkg.chapters : [];
+}
+
+function detectPackageProfile(pkg, inputPath = "") {
+  if (matchesAntifragilePackage(pkg, inputPath)) return "antifragile";
+
+  const chapters = getPackageChapters(pkg);
+  let totalExamples = 0;
+  let missingContexts = 0;
+  let auditFormats = 0;
+  let v13OnlyFormats = 0;
+  let generatedQuizMetadata = 0;
+
+  chapters.forEach((chapter) => {
+    if (!Array.isArray(chapter?.examples)) return;
+    chapter.examples.forEach((example) => {
+      if (!isRecord(example)) return;
+      totalExamples += 1;
+      if (!Array.isArray(example.contexts) || example.contexts.length === 0) {
+        missingContexts += 1;
+      }
+      if (example.format === "audit") {
+        auditFormats += 1;
+      }
+      if (
+        isNonEmptyString(example.format) &&
+        !LEGACY_CANONICAL_FORMATS.includes(example.format) &&
+        V13_ALLOWED_FORMATS.includes(example.format)
+      ) {
+        v13OnlyFormats += 1;
+      }
+    });
+
+    if (Array.isArray(chapter?.quiz?.questions)) {
+      chapter.quiz.questions.forEach((question) => {
+        if (!isRecord(question)) return;
+        if (
+          isNonEmptyString(question.bloomsLevel) ||
+          isNonEmptyString(question.depthLevel)
+        ) {
+          generatedQuizMetadata += 1;
+        }
+      });
+    }
+  });
+
+  if (
+    totalExamples > 0 &&
+    (auditFormats > 0 || missingContexts === totalExamples || v13OnlyFormats > 0 || generatedQuizMetadata > 0)
+  ) {
+    return "v13_autonomous";
+  }
+
+  return "legacy";
 }
 
 function normalizeText(value) {
@@ -386,14 +508,18 @@ function collectChapterToneSurfaces(chapter) {
 
   if (isRecord(chapter.implementationPlan)) {
     pushToneObjectSurfaces(surfaces, chapter.implementationPlan.coreSkill, `${chapterRoot}.implementationPlan.coreSkill`, "implementationPlan", "supporting", "implementationPlan.coreSkill");
+    pushToneObjectSurfaces(surfaces, chapter.implementationPlan.concreteAction, `${chapterRoot}.implementationPlan.concreteAction`, "implementationPlan", "supporting", "implementationPlan.concreteAction");
     if (Array.isArray(chapter.implementationPlan.ifThenPlans)) {
       chapter.implementationPlan.ifThenPlans.forEach((plan, index) => {
         if (!isRecord(plan)) return;
         pushToneObjectSurfaces(surfaces, plan.plan, `${chapterRoot}.implementationPlan.ifThenPlans[${index}].plan`, "implementationPlan", "supporting", "implementationPlan.ifThenPlans");
       });
     }
+    pushToneObjectSurfaces(surfaces, chapter.implementationPlan.ifThenPlan, `${chapterRoot}.implementationPlan.ifThenPlan`, "implementationPlan", "supporting", "implementationPlan.ifThenPlan");
     pushToneObjectSurfaces(surfaces, chapter.implementationPlan.twentyFourHourChallenge, `${chapterRoot}.implementationPlan.twentyFourHourChallenge`, "implementationPlan", "supporting", "implementationPlan.challenge");
     pushToneObjectSurfaces(surfaces, chapter.implementationPlan.weeklyPractice, `${chapterRoot}.implementationPlan.weeklyPractice`, "implementationPlan", "supporting", "implementationPlan.weeklyPractice");
+    pushToneObjectSurfaces(surfaces, chapter.implementationPlan.friction, `${chapterRoot}.implementationPlan.friction`, "implementationPlan", "supporting", "implementationPlan.friction");
+    pushToneObjectSurfaces(surfaces, chapter.implementationPlan.checkpoint, `${chapterRoot}.implementationPlan.checkpoint`, "implementationPlan", "supporting", "implementationPlan.checkpoint");
   }
 
   return surfaces;
@@ -739,6 +865,9 @@ function pushSoGoodIssues(pkg, chapter, surfaces, issues, inputPath) {
 }
 
 function pushHardMediumSupportOverlapIssues(chapter, issues) {
+  if (detectPackageProfile({ chapters: [chapter] }) === "v13_autonomous") {
+    return;
+  }
   const medium = chapter.contentVariants?.medium;
   const hard = chapter.contentVariants?.hard;
   if (!isRecord(medium) || !isRecord(hard)) return;
@@ -860,9 +989,25 @@ function validateTakeaways(chapter, depthName, depth, issues) {
 function validateOneMinuteRecap(chapter, depthName, depth, issues) {
   const location = `ch${chapter.number}.${depthName}.oneMinuteRecap`;
   const rules = arguments[4][depthName];
+  const packageProfile = detectPackageProfile({ chapters: [chapter] });
 
   if (rules.recapShape === "flat") {
     validateToneField(issues, "B", depth?.oneMinuteRecap, location, "oneMinuteRecap");
+    return;
+  }
+
+  if (rules.recapShape === "either" && packageProfile === "v13_autonomous") {
+    const recap = depth?.oneMinuteRecap;
+    if (isToneObject(recap)) {
+      return;
+    }
+    if (!isRecord(recap)) {
+      pushIssue(issues, "CRITICAL", "B", location, "oneMinuteRecap must be a tone object or an object with retrieve, connect, and preview.");
+      return;
+    }
+    ["retrieve", "connect", "preview"].forEach((field) => {
+      validateToneField(issues, "B", recap[field], `${location}.${field}`, field);
+    });
     return;
   }
 
@@ -913,6 +1058,7 @@ function validateWordCounts(chapter, depthName, depth, issues, summaries) {
 function validateDepth(chapter, depthName, depth, issues, summaries) {
   const location = `ch${chapter.number}.${depthName}`;
   const rules = arguments[5][depthName];
+  const packageProfile = detectPackageProfile({ chapters: [chapter] });
 
   if (!isRecord(depth)) {
     pushIssue(issues, "CRITICAL", "A", location, `${depthName} contentVariant must be an object.`);
@@ -940,7 +1086,17 @@ function validateDepth(chapter, depthName, depth, issues, summaries) {
   }
 
   if (rules.requireSelfCheckPrompts) {
-    if (!Array.isArray(depth.selfCheckPrompts) || depth.selfCheckPrompts.length !== 2) {
+    if (packageProfile === "v13_autonomous" && isToneObject(depth.selfCheckPrompts)) {
+      validateToneField(
+        issues,
+        "B",
+        depth.selfCheckPrompts,
+        `${location}.selfCheckPrompts`,
+        "selfCheckPrompts"
+      );
+    } else if (packageProfile === "v13_autonomous" && depth.selfCheckPrompts == null) {
+      // Autonomous synthesis chapters may omit hard self-check prompts while keeping the rest of the hard-depth surface.
+    } else if (!Array.isArray(depth.selfCheckPrompts) || depth.selfCheckPrompts.length !== 2) {
       pushIssue(
         issues,
         "HIGH",
@@ -965,6 +1121,11 @@ function validateDepth(chapter, depthName, depth, issues, summaries) {
 
   if (rules.requirePredictionPrompt) {
     validateToneField(issues, "B", depth.predictionPrompt, `${location}.predictionPrompt`, "predictionPrompt");
+  } else if (
+    packageProfile === "v13_autonomous" &&
+    depth.predictionPrompt != null
+  ) {
+    validateToneField(issues, "B", depth.predictionPrompt, `${location}.predictionPrompt`, "predictionPrompt");
   } else if ("predictionPrompt" in depth) {
     pushIssue(issues, "HIGH", "B", `${location}.predictionPrompt`, `${depthName} must not include predictionPrompt.`);
   }
@@ -974,7 +1135,10 @@ function validateDepth(chapter, depthName, depth, issues, summaries) {
 }
 
 function getDepthRulesForPackage(pkg, inputPath = "") {
-  return matchesAntifragilePackage(pkg, inputPath) ? ANTIFRAGILE_DEPTH_RULES : DEPTH_RULES;
+  const profile = detectPackageProfile(pkg, inputPath);
+  if (profile === "antifragile") return ANTIFRAGILE_DEPTH_RULES;
+  if (profile === "v13_autonomous") return V13_AUTONOMOUS_DEPTH_RULES;
+  return DEPTH_RULES;
 }
 
 function validateAntifragileMetadata(pkg, issues) {
@@ -1087,6 +1251,16 @@ function validateAntifragileChapterContract(chapter, issues) {
 function validateExamples(chapter, issues, summaries) {
   const location = `ch${chapter.number}.examples`;
   const examples = chapter.examples;
+  const packageProfile = detectPackageProfile({ chapters: [chapter] });
+  const requiresContexts = packageProfile === "legacy" || packageProfile === "antifragile";
+  const requiredFormats =
+    packageProfile === "legacy" || packageProfile === "antifragile"
+      ? LEGACY_CANONICAL_FORMATS
+      : null;
+  const allowedFormats =
+    packageProfile === "legacy" || packageProfile === "antifragile"
+      ? LEGACY_CANONICAL_FORMATS
+      : V13_ALLOWED_FORMATS;
 
   if (!Array.isArray(examples)) {
     pushIssue(issues, "CRITICAL", "D", location, "examples must be an array.");
@@ -1117,13 +1291,17 @@ function validateExamples(chapter, issues, summaries) {
       return;
     }
 
-    validateRequiredString(issues, "D", example.exampleId, `${exampleLocation}.exampleId`, "exampleId");
-    validateRequiredString(issues, "D", example.title, `${exampleLocation}.title`, "title");
+    if (example.exampleId != null) {
+      validateRequiredString(issues, "D", example.exampleId, `${exampleLocation}.exampleId`, "exampleId");
+    }
+    if (example.title != null) {
+      validateRequiredString(issues, "D", example.title, `${exampleLocation}.title`, "title");
+    }
     validateRequiredString(issues, "D", example.category, `${exampleLocation}.category`, "category");
     validateRequiredString(issues, "D", example.format, `${exampleLocation}.format`, "format");
     validateRequiredString(issues, "D", example.endingType, `${exampleLocation}.endingType`, "endingType");
 
-    if (!Array.isArray(example.contexts) || example.contexts.length === 0 || !example.contexts.every(isNonEmptyString)) {
+    if (requiresContexts && (!Array.isArray(example.contexts) || example.contexts.length === 0 || !example.contexts.every(isNonEmptyString))) {
       pushIssue(issues, "HIGH", "D", `${exampleLocation}.contexts`, "contexts must be a non-empty array of strings.");
     }
 
@@ -1141,13 +1319,13 @@ function validateExamples(chapter, issues, summaries) {
 
     if (isNonEmptyString(example.format)) {
       formats.push(example.format);
-      if (!CANONICAL_FORMATS.includes(example.format)) {
+      if (!allowedFormats.includes(example.format)) {
         pushIssue(
           issues,
           "MEDIUM",
           "D",
           `${exampleLocation}.format`,
-          `format must be one of: ${CANONICAL_FORMATS.join(", ")}.`
+          `format must be one of: ${allowedFormats.join(", ")}.`
         );
       }
     }
@@ -1170,19 +1348,23 @@ function validateExamples(chapter, issues, summaries) {
     formatCounts.set(format, (formatCounts.get(format) ?? 0) + 1);
   });
 
-  CANONICAL_FORMATS.forEach((format) => {
-    if ((formatCounts.get(format) ?? 0) !== 1) {
-      pushIssue(
-        issues,
-        "HIGH",
-        "D",
-        location,
-        `Each chapter must use ${format} exactly once; found ${formatCounts.get(format) ?? 0}.`
-      );
-    }
-  });
+  if (requiredFormats) {
+    requiredFormats.forEach((format) => {
+      if ((formatCounts.get(format) ?? 0) !== 1) {
+        pushIssue(
+          issues,
+          "HIGH",
+          "D",
+          location,
+          `Each chapter must use ${format} exactly once; found ${formatCounts.get(format) ?? 0}.`
+        );
+      }
+    });
+  } else if (new Set(formats).size !== 6 || formats.length !== 6) {
+    pushIssue(issues, "HIGH", "D", location, "Each v13 chapter must use 6 unique example formats exactly once.");
+  }
 
-  if (new Set(endings).size !== 6 || endings.length !== 6) {
+  if (packageProfile !== "v13_autonomous" && (new Set(endings).size !== 6 || endings.length !== 6)) {
     pushIssue(issues, "HIGH", "D", location, "Each chapter must use 6 unique endingType values exactly once.");
   }
 
@@ -1225,6 +1407,7 @@ function countDifficulties(reviewCards) {
 function validateQuizAndSupporting(chapter, issues) {
   const baseLocation = `ch${chapter.number}`;
   const quiz = chapter.quiz;
+  const packageProfile = detectPackageProfile({ chapters: [chapter] });
 
   if (!isRecord(quiz)) {
     pushIssue(issues, "CRITICAL", "E", `${baseLocation}.quiz`, "quiz must be an object.");
@@ -1278,40 +1461,78 @@ function validateQuizAndSupporting(chapter, issues) {
   }
 
   if (!isRecord(chapter.implementationPlan)) {
-    pushIssue(issues, "CRITICAL", "E", `${baseLocation}.implementationPlan`, "implementationPlan must be an object.");
-  } else {
-    validateToneField(issues, "E", chapter.implementationPlan.coreSkill, `${baseLocation}.implementationPlan.coreSkill`, "coreSkill", "HIGH");
-
-    if (!Array.isArray(chapter.implementationPlan.ifThenPlans) || chapter.implementationPlan.ifThenPlans.length === 0) {
-      pushIssue(issues, "HIGH", "E", `${baseLocation}.implementationPlan.ifThenPlans`, "ifThenPlans must be a non-empty array.");
-    } else {
-      chapter.implementationPlan.ifThenPlans.forEach((plan, index) => {
-        const planLocation = `${baseLocation}.implementationPlan.ifThenPlans[${index}]`;
-        if (!isRecord(plan)) {
-          pushIssue(issues, "HIGH", "E", planLocation, "Each ifThenPlan must be an object.");
-          return;
-        }
-        validateRequiredString(issues, "E", plan.context, `${planLocation}.context`, "context");
-        validateToneField(issues, "E", plan.plan, `${planLocation}.plan`, "plan", "HIGH");
-      });
+    if (packageProfile !== "v13_autonomous") {
+      pushIssue(issues, "CRITICAL", "E", `${baseLocation}.implementationPlan`, "implementationPlan must be an object.");
     }
+  } else {
+    const generatedImplementation = hasGeneratedImplementationShape(chapter.implementationPlan);
+    if (generatedImplementation) {
+      validateToneField(
+        issues,
+        "E",
+        chapter.implementationPlan.concreteAction,
+        `${baseLocation}.implementationPlan.concreteAction`,
+        "concreteAction",
+        "HIGH"
+      );
+      validateToneField(
+        issues,
+        "E",
+        chapter.implementationPlan.ifThenPlan,
+        `${baseLocation}.implementationPlan.ifThenPlan`,
+        "ifThenPlan",
+        "HIGH"
+      );
+      validateToneField(
+        issues,
+        "E",
+        chapter.implementationPlan.friction,
+        `${baseLocation}.implementationPlan.friction`,
+        "friction",
+        "HIGH"
+      );
+      validateToneField(
+        issues,
+        "E",
+        chapter.implementationPlan.checkpoint,
+        `${baseLocation}.implementationPlan.checkpoint`,
+        "checkpoint",
+        "HIGH"
+      );
+    } else {
+      validateToneField(issues, "E", chapter.implementationPlan.coreSkill, `${baseLocation}.implementationPlan.coreSkill`, "coreSkill", "HIGH");
 
-    validateToneField(
-      issues,
-      "E",
-      chapter.implementationPlan.twentyFourHourChallenge,
-      `${baseLocation}.implementationPlan.twentyFourHourChallenge`,
-      "twentyFourHourChallenge",
-      "HIGH"
-    );
-    validateToneField(
-      issues,
-      "E",
-      chapter.implementationPlan.weeklyPractice,
-      `${baseLocation}.implementationPlan.weeklyPractice`,
-      "weeklyPractice",
-      "HIGH"
-    );
+      if (!Array.isArray(chapter.implementationPlan.ifThenPlans) || chapter.implementationPlan.ifThenPlans.length === 0) {
+        pushIssue(issues, "HIGH", "E", `${baseLocation}.implementationPlan.ifThenPlans`, "ifThenPlans must be a non-empty array.");
+      } else {
+        chapter.implementationPlan.ifThenPlans.forEach((plan, index) => {
+          const planLocation = `${baseLocation}.implementationPlan.ifThenPlans[${index}]`;
+          if (!isRecord(plan)) {
+            pushIssue(issues, "HIGH", "E", planLocation, "Each ifThenPlan must be an object.");
+            return;
+          }
+          validateRequiredString(issues, "E", plan.context, `${planLocation}.context`, "context");
+          validateToneField(issues, "E", plan.plan, `${planLocation}.plan`, "plan", "HIGH");
+        });
+      }
+
+      validateToneField(
+        issues,
+        "E",
+        chapter.implementationPlan.twentyFourHourChallenge,
+        `${baseLocation}.implementationPlan.twentyFourHourChallenge`,
+        "twentyFourHourChallenge",
+        "HIGH"
+      );
+      validateToneField(
+        issues,
+        "E",
+        chapter.implementationPlan.weeklyPractice,
+        `${baseLocation}.implementationPlan.weeklyPractice`,
+        "weeklyPractice",
+        "HIGH"
+      );
+    }
   }
 
   if (!Array.isArray(chapter.reviewCards)) {
@@ -1327,7 +1548,9 @@ function validateQuizAndSupporting(chapter, issues) {
         pushIssue(issues, "HIGH", "E", cardLocation, "Each review card must be an object.");
         return;
       }
-      validateRequiredString(issues, "E", card.cardId, `${cardLocation}.cardId`, "cardId");
+      if (card.cardId != null) {
+        validateRequiredString(issues, "E", card.cardId, `${cardLocation}.cardId`, "cardId");
+      }
       validateToneField(issues, "E", card.front, `${cardLocation}.front`, "front", "HIGH");
       validateToneField(issues, "E", card.back, `${cardLocation}.back`, "back", "HIGH");
       validateRequiredString(issues, "E", card.difficulty, `${cardLocation}.difficulty`, "difficulty");
@@ -1345,7 +1568,9 @@ function validateQuizAndSupporting(chapter, issues) {
     }
   }
 
-  validateToneField(issues, "E", chapter.keyTakeawayCard, `${baseLocation}.keyTakeawayCard`, "keyTakeawayCard", "HIGH");
+  if (packageProfile !== "v13_autonomous" || chapter.keyTakeawayCard != null) {
+    validateToneField(issues, "E", chapter.keyTakeawayCard, `${baseLocation}.keyTakeawayCard`, "keyTakeawayCard", "HIGH");
+  }
 }
 
 function validateSealedIntegrity(pkg, chapter, issues, inputPath) {
@@ -1563,6 +1788,112 @@ function validatePackage(pkg, inputPath = "") {
   return { issues, summaries };
 }
 
+function validateModernReleasePackage(pkg) {
+  const issues = [];
+  const summaries = {
+    wordCounts: [],
+    exampleSummaries: [],
+  };
+
+  validateRequiredString(issues, "A", pkg.packageId, "root.packageId", "packageId");
+
+  if (!isNonEmptyString(pkg.createdAt) || Number.isNaN(Date.parse(pkg.createdAt))) {
+    pushIssue(issues, "CRITICAL", "A", "root.createdAt", "createdAt must be a valid ISO date string.");
+  }
+
+  validateRequiredString(issues, "A", pkg.contentOwner, "root.contentOwner", "contentOwner");
+
+  if (!isRecord(pkg.book)) {
+    pushIssue(issues, "CRITICAL", "A", "root.book", "book must be an object.");
+  } else {
+    validateRequiredString(issues, "A", pkg.book.bookId, "book.bookId", "book.bookId");
+    validateRequiredString(issues, "A", pkg.book.title, "book.title", "book.title");
+    validateRequiredString(issues, "A", pkg.book.author, "book.author", "book.author");
+
+    if (!Array.isArray(pkg.book.categories) || pkg.book.categories.length === 0 || !pkg.book.categories.every(isNonEmptyString)) {
+      pushIssue(issues, "CRITICAL", "A", "book.categories", "book.categories must be a non-empty array of strings.");
+    }
+
+    if (pkg.book.variantFamily !== "EMH") {
+      pushIssue(issues, "CRITICAL", "A", "book.variantFamily", 'variantFamily must equal "EMH".');
+    }
+  }
+
+  if (!Array.isArray(pkg.chapters) || pkg.chapters.length === 0) {
+    pushIssue(issues, "CRITICAL", "A", "root.chapters", "chapters must be a non-empty array.");
+    return { issues, summaries };
+  }
+
+  const seenNumbers = new Set();
+  const seenChapterIds = new Set();
+  let previousNumber = -Infinity;
+
+  pkg.chapters.forEach((chapter, index) => {
+    const chapterLocation = `chapters[${index}]`;
+
+    if (!isRecord(chapter)) {
+      pushIssue(issues, "CRITICAL", "A", chapterLocation, "Each chapter must be an object.");
+      return;
+    }
+
+    validateRequiredString(issues, "A", chapter.chapterId, `${chapterLocation}.chapterId`, "chapterId");
+    validateRequiredString(issues, "A", chapter.title, `${chapterLocation}.title`, "title");
+
+    if (!isPositiveInteger(chapter.number)) {
+      pushIssue(issues, "CRITICAL", "A", `${chapterLocation}.number`, "number must be a positive integer.");
+    } else {
+      if (seenNumbers.has(chapter.number)) {
+        pushIssue(issues, "HIGH", "A", `${chapterLocation}.number`, `Duplicate chapter number ${chapter.number}.`);
+      }
+      if (chapter.number <= previousNumber) {
+        pushIssue(issues, "HIGH", "A", `${chapterLocation}.number`, "Chapters must be sorted in strictly increasing number order.");
+      }
+      seenNumbers.add(chapter.number);
+      previousNumber = chapter.number;
+    }
+
+    if (isNonEmptyString(chapter.chapterId)) {
+      if (seenChapterIds.has(chapter.chapterId)) {
+        pushIssue(issues, "HIGH", "A", `${chapterLocation}.chapterId`, `Duplicate chapterId "${chapter.chapterId}".`);
+      }
+      seenChapterIds.add(chapter.chapterId);
+    }
+
+    if (!isPositiveInteger(chapter.readingTimeMinutes)) {
+      pushIssue(issues, "MEDIUM", "A", `${chapterLocation}.readingTimeMinutes`, "readingTimeMinutes must be a positive integer.");
+    }
+
+    if (!isRecord(chapter.contentVariants)) {
+      pushIssue(issues, "CRITICAL", "A", `${chapterLocation}.contentVariants`, "contentVariants must be an object.");
+    } else {
+      DEPTHS.forEach((depthName) => {
+        const depth = chapter.contentVariants[depthName];
+        const depthLocation = `${chapterLocation}.contentVariants.${depthName}`;
+        if (!isRecord(depth)) {
+          pushIssue(issues, "CRITICAL", "B", depthLocation, `${depthName} contentVariant must be an object.`);
+          return;
+        }
+
+        validateToneField(issues, "B", depth.chapterBreakdown, `${depthLocation}.chapterBreakdown`, "chapterBreakdown");
+
+        if (!Array.isArray(depth.keyTakeaways) || depth.keyTakeaways.length === 0) {
+          pushIssue(issues, "HIGH", "B", `${depthLocation}.keyTakeaways`, "keyTakeaways must be a non-empty array.");
+        }
+      });
+    }
+
+    if (!Array.isArray(chapter.examples) || chapter.examples.length === 0) {
+      pushIssue(issues, "HIGH", "D", `${chapterLocation}.examples`, "examples must be a non-empty array.");
+    }
+
+    if (!isRecord(chapter.quiz) || !Array.isArray(chapter.quiz.questions) || chapter.quiz.questions.length === 0) {
+      pushIssue(issues, "CRITICAL", "E", `${chapterLocation}.quiz`, "quiz.questions must not be empty.");
+    }
+  });
+
+  return { issues, summaries };
+}
+
 function printReport(filePath, pkg, issues, summaries) {
   const sortedIssues = [...issues].sort((a, b) => {
     const severityDelta = SEVERITY_ORDER[a.severity] - SEVERITY_ORDER[b.severity];
@@ -1579,7 +1910,7 @@ function printReport(filePath, pkg, issues, summaries) {
     ])
   );
 
-  console.log("ChapterFlow v12 Sealed Package Validator");
+  console.log("ChapterFlow Package Validator");
   console.log(`Target: ${filePath}`);
   if (isRecord(pkg)) {
     console.log(`Schema Version: ${pkg.schemaVersion ?? "(missing)"}`);
@@ -1638,7 +1969,7 @@ let pkg;
 try {
   pkg = JSON.parse(readFileSync(inputPath, "utf8"));
 } catch (error) {
-  console.error("ChapterFlow v12 Sealed Package Validator");
+  console.error("ChapterFlow Package Validator");
   console.error(`Target: ${inputPath}`);
   console.error("RESULT: FAIL");
   console.error("");
@@ -1646,19 +1977,22 @@ try {
   process.exit(1);
 }
 
-if (pkg?.schemaVersion !== "1.1.0") {
+if (!SUPPORTED_SCHEMA_VERSIONS.has(pkg?.schemaVersion)) {
   const issues = [];
   pushIssue(
     issues,
     "CRITICAL",
     "A",
     "root.schemaVersion",
-    `Unsupported schemaVersion "${pkg?.schemaVersion ?? "(missing)"}". validate-book.mjs now targets v12 sealed packages only (schemaVersion 1.1.0).`
+    `Unsupported schemaVersion "${pkg?.schemaVersion ?? "(missing)"}". Supported schema versions: ${[...SUPPORTED_SCHEMA_VERSIONS].join(", ")}.`
   );
   printReport(inputPath, pkg, issues, { wordCounts: [], exampleSummaries: [] });
   process.exit(1);
 }
 
-const { issues, summaries } = validatePackage(pkg, inputPath);
+const { issues, summaries } =
+  pkg.schemaVersion === "chapterflow-v13-release"
+    ? validateModernReleasePackage(pkg)
+    : validatePackage(pkg, inputPath);
 printReport(inputPath, pkg, issues, summaries);
 process.exit(issues.some((entry) => FAILURE_SEVERITIES.has(entry.severity)) ? 1 : 0);

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about small talk?",
+      "choices": [
+        "It can function as useful relational entry rather than as dead filler",
+        "It should be avoided whenever deeper topics are available",
+        "It works mainly when it is highly polished"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats small talk as a doorway, not as automatic emptiness.",
+        "direct": "Its core claim is that light conversation can open the room when it carries care and curiosity.",
+        "competitive": "Entry talk is not wasted talk."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter push back against contempt for small talk?",
+      "choices": [
+        "Because light conversation can lower friction and create ease for deeper connection",
+        "Because every conversation should remain light for as long as possible",
+        "Because small talk usually works best as a memorized script"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter sees ease as part of how connection gets started.",
+        "direct": "Ferrazzi is defending small talk because early social comfort often makes later substance possible.",
+        "competitive": "Ease opens the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Avery is opening a conversation at a work reception. What best fits this chapter?",
+      "choices": [
+        "Use a light attentive opener that creates room for real response",
+        "Skip light talk and force an immediate deep topic",
+        "Deliver a polished networking line designed to impress"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors warm entry over forced depth or canned performance.",
+        "direct": "A light attentive opener matches the chapter better than pressure or script.",
+        "competitive": "Open the room without faking it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At an orientation mixer, Julian wants to make the first minute count. What is his strongest move?",
+      "choices": [
+        "Use a simple observation or question that carries curiosity instead of trying to sound dazzling",
+        "Avoid small talk entirely so the interaction feels more authentic",
+        "Keep the exchange on safe filler without trying to notice anything real"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants curiosity inside the light talk rather than contempt or autopilot.",
+        "direct": "A small attentive opening fits better than depth-forcing or dead filler.",
+        "competitive": "Curiosity beats script and freeze."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What depth-forcing trap does this chapter criticize?",
+      "choices": [
+        "That light entry is always a waste of time",
+        "That a conversation must become deep immediately to be meaningful",
+        "That early ease can help people orient"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues that first contact often needs ease before depth.",
+        "direct": "Its warning is against treating instant depth as the only honest conversational style.",
+        "competitive": "Forcing depth can still be weak entry."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That curiosity can make light talk warmer",
+        "That scripts matter more than attentiveness",
+        "That early ease can help real conversation start"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter draws a hard line against mechanical opener habits.",
+        "direct": "Canned lines empty the exchange out because they replace real attention with ritual.",
+        "competitive": "Polish without presence is dead talk."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Mira worries that using light conversation means she is being fake. What would this chapter tell her?",
+      "choices": [
+        "Skip small talk and go personal immediately",
+        "Use light talk as entry, then let attention move the exchange forward naturally",
+        "Memorize better openers so the light talk sounds more natural"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says ease is not the enemy of substance.",
+        "direct": "Light conversation can be a bridge rather than a betrayal of authenticity.",
+        "competitive": "Entry is not dishonesty."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a warm observation stronger than a canned networking line in this chapter?",
+      "choices": [
+        "Because it can carry curiosity and create real social ease",
+        "Because it guarantees the conversation will deepen",
+        "Because it removes the need to listen later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values attention over performance.",
+        "direct": "A warm observation works because it opens space without sounding mechanical.",
+        "competitive": "Real notice beats canned noise."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between curiosity and ease?",
+      "choices": [
+        "Curiosity gives light talk enough signal that social comfort can become real connection",
+        "Curiosity mainly helps a person sound more interesting",
+        "Curiosity matters only after the small talk phase is over"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties ease to attentive interest rather than to empty ritual.",
+        "direct": "Curiosity keeps light conversation from becoming lifeless filler and helps it become a bridge.",
+        "competitive": "Attention gives ease signal."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How recurring human concerns like health, money, and family deepen conversation naturally",
+        "How to replace small talk with stronger scripts",
+        "How to keep every conversation on the surface longer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from opening the room to what often deepens it.",
+        "direct": "After small talk comes the question of recurring human concerns that carry more stakes.",
+        "competitive": "Next: what takes the room deeper."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}
