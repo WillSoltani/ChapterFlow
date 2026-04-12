@@ -1,0 +1,30 @@
+{
+  "bookId": "meditations",
+  "runId": "20260412-184534",
+  "lockedAt": "2026-04-12T18:45:34-03:00",
+  "selectionMode": "auto_lock",
+  "reason": "Meditations has stable twelve-book structure across major public-domain translations, so translation ambiguity does not materially change chapter count or chapter order for this run. The George Long Project Gutenberg text is a complete public-domain translation with explicit translator attribution and enough fidelity for a strict source freeze.",
+  "chosenEdition": {
+    "name": "Thoughts of Marcus Aurelius Antoninus",
+    "canonicalWorkTitle": "Meditations",
+    "author": "Marcus Aurelius",
+    "translator": "George Long",
+    "publisher": "Project Gutenberg eBook source text based on the 1862 George Long translation",
+    "publishedDate": "1862",
+    "publishedYear": 1862,
+    "format": "Public-domain English translation",
+    "sourceText": ".chapterflow/runs/meditations/20260412-184534/source-freeze/book-source.txt",
+    "sourceProvenance": "Frozen web bundle from Project Gutenberg ebook 15877 with cross-checks from Project Gutenberg ebook 2680 and Wikipedia structure notes."
+  },
+  "rejectedCandidates": [
+    {
+      "name": "Meditations (Project Gutenberg ebook 2680)",
+      "reason": "Usable as a public-domain cross-check, but the frozen Long translation is preferable because the translator is explicit and the twelve-book content is complete."
+    },
+    {
+      "name": "Other public-domain translations such as Casaubon",
+      "reason": "Translation differences affect wording but not the twelve-book structure. No edition question is needed because chapter-level scope remains stable."
+    }
+  ],
+  "userQuestionNeeded": false
+}

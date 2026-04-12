@@ -1,0 +1,33 @@
+{
+  "bookId": "the-obstacle-is-the-way",
+  "runId": "20260412-184146",
+  "lockedAt": "2026-04-12T18:41:46-03:00",
+  "selectionMode": "auto_lock_dominant_canonical",
+  "editionPreferenceInput": "ask_if_ambiguous",
+  "decision": {
+    "title": "The Obstacle Is the Way: The Timeless Art of Turning Trials into Triumph",
+    "author": "Ryan Holiday",
+    "publisherFamily": "Portfolio / Penguin Random House",
+    "publishedYear": 2014,
+    "translator": null,
+    "variant": "original",
+    "language": "English"
+  },
+  "alternativesConsidered": [
+    {
+      "label": "Expanded 10th Anniversary Edition",
+      "status": "not_selected",
+      "reason": "Later revised packaging adds chapter-level material and would change the run's chapter map."
+    }
+  ],
+  "whyLocked": [
+    "The user named the unqualified base title rather than the expanded anniversary variant.",
+    "The 2014 original is the dominant canonical edition for the book's baseline chapter structure.",
+    "Locking the original avoids mixing revised anniversary content into a run that began from the base title."
+  ],
+  "materialAmbiguity": {
+    "detected": true,
+    "askedUser": false,
+    "reasonNotAsked": "The base-title request strongly indicates the original edition, and the original chapter map is the safest canonical lock for ChapterFlow."
+  }
+}

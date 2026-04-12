@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch20-q01",
+      "prompt": "What is the chapter's main move about models?",
+      "choices": [
+        "Models enter the noise conversation as a relevant contrast or aid to judgment",
+        "Models automatically eliminate every noise problem",
+        "Models make human judgment irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter introduces models as part of how to think about noisy judgment.",
+        "direct": "Correct. Models matter here as a contrast or companion to human judgment, not as magic replacements.",
+        "competitive": "The model enters the room, but it does not become a deity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q02",
+      "prompt": "Why do models matter after the chapter on predictive judgments?",
+      "choices": [
+        "Because they offer another way to think about variation in judgment",
+        "Because they prove humans should stop judging",
+        "Because they require technical benchmark claims"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Models become relevant once noisy prediction is visible.",
+        "direct": "The book turns to models because they change how consistency and variation can be considered.",
+        "competitive": "Once the forecast leaks, the model becomes part of the response."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q03",
+      "prompt": "Which overclaim does the chapter reject about models?",
+      "choices": [
+        "That models are magic replacements for judgment",
+        "That models matter to the discussion",
+        "That judgment and models can be compared"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps the role of models balanced.",
+        "direct": "It rejects the idea that bringing in models automatically solves every problem or removes judgment from the picture.",
+        "competitive": "The model is not a wand that vaporizes wobble."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q04",
+      "prompt": "Nadia sees a score sheet beside a human assessment. What lesson fits best?",
+      "choices": [
+        "Models can matter as a structured aid or contrast when thinking about variation",
+        "The score sheet makes judgment unnecessary",
+        "Any structured aid automatically wins"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter treats models as relevant without overclaiming.",
+        "direct": "A structured score sheet matters because it offers another way to think about consistency and variation.",
+        "competitive": "The score sheet changes the fight without ending it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q05",
+      "prompt": "Why does Priya's school placement aid matter here?",
+      "choices": [
+        "It shows how a model can enter judgment as a structured companion rather than a magic replacement",
+        "It proves schools should hand every decision to a model",
+        "It introduces a named technical system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The school example keeps the point practical and balanced.",
+        "direct": "The placement aid matters because it shows a model participating in the noise conversation without making human judgment disappear.",
+        "competitive": "The tool joins the room without seizing the throne."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q06",
+      "prompt": "What is the chapter's narrow claim about judgment and models?",
+      "choices": [
+        "They form a meaningful contrast or partnership in responding to variation",
+        "Models are always superior to people",
+        "Human judgment should now be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter is interested in the comparison and relationship, not a slogan.",
+        "direct": "It says judgments and models matter together as part of the response to variation without pretending one side always eliminates the other.",
+        "competitive": "The point is a disciplined comparison, not a cheap victory speech."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q07",
+      "prompt": "What stays visible even when models enter the picture?",
+      "choices": [
+        "Tradeoffs and the continuing role of judgment",
+        "The end of all variation",
+        "A guarantee of technical precision"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps tradeoffs and judgment in view.",
+        "direct": "Models matter without making the decision purely technical or eliminating the need for judgment.",
+        "competitive": "The model helps, but the tradeoff bill still arrives."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q08",
+      "prompt": "Why is the chapter not a purely technical argument?",
+      "choices": [
+        "Because it is about how models relate to human judgment under noise, not about unsupported benchmark claims",
+        "Because it abandons the topic of variation",
+        "Because it proves all tools are equal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter stays conceptual and practical.",
+        "direct": "The book is comparing judgments and models as part of the noise conversation, not making a technical benchmark claim it cannot support.",
+        "competitive": "This chapter is drawing a cleaner map, not flexing imaginary metrics."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q09",
+      "prompt": "Why do models matter without becoming magic replacements?",
+      "choices": [
+        "Because they can support or contrast judgment while leaving tradeoffs and human roles visible",
+        "Because they automatically outperform any human decision",
+        "Because they remove every need for evaluation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter introduces models as part of the response, not the end of thinking.",
+        "direct": "Models matter because they change the comparison around consistency and variation, but they do not erase judgment or guarantee perfection.",
+        "competitive": "The tool matters without becoming a religion."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once models enter the conversation, the book can turn toward noiseless rules",
+        "The next chapter abandons the question of consistency",
+        "The next chapter proves every model should replace every person"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move narrows toward noiseless rules.",
+        "direct": "The bridge works because models raise the question of how far consistency can go, which opens the next chapter's turn to noiseless rules.",
+        "competitive": "Once the model changes the room, the next question is what a noiseless rule would do."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 import thePowerOfHabitPackageJson from "@/book-packages/the-power-of-habit.modern.json";
 import makeTimePackageJson from "@/book-packages/make-time.modern.json";
 import crucialConversationsPackageJson from "@/book-packages/crucial-conversations.modern.json";
+import difficultConversationsPackageJson from "@/book-packages/difficult-conversations.modern.json";
 import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.modern.json";
 import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
 import tinyHabitsPackageJson from "@/book-packages/tiny-habits.modern.json";
 import essentialismPackageJson from "@/book-packages/essentialism.modern.json";
 import deepWorkPackageJson from "@/book-packages/deep-work.modern.json";
+import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.modern.json";
 import predictablyIrrationalPackageJson from "@/book-packages/predictably-irrational.modern.json";
 import thinkingFastAndSlowPackageJson from "@/book-packages/thinking-fast-and-slow.modern.json";
 import thePsychologyOfMoneyPackageJson from "@/book-packages/the-psychology-of-money.modern.json";
@@ -413,6 +415,17 @@ export function getCrucialConversationsPackageForTone(tone: ToneKey): BookPackag
   return normalizeNstdPackage(crucialConversationsPackageJson, tone);
 }
 
+export const DIFFICULT_CONVERSATIONS_PACKAGE =
+  normalizeNstdPackage(difficultConversationsPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const DIFFICULT_CONVERSATIONS_RAW_CHAPTERS =
+  getRawChapters(difficultConversationsPackageJson);
+
+export function getDifficultConversationsPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(difficultConversationsPackageJson, tone);
+}
+
 export const WHAT_EVERY_BODY_IS_SAYING_PACKAGE =
   normalizeNstdPackage(whatEveryBodyIsSayingPackageJson, "direct");
 
@@ -457,6 +470,20 @@ export const DEEP_WORK_RAW_CHAPTERS = getRawChapters(deepWorkPackageJson);
 
 export function getDeepWorkPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(deepWorkPackageJson, tone);
+}
+
+export const SO_GOOD_THEY_CANT_IGNORE_YOU_PACKAGE = normalizeNstdPackage(
+  soGoodTheyCantIgnoreYouPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS = getRawChapters(
+  soGoodTheyCantIgnoreYouPackageJson
+);
+
+export function getSoGoodTheyCantIgnoreYouPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(soGoodTheyCantIgnoreYouPackageJson, tone);
 }
 
 export const PREDICTABLY_IRRATIONAL_PACKAGE = normalizeNstdPackage(
@@ -764,10 +791,12 @@ export const BOOK_PACKAGES: BookPackage[] = [
   MAKE_TIME_PACKAGE,
   ESSENTIALISM_PACKAGE,
   CRUCIAL_CONVERSATIONS_PACKAGE,
+  DIFFICULT_CONVERSATIONS_PACKAGE,
   WHAT_EVERY_BODY_IS_SAYING_PACKAGE,
   THE_PRINCE_PACKAGE,
   TINY_HABITS_PACKAGE,
   DEEP_WORK_PACKAGE,
+  SO_GOOD_THEY_CANT_IGNORE_YOU_PACKAGE,
   PREDICTABLY_IRRATIONAL_PACKAGE,
   THINKING_FAST_AND_SLOW_PACKAGE,
   THE_PSYCHOLOGY_OF_MONEY_PACKAGE,
@@ -803,10 +832,12 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "make-time": getMakeTimePackageForTone,
   "essentialism": getEssentialismPackageForTone,
   "crucial-conversations": getCrucialConversationsPackageForTone,
+  "difficult-conversations": getDifficultConversationsPackageForTone,
   "what-every-body-is-saying": getWhatEveryBodyIsSayingPackageForTone,
   "the-prince": getThePrincePackageForTone,
   "tiny-habits": getTinyHabitsPackageForTone,
   "deep-work": getDeepWorkPackageForTone,
+  "so-good-they-cant-ignore-you": getSoGoodTheyCantIgnoreYouPackageForTone,
   "predictably-irrational": getPredictablyIrrationalPackageForTone,
   "thinking-fast-and-slow": getThinkingFastAndSlowPackageForTone,
   "the-psychology-of-money": getThePsychologyOfMoneyPackageForTone,
@@ -862,6 +893,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
       "A practical guide to high-stakes dialogue: spotting crucial conversations early, avoiding silence and force, restoring safety, and turning hard talks into real action.",
     pages: 336,
   },
+  "difficult-conversations": {
+    icon: "🗣️",
+    coverImage: getBookCoverPath("difficult-conversations"),
+    difficulty: "Medium",
+    synopsis:
+      "A practical guide to the hidden structure inside hard conversations: what happened, feelings, identity, listening, expression, and the move into joint problem-solving.",
+    pages: 352,
+  },
   "what-every-body-is-saying": {
     icon: "👁️",
     coverImage: getBookCoverPath("what-every-body-is-saying"),
@@ -899,6 +938,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of focus, distraction, scheduling, boredom training, tool selection, and shallow-work control for people trying to build a deeper working life.",
     pages: 304,
+  },
+  "so-good-they-cant-ignore-you": {
+    icon: "🛠️",
+    coverImage: getBookCoverPath("so-good-they-cant-ignore-you"),
+    difficulty: "Medium",
+    synopsis:
+      "A practical reading of the passion hypothesis, craftsman mindset, career capital, control, and mission as a sequenced path to work that becomes compelling over time.",
+    pages: 288,
   },
   "predictably-irrational": {
     icon: "🧪",

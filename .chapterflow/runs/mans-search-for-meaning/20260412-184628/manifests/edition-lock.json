@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "chapterflow.v13.edition-lock",
+  "bookId": "mans-search-for-meaning",
+  "runId": "20260412-184628",
+  "requestedTitle": "“Mans-Search-for-Meaning“",
+  "requestedAuthor": "“Viktor-E.Frankl”",
+  "normalizedTitle": "Man's Search for Meaning",
+  "normalizedAuthor": "Viktor E. Frankl",
+  "decision": "auto_locked",
+  "decisionDate": "2026-04-12",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "askUserRequired": false,
+  "materialAmbiguity": false,
+  "reasoning": "The dominant modern English reading line is the Beacon Press edition family built on the revised English edition commonly titled 'Man's Search for Meaning'. Available authorized preview metadata and publisher material converge on the same memoir-plus-logotherapy structure relevant to chapter planning. Variant forewords, afterwords, and pagination differ, but the chapter-level content needed for this run does not materially diverge.",
+  "chosenEdition": {
+    "displayName": "Beacon Press modern English trade line (2006/2014 printings of the revised adult edition)",
+    "publisher": "Beacon Press",
+    "workingEditionYear": 2006,
+    "currentPrintYear": 2014,
+    "language": "English",
+    "translators": [
+      "Ilse Lasch",
+      "Helen Pisano"
+    ],
+    "contributors": [
+      "Harold S. Kushner",
+      "William J. Winslade"
+    ],
+    "sourceProvenance": "Authorized Google Books metadata plus Beacon Press support material",
+    "chapterRange": "ch01-ch05"
+  },
+  "rejectedAlternatives": [
+    {
+      "label": "Young Adult edition / classroom adaptation line",
+      "reason": "Publisher support material references adaptation-specific framing and appendices not suitable as the canonical adult chapter map for this run."
+    },
+    {
+      "label": "Earlier English title line: From Death-Camp to Existentialism",
+      "reason": "Historically relevant, but not the dominant current chaptering for the standard modern English edition requested implicitly by title recognition and current availability."
+    }
+  ],
+  "frozenSourceBundle": {
+    "bookSourcePath": ".chapterflow/runs/mans-search-for-meaning/20260412-184628/source-freeze/book-source.md",
+    "tocPath": ".chapterflow/runs/mans-search-for-meaning/20260412-184628/source-freeze/toc.json",
+    "headingIndexPath": ".chapterflow/runs/mans-search-for-meaning/20260412-184628/sidecars/source/source-heading-index.json"
+  }
+}

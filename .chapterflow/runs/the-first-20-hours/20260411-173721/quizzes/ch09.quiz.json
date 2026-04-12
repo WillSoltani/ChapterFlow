@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What problem does Chapter 9 attack first in its windsurfing case study?",
+      "choices": [
+        "The learner treats the whole live environment as urgent before any smaller session has stabilized",
+        "Windsurfing mainly fails because the learner lacks technical gear specifications first",
+        "The sport is too repetitive for staged practice to matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens on environmental breadth overwhelming the learner before a smaller live session exists.",
+        "direct": "Chapter 9 first rejects the idea that the full outdoor system belongs in the initial assignment.",
+        "competitive": "The opening enemy is live-scale inflation."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Why does environment-shaped practice matter so much in this chapter?",
+      "choices": [
+        "Because the learner should wait for perfect conditions before practicing",
+        "Because conditions change what the learner is actually trying to do, so practice design has to account for them",
+        "Because outdoor skills are mostly about building courage rather than control"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Condition awareness helps because wind, water, and equipment behavior shape the sport itself.",
+        "direct": "The chapter treats condition fit as part of skill design, not as a side detail.",
+        "competitive": "The world changes the assignment, so the session has to change too."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "What makes staged isolation valuable in Chapter 9?",
+      "choices": [
+        "It reinforces one launch, balance, sail, or recovery pattern until it becomes more reliable",
+        "It lets the learner avoid real conditions until full confidence appears",
+        "It proves that broad exposure is unnecessary in any outdoor skill"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants reps that belong to one concrete live sequence.",
+        "direct": "Isolation works here because it stabilizes a defined environmental bottleneck instead of scattering effort widely.",
+        "competitive": "The drill earns value when it serves one move that can hold outside."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Noor has to choose between chaotic open-water exposure and a dockside sail-reset session she can actually repeat. What response best fits Chapter 9?",
+      "choices": [
+        "Join the most difficult conditions immediately because live chaos is the only honest teacher",
+        "Avoid the water entirely until every subskill can be rehearsed perfectly on land",
+        "Choose the narrower live session and let the repetitions accumulate there"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter would protect one smaller live target that could actually become dependable enough to reconnect with harder conditions later.",
+        "direct": "This is staged isolation in action: a real subskill window gives feedback somewhere useful to land.",
+        "competitive": "She needs one slice the world can test, not more noise."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "Why does Chapter 9 tie its smaller sessions to risk-aware progression?",
+      "choices": [
+        "Because a calmer session can still prepare the learner for real environmental contact without overload",
+        "Because private rehearsal always teaches more than any live outdoor attempt",
+        "Because the goal is to keep the sport as safe and partial as possible for as long as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses staged exposure as a real standard for whether the smaller session still belongs to the sport.",
+        "direct": "Risk-aware progression matters because the narrowed session has to prepare honest contact with wind and water.",
+        "competitive": "A calm window only counts if it still leads back to reality."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "When does staging become a trap in this chapter's logic?",
+      "choices": [
+        "When the learner repeats one sequence until it steadies",
+        "When the learner notices that equipment setup and recovery are real subskills",
+        "When the session becomes so sheltered that the live environment never gets to test it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter warns that a protected fragment can still be fake if wind and water never really get a vote.",
+        "direct": "Staging fails when it protects the learner from environmental contact instead of preparing for it.",
+        "competitive": "Safe goes fake when comfort writes the curriculum."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "How would Chapter 9 most likely apply to another condition-shaped skill?",
+      "choices": [
+        "Wait until full control of every variable is available before beginning",
+        "Build a smaller live sequence, isolate the crucial bottleneck, and test it against an honest real-world standard",
+        "Treat any sheltered drill as enough if it feels smooth in practice"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The broader lesson is to reduce the field to a live sequence that can still be tested honestly.",
+        "direct": "Chapter 9 generalizes through condition fit, staged isolation, and a real threshold beyond protected comfort.",
+        "competitive": "Same rule elsewhere: cut the chaos, feed the right reps, let the world judge."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "Leo predicts that one big windy session will teach more than a repeated near-shore reset. Why does Chapter 9 reject that prediction?",
+      "choices": [
+        "Because broad exposure can still leave every crucial control pattern unstable",
+        "Because difficult conditions should always be avoided early in outdoor learning",
+        "Because staged isolation eliminates any need for later environmental contact"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter trusts one repeated bottleneck drill more than broad unreadable exposure.",
+        "direct": "A single environmental sequence can teach more when it becomes dependable than a chaotic session can teach while nothing holds.",
+        "competitive": "More chaos does not help if none of the weak points survive the water."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "What is the chapter's hardest warning about a narrowed windsurfing session?",
+      "choices": [
+        "That a smaller session can still be avoidance if it never meets a real environmental threshold",
+        "That all staged practice is too artificial to matter in outdoor skills",
+        "That the live environment should be delayed until the sport feels comfortable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is careful here. A calm protected loop is not automatically an honest outdoor-ready sequence.",
+        "direct": "The danger is not smaller scope itself but staging that keeps the skill safely untested by the environment.",
+        "competitive": "A tiny session can still be fear with a board on it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "If Chapter 9 narrows windsurfing into a live risk-aware sequence, what is the most natural bridge after the final case chapter?",
+      "choices": [
+        "How outdoor skill design can replace every other learning method in the book",
+        "How the reader should use these lessons when choosing the next skill to learn",
+        "How staged isolation proves that the environment matters less than repetition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next move is the closing question of what the reader now wants to learn using the method.",
+        "direct": "The book now turns from case studies toward the reader's own next learning choice.",
+        "competitive": "The case studies end by throwing the method back at the reader."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

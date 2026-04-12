@@ -1,0 +1,47 @@
+{
+  "chapterId": "ch01",
+  "title": "Book I",
+  "heading": "I.",
+  "approxWords": 4000,
+  "properNouns": [
+    "Verus",
+    "Rusticus",
+    "Epictetus",
+    "Apollonius",
+    "Sextus",
+    "Antoninus Pius",
+    "Maximus",
+    "the gods"
+  ],
+  "repeatedTerms": [
+    "learned",
+    "discipline",
+    "simplicity",
+    "temper",
+    "nature",
+    "justice",
+    "gratitude",
+    "steadiness"
+  ],
+  "sourceReferences": [
+    "gutenberg-george-long-15877",
+    "gutenberg-meditations-2680"
+  ],
+  "quoteLedger": [
+    {
+      "text": "good morals and the government of my temper",
+      "status": "allowed_short",
+      "sourceRef": "gutenberg-george-long-15877"
+    },
+    {
+      "text": "living according to nature",
+      "status": "allowed_short",
+      "sourceRef": "gutenberg-george-long-15877"
+    }
+  ],
+  "notes": [
+    "Paraphrase first even though the full text is frozen.",
+    "Keep the chapter anchored to inherited standards, not generic gratitude.",
+    "Do not turn Book I into a biography chapter or a soft opening."
+  ]
+}

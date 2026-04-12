@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does Marcus begin Book I by naming what he learned from other people?",
+      "choices": [
+        "To show that virtue becomes visible through examples before it becomes a demand on the self",
+        "To prove that his family background made later self-command automatic",
+        "To delay the real philosophy until the reader is emotionally attached to him"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The opening ledger places virtue in observed conduct, not in self-praise.",
+        "direct": "Marcus starts with formation so the reader sees standards arriving through lived examples rather than private genius.",
+        "competitive": "He opens by killing the myth that discipline appeared out of nowhere."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What role does gratitude play in Book I?",
+      "choices": [
+        "It softens the book so later demands feel less severe",
+        "It works as moral accounting that traces where standards came from",
+        "It replaces the need for later action by honoring the past"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The gratitude matters because it names real sources and real obligations.",
+        "direct": "Book I uses gratitude to map causes, teachers, protections, and debts, not to avoid effort.",
+        "competitive": "This is a ledger, not a lullaby."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is Rusticus structurally important in the opening book?",
+      "choices": [
+        "He introduces Marcus to public office and military responsibility",
+        "He proves that emotional warmth is the highest Stoic virtue",
+        "He sharpens the line between real discipline and the performance of discipline"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Rusticus matters because he pulls philosophy back toward correction, plainness, and careful reading.",
+        "direct": "Marcus uses Rusticus to show how easily seriousness can be counterfeited by display.",
+        "competitive": "Rusticus spots vanity wearing a philosopher's face."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elena keeps telling herself that a professor's harsh feedback only proves the professor enjoys criticism. Which response best fits Book I?",
+      "choices": [
+        "Ignore the feedback until it arrives in a kinder tone",
+        "Ask what standard the correction is trying to pass on before dismissing it",
+        "Accept the criticism outwardly but keep your original draft to preserve confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Book I invites Elena to study the useful trait hidden inside the demanding example.",
+        "direct": "The chapter treats formation as something that often arrives through correction rather than comfort.",
+        "competitive": "If the standard is real, wounded pride is not a good excuse to waste it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "During a team meeting, Jonah notices one manager soaking up attention while another stays calm, decisive, and fair. What is the stronger judgment from Book I?",
+      "choices": [
+        "The louder manager is probably the better leader because visible certainty builds authority",
+        "Both styles are equal because the chapter only cares about private virtue",
+        "The steadier manager fits the chapter's model because governed power needs less spectacle"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Marcus admires authority that can remain simple, patient, and unshowy.",
+        "direct": "Antoninus Pius matters because he turns rank into a test of inward government rather than performance.",
+        "competitive": "Noise can borrow rank. Steadiness has to earn it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Tessa envies a tutor's polished explanations until she sees pages of slow, plain annotations in his notebook. What principle is she learning?",
+      "choices": [
+        "Clarity often comes from disciplined practice rather than dramatic style",
+        "Talent matters more than method once a person becomes skilled enough",
+        "Good teachers should hide their methods so students stay impressed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The reveal points her back to the quiet habits that produced the result.",
+        "direct": "Book I values anti-display discipline because real seriousness often looks plainer than vanity expects.",
+        "competitive": "Aura is easy to envy. Reps are harder to copy, which is why they matter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best corrects the misreading that Book I is only biographical background?",
+      "choices": [
+        "Its main purpose is to record names before Marcus forgets them later in life",
+        "It uses people and influences to define the standards that will judge later conduct",
+        "It exists mostly to prove that Marcus had unusually good fortune compared with other rulers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter matters because the remembered examples become living measures, not just memories.",
+        "direct": "Book I turns biography into a ledger of standards that later books must either enact or betray.",
+        "competitive": "These names are not ornaments. They are witnesses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Marcus writes in his journal that he is grateful for his mentors but cannot name what each one taught him. What is missing?",
+      "choices": [
+        "A more emotional tone so the gratitude feels sincere",
+        "Specific moral accounting that turns gratitude into obligation",
+        "A stronger claim that he no longer needs teachers once he has thanked them"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Book I asks for gratitude tied to real traits and real debts.",
+        "direct": "Without naming the standard and its source, gratitude stays general and avoids accountability.",
+        "competitive": "Warmth without a ledger leaves vanity too much room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the deepest limit Book I leaves unresolved?",
+      "choices": [
+        "Admiring good examples does not yet prove that a person can live by them under pressure",
+        "A good upbringing guarantees public wisdom but not private peace",
+        "Political power always erases the influence of early teachers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The opening gives Marcus a map of standards, but it does not yet show those standards surviving friction.",
+        "direct": "Formation clarifies duty; it does not automatically produce enacted virtue when insult, fear, or comfort arrive.",
+        "competitive": "The debt is visible. The payment has not been tested yet."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Book I prepare the movement into Book II?",
+      "choices": [
+        "It finishes the moral work so Book II can shift to abstract metaphysics alone",
+        "It names inherited standards first, so Book II can test them against difficult people, mortality, and daily action",
+        "It proves Marcus has already mastered himself, which lets the rest of the book become commentary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Book I gathers the standards, and Book II begins asking whether those standards can hold in the day's real pressure.",
+        "direct": "The first book establishes formation; the second book turns formation into a live exam.",
+        "competitive": "The opening writes the debt down. The next book starts collection."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

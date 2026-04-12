@@ -22,3 +22,14 @@
 - 2026-04-11T23:19:04Z Chapter 6 chapter gate passed locally. Validated chapter, review package, reading metrics, and continuity seal written.
 - 2026-04-11T23:20:00Z Wave 3 integrity check passed for Chapters 5 and 6. Required artifact sets verified, review wrappers match validated chapter payloads, and wave is clean for continuation to Chapters 7 and 8.
 - 2026-04-11T23:24:00Z Phase 6 wave started for Chapters 7 and 8. Pre-writer artifacts written and verified.
+
+- 2026-04-12T04:08:29Z Chapter 7 chapter gate passed locally. Validated chapter, review package, reading metrics, and continuity seal written.
+- 2026-04-12T04:08:29Z Chapter 8 chapter gate passed locally. Validated chapter, review package, reading metrics, and continuity seal written.
+- 2026-04-12T04:08:29Z Wave 4 integrity check passed for Chapters 7 and 8. Required artifact sets verified, review wrappers match validated chapter payloads, and wave is clean for continuation to the final core chapter, Chapter 9.
+- 2026-04-12T04:11:00Z Final core chapter wave started for Chapter 9. Pre-writer artifacts written and verified. Run remains aligned to the 9-core-chapter skeleton plus afterword.
+
+- 2026-04-12T15:50:50Z Chapter 9 chapter gate passed locally. Validated chapter, review package, reading metrics, and continuity seal written.
+- 2026-04-12T15:50:50Z Final core chapter integrity check passed. Required artifact set verified for Chapter 9, review wrapper matches validated chapter payload, and the 9-core-chapter run is clean for closeout steps.
+- 2026-04-12T16:39:25Z Release package assembled strictly from validated/ch01.chapter.json through validated/ch09.chapter.json and mirrored to release/book.release.json and book-packages/the-first-20-hours.modern.json.
+- 2026-04-12T16:42:00Z Release mechanical checks repaired and rerun. Artifact guard: PASS. Release guard: PASS.
+- 2026-04-12T16:42:30Z Release gate remains blocked by validated-chapter prose issues flagged by validate-book.mjs and chapterflow_v13_lint.py in release_gate mode. See reports/release.validation.md and reports/release.audit.md.

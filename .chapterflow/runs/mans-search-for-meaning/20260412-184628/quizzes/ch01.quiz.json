@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What standard does the preface set for the book's argument about meaning?",
+      "choices": [
+        "Meaning should be judged mainly by how clearly it can be defined in theory",
+        "Meaning should prove itself where danger and loss put dignity under pressure",
+        "Meaning should remain private until the memoir ends"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The opening narrows the test so meaning has to face hard conditions instead of floating in comfort.",
+        "direct": "The preface turns meaning into a pressure-tested claim rather than an idea trusted on clarity alone.",
+        "competitive": "The word earns credibility only if it survives contact with cost."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Frankl's decision to remain in Vienna matter in the preface?",
+      "choices": [
+        "It shows that the opening argument begins with duty and danger already entangled",
+        "It proves that every later choice in the memoir will be free of regret",
+        "It mainly serves to explain the publication history of the book"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That early choice makes the preface feel morally charged before any theory arrives.",
+        "direct": "The Vienna decision puts cost into the opening so the argument cannot sound detached.",
+        "competitive": "The book starts where safety was visible and still not taken."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the memoir come before logotherapy in the book's structure?",
+      "choices": [
+        "Because witness has to give the later explanation real weight",
+        "Because Frankl wanted to delay any mention of psychology until the end",
+        "Because the memoir is easier to read than theory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The lived witness comes first so the later ideas do not sound unearned.",
+        "direct": "Frankl makes testimony the evidence line and keeps theory answerable to it.",
+        "competitive": "Explanation gets the second word because witness has to narrow the room first."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena has a safe route out of a worsening situation, but leaving would mean abandoning a family duty she still takes seriously. Which reading fits the preface best?",
+      "choices": [
+        "The only rational reading is to ignore duty and calculate safety alone",
+        "The point is to name both cost and duty rather than hiding the choice inside convenience language",
+        "The preface suggests that painful choices are automatically meaningful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opening cares about the pressure inside the choice, not about pretending the choice is simple.",
+        "direct": "Naming both danger and duty matches the preface's refusal to let serious decisions flatten into comfort logic.",
+        "competitive": "Hard choices become clearer when cost is admitted instead of disguised."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In seminar, Priya hears classmates call a memoir inspiring without pointing to what in the witness actually supports the claim. What should she do if she follows the preface's logic?",
+      "choices": [
+        "Ask which lived details earn the larger claim before the room turns it into uplift",
+        "Agree, because emotional response is enough evidence in discussions of suffering",
+        "Shift the class away from the memoir and toward general philosophy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That brings the conversation back to witness instead of tidy moral language.",
+        "direct": "The preface requires theory and interpretation to stay answerable to lived evidence.",
+        "competitive": "If the room spends wisdom before it pays in proof, the lesson gets cheap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the strongest misreading of the preface's argument about suffering?",
+      "choices": [
+        "That the preface is only a publishing note with no ethical role",
+        "That the preface says horror becomes good because meaning can be drawn from it",
+        "That the preface introduces a later theory section"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The opening protects itself against any praise of suffering.",
+        "direct": "Frankl's claim is narrower: suffering does not fully own the final response, but suffering is not thereby redeemed.",
+        "competitive": "The argument dies the moment catastrophe gets dressed in purpose-colored glory."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Omar is rewriting a painful project postmortem. One draft is full of values language but barely mentions what the team actually endured. Which move best matches the preface?",
+      "choices": [
+        "Keep the values language because it protects morale after failure",
+        "Lead with the lived pressure and let any larger lesson answer to it",
+        "Drop interpretation completely and leave only a timeline of events"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A lesson gains weight when it stays connected to what was really carried.",
+        "direct": "The preface's sequence is witness first, interpretation second, not witness erased by branding.",
+        "competitive": "No value claim gets to outrun the bruise that supposedly proved it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Daniel is writing a paper from historical sources. He can open with a clean theory or let the witness arrive first and make the theory answer to it. Which option fits the preface best?",
+      "choices": [
+        "Open with theory, because structure should protect clarity above all else",
+        "Put the witness first, because the framework should interpret rather than dominate the evidence",
+        "Mix both equally so neither one controls the argument"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The preface shows that order matters when you want a claim to feel earned.",
+        "direct": "Letting testimony set the pressure keeps theory disciplined and honest.",
+        "competitive": "Make the framework survive the evidence instead of bullying the evidence into line."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest boundary condition around meaning and suffering?",
+      "choices": [
+        "Meaning should be mentioned only after suffering has completely ended",
+        "Suffering can count as evidence that meaning is not a luxury, but it cannot become a demand that pain justify itself",
+        "Meaning becomes strongest only when suffering is treated as morally productive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the threshold the opening keeps alive. Pain cannot be turned into a duty to produce wisdom.",
+        "direct": "The hard boundary is between witness and coercive lesson-making. Cross it, and the argument becomes cruel.",
+        "competitive": "The line holds only if pain is denied every tax collector looking for insight rent."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once the preface sets meaning under extremity as the standard, why must the next chapter move into shock instead of staying philosophical?",
+      "choices": [
+        "Because the argument now needs lived psychological evidence rather than more framing",
+        "Because historical detail is more persuasive than any moral question",
+        "Because the theory section has to be delayed to preserve suspense"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The frame has done its job. Now the witness has to show what the test actually feels like.",
+        "direct": "The next step is psychological shock because only lived disorientation can test the opening claim.",
+        "competitive": "Framing time is over. The claim now has to survive first contact with camp reality."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

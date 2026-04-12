@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about conferences?",
+      "choices": [
+        "Crowded events become useful when approached deliberately and generously",
+        "The value of conferences comes mainly from meeting as many people as possible",
+        "Attendance alone usually produces enough progress"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats conferences as relationship terrain that needs purpose and generosity.",
+        "direct": "Its core claim is that large events only become useful when they are handled with discipline rather than drift.",
+        "competitive": "Presence is not progress."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is the title framed as \"Be a Conference Commando\"?",
+      "choices": [
+        "Because aggressive networking is the right stance for crowded rooms",
+        "Because noisy settings require deliberate action instead of passive attendance",
+        "Because conferences always reward the loudest people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The title points toward disciplined movement through noisy environments.",
+        "direct": "Ferrazzi uses the frame to reject passive drift in crowded professional settings.",
+        "competitive": "The room needs purpose, not wandering."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Ben arrives at a work conference with too many sessions and people competing for attention. What best fits this chapter?",
+      "choices": [
+        "Try to meet everyone so no opportunity is missed",
+        "Choose where to spend time based on purpose and likely contribution",
+        "Wait for chance to decide the schedule"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors selection over frantic volume.",
+        "direct": "A focused plan fits the chapter better than random mingling or passive drift.",
+        "competitive": "Choose the terrain. Do not spray attention."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At a student conference, Olivia is deciding how to use the lecture-lobby break. What is her strongest move?",
+      "choices": [
+        "Rush between as many conversations as possible",
+        "Use the break to pursue one or two purposeful conversations she can actually sustain",
+        "Avoid speaking until someone more senior notices her"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values deliberate room use over frantic volume or passive waiting.",
+        "direct": "Selection and intention make the break more useful than scattered motion does.",
+        "competitive": "Fewer purposeful moves beat frantic circulation."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What volume trap does this chapter criticize?",
+      "choices": [
+        "That meeting many people can look productive even when contact quality is dropping",
+        "That conferences work only when every session is pre-booked",
+        "That generosity should be limited to protect scarce time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that motion can look like progress without creating it.",
+        "direct": "Its trap is frantic quantity disguised as strategic ambition.",
+        "competitive": "Badge count is not progress."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That generosity can organize a crowded room",
+        "That aggressive networking is the best use of conferences",
+        "That selection matters in noisy settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps a clear line against predatory room-harvesting.",
+        "direct": "Aggression and extraction are explicitly weaker readings than deliberate generous presence.",
+        "competitive": "The room is not a mine to strip."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Farah feels pressure to meet everyone at a personal industry event. What would this chapter tell her?",
+      "choices": [
+        "Use a smaller plan built around relevance and contribution",
+        "Keep pushing for more conversations because pressure signals ambition",
+        "Skip all planning so the event feels natural"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors disciplined selection over anxiety-driven volume.",
+        "direct": "A smaller purposeful plan creates better contact quality than frantic roaming does.",
+        "competitive": "Shrink the plan. Improve the signal."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a simple event plan stronger than random mingling in this chapter?",
+      "choices": [
+        "It removes the need to pay attention to other people",
+        "It makes the conference feel less social",
+        "It helps limited time flow toward conversations and spaces that actually matter"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter treats selection as a way to improve contact quality.",
+        "direct": "A plan helps the room become more legible and less random.",
+        "competitive": "Aim the hours where they can matter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between generosity and progress at conferences?",
+      "choices": [
+        "Generosity helps a person move through the room with discipline instead of extraction",
+        "Generosity makes every conversation equally valuable",
+        "Generosity mainly helps a person seem agreeable to senior people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats generosity as an organizing principle, not as softness.",
+        "direct": "Helping, listening, and contributing keep conference strategy from turning predatory.",
+        "competitive": "Contribution keeps the room human."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How to approach high-leverage people by contribution rather than chase",
+        "How to remove planning from conferences so they feel more spontaneous",
+        "How to maximize volume without needing follow-up"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from deliberate room use to approaching important connectors well.",
+        "direct": "After conference discipline comes the question of how to approach high-leverage people without chasing access blindly.",
+        "competitive": "Next: contribution before chase."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

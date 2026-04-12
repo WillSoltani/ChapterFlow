@@ -1,0 +1,21 @@
+# Chapter 11 Source Sidecar
+
+Chapter: 11
+Title: Facta non Verba (Deeds Before Words)
+
+Frozen basis:
+- source-freeze/toc.json confirms chapter title and chapter order.
+- sidecars/source/source-heading-index.json confirms `ch11` label in the locked map.
+- source-freeze/book-source.md provides the work-level theme spine and freeze boundary.
+- skeleton/book-skeleton.md records the run intent: make action under risk the real test of conviction, competence, and loyalty.
+
+Usable chapter anchors:
+- deeds as stronger evidence than words
+- sacrifice or exposure as proof of sincerity
+- revealed preference through action under consequence
+- continuity with earlier themes of signaling and skin in the game
+
+Restrictions:
+- no exact quotations
+- no unsupported named anecdotes from outside the frozen run state
+- keep the chapter focused on evidence through action rather than generic self-help phrasing

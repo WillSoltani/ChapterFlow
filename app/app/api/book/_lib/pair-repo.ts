@@ -118,6 +118,8 @@ export async function acceptPairInvite(
         TableName: tableName,
         Item: {
           ...invite,
+          PK: pairInvitePk(inviteCode),
+          SK: pairInviteSk(),
           status: "accepted",
           acceptedBy: acceptingUserId,
         },

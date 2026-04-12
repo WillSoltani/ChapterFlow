@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch21-q01",
+      "prompt": "What is the chapter's main move about noiseless rules?",
+      "choices": [
+        "They are a stronger response to variation because they reduce discretion",
+        "They prove judgment should disappear in every case",
+        "They make tradeoffs irrelevant once they are in place"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats noiseless rules as a way to reduce variation by tightening discretion.",
+        "direct": "Correct. Rules matter here because they can suppress variation by removing room for individual drift.",
+        "competitive": "The rule tightens the room by shrinking the places wobble can hide."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch21-q02",
+      "prompt": "Why can a noiseless rule reduce variation?",
+      "choices": [
+        "Because it limits discretionary judgment",
+        "Because it knows every fact with certainty",
+        "Because it always preserves full flexibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter links steadiness to reduced discretion.",
+        "direct": "The rule reduces variation by taking some judgment out of the hands of individual decision makers.",
+        "competitive": "The wobble drops because the room has less freedom to sway."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch21-q03",
+      "prompt": "Which overclaim does the chapter reject about rules?",
+      "choices": [
+        "That rules solve every judgment problem automatically",
+        "That rules can reduce variation",
+        "That discretion can create spread"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps the gain from rules visible without turning them into total solutions.",
+        "direct": "It rejects the idea that rules erase every problem simply because they increase consistency.",
+        "competitive": "A tighter rule is not a magic broom for every mess."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch21-q04",
+      "prompt": "Nadia follows a laminated triage card and notices steadier decisions. What lesson fits best?",
+      "choices": [
+        "Reducing discretion can make judgments more consistent",
+        "Any rule-bound process must be perfect",
+        "Rules matter only when humans stop thinking entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says rule-bound procedures can reduce spread by narrowing judgment.",
+        "direct": "A laminated triage card matters because it shows how structure can suppress variation through fixed guidance.",
+        "competitive": "The card stiffens the room by giving the wobble less room to roam."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch21-q05",
+      "prompt": "Why does Priya's school placement checklist matter here?",
+      "choices": [
+        "It shows how a rule can raise consistency while still leaving tradeoffs visible",
+        "It proves every school decision should ignore context",
+        "It demonstrates a named system from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The school example keeps the chapter practical and balanced.",
+        "direct": "The checklist matters because it shows a rule reducing variation without pretending there is no cost in flexibility.",
+        "competitive": "The checklist tightens the call, but it also makes the tradeoff bill visible."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch21-q06",
+      "prompt": "What is the chapter's narrow claim about noiseless rules?",
+      "choices": [
+        "They gain consistency by reducing discretion, but that gain has limits",
+        "They eliminate uncertainty and judgment costs",
+        "They make discretion worthless in every setting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The point stays balanced by holding both gain and cost in view.",
+        "direct": "The chapter says noiseless rules matter because they suppress variation, but it refuses to treat that benefit as costless or complete.",
+        "competitive": "The rule buys steadiness, but it does not buy the whole world."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch21-q07",
+      "prompt": "What can be lost when a rule becomes more noiseless?",
+      "choices": [
+        "Flexibility or responsiveness that discretion sometimes provides",
+        "All consistency at once",
+        "Every possibility of judgment improvement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps the cost side of steadiness visible.",
+        "direct": "What can be lost is some flexibility, responsiveness, or room for case-specific judgment that discretion once carried.",
+        "competitive": "When the room gets tighter, some useful movement can disappear with the wobble."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch21-q08",
+      "prompt": "Why does the chapter keep tradeoffs visible?",
+      "choices": [
+        "Because reducing variation through rules is helpful without being free of cost",
+        "Because tradeoffs prove rules never work",
+        "Because every rule is equally rigid"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter wants consistency gains without overclaiming what they solve.",
+        "direct": "Tradeoffs stay visible because a noiseless rule can improve steadiness while still constraining flexibility or responsiveness.",
+        "competitive": "The tighter room solves one problem while charging a different price."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch21-q09",
+      "prompt": "Why does the chapter resist anti-discretion absolutism?",
+      "choices": [
+        "Because rules can reduce variation without making every use of discretion worthless",
+        "Because discretion always defeats rules",
+        "Because consistency does not matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter does not treat discretion as automatically useless.",
+        "direct": "It resists absolutism because the gain from rules does not require declaring every discretionary judgment worthless in every setting.",
+        "competitive": "The rule gets credit without forcing every human judgment into the trash."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch21-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once rules reduce variation, the next question is what remains unknowable even under stronger structure",
+        "The next chapter abandons consistency questions",
+        "The next chapter proves rules erase all limits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move is toward objective ignorance.",
+        "direct": "The bridge works because once rules push consistency further, the book can ask what stronger structure still cannot fully settle.",
+        "competitive": "After the rule tightens the room, the next fight is over what the room still cannot know."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

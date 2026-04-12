@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch27-q01",
+      "prompt": "What is the core move in the alliance strategy?",
+      "choices": [
+        "Find genuine overlap so a stronger actor benefits from advancing you",
+        "Rely on admiration from powerful people",
+        "Hide your own interests completely from potential sponsors"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter defines alliance as real interest alignment rather than generalized support.",
+        "direct": "Start with the mechanism: a stronger actor moves hardest when your progress also serves that actor's own aims.",
+        "competitive": "The move is to hook your rise into someone else's incentive engine."
+      }
+    },
+    {
+      "questionId": "ch27-q02",
+      "prompt": "Why does genuine overlap usually matter more than goodwill in this chapter?",
+      "choices": [
+        "Because goodwill automatically creates permanent loyalty",
+        "Because real incentive match usually survives pressure better than sentiment",
+        "Because stronger actors never care about outcomes"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Goodwill can help early, but the chapter says durable support usually depends on real self-interest.",
+        "direct": "Keep the durability test clear: incentives tend to hold longer than warm language once cost rises.",
+        "competitive": "Sentiment leaks fast when pressure shows up. Interest usually leaks slower."
+      }
+    },
+    {
+      "questionId": "ch27-q03",
+      "prompt": "What is the chapter's main reversal about alliance?",
+      "choices": [
+        "Any sponsor relationship becomes safer over time",
+        "Borrowed leverage is identical to loyalty",
+        "Pseudo-alignment can create early motion and still collapse once incentives are tested"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The warning is that staged overlap may look strong before real costs expose the weakness.",
+        "direct": "Notice the reversal: support can appear solid early and still thin out fast if the incentive match was never real.",
+        "competitive": "Fake alignment often runs until the bill arrives."
+      }
+    },
+    {
+      "questionId": "ch27-q04",
+      "prompt": "Imogen wants stronger executive backing. What best fits the chapter?",
+      "choices": [
+        "Frame the project around the executive's concrete objective that the project would improve",
+        "Stress that supporting the team would look generous to others",
+        "Avoid discussing the executive's incentives so the pitch sounds less transactional"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Imogen succeeds once she connects the project to a goal the stronger actor already cares about.",
+        "direct": "Focus on the overlap: backing gets stronger when the sponsor's own scoreboard improves through the project.",
+        "competitive": "Sell the win that helps them win too."
+      }
+    },
+    {
+      "questionId": "ch27-q05",
+      "prompt": "Rourke says alliance is not just networking charm. What is he emphasizing?",
+      "choices": [
+        "That stronger actors should always be emotionally attached first",
+        "That durable alliance depends on real incentive overlap rather than atmosphere alone",
+        "That all alliances should stay hidden from public view"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Rourke keeps bringing the room back to whether the other side really benefits from your progress.",
+        "direct": "Distinguish mood from structure: charm may start contact, but overlap is what carries the arrangement.",
+        "competitive": "Pleasant chemistry is not the same thing as locked incentives."
+      }
+    },
+    {
+      "questionId": "ch27-q06",
+      "prompt": "Brisa wants an enterprise advocate who will keep pushing after the first excitement fades. Which move best fits the chapter?",
+      "choices": [
+        "Ask for support based only on the partnership's inspiring story",
+        "Make the advocate's internal win materially stronger if the partnership succeeds",
+        "Avoid asking what the advocate personally needs from the arrangement"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter favors real internal benefit over symbolic enthusiasm.",
+        "direct": "Test for durability: the advocate should keep gaining something concrete after the easy phase ends.",
+        "competitive": "Give the ally internal upside or expect the pull to fade."
+      }
+    },
+    {
+      "questionId": "ch27-q07",
+      "prompt": "Tavish is getting doors opened by one influential sponsor. When does the chapter say caution is warranted?",
+      "choices": [
+        "Only when the sponsor offers too much useful help",
+        "When he starts treating one sponsor's support as if it were permanent loyalty",
+        "Only when no incentives overlap at all"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter warns that even real support stays conditional on continuing overlap.",
+        "direct": "Separate usefulness from permanence: borrowed leverage is strongest when it is managed as contingent.",
+        "competitive": "The danger starts when rented force gets mistaken for owned force."
+      }
+    },
+    {
+      "questionId": "ch27-q08",
+      "prompt": "A coalition uses unified language, but members benefit differently and carry different risks. What is the strongest diagnosis?",
+      "choices": [
+        "The coalition may be speaking as one while resting on uneven or unstable overlap",
+        "The shared language proves the incentives are aligned enough",
+        "The incentive mismatch makes all cooperation impossible"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Shared language can still hide a fragile structure underneath.",
+        "direct": "Check the incentive map directly: rhetoric cannot substitute for overlap analysis.",
+        "competitive": "A banner is not an alignment audit."
+      }
+    },
+    {
+      "questionId": "ch27-q09",
+      "prompt": "Which judgment best captures the chapter's ethical and strategic limit?",
+      "choices": [
+        "Alliance is strongest when the weaker party hides costs from the stronger one",
+        "Alliance works only when affection is fully mutual",
+        "The strategy stays sound only when the overlap is honest enough that the stronger party is not being carried by a false theory of benefit"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter asks whether the support would still make sense after an honest accounting of benefit and cost.",
+        "direct": "Judge the method by truthfulness: once the other side's benefit is staged rather than real, both ethics and durability weaken.",
+        "competitive": "If the alliance needs a lie to stay alive, collapse is already in the structure."
+      }
+    },
+    {
+      "questionId": "ch27-q10",
+      "prompt": "How does Chapter 27 differ from the one-upmanship logic that follows in Chapter 28?",
+      "choices": [
+        "Chapter 27 and Chapter 28 both rely on the same mechanism of moral framing",
+        "Chapter 27 denies targets while Chapter 28 builds sponsorship",
+        "Chapter 27 gains force through genuine overlap, while Chapter 28 profits from letting rivals overextend themselves"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The bridge moves from allied incentive to rival self-damage.",
+        "direct": "Bridge the next step cleanly: this chapter builds through mutual advantage, while the next one exploits overreach.",
+        "competitive": "Here you recruit stronger motion. Next chapter you let ego and excess do the damage for you."
+      }
+    }
+  ]
+}

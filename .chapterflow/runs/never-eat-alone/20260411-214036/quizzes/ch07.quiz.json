@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about homework?",
+      "choices": [
+        "Preparation helps make networking more respectful, relevant, and useful",
+        "Research mainly matters because it makes you sound impressive",
+        "Warmth matters only after a perfect factual brief is built"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats preparation as part of relationship quality rather than as decoration.",
+        "direct": "Its core claim is that homework strengthens relevance and lowers avoidable waste.",
+        "competitive": "Prep makes the access count."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does homework matter beyond professionalism in this chapter?",
+      "choices": [
+        "Because it guarantees the other person will like you",
+        "Because it shows the other person was worth thinking about in advance",
+        "Because it replaces the need for real curiosity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Preparation is treated as a sign of respect.",
+        "direct": "The chapter makes homework a relationship signal, not just a polish move.",
+        "competitive": "Prep proves the person mattered."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Serena has a short coffee chat with a product leader. What best fits the chapter?",
+      "choices": [
+        "Arrive with broad success questions and let the leader supply the structure",
+        "Do enough research first to ask questions shaped by the leader's current work",
+        "Memorize a long list of facts and try to mention most of them"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors context-based questions over generic ones.",
+        "direct": "Relevant preparation improves a short meeting more than vague curiosity does.",
+        "competitive": "Sharpen the window before you enter it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is Malik's strongest move after the alumni panel?",
+      "choices": [
+        "Lead with one question shaped by the panel and the professor's context",
+        "Ask for broad career advice that could fit anyone",
+        "Recite everything he learned from the speaker bio"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Context should make the first question more specific, not more showy.",
+        "direct": "The chapter wants homework to narrow the exchange, not turn into performance.",
+        "competitive": "Use the prep quietly and precisely."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why are generic questions such a problem in this chapter's logic?",
+      "choices": [
+        "Because they make the other person feel less particular and the exchange more interchangeable",
+        "Because generic questions are always rude",
+        "Because they prove you are naturally shy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter links broad questions to a weaker sense of recognition.",
+        "direct": "Generic prompts flatten the other person and make curiosity sound lazy.",
+        "competitive": "Weak prep makes the contact interchangeable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject most clearly?",
+      "choices": [
+        "That homework should turn into visible fact-dumping or rigid scripting",
+        "That context can improve a conversation",
+        "That short meetings are fragile"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps a limit on how preparation should show up.",
+        "direct": "Homework is meant to support a human interaction, not replace it with research theater.",
+        "competitive": "Signal is good. Dossier energy is weak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Tori wants Asha to make an introduction but has done no context work herself. What would this chapter say?",
+      "choices": [
+        "Ask anyway because warm introductions remove the need for prep",
+        "Do enough homework first so the request sounds informed and respectful",
+        "Wait until the contact reaches out first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The anti-waste logic applies before introductions too.",
+        "direct": "The chapter rejects making other people carry context you should have gathered yourself.",
+        "competitive": "Carry your prep cost before borrowing access."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is Evan's one-page prep note stronger than a giant research file?",
+      "choices": [
+        "Because less information always means better questions",
+        "Because it supports relevance without making the interaction feel overengineered",
+        "Because visible preparation should be avoided at all costs"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors enough context to help, not so much that the meeting feels stiff.",
+        "direct": "Calibrated preparation keeps warmth and usefulness together.",
+        "competitive": "Tight prep beats theater."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest warning about short access windows?",
+      "choices": [
+        "That underpreparation can make the other person pay for ignorance you could have removed beforehand",
+        "That every short meeting should be postponed until perfect research is done",
+        "That the best strategy is to avoid asking questions at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is hardest on avoidable waste.",
+        "direct": "Its deeper claim is that your lack of prep should not become their burden.",
+        "competitive": "Do your own cleanup before the window opens."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How to remember names and details so recognition survives after contact",
+        "How to turn preparation into a visible performance advantage",
+        "How to replace memory with better first impressions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from prep before contact to recognition after contact.",
+        "direct": "After homework, the book turns toward memory and recall.",
+        "competitive": "Prep first. Then keep the person real later."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

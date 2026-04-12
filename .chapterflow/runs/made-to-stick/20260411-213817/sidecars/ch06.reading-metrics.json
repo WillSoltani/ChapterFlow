@@ -1,0 +1,24 @@
+{
+  "chapterId": "ch06-stories",
+  "number": 6,
+  "title": "Stories",
+  "readingTimeMinutes": 8,
+  "wordCounts": {
+    "easy": 158,
+    "medium": 644,
+    "hard": 920
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 6,
+  "quizQuestionCount": 10,
+  "sourceSidecar": ".chapterflow/runs/made-to-stick/20260411-213817/sidecars/source/ch06.source.json",
+  "sourceRichness": "medium",
+  "notes": [
+    "validated in chapter_gate mode",
+    "chapter kept intentionally narrow to match thinner frozen support"
+  ]
+}

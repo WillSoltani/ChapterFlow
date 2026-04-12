@@ -1,0 +1,38 @@
+{
+  "chapterId": "ch12-the-facts-are-true-the-news-is-fake",
+  "chapterNumber": 12,
+  "title": "The Facts Are True, the News Is Fake",
+  "supportLevel": "narrow-frozen-basis",
+  "frozenSources": [
+    {
+      "id": "toc-json",
+      "path": "source-freeze/toc.json",
+      "role": "chapter-map"
+    },
+    {
+      "id": "source-heading-index",
+      "path": "sidecars/source/source-heading-index.json",
+      "role": "chapter-identity"
+    },
+    {
+      "id": "book-source-md",
+      "path": "source-freeze/book-source.md",
+      "role": "freeze-boundary-and-theme"
+    },
+    {
+      "id": "book-skeleton",
+      "path": "skeleton/book-skeleton.md",
+      "role": "chapter-intent"
+    }
+  ],
+  "allowedMoves": [
+    "paraphrase-first",
+    "facts-versus-narrative framing",
+    "salience-and-selection distortion logic"
+  ],
+  "disallowedMoves": [
+    "exact quotes",
+    "unsupported media anecdotes",
+    "generic anti-journalism ranting"
+  ]
+}

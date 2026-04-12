@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about passion in conversation?",
+      "choices": [
+        "Genuine interests create more life and specificity than generic small talk",
+        "Intensity is always more effective than politeness",
+        "Charisma matters more than real subject matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats real interest as stronger conversational signal than filler.",
+        "direct": "Its core claim is that genuine enthusiasm brings life and specificity into the exchange.",
+        "competitive": "Real topics beat flat filler."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does passion make a conversation more memorable in this chapter's logic?",
+      "choices": [
+        "Because it usually adds shape, detail, and energy that filler lacks",
+        "Because passion always makes people louder",
+        "Because memorable conversations must focus on one person"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter links memorability to specificity and aliveness.",
+        "direct": "Real interest leaves a stronger trace because the exchange has more signal.",
+        "competitive": "What has shape sticks."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Maya feels a work conversation drifting into flat banter. What best fits the chapter?",
+      "choices": [
+        "Bring in one real topic she genuinely cares about and leave room for response",
+        "Keep the filler going because professionalism depends on safety",
+        "Take over the room with the most intense story she has"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors real signal over generic filler.",
+        "direct": "Genuine interest can lift the conversation without turning it into performance.",
+        "competitive": "Add life without hijacking the exchange."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is Lucas's strongest move at the student mixer?",
+      "choices": [
+        "Use a real topic to create shared curiosity instead of staying in polite filler",
+        "Sound as polished and neutral as possible",
+        "Avoid any strong interest so no one feels excluded"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants honest energy to replace flatness.",
+        "direct": "A real topic gives the interaction more shape than safe generic talk does.",
+        "competitive": "Signal wakes the room up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is generic small talk missing in this chapter's critique?",
+      "choices": [
+        "A guaranteed outcome",
+        "Enough signal, life, and specificity to make the exchange memorable",
+        "A strong enough performative personality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter criticizes filler because it stays low-signal and forgettable.",
+        "direct": "Small talk becomes weak here when it never reaches real content or energy.",
+        "competitive": "Flat talk dies because it lacks signal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject most clearly?",
+      "choices": [
+        "That stronger intensity always improves conversation",
+        "That real interests can help connection feel alive",
+        "That specificity can make people more memorable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps a boundary against one-person intensity.",
+        "direct": "Enthusiasm is useful only while it stays relational rather than flooding the room.",
+        "competitive": "More heat is not always more signal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Hina notices her enthusiasm is crowding Carmen out. What would this chapter tell her?",
+      "choices": [
+        "Keep the energy but widen the space for Carmen to enter it",
+        "Stop bringing real interests into conversation",
+        "Increase the intensity so the topic feels even more alive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants passion to invite response rather than replace it.",
+        "direct": "Shared curiosity is the correction when enthusiasm turns one-directional.",
+        "competitive": "Keep the signal. Reopen the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is Andre's interest-based opener stronger than broad networking chatter?",
+      "choices": [
+        "Because a real interest makes the exchange more specific and more likely to be remembered",
+        "Because broad chatter always sounds weak",
+        "Because real topics remove the need to listen"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values real topics because they carry more shape than generic filler.",
+        "direct": "Signal-rich openings create stronger conversations than empty banter does.",
+        "competitive": "Real detail leaves a trace."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest warning about enthusiasm?",
+      "choices": [
+        "That it can turn into weak self-display if it stops leaving room for the other person",
+        "That passion is usually too risky to share openly",
+        "That memorable conversations should stay tightly controlled"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's main boundary is against performance and flooding.",
+        "direct": "Its deepest warning is that energy becomes weak when it stops being shared.",
+        "competitive": "If the room cannot enter it, the signal has turned bad."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How to keep a lively conversation alive afterward through follow-up",
+        "How to maximize intensity in every interaction",
+        "How to replace passion with more polished small talk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from aliveness in the moment to continuity after the moment.",
+        "direct": "After passion, the next issue is follow-up.",
+        "competitive": "Next: keep the signal alive tomorrow."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

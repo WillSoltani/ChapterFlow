@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch28-q01",
+      "prompt": "What is the main claim of `Patterns`?",
+      "choices": [
+        "Some judgment differences recur as stable patterns rather than isolated events",
+        "Every judgment difference is random and one-off",
+        "Patterns replace all other ways of thinking about noise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter says some variation keeps showing up in repeatable ways.",
+        "direct": "Correct. Its main claim is that recurring variation can appear as stable patterns across judgments.",
+        "competitive": "Right. Some wobble keeps showing the same fingerprint."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch28-q02",
+      "prompt": "Which misreading does the chapter reject about patterns?",
+      "choices": [
+        "That every repeated tendency fully explains the person or the process",
+        "That recurring variation can matter for understanding noise",
+        "That patterns can appear across multiple judgments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps patterns important without turning them into total explanations.",
+        "direct": "It rejects the claim that a repeated tendency becomes a complete theory of the judge or the whole system.",
+        "competitive": "A pattern matters, but it does not get the keys to the whole building."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch28-q03",
+      "prompt": "Why does the chapter focus on recurring variation?",
+      "choices": [
+        "Because some differences in judgment show up repeatedly rather than as isolated accidents",
+        "Because only technical settings have patterns",
+        "Because stable variation makes noise irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The point is that some variation comes back again and again.",
+        "direct": "The chapter focuses on recurring variation because repeated tendencies can matter for understanding the shape of noise.",
+        "competitive": "The wobble is not always random weather. Sometimes it keeps returning along the same track."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch28-q04",
+      "prompt": "Nadia notices the same rating style appearing across several cases. What lesson fits best?",
+      "choices": [
+        "A repeated judgment tendency can count as a meaningful pattern",
+        "Every repeated tendency must be official policy",
+        "Repeated variation stops being relevant once it recurs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says repeated variation can matter as a pattern.",
+        "direct": "A recurring rating style matters because the same judgment tendency shows up across cases rather than only once.",
+        "competitive": "If the same move keeps returning, the room should stop calling it weather."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q05",
+      "prompt": "Why does a school review habit matter in this chapter?",
+      "choices": [
+        "It shows how recurring tendencies can shape judgment differences across cases",
+        "It proves patterns exist only in schools",
+        "It introduces a named personality type from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The habit helps make the repeated tendency visible.",
+        "direct": "A school review habit matters because it shows stable variation that recurs across judgments instead of appearing only once.",
+        "competitive": "The habit turns one wobble into a track you can follow."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q06",
+      "prompt": "What narrow distinction does the chapter insist on?",
+      "choices": [
+        "Patterns matter for understanding noise without becoming total explanations",
+        "Every repeated tendency explains all judgment outcomes",
+        "Recurring variation is the same as formal policy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter preserves significance without overreach.",
+        "direct": "Its key distinction is that stable patterns can illuminate noise while still falling short of explaining everything about the person or process.",
+        "competitive": "The pattern is a clue, not a throne."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q07",
+      "prompt": "Why does the chapter avoid turning patterns into personality types?",
+      "choices": [
+        "Because the argument is about recurring judgment variation, not a fixed taxonomy of people",
+        "Because people never show recurring tendencies",
+        "Because patterns only exist in formal statistics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter stays cautious and conceptual.",
+        "direct": "It avoids that drift because the sources support a broad account of recurring variation, not a typology of fixed character kinds.",
+        "competitive": "The chapter tracks repeated moves without pinning badges on souls."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q08",
+      "prompt": "Why can recurring variation matter for noise?",
+      "choices": [
+        "Because repeated tendencies can shape judgments across multiple cases rather than just one",
+        "Because patterns automatically replace other sources of variation",
+        "Because every recurrence is a complete explanation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. Repetition across cases makes the variation more informative.",
+        "direct": "Recurring variation matters because repeated judgment tendencies can help explain how noise appears across a run of cases.",
+        "competitive": "A repeat track can tell you more than one skid mark."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q09",
+      "prompt": "Which statement best captures the chapter's strongest conclusion?",
+      "choices": [
+        "Stable patterns in judgment can matter for noise even though they do not explain everything",
+        "Once a pattern appears, the whole judgment system is solved",
+        "Patterns only matter when they are formal rules"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps both recurrence and restraint in view.",
+        "direct": "Its conclusion is that recurring judgment tendencies matter as part of the noise picture without becoming a total theory of the person or the process.",
+        "competitive": "The track matters without becoming the whole map."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch28-q10",
+      "prompt": "What is the cleanest bridge from `Patterns` into `The Sources of Noise`?",
+      "choices": [
+        "Once recurring tendencies are visible, the book can gather a broader view of the sources of noise",
+        "The next chapter abandons variation and returns to pure rules",
+        "The next chapter proves every source of noise is a personality type"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next step widens from one recurring form into a broader map of sources.",
+        "direct": "The bridge works because once patterns are visible, the book can move to a more general account of where noise comes from.",
+        "competitive": "Once the repeat tracks are marked, the book can survey the whole field of sources."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

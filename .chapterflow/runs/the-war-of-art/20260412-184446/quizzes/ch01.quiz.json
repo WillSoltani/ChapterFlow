@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Mara keeps refining the research deck but will not draft the proposal itself. In Book One, what makes that pattern Resistance rather than ordinary caution?",
+      "choices": [
+        "The delay gathers around the exact step that would make the work real and exposed",
+        "The project is difficult enough that waiting becomes the most responsible choice",
+        "The careful prep proves the work is still in its proper early stage"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Book One becomes suspicious when sensible-looking delay appears at the threshold where commitment should happen.",
+        "direct": "Resistance is not just waiting. It is patterned postponement around meaningful action, especially when support work keeps replacing the exposed step.",
+        "competitive": "The tell is timing. The smartest delay shows up right where the real move would start."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Book One treat the blank page as heavier than a pile of small admin tasks?",
+      "choices": [
+        "The blank page requires more technical skill than ordinary tasks",
+        "The blank page can turn a private dream into work that other people may judge",
+        "The blank page always signals that the project lacks enough research"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Small tasks may take time, but the blank page carries the extra risk of exposure.",
+        "direct": "Meaningful work feels heavier because embodiment creates the chance of judgment, rejection, or disappointment.",
+        "competitive": "Admin work can be finished and forgotten. The blank page can hand your fantasy a verdict."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which response fits the chapter's treatment of fear most accurately?",
+      "choices": [
+        "Fear can signal that the work matters rather than that it should be avoided",
+        "Fear means the project is a poor fit and should be dropped",
+        "Fear disappears once Resistance has been named"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats fear as part of the clustered pressure around meaningful work, not as an automatic stop sign.",
+        "direct": "Fear belongs to Resistance's architecture because exposure is costly. Naming the pattern changes interpretation, not the raw fact that fear can appear.",
+        "competitive": "The flare often rises around the real calling. That makes fear a clue before it becomes an excuse."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mara keeps refining the deck around her proposal instead of drafting the proposal itself. Which reading matches Book One?",
+      "choices": [
+        "She is wisely waiting until the project feels fully safe",
+        "The surrounding work may have become respectable cover for avoiding commitment",
+        "Her problem is mainly that she needs a better software tool"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks whether useful-looking work has started replacing the move that would make the project real.",
+        "direct": "Research and polish can be legitimate, but they become suspicious when they repeatedly stand in for commitment at the threshold of exposure.",
+        "competitive": "Busy is not the same as brave. Mara's pattern points to cover, not progress."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Theo says he should wait one more week because the voice of his story is still settling. What trap is the chapter most alert to here?",
+      "choices": [
+        "That all revision is fake",
+        "That polished language can hide threshold delay",
+        "That workshop feedback always weakens original work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The line may contain some truth, but Book One pays attention to when that kind of truth appears.",
+        "direct": "Resistance often uses half-reasonable explanations. The timing becomes revealing when refinement only matters at the point of submission.",
+        "competitive": "A tasteful excuse is still an excuse if it always shows up right where judgment begins."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement would overreach the chapter's actual claim?",
+      "choices": [
+        "Resistance helps explain patterned delay around meaningful work",
+        "Every difficult or exhausted day should be treated as Resistance in disguise",
+        "Rationalization can be one tactic inside a larger pattern"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The section is strong because it stays specific. It does not claim total authority over every struggle.",
+        "direct": "Book One offers a sharp recognition frame, not a complete theory of grief, exhaustion, or structural difficulty.",
+        "competitive": "Explaining everything is how a sharp concept turns dull and dishonest."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "In rehearsal, Priya keeps delaying the solo that matters most while finishing smaller assignments easily. What does that pattern suggest?",
+      "choices": [
+        "The solo is objectively too advanced for her to attempt",
+        "Meaningful work can attract heavier pushback than low-stakes work",
+        "She should focus only on chores because they build confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Book One expects Resistance to intensify around the work carrying more identity and exposure.",
+        "direct": "Low-stakes tasks often move cleanly because little self-risk hangs on them. Central work carries more threat of judgment.",
+        "competitive": "The easiest chores are not the point. The real signal is what turns sticky when the work could actually count."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Janelle keeps the song private because the version in her head still feels perfect. According to the chapter, what is the hidden payoff of that delay?",
+      "choices": [
+        "It protects the imagined version from being tested in reality",
+        "It proves she respects the craft more than other musicians do",
+        "It guarantees the final version will be stronger later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The private version stays safe from judgment as long as it never becomes an actual recording.",
+        "direct": "Resistance protects possibility by blocking embodiment. The unfinished state shelters the dream from verdict.",
+        "competitive": "No file means no loss, which is exactly why the fantasy can keep feeling grand."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does naming Resistance change leverage even before anyone has become disciplined enough to beat it?",
+      "choices": [
+        "Because awareness automatically removes fear",
+        "Because the reader can stop treating each smart excuse as an innocent new event",
+        "Because naming the enemy instantly creates confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's first win is recognition. Once the pattern is visible, excuses lose some of their innocence.",
+        "direct": "Diagnosis changes interpretation. Delay, fear, and rationalization stop traveling as isolated episodes and start reading as tactics in one repeated struggle.",
+        "competitive": "You have not won the war yet, but the disguise has taken a hit and that changes the field."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Book One names the enemy well, what pressure naturally pushes into Book Two?",
+      "choices": [
+        "How to build a posture that works under Resistance instead of bargaining with it",
+        "How to prove that fear is only an illusion",
+        "How to replace creative work with safer routines"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ends with a tactical question. Awareness helps, but a way of working is still missing.",
+        "direct": "Once the pattern is recognized, the next problem becomes practical: what disciplined stance can survive recurring pushback?",
+        "competitive": "Naming the enemy removes innocence. Book Two has to remove amateur waiting."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

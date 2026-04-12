@@ -8,6 +8,8 @@ import {
   MAKE_TIME_RAW_CHAPTERS,
   getCrucialConversationsPackageForTone,
   CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
+  getDifficultConversationsPackageForTone,
+  DIFFICULT_CONVERSATIONS_RAW_CHAPTERS,
   getWhatEveryBodyIsSayingPackageForTone,
   WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS,
   getThePrincePackageForTone,
@@ -18,6 +20,8 @@ import {
   ESSENTIALISM_RAW_CHAPTERS,
   getDeepWorkPackageForTone,
   DEEP_WORK_RAW_CHAPTERS,
+  getSoGoodTheyCantIgnoreYouPackageForTone,
+  SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS,
   getPredictablyIrrationalPackageForTone,
   PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
   getTheLawsOfHumanNaturePackageForTone,
@@ -979,6 +983,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getCrucialConversationsPackageForTone,
     getRaw: () => CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
   },
+  "difficult-conversations": {
+    getPackage: getDifficultConversationsPackageForTone,
+    getRaw: () => DIFFICULT_CONVERSATIONS_RAW_CHAPTERS,
+  },
   "what-every-body-is-saying": {
     getPackage: getWhatEveryBodyIsSayingPackageForTone,
     getRaw: () => WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS,
@@ -998,6 +1006,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
   "deep-work": {
     getPackage: getDeepWorkPackageForTone,
     getRaw: () => DEEP_WORK_RAW_CHAPTERS,
+  },
+  "so-good-they-cant-ignore-you": {
+    getPackage: getSoGoodTheyCantIgnoreYouPackageForTone,
+    getRaw: () => SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS,
   },
   "predictably-irrational": {
     getPackage: getPredictablyIrrationalPackageForTone,

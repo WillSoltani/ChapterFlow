@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "chapterflow-v13-source-ledger",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "createdAt": "2026-04-12T18:51:02Z",
+  "selectionPolicy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "editionSelectionMode": "ask_if_ambiguous",
+    "sourcePolicy": "public_or_authorized_plus_secondary"
+  },
+  "sources": [
+    {
+      "sourceId": "google-books-1997-free-press-preview",
+      "title": "The Denial of Death",
+      "author": "Ernest Becker",
+      "type": "authorized_preview",
+      "role": "primary",
+      "publisher": "Simon and Schuster / Free Press Paperbacks",
+      "publishedYear": 1997,
+      "url": "https://books.google.com/books/about/The_Denial_of_Death.html?id=wP9zAgAAQBAJ",
+      "confidence": 0.96,
+      "notes": "Authorized Google Books preview exposing bibliographic metadata and the table-of-contents lines for the canonical English text."
+    },
+    {
+      "sourceId": "simon-schuster-ebook-page",
+      "title": "The Denial of Death eBook by Ernest Becker",
+      "author": "Ernest Becker",
+      "type": "official_publisher_page",
+      "role": "primary",
+      "publisher": "Simon and Schuster",
+      "publishedYear": 2007,
+      "url": "https://www.simonandschuster.com/books/The-Denial-of-Death/Ernest-Becker/9781416590347",
+      "confidence": 0.95,
+      "notes": "Official publisher metadata plus an authorized excerpt for Chapter One."
+    },
+    {
+      "sourceId": "open-library-1997-edition",
+      "title": "The denial of death",
+      "author": "Ernest Becker",
+      "type": "library_metadata",
+      "role": "edition_crosscheck",
+      "publisher": "Free Press Paperbacks",
+      "publishedYear": 1997,
+      "url": "https://openlibrary.org/works/OL154572W/The_Denial_of_Death?edition=ia%3Adenialofdeathbeckrich",
+      "confidence": 0.9,
+      "notes": "Confirms the 1997 paperback, original 1973 publication, page count family, and first-sentence preview."
+    },
+    {
+      "sourceId": "worldcat-1975-paperback-record",
+      "title": "The denial of death",
+      "author": "Ernest Becker",
+      "type": "library_catalog",
+      "role": "toc_crosscheck",
+      "publisher": "Free Press",
+      "publishedYear": 1975,
+      "url": "https://search.worldcat.org/oclc/3657217?tab=details",
+      "confidence": 0.93,
+      "notes": "Confirms the contents structure, part headings, and chapter list for the original English edition family."
+    },
+    {
+      "sourceId": "ernest-becker-foundation-denying-denial",
+      "title": "Denying Denial",
+      "author": "Sam Mickey",
+      "type": "reputable_secondary",
+      "role": "theme_support",
+      "publisher": "Ernest Becker Foundation",
+      "publishedYear": 2012,
+      "url": "https://www.ernestbecker.org/the-denial-file/denying-denial",
+      "confidence": 0.73,
+      "notes": "Secondary thematic support used only for narrow context around Becker's central mortality-denial argument."
+    },
+    {
+      "sourceId": "supersummary-guide",
+      "title": "The Denial of Death Study Guide",
+      "author": "SuperSummary",
+      "type": "secondary_summary",
+      "role": "chapter_theme_support",
+      "publisher": "SuperSummary",
+      "publishedYear": 2026,
+      "url": "https://www.supersummary.com/the-denial-of-death/",
+      "confidence": 0.58,
+      "notes": "Used cautiously for chapter-level orientation only where the frozen primary bundle is thin; never used to justify exact quotations."
+    }
+  ]
+}

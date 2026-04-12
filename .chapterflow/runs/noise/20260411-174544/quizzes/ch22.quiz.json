@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch22-q01",
+      "prompt": "What is the chapter's main move about objective ignorance?",
+      "choices": [
+        "It marks a limit on what stronger structure can fully settle",
+        "It proves discipline and structure are useless",
+        "It shows every uncertainty comes from sloppy process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter says some limits remain even after consistency improves.",
+        "direct": "Correct. Objective ignorance matters because stronger rules or discipline do not remove every knowledge constraint.",
+        "competitive": "The room can get tighter and still stay blind in places."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch22-q02",
+      "prompt": "Why does stronger structure still meet limits in this chapter?",
+      "choices": [
+        "Because some things cannot be cleanly known even in a disciplined system",
+        "Because structure always increases ignorance",
+        "Because rules and models stop mattering completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter ties the limit to what remains unknown, not just to weak process.",
+        "direct": "The system still meets limits because some knowledge constraints survive even after the process becomes more disciplined.",
+        "competitive": "A tighter room still cannot see what the world will not show it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch22-q03",
+      "prompt": "Which misreading does the chapter reject about objective ignorance?",
+      "choices": [
+        "That it means improvement is useless or fatalism is correct",
+        "That some ignorance remains",
+        "That discipline can still help"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps knowledge limits visible without giving up on improvement.",
+        "direct": "It rejects the idea that acknowledging objective ignorance means structure, rules, or discipline no longer matter.",
+        "competitive": "Blind spots do not mean the whole room should surrender."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch22-q04",
+      "prompt": "Elena faces a file with missing information even after the process is disciplined. What lesson fits best?",
+      "choices": [
+        "Some limits come from what cannot be fully known, not only from weak process",
+        "Any missing detail proves the process failed",
+        "Discipline becomes irrelevant once a file is incomplete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says some uncertainty remains even after the process improves.",
+        "direct": "An incomplete file matters because it shows that stronger discipline cannot always erase knowledge constraints.",
+        "competitive": "The tidy room still hits a wall when the facts do not show up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch22-q05",
+      "prompt": "Why does Priya's incomplete school placement folder matter here?",
+      "choices": [
+        "It shows how knowledge limits can remain after stronger structure improves consistency",
+        "It proves schools should abandon structure",
+        "It demonstrates a technical theory from the sources"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The school example keeps the chapter concrete without overclaiming.",
+        "direct": "The incomplete folder matters because it shows that disciplined procedures can still face information limits they cannot resolve cleanly.",
+        "competitive": "The folder stays thin even when the room gets orderly."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch22-q06",
+      "prompt": "What is the chapter's narrow claim about objective ignorance?",
+      "choices": [
+        "It limits what stronger structure can achieve without making structure worthless",
+        "It replaces every earlier concern with skepticism",
+        "It means knowledge is impossible in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps both improvement and limit in view.",
+        "direct": "Objective ignorance matters because it marks a boundary on what better rules, models, or discipline can fully settle without erasing their value.",
+        "competitive": "The room gets credit for getting tighter even when it cannot see through walls."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch22-q07",
+      "prompt": "What remains after stronger structure improves consistency?",
+      "choices": [
+        "Some uncertainty tied to what cannot be cleanly known",
+        "No judgment problem at all",
+        "Only proof that discipline failed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says some unresolved uncertainty can remain for objective reasons.",
+        "direct": "What remains is a knowledge constraint that discipline alone cannot abolish.",
+        "competitive": "The wobble may drop while blindness stays."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch22-q08",
+      "prompt": "Why does the chapter distinguish objective ignorance from sloppy process?",
+      "choices": [
+        "Because not every unresolved problem comes from weak discipline or design",
+        "Because sloppy process never matters",
+        "Because structure creates all ignorance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter wants the source of the limit described more precisely.",
+        "direct": "The distinction matters because some unresolved difficulty belongs to missing knowledge rather than to careless procedure.",
+        "competitive": "The room can be tidy and still not know enough."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch22-q09",
+      "prompt": "Why does the chapter resist pure skepticism?",
+      "choices": [
+        "Because knowledge limits can be real while discipline and structure still improve judgment",
+        "Because nothing can be known at all",
+        "Because ignorance makes consistency irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter does not turn remaining uncertainty into total surrender.",
+        "direct": "It resists skepticism because better structure can still matter even when some limits remain objective.",
+        "competitive": "Blind spots do not erase the value of tightening the room."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch22-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once knowledge limits are visible, the book can examine why normal cases still create difficult disagreement",
+        "The next chapter abandons uncertainty questions",
+        "The next chapter proves ignorance ends all structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move is toward the valley of the normal.",
+        "direct": "The bridge works because after objective ignorance sets a limit, the book can look at another hard zone where judgment remains difficult.",
+        "competitive": "Once the room admits its blindness, the next question is why ordinary-looking cases still divide it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

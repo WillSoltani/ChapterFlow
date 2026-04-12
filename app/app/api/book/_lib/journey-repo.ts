@@ -85,10 +85,11 @@ export async function advanceJourney(
       TableName: tableName,
       Key: { PK: bookUserPk(userId), SK: journeySk(journeyId) },
       UpdateExpression:
-        "SET completedBookIds = list_append(if_not_exists(completedBookIds, :empty), :bookList), currentBookIndex = currentBookIndex + :one, updatedAt = :now",
+        "SET completedBookIds = list_append(if_not_exists(completedBookIds, :empty), :bookList), currentBookIndex = if_not_exists(currentBookIndex, :zero) + :one, updatedAt = :now",
       ExpressionAttributeValues: {
         ":empty": [],
         ":bookList": [completedBookId],
+        ":zero": 0,
         ":one": 1,
         ":now": now,
       },

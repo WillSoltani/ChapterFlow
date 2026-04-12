@@ -100,3 +100,97 @@ Wave 01 complete.
 - continuity hash sealed
 
 Chapter 3 gate complete.
+
+## 2026-04-12 Chapter 4 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 4 gate complete.
+
+## 2026-04-12 Chapter 5 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 5 gate complete.
+
+## 2026-04-12 Chapter 6 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 6 gate complete.
+
+## 2026-04-12 Wave 03 Clean Guard
+
+- chapters 5 and 6 verified fully clean
+- repo artifact guard written
+
+Wave 03 complete.
+
+## 2026-04-12 Chapter 7 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 7 gate complete.
+
+## 2026-04-12 Chapter 8 Automatic Gate Package
+
+- pre-writer artifacts written: brief, outline, quiz blueprint, source sidecar txt/json
+- canonical draft written
+- edited draft written
+- critic report written
+- structured chapter JSON written
+- quiz JSON written
+- validation report written
+- validated chapter JSON written
+- validated review-package JSON written
+- reading metrics written
+- continuity hash sealed
+
+Chapter 8 gate complete.
+
+## 2026-04-12 Wave 04 Clean Guard
+
+- chapters 7 and 8 verified fully clean
+- repo artifact guard written
+
+Wave 04 complete.

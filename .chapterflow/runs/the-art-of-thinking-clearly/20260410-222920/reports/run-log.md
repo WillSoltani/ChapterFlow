@@ -293,3 +293,97 @@ Phase 4 complete for Chapter 1.
 - Chapter 37 chapter gate validation: pass (FAIL=0 WARN=0).
 - Chapter 37 validated artifacts written; review-package payload matches validated chapter payload.
 - Chapter 37 continuity seal recorded with sha256 de06fac2f8691b9744c4681936c6bfe6978fc07fb27e49d5e0eb70210853caba.
+
+- Chapter 38 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 38 converter output written and synced to quiz JSON.
+- Chapter 38 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 38 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 38 continuity seal recorded with sha256 8f9fdd6f77eb8779e2cef7f1403b55df9ed730faeac3a5715820c8bd6c580b6f.
+
+- Chapter 39 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 39 converter output written and synced to quiz JSON.
+- Chapter 39 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 39 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 39 continuity seal recorded with sha256 2ba614a40c5883d454fdae1ba1c93011d75c2813486318d8f719aef184ecb6c3.
+
+- Chapter 40 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 40 converter output written and synced to quiz JSON.
+- Chapter 40 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 40 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 40 continuity seal recorded with sha256 0b1d2a971f5e82c8671135277c16880cf37f09a06ecaf72949f62ef8c084aeb0.
+
+- Repo artifact guard after wave 20: pass (FAIL=0 WARN=0).
+
+- Chapter 41 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 41 converter output written and synced to quiz JSON.
+- Chapter 41 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 41 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 41 continuity seal recorded with sha256 3a25f9d38d1895f544c29cb88bbd39190dff6699e85ff63666dbbbf9fb73505a.
+
+- Chapter 42 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 42 converter output written and synced to quiz JSON.
+- Chapter 42 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 42 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 42 continuity seal recorded with sha256 f589d2f592aa6de6f9f7a0698fc8f25ae1a66b7a8a6591a4deb731194d90f0c0.
+
+- Repo artifact guard after wave 21: pass (FAIL=0 WARN=0).
+
+- Chapter 43 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 43 converter output written and synced to quiz JSON.
+- Chapter 43 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 43 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 43 continuity seal recorded with sha256 033615d612f5e92c44d52eb94603a00c12be8b22a4d62727566551be02bdb04b.

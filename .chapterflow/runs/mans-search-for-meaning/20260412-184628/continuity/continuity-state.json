@@ -1,0 +1,61 @@
+{
+  "nameUsage": {
+    "Lena": [
+      "ch01"
+    ],
+    "Omar": [
+      "ch01"
+    ],
+    "Priya": [
+      "ch01"
+    ],
+    "Marcus": [
+      "ch01"
+    ],
+    "Sofia": [
+      "ch01"
+    ],
+    "Daniel": [
+      "ch01"
+    ]
+  },
+  "formatCategoryHistory": [
+    "ch01:decision_point:personal",
+    "ch01:dialogue:school",
+    "ch01:postmortem:work",
+    "ch01:predict_reveal:personal",
+    "ch01:dilemma:school",
+    "ch01:before_after:work"
+  ],
+  "schoolSettingUsage": {
+    "seminar room": [
+      "ch01"
+    ],
+    "campus archive room": [
+      "ch01"
+    ]
+  },
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch01": [
+      "Lena",
+      "Omar",
+      "Priya",
+      "Marcus",
+      "Sofia",
+      "Daniel"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "9c6ff2a99d4b94ccbc4f910244640b865143293cf6fd2d7a18a354e1c7963ae1"
+  },
+  "baselineQuality": {}
+}

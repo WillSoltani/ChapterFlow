@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the basic movement of deduction?",
+      "choices": [
+        "One linked statement leads to the next and then to the conclusion",
+        "Several parallel points rise into one summary",
+        "A list of examples replaces the need for a conclusion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Deduction works like a chain in which one step leads into the next.",
+        "direct": "Its force comes from sequence and dependence across steps.",
+        "competitive": "Deduction moves in linked steps, not side-by-side clusters."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the basic movement of induction?",
+      "choices": [
+        "Every point must depend on the previous one",
+        "The conclusion appears before any support",
+        "Parallel points rise into a higher summary"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Induction groups like points and lets them rise into one idea.",
+        "direct": "Its force comes from parallel support rather than chain logic.",
+        "competitive": "Induction stacks siblings and lets the summary rise."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why can deduction become a problem when the material is really a group of like ideas?",
+      "choices": [
+        "Because deduction is always wrong in business writing",
+        "Because it can force parallel points into a fake chain",
+        "Because it removes the need for evidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A group of similar points does not become better just because it is made to sound stepwise.",
+        "direct": "Deduction can distort parallel support by forcing false dependence.",
+        "competitive": "The chain looks tighter while the logic gets less honest."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager presents three distinct reasons for a policy change. Which pattern is usually the better fit?",
+      "choices": [
+        "Induction, because the reasons belong side by side and rise into a summary",
+        "Deduction, because every argument should be a chain",
+        "Neither pattern applies when there are exactly three reasons"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Distinct reasons usually work as parallel support under one summary.",
+        "direct": "If the reasons do not depend on one another, induction is the cleaner fit.",
+        "competitive": "Side-by-side reasons should not be bullied into a fake chain."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "When is deduction especially useful?",
+      "choices": [
+        "When the writer has several separate categories to group",
+        "When the writer wants the page to look more formal",
+        "When the writer needs to show how one proposition leads to another in order"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Deduction helps when the reader truly needs to follow a chain.",
+        "direct": "It is suited to linked reasoning where each step depends on the previous one.",
+        "competitive": "Use deduction when the logic actually has links, not just bullets."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is induction especially natural inside a pyramid?",
+      "choices": [
+        "Because induction never needs a summary line",
+        "Because induction avoids structure entirely",
+        "Because grouped support often needs a higher statement that says what the parallel points mean together"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Parallel support in a pyramid often rises into one higher summary.",
+        "direct": "Induction matches the way grouped support produces a summary line.",
+        "competitive": "Induction fits the pyramid when siblings need one honest parent."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student treats several separate pieces of evidence like a staircase where each step depends on the previous one. What is the likely problem?",
+      "choices": [
+        "The evidence is being forced into deduction when it is really inductive support",
+        "The student has too much evidence to use any pattern",
+        "The only issue is paragraph length"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Separate pieces of evidence often belong side by side instead of in a chain.",
+        "direct": "The writer is imposing fake sequence on material that should rise inductively.",
+        "competitive": "The staircase is false because the steps were really siblings."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What happens when a writer begins with a chain, slips into a list, and then offers one conclusion over both?",
+      "choices": [
+        "The conclusion becomes stronger because it combines two methods",
+        "The mixed reasoning patterns can make the section feel tidy but logically slippery",
+        "The reader notices no difference if the formatting is consistent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The page may still look neat, but the reader feels extra effort in following the movement.",
+        "direct": "Mixed reasoning patterns can leave the conclusion belonging fully to neither structure.",
+        "competitive": "The section looks disciplined while the logic changes gears without warning."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the method's hardest warning about deduction and induction?",
+      "choices": [
+        "One pattern is modern and the other is outdated",
+        "They can be mixed carelessly inside one section and make the reader work harder than necessary",
+        "They matter only in academic writing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Readers may not name the defect, but they feel the drag when the pattern changes carelessly.",
+        "direct": "The section can look organized while the reasoning movement underneath becomes unclear.",
+        "competitive": "A tidy page still leaks when the logic changes pattern without discipline."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once deduction and induction are separated clearly, what practical issue comes next?",
+      "choices": [
+        "How to make the structure and reasoning pattern visible on the page",
+        "How to remove all summaries from the draft",
+        "How to stop using grouped support"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next issue is helping the reader see the structure clearly on the page.",
+        "direct": "After pattern choice comes visible presentation of the structure.",
+        "competitive": "Once the logic pattern is right, the next fight is making it visible."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

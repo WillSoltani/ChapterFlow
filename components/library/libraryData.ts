@@ -182,6 +182,27 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason: "Concrete communication mechanics that stay useful under real pressure.",
     similarBookId: "what-every-body-is-saying",
   },
+  "difficult-conversations": {
+    authorCredentials:
+      "Harvard Negotiation Project researchers and instructors focused on conflict, feedback, and relationship repair",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #1f2937 100%)",
+    hook: "Handle the conversation underneath the conversation before blame, hurt, and identity defense take over",
+    description:
+      "A practical guide to navigating hard conversations by separating what happened from feelings and identity, listening without surrendering your own view, and speaking with more honesty and less accusation.",
+    whatYoullLearn: [
+      "How to spot the three conversations running underneath a hard exchange: facts, feelings, and identity",
+      "How to shift from blame and certainty toward contribution, curiosity, and clearer listening",
+      "How to say what is true for you without retreating, attacking, or turning problem-solving into a fight",
+    ],
+    bestFor: ["managers", "partners", "teams", "students"],
+    category: "Communication",
+    difficulty: "medium",
+    readerCount: 1640,
+    completionRate: 78,
+    badges: ["new", "staff-pick"],
+    staffPickReason: "One of the clearest books on why hard conversations derail and what to do before they harden.",
+    similarBookId: "crucial-conversations",
+  },
   "the-power-of-habit": {
     authorCredentials:
       "Pulitzer Prize-winning reporter and author focused on habits, decision-making, and organizational behavior",
@@ -241,6 +262,29 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     badges: ["new", "staff-pick"],
     staffPickReason: "One of the cleanest frameworks for turning priorities into real exclusion and execution.",
     similarBookId: "make-time",
+  },
+  "so-good-they-cant-ignore-you": {
+    authorCredentials:
+      "Computer science professor and author focused on deep work, deliberate practice, career capital, and building meaningful work through skill rather than early passion myths.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #0f766e 100%)",
+    hook:
+      "Build rare and valuable skills before asking work to feel meaningful, autonomous, or mission-driven.",
+    description:
+      "A practical guide to rejecting the passion hypothesis in favor of a stronger sequence: adopt the craftsman mindset, build career capital, use that capital to buy control, and let mission emerge only after the underlying structure can support it.",
+    whatYoullLearn: [
+      "How the anti-passion argument replaces identity-first career searching with a cleaner build-from-skill sequence",
+      "How career capital works as the exchange mechanism that turns rare ability into autonomy, flexibility, and better work",
+      "How to tell the difference between environments that compound value and dead environments that consume effort without minting leverage",
+    ],
+    bestFor: ["students", "builders", "operators", "ambitious professionals"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 1760,
+    completionRate: 80,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "The clearest career book in the library for replacing vague passion talk with a mechanism-driven path from skill to leverage to mission.",
+    similarBookId: "deep-work",
   },
   "thinking-fast-and-slow": {
     authorCredentials:

@@ -394,17 +394,6 @@ export function eventStatsSk(): string {
   return "META";
 }
 
-// ── Audio keys (Feature #4) ──────────────────────────────────────────────────
-
-export function buildAudioKey(
-  prefix: string,
-  chapterNumber: number,
-  tone: string,
-  variant: string,
-): string {
-  return `${prefix}/audio/ch${padChapterNumber(chapterNumber)}.${tone}.${variant}.mp3`;
-}
-
 // ── Nudge dedup keys (Feature #1) ────────────────────────────────────────────
 
 export function nudgeSentSk(nudgeType: string, dateKey: string): string {

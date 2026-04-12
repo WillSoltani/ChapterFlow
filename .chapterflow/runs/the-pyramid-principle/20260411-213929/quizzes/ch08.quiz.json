@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 8 question before accepting a finished structure?",
+      "choices": [
+        "Only the font and layout",
+        "The problem-solving process that produced it",
+        "Only the final paragraph length"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "It tests the process that created the structure.",
+        "direct": "A tidy answer can still rest on weak analytical steps and mixed stages.",
+        "competitive": "The structure is not safe just because the surface looks clean."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why must the writer define the problem clearly first?",
+      "choices": [
+        "Because causes and actions depend on what the problem actually is",
+        "Because the book forbids examples",
+        "Because definition removes the need for structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The later analysis depends on naming the problem accurately.",
+        "direct": "Weak framing distorts every later step.",
+        "competitive": "If the target is fuzzy, the whole analysis starts drifting."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the difference between asking why the problem exists and asking what to do about it?",
+      "choices": [
+        "The first is diagnosis and the second is action choice",
+        "They are the same job with different wording",
+        "The second always comes first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Causes belong to diagnosis, while actions belong to response.",
+        "direct": "It separates explanation from recommendation.",
+        "competitive": "Diagnosis and action are different jobs."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What happens when a writer jumps from a fuzzy problem statement straight to action?",
+      "choices": [
+        "The process becomes automatically stronger",
+        "The causes no longer matter",
+        "The recommendation may sound decisive while resting on poor diagnosis"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Skipping diagnosis makes the action less trustworthy.",
+        "direct": "The answer may be polished but still premature.",
+        "competitive": "Fast action can hide shallow thinking."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does analysis itself need structure?",
+      "choices": [
+        "Because structure matters only in presentations",
+        "Because a pile of observations is not yet a diagnosis",
+        "Because the reader should guess the branches alone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The inquiry needs order before the conclusion can be solid.",
+        "direct": "Structure helps organize causes, branches, and alternatives for testing.",
+        "competitive": "A heap of notes is not analysis."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the logic-tree concept used for in this chapter?",
+      "choices": [
+        "Replacing the need to define the problem",
+        "Decorating a report with technical language",
+        "Breaking a problem into branches that can be tested"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "It helps divide the problem into workable parts.",
+        "direct": "The logic tree gives the analysis a testable structure.",
+        "competitive": "It turns the field into branches instead of fog."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A manager treats missed deadlines as the whole problem without tracing what causes them. What is the likely defect?",
+      "choices": [
+        "The symptom is being mistaken for the underlying problem",
+        "The action plan is already complete",
+        "The analysis is too structured"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A symptom is not always the real problem.",
+        "direct": "The framing has stopped at the visible outcome instead of diagnosing causes.",
+        "competitive": "The manager is solving the smoke instead of the fire."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the chapter’s hardest warning about problem solving?",
+      "choices": [
+        "Logic trees solve every problem automatically",
+        "Only action matters in the end",
+        "A polished structure can still rest on a weakly framed problem"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Good-looking structure does not rescue weak framing.",
+        "direct": "Upstream analysis can fail even when the final hierarchy looks neat.",
+        "competitive": "A clean outline can still sit on rotten framing."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What practical benefit comes from separating problem definition, diagnosis, and action choice?",
+      "choices": [
+        "The writer can skip explanations entirely",
+        "The later structure rests on a stronger analytical base",
+        "The summary can stay vague"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The hierarchy becomes stronger because the thinking underneath is clearer.",
+        "direct": "Separating the stages reduces premature recommendations and fuzzy framing.",
+        "competitive": "The structure stops borrowing certainty from a weak process."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After questioning the problem-solving process, what issue comes next?",
+      "choices": [
+        "Whether all examples should be removed",
+        "Whether the summary statement is precise enough",
+        "Whether logic trees replace summaries"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter questions the summary statement drawn from the process.",
+        "direct": "After the process is tested, the summary line itself comes under review.",
+        "competitive": "After the engine is tested, the headline has to earn its wording."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "noise-ch23-the-valley-of-the-normal",
+  "createdAt": "2026-04-12T13:43:09-03:00",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "noise",
+    "title": "Noise: A Flaw in Human Judgment",
+    "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Little, Brown illustrated edition",
+      "publisher": "Little, Brown",
+      "publishedYear": 2021,
+      "isbn13": "9780316451383",
+      "isbn10": "031645138X",
+      "format": "Authorized Google Books metadata and preview-backed print/digital reference edition",
+      "sourceText": ".chapterflow/runs/noise/20260411-174544/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle: Google Books authorized preview and metadata, the official Noise site, and a Barron's interview with Daniel Kahneman."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-39"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch23-the-valley-of-the-normal",
+      "number": 23,
+      "title": "The Valley of the Normal",
+      "readingTimeMinutes": 8,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Once objective ignorance is visible, another difficult zone comes into focus. The chapter turns to the valley of the normal.\n\nThat move matters because ordinary-looking cases are not automatically easy. Middle or borderline judgments can still resist crisp agreement.",
+            "direct": "The chapter turns from objective ignorance to the valley of the normal. It argues that normal-range cases can still generate disagreement.\n\nThat is the central move. Looking ordinary does not guarantee easy classification.",
+            "competitive": "The chapter goes from blindness to ordinary-looking ground that still makes the room split. It asks what happens when the middle of the scale starts wobbling.\n\nThat pressure matters because the normal-looking zone can hide plenty of disagreement."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Ordinary-looking cases can still be noisy.",
+                "direct": "Normal-range cases can generate disagreement.",
+                "competitive": "The middle can wobble."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Borderline cases resist crisp classification.",
+                "direct": "The ordinary middle can leave room for divergence.",
+                "competitive": "The middle band lets the room split."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter keeps judgment variation in view.",
+                "direct": "This is another practical zone where noise stays alive.",
+                "competitive": "The plain-looking ground still shakes."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter says apparently normal cases can still produce noisy disagreement.",
+            "direct": "The valley of the normal becomes a new zone where variation matters.",
+            "competitive": "The middle of the scale still wobbles."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Once objective ignorance is visible, another difficult zone comes into focus. The chapter turns to the valley of the normal.\n\nThat move matters because ordinary-looking cases are not automatically easy. Middle or borderline judgments can still resist crisp agreement, and that makes them fertile ground for noise.\n\nThis is where the distinction matters. Extreme cases may force clearer answers, but the ordinary middle can leave more room for divergence. The chapter uses that middle zone to show how normal-range ambiguity can keep variation alive.\n\nThe chapter keeps one useful limit in place. It is not claiming that only middle cases matter, and it is not abandoning structure. The point is narrower and more practical. Apparently normal cases can still be hard to classify cleanly.\n\nThat is what earns the next move. Once the ordinary middle has been shown to generate disagreement, the book can ask how noise happens more generally.",
+            "direct": "The chapter turns from objective ignorance to the valley of the normal. It argues that normal-range cases can still generate disagreement because they resist clean classification.\n\nThat matters because noise analysis would stay too narrow if only dramatic extremes were treated as difficult. The ordinary middle can also invite divergence when a case is neither clearly one thing nor another.\n\nThis is the distinction the chapter has to hold. The ordinary appearance of a case does not make it simple, and the middle range can remain unstable even when the system is disciplined.\n\nThe limit stays visible. The chapter is not saying only ordinary cases matter, and it is not turning away from judgment structure. It is claiming something narrower: normal-looking borderline cases can still keep disagreement alive.\n\nThat prepares the next step. Once the valley of the normal is visible, the book can turn to the broader mechanism question of how noise gets generated.",
+            "competitive": "The chapter goes from blindness to ordinary-looking ground that still makes the room split. It asks what happens when the middle of the scale starts wobbling.\n\nThat matters because the book wants to kill the lazy comfort that only obvious edge cases are hard. The plain-looking middle can also resist a clean call, and that keeps the wobble alive.\n\nThis is where the chapter gets sharper. The middle zone is not mystical, and it is not trivial. It is simply a place where classification gets harder because the case does not shout its answer.\n\nThe discipline stays narrow on purpose. No one is saying the middle is the only battleground, and no one is dropping the value of structure. The point is that ordinary-looking terrain can still divide the room.\n\nThat is what earns the next step. Once the middle band starts wobbling, the next question is what keeps producing wobble in the first place."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "The valley of the normal is a real noise zone.",
+                "direct": "Normal-range cases can generate disagreement because they resist clean classification.",
+                "competitive": "The middle band can make the room split."
+              },
+              "moreDetails": {
+                "gentle": "The chapter introduces the ordinary middle as a practical place where variation can persist.",
+                "direct": "The valley matters here because normal-looking cases can still leave enough ambiguity for judgments to diverge.",
+                "competitive": "The room does not need a dramatic edge case to start wobbling."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Middle-case ambiguity feeds divergence.",
+                "direct": "Borderline cases leave room for different classifications.",
+                "competitive": "The middle leaves space for the room to lean apart."
+              },
+              "moreDetails": {
+                "gentle": "That matters because the chapter ties noisy disagreement to the ambiguity of the ordinary middle rather than to spectacle.",
+                "direct": "When a case is neither clearly one thing nor another, the process can leave more room for spread across judges.",
+                "competitive": "The case whispers instead of shouting, and the room starts splitting."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Ordinary appearance is not the same as easy judgment.",
+                "direct": "A normal-looking case can still remain unstable.",
+                "competitive": "Plain-looking ground can still shake."
+              },
+              "moreDetails": {
+                "gentle": "The chapter keeps this point visible so normal appearance is not mistaken for clean classification.",
+                "direct": "The middle range can stay difficult even when the case does not look dramatic or extreme.",
+                "competitive": "The room can wobble on plain-looking terrain just as surely as on cliffs."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter avoids overclaiming the middle as everything.",
+                "direct": "Ordinary cases matter without replacing every other source of difficulty.",
+                "competitive": "The middle is a battlefield, not the whole war."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the chapter practical rather than inflated.",
+                "direct": "The book adds the valley of the normal to the map of noise without pretending only middle cases deserve attention.",
+                "competitive": "The room learns one more battleground without rewriting the whole map."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next question is how noise happens.",
+                "direct": "After ordinary cases are shown to be noisy, the book turns to the mechanisms that generate variation.",
+                "competitive": "After the middle band wobbles, the book asks what powers the wobble."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the next chapter moves from one difficult zone to a more general account of how variation gets produced.",
+                "direct": "The mechanism question follows once the valley of the normal has shown that noisy disagreement is not confined to obvious extremes.",
+                "competitive": "Once plain-looking ground starts shaking, the next step is to hunt the engine of the shake."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one ordinary-looking case you know. What made it harder to classify cleanly than it first appeared?",
+            "direct": "Pick one middle-case judgment and ask how its normal appearance still left room for disagreement.",
+            "competitive": "Find one plain-looking middle band and ask why it still makes the room split."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why the valley of the normal creates disagreement without turning ordinary cases into mystery?",
+            "direct": "How does the chapter connect borderline middle cases to noisy disagreement while keeping the claim narrow?",
+            "competitive": "Why can plain-looking ground still wobble without becoming mystical?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Recall the chain: ordinary cases can be hard, middle ambiguity feeds divergence, normal-looking is not easy, the middle is not everything, mechanisms next.",
+              "direct": "Name the structure: valley zone, borderline spread, ordinary instability, narrow claim, how noise happens next.",
+              "competitive": "Why does the middle band make the room split?"
+            },
+            "connect": {
+              "gentle": "Where have you seen a normal-looking case produce more disagreement than expected?",
+              "direct": "Identify one borderline case where ordinary appearance still left judges diverging.",
+              "competitive": "Which plain-looking case around you still shakes the room?"
+            },
+            "preview": {
+              "gentle": "If the ordinary middle can be noisy, how might the next chapter explain what generates that noise?",
+              "direct": "How does this chapter prepare the move into how noise happens?",
+              "competitive": "If the middle band wobbles, what engine is driving it?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Once objective ignorance is visible, another difficult zone comes into focus. The chapter turns to the valley of the normal.\n\nThat move matters because ordinary-looking cases are not automatically easy. Middle or borderline judgments can still resist crisp agreement, and that makes them fertile ground for noise.\n\nHard depth sharpens the distinction. The ordinary middle is not mysterious because it hides secret magic. It is difficult because it often fails to force a clean classification, leaving more room for divergence across judges.\n\nThe chapter keeps one useful limit in place. It is not claiming that only middle cases matter, and it is not abandoning structure. The point is to show that apparently normal terrain can still produce hard disagreement.\n\nThis is what changes after the chapter on objective ignorance. The question is no longer only what the system cannot know, but also why ordinary-looking cases remain unstable even when they are not extreme.\n\nThat is what makes the next move feel earned. Once the ordinary middle has been shown to wobble, the book can ask how noise gets produced more generally.",
+            "direct": "The chapter turns from objective ignorance to the valley of the normal. It argues that normal-range cases can still generate disagreement because they resist clean classification.\n\nThat matters because noise analysis would stay too shallow if only edge cases were treated as difficult. Middle cases can also remain unstable, and the room for divergence often lives in that ordinary-looking zone.\n\nThis is the harder distinction it wants to hold. The ordinary middle is a source of disagreement not because it is mystical, but because it often leaves classification underdetermined enough for judges to part ways.\n\nThe limit remains essential. The chapter adds the middle zone to the map of noise without claiming it replaces every other source of variation or difficulty.\n\nThat is what sets up the next move. Once the valley of the normal has shown how variation can live in ordinary cases, the book can turn to the broader question of how noise happens.",
+            "competitive": "The chapter goes from blindness to ordinary-looking ground that still makes the room split. It asks what happens when the middle of the scale starts wobbling.\n\nThat matters because the book wants to strip away the lazy comfort that only dramatic edge cases are hard. Plain-looking terrain can also refuse a clean call, and the room can start splitting right there.\n\nThis is where the chapter gets exact. The middle zone is not mystical and it is not boring. It is dangerous because it gives the room just enough ambiguity to lean in different directions.\n\nThe discipline stays narrow on purpose. No one is worshipping the middle band, and no one is pretending structure stops mattering there. The chapter is naming one more place where wobble survives.\n\nThat is what earns the next step. Once the plain-looking ground starts shaking, the next question is what keeps shaking it."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "The valley of the normal is a genuine zone of noisy disagreement.",
+                "direct": "Ordinary middle cases can stay unstable because they resist clean classification.",
+                "competitive": "The middle band gives wobble room to breathe."
+              },
+              "moreDetails": {
+                "gentle": "The chapter introduces this zone to show that noise does not need obvious extremes to survive.",
+                "direct": "The valley matters because ordinary-looking cases can still leave enough uncertainty in classification for judgments to diverge.",
+                "competitive": "The room does not need cliffs to start splitting; the middle band can do the job."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Borderline ambiguity is what makes the middle difficult.",
+                "direct": "A case can look ordinary while still remaining underdetermined enough to divide judges.",
+                "competitive": "The middle whispers instead of shouting, and the room leans apart."
+              },
+              "moreDetails": {
+                "gentle": "That matters because the chapter explains the instability of normal-looking cases without turning them into mystery.",
+                "direct": "When a case sits in a borderline zone, it may fail to force a single stable classification even in a disciplined system.",
+                "competitive": "The room starts splitting because the case does not tell it where to land."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Normal appearance is not a guarantee of easy judgment.",
+                "direct": "Ordinary-looking cases can still keep variation alive.",
+                "competitive": "Plain-looking ground can still shake hard."
+              },
+              "moreDetails": {
+                "gentle": "The chapter keeps this visible so the ordinary middle is not mistaken for a simple zone.",
+                "direct": "A case can look normal and still create disagreement because the middle range can be harder to classify than it first appears.",
+                "competitive": "The quiet-looking terrain can still throw the room off balance."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter adds the middle zone without overclaiming it.",
+                "direct": "The valley of the normal matters without becoming the whole story of noise.",
+                "competitive": "The middle band is a battleground, not the whole war."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the chapter balanced and aligned with the broader map of variation.",
+                "direct": "The ordinary middle becomes one important source of disagreement without replacing other sources or limits already identified in the book.",
+                "competitive": "The room learns one more place wobble survives without redrawing the whole map."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next step is to ask how noise happens.",
+                "direct": "After naming this ordinary zone of disagreement, the book turns to the mechanisms that generate variation.",
+                "competitive": "After the middle band shakes, the next question is what powers the shake."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the following chapter moves from one difficult zone to a broader diagnostic account.",
+                "direct": "Once the valley of the normal has shown that noisy disagreement reaches ordinary cases, the mechanism question becomes the next natural step.",
+                "competitive": "Once the room starts splitting on plain-looking ground, the next hunt is for the engine under it."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one ordinary-looking middle case you know and ask what makes it harder to classify than it first appears.",
+            "direct": "Take one borderline case and separate its plain appearance from the ambiguity that still leaves room for divergence.",
+            "competitive": "Pick one middle band and make it show why it still shakes the room."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter say ordinary-looking middle cases can still generate noise?",
+              "direct": "How can a normal-range case remain underdetermined enough to divide judges?",
+              "competitive": "Why can the middle band shake the room without any cliff edge?"
+            },
+            {
+              "gentle": "Why does the chapter resist turning the middle zone into the whole story?",
+              "direct": "How does it add the valley of the normal without replacing the rest of the noise map?",
+              "competitive": "Why is the middle band a battleground without becoming the whole war?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If ordinary middle cases can stay noisy, what changes when the next chapter asks how noise happens?",
+            "direct": "How does the chapter point from the valley of the normal toward how noise happens?",
+            "competitive": "If the middle band shakes, what engine is driving the shake next?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Name the chain: ordinary zone, borderline ambiguity, unstable classification, narrow claim, mechanisms next.",
+              "direct": "Rebuild the structure: middle cases matter, classification stays open, ordinary can still divide, no overclaim, how noise happens next.",
+              "competitive": "Why does the middle band give wobble room to breathe?"
+            },
+            "connect": {
+              "gentle": "Where have you seen a normal-looking case create more disagreement than its appearance suggested?",
+              "direct": "Identify one ordinary borderline case where judges still diverged because the classification stayed open.",
+              "competitive": "Which middle band around you still makes the room lean apart?"
+            },
+            "preview": {
+              "gentle": "If the ordinary middle stays noisy, how might the next chapter explain what generates that noise?",
+              "direct": "How does the valley-of-the-normal chapter set up the broader mechanism question that follows?",
+              "competitive": "If the middle shakes here, what engine turns under it next?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "title": "Nadia Faces a Middle-Band Rating",
+          "format": "decision_point",
+          "category": "work",
+          "endingType": "warning",
+          "scenario": {
+            "gentle": "Nadia studies a form with a middle band highlighted and notices that the ordinary-looking case is harder to classify cleanly than it first appears.",
+            "direct": "A work rating in the middle range shows how an ordinary-looking case can still invite disagreement.",
+            "competitive": "Nadia watches the middle band start shaking the room."
+          },
+          "whatToDo": {
+            "gentle": "Treat the middle band as a place where ambiguity can still keep judgments apart instead of assuming it must be easy.",
+            "direct": "Use the borderline rating to see how normal-range cases can keep variation alive by resisting crisp classification.",
+            "competitive": "Make the middle band answer for the wobble it gives the room."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter argues that apparently normal cases can still be fertile ground for noise.",
+            "direct": "A middle-band case matters because ordinary appearance does not guarantee clean agreement.",
+            "competitive": "The middle can wobble even without a cliff edge."
+          }
+        },
+        {
+          "title": "Felix Argues About an Ordinary-Looking Case",
+          "format": "conflict",
+          "category": "personal",
+          "endingType": "reveal",
+          "scenario": {
+            "gentle": "Felix argues over a plain-looking case and realizes the disagreement survives because the case sits in an ambiguous middle rather than at a clean extreme.",
+            "direct": "A personal argument shows that an ordinary-looking case can still divide judgment.",
+            "competitive": "Felix hears the room split on ground that looked calm from a distance."
+          },
+          "whatToDo": {
+            "gentle": "Separate the ordinary appearance of the case from the ambiguity that still leaves room for divergence.",
+            "direct": "Use the disagreement to see that the valley of the normal can generate noise without any dramatic edge case.",
+            "competitive": "Stop giving the plain-looking case a free pass just because it is not loud."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter keeps noisy disagreement visible in the ordinary middle.",
+            "direct": "This matters because the room can divide even when the case does not look extreme.",
+            "competitive": "Plain-looking terrain can still shake the room."
+          }
+        },
+        {
+          "title": "Priya Reviews a Borderline Placement File",
+          "format": "debrief",
+          "category": "school",
+          "endingType": "correction",
+          "scenario": {
+            "gentle": "Priya reads a borderline placement file with adjacent boxes on a table and notices that the middle-case judgment is still not easy to settle.",
+            "direct": "A school middle-placement case shows how ordinary-looking judgments can resist crisp agreement.",
+            "competitive": "Priya watches the plain file make the room lean in different directions."
+          },
+          "whatToDo": {
+            "gentle": "Use the file to see how borderline ambiguity can keep disagreement alive in an ordinary-looking zone.",
+            "direct": "Treat the school case as a practical example of the valley of the normal rather than assuming the middle should be simple.",
+            "competitive": "Make the adjacent boxes show why the room still cannot land cleanly."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter uses the ordinary middle to explain one practical source of noisy disagreement.",
+            "direct": "The school example matters because it shows that a normal-looking case can still remain hard to classify.",
+            "competitive": "The plain folder still has enough ambiguity to split the room."
+          }
+        },
+        {
+          "title": "Elena Compares an Extreme Case With a Borderline One",
+          "format": "comparison",
+          "category": "work",
+          "endingType": "pressure_test",
+          "scenario": {
+            "gentle": "Elena compares an obvious extreme with an ordinary borderline case and sees that the quiet middle produces more disagreement than the louder edge.",
+            "direct": "A work comparison shows why ordinary middle cases can be harder than obvious extremes.",
+            "competitive": "Elena runs the matchup and the plain-looking middle shakes the room harder than the cliff edge."
+          },
+          "whatToDo": {
+            "gentle": "Compare the clarity of the extreme case with the ambiguity of the ordinary middle.",
+            "direct": "Use the contrast to see that noisy disagreement can persist where the case looks more normal but the classification stays open.",
+            "competitive": "Run the matchup and make the middle band answer for its hidden wobble."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter sharpens its point by contrasting the ordinary middle with clearer extremes.",
+            "direct": "This comparison matters because it shows why middle-case ambiguity can feed more divergence than obvious edge cases.",
+            "competitive": "The quieter ground can shake the room harder than the cliff."
+          }
+        },
+        {
+          "title": "Dana Stops Trusting Ordinary Appearance",
+          "format": "reversal",
+          "category": "personal",
+          "endingType": "tradeoff",
+          "scenario": {
+            "gentle": "Dana starts by assuming a normal-looking case should be easy, then realizes the ordinary middle can still keep classification unstable.",
+            "direct": "A personal reversal shows that normal appearance is not the same as easy judgment.",
+            "competitive": "Dana catches the plain-looking case wearing a false badge of simplicity."
+          },
+          "whatToDo": {
+            "gentle": "Keep the ordinary appearance visible without confusing it for clean agreement.",
+            "direct": "Treat the middle range as a real source of noisy disagreement while resisting any claim that it now explains everything.",
+            "competitive": "Respect the quiet-looking ground without assuming it is steady."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter stays balanced by adding the ordinary middle to the noise map without overclaiming it.",
+            "direct": "This is why the book can treat the valley of the normal as important without turning it into the whole story.",
+            "competitive": "The middle band is a battleground, not the whole war."
+          }
+        },
+        {
+          "title": "Owen Adds a Borderline-Case Check",
+          "format": "checklist",
+          "category": "school",
+          "endingType": "bridge",
+          "scenario": {
+            "gentle": "Owen adds a line to a school checklist that asks whether an ordinary-looking case sits in a borderline zone that could still divide judgment.",
+            "direct": "A school checklist asks whether a normal-looking case still leaves classification open.",
+            "competitive": "Owen makes the room mark where the plain-looking ground still shakes."
+          },
+          "whatToDo": {
+            "gentle": "Use a short check that distinguishes ordinary appearance from clean classification before moving into the next chapter's mechanism question.",
+            "direct": "Inspect the middle-case ambiguity directly, then use that clarity to ask how noise gets produced more generally.",
+            "competitive": "Make the middle band confess its wobble, then go hunt the engine behind it."
+          },
+          "whyItMatters": {
+            "gentle": "This is the bridge from the valley of the normal toward how noise happens.",
+            "direct": "Once ordinary-looking cases have been shown to stay noisy, the next question is what produces that variation more broadly.",
+            "competitive": "After the middle band shakes, the next hunt is for the engine."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch23-q01",
+            "prompt": "What is the chapter's main move about the valley of the normal?",
+            "choices": [
+              "Ordinary-looking middle cases can still generate noisy disagreement",
+              "Only extreme cases create serious variation",
+              "Normal-looking cases are easy by default"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The chapter says normal-range cases can still resist crisp agreement.",
+              "direct": "Correct. The valley of the normal matters because middle or borderline judgments can still produce variation.",
+              "competitive": "The middle of the scale can wobble harder than people expect."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch23-q02",
+            "prompt": "Why can normal-range cases become difficult in this chapter?",
+            "choices": [
+              "Because they resist clean classification even though they look ordinary",
+              "Because ordinary cases eliminate all ambiguity",
+              "Because only extremes matter to judgment"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter ties difficulty to middle-case ambiguity.",
+              "direct": "Normal-looking cases become difficult because they can sit in a borderline zone that invites disagreement.",
+              "competitive": "The ordinary middle can hide more wobble than the obvious extremes."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch23-q03",
+            "prompt": "Which misreading does the chapter reject about ordinary cases?",
+            "choices": [
+              "That they are automatically easy because they look normal",
+              "That they can generate disagreement",
+              "That they may resist crisp agreement"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. Looking normal does not guarantee judgment will line up cleanly.",
+              "direct": "The chapter rejects the assumption that ordinary appearance means simple classification and low variation.",
+              "competitive": "Normal-looking terrain can still split the room."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch23-q04",
+            "prompt": "Nadia reviews a borderline rating in the middle band of a form. What lesson fits best?",
+            "choices": [
+              "Middle cases can create disagreement because they are hard to classify cleanly",
+              "A middle score proves everyone will agree",
+              "Borderline cases matter less than extreme ones"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Good. The chapter treats middle cases as fertile ground for noise.",
+              "direct": "A borderline rating matters because the ordinary-looking middle can still invite divergent judgments.",
+              "competitive": "The middle band can wobble harder than the loud edges."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch23-q05",
+            "prompt": "Why does Priya's school middle-placement case matter here?",
+            "choices": [
+              "It shows that apparently normal cases can still remain hard and noisy",
+              "It proves only schools face this problem",
+              "It demonstrates a named threshold system from the sources"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The school example keeps the chapter practical without overclaiming.",
+              "direct": "The middle-placement case matters because it shows how an ordinary-looking decision can still generate disagreement.",
+              "competitive": "The plain-looking folder still makes the room split."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch23-q06",
+            "prompt": "What is the chapter's narrow claim about the valley of the normal?",
+            "choices": [
+              "Apparently normal middle cases can still be fertile ground for noise",
+              "Only borderline cases matter now",
+              "Structure becomes irrelevant in ordinary cases"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Correct. The chapter keeps the point specific and practical.",
+              "direct": "It says normal-range ambiguity can feed noisy disagreement without pretending only these cases matter.",
+              "competitive": "The ordinary middle becomes a battlefield without becoming the whole war."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch23-q07",
+            "prompt": "Why do middle cases often invite variation?",
+            "choices": [
+              "Because they leave more room for divergent classification than clear extremes",
+              "Because they force exact agreement",
+              "Because they eliminate the need for judgment"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter explains variation through the ambiguity of the middle zone.",
+              "direct": "Middle cases invite variation because they are not extreme enough to force a single obvious classification.",
+              "competitive": "The middle leaves more room for the room to split."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch23-q08",
+            "prompt": "What does the valley of the normal add to the broader noise story?",
+            "choices": [
+              "It shows that ordinary-looking cases can still keep variation alive",
+              "It proves noise only belongs to exotic cases",
+              "It removes the need to study mechanisms later"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That fits. The chapter adds a new zone where disagreement thrives.",
+              "direct": "The valley of the normal matters because it shows that noisy disagreement can persist even in cases that do not look dramatic.",
+              "competitive": "The plain-looking ground can still make the room wobble."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch23-q09",
+            "prompt": "Why does the chapter resist the extreme-cases-only view?",
+            "choices": [
+              "Because ordinary middle cases can also generate hard disagreement and noise",
+              "Because extremes never matter",
+              "Because normal cases eliminate ambiguity"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter says noise is not confined to obvious edge cases.",
+              "direct": "It resists that view because the ordinary middle often creates enough ambiguity to keep judgments from lining up cleanly.",
+              "competitive": "The room does not need a dramatic edge case to start splitting."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch23-q10",
+            "prompt": "What is the strongest bridge from this chapter into the next one?",
+            "choices": [
+              "Once ordinary cases are shown to be noisy, the next question is how noise actually gets generated",
+              "The next chapter abandons disagreement entirely",
+              "The next chapter proves normal cases are the only important ones"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The next move is toward mechanism.",
+              "direct": "The bridge works because after showing that ordinary-looking cases remain difficult, the book can ask how variation gets produced more generally.",
+              "competitive": "Once the plain-looking ground starts wobbling, the next question is what keeps making it wobble."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ]
+}

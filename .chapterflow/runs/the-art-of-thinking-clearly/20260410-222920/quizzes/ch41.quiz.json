@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch41-q01",
+      "prompt": "What is the core problem in conjunction fallacy?",
+      "choices": [
+        "A detailed combined story is treated as more likely than a broader truth that contains it",
+        "All detailed thinking is rejected",
+        "Only vague stories can ever be true"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The vivid conjunction is getting too much confidence.",
+        "direct": "Correct. Representativeness is being mistaken for probability.",
+        "competitive": "That is the scam. The flashy story is stealing odds from the bigger box."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch41-q02",
+      "prompt": "Why is this bias persuasive?",
+      "choices": [
+        "Because rich detail and fit make a story easier to picture and trust",
+        "Because the broader case becomes logically impossible",
+        "Because specific stories are always more probable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The vivid story feels like it fits better.",
+        "direct": "Exactly. Coherence creates confidence that can overpower the broader comparison.",
+        "competitive": "That is it. The best-dressed explanation charms the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch41-q03",
+      "prompt": "Which example best fits this chapter?",
+      "choices": [
+        "A manager thinks a candidate is both brilliant and difficult because that image feels vivid",
+        "A manager knows a candidate submitted a resume",
+        "A student writes down one club meeting time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The detailed bundle feels truer than the broader possibility.",
+        "direct": "Correct. A vivid conjunction is outranking the parent case because it fits a stereotype.",
+        "competitive": "Exactly. The dramatic package is stealing the spotlight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch41-q04",
+      "prompt": "A classmate seems both analytical and socially awkward because the pairing sounds familiar. What is the better move?",
+      "choices": [
+        "Compare that vivid pair with the broader possibility that the classmate is analytical",
+        "Trust the stereotype because it feels realistic",
+        "Reject every detailed description automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The broader option has to be checked first.",
+        "direct": "Correct. The detailed pair should not outrank the parent case just because it feels representative.",
+        "competitive": "That is the move. Put the bigger box on the table and stop the stereotype from freeloading."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch41-q05",
+      "prompt": "What boundary matters in this chapter?",
+      "choices": [
+        "Detail can matter without being allowed to overpower the broader parent case",
+        "All patterns are irrational",
+        "Only broad categories should ever be used"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter is not anti-detail.",
+        "direct": "Exactly. The warning is against letting representativeness replace likelihood comparison.",
+        "competitive": "Yes. Keep the detail if it helps, but do not let it mug the bigger box."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch41-q06",
+      "prompt": "Why can a vivid social or market story still be less likely than a simpler one?",
+      "choices": [
+        "Because the narrower combined story covers fewer possible cases than the broader parent case",
+        "Because vivid stories are never true",
+        "Because emotion always cancels logic"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The detailed version still fits inside the broader one.",
+        "direct": "Correct. The conjunction cannot outrank the category that contains it.",
+        "competitive": "That is the bruise. The flashy story still lives inside the bigger box."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch41-q07",
+      "prompt": "What is the hard diagnostic question in this chapter?",
+      "choices": [
+        "If the detailed version must first fit inside the broader possibility, why am I treating it as more likely?",
+        "How can I make the story sound more vivid?",
+        "Why should I stop using detail entirely?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The broader case has to stay visible.",
+        "direct": "Correct. The parent-case comparison exposes whether representativeness is doing the work.",
+        "competitive": "Exactly. Ask why the slick story is beating the bigger box it still has to live inside."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch41-q08",
+      "prompt": "Why does this bias matter for behavior and not just belief?",
+      "choices": [
+        "Because vivid conjunctions can anchor judgments, language, and decisions with too much confidence",
+        "Because probabilities never affect action",
+        "Because only mathematicians need to worry about it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. People act on the richer story when it feels true.",
+        "direct": "Exactly. A representative conjunction can become a decision anchor even while remaining less likely.",
+        "competitive": "That is the damage. The best-written story starts calling the plays."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch41-q09",
+      "prompt": "Which response best counters conjunction fallacy?",
+      "choices": [
+        "Put the broader parent case beside the detailed claim and compare them directly",
+        "Trust the story that feels most realistic",
+        "Replace every judgment with complete vagueness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The bigger box has to be made visible.",
+        "direct": "Correct. Better judgment explicitly compares the conjunction with the parent case it depends on.",
+        "competitive": "Exactly. Set the bigger box on the table before the flashy story steals another round."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch41-q10",
+      "prompt": "What distinction does this chapter ask you to preserve?",
+      "choices": [
+        "Representativeness is different from likelihood",
+        "Vividness and probability are the same thing",
+        "A richer story always covers more situations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A story can feel fitting without being more likely.",
+        "direct": "Correct. The chapter protects the difference between narrative fit and actual probability.",
+        "competitive": "That is the split. Stagecraft is not statistical muscle."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

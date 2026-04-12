@@ -1,0 +1,36 @@
+{
+  "chapterId": "ch01",
+  "title": "Recognize Your Power",
+  "heading": "Part I: Perception",
+  "approxWords": 120,
+  "properNouns": [
+    "Ryan Holiday",
+    "John D. Rockefeller",
+    "Miyamoto Musashi"
+  ],
+  "repeatedTerms": [
+    "perception",
+    "power",
+    "objectivity",
+    "emotion",
+    "control",
+    "agency"
+  ],
+  "sourceReferences": [
+    {
+      "id": "toc-freeze",
+      "path": "source-freeze/toc.json",
+      "role": "chapter title and location"
+    },
+    {
+      "id": "secondary-notes",
+      "path": "source-freeze/secondary-notes.md",
+      "role": "Perception-section interpretation and anchor support"
+    },
+    {
+      "id": "book-source",
+      "path": "source-freeze/book-source.md",
+      "role": "edition and part structure confirmation"
+    }
+  ]
+}

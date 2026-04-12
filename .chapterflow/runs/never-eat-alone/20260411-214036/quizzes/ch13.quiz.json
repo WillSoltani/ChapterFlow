@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's central claim about follow-up?",
+      "choices": [
+        "It turns a promising first interaction into actual continuity",
+        "It guarantees that the other person will stay engaged",
+        "It matters only when the first conversation was weak"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats follow-up as the move that keeps contact from dissolving.",
+        "direct": "Its core claim is that first contact remains unstable until something relevant happens afterward.",
+        "competitive": "Good contact still dies without the next move."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is the title framed as \"Follow Up or Fail\"?",
+      "choices": [
+        "Because frequency is the main proof of seriousness",
+        "Because promising contact decays quickly when nothing relevant follows it",
+        "Because every meeting requires an immediate sales ask"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The title is blunt because the chapter sees post-contact decay as the main danger.",
+        "direct": "Ferrazzi uses the title to stress how easily momentum disappears after a strong interaction.",
+        "competitive": "The room felt good. Neglect still kills it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Marcus leaves a strong client meeting. What best fits this chapter?",
+      "choices": [
+        "Wait to see whether the client reaches out first",
+        "Send a relevant next-step note that carries the discussion forward",
+        "Send a generic thank-you message every day for a week"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants follow-up to preserve momentum with substance.",
+        "direct": "A concrete next step matches the chapter better than silence or empty recurrence.",
+        "competitive": "Carry the thread forward. Do not spam it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At an alumni breakfast, Elena wants to reconnect with Professor Chen after a useful exchange. What is her strongest move?",
+      "choices": [
+        "Send one note that remembers the discussion and suggests a clear next step",
+        "Assume the good conversation was enough on its own",
+        "Check in repeatedly without adding anything new"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors relevant continuity over passive hope or empty cadence.",
+        "direct": "Remembered substance converts the breakfast conversation into a real thread.",
+        "competitive": "One useful return beats many hollow pings."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What decay trap does this chapter emphasize most?",
+      "choices": [
+        "That too much follow-up always weakens trust",
+        "That first contact often feels stronger than it actually is once ordinary life resumes",
+        "That relationships fail mainly because people talk too long in the first meeting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps returning to how quickly good contact can fade.",
+        "direct": "Its warning is that warm first interactions are still fragile after the moment ends.",
+        "competitive": "Momentum leaks fast once everyone goes home."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That recurrence matters more than relevance",
+        "That trust grows through repeated substance",
+        "That a next move can preserve momentum"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter draws a firm line against low-value repeated contact.",
+        "direct": "Frequency alone is not the point; the return has to fit the relationship and prior exchange.",
+        "competitive": "Cadence without substance is fake continuity."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Priya is tempted to send a vague \"just checking in\" text after months of silence. What would this chapter tell her?",
+      "choices": [
+        "Send it anyway because any appearance is useful",
+        "Wait until she has something relevant that deepens the thread",
+        "Replace the text with a long apology for disappearing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants continuity with relevance, not mere proof of presence.",
+        "direct": "A low-value ping risks creating drag instead of trust.",
+        "competitive": "Do not surface empty-handed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a concrete next-step note stronger than a generic thank-you note in this chapter?",
+      "choices": [
+        "It sounds more formal",
+        "It proves confidence more clearly",
+        "It gives the relationship a specific way to continue instead of stopping at politeness"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter values shape and continuity over mere courtesy.",
+        "direct": "A next-step note carries the exchange forward instead of just commemorating it.",
+        "competitive": "Politeness closes. A next move continues."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest connection between follow-up and trust?",
+      "choices": [
+        "Trust grows when a person reappears with relevant substance instead of leaving the interaction as a one-off",
+        "Trust grows mainly when the follow-up arrives quickly enough",
+        "Trust grows when the first interaction was highly emotional"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties trust to visible reliability and relevance after the first moment.",
+        "direct": "Follow-up matters because it shows the contact will not be handled like disposable social weather.",
+        "competitive": "Trust starts when the return actually means something."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How to use crowded conference settings deliberately so first contacts are worth carrying forward",
+        "How to replace follow-up with more passionate first conversations",
+        "How to remove selection from networking so more people can be contacted at once"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from preserving contact to creating better contact in noisy settings.",
+        "direct": "After follow-up comes the question of how to move through conferences deliberately.",
+        "competitive": "Next: make the first contact worth the follow-through."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

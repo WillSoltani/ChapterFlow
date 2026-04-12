@@ -1,0 +1,4 @@
+# Run Log
+
+- 2026-04-12T15:50:40-03:00 Phase 0 locked manifest fields for `the-war-of-art`: title `The War of Art`, author `Steven Pressfield`, output profile `flagship_v4_compatible`, learning contract `research_native`, run profile `balanced_flagship`, validation mode `chapter_gate`, chapter gate mode `automatic_continue`, quiz mode `generate`, scenario tone policy `required`, source discovery mode `web_bundle`, edition selection mode `ask_if_ambiguous`, source policy `public_or_authorized_plus_secondary`, `forbidBulkGenerators=true`, `releaseAssembleFromValidatedOnly=true`, `preserveApprovedChapterHashes=true`.
+- 2026-04-12T15:50:40-03:00 Phase 1 source discovery frozen. Wrote `manifests/source-ledger.json`, `manifests/edition-lock.json`, `source-freeze/source-discovery.md`, `source-freeze/source-freeze-report.md`, `source-freeze/book-source.txt`, `source-freeze/toc.json`, and `sidecars/source/source-heading-index.json`.

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "mans-search-for-meaning",
+  "runId": "20260412-184628",
+  "normalizedTitle": "Man's Search for Meaning",
+  "normalizedAuthor": "Viktor E. Frankl",
+  "frozenAt": "2026-04-12",
+  "policy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "exact quotes allowed only when directly supported by frozen authorized preview; none relied on for initial chapter work"
+  },
+  "sources": [
+    {
+      "id": "google-books-2006-beacon",
+      "title": "Man's Search for Meaning",
+      "url": "https://books.google.com/books/about/Man_s_Search_for_Meaning.html?id=kDOlPwAACAAJ",
+      "type": "authorized_preview_metadata",
+      "role": "edition metadata",
+      "confidence": 0.97,
+      "notes": "Beacon Press 2006 adult trade metadata; credits Ilse Lasch; notes new foreword and biographical afterword."
+    },
+    {
+      "id": "google-books-2014-beacon",
+      "title": "Man's Search for Meaning",
+      "url": "https://books.google.com/books/about/Man_s_Search_for_Meaning.html?id=acz40AEACAAJ",
+      "type": "authorized_preview_metadata",
+      "role": "current-print metadata",
+      "confidence": 0.96,
+      "notes": "Beacon Press 2014 metadata; credits Ilse Lasch and Helen Pisano; confirms current print line."
+    },
+    {
+      "id": "google-books-1992-introduction-to-logotherapy",
+      "title": "Man's Search for Meaning: An Introduction to Logotherapy",
+      "url": "https://books.google.com/books/about/Man_s_Search_for_Meaning.html?id=dnJmBMv2jUUC",
+      "type": "authorized_preview_metadata",
+      "role": "table_of_contents_support",
+      "confidence": 0.95,
+      "notes": "1992 Beacon preview metadata showing revised edition line and section listing used for edition lock."
+    },
+    {
+      "id": "beacon-teachers-guide",
+      "title": "Beacon Press: Teacher's Guide: Man's Search for Meaning",
+      "url": "https://www.beacon.org/Assets/ClientPages/MansSearchForMeaningtg.aspx",
+      "type": "publisher_support_material",
+      "role": "publisher synopsis and structure support",
+      "confidence": 0.9,
+      "notes": "Publisher-hosted guide summarizing the memoir/logotherapy split and modern classroom framing."
+    },
+    {
+      "id": "sparknotes-summary",
+      "title": "Man's Search for Meaning: Full Book Summary & Analysis",
+      "url": "https://www.sparknotes.com/lit/mans-search-for-meaning/summary-and-analysis/",
+      "type": "reputable_secondary",
+      "role": "section map and chapter-level interpretation support",
+      "confidence": 0.82,
+      "notes": "Used for section segmentation and phase names inside Part One when preview text access is thin."
+    },
+    {
+      "id": "sparknotes-preface",
+      "title": "Man's Search for Meaning: Preface to the 1992 Edition Summary & Analysis",
+      "url": "https://www.sparknotes.com/lit/mans-search-for-meaning/section1/",
+      "type": "reputable_secondary",
+      "role": "preface structure support",
+      "confidence": 0.8,
+      "notes": "Used to confirm Preface to the 1992 Edition as a distinct opening unit."
+    },
+    {
+      "id": "sparknotes-part-one-a",
+      "title": "Man's Search for Meaning: Part One (Induction and Adjustments) Summary & Analysis",
+      "url": "https://www.sparknotes.com/lit/mans-search-for-meaning/section2",
+      "type": "reputable_secondary",
+      "role": "part-one segmentation support",
+      "confidence": 0.8,
+      "notes": "Used to break Part One into an early-camp unit for skeleton and chapter planning."
+    },
+    {
+      "id": "sparknotes-part-one-b",
+      "title": "Man's Search for Meaning: Part One (Facts, Fulfillment and Freedom) Summary & Analysis",
+      "url": "https://www.sparknotes.com/lit/mans-search-for-meaning/section3/",
+      "type": "reputable_secondary",
+      "role": "part-one segmentation support",
+      "confidence": 0.8,
+      "notes": "Used to break Part One into a later-camp reflection and liberation unit for skeleton and chapter planning."
+    },
+    {
+      "id": "wikipedia-work-page",
+      "title": "Man's Search for Meaning",
+      "url": "https://en.wikipedia.org/wiki/Man%27s_Search_for_Meaning",
+      "type": "secondary_reference",
+      "role": "publication history cross-check",
+      "confidence": 0.7,
+      "notes": "Used only as a cross-check for translation / title history, not as a factual anchor for chapter content."
+    }
+  ]
+}

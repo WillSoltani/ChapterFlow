@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch28-q01",
+      "prompt": "What is the core move in the one-upmanship strategy as taught here?",
+      "choices": [
+        "Withhold the attack that would rescue a rival already damaging itself",
+        "Publicly humiliate the rival as early as possible",
+        "Avoid every conflict no matter the cost"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter defines the move as disciplined noninterference around a self-destructive rival.",
+        "direct": "Start with the mechanism: the wrong attack can stabilize the very opponent you want weakened.",
+        "competitive": "The play is to avoid becoming the enemy's repair crew."
+      }
+    },
+    {
+      "questionId": "ch28-q02",
+      "prompt": "Why can attacking too early hurt your position in this chapter?",
+      "choices": [
+        "Because it always makes you look timid",
+        "Because it can unify the rival's factions against a common enemy",
+        "Because rivals never respond to outside pressure"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "A visible outside threat can simplify internal conflict into common defense.",
+        "direct": "Keep the rescue risk clear: your intervention may replace their fragmentation with unity.",
+        "competitive": "A mistimed hit can glue their camp back together."
+      }
+    },
+    {
+      "questionId": "ch28-q03",
+      "prompt": "What is the chapter's main reversal about waiting?",
+      "choices": [
+        "Waiting is always more strategic than acting",
+        "A rival will always collapse eventually if left alone",
+        "Restraint becomes drift if collapse is misread or the surrounding cost becomes too high"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The warning is that delay only works while the rival is truly weakening and the field can bear the cost.",
+        "direct": "Notice the limit: patience stops being strategic once the trend is misread or the collateral damage grows too large.",
+        "competitive": "Waiting goes bad fast when the enemy is not actually falling or the terrain is burning."
+      }
+    },
+    {
+      "questionId": "ch28-q04",
+      "prompt": "Maren's colleagues want a public confrontation with the rival executive. What best fits the chapter?",
+      "choices": [
+        "Hold the strike if the rival is already alienating support and the attack would likely unify that support",
+        "Attack now because outside pressure always speeds collapse",
+        "Withdraw from the field completely so no one can blame you later"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Maren reads the attack as a likely rescue rather than a useful blow.",
+        "direct": "Focus on the cohesion effect: if the strike gives the rival a cleaner fight, it helps more than it hurts.",
+        "competitive": "Do not hand a staggering rival the rally it needs."
+      }
+    },
+    {
+      "questionId": "ch28-q05",
+      "prompt": "Hale says patience is not passivity. What is he emphasizing?",
+      "choices": [
+        "That waiting is automatically wiser than intervention",
+        "That restraint should be judged by whether intervention would weaken or rescue the rival",
+        "That rivals should never be opposed directly"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Hale keeps the room focused on the causal effect of intervention.",
+        "direct": "Distinguish posture from mechanism: the question is what the move does to the rival's internal alignment.",
+        "competitive": "Waiting only counts if it keeps you from fixing the enemy."
+      }
+    },
+    {
+      "questionId": "ch28-q06",
+      "prompt": "Vesper sees a competitor splitting internally. Which move best fits the chapter?",
+      "choices": [
+        "Launch a loud public attack so the split becomes impossible to ignore",
+        "Wait indefinitely without checking whether the split is real",
+        "Hold the attack if it would likely create unity, while preparing to move when the opening becomes usable"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter pairs noninterference with readiness rather than with idleness.",
+        "direct": "Test for rescue risk first, then pair restraint with preparation for inheritance.",
+        "competitive": "Let the crack widen, but be ready to take the ground when it breaks."
+      }
+    },
+    {
+      "questionId": "ch28-q07",
+      "prompt": "Roark is waiting while a rival damages itself, but the harm to everyone else is rising. When does the chapter say the waiting may stop being strategic?",
+      "choices": [
+        "Only when the rival explicitly asks for help",
+        "When the collateral harm grows too large for the field to absorb",
+        "Only when no self-destruction is visible at all"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter allows a harm threshold because patience is not meant to excuse avoidable damage.",
+        "direct": "Use the collateral-cost test: once the field cannot bear the delay, restraint needs to be re-evaluated.",
+        "competitive": "If their fall is scorching your terrain, the wait is getting expensive."
+      }
+    },
+    {
+      "questionId": "ch28-q08",
+      "prompt": "A committee dispute looks unstable, but no one has tested whether intervention would create unity. What is the strongest diagnosis?",
+      "choices": [
+        "The room needs to map the likely rescue effect before assuming action is stronger",
+        "The instability proves waiting is correct",
+        "The instability proves the committee should be publicly attacked immediately"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Unstable appearances are not enough. The chapter asks what intervention would do to cohesion.",
+        "direct": "Check the mechanism first: until you know the rescue risk, you do not know whether the hit helps you.",
+        "competitive": "Mess is not collapse. Test whether the punch would forge them into one piece."
+      }
+    },
+    {
+      "questionId": "ch28-q09",
+      "prompt": "Which judgment best captures the chapter's limit?",
+      "choices": [
+        "The strategy works whenever the operator enjoys watching the rival fail",
+        "The strategy stays sound only while restraint exposes real self-destruction instead of protecting the rival or burning the wider field",
+        "The strategy is strongest when succession readiness is ignored so the operator looks less aggressive"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter keeps testing both the rival's trend and the surrounding cost of delay.",
+        "direct": "Judge the method by two conditions: real collapse must be underway, and the cost of waiting must remain acceptable.",
+        "competitive": "If the enemy is stabilizing or the field is burning, the strategy is already slipping."
+      }
+    },
+    {
+      "questionId": "ch28-q10",
+      "prompt": "How does Chapter 28 differ from the center-of-gravity logic that follows in Chapter 29?",
+      "choices": [
+        "Chapter 28 and Chapter 29 both rely on the same mechanism of sponsorship",
+        "Chapter 28 builds alliance while Chapter 29 waits for collapse",
+        "Chapter 28 inherits an opening from a rival's self-damage, while Chapter 29 identifies and pressures the point whose loss actually breaks the system"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The bridge moves from inherited openings to deliberate system-breaking pressure.",
+        "direct": "Bridge the chapters cleanly: this one avoids rescuing self-destruction, the next one chooses the decisive point directly.",
+        "competitive": "Here you let them fall apart. Next chapter you put force on the one place that makes the whole structure crack."
+      }
+    }
+  ]
+}

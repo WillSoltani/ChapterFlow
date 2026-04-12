@@ -16,22 +16,38 @@
     "ch01": {
       "sha256": "fb19883fa104de646e1de45aa388ab120400152c5807e536bc5689ca876bb78d",
       "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch01.chapter.json",
-      "sealedAt": "2026-04-11"
+      "sealedAt": "2026-04-11",
+      "chapterSha256": "2bebc472e5772883981c0287d686eb637db3e3095058c8fe4f588ced0db072ae"
     },
     "ch02": {
       "sha256": "683ddcf72c485baca344187e823c52a31a03c946b451b56ae621a15145540624",
       "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch02.chapter.json",
-      "sealedAt": "2026-04-11"
+      "sealedAt": "2026-04-11",
+      "chapterSha256": "8c96b0be4e996889d647fbe9fbe50ff410802bcfdec4f434eaa81eee9d4c0ec9"
     },
     "ch03": {
       "sha256": "6f42a3a5d99317a6ef8ad302e16287b752b41b9206285c6e9c9eff1c43a6bcbe",
       "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch03.chapter.json",
-      "sealedAt": "2026-04-11"
+      "sealedAt": "2026-04-11",
+      "chapterSha256": "a99c111ac6f4f80fd1e6bb57477d48f608c406ac447ed1b99c01168efa0984f1"
     },
     "ch04": {
       "sha256": "63ed048442a0d97689a3d4d129f04b78ceec513c2d29993ba29dc4e21a7a8fe0",
       "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch04.chapter.json",
-      "sealedAt": "2026-04-11"
+      "sealedAt": "2026-04-11",
+      "chapterSha256": "ff4384774e26eb3fbd8c11a24804ce6a29c36c320a1cbc23584633ee2ca9909d"
+    },
+    "ch05": {
+      "sha256": "b908e6cd94e3c75c2dcac196dfc61ec59561d19ab727889aad24cecff370221a",
+      "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch05.chapter.json",
+      "sealedAt": "2026-04-12",
+      "chapterSha256": "b28beba9edd6ebd6be249793ecfd723dd50cf1f75bb9416b1d459c37008cfe01"
+    },
+    "ch06": {
+      "sha256": "9251ade1edc468d8d7d81c68ec72d4289844ce91c1eb112ddd3a05a769924a9e",
+      "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch06.chapter.json",
+      "sealedAt": "2026-04-12",
+      "chapterSha256": "47c4f6a6090fad67b4981fb4602c6690a4abd970db7f3c17c2f9b5f9db813e51"
     }
   },
   "baselineQuality": {}

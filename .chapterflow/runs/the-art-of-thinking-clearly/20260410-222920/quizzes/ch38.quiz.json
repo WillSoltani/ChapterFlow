@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch38-q01",
+      "prompt": "What is the core problem in halo effect?",
+      "choices": [
+        "One visible trait spreads into unrelated judgments",
+        "Every first impression is false",
+        "No trait ever provides any information"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The first cue is spreading too far.",
+        "direct": "Correct. A salient trait is organizing broader evaluation beyond what it proves.",
+        "competitive": "That is the scam. One cue is counterfeiting the rest of the file."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch38-q02",
+      "prompt": "Why is this bias persuasive?",
+      "choices": [
+        "Because one strong impression feels easier than separate careful judgments",
+        "Because one trait always proves every other trait",
+        "Because first impressions are all the evidence you need"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. One strong cue is easy for the mind to carry.",
+        "direct": "Exactly. Coherent broad impressions feel simpler than independent evaluation.",
+        "competitive": "That is it. The brain likes one clean story more than real paperwork."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch38-q03",
+      "prompt": "Which example best fits halo effect?",
+      "choices": [
+        "A polished candidate is assumed to be more competent in unrelated ways",
+        "A candidate answers one technical question correctly",
+        "A manager reads a project report twice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. One trait is spilling into broader judgment.",
+        "direct": "Correct. Presentation quality is being allowed to stand in for unrelated competence evidence.",
+        "competitive": "Exactly. The polish is smuggling fake credentials across the border."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch38-q04",
+      "prompt": "A beautiful product feels higher quality before testing. What is the better move?",
+      "choices": [
+        "Separate visual appeal from evidence about actual quality",
+        "Assume beauty is enough proof of performance",
+        "Ignore all impressions completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The attractive feature should be kept separate from quality claims.",
+        "direct": "Correct. Aesthetic appeal may be real, but it is not sufficient proof of build quality.",
+        "competitive": "That is the move. Take the glamour off the spec sheet and see what survives."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q05",
+      "prompt": "What boundary matters in this chapter?",
+      "choices": [
+        "The first trait may be real even though the broader spillover is not justified",
+        "All first impressions should be ignored",
+        "Positive traits never spill over, only negative ones do"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The problem is not the first cue itself, but how far it spreads.",
+        "direct": "Exactly. The chapter questions spillover, not the existence of the original signal.",
+        "competitive": "Yes. The cue can be real without getting to annex the whole map."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q06",
+      "prompt": "Why can one visible flaw distort judgment so strongly?",
+      "choices": [
+        "Because dislike can spill into unrelated evaluation just like admiration can",
+        "Because one flaw proves every negative conclusion",
+        "Because flaws matter more than evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Negative spillover is part of the same bias.",
+        "direct": "Correct. One flaw can unfairly contaminate broader judgments beyond its actual scope.",
+        "competitive": "That is the bruise. The stain can counterfeit evidence just as well as the glow can."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch38-q07",
+      "prompt": "What is the hard diagnostic question in this chapter?",
+      "choices": [
+        "What am I inferring here that the original visible trait does not actually prove?",
+        "How can I strengthen my first impression faster?",
+        "Why should I reject every initial signal immediately?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The goal is to separate observation from unsupported inference.",
+        "direct": "Correct. Each added conclusion should have its own evidence.",
+        "competitive": "Exactly. Make the stowaway claims show their paperwork."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch38-q08",
+      "prompt": "Why does halo effect distort decisions and not just impressions?",
+      "choices": [
+        "Because one trait can influence hiring, grading, trust, and purchasing beyond the evidence",
+        "Because impressions never affect behavior",
+        "Because decisions are always purely rational"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Broader decisions can start resting on spillover.",
+        "direct": "Exactly. Once one cue takes over evaluation, real outcomes get driven by borrowed authority.",
+        "competitive": "That is the damage. One flashy cue starts steering real money, trust, and status."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch38-q09",
+      "prompt": "Which response best counters halo effect?",
+      "choices": [
+        "Split the original observation from each extra inference and demand separate evidence",
+        "Trust the strongest first impression",
+        "Assume every broad impression is accurate if it feels coherent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Each extra claim needs its own support.",
+        "direct": "Correct. Better judgment prevents one cue from doing illegitimate extra work.",
+        "competitive": "Exactly. Break the fused verdict apart and make every claim carry its own receipts."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch38-q10",
+      "prompt": "What distinction does this chapter ask you to preserve?",
+      "choices": [
+        "A visible trait is different from the broader verdict you are tempted to build from it",
+        "One signal and the whole file are the same thing",
+        "If a trait stands out, it should govern all judgments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. One cue is not the entire person or object.",
+        "direct": "Correct. The chapter protects the difference between direct evidence and halo spillover.",
+        "competitive": "That is the split. One signal is not a legal takeover of the whole file."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "chapterId": "ch12-the-facts-are-true-the-news-is-fake",
+  "questions": [
+    {
+      "questionId": "ch12-q01",
+      "prompt": "Why can the facts be true while the news is fake in this chapter?",
+      "choices": [
+        "Because every journalist always lies directly",
+        "Because true details can still be arranged into a misleading picture",
+        "Because facts and news are identical"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is often the packaging, not just the detail.",
+        "direct": "Taleb says factual fragments can still produce a distorted narrative.",
+        "competitive": "True bricks can still build a crooked wall."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch12-q02",
+      "prompt": "What is the difference between facts and news here?",
+      "choices": [
+        "Facts are emotional and news is neutral",
+        "Facts belong to the event, while news is the framed and selected account",
+        "Facts are false and news is true"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Facts happen first; news is built afterward.",
+        "direct": "Taleb distinguishes raw events from the packaging process built around them.",
+        "competitive": "Facts are the raw event; news is the spotlight edit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch12-q03",
+      "prompt": "What makes a technically accurate report still misleading?",
+      "choices": [
+        "Too much grammar",
+        "Framing, omission, sequencing, and salience that distort proportion",
+        "Using any emotional language at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The details can be true while the overall picture is skewed.",
+        "direct": "Taleb focuses on the arrangement mechanism, not only direct fabrication.",
+        "competitive": "The cut can lie while the line stays clean."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch12-q04",
+      "prompt": "How does Chapter 12 continue the book’s earlier themes?",
+      "choices": [
+        "It stops worrying about distorted signals",
+        "It treats narrative as another polished surface that can outrun reality",
+        "It rejects all information completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The same realism test now applies to stories.",
+        "direct": "Narrative joins appearance, prestige, and rhetoric as another potential counterfeit signal.",
+        "competitive": "Now the whole story gets taxed too."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch12-q05",
+      "prompt": "A story uses only the sharpest true moments from an event and leaves out the context that would change the meaning. What is the more Taleb-like reading?",
+      "choices": [
+        "The story must still be fully trustworthy because each detail is true",
+        "The account may still be fake in practical effect because the arrangement distorts proportion",
+        "The missing context does not matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "True details can still produce a false impression.",
+        "direct": "Taleb wants the frame and omissions audited, not just the sentence-level facts.",
+        "competitive": "Nothing is false and the picture still lies."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch12-q06",
+      "prompt": "Why is salience a problem in this chapter?",
+      "choices": [
+        "Because salient facts are never real",
+        "Because vivid or emotional facts can dominate attention even when they are not representative",
+        "Because quiet facts should be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "What grabs attention may not be what matters most.",
+        "direct": "Salience can overpower proportion and mislead judgment.",
+        "competitive": "The spotlight can bully the distribution."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch12-q07",
+      "prompt": "What should you ask when a story feels urgent and complete?",
+      "choices": [
+        "Whether it sounds confident",
+        "What was selected, omitted, or emphasized to create that feeling",
+        "Whether it matches your politics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Look at the frame, not just the fragments.",
+        "direct": "The stronger question is how the narrative architecture shaped the picture.",
+        "competitive": "Make the spotlight show its edits."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch12-q08",
+      "prompt": "What larger epistemic mistake is this chapter exposing?",
+      "choices": [
+        "That facts never matter",
+        "That factual inclusion is often mistaken for truthful proportion",
+        "That all stories should be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "True pieces do not automatically make a true whole.",
+        "direct": "Taleb attacks the confusion between literal accuracy and representational accuracy.",
+        "competitive": "Clean fragments can still sell a dirty map."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch12-q09",
+      "prompt": "Which statement best fits Taleb’s view of news in this chapter?",
+      "choices": [
+        "News is raw reality with no filter",
+        "News is a packaging mechanism that can distort even while staying technically factual",
+        "News is false only when every sentence is invented"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "News is assembled, selected, and framed.",
+        "direct": "Taleb treats news as a filter that can bend significance through arrangement.",
+        "competitive": "The package can fake the picture without faking every brick."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch12-q10",
+      "prompt": "What is the chapter’s deepest corrective for judging stories?",
+      "choices": [
+        "Accept vivid stories quickly",
+        "Audit framing, omission, and proportion before trusting the picture",
+        "Ignore all facts and focus on feelings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A better judgment starts by separating the event from the package built around it.",
+        "direct": "Taleb wants skepticism aimed at the architecture of the narrative, not just at sentence-level truth.",
+        "competitive": "Tax the spotlight before you trust the world it is selling."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

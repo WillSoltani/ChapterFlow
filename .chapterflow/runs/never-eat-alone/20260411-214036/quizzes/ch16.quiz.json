@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about expanding a network?",
+      "choices": [
+        "Growth works best through adjacent circles that preserve warmth and relevance",
+        "The main goal is to add as many new contacts as possible",
+        "Expansion should start with strangers rather than existing relationships"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats network growth as outward movement through nearby relationships and communities.",
+        "direct": "Its core claim is that adjacent expansion is stronger than indiscriminate breadth.",
+        "competitive": "Grow outward, not randomly."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care so much about adjacent circles?",
+      "choices": [
+        "Because neighboring circles preserve relevance, context, and often some trust",
+        "Because strangers rarely matter in any form",
+        "Because adjacent circles always produce introductions quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values adjacency because it carries warmth into new territory.",
+        "direct": "Nearby circles work better because they do not make every approach start from zero.",
+        "competitive": "Adjacency keeps the bridge warm."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Nadia is thinking about asking for an introduction into a neighboring industry circle. What best fits this chapter?",
+      "choices": [
+        "Use the adjacent path because it preserves context and makes expansion less random",
+        "Skip the introduction and reach for the widest possible field instead",
+        "Stay inside the familiar loop so warmth is never tested"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors warm extension over random breadth or total retreat.",
+        "direct": "An adjacent introduction matches the chapter better than wider cold sprawl or staying boxed in.",
+        "competitive": "Bridge outward, do not spray outward."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At an alumni workshop, Colin wants to widen his campus network. What is his strongest move?",
+      "choices": [
+        "Use existing relationships to move into nearby circles that still carry relevance",
+        "Meet as many unfamiliar people as possible regardless of fit",
+        "Ignore new rooms and stay only with the same familiar group"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants warm expansion, not random collection or social retreat.",
+        "direct": "A nearby path through existing trust fits the chapter better than volume chasing.",
+        "competitive": "Expand with a bridge, not a net."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What familiar-loop trap does this chapter criticize?",
+      "choices": [
+        "That every old relationship should be replaced with a new one",
+        "That the same repeated circle can become too narrow to support growth",
+        "That adjacency usually creates too much complexity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter begins by noticing how much life can stay inside the same loop.",
+        "direct": "Its warning is that familiar circles can become so closed that growth stalls.",
+        "competitive": "The loop can get too tight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That breadth alone is a sign of strong networking",
+        "That neighboring communities can help widen a network",
+        "That introductions can carry warmth into new rooms"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter draws a hard line against equating more contacts with better growth.",
+        "direct": "Random breadth is weaker than warm, relevant expansion.",
+        "competitive": "Count is not quality."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Meera feels pressure to keep adding names even though the new contacts have little fit. What would this chapter tell her?",
+      "choices": [
+        "Keep going because expansion depends on volume",
+        "Slow down and widen through paths that still carry warmth and relevance",
+        "Stop expanding altogether and stay only with familiar people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prefers disciplined extension over cold accumulation.",
+        "direct": "Expansion should widen the map without making the network thinner and colder.",
+        "competitive": "Grow outward, not emptier."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a warm introduction chain stronger than random outreach in this chapter?",
+      "choices": [
+        "Because it preserves context and meaning while opening new rooms",
+        "Because it guarantees quick reciprocity",
+        "Because it removes the need for future small talk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values bridges that carry relevance into new spaces.",
+        "direct": "An introduction chain makes expansion less disconnected and less cold.",
+        "competitive": "Warm bridges beat scattered reach."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between warmth and reach?",
+      "choices": [
+        "Reach stays stronger when expansion carries relevance and trust instead of turning into collection",
+        "Warmth matters mainly because it makes new contacts feel easier",
+        "Reach and warmth usually work against each other"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats warmth as part of what keeps broader reach from becoming thin and random.",
+        "direct": "Expansion is stronger when it extends existing relationship logic instead of abandoning it.",
+        "competitive": "Human growth scales better than cold count."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How small talk can serve as an entry path rather than as empty conversational filler",
+        "How to replace warm introductions with broader cold outreach",
+        "How to stop widening the network once it becomes difficult"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from wider rooms to the conversational skill needed to enter them well.",
+        "direct": "After circle expansion comes the question of how small talk functions as entry rather than dead filler.",
+        "competitive": "Next: use small talk as a doorway."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

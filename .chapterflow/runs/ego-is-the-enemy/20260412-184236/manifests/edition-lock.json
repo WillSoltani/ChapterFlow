@@ -1,0 +1,71 @@
+{
+  "bookId": "ego-is-the-enemy",
+  "runId": "20260412-184236",
+  "lockedAt": "2026-04-12T21:42:36Z",
+  "selectionMode": "auto_locked_to_dominant_current_english_official_family",
+  "materialAmbiguity": false,
+  "userQuestionRequired": false,
+  "title": "Ego Is the Enemy",
+  "author": "Ryan Holiday",
+  "chosenEdition": {
+    "name": "Ego Is the Enemy",
+    "publisher": "Portfolio",
+    "parentPublisher": "Penguin",
+    "publishedDate": "2016-06-14",
+    "publishedYear": 2016,
+    "isbn13": "9781591847816",
+    "pages": 256,
+    "language": "English",
+    "format": "current official U.S. hardcover / digital family",
+    "sourceOfTruth": "https://books.google.com/books/about/Ego_Is_the_Enemy.html?id=j0GXCgAAQBAJ",
+    "chapterStructure": [
+      "Talk, talk, talk",
+      "To be or to do?",
+      "Become a student",
+      "Don't be passionate",
+      "Follow the canvas strategy",
+      "Restrain yourself",
+      "Get out of your own head",
+      "The danger of early pride",
+      "Work, work, work",
+      "For everything that comes next, ego is the enemy...",
+      "Always stay a student",
+      "Don't tell yourself a story",
+      "What's important to you?",
+      "Entitlement, control, and paranoia",
+      "Managing yourself",
+      "Beware the disease of me",
+      "Meditate on the immensity",
+      "Maintain your sobriety",
+      "For what often comes next, ego is the enemy...",
+      "Alive time or dead time?",
+      "The effort is enough",
+      "Fight club moments",
+      "Draw the line",
+      "Maintain your own scorecard",
+      "Always love",
+      "For everything that comes next, ego is the enemy..."
+    ]
+  },
+  "alternativesConsidered": [
+    {
+      "name": "mass-market or paperback printings in the same 2016 English family",
+      "publishedYear": 2016,
+      "url": "https://librarycatalog.richlandhills.com/Record/145412",
+      "status": "not_selected_non_material_format_variant",
+      "notes": "Visible page-count variation appears to come from format differences rather than a materially different chapter map."
+    }
+  ],
+  "decisionRationale": [
+    "The strongest lawful sources converge on the same 2016 English Portfolio / Penguin family.",
+    "Google Books and the official publisher metadata agree on publication date, publisher family, and current official description.",
+    "The library catalog chapter map aligns with the same three-part Aspire / Success / Failure structure and does not introduce a competing materially different edition.",
+    "No translation or abridgment ambiguity surfaced that would change chapter-level content, so no user question is required."
+  ],
+  "operatingRules": {
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "allowed_only_if_verified_in_frozen_bundle",
+    "translationQuestionRequired": false
+  },
+  "sourceText": ".chapterflow/runs/ego-is-the-enemy/20260412-184236/source-freeze/book-source.md"
+}

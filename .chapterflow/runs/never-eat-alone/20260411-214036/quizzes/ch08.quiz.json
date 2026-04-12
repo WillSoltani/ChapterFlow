@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about names and details?",
+      "choices": [
+        "They help later contact feel more personal and less generic",
+        "They matter mainly because forgetting names is embarrassing",
+        "They should be gathered as comprehensively as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats memory as part of relationship quality rather than as a manners trick.",
+        "direct": "Its core claim is that recall protects recognition and warms follow-up.",
+        "competitive": "Memory keeps the next touch from sounding like a broadcast."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does recall matter beyond etiquette in this chapter?",
+      "choices": [
+        "Because it helps keep the other person specific rather than interchangeable",
+        "Because it proves you have a naturally strong memory",
+        "Because it lets you avoid all future preparation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about recognition, not just embarrassment avoidance.",
+        "direct": "Names and details matter because they preserve the person's particularity.",
+        "competitive": "Recall stops flattening."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Chloe has one useful detail from a conference conversation that may disappear by tomorrow. What best fits the chapter?",
+      "choices": [
+        "Let it go because real relationships should not need memory support",
+        "Write down the meaningful detail so follow-up can stay specific",
+        "Record every possible detail from the conversation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows light support that keeps later contact more personal.",
+        "direct": "A small note can preserve the detail that makes follow-up warmer.",
+        "competitive": "Save the signal before the blur wins."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is Andre's strongest move in the seminar hallway?",
+      "choices": [
+        "Offer a generic hello and start fresh",
+        "Mention the earlier project detail so the second contact feels connected",
+        "List every detail he remembers from the last conversation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants recognition to carry continuity into the next exchange.",
+        "direct": "A light remembered detail is stronger than generic politeness or overprecision.",
+        "competitive": "Use one real thread, not an inventory."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does weak recall make follow-up weaker in this chapter's logic?",
+      "choices": [
+        "Because it often forces later contact into generic language",
+        "Because people always reject follow-up from forgetful people",
+        "Because memory is more important than sincerity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties memory loss to generic follow-up tone.",
+        "direct": "If the details vanish, the next message often sounds interchangeable.",
+        "competitive": "No detail means broadcast energy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject most clearly?",
+      "choices": [
+        "That good recall means collecting as many details as possible",
+        "That names and details can improve continuity",
+        "That memory aids can sometimes help"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps a hard line against trophy-style collection.",
+        "direct": "Recall is meant to support recognition, not turn into catalog behavior.",
+        "competitive": "Collector energy breaks the chapter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Saira cannot remember Lila's name clearly enough to follow up after a good event conversation. What would this chapter suggest?",
+      "choices": [
+        "Treat the lapse as evidence that a small memory aid would help next time",
+        "Assume the relationship was never important enough",
+        "Avoid all future follow-up so the lapse does not show"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter allows support when weak recall is erasing useful continuity.",
+        "direct": "A small habit can protect names before they disappear.",
+        "competitive": "Help the memory so the momentum survives."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is Ben's light note system stronger than a giant catalog?",
+      "choices": [
+        "Because memory should never be supported by writing",
+        "Because it keeps the useful details without making the relationship feel processed",
+        "Because detailed recall is always manipulative"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants support tools to stay modest and relational.",
+        "direct": "A light system helps recognition without pushing into database energy.",
+        "competitive": "Track lightly, not obsessively."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest warning about memory work?",
+      "choices": [
+        "That people prefer you to forget them rather than write anything down",
+        "That recognition turns weak when it starts feeling like cataloging or management",
+        "That names matter more than every other form of relationship care"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The line between recognition and collection is the chapter's main boundary.",
+        "direct": "Its deeper warning is against recall that feels managed instead of human.",
+        "competitive": "Recognition helps until it smells like storage."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How to warm colder first contact before there is any history to remember",
+        "How to replace preparation with stronger memory tricks",
+        "How to stop using names in follow-up entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge points toward making initial contact warmer.",
+        "direct": "After recall, the book turns toward warming cold outreach itself.",
+        "competitive": "Next: build warmth before memory exists."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

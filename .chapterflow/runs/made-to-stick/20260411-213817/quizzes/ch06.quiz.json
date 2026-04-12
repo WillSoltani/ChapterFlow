@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What problem does the chapter say stories help solve?",
+      "choices": [
+        "How to replace ideas with entertainment.",
+        "How to help lessons travel beyond the original explanation.",
+        "How to avoid needing clarity or evidence."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats story as a way to carry practical meaning farther than a one-time explanation can.",
+        "direct": "Stories solve a transfer problem by packaging the lesson into a replayable sequence.",
+        "competitive": "The point stays alive because the plot can keep moving without you."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "What does it mean for a lesson to be embedded in a story?",
+      "choices": [
+        "The lesson can be recovered from the events themselves.",
+        "The story becomes longer and more emotional than before.",
+        "The moral is added clearly in a final sentence after the plot ends."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "An embedded lesson lives inside the remembered sequence, not outside it as a separate label.",
+        "direct": "The audience should be able to infer the point from what happens in the narrative.",
+        "competitive": "The plot carries the weight when the caption no longer has to."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Which set of labels belongs to the chapter's supported story taxonomy?",
+      "choices": [
+        "Hero, villain, and mentor plots.",
+        "Setup, payoff, and twist plots.",
+        "Challenge, connection, and creativity plots."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The frozen support for this run names challenge, connection, and creativity as the chapter's recurring plot labels.",
+        "direct": "That is the supported narrow taxonomy here.",
+        "competitive": "Those three labels are the map this chapter actually gives you."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Jordan wants a service principle to survive after the meeting. Which move best fits the chapter?",
+      "choices": [
+        "Turn the principle into a short story with a clear choice and consequence.",
+        "Repeat the rule several more times in abstract language.",
+        "Make the meeting longer so everyone hears more explanation."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's logic is to build the lesson into a replayable sequence people can carry out of the room.",
+        "direct": "Jordan needs a carrier, not more repetition of the same statement.",
+        "competitive": "Give the rule a plot or watch it die when the meeting ends."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Which statement best captures the chapter's view of a moral stapled onto the end of a story?",
+      "choices": [
+        "It is usually stronger than embedding the point in the events.",
+        "It shows the story did not fully carry the lesson on its own.",
+        "It proves the story is more accurate than explanation."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A separate moral suggests the lesson and the plot are still partly disconnected.",
+        "direct": "The chapter prefers embedded meaning because the narrative itself should do the teaching.",
+        "competitive": "If the lesson needs glue, the vehicle was underbuilt."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Noor notices students repeating an assembly story in the hallway. What question matters most under this chapter?",
+      "choices": [
+        "Whether the story is long enough to sound impressive.",
+        "Whether the retold story still carries the intended lesson.",
+        "Whether the school should stop using stories altogether."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Retelling is the real test. The story helps only if the lesson survives the trip.",
+        "direct": "The chapter judges story by what travels with it, not by the original performance alone.",
+        "competitive": "Follow the hallway memory and see what actually made the ride."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "Mrs. Alvarez is choosing a story shape for peer teaching. What is the strongest move?",
+      "choices": [
+        "Pick any emotional story because all stories teach equally well.",
+        "Choose challenge, connection, or creativity based on the kind of movement the lesson needs.",
+        "Avoid plot shape and return to a list of principles only."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The taxonomy exists to keep story choice specific. Different plot shapes move people differently.",
+        "direct": "The right move is matching the lesson to the supported story engine.",
+        "competitive": "Choose the engine, not just the ornament."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Liam swaps a lecture for a vivid anecdote, but still has to explain the lesson separately afterward. What does that suggest?",
+      "choices": [
+        "The lesson may not yet be embedded strongly enough in the story.",
+        "The story is automatically stronger because it is memorable.",
+        "Stories should never be used for personal advice."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If the listener cannot recover the point from the events, the narrative is not yet carrying enough of the lesson.",
+        "direct": "A stapled explanation suggests the story remains underpowered as a carrier.",
+        "competitive": "The plot is still asking the caption to do its work."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "Why can a vivid story become dangerous even when people remember it well?",
+      "choices": [
+        "Because stories always reduce accuracy no matter what.",
+        "Because the remembered plot can carry the wrong lesson farther than the intended one.",
+        "Because audiences prefer detached explanation to replayable scenes."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that narrative power travels both truth and distortion depending on what survives in memory.",
+        "direct": "A story is risky when retelling preserves the plot but mutates the principle.",
+        "competitive": "The counterfeit lesson can hitch a ride on a sticky plot."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "Once a story begins spreading through retelling, what question does the book ask next?",
+      "choices": [
+        "What part of the idea still survives once messages mutate in circulation.",
+        "How to replace the story with a stronger statistic.",
+        "How to remove every emotional element from the original message."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points toward the epilogue's question of what remains when sticky messages begin to change in the wild.",
+        "direct": "After story portability comes mutation, and the book asks what core still sticks.",
+        "competitive": "The plot is loose now. The next fight is saving the core."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

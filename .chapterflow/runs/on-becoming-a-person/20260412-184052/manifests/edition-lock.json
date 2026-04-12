@@ -1,0 +1,30 @@
+{
+  "bookId": "on-becoming-a-person",
+  "runId": "20260412-184052",
+  "lockedAt": "2026-04-12T15:44:12-0300",
+  "selectionMode": "auto_lock",
+  "reason": "The numbered chapter structure is stable across the original 1961 Houghton Mifflin text and later English editions. The later Peter D. Kramer introduction does not materially change chapter count, chapter order, or chapter scope, so no user edition question is required. This run locks to the original 1961 Houghton Mifflin base text while using the 1995 Open Library preview as the working authorized chapter map.",
+  "chosenEdition": {
+    "name": "On Becoming a Person: A Therapist's View of Psychotherapy",
+    "author": "Carl Rogers",
+    "publisher": "Houghton Mifflin",
+    "publishedDate": "1961",
+    "publishedYear": 1961,
+    "format": "English print edition",
+    "isbn10": "0395084091",
+    "isbn13": "9780395084090",
+    "sourceText": ".chapterflow/runs/on-becoming-a-person/20260412-184052/source-freeze/book-source.txt",
+    "sourceProvenance": "Frozen web bundle from Open Library 1995 preview TOC and excerpt support, Open Library base-work metadata, Google Books later-edition preview metadata, Connexions TOC corroboration, and narrow secondary summaries."
+  },
+  "rejectedCandidates": [
+    {
+      "name": "1995 Houghton Mifflin paperback with Peter D. Kramer introduction",
+      "reason": "Not rejected as unusable, but treated as support rather than the base text because its added introduction does not materially alter the core 1961 chapter sequence."
+    },
+    {
+      "name": "2012 HarperCollins edition with Peter D. Kramer introduction",
+      "reason": "Not rejected as contradictory, but treated as a later in-print reissue for corroboration only. The added introduction is outside the numbered core chapter run."
+    }
+  ],
+  "userQuestionNeeded": false
+}

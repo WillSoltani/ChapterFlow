@@ -16,37 +16,56 @@
     "ch01": {
       "sha256": "c58eb4bbc588775080d331e203d740854052212d9d437e9c240bd86e77d44156",
       "sealedAt": "2026-04-11T17:58:00Z",
-      "title": "A Portrait of the Author as a Learning Junkie"
+      "title": "A Portrait of the Author as a Learning Junkie",
+      "chapterSha256": "faeee6b760e787811562553242406cab659f3564ff23a24ba02bc184b57cd7e9"
     },
     "ch02": {
       "sha256": "57c7f1eee3b38826953e058a044d662ad582f59dde0a795af850879108b0cbe8",
       "sealedAt": "2026-04-11T18:25:00Z",
-      "title": "10 Principles of Rapid Skill Acquisition"
+      "title": "10 Principles of Rapid Skill Acquisition",
+      "chapterSha256": "bb3a1a978909795c7e0d4b991f5b35632a4ac37de7c3058e67fdce7224fa7c00"
     },
     "ch03": {
       "sha256": "79af66a9bcc498d98759e9c028f73e0e3041d2282dff54459626cf000da7a41a",
       "sealedAt": "2026-04-11T19:05:00Z",
-      "title": "10 Principles of Effective Learning"
+      "title": "10 Principles of Effective Learning",
+      "chapterSha256": "d17d6b00df21f52f07a7644551fe323abfcb120223041a62cb283057161ee9f8"
     },
     "ch04": {
       "sha256": "0c89563f6aa38b745ae537d6d20580b6c3c83174d7f11b6cb41c3acaf6214269",
       "sealedAt": "2026-04-11T19:24:00Z",
-      "title": "Yoga"
+      "title": "Yoga",
+      "chapterSha256": "0f34a3f0fb305c63da9bba5e30f3173a61ab76f2eac0f113a0ea4ec3830882d6"
     },
     "ch05": {
       "sha256": "461870ef74b92b827e0cf9845a6ee08275de7190e4f55d6200c4eba5e177bb0d",
       "sealedAt": "2026-04-11T21:44:47Z",
-      "title": "Programming"
+      "title": "Programming",
+      "chapterSha256": "ce6b299bffe52d0730c2f4bc822a089ae9d5e72d061e5f09fef1de1209a6acfd"
     },
     "ch06": {
       "sha256": "b4c16a98d82741f7a926e79b51d6f42bcf2a2775ecd66cf47104c46e2e1cac5d",
       "sealedAt": "2026-04-11T23:19:04Z",
-      "title": "Touch Typing"
+      "title": "Touch Typing",
+      "chapterSha256": "f6fda3b6cc2b242ac3225ed22b14b3f4ab2878ca52c874711b312f5be4a8b514"
     },
     "ch07": {
       "sha256": "4582dae2bc26d181b009d017b6e77559eab465f71dd687635a15fbae366fc3c5",
       "sealedAt": "2026-04-12T00:51:09Z",
-      "title": "Go"
+      "title": "Go",
+      "chapterSha256": "224f2035936692599a50d37df00a85ac3c18adef874a67283df10e84ceaf94cb"
+    },
+    "ch08": {
+      "sha256": "c263e9f05c6760a4e42eb0d56bd9a340232aa4fde1c4967754147609d03941ee",
+      "sealedAt": "2026-04-12T04:08:29Z",
+      "title": "Ukulele",
+      "chapterSha256": "ab13a4e00668149fe86fc27d5b40b87a8182567013c21a2d166fdb40f7ad30e6"
+    },
+    "ch09": {
+      "sha256": "e56e8c857c3ba909e8b3e03f54f534625c496ad20d74803175052c1eec4c879d",
+      "sealedAt": "2026-04-12T15:50:50Z",
+      "title": "Windsurfing",
+      "chapterSha256": "fd13913afd0ac655df35c8e9418ce43f93360a4c6b34fe2ee4e3325431709317"
     }
   },
   "baselineQuality": {}

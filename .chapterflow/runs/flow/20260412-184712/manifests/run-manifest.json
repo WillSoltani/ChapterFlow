@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "flow",
+  "runId": "20260412-184712",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/flow/20260412-184712",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "Flow",
+    "author": "Mihaly Csikszentmihalyi",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "flow",
+    "title": "Flow",
+    "author": "Mihaly Csikszentmihalyi",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Harper Perennial Modern Classics edition",
+      "translator": "",
+      "publishedYear": 2008,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/flow/20260412-184712/source-freeze/book-source.md",
+      "sourceProvenance": "Authorized preview metadata from Google Books and catalog confirmation from WorldCat/Open Library"
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "ch01-ch10"
+  }
+}

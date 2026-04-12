@@ -30,3 +30,20 @@
 - 2026-04-12T00:52:35Z: Chapter 25 and Chapter 26 pair seal completed. `approvedChapterHashes` now includes `ch25` and `ch26`.
 - 2026-04-12T00:53:44Z: Run-level artifact guard passed after the Chapter 25 and Chapter 26 pair seal (`FAIL=0 WARN=0`).
 - 2026-04-12T00:54:32Z: Chapter 27 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the alliance chapter.
+- 2026-04-12T04:00:57Z: Chapter 27 validated under strict-v13 and deferred for pair seal with Chapter 28. contentHash=0f73e0f4cd622549867f1e8cdc9dbc0976efa0bf58aea12d71f6ab1af1a2b4fb; artifact set written; continuity reserved Imogen, Rourke, Brisa, Tavish, Nerida, Cullen, Marlowe, Kalista; school=graduate-organizational-politics-seminar.
+- 2026-04-12T04:02:03Z: Run-level artifact guard passed after Chapter 27 validation (`FAIL=0 WARN=0`).
+- 2026-04-12T04:02:48Z: Chapter 28 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the one-upmanship chapter.
+- 2026-04-12T15:50:26Z: Chapter 28 validated under strict-v13. Review wrapper, metrics sidecar, quiz extract, and continuity updates written. SHA-256 sealed: `8362ac89be082a5dca50f612b2058cf0df6094957a226c528e45703d35c2b58c`.
+- 2026-04-12T15:50:26Z: Chapter 27 and Chapter 28 pair seal completed. `approvedChapterHashes` now includes `ch27` and `ch28`.
+- 2026-04-12T15:51:38Z: Run-level artifact guard passed after the Chapter 27 and Chapter 28 pair seal (`FAIL=0 WARN=0`).
+- 2026-04-12T15:51:57Z: Chapter 29 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the fait accompli chapter.
+
+- 2026-04-12T16:53:29Z: Chapter 29 validated under strict-v13. SHA-256 deferred: 4aa4db177aad76d272ec92f8b1706ca6eeded7a2a198d499a86bf1e88b9cbd77. Continuity reserved Oriana, Dashiell, Brenna, Leora, Isha, Corbett, Linet, Sorenna and graduate-public-administration-seminar.
+
+- 2026-04-12T16:59:00Z: Chapter 30 started. Wrote source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft for Communication Strategies: Penetrate Their Minds. Reserved cast planned: Nerina, Sabir, Caelan, Evren, Alaric, Brio, Zaina, Mavis in graduate-rhetoric-colloquium.
+- 2026-04-12T16:54:00Z: Run-level artifact guard passed after Chapter 29 validation (FAIL=0 WARN=0).
+- 2026-04-12T18:38:52Z: Chapter 30 validated under strict-v13. SHA-256 sealed: 58fa9e659d1977de64b08ccb29f466a60056bedb5d6b719de50b8aefd98fe0d8. Continuity reserved Nerina, Sabir, Caelan, Evren, Alaric, Brio, Zaina, Mavis and graduate-rhetoric-colloquium.
+- 2026-04-12T18:38:52Z: Chapter 29 and Chapter 30 pair seal completed. ApprovedChapterHashes now lock ch29=4aa4db177aad76d272ec92f8b1706ca6eeded7a2a198d499a86bf1e88b9cbd77 and ch30=58fa9e659d1977de64b08ccb29f466a60056bedb5d6b719de50b8aefd98fe0d8.
+- 2026-04-12T18:45:00Z: Chapter 31 started. Wrote source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft for The Inner-Front Strategy: Destroy from Within. Reserved cast planned: Sorin, Anwen, Bastien, Nabila, Jorah, Thalia, Maelle, Rivka in graduate-organizational-psychology-seminar.
+- 2026-04-12T18:54:19Z: Chapter 31 validated under strict-v13. SHA-256 deferred: 03e5e1202e95509e06caf23cd7a44f0d8e94a5bf3ef7a2af65c5c77fb0619225. Continuity reserved Sorin, Anwen, Bastien, Nabila, Jorah, Thalia, Maelle, Rivka and graduate-organizational-psychology-seminar.
+- 2026-04-12T19:00:00Z: Chapter 32 started. Wrote source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft for The Passive-Aggression Strategy: Dominate While Seeming to Submit. Reserved cast planned: Kestrel, Noor, Harlan, Tovah, Orin, Darian, Lysander, Amira in graduate-conflict-resolution-lab.

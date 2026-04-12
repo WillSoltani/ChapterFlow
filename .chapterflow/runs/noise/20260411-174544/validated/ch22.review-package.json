@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "noise-ch22-objective-ignorance",
+  "createdAt": "2026-04-12T12:50:32-03:00",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "noise",
+    "title": "Noise: A Flaw in Human Judgment",
+    "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Little, Brown illustrated edition",
+      "publisher": "Little, Brown",
+      "publishedYear": 2021,
+      "isbn13": "9780316451383",
+      "isbn10": "031645138X",
+      "format": "Authorized Google Books metadata and preview-backed print/digital reference edition",
+      "sourceText": ".chapterflow/runs/noise/20260411-174544/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle: Google Books authorized preview and metadata, the official Noise site, and a Barron's interview with Daniel Kahneman."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-39"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch22-objective-ignorance",
+      "number": 22,
+      "title": "Objective Ignorance",
+      "readingTimeMinutes": 8,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Once noiseless rules are visible, another question follows. What if stronger structure still cannot settle everything? The chapter turns to objective ignorance.\n\nThat move matters because some limits come from what cannot be cleanly known, not only from sloppy process. The chapter keeps those limits inside the broader analysis of judgment.",
+            "direct": "The chapter turns from noiseless rules to objective ignorance. It argues that stronger structure still meets limits because some uncertainty remains.\n\nThat is the central move. Better discipline helps, but it does not remove every knowledge constraint.",
+            "competitive": "The chapter follows the tightened room into a harder truth. Some things stay hidden even after the system gets more disciplined.\n\nThat pressure matters because the room can beat back wobble and still run into blindness."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Objective ignorance marks a real limit.",
+                "direct": "Some knowledge limits remain even after stronger structure improves judgment.",
+                "competitive": "The room can stay blind in places."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Not every unresolved problem comes from weak process.",
+                "direct": "Missing knowledge is different from sloppy design.",
+                "competitive": "A tidy room can still not know enough."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter avoids fatalism.",
+                "direct": "Structure still matters even when limits remain.",
+                "competitive": "Blindness is not surrender."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter says some limits remain even after stronger structure improves consistency.",
+            "direct": "Objective ignorance becomes the next boundary on what judgment systems can achieve.",
+            "competitive": "The room gets tighter but not all-seeing."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Once noiseless rules are visible, another question follows. What if stronger structure still cannot settle everything? The chapter turns to objective ignorance.\n\nThat move matters because some limits come from what cannot be cleanly known, not only from sloppy process. Rules, models, and discipline can improve consistency while still running into uncertainty that the system cannot fully dissolve.\n\nThis is where the distinction matters. Objective ignorance is not just another name for weak design. The chapter is identifying a boundary created by incomplete knowledge rather than by careless procedure.\n\nThe chapter keeps one useful limit in place. Acknowledging objective ignorance does not make improvement useless, and it does not collapse into fatalism. Better structure still matters even when some uncertainty remains.\n\nThat is what earns the next move. Once knowledge limits are visible, the book can turn to another zone where judgment remains hard: the valley of the normal.",
+            "direct": "The chapter turns from noiseless rules to objective ignorance. It argues that stronger structure still meets limits because some uncertainty remains tied to what cannot be fully known.\n\nThat matters because not every unresolved difficulty comes from bias, noise, or weak procedure alone. Some problems remain hard even when the process is more disciplined.\n\nThis is the distinction it has to hold. Objective ignorance is a knowledge constraint, not a synonym for sloppy process. The chapter wants that limit named without letting it erase the value of structure.\n\nThe limit stays visible. Better rules, models, and discipline still improve judgment, but they do not abolish every boundary set by incomplete knowledge.\n\nThat prepares the next step. Once objective ignorance has been admitted, the book can move into the valley of the normal.",
+            "competitive": "The chapter follows the tightened room into a harder truth. Some things stay hidden even after the system gets more disciplined.\n\nThat matters because the room can beat back wobble and still run into blindness, and the book wants that blindness named without melodrama. A cleaner process does not automatically open sealed doors.\n\nThis is where the chapter gets sharper. Objective ignorance is not lazy process dressed up in smarter language. It is a limit that stays when the room has already done serious work to get itself under control.\n\nThe discipline stays narrow on purpose. No surrender speech is being given, and no one is saying structure stops mattering. The chapter is marking a boundary, not declaring defeat.\n\nThat is what earns the next step. Once the room admits its blindness, the book can ask why ordinary-looking cases still keep judgment under strain."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Objective ignorance is a real limit on improvement.",
+                "direct": "Some uncertainty remains even after stronger structure.",
+                "competitive": "The room stays blind in places even after it gets disciplined."
+              },
+              "moreDetails": {
+                "gentle": "The chapter introduces objective ignorance to show that stronger consistency does not remove every limit.",
+                "direct": "Objective ignorance matters because some knowledge constraints survive even when rules, models, or discipline have improved the process.",
+                "competitive": "The room can tighten itself and still not see through every wall."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Some limits come from incomplete knowledge, not weak process alone.",
+                "direct": "Not every unresolved problem is a design failure.",
+                "competitive": "A tidy room can still lack facts."
+              },
+              "moreDetails": {
+                "gentle": "That matters because the chapter distinguishes missing knowledge from sloppy procedure.",
+                "direct": "The boundary here comes from what the system cannot fully know rather than from a failure to structure the process well.",
+                "competitive": "The room can be orderly and still come up short on what the world reveals."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Objective ignorance is not fatalism.",
+                "direct": "Knowledge limits do not make structure worthless.",
+                "competitive": "Blindness is not surrender."
+              },
+              "moreDetails": {
+                "gentle": "The chapter stays balanced by keeping improvement visible alongside the limit.",
+                "direct": "Better rules and discipline still matter even when some uncertainty remains beyond what they can fully settle.",
+                "competitive": "The room still gets credit for tightening up even when some corners stay dark."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter avoids abstract skepticism.",
+                "direct": "It marks a boundary without turning uncertainty into a total worldview.",
+                "competitive": "The chapter draws a limit line, not a surrender banner."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the argument sober rather than inflated.",
+                "direct": "The book treats objective ignorance as a specific constraint on judgment improvement rather than as proof that nothing can be known well enough to act.",
+                "competitive": "The room admits blindness without pretending every light is fake."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next difficult zone is the valley of the normal.",
+                "direct": "After objective ignorance, the book turns to ordinary cases that still create hard disagreement.",
+                "competitive": "After blindness comes the trouble of ordinary-looking cases."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the next chapter stays with difficulty even after stronger structure and clearer limits have both been named.",
+                "direct": "The valley of the normal becomes the next case once objective ignorance has set a boundary on what structure can do.",
+                "competitive": "After the room admits what it cannot know, the next question is why normal-looking cases still keep it divided."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one disciplined process you know. What still remains uncertain even after the system gets tighter?",
+            "direct": "Pick one improved process and ask what knowledge limit still survives after rules or discipline have helped.",
+            "competitive": "Find one tidy room and ask where the blindness still lives."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why objective ignorance limits improvement without making improvement useless?",
+            "direct": "How does the chapter distinguish incomplete knowledge from weak procedure while keeping structure important?",
+            "competitive": "Why can the room admit blindness without surrendering?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Recall the chain: stronger structure helps, some uncertainty remains, knowledge limit differs from sloppy process, fatalism resisted, valley of the normal next.",
+              "direct": "Name the structure: disciplined process, remaining ignorance, boundary not failure, improvement still matters, ordinary hard cases next.",
+              "competitive": "What stays dark after the room tightens up?"
+            },
+            "connect": {
+              "gentle": "Where have you seen a cleaner process still leave important uncertainty unresolved?",
+              "direct": "Identify one setting where better structure improves judgment but cannot fully remove a knowledge constraint.",
+              "competitive": "Which orderly room around you still cannot see enough?"
+            },
+            "preview": {
+              "gentle": "If stronger structure still meets limits, how might the next chapter show ordinary cases remaining difficult?",
+              "direct": "How does this chapter set up the next move into ordinary cases that still divide judgment?",
+              "competitive": "If the room admits blindness, why do normal-looking cases still trouble it next?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Once noiseless rules are visible, another question follows. What if stronger structure still cannot settle everything? The chapter turns to objective ignorance.\n\nThat move matters because some limits come from what cannot be cleanly known, not only from sloppy process. Rules, models, and discipline can improve consistency while still running into uncertainty that the system cannot fully dissolve.\n\nHard depth sharpens the distinction. Objective ignorance is not merely leftover mess after weak design. It is a boundary created by incomplete knowledge, which means the system can become more disciplined without becoming all-seeing.\n\nThe chapter keeps one useful limit in place. Admitting objective ignorance does not make improvement useless, and it does not collapse into fatalism. Better structure still matters even though some uncertainty survives it.\n\nThis is what changes after the chapter on noiseless rules. The question is no longer only how far consistency can be pushed, but what remains beyond the reach of that push.\n\nThat is what makes the next move feel earned. Once the boundary of objective ignorance is visible, the book can turn to the valley of the normal.",
+            "direct": "The chapter turns from noiseless rules to objective ignorance. It argues that stronger structure still meets limits because some uncertainty remains tied to what cannot be fully known.\n\nThat matters because not every unresolved difficulty comes from noise, bias, or weak procedure alone. Some problems stay hard even when the process has already become more disciplined.\n\nThis is the harder distinction it wants to hold. Objective ignorance is a knowledge constraint rather than a synonym for sloppy design, and the chapter wants that limit named without letting it erase the gains from structure.\n\nThe limit remains essential. Better rules, models, and discipline can improve judgment while still stopping short of complete resolution. The chapter is marking a boundary on what consistency can achieve, not withdrawing respect from consistency itself.\n\nThat is what sets up the next move. Once objective ignorance has drawn the boundary, the book can ask why ordinary-looking cases still generate hard disagreement in the valley of the normal.",
+            "competitive": "The chapter follows the tightened room into a harder truth. Some things stay hidden even after the system gets more disciplined.\n\nThat matters because the room can beat back wobble and still run into blindness, and the book wants that blindness named without cheap drama. A cleaner process does not kick every sealed door open.\n\nThis is where the chapter gets exact. Objective ignorance is not lazy process wearing a smarter coat. It is a boundary that remains after the room has already worked hard to clean itself up.\n\nThe discipline stays narrow on purpose. No surrender speech is being given, no nihilism is being sold, and the room does not get stripped of credit for tightening itself. The chapter is drawing a hard line, not torching the map.\n\nThat is what earns the next step. Once the room admits what it still cannot see, the next question is why ordinary-looking terrain still divides it."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Objective ignorance marks a boundary on what improvement can settle.",
+                "direct": "Stronger structure can help without abolishing every knowledge limit.",
+                "competitive": "The room tightens up and still hits blind walls."
+              },
+              "moreDetails": {
+                "gentle": "The chapter introduces objective ignorance to show that some unresolved difficulty survives even after consistency improves.",
+                "direct": "Objective ignorance matters because knowledge constraints can remain after rules, models, and discipline have already reduced other sources of variation.",
+                "competitive": "The room can clean itself up and still fail to see through every barrier."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Incomplete knowledge is different from weak process.",
+                "direct": "Not every unresolved case signals bad design.",
+                "competitive": "A tidy room can still lack sight."
+              },
+              "moreDetails": {
+                "gentle": "That matters because the chapter separates what cannot be known from what has simply been handled poorly.",
+                "direct": "The limit here comes from the world's resistance to full knowledge rather than from an avoidable failure to structure the process.",
+                "competitive": "The room can be orderly and still come up blind because the facts do not arrive."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Objective ignorance is not a surrender doctrine.",
+                "direct": "Knowledge limits do not erase the value of discipline.",
+                "competitive": "Blindness is not capitulation."
+              },
+              "moreDetails": {
+                "gentle": "The chapter stays balanced by keeping gains from structure visible even while naming what remains unresolved.",
+                "direct": "Better discipline still improves judgment even when it cannot completely remove uncertainty tied to incomplete knowledge.",
+                "competitive": "The room still gets credit for tightening itself even when some corners remain dark."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter resists total skepticism.",
+                "direct": "A boundary on knowledge is not a proof that nothing useful can be known.",
+                "competitive": "The hard line is not a surrender banner."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the chapter sober instead of letting uncertainty swell into a total worldview.",
+                "direct": "The argument remains practical by marking a real boundary without pretending every act of judgment is therefore pointless.",
+                "competitive": "The room admits blindness without declaring every light a lie."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next trouble zone is the valley of the normal.",
+                "direct": "After objective ignorance, the book turns to ordinary cases that still divide judgment.",
+                "competitive": "After blindness comes ordinary terrain that still splits the room."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the next chapter continues the book's study of why difficulty remains even after stronger structure and clearer limits have both been named.",
+                "direct": "The valley of the normal becomes the next case once objective ignorance has marked the boundary of what consistency can fully achieve.",
+                "competitive": "After the room admits what it cannot see, the next question is why normal-looking ground still breaks its agreement."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one disciplined process you know and ask what remains unresolved because the knowledge itself is incomplete.",
+            "direct": "Take one improved system and separate what better structure fixed from what incomplete knowledge still leaves unsettled.",
+            "competitive": "Pick one tidy room and make it show where the blindness still holds."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter say objective ignorance limits improvement without making improvement pointless?",
+              "direct": "How can stronger structure help while some knowledge constraints remain?",
+              "competitive": "Why does the room get tighter without becoming all-seeing?"
+            },
+            {
+              "gentle": "Why does the chapter distinguish objective ignorance from sloppy process?",
+              "direct": "How does it separate incomplete knowledge from avoidable design failure?",
+              "competitive": "Why can an orderly room still come up blind?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If objective ignorance sets a boundary, what remains difficult when the next chapter turns to the valley of the normal?",
+            "direct": "How does the chapter point from objective ignorance toward the valley of the normal?",
+            "competitive": "If the room admits blindness, why does ordinary terrain still split it next?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Name the chain: stronger structure, remaining ignorance, knowledge limit not failure, no fatalism, valley of the normal next.",
+              "direct": "Rebuild the structure: discipline helps, blindness remains, boundary not surrender, skepticism resisted, ordinary hard cases next.",
+              "competitive": "What stays dark after the room cleans itself up?"
+            },
+            "connect": {
+              "gentle": "Where have you seen a disciplined process still stop short because the knowledge was incomplete?",
+              "direct": "Identify one setting where better structure helps but cannot fully resolve what the system does not know.",
+              "competitive": "Which tidy room around you still hits a blind wall?"
+            },
+            "preview": {
+              "gentle": "If objective ignorance remains, how might ordinary-looking cases still create disagreement in the next chapter?",
+              "direct": "How does this chapter prepare the move into the valley of the normal?",
+              "competitive": "If the room hits blindness here, why does normal-looking ground still split it next?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "title": "Elena Opens a File With Missing Fields",
+          "format": "decision_point",
+          "category": "work",
+          "endingType": "warning",
+          "scenario": {
+            "gentle": "Elena opens a case file with a blank field still visible and realizes that even a disciplined process cannot fully settle the judgment when key knowledge is missing.",
+            "direct": "A work file with missing information shows how stronger structure can still meet a knowledge limit.",
+            "competitive": "Elena watches the tidy file hit a blind wall where the facts never arrived."
+          },
+          "whatToDo": {
+            "gentle": "Treat the uncertainty as a knowledge limit rather than as automatic proof that the process was careless.",
+            "direct": "Use the incomplete file to see that stronger discipline can still run into what cannot be cleanly known.",
+            "competitive": "Make the room admit that not every blind spot is a process sin."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter argues that some limits remain even after stronger structure improves consistency.",
+            "direct": "An incomplete file matters because it shows that disciplined judgment can still face objective ignorance.",
+            "competitive": "The room gets tighter and still cannot see through every wall."
+          }
+        },
+        {
+          "title": "Jonah Argues About Whether Better Process Can Settle Everything",
+          "format": "conflict",
+          "category": "personal",
+          "endingType": "reveal",
+          "scenario": {
+            "gentle": "Jonah argues over coffee about whether a cleaner process should settle every hard call and realizes the real dispute is about what cannot be fully known.",
+            "direct": "A personal argument exposes the difference between stronger discipline and complete knowledge.",
+            "competitive": "Jonah hears the room confuse better order with x-ray vision."
+          },
+          "whatToDo": {
+            "gentle": "Separate the value of discipline from the fantasy that stronger structure makes every uncertainty disappear.",
+            "direct": "Use the disagreement to see that objective ignorance can remain even when the process gets better.",
+            "competitive": "Stop asking the tidy room to see through concrete."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter keeps improvement visible while refusing total-solution rhetoric.",
+            "direct": "This matters because better structure still helps even when some knowledge limits survive it.",
+            "competitive": "Blindness is not surrender."
+          }
+        },
+        {
+          "title": "Priya Reviews an Incomplete Placement Folder",
+          "format": "debrief",
+          "category": "school",
+          "endingType": "correction",
+          "scenario": {
+            "gentle": "Priya flips through an incomplete placement folder and notices that the missing details matter even though the school's procedure is orderly.",
+            "direct": "A school placement folder shows how disciplined process can still face unresolved uncertainty.",
+            "competitive": "Priya watches the neat folder come up short because the facts are thin."
+          },
+          "whatToDo": {
+            "gentle": "Use the folder to distinguish missing knowledge from sloppy handling.",
+            "direct": "Treat the school case as a practical example of objective ignorance limiting what stronger structure can settle.",
+            "competitive": "Make the folder show where order stops and blindness begins."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter brings knowledge limits into view without abandoning structure.",
+            "direct": "The school example matters because it shows that cleaner procedure does not automatically fill every informational gap.",
+            "competitive": "The room can be orderly and still not know enough."
+          }
+        },
+        {
+          "title": "Nadia Compares a Better Process With Missing Knowledge",
+          "format": "comparison",
+          "category": "work",
+          "endingType": "pressure_test",
+          "scenario": {
+            "gentle": "Nadia compares a disciplined workflow with an earlier messy one and sees that the new process is better even though one crucial fact remains unresolved.",
+            "direct": "A work comparison shows that stronger structure can help without abolishing every knowledge constraint.",
+            "competitive": "Nadia watches the cleaner room outperform the old one and still run into blindness."
+          },
+          "whatToDo": {
+            "gentle": "Compare what structure improved to what incomplete knowledge still leaves unresolved.",
+            "direct": "Use the contrast to see that objective ignorance marks a limit on improvement rather than a reason to deny improvement happened.",
+            "competitive": "Give the room credit for tightening up while making it own the wall it still cannot see through."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter resists fatalism by keeping gains from structure visible.",
+            "direct": "This comparison matters because it separates better process from total resolution.",
+            "competitive": "The room can get better without becoming all-seeing."
+          }
+        },
+        {
+          "title": "Dana Stops Turning Uncertainty Into Surrender",
+          "format": "reversal",
+          "category": "personal",
+          "endingType": "tradeoff",
+          "scenario": {
+            "gentle": "Dana starts by thinking remaining uncertainty means the system is failing, then realizes some limits persist even when the judgment process improves.",
+            "direct": "A personal reversal shows that objective ignorance is a limit without becoming an excuse for fatalism.",
+            "competitive": "Dana catches uncertainty trying to masquerade as total defeat."
+          },
+          "whatToDo": {
+            "gentle": "Keep the limit visible without erasing the value of better discipline and structure.",
+            "direct": "Treat objective ignorance as a boundary on what can be settled, not as proof that improvement is pointless.",
+            "competitive": "Respect the blind wall without setting the whole room on fire."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter stays sober by pairing knowledge limits with continuing value in improvement.",
+            "direct": "This is why the book can name objective ignorance without collapsing into skepticism.",
+            "competitive": "The hard line is not a surrender banner."
+          }
+        },
+        {
+          "title": "Owen Adds an Unknowns Check",
+          "format": "checklist",
+          "category": "school",
+          "endingType": "bridge",
+          "scenario": {
+            "gentle": "Owen adds a blank line to a school checklist that asks what remains unknown even after the procedure has been followed carefully.",
+            "direct": "A school checklist asks what stronger structure still cannot fully resolve.",
+            "competitive": "Owen makes the room write down its blindness in black ink."
+          },
+          "whatToDo": {
+            "gentle": "Use a short check that separates what the disciplined process improved from what incomplete knowledge still leaves open before moving to the next chapter's ordinary hard cases.",
+            "direct": "Inspect the remaining unknowns directly, then use that clarity to prepare for the valley of the normal.",
+            "competitive": "Make the room confess what it still cannot see, then ask why normal-looking ground still splits it."
+          },
+          "whyItMatters": {
+            "gentle": "This is the bridge from objective ignorance toward the valley of the normal.",
+            "direct": "Once objective ignorance has marked a boundary, the next question is why ordinary cases can still keep judgment under strain.",
+            "competitive": "After blindness is admitted, ordinary terrain becomes the next trouble zone."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch22-q01",
+            "prompt": "What is the chapter's main move about objective ignorance?",
+            "choices": [
+              "It marks a limit on what stronger structure can fully settle",
+              "It proves discipline and structure are useless",
+              "It shows every uncertainty comes from sloppy process"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The chapter says some limits remain even after consistency improves.",
+              "direct": "Correct. Objective ignorance matters because stronger rules or discipline do not remove every knowledge constraint.",
+              "competitive": "The room can get tighter and still stay blind in places."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch22-q02",
+            "prompt": "Why does stronger structure still meet limits in this chapter?",
+            "choices": [
+              "Because some things cannot be cleanly known even in a disciplined system",
+              "Because structure always increases ignorance",
+              "Because rules and models stop mattering completely"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter ties the limit to what remains unknown, not just to weak process.",
+              "direct": "The system still meets limits because some knowledge constraints survive even after the process becomes more disciplined.",
+              "competitive": "A tighter room still cannot see what the world will not show it."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch22-q03",
+            "prompt": "Which misreading does the chapter reject about objective ignorance?",
+            "choices": [
+              "That it means improvement is useless or fatalism is correct",
+              "That some ignorance remains",
+              "That discipline can still help"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter keeps knowledge limits visible without giving up on improvement.",
+              "direct": "It rejects the idea that acknowledging objective ignorance means structure, rules, or discipline no longer matter.",
+              "competitive": "Blind spots do not mean the whole room should surrender."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch22-q04",
+            "prompt": "Elena faces a file with missing information even after the process is disciplined. What lesson fits best?",
+            "choices": [
+              "Some limits come from what cannot be fully known, not only from weak process",
+              "Any missing detail proves the process failed",
+              "Discipline becomes irrelevant once a file is incomplete"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Good. The chapter says some uncertainty remains even after the process improves.",
+              "direct": "An incomplete file matters because it shows that stronger discipline cannot always erase knowledge constraints.",
+              "competitive": "The tidy room still hits a wall when the facts do not show up."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch22-q05",
+            "prompt": "Why does Priya's incomplete school placement folder matter here?",
+            "choices": [
+              "It shows how knowledge limits can remain after stronger structure improves consistency",
+              "It proves schools should abandon structure",
+              "It demonstrates a technical theory from the sources"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The school example keeps the chapter concrete without overclaiming.",
+              "direct": "The incomplete folder matters because it shows that disciplined procedures can still face information limits they cannot resolve cleanly.",
+              "competitive": "The folder stays thin even when the room gets orderly."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch22-q06",
+            "prompt": "What is the chapter's narrow claim about objective ignorance?",
+            "choices": [
+              "It limits what stronger structure can achieve without making structure worthless",
+              "It replaces every earlier concern with skepticism",
+              "It means knowledge is impossible in every case"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Correct. The chapter keeps both improvement and limit in view.",
+              "direct": "Objective ignorance matters because it marks a boundary on what better rules, models, or discipline can fully settle without erasing their value.",
+              "competitive": "The room gets credit for getting tighter even when it cannot see through walls."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch22-q07",
+            "prompt": "What remains after stronger structure improves consistency?",
+            "choices": [
+              "Some uncertainty tied to what cannot be cleanly known",
+              "No judgment problem at all",
+              "Only proof that discipline failed"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter says some unresolved uncertainty can remain for objective reasons.",
+              "direct": "What remains is a knowledge constraint that discipline alone cannot abolish.",
+              "competitive": "The wobble may drop while blindness stays."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch22-q08",
+            "prompt": "Why does the chapter distinguish objective ignorance from sloppy process?",
+            "choices": [
+              "Because not every unresolved problem comes from weak discipline or design",
+              "Because sloppy process never matters",
+              "Because structure creates all ignorance"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That fits. The chapter wants the source of the limit described more precisely.",
+              "direct": "The distinction matters because some unresolved difficulty belongs to missing knowledge rather than to careless procedure.",
+              "competitive": "The room can be tidy and still not know enough."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch22-q09",
+            "prompt": "Why does the chapter resist pure skepticism?",
+            "choices": [
+              "Because knowledge limits can be real while discipline and structure still improve judgment",
+              "Because nothing can be known at all",
+              "Because ignorance makes consistency irrelevant"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter does not turn remaining uncertainty into total surrender.",
+              "direct": "It resists skepticism because better structure can still matter even when some limits remain objective.",
+              "competitive": "Blind spots do not erase the value of tightening the room."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch22-q10",
+            "prompt": "What is the strongest bridge from this chapter into the next one?",
+            "choices": [
+              "Once knowledge limits are visible, the book can examine why normal cases still create difficult disagreement",
+              "The next chapter abandons uncertainty questions",
+              "The next chapter proves ignorance ends all structure"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The next move is toward the valley of the normal.",
+              "direct": "The bridge works because after objective ignorance sets a limit, the book can look at another hard zone where judgment remains difficult.",
+              "competitive": "Once the room admits its blindness, the next question is why ordinary-looking cases still divide it."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ]
+}

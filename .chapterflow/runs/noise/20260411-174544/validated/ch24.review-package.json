@@ -1,0 +1,577 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "noise-ch24-how-noise-happens",
+  "createdAt": "2026-04-12T13:43:09-03:00",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "noise",
+    "title": "Noise: A Flaw in Human Judgment",
+    "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Little, Brown illustrated edition",
+      "publisher": "Little, Brown",
+      "publishedYear": 2021,
+      "isbn13": "9780316451383",
+      "isbn10": "031645138X",
+      "format": "Authorized Google Books metadata and preview-backed print/digital reference edition",
+      "sourceText": ".chapterflow/runs/noise/20260411-174544/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle: Google Books authorized preview and metadata, the official Noise site, and a Barron's interview with Daniel Kahneman."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-39"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch24-how-noise-happens",
+      "number": 24,
+      "title": "How Noise Happens",
+      "readingTimeMinutes": 8,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Once the valley of the normal is visible, the next question becomes broader. How does noise actually get generated? The chapter turns to that mechanism question.\n\nThat move matters because variation does not appear from nowhere. The chapter looks for the conditions or sources that produce spread.",
+            "direct": "The chapter turns from difficult ordinary cases to how noise happens. It argues that variation is generated through mechanisms or conditions.\n\nThat is the central move. Noise is something produced, not magic that appears from nowhere.",
+            "competitive": "The chapter stops staring only at the wobble and starts asking what powers it. It turns toward the engine room.\n\nThat pressure matters because the wobble does not run on mystery alone."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Noise has mechanisms or sources.",
+                "direct": "Variation is generated through conditions.",
+                "competitive": "The wobble has engines."
+              }
+            },
+            {
+              "point": {
+                "gentle": "One cause is not enough.",
+                "direct": "Several conditions can help generate variation.",
+                "competitive": "There is not one magic switch."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter strengthens diagnosis.",
+                "direct": "Understanding production of variation deepens the analysis.",
+                "competitive": "The wobble map gets sharper."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter says noise is generated through conditions or sources rather than appearing from nowhere.",
+            "direct": "How noise happens becomes a mechanism question here.",
+            "competitive": "The chapter goes hunting for the engine of the wobble."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Once the valley of the normal is visible, the next question becomes broader. How does noise actually get generated? The chapter turns to that mechanism question.\n\nThat move matters because variation does not appear from nowhere. The book now wants a more consolidated account of the conditions or sources that make judgments spread apart.\n\nThis is where the distinction matters. Noise is not being reduced to one magical cause. The chapter is showing that multiple contributing sources or conditions can help produce variation across settings.\n\nThe chapter keeps one useful limit in place. Understanding how noise happens strengthens diagnosis, but it does not automatically solve noise in every setting. The gain is explanatory clarity, not total victory.\n\nThat is what earns the next move. Once the mechanism view is clearer, the book can turn to heuristics, biases, and noise.",
+            "direct": "The chapter turns from difficult ordinary cases to how noise happens. It argues that variation is generated through mechanisms or conditions rather than through one simple cause.\n\nThat matters because the broader noise picture would stay shallow if every form of spread were forced into a single explanation. Different conditions can contribute to variation in different settings.\n\nThis is the distinction the chapter has to hold. A mechanism account strengthens analysis without pretending one factor explains everything or that diagnosis itself solves the problem.\n\nThe limit stays visible. Understanding how noise happens makes the framework stronger, but it does not abolish the need for examples, judgment, or further analysis.\n\nThat prepares the next step. Once noise has been treated as something produced through mechanisms, the book can connect it to heuristics, biases, and noise.",
+            "competitive": "The chapter stops staring only at the wobble and starts asking what powers it. It turns toward the engine room.\n\nThat matters because the book wants a harder account than vague talk about spread. The wobble does not run on mystery alone, and no one golden lever gets to explain every case.\n\nThis is where the chapter gets sharper. Different conditions can feed the wobble in different ways, which means the room needs a map of engines instead of a single-cause slogan.\n\nThe discipline stays narrow on purpose. The book is not pretending that mechanism knowledge shuts the factory down. It is saying the diagnosis gets stronger once the engines are named.\n\nThat is what earns the next step. Once the wobble factory is mapped more clearly, the book can move into heuristics, biases, and noise."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Noise can be understood through mechanisms or conditions.",
+                "direct": "Variation is generated through contributing sources rather than appearing from nowhere.",
+                "competitive": "The wobble has engines, not ghosts."
+              },
+              "moreDetails": {
+                "gentle": "The chapter introduces a more consolidated way of thinking about how spread gets produced.",
+                "direct": "Mechanism matters here because it treats noise as something generated through conditions or pathways in judgment settings.",
+                "competitive": "The room starts mapping the machinery behind the shake."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Multiple sources can contribute to spread.",
+                "direct": "No single cause is enough for the broader noise picture.",
+                "competitive": "There is no one golden switch."
+              },
+              "moreDetails": {
+                "gentle": "That matters because the chapter resists flattening every kind of variation into one source.",
+                "direct": "Different settings can generate noise through different interacting conditions, which is why a one-cause account would be too narrow.",
+                "competitive": "The factory has several machines feeding the wobble, not one throne machine."
+              }
+            },
+            {
+              "point": {
+                "gentle": "A mechanism account strengthens diagnosis.",
+                "direct": "Understanding how variation is produced deepens the framework.",
+                "competitive": "The wobble map gets sharper when the engines are named."
+              },
+              "moreDetails": {
+                "gentle": "The chapter uses mechanism to make the broader analysis more coherent.",
+                "direct": "A clearer account of contributing sources helps diagnose spread more effectively even when it does not produce an automatic cure.",
+                "competitive": "The room sees the machine lines more clearly, even if the factory is still running."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Explanation is not automatic solution.",
+                "direct": "Knowing more about the mechanism does not solve every problem by itself.",
+                "competitive": "Naming the engine is not the same as stopping it."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the chapter explanatory rather than triumphalist.",
+                "direct": "The mechanism view improves understanding without pretending that insight alone eliminates noise in practice.",
+                "competitive": "The room can map the factory without shutting it down on the spot."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next territory is heuristics, biases, and noise.",
+                "direct": "Once mechanism is clearer, the book can connect variation to another familiar judgment landscape.",
+                "competitive": "After the engine room comes heuristics and bias territory."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the next chapter extends the mechanism account into another major part of judgment theory.",
+                "direct": "Heuristics, biases, and noise become the next step once noise has been framed as something produced through conditions and sources.",
+                "competitive": "Once the engines are mapped, the next stop is where bias territory crosses the wobble map."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one setting where repeated judgments vary. What conditions might be helping produce that spread?",
+            "direct": "Pick one noisy process and ask which contributing sources may be feeding the variation instead of searching for one master cause.",
+            "competitive": "Find one wobbling process and ask which engines are turning underneath it."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why the chapter treats noise as something produced through conditions without turning that into one-cause certainty?",
+            "direct": "How does the mechanism account deepen diagnosis while resisting the claim that one factor explains everything?",
+            "competitive": "Why does the wobble need an engine map instead of one golden switch?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Recall the chain: mechanism question, multiple sources, better diagnosis, no automatic cure, heuristics and bias territory next.",
+              "direct": "Name the structure: produced variation, no one-cause story, stronger diagnosis, limited explanatory gain, heuristics next.",
+              "competitive": "Why does the wobble need more than one engine on the map?"
+            },
+            "connect": {
+              "gentle": "Where have you seen variation that seems to come from more than one condition at once?",
+              "direct": "Identify one process where spread may be generated by several contributing sources rather than one simple cause.",
+              "competitive": "Which process around you looks like a wobble factory with several machines?"
+            },
+            "preview": {
+              "gentle": "If noise is generated through mechanisms, how might the next chapter connect that to heuristics and biases?",
+              "direct": "How does this chapter prepare the move into heuristics, biases, and noise?",
+              "competitive": "If the engines are mapped, what bias territory do they meet next?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Once the valley of the normal is visible, the next question becomes broader. How does noise actually get generated? The chapter turns to that mechanism question.\n\nThat move matters because variation does not appear from nowhere. The book now wants a more consolidated account of the conditions or sources that make judgments spread apart.\n\nHard depth sharpens the distinction. A mechanism account does not promise one final cause that explains every setting. It explains noise by showing how contributing conditions can interact to produce spread.\n\nThe chapter keeps one useful limit in place. Understanding how noise happens strengthens diagnosis, but it does not automatically solve noise in every setting. The gain is a better map, not total control.\n\nThis is what changes after the chapter on the valley of the normal. The question is no longer only where variation appears, but how the processes and conditions around judgment generate it.\n\nThat is what makes the next move feel earned. Once the engine room is clearer, the book can turn to heuristics, biases, and noise.",
+            "direct": "The chapter turns from difficult ordinary cases to how noise happens. It argues that variation is generated through mechanisms or conditions rather than through one simple cause.\n\nThat matters because a serious account of noise has to explain production, not just identify locations where spread appears. Different conditions can interact to generate variation across settings.\n\nThis is the harder distinction it wants to hold. The mechanism view deepens diagnosis without pretending that one factor explains everything or that explanation itself provides a complete remedy.\n\nThe limit remains essential. Understanding how noise happens improves the framework, but it does not abolish the need for judgment, examples, or practical repair.\n\nThat is what sets up the next move. Once noise has been treated as something produced through mechanisms, the book can connect it to heuristics, biases, and noise.",
+            "competitive": "The chapter stops staring only at the wobble and starts asking what powers it. It turns toward the engine room.\n\nThat matters because the book wants more than foggy talk about spread. The wobble factory runs through conditions and machinery, not through one royal switch.\n\nThis is where the chapter gets exact. Different engines can feed the wobble in different settings, and the room needs that map without pretending the whole factory can be shut down by naming one gear.\n\nThe discipline stays narrow on purpose. The book is not announcing total mastery. It is saying the diagnosis gets harder and better once the machinery becomes visible.\n\nThat is what earns the next step. Once the wobble factory is mapped, the book can move into heuristics, biases, and noise."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Noise is produced through mechanisms or conditions.",
+                "direct": "Variation comes from contributing sources rather than from nowhere.",
+                "competitive": "The wobble runs on machinery."
+              },
+              "moreDetails": {
+                "gentle": "The chapter introduces mechanism to explain how spread gets produced across judgment settings.",
+                "direct": "Noise matters here as something generated by conditions or pathways that shape how judgments diverge.",
+                "competitive": "The room goes from staring at the shake to tracing the gears behind it."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Several sources can interact to generate spread.",
+                "direct": "No single cause can carry the whole explanation.",
+                "competitive": "The factory has several engines."
+              },
+              "moreDetails": {
+                "gentle": "That matters because the chapter resists single-cause comfort and keeps the account broad enough to fit multiple settings.",
+                "direct": "Different conditions can combine to produce variation, which is why one-factor explanations are too thin for the broader noise picture.",
+                "competitive": "Several machines feed the wobble, and no throne machine gets the crown."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Mechanism sharpens diagnosis without granting total control.",
+                "direct": "A better explanatory map does not automatically fix every problem.",
+                "competitive": "Knowing the gears is not owning the factory."
+              },
+              "moreDetails": {
+                "gentle": "The chapter keeps the gain from explanation visible while refusing to turn it into instant mastery.",
+                "direct": "Understanding how variation is produced strengthens diagnosis even though practical repair still requires more than explanation alone.",
+                "competitive": "The room reads the engine map and still has work left on the floor."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter resists one-cause triumphalism.",
+                "direct": "Mechanism is explanatory without becoming a final key to every case.",
+                "competitive": "The wobble factory does not answer to one golden lever."
+              },
+              "moreDetails": {
+                "gentle": "That limit keeps the account disciplined rather than inflated.",
+                "direct": "The argument stays defensible by treating contributing sources as plural and setting-specific instead of pretending one mechanism rules them all.",
+                "competitive": "The room gets a harder map without getting a fake universal key."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next landscape is heuristics, biases, and noise.",
+                "direct": "Once the machinery of variation is clearer, the book can connect it to another major judgment territory.",
+                "competitive": "After the engine room comes bias territory."
+              },
+              "moreDetails": {
+                "gentle": "That bridge matters because the following chapter carries the mechanism view into a familiar debate about judgment tools and errors.",
+                "direct": "Heuristics, biases, and noise become the next step once the book has framed variation as something produced through mechanisms and conditions.",
+                "competitive": "Once the factory map is on the wall, the next step is to see where bias country touches it."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one noisy process you know and ask what conditions may be combining to produce the spread.",
+            "direct": "Take one repeated-judgment setting and separate the different contributing sources that may be generating variation.",
+            "competitive": "Pick one wobble factory and trace which machines are feeding it."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter treat noise as something produced through conditions rather than one final cause?",
+              "direct": "How can several sources interact to generate spread without collapsing into one-cause rhetoric?",
+              "competitive": "Why does the wobble factory need more than one engine?"
+            },
+            {
+              "gentle": "Why does the chapter value mechanism without promising total control?",
+              "direct": "How does diagnosis get stronger without becoming an automatic cure?",
+              "competitive": "Why is reading the engine map not the same as owning the factory?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If noise is generated through mechanisms, what changes when the next chapter turns to heuristics, biases, and noise?",
+            "direct": "How does the chapter point from mechanism into heuristics, biases, and noise?",
+            "competitive": "If the engines are mapped, what bias territory do they hit next?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Name the chain: engine question, several sources, sharper diagnosis, no universal key, heuristics next.",
+              "direct": "Rebuild the structure: produced variation, plural mechanisms, stronger map, limited control, bias territory next.",
+              "competitive": "Why does the factory need several engines on the map?"
+            },
+            "connect": {
+              "gentle": "Where have you seen several conditions combine to make judgments spread apart?",
+              "direct": "Identify one setting where variation seems to be produced by interacting sources rather than one simple cause.",
+              "competitive": "Which process around you looks like a factory with several wobble machines?"
+            },
+            "preview": {
+              "gentle": "If the engines of noise are clearer, how might the next chapter connect them to heuristics and biases?",
+              "direct": "How does the mechanism chapter set up the next move into heuristics, biases, and noise?",
+              "competitive": "If the factory map is clearer, what bias country does it touch next?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "title": "Elena Tracks a Workflow Handoff",
+          "format": "decision_point",
+          "category": "work",
+          "endingType": "warning",
+          "scenario": {
+            "gentle": "Elena watches a workflow handoff note move across stacked forms and notices that the spread in judgments seems to grow at more than one point in the process.",
+            "direct": "A work handoff shows how multiple conditions in a process can help generate variation.",
+            "competitive": "Elena sees the wobble getting fed at more than one machine on the line."
+          },
+          "whatToDo": {
+            "gentle": "Treat the spread as something produced through process conditions instead of as mysterious drift from nowhere.",
+            "direct": "Use the handoff to see how different pathways or conditions can contribute to variation without requiring one master cause.",
+            "competitive": "Make the workflow show which machines are feeding the wobble."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter argues that noise is produced through conditions or sources rather than appearing from nowhere.",
+            "direct": "A workflow handoff matters because it helps make the generation of variation visible.",
+            "competitive": "The handoff becomes one engine in the wobble factory."
+          }
+        },
+        {
+          "title": "Jonah Argues Over One-Cause Explanations",
+          "format": "conflict",
+          "category": "personal",
+          "endingType": "reveal",
+          "scenario": {
+            "gentle": "Jonah argues that one factor must explain all the spread and then realizes the case involves several conditions interacting together.",
+            "direct": "A personal argument exposes the weakness of a one-cause story about variation.",
+            "competitive": "Jonah hears someone trying to crown one golden switch over a whole factory."
+          },
+          "whatToDo": {
+            "gentle": "Separate the wish for one simple explanation from the broader reality that several sources can contribute to spread.",
+            "direct": "Use the disagreement to see that mechanism matters without collapsing into one-factor certainty.",
+            "competitive": "Stop handing the whole factory to one lever."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter resists flattening every kind of noise into a single cause.",
+            "direct": "This matters because a broader mechanism account better fits the variety of ways spread can be produced.",
+            "competitive": "Several engines can feed the wobble at once."
+          }
+        },
+        {
+          "title": "Priya Reviews a School Decision Chain",
+          "format": "debrief",
+          "category": "school",
+          "endingType": "correction",
+          "scenario": {
+            "gentle": "Priya follows a school review chain across several desks and notices that the judgment spread may be taking shape through more than one step.",
+            "direct": "A school workflow shows how variation can be generated by multiple conditions across a chain.",
+            "competitive": "Priya watches the wobble get manufactured link by link."
+          },
+          "whatToDo": {
+            "gentle": "Use the chain to ask where the spread is being produced instead of assuming it has one simple source.",
+            "direct": "Treat the school process as a practical example of how multiple steps can contribute to noisy outcomes.",
+            "competitive": "Make the chain confess which links are feeding the wobble."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter moves toward a more consolidated account of how variation gets generated.",
+            "direct": "The school example matters because it makes mechanism visible without relying on a single-cause story.",
+            "competitive": "The chain shows the wobble factory at work."
+          }
+        },
+        {
+          "title": "Nadia Compares Two Conditions in the Same Process",
+          "format": "comparison",
+          "category": "work",
+          "endingType": "pressure_test",
+          "scenario": {
+            "gentle": "Nadia compares one evaluation condition with another and notices the spread changes depending on which condition is present.",
+            "direct": "A work comparison shows how different conditions can produce different amounts of variation.",
+            "competitive": "Nadia runs the comparison and sees different engines kick the wobble in different ways."
+          },
+          "whatToDo": {
+            "gentle": "Compare the conditions to see how variation may be generated rather than assuming one permanent cause sits underneath everything.",
+            "direct": "Use the contrast to treat spread as something produced through pathways or settings, not as one universal mystery.",
+            "competitive": "Run the matchup and make the engines show their fingerprints."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter explains noise through conditions and contributing sources.",
+            "direct": "This comparison matters because it shows why a broader mechanism account is stronger than a one-cause slogan.",
+            "competitive": "Different machines can shake the room differently."
+          }
+        },
+        {
+          "title": "Dana Stops Treating Noise as Magic",
+          "format": "reversal",
+          "category": "personal",
+          "endingType": "tradeoff",
+          "scenario": {
+            "gentle": "Dana starts by treating variation as a vague fact of life, then realizes the spread can be examined through contributing conditions instead of mystery alone.",
+            "direct": "A personal reversal shows that mechanism questions sharpen the account of noise.",
+            "competitive": "Dana catches the wobble trying to hide behind fog."
+          },
+          "whatToDo": {
+            "gentle": "Keep the explanatory gain visible without pretending mechanism knowledge instantly fixes everything.",
+            "direct": "Treat the mechanism view as a stronger diagnostic tool while refusing the overclaim that it becomes a universal cure.",
+            "competitive": "Map the factory without pretending the map shuts it down."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter values diagnosis without turning it into triumphalism.",
+            "direct": "This is why the book can explain how noise happens without claiming a single final key.",
+            "competitive": "Knowing the gears is not owning the factory."
+          }
+        },
+        {
+          "title": "Owen Adds a Contributing-Sources Check",
+          "format": "checklist",
+          "category": "school",
+          "endingType": "bridge",
+          "scenario": {
+            "gentle": "Owen adds a checklist line to a school review form asking which conditions may be contributing to the spread in the final judgment.",
+            "direct": "A school checklist asks what sources may be generating variation across the process.",
+            "competitive": "Owen makes the room list the machines feeding the wobble."
+          },
+          "whatToDo": {
+            "gentle": "Use a short check that names several contributing conditions before moving into the next chapter's connection to heuristics and biases.",
+            "direct": "Inspect the generating conditions directly, then use that clarity to connect variation to heuristics, biases, and noise.",
+            "competitive": "Make the factory name its engines, then carry the map into bias territory."
+          },
+          "whyItMatters": {
+            "gentle": "This is the bridge from how noise happens toward heuristics, biases, and noise.",
+            "direct": "Once the mechanism account is clearer, the next question is how it connects with another major part of judgment theory.",
+            "competitive": "After the engines are named, the next stop is bias country."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch24-q01",
+            "prompt": "What is the chapter's main move about how noise happens?",
+            "choices": [
+              "Noise is produced through conditions or interacting sources rather than one magical cause",
+              "Noise has one simple cause that explains everything",
+              "Understanding mechanism automatically removes noise"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The chapter moves toward a more consolidated account of how variation gets generated.",
+              "direct": "Correct. The point is that noise comes from identifiable conditions or interacting sources rather than one master cause.",
+              "competitive": "The wobble has engines, not a single magic switch."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch24-q02",
+            "prompt": "Why does the chapter emphasize multiple contributing sources?",
+            "choices": [
+              "Because no one-cause story is enough for the broader noise picture",
+              "Because one cause explains every setting perfectly",
+              "Because examples no longer matter"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter resists over-simplifying variation into one source.",
+              "direct": "Multiple contributing sources matter because noise can be generated through different conditions interacting across settings.",
+              "competitive": "The room wobbles through several doors, not one trapdoor."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch24-q03",
+            "prompt": "Which misreading does the chapter reject about mechanism?",
+            "choices": [
+              "That there is one magical cause of all noise",
+              "That conditions can generate variation",
+              "That mechanism questions strengthen diagnosis"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter avoids turning mechanism into one-cause mythology.",
+              "direct": "It rejects the idea that a single explanatory factor can account for every form of noise across settings.",
+              "competitive": "One lever does not run the whole wobble factory."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch24-q04",
+            "prompt": "Elena sees repeated evaluations vary after a workflow handoff. What lesson fits best?",
+            "choices": [
+              "Different conditions in the process can help generate variation",
+              "A single universal cause must explain every spread",
+              "Mechanism questions replace the need to inspect the workflow"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Good. The chapter says noise can arise through conditions or pathways in the process.",
+              "direct": "A workflow handoff matters because it shows how different conditions can contribute to variation without requiring one master cause.",
+              "competitive": "The handoff becomes one more engine feeding the wobble."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch24-q05",
+            "prompt": "Why does Priya's multi-step school review chain matter here?",
+            "choices": [
+              "It shows how interacting conditions can generate variation across a process",
+              "It proves schools are the only place noise happens",
+              "It introduces a named causal framework from the sources"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The school workflow keeps the chapter concrete and broad rather than abstract.",
+              "direct": "The review chain matters because it makes visible how multiple steps or conditions can contribute to spread.",
+              "competitive": "The chain shows that the wobble can be fed at more than one link."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch24-q06",
+            "prompt": "What is the chapter's narrow claim about how noise happens?",
+            "choices": [
+              "Variation is generated through conditions or interacting sources rather than one magical cause",
+              "There is one final explanation for every noisy judgment",
+              "Mechanism talk solves noise by itself"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Correct. The claim stays explanatory without becoming overconfident.",
+              "direct": "The chapter says noise can be understood through contributing sources and conditions without pretending the book now has a single universal cause.",
+              "competitive": "The wobble has engines, but not one emperor-engine."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch24-q07",
+            "prompt": "Why does diagnosis matter in this chapter?",
+            "choices": [
+              "Because understanding contributing sources strengthens the broader analysis of variation",
+              "Because diagnosis automatically eliminates spread",
+              "Because noise no longer needs examples"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Exactly. The chapter uses mechanism to deepen the framework.",
+              "direct": "Diagnosis matters because a clearer account of how variation is produced strengthens the broader understanding of noise.",
+              "competitive": "Knowing the engines makes the wobble map sharper."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch24-q08",
+            "prompt": "Why does the chapter avoid a one-cause explanation?",
+            "choices": [
+              "Because different settings can generate noise through different contributing conditions",
+              "Because one cause is always enough",
+              "Because mechanism makes examples obsolete"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That fits. The chapter keeps the account broad enough to stay accurate.",
+              "direct": "It avoids one-cause rhetoric because the broader noise picture involves multiple sources or pathways rather than one explanatory key.",
+              "competitive": "The wobble factory has several machines, not one golden switch."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch24-q09",
+            "prompt": "Why does the chapter resist full-explanation triumphalism?",
+            "choices": [
+              "Because understanding how noise happens improves diagnosis without eliminating every problem automatically",
+              "Because diagnosis never helps",
+              "Because one cause explains everything once found"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Right. The chapter values understanding without overclaiming what that understanding accomplishes.",
+              "direct": "It resists triumphalism because a better mechanism account strengthens diagnosis but does not automatically solve noise in every setting.",
+              "competitive": "Knowing the engines is not the same as shutting the factory down."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch24-q10",
+            "prompt": "What is the strongest bridge from this chapter into the next one?",
+            "choices": [
+              "Once mechanism is clearer, the book can connect noise to heuristics, biases, and noise",
+              "The next chapter abandons mechanism questions",
+              "The next chapter proves one cause explains every form of variation"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Yes. The next move is toward heuristics, biases, and noise.",
+              "direct": "The bridge works because after explaining how variation gets produced, the book can connect that analysis to another familiar territory in judgment.",
+              "competitive": "Once the wobble factory is mapped, the next stop is how heuristics and bias territory meets it."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ]
+}

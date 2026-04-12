@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 7 ask a visible grouping to prove?",
+      "choices": [
+        "That it is longer than the other groups",
+        "That its order is honest and supportable",
+        "That it uses numbering"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A grouping has to earn its order, not just show itself on the page.",
+        "direct": "Visibility is not enough. The sequence or category logic must fit the material.",
+        "competitive": "The group has to prove its order, not just wear one."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "When is time order a good fit?",
+      "choices": [
+        "When the material genuinely unfolds by sequence",
+        "Whenever the writer wants the page to feel disciplined",
+        "Whenever there are exactly three points"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Time order works when there is a real first, next, and last.",
+        "direct": "Use sequence when the material actually changes over time.",
+        "competitive": "Time order belongs to real sequence, not fake choreography."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is false grouping?",
+      "choices": [
+        "A grouping whose order is imposed rather than earned by the material",
+        "A grouping with fewer than three items",
+        "A grouping that uses bullet points"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "False grouping happens when the points are arranged under the wrong logic.",
+        "direct": "The writer gives the set a tidy order that the material does not actually support.",
+        "competitive": "The group looks disciplined while the logic underneath is fake."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What does structural order describe well?",
+      "choices": [
+        "Any list the writer wants to sound formal",
+        "Only arguments that use deduction",
+        "A real arrangement such as parts of a system or layers of responsibility"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Structural order works when the material already has a real shape.",
+        "direct": "It fits cases where the writer is describing an actual arrangement.",
+        "competitive": "Use structural order when the thing already has bones."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What makes ranking order valid?",
+      "choices": [
+        "A strong font choice",
+        "A clear and consistent standard for the ranking",
+        "Mixing urgency with convenience and cost"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Ranking works when the standard stays the same from point to point.",
+        "direct": "The reader needs to know what scale governs the order.",
+        "competitive": "One ranking needs one ruler."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does a mixed standard weaken ranking order?",
+      "choices": [
+        "Because ranking is only for academic writing",
+        "Because the sequence starts sounding arbitrary",
+        "Because the points become too short"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The order feels shaky when the basis keeps changing.",
+        "direct": "Mixing standards makes the ranking wobble because the reader cannot track one scale.",
+        "competitive": "If the ruler changes mid-list, the order stops meaning anything."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student groups a cause, an example, and a recommendation as if they were the same type of point. What is the likely problem?",
+      "choices": [
+        "Correct structural order",
+        "Too much evidence",
+        "Improper class grouping"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Those items are not members of the same class.",
+        "direct": "The points are doing different jobs, so they do not belong in one sibling set.",
+        "competitive": "Adjacency does not turn mixed species into siblings."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the chapter’s hardest warning about grouping order?",
+      "choices": [
+        "A visible group can still be misleading if the order is imposed carelessly",
+        "Any grouped list is automatically trustworthy",
+        "Only time order matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The page can look organized while the order underneath is weak.",
+        "direct": "Visible grouping does not prevent false sequence or bad class logic.",
+        "competitive": "A neat group can still be lying about its order."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What question should the reader be able to stop asking after the grouping has been tested well?",
+      "choices": [
+        "Why do these points sit in this sequence or family?",
+        "Why is the page not underlined?",
+        "Why are there not more bullet points?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A good grouping makes its order and class feel earned.",
+        "direct": "The reader should no longer be guessing why these items belong together in this order.",
+        "competitive": "The group should stop making the reader question the family tree."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After questioning the order of a grouping, what broader issue comes next?",
+      "choices": [
+        "Removing all summary statements",
+        "Replacing groups with one long paragraph",
+        "Questioning the broader problem-solving process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next step is to test the process that generated the structure.",
+        "direct": "The book moves from order-testing to the problem-solving process behind the structure.",
+        "competitive": "After the grouping survives inspection, the process that built it goes on trial."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

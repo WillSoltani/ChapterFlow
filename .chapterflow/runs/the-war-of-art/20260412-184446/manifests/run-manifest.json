@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-war-of-art",
+  "runId": "20260412-184446",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-war-of-art/20260412-184446",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "“The-War-of-Art“",
+    "author": "“Steven-Pressfield”",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "the-war-of-art",
+    "title": "“The-War-of-Art“",
+    "author": "“Steven-Pressfield”",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "The War of Art: Break Through the Blocks and Win Your Inner Creative Battles",
+      "translator": "",
+      "publishedYear": 2002,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-war-of-art/20260412-184446/source-freeze/book-source.txt",
+      "sourceProvenance": "Frozen from the authorized Google Books preview for the Black Irish edition family, Open Library edition metadata, and narrow secondary section summaries logged in manifests/source-ledger.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-3"
+  }
+}
