@@ -215,6 +215,17 @@ export function ChapterReaderClient({
   // Derive quiz passed state for practice phase gating
   const quizPassed = state.quizResult?.passed === true;
 
+  // §1.1 reconciliation — if quiz was already passed on a previous visit
+  // but the loop-complete IP was never claimed, silently claim it now.
+  useEffect(() => {
+    if (!quizPassed || !chapter?.order) return;
+    fetchBookJson(
+      `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${chapter.order}/unlock`,
+      { method: "POST" }
+    ).catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quizPassed, bookId, chapter?.order]);
+
   // Total scenarios count for phase completion gating
   const totalScenarios = chapter?.examplesDetailed?.length ?? 0;
 
@@ -674,6 +685,13 @@ export function ChapterReaderClient({
     const score = quiz.session?.result?.scorePercent ?? 0;
     markChapterComplete(chapter.id, score);
     setShowCompleteModal(true);
+
+    // §1.1 — Claim the loop-complete IP (deferred from quiz submit).
+    // Fire-and-forget; idempotent server-side so retries are safe.
+    fetchBookJson(
+      `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${chapter.order}/unlock`,
+      { method: "POST" }
+    ).catch(() => {});
   };
 
   const handleChapterCompleteNext = () => {
@@ -691,6 +709,16 @@ export function ChapterReaderClient({
     setShowCompleteModal(false);
     router.push(`/book/library/${encodeURIComponent(bookId)}`);
   };
+
+  const handleCommitment = useCallback(
+    async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
+      await fetchBookJson("/app/api/book/me/commitments", {
+        method: "POST",
+        body: JSON.stringify(params),
+      });
+    },
+    [],
+  );
 
   const handleRetryQuiz = () => {
     void quiz.retry();
@@ -1048,10 +1076,13 @@ export function ChapterReaderClient({
                 .map((i) => activeTakeaways[i])
             }
             chapterId={chapterId}
+            bookId={bookId}
+            chapterNumber={chapter.order}
             onBookmarkStep={(text) => {
               appendNote(`\u2022 Step: ${text}`);
               setToast("Step saved to notes.");
             }}
+            onCommit={handleCommitment}
             hideContinueCta
           />
         </ChapterCompleteModal>

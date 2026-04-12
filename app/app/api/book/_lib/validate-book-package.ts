@@ -911,6 +911,13 @@ function parseConceptGraph(
 
   for (const [chapterKey, requiredConcepts] of Object.entries(parsedRequires)) {
     const chapterNum = parseInt(chapterKey.replace("ch", ""), 10);
+    if (isNaN(chapterNum)) {
+      issues.push({
+        path: `conceptGraph.chapterRequires.${chapterKey}`,
+        message: `Invalid chapter key format "${chapterKey}" — expected "chNN".`,
+      });
+      continue;
+    }
     for (const conceptId of requiredConcepts) {
       if (!conceptIds.has(conceptId)) {
         issues.push({
@@ -922,6 +929,7 @@ function parseConceptGraph(
       const introducedIn = parsedConcepts.find((c) => c.id === conceptId)?.introducedIn;
       if (introducedIn) {
         const introducedNum = parseInt(introducedIn.replace("ch", ""), 10);
+        if (isNaN(introducedNum)) continue;
         if (introducedNum >= chapterNum) {
           issues.push({
             path: `conceptGraph.chapterRequires.${chapterKey}`,

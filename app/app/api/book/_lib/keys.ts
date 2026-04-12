@@ -305,3 +305,108 @@ export function fsrsReviewLogSk(reviewedAt: string, reviewId: string): string {
 export function depthModelSk(bookId: string): string {
   return `DEPTHMODEL#${bookId}`;
 }
+
+// ── Commitment keys (Feature #3) ─────────────────────────────────────────────
+
+export function commitmentSk(commitmentId: string): string {
+  return `COMMITMENT#${commitmentId}`;
+}
+
+// ── AI Reflection Feedback keys (Feature #2) ─────────────────────────────────
+
+export function reflectionFeedbackSk(
+  bookId: string,
+  chapterNumber: number,
+  exampleId: string,
+): string {
+  return `FEEDBACK#${bookId}#${padChapterNumber(chapterNumber)}#${exampleId}`;
+}
+
+export function feedbackLimitSk(date: string, exampleId: string): string {
+  return `FEEDBACK_LIMIT#${date}#${exampleId}`;
+}
+
+// ── Journey keys (Feature #6) ────────────────────────────────────────────────
+
+export function journeySk(journeyId: string): string {
+  return `JOURNEY#${journeyId}`;
+}
+
+// ── Reading Partner keys (Feature #7) ────────────────────────────────────────
+
+export function pairSk(partnerId: string): string {
+  return `PAIR#${partnerId}`;
+}
+
+export function pairInvitePk(inviteCode: string): string {
+  return `BOOKPAIR#INVITE#${inviteCode.toUpperCase()}`;
+}
+
+export function pairInviteSk(): string {
+  return "META";
+}
+
+export function pairNudgeSk(partnerId: string, dayKey: string): string {
+  return `NUDGE#${partnerId}#${dayKey}`;
+}
+
+export function pairBonusSk(partnerId: string, dayKey: string): string {
+  return `PAIRBONUS#${partnerId}#${dayKey}`;
+}
+
+// ── Share Card keys (Feature #9) ─────────────────────────────────────────────
+
+export function shareEventSk(createdAt: string, shareId: string): string {
+  return `SHARE#${createdAt}#${shareId}`;
+}
+
+// ── Notebook Tag keys (Feature #14) ──────────────────────────────────────────
+
+export function notebookTagSk(bookId: string, chapterNumber: number): string {
+  return `NOTEBOOK_TAGS#${bookId}#${padChapterNumber(chapterNumber)}`;
+}
+
+// ── AI Chat keys (Feature #16) ───────────────────────────────────────────────
+
+export function aiQuestionCountSk(date: string): string {
+  return `AI_QUESTIONS#${date}`;
+}
+
+export function aiCachedAnswerPk(bookId: string): string {
+  return `BOOK#${bookId}`;
+}
+
+export function aiCachedAnswerSk(questionHash: string): string {
+  return `AI_CACHE#${questionHash}`;
+}
+
+// ── Seasonal Event keys (Feature #17) ────────────────────────────────────────
+
+export function eventParticipationSk(eventId: string): string {
+  return `EVENT#${eventId}`;
+}
+
+export function eventStatsPk(eventId: string): string {
+  return `BOOKEVENT#STATS#${eventId}`;
+}
+
+export function eventStatsSk(): string {
+  return "META";
+}
+
+// ── Audio keys (Feature #4) ──────────────────────────────────────────────────
+
+export function buildAudioKey(
+  prefix: string,
+  chapterNumber: number,
+  tone: string,
+  variant: string,
+): string {
+  return `${prefix}/audio/ch${padChapterNumber(chapterNumber)}.${tone}.${variant}.mp3`;
+}
+
+// ── Nudge dedup keys (Feature #1) ────────────────────────────────────────────
+
+export function nudgeSentSk(nudgeType: string, dateKey: string): string {
+  return `NUDGE_SENT#${nudgeType}#${dateKey}`;
+}

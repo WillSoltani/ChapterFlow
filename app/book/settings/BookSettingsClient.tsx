@@ -74,6 +74,7 @@ import type {
   LineSpacing,
   LetterSpacing,
   ColorBlindMode,
+  TTSVoice,
 } from "./types/settings";
 import type { LearningStyle, QuizIntensity, MotivationStyle } from "@/app/book/hooks/useOnboardingState";
 
@@ -395,7 +396,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   // --- Search helpers ---
   function isSectionVisible(sectionId: string) {
     if (!isSearching || !results) return true;
-    return results.matchedSections.has(sectionId as any);
+    return results.matchedSections.has(sectionId);
   }
 
   function isSectionDimmed(sectionId: string) {
@@ -708,7 +709,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                           { value: "aria", label: "Aria (Clear)" },
                         ]}
                         value={ext.ttsVoice}
-                        onChange={(v) => { patchExt({ ttsVoice: v as any }); announce(`TTS voice changed to ${v}`); triggerToast(); }}
+                        onChange={(v: TTSVoice) => { patchExt({ ttsVoice: v }); announce(`TTS voice changed to ${v}`); triggerToast(); }}
                         label="TTS Voice"
                       />
                     </SettingRow>
@@ -770,9 +771,9 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 How much time you want to invest in learning each day.
               </p>
               <div className="mt-3">
-                <CardSelector
+                <CardSelector<string>
                   options={DAILY_GOAL_OPTIONS.map((opt) => ({
-                    value: String(opt.value) as any,
+                    value: String(opt.value),
                     emoji: opt.emoji,
                     label: opt.label,
                     description: opt.subtext,
@@ -1175,7 +1176,6 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
           <SettingsSection
             icon={Bell}
             title="Notifications"
-            badge="Coming soon"
             summary={getNotificationsSummary()}
             expanded={isSectionExpanded("notifications")}
             onToggle={() => toggleSection("notifications")}

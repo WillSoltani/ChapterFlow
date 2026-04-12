@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { ConceptGraph, ConceptNode } from "@/app/app/api/book/_lib/types";
 
@@ -20,6 +20,14 @@ export function useConceptPrerequisites(
   const [prerequisites, setPrerequisites] = useState<PrerequisiteConcept[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Stabilize the array dependency to prevent re-renders when contents haven't changed
+  const completedKey = completedChapters.join(",");
+  const stableCompleted = useMemo(
+    () => new Set(completedChapters),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [completedKey]
+  );
+
   useEffect(() => {
     let mounted = true;
 
@@ -37,7 +45,6 @@ export function useConceptPrerequisites(
 
         const chapterKey = `ch${String(chapterNumber).padStart(2, "0")}`;
         const requiredConceptIds = conceptGraph.chapterRequires[chapterKey] ?? [];
-        const completedSet = new Set(completedChapters);
 
         const missing: PrerequisiteConcept[] = [];
 
@@ -50,7 +57,7 @@ export function useConceptPrerequisites(
             10
           );
 
-          if (!completedSet.has(introducedChapterNum)) {
+          if (!stableCompleted.has(introducedChapterNum)) {
             missing.push({
               ...concept,
               fromChapterNumber: introducedChapterNum,
@@ -68,7 +75,7 @@ export function useConceptPrerequisites(
 
     load();
     return () => { mounted = false; };
-  }, [bookId, chapterNumber, completedChapters]);
+  }, [bookId, chapterNumber, stableCompleted]);
 
   return { prerequisites, loading };
 }

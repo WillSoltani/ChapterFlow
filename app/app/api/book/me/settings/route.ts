@@ -32,6 +32,20 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
+const VALID_NOTIFICATION_KEYS = new Set([
+  "channels", "readingReminderEnabled", "reminderTimeLocal", "reminderTimezone",
+  "streakReminderEnabled", "badgeCelebrationEnabled", "achievementAlertsEnabled",
+]);
+
+function validateNotificationPreferences(value: unknown): void {
+  if (!isRecord(value)) return;
+  for (const key of Object.keys(value)) {
+    if (!VALID_NOTIFICATION_KEYS.has(key)) {
+      throw new BookApiError(400, "invalid_notification_prefs", `Unknown notification preference key: ${key}`);
+    }
+  }
+}
+
 function mergeSettings(
   existing: Record<string, unknown>,
   incoming: Record<string, unknown>
@@ -89,6 +103,10 @@ export async function PATCH(req: Request) {
           `Unknown settings key: ${key}`,
         );
       }
+    }
+
+    if (settings.notifications !== undefined) {
+      validateNotificationPreferences(settings.notifications);
     }
 
     const mergedSettings = mergeSettings(existing?.settings ?? {}, settings);

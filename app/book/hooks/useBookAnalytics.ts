@@ -614,12 +614,16 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const heatmapCells = buildHeatmap(readingByDay);
         const completedBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "completed");
         const inProgressBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "in_progress");
-        // Try loading FSRS review cards; fall back to placeholder if unavailable
+        // Try loading FSRS review cards with a 3s timeout; fall back to placeholder if unavailable
         let upcomingReviews: UpcomingReviewItem[] = [];
         try {
+          const fsrsController = new AbortController();
+          const fsrsTimeout = setTimeout(() => fsrsController.abort(), 3000);
           const fsrsResponse = await fetchBookJson<{ cards: Array<{ cardId: string; front: string; dueAt: string; bookId: string }> }>(
-            "/app/api/book/me/reviews?limit=5"
+            "/app/api/book/me/reviews?limit=5",
+            { signal: fsrsController.signal }
           );
+          clearTimeout(fsrsTimeout);
           if (fsrsResponse.cards && fsrsResponse.cards.length > 0) {
             upcomingReviews = fsrsResponse.cards.map((card) => ({
               id: card.cardId,
@@ -633,7 +637,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             }));
           }
         } catch {
-          // FSRS not available — use placeholder reviews
+          // FSRS not available or timed out — use placeholder reviews
         }
         if (upcomingReviews.length === 0) {
           upcomingReviews = inProgressBookSnapshots.slice(0, 3).map((item, index) => {

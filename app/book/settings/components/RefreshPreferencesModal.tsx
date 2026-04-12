@@ -186,9 +186,9 @@ export function RefreshPreferencesModal({
                   How much time can you dedicate daily?
                 </h3>
                 <div className="mt-4">
-                  <CardSelector
+                  <CardSelector<string>
                     options={DAILY_GOAL_OPTIONS.map((opt) => ({
-                      value: String(opt.value) as any,
+                      value: String(opt.value),
                       emoji: opt.emoji,
                       label: opt.label,
                       description: opt.subtext,

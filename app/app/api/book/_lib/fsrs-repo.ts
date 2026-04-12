@@ -2,11 +2,10 @@ import {
   PutCommand,
   QueryCommand,
   GetCommand,
-  UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, fsrsCardSk, fsrsReviewLogSk, nowIso } from "./keys";
-import { createNewCard, scheduleCard, isDue } from "./fsrs";
+import { createNewCard, scheduleCard, isDue, getRetrievability } from "./fsrs";
 import type {
   FSRSCardState,
   FSRSRating,
@@ -38,7 +37,7 @@ export async function initializeCardsForChapter(
     const existing = await ddbDoc.send(
       new GetCommand({
         TableName: tableName,
-        Key: { pk: bookUserPk(userId), sk: fsrsCardSk(cardId) },
+        Key: { PK: bookUserPk(userId), SK: fsrsCardSk(cardId) },
       })
     );
 
@@ -57,8 +56,8 @@ export async function initializeCardsForChapter(
       new PutCommand({
         TableName: tableName,
         Item: {
-          pk: bookUserPk(userId),
-          sk: fsrsCardSk(cardId),
+          PK: bookUserPk(userId),
+          SK: fsrsCardSk(cardId),
           ...card,
         },
       })
@@ -79,7 +78,7 @@ export async function getDueCards(
   const result = await ddbDoc.send(
     new QueryCommand({
       TableName: tableName,
-      KeyConditionExpression: "pk = :pk AND begins_with(sk, :prefix)",
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
       ExpressionAttributeValues: {
         ":pk": bookUserPk(userId),
         ":prefix": "FSRS#CARD#",
@@ -109,7 +108,7 @@ export async function getAllCards(
   const result = await ddbDoc.send(
     new QueryCommand({
       TableName: tableName,
-      KeyConditionExpression: "pk = :pk AND begins_with(sk, :prefix)",
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
       ExpressionAttributeValues: {
         ":pk": bookUserPk(userId),
         ":prefix": "FSRS#CARD#",
@@ -131,7 +130,7 @@ export async function recordReview(
   const getResult = await ddbDoc.send(
     new GetCommand({
       TableName: tableName,
-      Key: { pk: bookUserPk(userId), sk: fsrsCardSk(cardId) },
+      Key: { PK: bookUserPk(userId), SK: fsrsCardSk(cardId) },
     })
   );
 
@@ -147,8 +146,8 @@ export async function recordReview(
     new PutCommand({
       TableName: tableName,
       Item: {
-        pk: bookUserPk(userId),
-        sk: fsrsCardSk(cardId),
+        PK: bookUserPk(userId),
+        SK: fsrsCardSk(cardId),
         ...updated,
       },
     })
@@ -172,8 +171,8 @@ export async function recordReview(
     new PutCommand({
       TableName: tableName,
       Item: {
-        pk: bookUserPk(userId),
-        sk: fsrsReviewLogSk(reviewedAt, reviewId),
+        PK: bookUserPk(userId),
+        SK: fsrsReviewLogSk(reviewedAt, reviewId),
         ...log,
       },
     })
@@ -198,18 +197,8 @@ export async function getReviewStats(
   const activeCards = cards.filter((c) => c.state !== "new");
   const avgRetrievability =
     activeCards.length > 0
-      ? activeCards.reduce((sum, c) => {
-          const elapsed =
-            (now.getTime() - new Date(c.lastReviewAt).getTime()) / 86400000;
-          const r =
-            c.stability > 0
-              ? Math.pow(
-                  1 + (((0.9 ** (1 / -0.5) - 1) * elapsed) / c.stability),
-                  -0.5
-                )
-              : 0;
-          return sum + r;
-        }, 0) / activeCards.length
+      ? activeCards.reduce((sum, c) => sum + getRetrievability(c, now), 0) /
+        activeCards.length
       : 0;
 
   const bookIds = [...new Set(cards.map((c) => c.bookId))];

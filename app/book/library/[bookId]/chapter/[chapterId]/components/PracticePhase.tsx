@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Bookmark, BookmarkCheck, Trophy } from "lucide-react";
 import { ImplementationPlanCard } from "./ImplementationPlanCard";
 import { ReviewCardsPanel } from "./ReviewCardsPanel";
+import { CommitmentPrompt } from "./CommitmentPrompt";
 import type { ImplementationPlanItem, ReviewCardItem } from "@/app/book/data/mockChapters";
 
 type PracticePhaseProps = {
@@ -16,9 +17,19 @@ type PracticePhaseProps = {
   nextChapterLabel: string;
   bookmarkedTakeaways?: string[];
   chapterId?: string;
+  bookId?: string;
+  chapterNumber?: number;
   /** Called when a user bookmarks a step. Receives the step text so the
    *  parent can append it to the chapter's notes. */
   onBookmarkStep?: (text: string) => void;
+  /** Called when user commits to an if-then plan. */
+  onCommit?: (params: {
+    bookId: string;
+    chapterNumber: number;
+    ifThenPlan: string;
+    followUpDays: 3 | 7;
+  }) => Promise<void>;
+  hasActiveCommitment?: boolean;
   /** When true, hide the trailing "Continue to next chapter" CTA — used
    *  when this component is embedded inside ChapterCompleteModal which
    *  renders its own primary CTA below the content. */
@@ -35,7 +46,11 @@ export function PracticePhase({
   nextChapterLabel,
   bookmarkedTakeaways,
   chapterId,
+  bookId,
+  chapterNumber,
   onBookmarkStep,
+  onCommit,
+  hasActiveCommitment = false,
   hideContinueCta = false,
 }: PracticePhaseProps) {
   // Implementation plan checkbox state (persisted per chapter)
@@ -189,6 +204,18 @@ export function PracticePhase({
             })}
           </ul>
         </section>
+      )}
+
+      {/* Apply This Week — Commitment Prompt */}
+      {onCommit && bookId && chapterNumber && implementationPlan?.ifThenPlans && (
+        <CommitmentPrompt
+          ifThenPlans={implementationPlan.ifThenPlans}
+          bookId={bookId}
+          chapterNumber={chapterNumber}
+          fontScaleClass={fontScaleClass}
+          onCommit={onCommit}
+          hasActiveCommitment={hasActiveCommitment}
+        />
       )}
 
       {/* Predict the Next Chapter */}

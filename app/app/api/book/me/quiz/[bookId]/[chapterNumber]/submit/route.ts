@@ -24,7 +24,7 @@ import {
   analyticsTrackQuizAttempt,
   analyticsTrackQuizInteraction,
 } from "@/app/app/api/book/_lib/analytics-repo";
-import { bookUserPk, loopSk, nowIso } from "@/app/app/api/book/_lib/keys";
+import { bookMetricsPk, bookUserPk, dailyMetricsSk, loopSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import {
   buildProgressAfterQuizPass,
   buildQuizAttemptQuestions,
@@ -49,7 +49,8 @@ import { updateStreakOnLoopComplete } from "@/app/app/api/book/_lib/streak-repo"
 import { updateTierOnLoopComplete } from "@/app/app/api/book/_lib/tier-repo";
 import { checkAchievementsAfterLoopComplete } from "@/app/app/api/book/_lib/achievement-repo";
 import { maybeAwardInsightSpark } from "@/app/app/api/book/_lib/insight-spark";
-import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
+import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   CHAPTER_FP,
@@ -493,10 +494,10 @@ export async function POST(
     // critical step succeeded — operators can detect partially-failed loops
     // by querying for `passed=true AND attribute_not_exists(loopPipelineCompletedAt)`.
     //
-    // TODO: Add a /me/loop-pipeline/repair endpoint that re-runs only the
-    // missing steps. Note that updateTierOnLoopComplete is NOT idempotent
-    // (totalLoopsCompleted increments on every call), so any retry layer must
-    // gate per-step on a marker stored on the LOOP record.
+    // Per-step markers (streakUpdatedAt, tierUpdatedAt, etc.) are set on the
+    // LOOP record after each step. Partial failures are detected via
+    // scripts/repair-partial-loops.ts which gates re-runs on these markers.
+    // updateTierOnLoopComplete accepts skipLoopCountIncrement for safe repair.
     let loopPipeline: LoopPipelineResult | null = null;
     const pipelineErrors: string[] = [];
 
@@ -507,84 +508,105 @@ export async function POST(
           ? body.timezone.trim()
           : "UTC";
       const bookCategory = manifest.categories?.[0] ?? "";
+      // Loop-complete IP is deferred to the /unlock endpoint (§1.1).
+      // Only the LOOP record is created here to mark the quiz pass.
       const loopCompleteIPAmount = isFirstAttempt
         ? LOOP_COMPLETE_IP[learningMode].firstAttempt
         : LOOP_COMPLETE_IP[learningMode].retry;
 
-      // ── Step 1: Award loop completion IP ──────────────────────────────
-      let loopAward: { awarded: boolean } = { awarded: false };
+      // ── Step 1: Create LOOP record (idempotent) ───────────────────────
       try {
-        loopAward = await awardFlowPoints(tableName, {
-          userId: user.sub,
-          amount: loopCompleteIPAmount,
-          sourceType: "loop_complete",
-          sourceId: `${bookId}:${chapterNumberInt}`,
-          metadata: {
-            bookId,
-            chapterNumber: chapterNumberInt,
-            learningMode,
-            isFirstAttempt,
+        await ddbDoc.send(
+          new PutCommand({
+            TableName: tableName,
+            Item: {
+              PK: bookUserPk(user.sub),
+              SK: loopSk(bookId, chapterNumberInt),
+              entity: "BOOK_USER_LOOP",
+              userId: user.sub,
+              bookId,
+              chapterNumber: chapterNumberInt,
+              completedAt: ts,
+              quizScore: graded.scorePercent,
+              learningMode,
+              isFirstAttempt,
+              category: bookCategory,
+              loopCompleteIPAmount,
+              createdAt: ts,
+            },
+            ConditionExpression:
+              "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+          })
+        );
+      } catch {
+        // Idempotent — LOOP record already exists
+      }
+
+      // Fire-and-forget: increment daily reader metrics for this book.
+      const dayKey = ts.slice(0, 10);
+      ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookMetricsPk(bookId), SK: dailyMetricsSk(dayKey) },
+          UpdateExpression:
+            "SET entity = :entity, bookId = :bookId, dayKey = :day, updatedAt = :now ADD uniqueReaders :one, loopCompletions :one",
+          ExpressionAttributeValues: {
+            ":entity": "BOOK_CHAPTER_DAILY_METRICS",
+            ":bookId": bookId,
+            ":day": dayKey,
+            ":now": ts,
+            ":one": 1,
           },
-          createdAt: ts,
-        });
-      } catch (e) {
-        pipelineErrors.push("loop_complete_ip");
-        console.error("[loop-pipeline] loop_complete IP failed:", e);
-      }
+        })
+      ).catch(() => {});
 
-      // ── Step 2: Create LOOP record (idempotent) ───────────────────────
-      if (loopAward.awarded) {
-        try {
-          await ddbDoc.send(
-            new PutCommand({
-              TableName: tableName,
-              Item: {
-                PK: bookUserPk(user.sub),
-                SK: loopSk(bookId, chapterNumberInt),
-                entity: "BOOK_USER_LOOP",
-                userId: user.sub,
-                bookId,
-                chapterNumber: chapterNumberInt,
-                completedAt: ts,
-                quizScore: graded.scorePercent,
-                learningMode,
-                isFirstAttempt,
-                category: bookCategory,
-                createdAt: ts,
-              },
-              ConditionExpression:
-                "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-            })
-          );
-        } catch {
-          // Idempotent — LOOP record already exists
-        }
-      }
+      // Helper to mark per-step completion on the LOOP record.
+      const markLoopStep = (field: string) =>
+        ddbDoc.send(
+          new UpdateCommand({
+            TableName: tableName,
+            Key: { PK: bookUserPk(user.sub), SK: loopSk(bookId, chapterNumberInt) },
+            UpdateExpression: `SET ${field} = :ts`,
+            ExpressionAttributeValues: { ":ts": ts },
+          })
+        ).catch(() => {});
 
-      // ── Step 3: Update streak ────────────────────────────────────────
+      // ── Step 2: Update streak ────────────────────────────────────────
       let streakResult: Awaited<ReturnType<typeof updateStreakOnLoopComplete>> | null = null;
       try {
         streakResult = await updateStreakOnLoopComplete(tableName, user.sub, timezone);
+        await markLoopStep("streakUpdatedAt");
       } catch (e) {
         pipelineErrors.push("streak");
-        console.error("[loop-pipeline] streak update failed:", e);
+        console.error("[loop-pipeline-partial-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          failedStep: "streak", error: String(e),
+        });
       }
 
-      // ── Step 4: Update tier ──────────────────────────────────────────
+      // ── Step 3: Update tier ──────────────────────────────────────────
       let tierResult: Awaited<ReturnType<typeof updateTierOnLoopComplete>> | null = null;
       try {
         tierResult = await updateTierOnLoopComplete(
           tableName,
           user.sub,
           graded.scorePercent,
-          bookCategory
+          bookCategory,
+          {
+            completedBookNow,
+            bookId,
+          }
         );
+        await markLoopStep("tierUpdatedAt");
       } catch (e) {
         pipelineErrors.push("tier");
-        console.error("[loop-pipeline] tier update failed:", e);
+        console.error("[loop-pipeline-partial-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          failedStep: "tier", error: String(e),
+        });
       }
 
-      // ── Step 5: Achievements ─────────────────────────────────────────
+      // ── Step 4: Achievements ─────────────────────────────────────────
       let achievementResults: Awaited<
         ReturnType<typeof checkAchievementsAfterLoopComplete>
       > = [];
@@ -610,23 +632,26 @@ export async function POST(
             userTimezone: timezone,
             bookStartedAt,
             inactiveDaysBeforeReturn: streakResult.gapDays,
-            // Interim proxy: categoriesExplored counts categories with any loop,
-            // not just fully-completed books. Good enough for Bridge Builder detection.
-            // TODO: Track precise completedBooksDistinctCategories on tier record.
             completedBooksInDistinctCategories: completedBookNow
-              ? tierResult.tier.categoriesExplored.length
+              ? Object.keys(tierResult.tier.completedBooksByCategory ?? {}).filter(
+                  (cat) => (tierResult.tier.completedBooksByCategory?.[cat]?.length ?? 0) > 0
+                ).length
               : undefined,
           });
+          await markLoopStep("achievementsCheckedAt");
         } catch (e) {
           pipelineErrors.push("achievements");
-          console.error("[loop-pipeline] achievements check failed:", e);
+          console.error("[loop-pipeline-partial-failure]", {
+            userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+            failedStep: "achievements", error: String(e),
+          });
         }
       } else {
         // Streak or tier missing — can't safely evaluate achievements.
         pipelineErrors.push("achievements_skipped");
       }
 
-      // ── Step 6: Insight Spark ────────────────────────────────────────
+      // ── Step 5: Insight Spark ────────────────────────────────────────
       let sparkResult: { triggered: boolean; amount: number } = {
         triggered: false,
         amount: 0,
@@ -641,16 +666,60 @@ export async function POST(
           today,
           `${bookId}:${chapterNumberInt}`
         );
+        await markLoopStep("insightSparkCheckedAt");
       } catch (e) {
         pipelineErrors.push("insight_spark");
-        console.error("[loop-pipeline] insight spark failed:", e);
+        console.error("[loop-pipeline-partial-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          failedStep: "spark", error: String(e),
+        });
+      }
+
+      // Fire-and-forget in-app notifications for pipeline results.
+      if (tierResult?.advanced && tierResult.newTier) {
+        createNotification(tableName, {
+          userId: user.sub,
+          type: "tier_up",
+          title: `Tier Up: ${tierResult.definition?.displayName ?? tierResult.newTier}`,
+          body: `You've advanced to ${tierResult.definition?.displayName ?? tierResult.newTier}! +${tierResult.advancementIP} IP`,
+          metadata: { tier: tierResult.newTier, ip: tierResult.advancementIP },
+        }).catch(() => {});
+      }
+      for (const a of achievementResults) {
+        createNotification(tableName, {
+          userId: user.sub,
+          type: "badge_earned",
+          title: `Achievement: ${a.name}`,
+          body: a.celebrationCopy || `You earned "${a.name}" (+${a.ipAwarded} IP)`,
+          metadata: { achievementId: a.achievementId, ip: a.ipAwarded },
+        }).catch(() => {});
+      }
+      if (streakResult?.milestonesAwarded.length) {
+        for (const m of streakResult.milestonesAwarded) {
+          createNotification(tableName, {
+            userId: user.sub,
+            type: "streak_milestone",
+            title: `${m.days}-Day Streak!`,
+            body: `You've maintained a ${m.days}-day reading streak! +${m.ip} IP`,
+            metadata: { days: m.days, ip: m.ip },
+          }).catch(() => {});
+        }
+      }
+      if (sparkResult.triggered) {
+        createNotification(tableName, {
+          userId: user.sub,
+          type: "insight_spark",
+          title: "Insight Spark!",
+          body: `You triggered a random Insight Spark! +${sparkResult.amount} IP`,
+          metadata: { amount: sparkResult.amount },
+        }).catch(() => {});
       }
 
       // Always build a pipeline result with whatever fields succeeded.
       loopPipeline = {
         quizPassIP: quizPassAward.awarded ? totalQuizPoints - perfectBonus : 0,
         perfectBonusIP: quizPassAward.awarded ? perfectBonus : 0,
-        loopCompleteIP: loopAward.awarded ? loopCompleteIPAmount : 0,
+        loopCompleteIP: 0, // Deferred to /unlock endpoint (§1.1)
         bookCompleteIP: bookCompleteAward.awarded ? INSIGHT_POINTS_AMOUNTS.bookComplete : 0,
         streak: streakResult
           ? {

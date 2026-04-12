@@ -2,7 +2,7 @@
 // DynamoDB fields unchanged for backward compatibility (points, lifetimeEarned, etc.).
 // Source type strings unchanged (quiz_pass, book_complete, etc.).
 
-import { BADGE_DEFINITIONS } from "@/app/book/data/mockBadges";
+import { BADGE_DEFINITIONS } from "@/app/book/badges/lib/badge-ui-definitions";
 
 export const INSIGHT_POINTS_COOKIE_NAME = "cf_ref";
 
@@ -26,7 +26,12 @@ export type FlowPointsSourceType =
   | "referral_pro_inviter"
   | "reward_redemption"
   | "admin_adjustment"
-  | "expiration";
+  | "expiration"
+  | "commitment_follow_through"
+  | "pair_daily_bonus"
+  | "journey_complete"
+  | "review_session_complete"
+  | "event_complete";
 
 export type FlowPointsRewardId =
   | "bonus_book_unlock"
@@ -71,8 +76,10 @@ export const INSIGHT_POINTS_AMOUNTS = {
   streakDayBonus: 15,          // §1.1 — awarded on first loop of each active streak day
   welcomeBack: 30,             // §1.1 — awarded on first loop after 7+ inactive days
   reflectionSubmitted: 5,      // Awarded when user submits a non-empty reflection in the "Think First" gate (idempotent per example)
-  // Removed in IP migration: quizPass (15), dailyGoalComplete (25), weeklyGoalComplete (50)
-  // — see achievement-definitions.ts and streak system for replacements
+  commitmentFollowThrough: 25,
+  pairDailyBonus: 20,
+  journeyComplete: 500,
+  reviewSessionComplete: 10,
 } as const;
 
 /** Mode-dependent Insight Points for the chapter reading experience.

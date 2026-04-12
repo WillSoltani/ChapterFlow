@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { SETTINGS_SEARCH_INDEX } from "../constants/searchKeywords";
-import type { SectionId } from "../types/settings";
 
 export function useSettingsSearch() {
   const [query, setQuery] = useState("");
@@ -12,7 +11,7 @@ export function useSettingsSearch() {
     if (!trimmed) return null;
 
     const matchedIds = new Set<string>();
-    const matchedSections = new Set<SectionId>();
+    const matchedSections = new Set<string>();
 
     for (const item of SETTINGS_SEARCH_INDEX) {
       const searchable = [
@@ -28,7 +27,7 @@ export function useSettingsSearch() {
       const matches = words.every((word) => searchable.includes(word));
       if (matches) {
         matchedIds.add(item.id);
-        matchedSections.add(item.section as SectionId);
+        matchedSections.add(item.section);
       }
     }
 

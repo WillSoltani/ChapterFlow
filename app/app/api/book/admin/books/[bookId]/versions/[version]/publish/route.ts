@@ -4,6 +4,7 @@ import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getBookVersion, publishBookVersion } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { rebuildSearchIndex } from "./search-index-builder";
 
 export const runtime = "nodejs";
 
@@ -31,11 +32,21 @@ export async function POST(
 
     await publishBookVersion(tableName, bookId, versionItem.version, admin.sub);
 
+    // Rebuild the global search index (non-blocking — publish succeeds even if this fails)
+    let searchIndexCount = 0;
+    try {
+      const indexResult = await rebuildSearchIndex();
+      searchIndexCount = indexResult.documentCount;
+    } catch (err) {
+      console.error("[publish] Search index rebuild failed:", err);
+    }
+
     return bookOk({
       ok: true,
       bookId,
       version: versionItem.version,
       state: "PUBLISHED",
+      searchIndexDocuments: searchIndexCount,
     });
   });
 }

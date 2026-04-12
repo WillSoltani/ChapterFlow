@@ -507,12 +507,14 @@ export type NotificationPreferences = {
   streakReminderEnabled: boolean;
   badgeCelebrationEnabled: boolean;
   achievementAlertsEnabled: boolean;
+  weeklyDigestEnabled?: boolean;
+  welcomeBackEnabled?: boolean;
 };
 
 export type BookUserNotificationItem = {
   userId: string;
   notificationId: string;
-  type: "badge_earned" | "tier_up" | "streak_milestone" | "insight_spark" | "reading_reminder";
+  type: "badge_earned" | "tier_up" | "streak_milestone" | "insight_spark" | "reading_reminder" | "streak_at_risk" | "weekly_digest" | "welcome_back_nudge" | "partner_nudge" | "commitment_followup" | "event_reminder";
   title: string;
   body: string;
   channel: NotificationChannel;
@@ -780,5 +782,218 @@ export type BookUserDepthModelItem = {
   confidence: number;
   featureVector: DepthFeatureVector;
   lastUpdatedChapter: number;
+  updatedAt: string;
+};
+
+// ── Commitment (Feature #3) ──────────────────────────────────────────────────
+
+export type CommitmentStatus = "active" | "completed" | "skipped" | "expired";
+
+export type BookUserCommitmentItem = {
+  userId: string;
+  commitmentId: string;
+  bookId: string;
+  chapterNumber: number;
+  ifThenPlan: string;
+  commitDate: string;
+  followUpDate: string;
+  followUpDays: 3 | 7;
+  status: CommitmentStatus;
+  followThroughReflection: string | null;
+  followThroughSubmittedAt: string | null;
+  ipAwarded: number;
+  notificationSentAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+// ── AI Reflection Feedback (Feature #2) ──────────────────────────────────────
+
+export type BookUserReflectionFeedbackItem = {
+  userId: string;
+  bookId: string;
+  chapterNumber: number;
+  exampleId: string;
+  reflectionHash: string;
+  feedbackText: string;
+  model: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+// ── Journey (Feature #6) ─────────────────────────────────────────────────────
+
+export type BookUserJourneyItem = {
+  userId: string;
+  journeyId: string;
+  startedAt: string;
+  currentBookIndex: number;
+  completedBookIds: string[];
+  completedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type JourneyBookEntry = {
+  bookId: string;
+  order: number;
+  reason: string;
+};
+
+export type JourneyDefinition = {
+  journeyId: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  estimatedWeeks: number;
+  books: JourneyBookEntry[];
+  badge: { badgeId: string; name: string; icon: string };
+  bonusIP: number;
+  coverGradient: [string, string];
+};
+
+// ── Reading Partner (Feature #7) ─────────────────────────────────────────────
+
+export type BookUserPairItem = {
+  userId: string;
+  partnerId: string;
+  pairedAt: string;
+  status: "active" | "ended";
+  endedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookPairInviteItem = {
+  inviteCode: string;
+  inviterUserId: string;
+  status: "pending" | "accepted" | "expired";
+  acceptedBy?: string;
+  expiresAt: string;
+  createdAt: string;
+};
+
+// ── Share Card Event (Feature #9) ────────────────────────────────────────────
+
+export type BookUserShareEventItem = {
+  userId: string;
+  shareId: string;
+  cardType: "chapter" | "badge" | "streak" | "book";
+  destination: "clipboard" | "twitter" | "linkedin" | "download";
+  bookId?: string;
+  chapterNumber?: number;
+  badgeId?: string;
+  referralCode: string;
+  createdAt: string;
+};
+
+// ── Notebook Tags (Feature #14) ──────────────────────────────────────────────
+
+export type NotebookTagsItem = {
+  userId: string;
+  bookId: string;
+  chapterNumber: number;
+  tags: string[];
+  updatedAt: string;
+};
+
+export type NotebookEntryType = "note" | "reflection" | "bookmark" | "commitment";
+
+export type NotebookEntry = {
+  id: string;
+  type: NotebookEntryType;
+  bookId: string;
+  bookTitle: string;
+  chapterNumber: number;
+  chapterTitle: string;
+  content: string;
+  tags: string[];
+  createdAt: string;
+};
+
+// ── FSRS Card State (Feature #12) ────────────────────────────────────────────
+
+export type FsrsCardState = "new" | "learning" | "review" | "relearning";
+
+export type FsrsCardItem = {
+  userId: string;
+  cardId: string;
+  bookId: string;
+  chapterNumber: number;
+  front: string;
+  back: string;
+  difficulty: number;
+  stability: number;
+  dueDate: string;
+  scheduledDays: number;
+  reps: number;
+  lapses: number;
+  state: FsrsCardState;
+  lastReviewDate: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type FsrsReviewLogItem = {
+  userId: string;
+  reviewId: string;
+  cardId: string;
+  grade: 1 | 2 | 3 | 4;
+  scheduledDays: number;
+  elapsedDays: number;
+  stability: number;
+  difficulty: number;
+  state: FsrsCardState;
+  reviewedAt: string;
+  createdAt: string;
+};
+
+// ── AI Chat (Feature #16) ────────────────────────────────────────────────────
+
+export type AiQuestionCountItem = {
+  userId: string;
+  date: string;
+  count: number;
+  updatedAt: string;
+};
+
+export type AiCachedAnswerItem = {
+  bookId: string;
+  questionHash: string;
+  question: string;
+  answer: string;
+  citations: number[];
+  tone: string;
+  bookVersion: number;
+  hitCount: number;
+  createdAt: string;
+};
+
+// ── Seasonal Event (Feature #17) ─────────────────────────────────────────────
+
+export type EventDefinition = {
+  eventId: string;
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  books: string[];
+  dailyChapterTarget: number;
+  badge: { badgeId: string; name: string; icon: string };
+  bonusIP: number;
+};
+
+export type EventParticipationItem = {
+  userId: string;
+  eventId: string;
+  joinedAt: string;
+  dailyProgress: Record<string, string[]>;
+  totalChaptersCompleted: number;
+  completed: boolean;
+  completedAt: string | null;
+  badgeAwarded: boolean;
+  ipBonusAwarded: boolean;
+  createdAt: string;
   updatedAt: string;
 };

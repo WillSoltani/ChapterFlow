@@ -19,6 +19,7 @@ import { GlobalSearchPanel } from "@/app/book/home/components/GlobalSearchPanel"
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterFlowMark } from "@/app/book/components/ChapterFlowMark";
 import { ThemeModeToggle } from "@/components/ThemeModeToggle";
+import { NotificationBell } from "@/app/book/_components/NotificationBell";
 import { performLogout } from "@/lib/logout";
 
 export type BookNavTab = "home" | "library" | "saved" | "progress" | "badges" | "settings" | "profile";
@@ -242,8 +243,9 @@ export function TopNav({
               <div className="hidden flex-1 md:block" />
             )}
 
-            {/* Right: settings + profile */}
+            {/* Right: notifications + settings + profile */}
             <div className="relative flex items-center gap-1.5">
+              <NotificationBell />
               <ThemeModeToggle className="h-9" />
 
               <Link

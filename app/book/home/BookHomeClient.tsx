@@ -14,7 +14,7 @@ import {
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
 import type { RecentBookProgress } from "@/app/book/data/mockProgress";
-import type { BadgeState } from "@/app/book/data/mockBadges";
+import type { BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookState } from "@/app/book/hooks/useBookState";
@@ -33,7 +33,14 @@ import { TodaySessionCard } from "@/app/book/home/components/TodaySessionCard";
 import { GoalMeter } from "@/app/book/home/components/GoalMeter";
 import { BookMiniCard } from "@/app/book/home/components/BookMiniCard";
 import { FlowPointsSection } from "@/app/book/home/components/FlowPointsSection";
+import { StarterRecommendationCard } from "@/app/book/home/components/StarterRecommendationCard";
+import { CommitmentFollowUpCard } from "@/app/book/home/components/CommitmentFollowUpCard";
+import { ReviewDueWidget } from "@/app/book/home/components/ReviewDueWidget";
+import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
+import { EventBanner } from "@/app/book/home/components/EventBanner";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
+import { useStarterPrescription } from "@/app/book/hooks/useStarterPrescription";
+import { useCommitments } from "@/app/book/hooks/useCommitments";
 
 function chapterFromResume(snapshot: BookProgressSnapshot): number {
   const chapter = getBookChaptersBundle(snapshot.book.id).chapters.find(
@@ -86,6 +93,8 @@ export function BookHomeClient() {
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
   });
   const { analytics } = badgeSystem;
+  const starterPrescription = useStarterPrescription(onboarding.setupComplete);
+  const commitments = useCommitments(onboarding.setupComplete);
 
   useKeyboardShortcut(
     "/",
@@ -266,6 +275,9 @@ export function BookHomeClient() {
 
       <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
 
+        {/* ── Active event banner ── */}
+        <EventBanner enabled={onboarding.setupComplete} />
+
         {/* ── Greeting ── */}
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl">
@@ -306,6 +318,27 @@ export function BookHomeClient() {
           </div>
         </div>
 
+        {/* ── Starter prescription for new users ── */}
+        {starterPrescription.prescription && !currentProgress ? (
+          <div className="mt-5">
+            <StarterRecommendationCard
+              prescription={starterPrescription.prescription}
+              onDismiss={starterPrescription.dismiss}
+            />
+          </div>
+        ) : null}
+
+        {/* ── Commitment follow-ups ── */}
+        {commitments.dueCommitments.length > 0 && (
+          <div className="mt-5">
+            <CommitmentFollowUpCard
+              commitments={commitments.dueCommitments}
+              onComplete={commitments.complete}
+              onSkip={commitments.skip}
+            />
+          </div>
+        )}
+
         {/* ── Main action area ── */}
         <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[1.55fr_1fr]">
           {currentBook && currentProgress ? (
@@ -332,6 +365,16 @@ export function BookHomeClient() {
               router.push(sessionRoute);
             }}
           />
+        </div>
+
+        {/* ── Review cards due ── */}
+        <div className="mt-4">
+          <ReviewDueWidget enabled={onboarding.setupComplete} />
+        </div>
+
+        {/* ── Reading partner ── */}
+        <div className="mt-4">
+          <PartnerProgressCard enabled={onboarding.setupComplete} />
         </div>
 
         {/* ── Daily progress: goal + streak ── */}

@@ -23,7 +23,7 @@ import {
   BADGE_DEFINITIONS,
   evaluateBadges,
   type BadgeProgressStats,
-} from "@/app/book/data/mockBadges";
+} from "@/app/book/badges/lib/badge-ui-definitions";
 import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
 
 const jetBrainsMono = JetBrains_Mono({

@@ -15,7 +15,7 @@ import {
   type BadgeCategory,
   type BadgeProgressStats,
   type BadgeState,
-} from "@/app/book/data/mockBadges";
+} from "@/app/book/badges/lib/badge-ui-definitions";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";

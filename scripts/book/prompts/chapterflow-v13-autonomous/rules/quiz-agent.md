@@ -31,3 +31,13 @@ Rules:
 - avoid generic coaching language in questions, distractors, and explanations
 
 Output only valid JSON.
+
+## Post-Generation Quality Gate
+
+After generating the quiz, run the quality scorer:
+
+```bash
+npx tsx scripts/book/quiz-quality-scorer.ts <quiz-path> --threshold 0.60 --output-dir reports/quiz-quality/
+```
+
+If any question scores below 0.60, regenerate only the failing questions (see `PACK_ROOT/rules/quiz-quality-rules.md`). Maximum 2 regeneration attempts per question.

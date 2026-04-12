@@ -6,7 +6,7 @@ import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
 import { Chip, ChipButton } from "@/app/book/components/ui/Chip";
 import { cn } from "@/app/book/components/ui/cn";
-import type { BadgeFilter, BadgeState } from "@/app/book/data/mockBadges";
+import type { BadgeFilter, BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
 
 type NextMilestone = {
   badge: BadgeState;

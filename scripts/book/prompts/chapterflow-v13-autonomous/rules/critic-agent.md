@@ -5,6 +5,7 @@ Read:
 - PACK_ROOT/style/voice.md
 - PACK_ROOT/style/constraints.md
 - PACK_ROOT/style/grade-bands.md
+- continuity/concept-graph.json (if it exists)
 - the chapter brief
 - the chapter outline
 - the edited draft
@@ -27,6 +28,7 @@ Also report:
 - strongest sentence
 - any contamination phrase or source-splice suspicion
 - whether only local patching is needed or global reroute is needed
+- if concept-graph.json exists, whether the draft references concepts not yet introduced by a prior chapter (prerequisite violation)
 
 Do not rewrite the chapter.
 Do not validate JSON.

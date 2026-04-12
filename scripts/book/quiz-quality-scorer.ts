@@ -127,7 +127,11 @@ function scoreDistractors(question: QuizQuestion): { score: number; issues: stri
     return { score: 0, issues: ["Fewer than 2 choices"] };
   }
 
-  const correctTokens = tokenize(choices[correctIdx] ?? "");
+  if (correctIdx < 0 || correctIdx >= choices.length) {
+    return { score: 0, issues: [`correctIndex ${correctIdx} is out of bounds for ${choices.length} choices`] };
+  }
+
+  const correctTokens = tokenize(choices[correctIdx]);
   const distractorTokens = choices
     .filter((_, i) => i !== correctIdx)
     .map((c) => tokenize(c));

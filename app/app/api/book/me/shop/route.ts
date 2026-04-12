@@ -22,6 +22,8 @@ import {
   bookUserPk,
   engagementSk,
   flowPointsLedgerSk,
+  giftCodePk,
+  giftCodeSk,
   inventorySk,
   nowIso,
   tierSk,
@@ -151,9 +153,25 @@ export async function POST(req: Request) {
         throw error;
       }
 
-      // TODO: Generate gift link / code for the friend (P3 implementation)
-      // For now, record the purchase and return a placeholder gift code
+      // Generate a unique gift code and persist it in DDB.
       const giftCode = `GIFT-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+      await ddbDoc.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: {
+            PK: giftCodePk(),
+            SK: giftCodeSk(giftCode),
+            entity: "BOOK_USER_GIFT_CODE",
+            code: giftCode,
+            giverUserId: user.sub,
+            giftType: "pro_week",
+            ipCost: cost,
+            status: "available",
+            createdAt: now,
+          },
+          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+        })
+      );
 
       // Fire-and-forget analytics
       getBookAnalyticsTableName()

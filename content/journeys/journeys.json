@@ -1,0 +1,71 @@
+[
+  {
+    "journeyId": "first-time-leader",
+    "title": "First-Time Leader",
+    "description": "5 books that build your leadership foundation from trust to execution",
+    "category": "Leadership",
+    "difficulty": "Medium",
+    "estimatedWeeks": 10,
+    "books": [
+      { "bookId": "leaders-eat-last", "order": 1, "reason": "Foundation: why trust is the bedrock of leadership" },
+      { "bookId": "extreme-ownership", "order": 2, "reason": "Taking radical accountability for your team" },
+      { "bookId": "crucial-conversations", "order": 3, "reason": "Having the hard conversations without damaging relationships" },
+      { "bookId": "the-hard-thing-about-hard-things", "order": 4, "reason": "When nothing works and there's no playbook" },
+      { "bookId": "good-to-great", "order": 5, "reason": "Building something that lasts beyond you" }
+    ],
+    "badge": { "badgeId": "journey-first-time-leader", "name": "Leadership Forge", "icon": "shield" },
+    "bonusIP": 500,
+    "coverGradient": ["#6366f1", "#8b5cf6"]
+  },
+  {
+    "journeyId": "decision-mastery",
+    "title": "Decision Mastery",
+    "description": "Understand your biases, sharpen your judgment, and make better choices",
+    "category": "Psychology",
+    "difficulty": "Hard",
+    "estimatedWeeks": 12,
+    "books": [
+      { "bookId": "thinking-fast-and-slow", "order": 1, "reason": "The foundation: how your brain makes decisions" },
+      { "bookId": "predictably-irrational", "order": 2, "reason": "The systematic mistakes we all make" },
+      { "bookId": "the-psychology-of-money", "order": 3, "reason": "How emotion drives financial decisions" },
+      { "bookId": "clear-thinking", "order": 4, "reason": "Practical frameworks to cut through noise" },
+      { "bookId": "black-box-thinking", "order": 5, "reason": "Learning from failure instead of hiding from it" }
+    ],
+    "badge": { "badgeId": "journey-decision-mastery", "name": "Clear Thinker", "icon": "brain" },
+    "bonusIP": 500,
+    "coverGradient": ["#0891b2", "#06b6d4"]
+  },
+  {
+    "journeyId": "habit-builder",
+    "title": "Habit Builder",
+    "description": "Build unbreakable habits and systems that run on autopilot",
+    "category": "Productivity",
+    "difficulty": "Easy",
+    "estimatedWeeks": 6,
+    "books": [
+      { "bookId": "atomic-habits", "order": 1, "reason": "The habit loop framework: cue, craving, response, reward" },
+      { "bookId": "the-power-of-habit", "order": 2, "reason": "The science behind why habits exist" },
+      { "bookId": "deep-work", "order": 3, "reason": "Building the habit of focused, distraction-free work" }
+    ],
+    "badge": { "badgeId": "journey-habit-builder", "name": "Habit Architect", "icon": "repeat" },
+    "bonusIP": 350,
+    "coverGradient": ["#059669", "#10b981"]
+  },
+  {
+    "journeyId": "master-communicator",
+    "title": "Master Communicator",
+    "description": "From difficult conversations to persuasion — communicate with impact",
+    "category": "Communication",
+    "difficulty": "Medium",
+    "estimatedWeeks": 8,
+    "books": [
+      { "bookId": "crucial-conversations", "order": 1, "reason": "Handling high-stakes conversations with skill" },
+      { "bookId": "never-split-the-difference", "order": 2, "reason": "Negotiation tactics from an FBI hostage negotiator" },
+      { "bookId": "how-to-talk-to-anyone", "order": 3, "reason": "92 practical techniques for instant connection" },
+      { "bookId": "influence", "order": 4, "reason": "The psychology of why people say yes" }
+    ],
+    "badge": { "badgeId": "journey-master-communicator", "name": "Silver Tongue", "icon": "message-circle" },
+    "bonusIP": 450,
+    "coverGradient": ["#d97706", "#f59e0b"]
+  }
+]

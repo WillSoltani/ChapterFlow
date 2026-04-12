@@ -12,6 +12,7 @@ import {
   getUserSettingsItem,
   putUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
+import { generateStarterPrescription } from "@/app/app/api/book/_lib/starter-prescription";
 
 export const runtime = "nodejs";
 
@@ -84,9 +85,12 @@ export async function POST(req: Request) {
 
     const scenarioFocus = MOTIVATION_TO_SCENARIO_FOCUS[motivation] || "mixed";
 
+    const cleanInterests = interests.filter((i: unknown): i is string => typeof i === "string");
+    const starterPrescription = generateStarterPrescription(motivation, cleanInterests);
+
     const onboardingProfile = {
       motivation,
-      interests: interests.filter((i: unknown): i is string => typeof i === "string"),
+      interests: cleanInterests,
       tone,
       dailyGoal,
       chapterOrder,
@@ -97,6 +101,7 @@ export async function POST(req: Request) {
       onboardingCompleted: true,
       onboardingCompletedAt: new Date().toISOString(),
       onboardingVersion: "v2",
+      starterPrescription,
     };
 
     /* ── Merge into existing settings ── */

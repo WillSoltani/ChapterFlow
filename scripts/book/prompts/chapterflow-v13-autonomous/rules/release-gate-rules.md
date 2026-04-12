@@ -16,3 +16,5 @@ Release gate fails if:
 - sealed chapter hash changed after validation
 - any chapter lacks full artifact bundle
 - source discovery artifacts are missing
+- quiz quality scorer fails for any chapter quiz (threshold 0.60)
+- semantic diversity checker fails for any chapter

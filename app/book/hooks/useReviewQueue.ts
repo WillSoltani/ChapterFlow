@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { FSRSCardState, FSRSRating } from "@/app/app/api/book/_lib/types";
 
@@ -63,11 +63,15 @@ export function useReviewQueue(bookId?: string) {
     fetchStats();
   }, [fetchDueCards, fetchStats]);
 
+  const submittingRef = useRef(false);
+
   const submitRating = useCallback(
     async (rating: FSRSRating) => {
+      if (submittingRef.current) return;
       const card = cards[currentIndex];
       if (!card) return;
 
+      submittingRef.current = true;
       try {
         const { card: updated } = await fetchBookJson<ReviewResponse>(
           `/app/api/book/me/reviews/${encodeURIComponent(card.cardId)}`,
@@ -86,6 +90,8 @@ export function useReviewQueue(bookId?: string) {
         setCurrentIndex((i) => i + 1);
       } catch (err) {
         console.error("Failed to submit review:", err);
+      } finally {
+        submittingRef.current = false;
       }
     },
     [cards, currentIndex]

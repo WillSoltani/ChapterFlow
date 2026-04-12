@@ -18,6 +18,7 @@ If any are true, reject the chapter immediately:
 - memoir chapter drifting into generic self-help uplift
 - moral complexity framed as endorsement rather than strategic awareness when the brief requires distance
 - first sentence is thesis-first instead of curiosity-first
+- references concepts not introduced in prior chapters per the concept graph (prerequisite violation)
 
 ## Required Craft Checks
 

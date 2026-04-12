@@ -94,7 +94,7 @@ function buildProgressData(
         currentStepNumber: stepNumber,
         lastActivity: snapshot.lastOpenedLabel,
         lastActivityDate: snapshot.lastActivityAt,
-        readersCount: 0, // TODO: Populate from backend reader metrics API
+        readersCount: 0,
         resumeChapterId: snapshot.resumeChapterId,
       };
     }
@@ -418,19 +418,48 @@ export function ProgressPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, refreshKey]);
 
+  // Fetch daily reader metrics for active books.
+  const [readerMetrics, setReaderMetrics] = useState<Record<string, number>>({});
+  useEffect(() => {
+    if (!data?.activeBooks.length) return;
+    const ids = data.activeBooks.map((b) => b.id);
+    Promise.allSettled(
+      ids.map((bookId) =>
+        fetchBookJson<{ readersToday?: number }>(
+          `/app/api/book/books/${encodeURIComponent(bookId)}/metrics`
+        ).then((res) => [bookId, res.readersToday ?? 0] as const)
+      )
+    ).then((results) => {
+      const map: Record<string, number> = {};
+      for (const r of results) {
+        if (r.status === "fulfilled") map[r.value[0]] = r.value[1];
+      }
+      setReaderMetrics(map);
+    });
+  }, [data?.activeBooks.length]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Allow switching primary book via ContinueLearningCard
   const displayData = useMemo<ProgressPageData | null>(() => {
     if (!data) return null;
-    if (!primaryBookId) return data;
 
-    const idx = data.activeBooks.findIndex((b) => b.id === primaryBookId);
-    if (idx < 0) return data;
+    // Merge reader metrics into active books.
+    const enriched = data.activeBooks.map((b) => ({
+      ...b,
+      readersCount: readerMetrics[b.id] ?? b.readersCount,
+    }));
 
-    const reordered = [...data.activeBooks];
+    const merged = { ...data, activeBooks: enriched };
+
+    if (!primaryBookId) return merged;
+
+    const idx = merged.activeBooks.findIndex((b) => b.id === primaryBookId);
+    if (idx < 0) return merged;
+
+    const reordered = [...merged.activeBooks];
     const [selected] = reordered.splice(idx, 1);
     reordered.unshift(selected);
-    return { ...data, activeBooks: reordered };
-  }, [data, primaryBookId]);
+    return { ...merged, activeBooks: reordered };
+  }, [data, primaryBookId, readerMetrics]);
 
   // ── Determine which sections to show (progressive disclosure) ──
   const totalDaysWithData = displayData?.readingActivity.totalDaysWithData ?? 0;

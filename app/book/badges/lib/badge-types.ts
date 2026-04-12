@@ -1,4 +1,4 @@
-import type { BadgeProgressStats } from "@/app/book/data/mockBadges";
+import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
 
 export type BadgeCategory = "consistency" | "mastery" | "books" | "exploration" | "notes" | "secret";
 
