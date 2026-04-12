@@ -39,6 +39,8 @@ import {
 import { NotesDrawer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/NotesDrawer";
 import { QuizPanel } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPanel";
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
+import { AudioPlayer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer";
+import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { QuizPassCelebration } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPassCelebration";
 import { AchievementToastStack } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/AchievementToastStack";
@@ -511,6 +513,16 @@ export function ChapterReaderClient({
       : undefined,
   });
 
+  const handleCommitment = useCallback(
+    async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
+      await fetchBookJson("/app/api/book/me/commitments", {
+        method: "POST",
+        body: JSON.stringify(params),
+      });
+    },
+    [],
+  );
+
   if (
     !entry ||
     !chapter ||
@@ -710,16 +722,6 @@ export function ChapterReaderClient({
     router.push(`/book/library/${encodeURIComponent(bookId)}`);
   };
 
-  const handleCommitment = useCallback(
-    async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
-      await fetchBookJson("/app/api/book/me/commitments", {
-        method: "POST",
-        body: JSON.stringify(params),
-      });
-    },
-    [],
-  );
-
   const handleRetryQuiz = () => {
     void quiz.retry();
   };
@@ -880,6 +882,12 @@ export function ChapterReaderClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
             >
+              <AudioPlayer
+                bookId={bookId}
+                chapterNumber={chapter.order}
+                tone={contentTone}
+                variant={learningMode === "guided" ? "easy" : learningMode === "challenge" ? "hard" : "medium"}
+              />
               <SummaryCard
                 blocks={summaryBlocks}
                 takeaways={activeTakeaways}
@@ -1170,6 +1178,9 @@ export function ChapterReaderClient({
           Focus mode enabled
         </div>
       )}
+
+      {/* Ask the Book — AI chat drawer */}
+      <AskBookDrawer bookId={bookId} bookTitle={entry?.title ?? bookId} />
     </main>
   );
 }

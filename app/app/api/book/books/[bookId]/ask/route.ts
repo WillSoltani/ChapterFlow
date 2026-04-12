@@ -2,17 +2,15 @@ import "server-only";
 
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { bookErr } from "@/app/app/api/book/_lib/http";
-import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
+import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { GetCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
-import { bookUserPk, aiQuestionCountSk, buildContentPrefix, padChapterNumber } from "@/app/app/api/book/_lib/keys";
+import { bookUserPk, aiQuestionCountSk } from "@/app/app/api/book/_lib/keys";
 import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
+import { getBookPackageByIdForTone } from "@/app/book/data/bookPackages";
 
 export const runtime = "nodejs";
-
-const s3 = new S3Client({});
 
 type Params = { params: Promise<{ bookId: string }> };
 
@@ -20,7 +18,6 @@ export async function POST(req: Request, ctx: Params) {
   try {
     const user = await requireUser();
     const tableName = await getBookTableName();
-    const bucket = await getBookContentBucket();
     const { bookId } = await ctx.params;
     const body = await req.json();
 
@@ -53,45 +50,47 @@ export async function POST(req: Request, ctx: Params) {
       return bookErr(req, 503, "ai_unavailable", "AI features are not available");
     }
 
-    // Load chapter summaries for context
-    let bookContext = "";
-    try {
-      const contentPrefix = buildContentPrefix(bookId, 1);
-      const manifestKey = `${contentPrefix}/manifest.json`;
-      const manifestObj = await s3.send(
-        new GetObjectCommand({ Bucket: bucket, Key: manifestKey }),
-      );
-      const manifestText = await manifestObj.Body?.transformToString("utf-8");
-      const manifest = manifestText ? JSON.parse(manifestText) : null;
+    // Load chapter content from local book package (same source as the reader)
+    const pkg = getBookPackageByIdForTone(bookId, "direct");
+    if (!pkg) {
+      return bookErr(req, 404, "book_not_found", "Book not found");
+    }
 
-      const chapterCount = manifest?.chapters?.length ?? 10;
-      const summaries: string[] = [];
+    const resolveText = (val: unknown): string => {
+      if (typeof val === "string") return val;
+      if (val && typeof val === "object") {
+        const obj = val as Record<string, unknown>;
+        if (typeof obj.direct === "string") return obj.direct as string;
+        if (typeof obj.gentle === "string") return obj.gentle as string;
+      }
+      return "";
+    };
 
-      for (let ch = 1; ch <= Math.min(chapterCount, 20); ch++) {
-        try {
-          const chKey = `${contentPrefix}/chapters/${padChapterNumber(ch)}.json`;
-          const chObj = await s3.send(
-            new GetObjectCommand({ Bucket: bucket, Key: chKey }),
-          );
-          const chText = await chObj.Body?.transformToString("utf-8");
-          if (!chText) continue;
-          const chapter = JSON.parse(chText);
-          const title = chapter.title ?? `Chapter ${ch}`;
-          const variants = chapter.contentVariants ?? {};
-          const firstVariant = Object.values(variants)[0] as { chapterBreakdown?: { direct?: string }; keyTakeaways?: Array<{ point?: { direct?: string } }> } | undefined;
-          const breakdown = firstVariant?.chapterBreakdown?.direct ?? "";
-          const takeaways = (firstVariant?.keyTakeaways ?? [])
-            .map((t: { point?: { direct?: string } }) => t.point?.direct ?? "")
-            .filter(Boolean)
-            .join("; ");
-          summaries.push(`Chapter ${ch} — ${title}: ${breakdown.slice(0, 300)}. Key takeaways: ${takeaways.slice(0, 200)}`);
-        } catch {
-          break;
+    const summaries: string[] = [];
+    for (const chapter of pkg.chapters.slice(0, 20)) {
+      const title = chapter.title ?? `Chapter ${chapter.number}`;
+      const variants = chapter.contentVariants ?? {};
+      const v = variants.medium ?? variants.easy ?? Object.values(variants)[0];
+      if (!v) continue;
+
+      const breakdown = resolveText(v.chapterBreakdown).slice(0, 300);
+      const takeawayTexts: string[] = [];
+      if (v.keyTakeaways && Array.isArray(v.keyTakeaways)) {
+        for (const t of v.keyTakeaways) {
+          if (typeof t === "string") {
+            takeawayTexts.push(t);
+          } else if (t && typeof t === "object") {
+            const point = resolveText((t as Record<string, unknown>).point);
+            if (point) takeawayTexts.push(point);
+          }
         }
       }
+      const takeaways = takeawayTexts.join("; ").slice(0, 200);
+      summaries.push(`Chapter ${chapter.number} — ${title}: ${breakdown}. Key takeaways: ${takeaways}`);
+    }
 
-      bookContext = summaries.join("\n\n");
-    } catch {
+    const bookContext = summaries.join("\n\n");
+    if (!bookContext) {
       return bookErr(req, 404, "book_not_found", "Could not load book content");
     }
 

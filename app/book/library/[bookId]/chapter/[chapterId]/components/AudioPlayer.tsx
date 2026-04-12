@@ -9,7 +9,6 @@ type AudioPlayerProps = {
   chapterNumber: number;
   tone: string;
   variant: string;
-  isPro: boolean;
 };
 
 type AudioResponse = { audioUrl: string; cached: boolean };
@@ -21,7 +20,6 @@ export function AudioPlayer({
   chapterNumber,
   tone,
   variant,
-  isPro,
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [open, setOpen] = useState(false);
@@ -33,10 +31,6 @@ export function AudioPlayer({
   const [error, setError] = useState<string | null>(null);
 
   const loadAudio = useCallback(async () => {
-    if (!isPro) {
-      setError("Audio mode requires a Pro subscription");
-      return;
-    }
     setLoading(true);
     setError(null);
     try {
@@ -47,12 +41,13 @@ export function AudioPlayer({
         audioRef.current.src = data.audioUrl;
         audioRef.current.load();
       }
-    } catch {
-      setError("Failed to load audio");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to load audio";
+      setError(message);
     } finally {
       setLoading(false);
     }
-  }, [bookId, chapterNumber, tone, variant, isPro]);
+  }, [bookId, chapterNumber, tone, variant]);
 
   const togglePlay = useCallback(() => {
     if (!audioRef.current) return;

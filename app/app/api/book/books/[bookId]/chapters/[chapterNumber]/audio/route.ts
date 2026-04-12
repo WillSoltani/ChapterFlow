@@ -8,6 +8,12 @@ import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
 import { S3Client, GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { buildAudioKey, buildContentPrefix } from "@/app/app/api/book/_lib/keys";
+import {
+  getBookPackageByIdForTone,
+  type ToneKey,
+} from "@/app/book/data/bookPackages";
+// Content types vary between raw packages (ToneKeyed) and tone-resolved packages (string).
+// We handle both forms below.
 
 export const runtime = "nodejs";
 
@@ -34,7 +40,7 @@ export async function GET(req: Request, ctx: Params) {
     }
 
     const url = new URL(req.url);
-    const tone = url.searchParams.get("tone") ?? "direct";
+    const tone = (url.searchParams.get("tone") ?? "direct") as ToneKey;
     const variant = url.searchParams.get("variant") ?? "medium";
 
     const contentPrefix = buildContentPrefix(bookId, 1);
@@ -59,26 +65,83 @@ export async function GET(req: Request, ctx: Params) {
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available");
     }
 
-    // Load chapter content for TTS
-    const chapterKey = `${contentPrefix}/chapters/${String(chapterNumber).padStart(4, "0")}.json`;
+    // Load chapter content from local book package (same source as the reader)
     let ttsText = "";
-    try {
-      const chObj = await s3.send(
-        new GetObjectCommand({ Bucket: bucket, Key: chapterKey }),
-      );
-      const chText = await chObj.Body?.transformToString("utf-8");
-      if (!chText) throw new Error("Empty chapter");
-      const chapter = JSON.parse(chText);
-      const variants = chapter.contentVariants ?? {};
-      const v = variants[variant] ?? variants.medium ?? Object.values(variants)[0];
-      const breakdown = v?.chapterBreakdown?.[tone] ?? v?.chapterBreakdown?.direct ?? "";
-      const takeaways = (v?.keyTakeaways ?? [])
-        .map((t: { point?: Record<string, string> }) => t.point?.[tone] ?? t.point?.direct ?? "")
-        .filter(Boolean)
-        .join(". ");
-      ttsText = `${breakdown}\n\n${takeaways}`.trim();
-    } catch {
-      return bookErr(req, 404, "chapter_not_found", "Chapter content not found");
+    const pkg = getBookPackageByIdForTone(bookId, tone);
+    if (!pkg) {
+      return bookErr(req, 404, "book_not_found", "Book package not found");
+    }
+
+    const chapter = pkg.chapters.find((ch) => ch.number === chapterNumber);
+    if (!chapter) {
+      return bookErr(req, 404, "chapter_not_found", "Chapter not found in book package");
+    }
+
+    // Extract text from contentVariants.
+    // After getBookPackageByIdForTone, ToneKeyed fields are already resolved
+    // to plain strings for the requested tone, so we handle both forms.
+    const variants = chapter.contentVariants ?? {};
+    const v =
+      variants[variant as keyof typeof variants] ??
+      variants.medium ??
+      variants.easy ??
+      Object.values(variants)[0];
+
+    if (v) {
+      const parts: string[] = [];
+
+      // Resolve a field that may be a string (tone-resolved) or ToneKeyed object
+      const resolveText = (val: unknown): string => {
+        if (typeof val === "string") return val;
+        if (val && typeof val === "object") {
+          const obj = val as Record<string, unknown>;
+          if (typeof obj[tone] === "string") return obj[tone] as string;
+          if (typeof obj.direct === "string") return obj.direct as string;
+        }
+        return "";
+      };
+
+      // Chapter breakdown (the main summary narrative)
+      const breakdown = resolveText(v.chapterBreakdown);
+      if (breakdown) parts.push(breakdown);
+
+      // Key takeaways with details
+      if (v.keyTakeaways && Array.isArray(v.keyTakeaways)) {
+        for (const t of v.keyTakeaways) {
+          if (typeof t === "string") {
+            parts.push(t);
+          } else if (t && typeof t === "object") {
+            const point = resolveText((t as Record<string, unknown>).point);
+            if (point) parts.push(point);
+            const details = resolveText((t as Record<string, unknown>).moreDetails);
+            if (details) parts.push(details);
+          }
+        }
+      }
+
+      // Plain takeaways fallback
+      if (v.takeaways && Array.isArray(v.takeaways)) {
+        for (const t of v.takeaways) {
+          if (typeof t === "string" && t.trim()) parts.push(t);
+        }
+      }
+
+      // One-minute recap
+      if (v.oneMinuteRecap) {
+        const recapText = resolveText(v.oneMinuteRecap);
+        if (recapText) {
+          parts.push(recapText);
+        } else if (typeof v.oneMinuteRecap === "object" && !Array.isArray(v.oneMinuteRecap)) {
+          // Structured recap with retrieve/connect/preview
+          const recapObj = v.oneMinuteRecap as unknown as Record<string, unknown>;
+          for (const section of ["retrieve", "connect", "preview"]) {
+            const text = resolveText(recapObj[section]);
+            if (text) parts.push(text);
+          }
+        }
+      }
+
+      ttsText = parts.join("\n\n").trim();
     }
 
     if (!ttsText) {
