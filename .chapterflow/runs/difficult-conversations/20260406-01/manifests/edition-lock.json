@@ -1,0 +1,21 @@
+{
+  "bookId": "difficult-conversations",
+  "runId": "20260406-01",
+  "lockedAt": "2026-04-06T00:00:00Z",
+  "selectionMode": "prelocked_local_source_pack",
+  "reason": "The run uses the local Difficult Conversations source pack already staged under .chapterflow/sources/difficult-conversations and locked to the 10th Anniversary Edition metadata in the run manifest.",
+  "chosenEdition": {
+    "name": "10th Anniversary Edition",
+    "author": "Douglas Stone, Bruce Patton, Sheila Heen",
+    "publisher": "",
+    "publishedDate": "",
+    "publishedYear": 2010,
+    "format": "English trade edition source pack",
+    "isbn10": "",
+    "isbn13": "",
+    "sourceText": "source-freeze/book-source.txt",
+    "sourceProvenance": "Paraphrased summaries and structural outlines only. Authored as original reference material for the ChapterFlow pipeline. No verbatim text from the book is included. All examples and scenarios are invented fresh."
+  },
+  "rejectedCandidates": [],
+  "userQuestionNeeded": false
+}

@@ -1,0 +1,71 @@
+{
+  "bookId": "peak",
+  "runId": "20260411-173455",
+  "frozenAt": "2026-04-11T17:34:55-03:00",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "google-books-preview",
+      "title": "Peak: Secrets from the New Science of Expertise - Google Books",
+      "type": "authorized_preview",
+      "role": "canonical metadata, official description, and chapter map with page starts",
+      "url": "https://books.google.com/books/about/Peak.html?id=GmcpCgAAQBAJ",
+      "confidence": "high",
+      "notes": "Provides the visible contents list for chapters 1-9 with page starts and book-level description for the standard English edition family."
+    },
+    {
+      "sourceId": "google-books-metadata-edition",
+      "title": "Peak: Secrets from the New Science of Expertise - Google Books metadata edition",
+      "type": "authorized_preview",
+      "role": "cross-check for subtitle, authorship, publication year, and official jacket description",
+      "url": "https://books.google.com/books/about/Peak.html?id=eHfkCwAAQBAJ",
+      "confidence": "high",
+      "notes": "Confirms the same book identity and the standard description centered on deliberate practice, adaptability, and the rejection of talent mythology."
+    },
+    {
+      "sourceId": "open-library-edition-page",
+      "title": "Peak by K. Anders Ericsson - Open Library edition page",
+      "type": "preview_index",
+      "role": "edition identifiers and chapter-title cross-check",
+      "url": "https://openlibrary.org/books/OL26428783M",
+      "confidence": "high",
+      "notes": "Confirms the 2016 English edition family, publisher lineage, and the visible table of contents beginning with The Power of Purposeful Practice."
+    },
+    {
+      "sourceId": "community-library-network",
+      "title": "Peak : secrets from the new science of expertise - Community Library Network catalog record",
+      "type": "authorized_catalog_excerpt",
+      "role": "chapter listing cross-check and edition-family metadata",
+      "url": "https://catalog.communitylibrary.net/Record/540057",
+      "confidence": "high",
+      "notes": "Confirms First Mariner Books edition metadata and the full sequence from Introduction: The Gift through Where Do We Go from Here?"
+    },
+    {
+      "sourceId": "readingraphics-summary",
+      "title": "Book Summary - Peak (Anders Ericsson and Robert Pool) - Readingraphics",
+      "type": "secondary_summary",
+      "role": "chapter-level interpretation support across the full book",
+      "url": "https://readingraphics.com/book-summary-peak/",
+      "confidence": "medium",
+      "notes": "Used only for chapter-level mechanism support, not for exact quotes. Gives a stable two-part map that aligns with the frozen chapter sequence."
+    },
+    {
+      "sourceId": "gistfist-summary",
+      "title": "Peak: Secrets from the New Science of Expertise Summary - Gistfist",
+      "type": "secondary_summary",
+      "role": "chapter-title cross-check and chapter-summary bundle",
+      "url": "https://www.gistfist.com/book-summaries/9780544456259",
+      "confidence": "medium",
+      "notes": "Used as a secondary support layer for chapter-level emphasis and transfer ideas. Not used for exact quotes."
+    },
+    {
+      "sourceId": "probinism-review",
+      "title": "Mastery Isn't A Mystery: How Peak Reveals The Hidden Code Of Greatness",
+      "type": "secondary_summary",
+      "role": "extra support for chapter 1 through chapter 4 mechanisms",
+      "url": "https://www.probinism.com/peak-book-review-secrets-expertise/",
+      "confidence": "medium",
+      "notes": "Used to reinforce the distinctions among naive practice, purposeful practice, deliberate practice, and mental representations. Not used for exact quotes."
+    }
+  ]
+}

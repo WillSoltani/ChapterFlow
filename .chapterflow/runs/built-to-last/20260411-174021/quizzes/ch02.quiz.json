@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the core contrast in Clock Building, Not Time Telling?",
+      "choices": [
+        "Between charisma and humility",
+        "Between a momentary answer and an organization that keeps working",
+        "Between profit and purpose"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter contrasts a person who can solve the moment with a system that can keep operating after that person steps back.",
+        "direct": "Clock building is about durable organizational capacity, not just sharp judgment in one moment.",
+        "competitive": "The split is between rescue and build quality."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter contrast a great organization with one great program?",
+      "choices": [
+        "To show that a visible win can still leave the institution fragile",
+        "To argue that programs are always a mistake",
+        "To prove that leaders should avoid all focused initiatives"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A strong program can matter, but the chapter asks whether the company itself became more capable afterward.",
+        "direct": "The contrast reveals that isolated success is weaker than repeatable institutional capacity.",
+        "competitive": "A shiny initiative can still leave the operating core hungry."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A founder keeps making the right call in every crisis. Using this chapter's standard, what should you ask next?",
+      "choices": [
+        "Whether the company is becoming less dependent on that founder after each intervention",
+        "Whether the founder enjoys the pressure",
+        "Whether the founder has the strongest personal brand in the industry"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not deny the founder's talent. It asks whether the organization is growing past dependence on that talent.",
+        "direct": "The critical follow-up is about inheritability and spread of capability, not admiration of the rescue itself.",
+        "competitive": "If the answer is always the founder, the company is still borrowing its future."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena's team routes routine exceptions through her every night. What response fits the chapter best?",
+      "choices": [
+        "Keep all approvals centralized so mistakes stay low",
+        "Write operating rules for repeat decisions and reserve Lena for unusual cases",
+        "Ask the team to work harder until they can match Lena's instincts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants ordinary judgment to move into the system so one capable leader does not stay the permanent bottleneck.",
+        "direct": "This is clock building: codify the repeat cases and preserve centralized judgment only where it still adds unique value.",
+        "competitive": "Lena should stop collecting proof of indispensability and start shrinking the hero loop."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement is the strongest trap answer for this chapter?",
+      "choices": [
+        "Great leaders should never make decisive calls because systems matter more",
+        "A company should learn from decisive leaders without remaining hostage to them",
+        "A brilliant intervention is useful only when it strengthens the organization afterward"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not anti-talent. It warns against dependence, not against sharp judgment.",
+        "direct": "Option A misreads the argument by turning a critique of fragility into a rejection of leadership itself.",
+        "competitive": "The chapter does not worship process. It refuses to confuse process-free rescue with durable design."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "When does the chapter say a brilliant time teller is still legitimate?",
+      "choices": [
+        "When every important decision keeps flowing through that person forever",
+        "When a crisis or immature system temporarily requires concentrated judgment",
+        "When the person enjoys being essential to the organization"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows for real moments of crisis or early uncertainty where one strong mind matters a lot.",
+        "direct": "Its boundary condition is temporary necessity, not permanent organizational dependence.",
+        "competitive": "A sharp rescue is fine. Building your company to need the same rescue repeatedly is the failure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student paper depends on one exceptional editor. What would clock building look like there?",
+      "choices": [
+        "Giving the editor more pages to review so quality stays high",
+        "Turning the editor's judgment into a checklist and shared process others can practice",
+        "Lowering the paper's standards so new editors feel less pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter points toward transfer of capability, not just repeated gratitude toward the talented person.",
+        "direct": "Clock building means converting private skill into inherited process and broader judgment.",
+        "competitive": "If the standard graduates with the editor, the newsroom never built one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Calvin's startup has one rainmaker who keeps rescuing the quarter. What is the strongest strategic move?",
+      "choices": [
+        "Treat the rainmaker as a permanent substitute for a sales system",
+        "Reduce the rainmaker's role immediately so the team learns through hardship",
+        "Capture the rainmaker's methods and turn them into trainable operating habits for the team"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants the exceptional talent to strengthen the team, not to remain the only source of strength.",
+        "direct": "This preserves the value of the rainmaker while converting private excellence into institutional capacity.",
+        "competitive": "Harvest the edge into the system before the company starts worshipping the bottleneck."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the best indicator that a leader's intervention actually strengthened the organization?",
+      "choices": [
+        "People feel grateful and tell stronger stories about the leader afterward",
+        "The next comparable challenge can be handled with wider judgment and less dependence on that same leader",
+        "The leader becomes even more central to every decision after the success"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter measures what others can inherit after the intervention, not how impressed they feel during it.",
+        "direct": "Organizational strength shows up when capability spreads instead of staying trapped in one person.",
+        "competitive": "If the company still needs the same hero next round, the company learned admiration, not capacity."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a company has learned not to depend entirely on one brilliant leader, what question comes next in the book's logic?",
+      "choices": [
+        "What stable direction or core gives the institution something worth preserving over time",
+        "How to make the leader's personal style more visible to the market",
+        "How to eliminate all hierarchy from the organization"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the company can outlast one star, the next question is what enduring direction keeps the build coherent.",
+        "direct": "The bridge forward moves from survivable structure toward the core purpose or ideology that structure serves.",
+        "competitive": "After the company learns to tick, the next issue is what the machine is actually built to preserve."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch18-q01",
+      "prompt": "What is the core mistake in incentive super-response tendency?",
+      "choices": [
+        "Explaining behavior only by motive or character while undercounting what the system rewards",
+        "Assuming all incentives are bad by default",
+        "Believing that rewards never influence attention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The reward structure is doing more work than the visible story admits.",
+        "direct": "Correct. Incentives are being underread while surface explanations are overtrusted.",
+        "competitive": "That is the trap. The payout is steering under the speech."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch18-q02",
+      "prompt": "Why is this bias easy to miss?",
+      "choices": [
+        "Because personal stories feel simpler than tracing the payoff structure",
+        "Because incentives never change what people notice",
+        "Because values always override rewards"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. It feels easier to tell a motive story than a system story.",
+        "direct": "Correct. People prefer cleaner explanations over incentive mapping.",
+        "competitive": "Exactly. The speech is prettier than the ledger."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch18-q03",
+      "prompt": "Which example best fits this bias?",
+      "choices": [
+        "A team keeps overselling because the quota rewards volume over customer fit",
+        "A team lowers its target after learning the quota created harmful behavior",
+        "A student studies deeply even though the test only rewards memorization"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The reward structure is shaping the conduct strongly.",
+        "direct": "Correct. The payoff system is more causal than the surface sales story.",
+        "competitive": "That is it. The quota bought the move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch18-q04",
+      "prompt": "What makes this bias dangerous in institutions?",
+      "choices": [
+        "It hides how systems keep producing the same behavior by paying for it",
+        "It proves that ethics never matter",
+        "It means every repeated behavior is corruption"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A bad pattern can keep repeating because the system rewards it.",
+        "direct": "Correct. Incentives can keep generating conduct while observers blame the wrong cause.",
+        "competitive": "Right. The machine buys the pattern and the room blames the smoke."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q05",
+      "prompt": "Why do incentives affect more than action alone?",
+      "choices": [
+        "Because they can also reshape what people notice, defend, and call reasonable",
+        "Because they erase all personal judgment completely",
+        "Because they only matter when money is involved"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Rewards can change attention and explanation too.",
+        "direct": "Correct. Incentives alter salience and justification, not only outward conduct.",
+        "competitive": "Exactly. The payout can train the eyes before it trains the hands."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Map what the system rewards, punishes, measures, and praises before judging the behavior",
+        "Ignore explanations entirely and trust only outcomes",
+        "Assume people always act only for money"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The fix is to inspect the payoff structure first.",
+        "direct": "Correct. Better judgment traces the incentive map before trusting the surface story.",
+        "competitive": "Exactly. Follow the reward trail before you buy the speech."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q07",
+      "prompt": "What does incentive super-response tendency confuse?",
+      "choices": [
+        "A reward-shaped pattern with a purely personal or principled explanation",
+        "Habit with memory",
+        "Discipline with laziness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The system's pull gets hidden behind a cleaner story.",
+        "direct": "Correct. A structure-driven response is being mistaken for a purely personal revelation.",
+        "competitive": "Yes. The payout ghostwrites the move and the speech steals the credit."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch18-q08",
+      "prompt": "Why can stated values be misleading in this chapter?",
+      "choices": [
+        "Because people may sincerely speak in moral language while still adapting to the incentives around them",
+        "Because values are always fake",
+        "Because incentives remove all agency equally in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A person can mean what they say and still be strongly shaped by the system.",
+        "direct": "Correct. Sincere language does not cancel the causal force of a reward structure.",
+        "competitive": "Exactly. The podium can sound honest while the payout still runs the playbook."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch18-q09",
+      "prompt": "What is the deepest practical correction in this bias?",
+      "choices": [
+        "Trace the incentive trail before praising, blaming, or redesigning the system",
+        "Ignore all motives because only rewards matter",
+        "Assume visible behavior tells you everything important"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to inspect the structure before reading the story at face value.",
+        "direct": "Correct. Better judgment combines motive-reading with incentive-mapping so the real driver is not missed.",
+        "competitive": "Right. Read the payout ledger before you hand out applause or blame."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch18-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "What is this system rewarding, and how might that reward be reshaping what people notice or defend?",
+        "Which motive sounds most sincere to me?",
+        "How impressive does the behavior look on the surface?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question brings the hidden reward structure into view.",
+        "direct": "Correct. It tests what the system pays for before trusting the visible explanation.",
+        "competitive": "That is the cut. Who is paying for the pattern, and what is that payment teaching?"
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

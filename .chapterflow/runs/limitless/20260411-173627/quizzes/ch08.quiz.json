@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is energy doing in this chapter?",
+      "choices": [
+        "Replacing purpose as the only thing that matters",
+        "Acting as usable fuel for attention and sustained effort",
+        "Making every task easier once it is named"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter treats energy as practical fuel for effort.",
+        "direct": "Energy here is the usable fuel that lets attention and follow-through carry the work.",
+        "competitive": "It is the tank, not the trophy."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter resist treating exhaustion as weak character?",
+      "choices": [
+        "Because exhaustion always means the task should be abandoned",
+        "Because low fuel can be mistaken for low commitment",
+        "Because character never matters in learning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter keeps separating depletion from moral accusation.",
+        "direct": "It argues that fuel problems often get misread as commitment problems.",
+        "competitive": "The empty tank gets sentenced like weak grit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A learner deeply wants the outcome but still cannot sustain focus. What does the chapter most likely say?",
+      "choices": [
+        "Wanting the result should always be enough",
+        "The learner may have purpose without enough usable fuel to carry it",
+        "The learner should ignore the state and push harder"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter separates wanting from carrying.",
+        "direct": "Purpose can be real while energy is too low to sustain clean effort.",
+        "competitive": "The compass can work while the tank is low."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Talia feels ashamed at her dorm desk for not pushing harder. What move fits Chapter 8?",
+      "choices": [
+        "Treat the fatigue as proof she lacks seriousness",
+        "Ask whether the system is under-fueled before making a character judgment",
+        "Assume energy is irrelevant if purpose is strong"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter asks the learner to name low fuel before moralizing it.",
+        "direct": "Talia should separate the fuel state from the accusation built on top of it.",
+        "competitive": "Read the tank before you sentence yourself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Marcus's postmortem reveal?",
+      "choices": [
+        "That weak character is the usual reason tasks fall apart",
+        "That depleted attention can break follow-through even when purpose remains real",
+        "That energy matters only in personal tasks, not work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter treats attention as part of the fuel problem.",
+        "direct": "Marcus sees that low fuel distorted execution more than commitment did.",
+        "competitive": "The tank failed before the speech did."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement would Chapter 8 reject as a misreading?",
+      "choices": [
+        "Energy affects attention and follow-through",
+        "Energy alone solves all motivation problems",
+        "Exhaustion can be misread as weak commitment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps energy important without making it everything.",
+        "direct": "It treats fuel as one real constraint among others, not as the total explanation.",
+        "competitive": "Respect the tank without worshipping it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does energy change follow-through in this chapter?",
+      "choices": [
+        "Because low fuel changes how cleanly attention and effort can be sustained",
+        "Because fuel only matters when motivation is absent",
+        "Because higher energy removes the need for structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter links fuel directly to sustained attention and execution.",
+        "direct": "Follow-through changes because a depleted system cannot carry effort as cleanly.",
+        "competitive": "The hill gets steeper when the tank gets thinner."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Andre's follow-through improves before motivation feels dramatic. What does that show?",
+      "choices": [
+        "That energy can improve execution before emotional intensity noticeably rises",
+        "That motivation feeling never matters at all",
+        "That studying in cafes automatically creates fuel"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would expect fuel to affect execution first.",
+        "direct": "Usable energy can improve follow-through before motivation feels emotionally bigger.",
+        "competitive": "The engine can improve before the soundtrack does."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What tension does the chapter protect most carefully?",
+      "choices": [
+        "How to respect energy as a real constraint without turning it into sloganized self-care or total explanation",
+        "How to prove exhaustion is always noble",
+        "How to make energy replace purpose and method"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter wants cleaner judgment, not wellness theater.",
+        "direct": "Its guardrail is that energy matters deeply without becoming a cure-all story.",
+        "competitive": "Read the tank honestly without making fuel a religion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 8 prepare the next chapter?",
+      "choices": [
+        "It completes the whole motivation section in advance",
+        "It raises the question of how to start action when fuel is limited",
+        "It proves energy matters more than every other factor"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Once energy is treated as real, the next move is reducing resistance.",
+        "direct": "The chapter sets up small simple steps as the practical response when fuel is not abundant.",
+        "competitive": "Once the tank is named, the next question is how to lighten the launch."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

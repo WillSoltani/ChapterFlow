@@ -1,0 +1,39 @@
+{
+  "bookId": "ultralearning",
+  "runId": "20260411-173544",
+  "lockedOn": "2026-04-11",
+  "selectionMode": "auto_lock",
+  "reason": "One dominant English first-edition family exists for chapter-level work. The 2019 Harper Business hardcover and closely related HarperCollins UK / Thorsons ebook-family records preserve the same chapter order and principle structure, so no user decision is required.",
+  "chosenEdition": {
+    "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
+    "author": "Scott H. Young",
+    "publisher": "Harper Business",
+    "imprintFamily": [
+      "Harper Business",
+      "HarperCollins",
+      "HarperCollins UK / Thorsons"
+    ],
+    "language": "English",
+    "publishedDate": "2019-08-06",
+    "isbn10": "006285268X",
+    "isbn13": "9780062852687",
+    "openLibraryEdition": "OL28302824M",
+    "chapterCount": 14,
+    "chapterRange": "Ch. 1-14"
+  },
+  "rejectedAmbiguities": [
+    {
+      "candidate": "2019 HarperCollins UK ebook / 2019 Thorsons paperback family",
+      "reason": "Packaging and pagination differ, but chapter order and chapter-level content remain aligned with the locked first-edition family."
+    },
+    {
+      "candidate": "2020 Spanish translation",
+      "reason": "Translation changes language but not the intended English source text for this run."
+    }
+  ],
+  "sources": [
+    "https://openlibrary.org/books/OL28302824M/Ultralearning",
+    "https://play.google.com/store/books/details/Ultralearning_Accelerate_Your_Career_Master_Hard_S?hl=en-US&id=lWRzDwAAQBAJ",
+    "https://books.google.com/books/about/Ultralearning.html?id=d0IdvgEACAAJ"
+  ]
+}

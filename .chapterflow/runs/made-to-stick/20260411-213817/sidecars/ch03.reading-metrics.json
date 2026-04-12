@@ -1,0 +1,24 @@
+{
+  "chapterId": "ch03-concrete",
+  "number": 3,
+  "title": "Concrete",
+  "readingTimeMinutes": 9,
+  "wordCounts": {
+    "easy": 228,
+    "medium": 628,
+    "hard": 941
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 6,
+  "quizQuestionCount": 10,
+  "sourceSidecar": ".chapterflow/runs/made-to-stick/20260411-213817/sidecars/source/ch03.source.json",
+  "sourceRichness": "high",
+  "notes": [
+    "validated in chapter_gate mode",
+    "quotes kept paraphrase-first except frozen heading support"
+  ]
+}

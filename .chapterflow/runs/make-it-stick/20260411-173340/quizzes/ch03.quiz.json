@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What does interleaving mainly strengthen in this chapter?",
+      "choices": [
+        "Recognition and selection among similar cases",
+        "Comfort during the practice session",
+        "The value of randomness by itself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Interleaving matters because it helps the learner tell similar cases apart and choose the right response.",
+        "direct": "The chapter treats discrimination, not novelty, as the core mechanism of mixed practice.",
+        "competitive": "Interleaving trains the chooser, not the lover of chaos."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why can blocked practice mislead the learner?",
+      "choices": [
+        "Because repetition never helps at all",
+        "Because the block can make the next move too obvious",
+        "Because mixed practice is always more enjoyable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The block itself can hint which response belongs next, so the learner may look stronger than later performance will be.",
+        "direct": "Blocked practice can improve current fluency while hiding weak classification and later choice.",
+        "competitive": "The drill can leak the category and let repetition impersonate mastery."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "Why might a mixed algebra packet help more than grouped problem types?",
+      "choices": [
+        "It forces the student to identify which method fits each problem",
+        "It removes the need for understanding",
+        "It guarantees fewer mistakes in the session"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A mixed packet asks the learner to recognize the problem type before solving.",
+        "direct": "Interleaving helps because it turns category recognition into part of practice instead of leaving it to the test.",
+        "competitive": "The packet stops giving away the move and makes the chooser work."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "What did Victor's postmortem reveal about blocked script training?",
+      "choices": [
+        "It made the support calls too short",
+        "It trained repetition more than case recognition",
+        "It worked perfectly outside the drill"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team looked fluent in order but weaker once the case types stopped repeating in one pattern.",
+        "direct": "Blocked script practice left recognition undertrained because the category kept arriving pre-labeled.",
+        "competitive": "The order was doing too much of the thinking for them."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Why can mixed practice feel worse while still teaching more?",
+      "choices": [
+        "Because it destroys all pattern and structure",
+        "Because it forces comparison and choice instead of one repeated rhythm",
+        "Because learners should avoid smooth sessions entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The session feels rougher because the learner has to compare and select rather than continue one familiar move.",
+        "direct": "Interleaving often feels less fluent because it exposes the recognition work blocked practice can hide.",
+        "competitive": "It costs the block's cheap rhythm and replaces it with real classification."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Which idea would the chapter reject?",
+      "choices": [
+        "Interleaving means disciplined variation",
+        "Blocked practice can sometimes have local value",
+        "Any random variety automatically improves learning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not confuse productive mixing with random chaos.",
+        "direct": "Variation helps when it sharpens comparison, not when it erases the pattern.",
+        "competitive": "Noise is not instruction just because it looks less tidy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Why might rotating three similar musical passages help Leah more than repeating one?",
+      "choices": [
+        "It weakens her memory so she stays humble",
+        "It forces her to compare the passages and choose the fitting movement",
+        "It guarantees the practice session will sound polished"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The rotation builds recognition of what changes from one passage to the next.",
+        "direct": "Interleaving can strengthen flexible performance by requiring comparison among near-neighbor cases.",
+        "competitive": "The chooser gets stronger when the pattern stops repeating in one safe loop."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Why does the next chapter need to broaden the discussion after interleaving?",
+      "choices": [
+        "Because mixed practice is no longer useful",
+        "Because the book now needs a larger rule for when difficult learning helps",
+        "Because blocked practice is stronger than retrieval and interleaving together"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 4 widens the lens from one useful difficulty to the broader idea of desirable difficulties.",
+        "direct": "Interleaving is one case of hard-feeling learning that can help, so the next chapter asks for the broader principle.",
+        "competitive": "Once mixing works, the book has to build a bigger difficulty filter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why does mixed practice support transfer?",
+      "choices": [
+        "Because it keeps the same move active longer",
+        "Because it asks the learner to classify and choose under changing conditions",
+        "Because it removes the need for repetition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Transfer improves when the learner practices recognizing which tool fits which changing case.",
+        "direct": "Interleaving supports transfer by making category recognition and response selection part of the training.",
+        "competitive": "Later performance is mixed, so practice that trains choice under mixed conditions travels farther."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "What keeps variation productive rather than chaotic?",
+      "choices": [
+        "The practice keeps enough structure for comparison to teach",
+        "The learner stops making errors",
+        "The session feels smooth again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Variation helps when the learner can still compare cases clearly enough to see what matters.",
+        "direct": "Interleaving works only when the pattern remains legible enough for discrimination to sharpen.",
+        "competitive": "Keep the hinge visible. Once the pattern disappears, the drill becomes fog."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

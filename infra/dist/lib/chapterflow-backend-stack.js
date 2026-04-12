@@ -37,9 +37,13 @@ exports.ChapterFlowBackendStack = void 0;
 const cdk = __importStar(require("aws-cdk-lib"));
 const cloudwatch = __importStar(require("aws-cdk-lib/aws-cloudwatch"));
 const dynamodb = __importStar(require("aws-cdk-lib/aws-dynamodb"));
+const events = __importStar(require("aws-cdk-lib/aws-events"));
+const targets = __importStar(require("aws-cdk-lib/aws-events-targets"));
 const iam = __importStar(require("aws-cdk-lib/aws-iam"));
+const lambda = __importStar(require("aws-cdk-lib/aws-lambda"));
 const s3 = __importStar(require("aws-cdk-lib/aws-s3"));
 const ssm = __importStar(require("aws-cdk-lib/aws-ssm"));
+const path = __importStar(require("path"));
 function normalizeCorsOrigin(raw) {
     const trimmed = raw.trim();
     if (!trimmed)
@@ -319,6 +323,42 @@ class ChapterFlowBackendStack extends cdk.Stack {
             treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
             alarmDescription: "Alerts when ChapterFlow analytics table experiences throttling.",
         });
+        // -------------------------------------------------------------------
+        // Lambda — Reading reminder cron (hourly)
+        // -------------------------------------------------------------------
+        const reminderFn = new lambda.Function(this, "ReadingReminderCron", {
+            functionName: "ChapterFlowReadingReminder",
+            runtime: lambda.Runtime.NODEJS_20_X,
+            handler: "reading-reminder-cron.handler",
+            code: lambda.Code.fromAsset(path.join(__dirname, "../lambda"), {
+                bundling: {
+                    image: lambda.Runtime.NODEJS_20_X.bundlingImage,
+                    command: [
+                        "bash",
+                        "-c",
+                        "npx esbuild reading-reminder-cron.ts --bundle --platform=node --target=node20 --outfile=/asset-output/reading-reminder-cron.js",
+                    ],
+                },
+            }),
+            memorySize: 256,
+            timeout: cdk.Duration.minutes(5),
+            environment: {
+                BOOK_TABLE_NAME: this.appTable.tableName,
+                SES_SENDER_EMAIL: "noreply@chapterflow.siliconx.ca",
+            },
+        });
+        this.appTable.grantReadWriteData(reminderFn);
+        reminderFn.addToRolePolicy(new iam.PolicyStatement({
+            actions: ["ses:SendEmail", "sesv2:SendEmail"],
+            resources: ["*"],
+        }));
+        new events.Rule(this, "ReminderSchedule", {
+            schedule: events.Schedule.rate(cdk.Duration.hours(1)),
+            targets: [new targets.LambdaFunction(reminderFn)],
+        });
+        // -------------------------------------------------------------------
+        // Stack outputs
+        // -------------------------------------------------------------------
         new cdk.CfnOutput(this, "BookTableName", { value: this.appTable.tableName });
         new cdk.CfnOutput(this, "BookAnalyticsTableName", {
             value: this.analyticsTable.tableName,

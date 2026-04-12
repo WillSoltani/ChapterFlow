@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch31-q01",
+      "prompt": "What is the core mistake in induction as used in this chapter?",
+      "choices": [
+        "Treating a few observations like a broad rule too early",
+        "Ignoring every pattern until perfect certainty exists",
+        "Assuming examples can never teach anything"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The problem is promoting a small sample into a sweeping claim too soon.",
+        "direct": "Correct. Limited observations are being asked to carry a general conclusion before the evidence is strong enough.",
+        "competitive": "That is the trap. A tiny sample is trying to grab the crown."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch31-q02",
+      "prompt": "Why can a few matching cases feel so persuasive?",
+      "choices": [
+        "Because repetition can feel like confirmation even when the sample is thin",
+        "Because every repeated pattern has already become a law",
+        "Because small samples are always representative"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Repetition can feel stronger than the evidence beneath it.",
+        "direct": "Exactly. Several matching observations can create a false sense that the broader rule is already established.",
+        "competitive": "That is it. A little pattern in uniform can fake a finished case."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch31-q03",
+      "prompt": "Which situation best fits induction overreach?",
+      "choices": [
+        "A few customer comments get treated as proof of a whole market rule",
+        "A team labels its conclusion provisional and keeps testing it",
+        "A student asks for more evidence before using words like always"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A narrow sample is being stretched into a larger claim.",
+        "direct": "Correct. Limited observations are being promoted into a general rule before broader evidence exists.",
+        "competitive": "That is the move. A few quotes are trying to run the whole map."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch31-q04",
+      "prompt": "A teacher sees three weak assignments and starts saying a student simply lacks ability. What is the cleanest correction?",
+      "choices": [
+        "Treat the early pattern as final because repeated evidence already exists",
+        "Keep the judgment tentative until a wider and more varied sample supports it",
+        "Assume the assignments reveal nothing at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The early pattern may matter, but it is not enough for a sweeping rule yet.",
+        "direct": "That is the key. The claim should stay provisional until the sample is broader and more representative.",
+        "competitive": "Exactly. Do not let three datapoints write a permanent biography."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch31-q05",
+      "prompt": "What is the best way to describe a pattern supported by only a few cases?",
+      "choices": [
+        "As a tentative hypothesis worth checking further",
+        "As a settled law that now governs the wider field",
+        "As useless because no conclusion can ever be drawn from examples"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A few cases can start an idea without finishing the proof.",
+        "direct": "The disciplined move is to keep the pattern provisional rather than inflating it into a general rule.",
+        "competitive": "That is it. Let the clue open the file, not seize the throne."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch31-q06",
+      "prompt": "Which question best counters induction overreach?",
+      "choices": [
+        "How quickly can I turn this pattern into a rule?",
+        "How much evidence is really carrying this claim?",
+        "How can I ignore all examples completely?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. That question keeps the claim tied to what the evidence can actually support.",
+        "direct": "Correct. Inspecting how much evidence stands behind the claim is the practical safeguard against premature generalization.",
+        "competitive": "Exactly. Make the sample show its muscle before you hand it the crown."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch31-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Small samples are useless and should be ignored",
+        "Early observations can support a hypothesis, but not automatically a sweeping law",
+        "A repeated pattern becomes reliable the moment it feels stable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter warns against overclaiming, not against learning from examples.",
+        "direct": "That keeps the boundary intact: limited observations may teach something, but they should not be granted general authority too early.",
+        "competitive": "Exactly. A clue can talk, but it does not get to appoint itself king."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch31-q08",
+      "prompt": "Why is representativeness important when moving from examples to a rule?",
+      "choices": [
+        "Because a narrow or convenient sample may not support the same claim in the wider field",
+        "Because every sample is equally good once it contains repetition",
+        "Because representativeness only matters in laboratory science"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A sample can be too narrow to justify a broad conclusion.",
+        "direct": "The reach of the rule depends not only on the number of cases, but also on whether they actually represent the larger field.",
+        "competitive": "That is the issue. A tiny corner does not automatically own the whole map."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch31-q09",
+      "prompt": "Which earlier chapter pairs best with Induction here?",
+      "choices": [
+        "Base-Rate Neglect, because both chapters warn against making broad judgments from narrow evidence while ignoring the larger evidentiary frame",
+        "The Anchor, because every broad conclusion begins with a first number",
+        "Gambler's Fallacy, because every small sample creates a debt"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn against letting limited evidence overpower the larger frame that should guide the judgment.",
+        "direct": "This pairing works because each bias involves overcommitting to a narrow evidentiary slice while neglecting the broader base needed for a fair conclusion.",
+        "competitive": "That is the strongest link. In both cases, a small patch of evidence starts pretending it owns the territory."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch31-q10",
+      "prompt": "A conclusion drawn from a few observations deserves stronger confidence only when which test starts to go well?",
+      "choices": [
+        "The claim still holds up as the sample becomes broader and more representative",
+        "The pattern feels familiar enough after repeated discussion",
+        "The initial examples were vivid enough to remember"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Broader and more representative support is what strengthens the claim.",
+        "direct": "That is the decisive test because it checks whether the conclusion survives beyond the thin sample that first suggested it.",
+        "competitive": "Exactly. If the rule cannot survive a real weigh-in, it never deserved the crown."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

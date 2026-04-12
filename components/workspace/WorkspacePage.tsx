@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { BOOK_PACKAGES, getBookPackagePresentation } from "@/app/book/data/bookPackages";
+import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   BADGE_DEFINITIONS,
@@ -125,7 +125,7 @@ interface WorkspaceData {
    Analytics → WorkspaceData Mapper
    ──────────────────────────────────────────── */
 
-const ALL_BOOK_IDS = BOOK_PACKAGES.map((pkg) => pkg.book.bookId);
+const ALL_BOOK_IDS = BOOKS_CATALOG.map((cat) => cat.id);
 
 function mapAnalyticsToWorkspaceData(
   analytics: AnalyticsState,
@@ -136,10 +136,13 @@ function mapAnalyticsToWorkspaceData(
   let currentBook: WorkspaceData["currentBook"] = null;
   if (lead) {
     const nextChapter = lead.completedChapters + 1;
-    const chapterMinutes =
-      BOOK_PACKAGES.find((p) => p.book.bookId === lead.book.id)
-        ?.chapters.find((ch) => ch.number === nextChapter)?.readingTimeMinutes ??
-      13;
+    const catalog = BOOKS_CATALOG.find((cat) => cat.id === lead.book.id);
+    const avgChapterMinutes = catalog
+      ? Math.max(
+          1,
+          Math.round(catalog.estimatedMinutes / Math.max(lead.totalChapters, 1)),
+        )
+      : 13;
 
     currentBook = {
       id: lead.book.id,
@@ -150,11 +153,8 @@ function mapAnalyticsToWorkspaceData(
       totalChapters: lead.totalChapters,
       progressPercent: lead.progressPercent,
       currentLoopStep: lead.currentLoopStep ?? "summary",
-      estimatedMinutes: chapterMinutes,
-      glowColor:
-        getBookPackagePresentation(lead.book.id).coverImage
-          ? undefined
-          : "rgba(139,92,246,0.35)",
+      estimatedMinutes: avgChapterMinutes,
+      glowColor: catalog?.coverImage ? undefined : "rgba(139,92,246,0.35)",
     };
   }
 

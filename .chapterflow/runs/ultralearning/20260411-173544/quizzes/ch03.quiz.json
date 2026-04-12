@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is the chapter's first design rule for a beginner ultralearning project?",
+      "choices": [
+        "Choose one target",
+        "Start with the most extreme schedule possible",
+        "Study several interests in parallel to stay motivated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter starts by narrowing scope. One target gives the project enough shape for progress to become visible.",
+        "direct": "A is correct because the chapter treats specificity as the first defense against drift and blurred feedback.",
+        "competitive": "One target cuts off a major escape route. The other answers keep the project soft or inflated."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why does the chapter insist that shorter projects need tighter constraints?",
+      "choices": [
+        "Because tight rules are morally superior",
+        "Because visible progress needs a target scaled to the available time",
+        "Because long-term goals should always be abandoned early"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter links scope to time so the learner can actually see movement rather than protect a cloudy goal.",
+        "direct": "B captures the design logic. Tighter constraints make progress legible inside limited time.",
+        "competitive": "Less time demands sharper structure, not bigger promises."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "A learner has only six hours a week. What choice best fits the chapter's logic?",
+      "choices": [
+        "Keep the large goal unchanged so ambition stays high",
+        "Shrink the scope until the goal fits those real hours",
+        "Wait to start until a full-time format becomes possible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter protects ambition by resizing it. A smaller scope can become more honest and more finishable.",
+        "direct": "B is strongest because the design rule is to match target size to real constraints rather than worship the larger goal.",
+        "competitive": "Inflated scope is not courage when the calendar cannot carry it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Marisol wants to move into tech and has written five different subfields onto her whiteboard. What should she do first?",
+      "choices": [
+        "Keep all five visible so the project feels ambitious",
+        "Narrow to one role and one first proof target",
+        "Add more research before deciding whether anything interests her"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would cut the scope first. A first proof target is stronger than a broad cloud of intentions.",
+        "direct": "B follows the chapter's specificity rule. One role and one target create clearer feedback than five parallel identities.",
+        "competitive": "The whiteboard has to stop sounding exciting and start becoming judgeable."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "How does the chapter judge project formats such as full-time, fixed-schedule, and fixed-hour?",
+      "choices": [
+        "By which one sounds the most serious",
+        "By which one survives real constraints and keeps contact believable",
+        "By which one allows the most reading before starting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps asking what frame a learner can actually carry. Dramatic structure is weaker if it breaks immediately.",
+        "direct": "B is correct because survivability, not romance, is the chapter's standard for format choice.",
+        "competitive": "A schedule only counts if it is still alive after the first week."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "What is the strongest reason the chapter gives for running a pilot week?",
+      "choices": [
+        "It makes the project feel official",
+        "It exposes whether the schedule survives real life before full commitment",
+        "It replaces the need for preparation afterward"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A pilot week matters because calendars can look disciplined before they meet real energy and interruption limits.",
+        "direct": "B fits the chapter's logic. The trial week is a reality test on the frame, not a ceremony or a substitute for later work.",
+        "competitive": "One real week reveals whether the plan is sturdy or just polished."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Zoe admires the idea of a full-time project, but her semester already contains a job and two labs. Which move best matches the chapter?",
+      "choices": [
+        "Choose the full-time format anyway so the project feels bold",
+        "Choose the format her actual semester can sustain",
+        "Abandon the project because it cannot be maximal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prefers realism that survives over drama that collapses. Zoe needs the frame that can keep returning her to the work.",
+        "direct": "B is strongest because format is judged by survivability. Boldness without staying power is weak design.",
+        "competitive": "The right frame wins by lasting, not by impressing the imagination."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Nia has articles, tools, and a polished plan, but still no first study session. According to the chapter, what has gone wrong?",
+      "choices": [
+        "Preparation has turned into avoidance",
+        "She did not prepare enough",
+        "Pilot testing means she should never launch"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's boundary is clear: setup helps only while it moves the learner closer to contact. Nia has crossed past that point.",
+        "direct": "A is correct because planning has started replacing the work it was supposed to support.",
+        "competitive": "The project is organized everywhere except where it touches reality."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "What is the chapter's deepest warning about project design?",
+      "choices": [
+        "Structure is unnecessary once motivation is high",
+        "Too little structure produces chaos, but too much can become camouflage for procrastination",
+        "Beginners should avoid all planning because planning is fake work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not attack planning itself. It draws a line between structure that supports contact and structure that replaces it.",
+        "direct": "B captures the real tension. Honest design needs enough order to support the project without letting setup become a shelter from learning.",
+        "competitive": "The danger runs both ways: chaos wastes energy, and elegant planning can hide avoidance."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "Once a first ultralearning project has a clear target, workable format, and tested schedule, what question naturally follows into the next chapter?",
+      "choices": [
+        "How do you research and map the domain before the heavy push?",
+        "How do you make the schedule even more extreme?",
+        "How do you keep the project vague enough to stay flexible?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next useful move is not more drama. It is learning how to draw the map before the sprint begins.",
+        "direct": "A is the right bridge because this chapter builds the container. The next principle should guide what research and mapping happen inside it.",
+        "competitive": "After the frame gets honest, the next serious step is mapping the field, not inflating the theatrics."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "bookId": "the-black-swan",
+  "runId": "20260411-174728",
+  "createdAt": "2026-04-11T17:49:36Z",
+  "lockedEdition": "2007 Random House first edition",
+  "sources": [
+    {
+      "id": "prh-2007",
+      "title": "The Black Swan: Second Edition by Nassim Nicholas Taleb",
+      "url": "https://www.penguinrandomhouse.com/books/176226/the-black-swan-second-edition-by-nassim-nicholas-taleb/9781400063512/",
+      "type": "official_publisher_page",
+      "role": "authorized description and publication metadata",
+      "confidence": 0.96,
+      "notes": "Publisher page confirms author, original April 17, 2007 publication, and that the later second edition adds a new robustness section."
+    },
+    {
+      "id": "gbooks-2007",
+      "title": "Google Books limited preview for The Black Swan",
+      "url": "https://books.google.com/books/about/The_Black_Swan.html?id=mupJrvyMRVwC",
+      "type": "authorized_preview",
+      "role": "table of contents and bibliographic confirmation",
+      "confidence": 0.94,
+      "notes": "Used for chapter order, page anchors, and preview-supported wording about the book's central definition."
+    },
+    {
+      "id": "epoka-catalog",
+      "title": "Epoka University Library catalog entry for The Black Swan",
+      "url": "https://lib.epoka.edu.al/cgi-bin/koha/opac-detail.pl?biblionumber=4158&shelfbrowse_itemnumber=4608",
+      "type": "library_catalog",
+      "role": "contents cross-check for first and second edition chapter listing",
+      "confidence": 0.86,
+      "notes": "Useful for the ordered chapter list and edition metadata; not used for unique interpretive claims."
+    },
+    {
+      "id": "wikipedia-summary",
+      "title": "The Black Swan: The Impact of the Highly Improbable",
+      "url": "https://en.wikipedia.org/wiki/The_Black_Swan%3A_The_Impact_of_the_Highly_Improbable",
+      "type": "secondary_reference",
+      "role": "high-level chapter interpretation cross-check",
+      "confidence": 0.68,
+      "notes": "Used only as secondary support for chapter-level framing such as opacity, Yevgenia, Mediocristan, Extremistan, and silent evidence."
+    },
+    {
+      "id": "bookrags-guide",
+      "title": "The Black Swan Summary & Study Guide",
+      "url": "https://www.bookrags.com/studyguide-the-black-swan/",
+      "type": "secondary_reference",
+      "role": "chapter grouping and broad thematic cross-check",
+      "confidence": 0.61,
+      "notes": "Used narrowly and only when claims already aligned with the frozen preview bundle."
+    }
+  ],
+  "policy": {
+    "paraphraseFirst": true,
+    "exactQuotesAllowedOnlyWhenPreviewSupported": true,
+    "pirateSourcesUsed": false
+  }
+}

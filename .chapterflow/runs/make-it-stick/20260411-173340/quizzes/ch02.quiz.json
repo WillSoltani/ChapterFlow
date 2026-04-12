@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is the chapter's main claim about retrieval?",
+      "choices": [
+        "Retrieval is useful only after learning is finished",
+        "Retrieval helps build learning, not just measure it",
+        "Retrieval should replace every other study method"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's central claim is that recall from memory strengthens learning itself.",
+        "direct": "Chapter 2 redefines retrieval as part of the learning process rather than only a later assessment tool.",
+        "competitive": "The quiz is not just the scoreboard. It is part of the training."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why can a self-quiz help more than another reread?",
+      "choices": [
+        "Because a self-quiz always feels easier than rereading",
+        "Because retrieval forces reconstruction from memory",
+        "Because rereading never has any use"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says retrieval helps because the learner has to bring the answer back without the page doing the work.",
+        "direct": "Another reread can refresh familiarity, but retrieval makes memory reconstruct the idea on its own.",
+        "competitive": "Reconstruction is stronger because memory has to produce instead of coast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "What makes a low-stakes classroom quiz useful in this chapter?",
+      "choices": [
+        "It creates recall while there is still time to correct mistakes",
+        "It makes students anxious enough to work harder",
+        "It proves which students are naturally strong learners"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values low-stakes quizzes because they pressure recall and reveal what still needs repair.",
+        "direct": "A useful quiz is part of learning because it links retrieval with correction instead of only producing a score.",
+        "competitive": "The right quiz catches the miss early enough to fix it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Why did Victor's training fail to stick?",
+      "choices": [
+        "The trainees were given too many formal tests",
+        "The training never forced workers to retrieve the steps without visible prompts",
+        "The checklist was too short to remember"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The workers looked fluent while the checklist stayed visible, but recall was never trained directly.",
+        "direct": "Victor's session relied on guided exposure rather than low-stakes retrieval, so the memory failed once the cues disappeared.",
+        "competitive": "The wall carried the sequence during training, and memory was never made to earn it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Why can struggle during retrieval still help learning?",
+      "choices": [
+        "Because all frustration is productive",
+        "Because the struggle can reveal weak spots while memory is being strengthened",
+        "Because the chapter wants learners to prefer failure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats struggle as useful only when it exposes what needs repair and strengthens what returns.",
+        "direct": "Effortful recall can help because reconstruction both pressures memory and reveals the gap another reread would hide.",
+        "competitive": "The point is not pain. The point is that an honest recall fight shows where the weak seam is."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Which idea would the chapter reject?",
+      "choices": [
+        "Retrieval can work through self-quizzing and low-stakes tests",
+        "A failed recall attempt can become repair information",
+        "Retrieval mainly means pressure-heavy formal exams"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not define retrieval as punishment-heavy testing.",
+        "direct": "Its focus is low-stakes recall that strengthens learning, not anxiety as pedagogy.",
+        "competitive": "If the method depends on intimidation, you missed the mechanism."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Leah misses a flashcard answer. What response best fits the chapter?",
+      "choices": [
+        "Stop quizzing because the miss proves retrieval is discouraging",
+        "Check the answer, repair the gap, and retrieve it again later",
+        "Reread the whole deck until it feels familiar again"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats the miss as useful when it leads to correction and another recall attempt.",
+        "direct": "Failed retrieval becomes productive through feedback, repair, and repeated retrieval, not through surrender or endless rereading.",
+        "competitive": "Patch the hole and send memory back in."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Why does the next chapter need to move beyond retrieval itself?",
+      "choices": [
+        "Because retrieval is no longer useful once learned",
+        "Because practice design still matters for flexibility and transfer",
+        "Because quizzes are weaker than blocked repetition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once retrieval is accepted, the next question is how practice should be arranged so learning remains flexible.",
+        "direct": "Chapter 3 broadens the issue from recall alone to the design of practice through mixing and variation.",
+        "competitive": "Retrieval can build memory, but practice can still become narrow if the design stays lazy."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why is retrieval more than measurement in this chapter?",
+      "choices": [
+        "Because it produces a more detailed score sheet",
+        "Because reconstructing from memory changes later access",
+        "Because it removes the need for feedback"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The act of bringing the answer back helps make it easier to bring back again later.",
+        "direct": "Retrieval is more than assessment because reconstruction from memory strengthens the learner's future access to the idea.",
+        "competitive": "The answer has to fight its way back, and that fight toughens the route."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "What keeps retrieval from turning into empty frustration?",
+      "choices": [
+        "Making every quiz formal and graded",
+        "Pairing recall pressure with support, correction, and another attempt",
+        "Avoiding all misses during practice"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says retrieval stays productive when the learner can repair what failed and try again.",
+        "direct": "Support and follow-up matter because recall pressure alone can become discouraging instead of strengthening.",
+        "competitive": "Pressure without repair is waste. Pressure plus repair is the method."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

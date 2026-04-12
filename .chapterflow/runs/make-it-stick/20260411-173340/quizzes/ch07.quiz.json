@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What does the chapter reject about early struggle?",
+      "choices": [
+        "That it can teach anything",
+        "That it automatically proves a permanent limit",
+        "That it feels discouraging"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues that early struggle is a weak final judgment of ability.",
+        "direct": "A first poor result is not treated as proof of permanent ceiling.",
+        "competitive": "One bad rep does not get to write the whole sentence."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "What factors does the chapter say can move performance?",
+      "choices": [
+        "Strategy, feedback, repetition, and response to setbacks",
+        "Positive thinking alone",
+        "Style labels alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties growth to practice and feedback, not to slogans.",
+        "direct": "Performance moves with better method and better response after error.",
+        "competitive": "The score changes when the reps and correction change."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "Why is Priya's poor math quiz not a final verdict according to this chapter?",
+      "choices": [
+        "Because scores never matter",
+        "Because the result can guide redesign and a stronger next attempt",
+        "Because talent is irrelevant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants Priya to use the setback as information for the next round.",
+        "direct": "A poor score can reveal what strategy or knowledge needs work instead of proving fixed inability.",
+        "competitive": "The quiz becomes a scouting report, not a prison sentence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "What did Marcus's postmortem show?",
+      "choices": [
+        "Talent should be judged before method",
+        "Weak practice design and feedback can be mistaken for low ability",
+        "Effort does not matter at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The review showed that method was part of the problem.",
+        "direct": "The chapter insists on diagnosing practice structure before turning performance into identity.",
+        "competitive": "The blueprint leaked before the person did."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "How can a setback become useful?",
+      "choices": [
+        "By serving only as motivation",
+        "By revealing what knowledge, timing, or method needs to change",
+        "By proving the learner should quit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats failure as diagnostic when it leads to redesign.",
+        "direct": "A setback helps when it identifies the next correction instead of freezing into label.",
+        "competitive": "The bruise helps when it points to the bad wiring."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Which idea would the chapter reject?",
+      "choices": [
+        "Effort plus better strategy can change results",
+        "Current performance is a final ceiling",
+        "Feedback matters for improvement"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter resists turning present result into permanent limit.",
+        "direct": "Fixed-ability verdicts are treated as too rigid when method can still change.",
+        "competitive": "The ceiling story arrives too early."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Why is effort alone not enough in this chapter?",
+      "choices": [
+        "Because growth needs redesign, correction, and another attempt",
+        "Because effort always hurts learning",
+        "Because learners should wait for talent to appear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants stronger method, not just stronger feeling.",
+        "direct": "Effort matters only when it is attached to feedback and better practice design.",
+        "competitive": "The speech cannot cash the check if the reps stay broken."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "Why does the next chapter follow this one?",
+      "choices": [
+        "Because the book is leaving practice design behind",
+        "Because the final chapter turns these ideas into a complete routine",
+        "Because ability beliefs make the earlier chapters irrelevant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "After challenging fixed ceilings, the book gathers its methods into a learning system.",
+        "direct": "Chapter 8 turns the possibility of growth through method into routine design.",
+        "competitive": "The ceiling fight ends so the system build can begin."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "What better question replaces 'I am bad at this'?",
+      "choices": [
+        "Which strategy or practice change should happen next?",
+        "How can I hide the setback?",
+        "How can I prove talent does not matter?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants diagnostic questions after failure.",
+        "direct": "Ability should be judged through next practice decisions rather than static labels.",
+        "competitive": "Ask what rebuild moves the score."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "What is the chapter's overall stance on ability?",
+      "choices": [
+        "It is fully fixed",
+        "It is magical and limitless",
+        "It is more expandable than fixed stories suggest when method improves"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps growth realistic and tied to disciplined practice.",
+        "direct": "It rejects both fatalism and fantasy by linking ability change to strategy, feedback, and redesign.",
+        "competitive": "No miracle, no surrender, just the changes that move the score."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

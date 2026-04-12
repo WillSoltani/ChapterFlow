@@ -1,0 +1,33 @@
+[
+  {
+    "id": "google-books-2013",
+    "title": "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
+    "author": "Clayton M. Christensen",
+    "publisher": "Harvard Business Review Press",
+    "publishedYear": 2013,
+    "type": "authorized_preview_metadata",
+    "role": "primary_edition_map",
+    "url": "https://books.google.com/books?id=3JnBAgAAQBAJ",
+    "confidence": "high",
+    "notes": "Used to lock the 2013 HBR Press reprint edition and freeze the visible table of contents for the 11-chapter structure."
+  },
+  {
+    "id": "hbs-book-page",
+    "title": "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
+    "author": "Clayton M. Christensen",
+    "type": "official_book_page",
+    "role": "primary_overview",
+    "url": "https://www.hbs.edu/faculty/Pages/item.aspx?num=46",
+    "confidence": "high",
+    "notes": "Used for official abstract, canonical framing, and original 1997 publication provenance."
+  },
+  {
+    "id": "supersummary-guide",
+    "title": "The Innovator's Dilemma Study Guide",
+    "type": "secondary_summary",
+    "role": "chapter_interpretation_support",
+    "url": "https://www.supersummary.com/the-innovators-dilemma/",
+    "confidence": "medium",
+    "notes": "Used only to narrow chapter-level emphasis and chapter grouping after the edition was locked from authorized metadata."
+  }
+]

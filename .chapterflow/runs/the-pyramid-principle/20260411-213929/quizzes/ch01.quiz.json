@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What burden does the chapter say weak structure puts on the reader?",
+      "choices": [
+        "Remembering more data than usual",
+        "Sorting the argument while trying to read it",
+        "Deciding whether the writer sounds confident"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The problem is not just extra information. The reader has to organize the logic that the writer should have organized first.",
+        "direct": "Hidden hierarchy turns reading into outsourced thinking labor.",
+        "competitive": "The reader ends up doing the writer's assembly job."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Barbara Minto's report-editing origin matter in this chapter?",
+      "choices": [
+        "It shows that the failure often begins in unorganized thinking rather than sentence polish",
+        "It proves every weak report should be shortened to one page",
+        "It shows that formatting software was the main historical problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Her experience points to the same repair again and again: make the thinking visible before you try to make the prose elegant.",
+        "direct": "The origin story locates the problem upstream of wording. Reports became clearer when their logic was reorganized.",
+        "competitive": "The issue was not style frosting. It was raw thought on the page."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the grouped grocery-list example mainly prove?",
+      "choices": [
+        "People always remember food categories better than business ideas",
+        "Short lists are always better than long lists",
+        "Grouping changes the mental burden even when the information stays the same"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Shortness is not the lesson. The groceries stay the same while the grouping lowers the strain.",
+        "direct": "The example isolates structure as the variable. Same data, different burden, because the order changed.",
+        "competitive": "Nothing new is added. The grouping simply stops the mind from carrying every item alone."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya is about to send a memo whose decision request appears only after several paragraphs of setup. Which revision fits the chapter best?",
+      "choices": [
+        "Lead with the decision request and regroup the detail under the reasons supporting it",
+        "Keep the order but shorten the background paragraphs",
+        "Add more charts so the manager can infer the point faster"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The memo improves when the destination appears first and the later detail has a visible job.",
+        "direct": "Choice A restores hierarchy by moving the governing point to the top and organizing the support beneath it.",
+        "competitive": "Make the ask visible and force the rest of the memo to answer to it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which condition is necessary for a pyramid to be real rather than cosmetic?",
+      "choices": [
+        "The writer uses headings and bullet points consistently",
+        "The top point truly summarizes grouped support that belongs together in a logical order",
+        "The conclusion appears on the first page no matter what"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The shape alone is not enough. The support has to fit and rise honestly to the top point.",
+        "direct": "Hierarchy requires summary, grouping, and order together. Headings alone do not pass the test.",
+        "competitive": "A tidy page is worthless if the support underneath it is a mixed pile."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Priya enters a thesis meeting by summarizing evidence in the order she found it. What is the chapter's best correction?",
+      "choices": [
+        "Keep the chronology but speak faster",
+        "Avoid any conclusion until every possible source has been discussed",
+        "State the working claim first and sort the evidence into supporting groups"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Avoiding any conclusion only extends the confusion. The advisor can help once the evidence is organized beneath a claim.",
+        "direct": "She needs structure, not more chronology. A working top line clarifies what each source is doing there.",
+        "competitive": "Stop narrating the search path and make the material rise into an argument."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does the chapter say about bottom-up thinking and top-down communication?",
+      "choices": [
+        "They are opposing philosophies and writers should choose one",
+        "Bottom-up discovery may produce the answer, but top-down delivery helps the reader receive it",
+        "Bottom-up thinking is only for beginners who cannot write clearly yet"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The writer may need to search upward before the reader can be guided downward through the result.",
+        "direct": "Discovery and delivery are separate phases with different purposes.",
+        "competitive": "Think upward backstage. Deliver downward onstage."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Jordan's slide deck is polished, but the vice president still has to ask for the overall status. What does that reveal?",
+      "choices": [
+        "The deck has support without a governing point above it",
+        "The charts need stronger visual design",
+        "The vice president should have read more carefully"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The vice president is not the problem. The detail may be strong, but the argument's destination is still hidden.",
+        "direct": "This is cosmetic completeness without hierarchy. The room sees pieces, not a claim they rise to.",
+        "competitive": "Pretty evidence is still weak if nobody can tell what it is supposed to prove."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's sharpest warning about answer-first structure?",
+      "choices": [
+        "It should be avoided in personal conversations",
+        "It only works in short documents",
+        "It can create the appearance of clarity when the grouping underneath it has not earned the top line"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A clean opening sentence cannot save support that is still vague, mixed, or unordered.",
+        "direct": "The failure mode is premature certainty. The surface becomes clear while the reasoning stays weak.",
+        "competitive": "A fast top line turns into a polished bluff when the structure under it is hollow."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a writer accepts that readers need a real hierarchy, what question naturally follows into the next chapter?",
+      "choices": [
+        "What internal relationships make grouped support stable enough to hold a top point?",
+        "How can headings be made more visually memorable?",
+        "How much background should always appear before any claim?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the writer sees why a hierarchy is needed, the next issue is what makes that hierarchy hold together inside.",
+        "direct": "The bridge forward is about substructure. Grouped support cannot simply sit together loosely.",
+        "competitive": "If the top line depends on the lower structure, the next move is to inspect the joints."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

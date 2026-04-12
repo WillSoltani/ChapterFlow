@@ -1,0 +1,168 @@
+{
+  "bookId": "playing-to-win",
+  "runId": "20260411-174127",
+  "lockedAt": "2026-04-11",
+  "selectionMode": "auto_locked_dominant_edition",
+  "sources": [
+    {
+      "id": "hbr_book_page",
+      "title": "Playing to Win: How Strategy Really Works",
+      "url": "https://hbr.org/books/playing-to-win",
+      "type": "official_publisher_page",
+      "role": "canonical publisher metadata, author confirmation, and official framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Used for title, authorship, publisher-family confirmation, and official positioning of the book as a practical strategy guide."
+    },
+    {
+      "id": "hbr_free_chapter_landing",
+      "title": "Download a FREE excerpt from Playing to Win",
+      "url": "https://hbr.org/chapters/playing-to-win",
+      "type": "official_authorized_preview_landing",
+      "role": "authorized excerpt landing page and official synopsis",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Used for preview existence, official synopsis language, and confirmation that the book foregrounds the five strategic choices and P&G cases."
+    },
+    {
+      "id": "google_books_preview",
+      "title": "Playing to Win: How Strategy Really Works - Google Books",
+      "url": "https://books.google.com/books/about/Playing_to_Win.html?id=a5Bcilcnjd0C",
+      "type": "authorized_metadata_preview",
+      "role": "authorized metadata, page count, and visible table of contents",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Confirms Harvard Business Review Press, 2013 publication, 272 pages, and the stable eight-chapter contents list."
+    },
+    {
+      "id": "oreilly_contents",
+      "title": "Contents - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Toc.html",
+      "type": "authorized_preview_contents",
+      "role": "chapter-order cross-check and appendix confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Used to cross-check the eight numbered chapters, introduction, conclusion, and appendixes."
+    },
+    {
+      "id": "oreilly_ch01",
+      "title": "One: Strategy Is Choice - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Chapter01.html",
+      "type": "authorized_preview_chapter",
+      "role": "authorized preview support for Chapter 1 and Olay turnaround framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Supports the Olay turnaround as the opening anchor and confirms that strategy is framed as a set of choices rather than a plan or vision."
+    },
+    {
+      "id": "oreilly_ch02",
+      "title": "Two: What Is Winning - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Chapter02.html",
+      "type": "authorized_preview_chapter",
+      "role": "authorized preview support for Chapter 2 winning aspiration logic",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Supports the distinction between mission and winning aspiration and names the play-to-win versus play-to-play contrast."
+    },
+    {
+      "id": "oreilly_ch04",
+      "title": "Four: How to Win - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Chapter04.html",
+      "type": "authorized_preview_chapter",
+      "role": "authorized preview support for Chapter 4 and the Glad case opening",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Supports the ForceFlex / Glad case as the entry point for the how-to-win discussion."
+    },
+    {
+      "id": "oreilly_ch06",
+      "title": "Six: Manage What Matters - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Chapter06.html",
+      "type": "authorized_preview_chapter",
+      "role": "authorized preview support for Chapter 6 management-systems logic",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Supports the chapter's claim that strategy fails without supporting systems, review processes, and measures."
+    },
+    {
+      "id": "oreilly_ch07",
+      "title": "Seven: Think Through Strategy - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Chapter07.html",
+      "type": "authorized_preview_chapter",
+      "role": "authorized preview support for strategy logic flow framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Supports the move from the five-question cascade into the practical question of where to start and how to generate possibilities."
+    },
+    {
+      "id": "oreilly_ch08",
+      "title": "Eight: Shorten Your Odds - Playing to Win",
+      "url": "https://www.oreilly.com/library/view/playing-to-win/9781422187401/Lafley_Chapter08.html",
+      "type": "authorized_preview_chapter",
+      "role": "authorized preview support for reverse engineering and uncertainty framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Supports the chapter's argument that strategy work should shorten odds rather than promise certainty."
+    },
+    {
+      "id": "mit_bookstore_metadata",
+      "title": "Playing to Win: How Strategy Really Works",
+      "url": "https://mitpressbookstore.mit.edu/book/9781422187395",
+      "type": "retail_metadata",
+      "role": "ISBN and publication-date confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-11",
+      "notes": "Confirms hardcover ISBN 9781422187395, February 5 2013 publication date, and 272-page count."
+    },
+    {
+      "id": "casecentre_catalog",
+      "title": "Playing to Win chapter listings - The Case Centre",
+      "url": "https://www.thecasecentre.org/search/results/?author_user_id=125773&term_1=",
+      "type": "chapter_catalog_metadata",
+      "role": "chapter-level listing cross-check across all numbered chapters",
+      "confidence": "medium",
+      "accessedAt": "2026-04-11",
+      "notes": "Used to confirm that Chapters 1-8 exist as discrete chapter units in the published book and to cross-check chapter titles."
+    },
+    {
+      "id": "hbr_strategy_toolkit",
+      "title": "Playing to Win Strategy Toolkit",
+      "url": "https://hbr.org/store/landing/playing-to-win-strategy-toolkit",
+      "type": "official_toolkit_page",
+      "role": "official support for the continued practical use of the five-choice framework",
+      "confidence": "medium",
+      "accessedAt": "2026-04-11",
+      "notes": "Confirms the framework is operationalized around the five components and supports later chapters on application, management systems, and process."
+    },
+    {
+      "id": "hbr_science_strategy",
+      "title": "Bringing Science to the Art of Strategy",
+      "url": "https://hbr.org/2012/09/bringing-science-to-the-art-of-strategy",
+      "type": "author_related_primary_article",
+      "role": "primary adjacent source for Chapter 7-8 process logic",
+      "confidence": "medium",
+      "accessedAt": "2026-04-11",
+      "notes": "Used narrowly to support the what-would-have-to-be-true logic and hypothesis-testing posture described by the authors in adjacent strategy work."
+    },
+    {
+      "id": "pdma_review",
+      "title": "Book Review: Playing to Win",
+      "url": "https://www.pdma.org/general/custom.asp?page=review_playing_to_wi",
+      "type": "secondary_review",
+      "role": "secondary chapter-specific interpretation and chapter 1 emphasis cross-check",
+      "confidence": "medium",
+      "accessedAt": "2026-04-11",
+      "notes": "Useful for chapter-level emphasis on strategy as choice and the need to decide what not to do."
+    },
+    {
+      "id": "howtoes_summary",
+      "title": "Playing to Win - Complete Book Summary & All Key Ideas",
+      "url": "https://howtoes.blog/2024/05/17/playing-to-win-book-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-by-chapter secondary support where authorized preview text is thin",
+      "confidence": "medium",
+      "accessedAt": "2026-04-11",
+      "notes": "Used only as a narrow secondary cross-check for chapter-level examples, named cases, and thematic emphasis; all claims remain constrained by the frozen authorized bundle."
+    }
+  ]
+}

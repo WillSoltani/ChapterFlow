@@ -1,0 +1,26 @@
+# Run Log
+
+- 2026-04-11T21:20:00Z Phase 0 started. Manifest read and confirmed.
+- 2026-04-11T21:25:00Z Phase 1 complete. Edition ambiguity resolved with user. Locked to Harvard Business Review Press 2013 reprint and froze source bundle.
+- 2026-04-11T21:32:00Z Phase 2 complete. Memory files and role cards written.
+- 2026-04-11T21:34:00Z Phase 3 complete. Whole-book skeleton written.
+- 2026-04-11T21:42:00Z Phase 4/5 pre-writer artifacts complete for Chapters 1 and 2.
+- 2026-04-11T21:59:00Z Chapter 1 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T22:10:00Z Chapter 2 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T22:10:00Z Baseline quality report written for Chapters 1 and 2. Wave 1 complete.
+- 2026-04-11T22:28:00Z Chapter 3 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T22:36:00Z Chapter 4 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T22:36:00Z Wave 2 complete. Repo artifact guard re-run after Chapter 4 seal.
+- 2026-04-11T22:52:00Z Chapter 5 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T23:12:00Z Chapter 6 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T23:12:00Z Wave 3 complete. Repo artifact guard re-run after Chapter 6 seal.
+- 2026-04-11T23:34:00Z Chapter 7 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T23:46:00Z Chapter 8 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-11T23:46:00Z Wave 4 complete. Repo artifact guard re-run after Chapter 8 seal.
+- 2026-04-12T00:05:00Z Chapter 9 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-12T00:18:00Z Chapter 10 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-12T00:19:00Z Wave 5 complete. Repo artifact guard re-run after Chapter 10 seal.
+- 2026-04-12T00:31:00Z Chapter 11 writer, editor, critic, converter, quiz, validator, review wrapper, and hash seal complete. Chapter gate passed.
+- 2026-04-12T00:34:00Z Continuity repair applied. File-byte chapter seals were corrected to canonical validated-chapter JSON hashes and release validation was re-run.
+- 2026-04-12T00:35:00Z Release assembled from validated chapters only. Release guard passed.
+- 2026-04-12T00:35:00Z Final repo artifact guard passed. Run complete.

@@ -1,0 +1,39 @@
+{
+  "title": "An Unconventional Conglomerateur",
+  "heading": "Henry Singleton and Teledyne",
+  "approxWords": 340,
+  "properNouns": [
+    "Henry Singleton",
+    "Teledyne",
+    "Wall Street Journal",
+    "John Maynard Keynes",
+    "Warren Buffett",
+    "Thorndike"
+  ],
+  "repeatedTerms": [
+    "per-share value",
+    "institutional imperative",
+    "acquisitions",
+    "repurchases",
+    "valuation",
+    "capital allocation"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "src-oreilly-contents",
+      "use": "chapter title and pairing support"
+    },
+    {
+      "sourceId": "src-google-books",
+      "use": "metadata support"
+    },
+    {
+      "sourceId": "src-oreilly-ch02-preview",
+      "use": "authorized opening support and exact-quote support"
+    },
+    {
+      "sourceId": "src-ssrn-singleton",
+      "use": "chapter arc support for acquisitions, repurchases, per-share value, and institutional imperative"
+    }
+  ]
+}

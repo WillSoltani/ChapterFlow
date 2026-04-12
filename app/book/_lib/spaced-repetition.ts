@@ -1,5 +1,3 @@
-"use client";
-
 // ─── Spaced Repetition System ────────────────────────────────────────────────
 // Quiz mistakes and chapter review cards enter a review queue at expanding intervals:
 // Day 1 → Day 3 → Day 7 → Day 14 → Day 30 → Mastered

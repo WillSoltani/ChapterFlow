@@ -2,9 +2,9 @@
 
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
-  BOOK_PACKAGES,
-  getBookPackagePresentation,
-} from "@/app/book/data/bookPackages";
+  BOOKS_CATALOG_METADATA,
+  type BookCatalogMetadata,
+} from "@/app/book/data/booksCatalog";
 
 export type Category =
   | "Psychology"
@@ -711,41 +711,35 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
   },
 };
 
-function buildLibraryBookFromPackage(
-  pkg: (typeof BOOK_PACKAGES)[number]
+function buildLibraryBookFromMetadata(
+  entry: BookCatalogMetadata,
 ): LibraryBook {
-  const bookId = pkg.book.bookId;
-  const presentation = getBookPackagePresentation(bookId);
-  const category = inferLibraryCategory(pkg.book.categories);
+  const bookId = entry.id;
+  const category = inferLibraryCategory(entry.categories);
   const overrides = GENERATED_LIBRARY_BOOK_OVERRIDES[bookId] ?? {};
-  const chapters = pkg.chapters.length;
-  const estimatedReadingTimeMinutes = pkg.chapters.reduce(
-    (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
-    0
-  );
 
   return {
     id: bookId,
-    title: pkg.book.title,
-    author: pkg.book.author,
+    title: entry.title,
+    author: entry.author,
     authorCredentials: overrides.authorCredentials,
-    coverImage: overrides.coverImage ?? presentation.coverImage,
+    coverImage: overrides.coverImage ?? entry.coverImage,
     coverGradient: overrides.coverGradient ?? inferCoverGradient(bookId),
     hook:
       overrides.hook ??
-      presentation.synopsis.split(".")[0]?.trim() ??
+      entry.synopsis.split(".")[0]?.trim() ??
       "A focused, chapter-based learning experience with practical examples and quiz gates.",
-    description: overrides.description ?? presentation.synopsis,
+    description: overrides.description ?? entry.synopsis,
     whatYoullLearn:
       overrides.whatYoullLearn ??
-      buildLearningPoints(pkg.book.tags, pkg.book.categories),
+      buildLearningPoints(entry.tags, entry.categories),
     bestFor: overrides.bestFor ?? inferBestFor(category),
     category: overrides.category ?? category,
     difficulty:
       (overrides.difficulty as Difficulty | undefined) ??
-      (presentation.difficulty.toLowerCase() as Difficulty),
-    totalChapters: chapters,
-    estimatedReadingTimeMinutes,
+      (entry.difficulty.toLowerCase() as Difficulty),
+    totalChapters: entry.chapterCount,
+    estimatedReadingTimeMinutes: entry.estimatedMinutes,
     readerCount: overrides.readerCount ?? inferReaderCount(bookId),
     completionRate: overrides.completionRate ?? inferCompletionRate(bookId),
     isPro: overrides.isPro ?? true,
@@ -762,28 +756,14 @@ const BASE_LIBRARY_BOOKS: LibraryBook[] = [
 
 const BASE_LIBRARY_BOOK_IDS = new Set(BASE_LIBRARY_BOOKS.map((book) => book.id));
 
-const GENERATED_LIBRARY_BOOKS: LibraryBook[] = BOOK_PACKAGES
-  .filter((pkg) => !BASE_LIBRARY_BOOK_IDS.has(pkg.book.bookId))
-  .map((pkg) => buildLibraryBookFromPackage(pkg));
+const GENERATED_LIBRARY_BOOKS: LibraryBook[] = BOOKS_CATALOG_METADATA
+  .filter((entry) => !BASE_LIBRARY_BOOK_IDS.has(entry.id))
+  .map((entry) => buildLibraryBookFromMetadata(entry));
 
 export const MOCK_BOOKS: LibraryBook[] = [
   ...BASE_LIBRARY_BOOKS,
   ...GENERATED_LIBRARY_BOOKS,
 ];
-
-// Sync hardcoded values with authoritative book package data
-for (const book of MOCK_BOOKS) {
-  const pkg = BOOK_PACKAGES.find((p) => p.book.bookId === book.id);
-  if (pkg) {
-    const pres = getBookPackagePresentation(book.id);
-    book.totalChapters = pkg.chapters.length;
-    book.estimatedReadingTimeMinutes = pkg.chapters.reduce(
-      (sum, ch) => sum + Math.max(ch.readingTimeMinutes, 1),
-      0,
-    );
-    book.difficulty = pres.difficulty.toLowerCase() as Difficulty;
-  }
-}
 
 // ── Curated section config (NO duplication across sections) ──
 export interface CuratedSectionConfig {

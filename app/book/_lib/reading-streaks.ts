@@ -1,5 +1,3 @@
-"use client";
-
 const STORAGE_KEY = "book-accelerator:streak:v1";
 
 export type StreakState = {

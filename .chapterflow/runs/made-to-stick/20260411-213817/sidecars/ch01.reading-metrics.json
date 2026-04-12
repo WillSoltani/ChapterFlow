@@ -1,0 +1,24 @@
+{
+  "chapterId": "ch01-simple",
+  "number": 1,
+  "title": "Simple",
+  "readingTimeMinutes": 9,
+  "wordCounts": {
+    "easy": 243,
+    "medium": 683,
+    "hard": 990
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 6,
+  "quizQuestionCount": 10,
+  "sourceSidecar": ".chapterflow/runs/made-to-stick/20260411-213817/sidecars/source/ch01.source.json",
+  "sourceRichness": "high",
+  "notes": [
+    "validated in chapter_gate mode",
+    "quotes kept paraphrase-first except frozen heading support"
+  ]
+}

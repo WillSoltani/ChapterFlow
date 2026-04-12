@@ -1,0 +1,26 @@
+{
+  "bookId": "made-to-stick",
+  "runId": "20260411-213817",
+  "decisionDate": "2026-04-11",
+  "selectionMode": "auto_locked",
+  "userQuestionRequired": false,
+  "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+  "authors": [
+    "Chip Heath",
+    "Dan Heath"
+  ],
+  "language": "English",
+  "publisher": "Random House Publishing Group",
+  "imprintFamily": "Random House",
+  "publishedYear": 2007,
+  "formatFamily": "trade_hardcover_ebook_paperback",
+  "chapterRange": "1-6",
+  "translation": null,
+  "ambiguityAssessment": {
+    "materialEditionAmbiguity": false,
+    "reason": "The dominant English-language edition family preserves the same standard six-chapter SUCCESs structure plus introduction and epilogue. No translation or revised edition surfaced that would materially change chapter order or chapter-level meaning for this run."
+  },
+  "sourceText": ".chapterflow/runs/made-to-stick/20260411-213817/source-freeze/book-source.txt",
+  "sourceProvenance": "Frozen web bundle from Google Books authorized preview, official Heath Brothers resource locator, and secondary chapter analyses from SuperSummary with a low-weight chapter-sequence cross-check.",
+  "rationale": "Auto-locked the canonical 2007 Random House edition family because it is the dominant English edition surfaced by the authorized preview and because chapter-level content does not materially vary across the standard trade formats."
+}

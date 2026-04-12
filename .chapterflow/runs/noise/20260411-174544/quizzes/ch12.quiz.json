@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch12-q01",
+      "prompt": "What concrete process lever does this chapter focus on?",
+      "choices": [
+        "Sequencing information",
+        "Replacing judges with rules",
+        "Removing all uncertainty from evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter focuses on the order in which information arrives.",
+        "direct": "Correct. Sequencing information is the process lever brought into view here.",
+        "competitive": "This chapter puts first exposure on the board."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q02",
+      "prompt": "Why does information order matter in this chapter?",
+      "choices": [
+        "Because what comes first can shape how later information is read",
+        "Because evidence never matters once the first clue appears",
+        "Because order is only a matter of visual presentation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says first exposure can frame later interpretation.",
+        "direct": "Order matters because earlier information can tilt the posture into which later evidence arrives.",
+        "competitive": "The opening cue can start scripting the rest."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q03",
+      "prompt": "Why does the chapter use forensic science?",
+      "choices": [
+        "To show a vivid high-stakes case where process order matters",
+        "To claim forensic science is the only field with order effects",
+        "To introduce detailed technical lab protocols"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The setting makes the order effect easier to take seriously.",
+        "direct": "The chapter uses forensic science as a vivid consequential case, not as a claim that the lesson belongs there alone.",
+        "competitive": "The stakes make the process mistake harder to shrug off."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q04",
+      "prompt": "Elena sees a highlighted summary on top of a file before the rest. What chapter lesson fits best?",
+      "choices": [
+        "The summary cannot matter if the full file is still present",
+        "The first cue may already be shaping how later details are judged",
+        "The only solution is to eliminate human review entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter says early exposure can frame how later evidence lands.",
+        "direct": "The right move is to treat the summary's position as part of the judgment design problem.",
+        "competitive": "If the opening cue tilts the field, the rest enters a slanted game."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q05",
+      "prompt": "Why does Priya's reordered school file stack matter?",
+      "choices": [
+        "Because the same information can be read differently when it arrives in a different order",
+        "Because order automatically removes all bias",
+        "Because school settings do not require judgment once files are organized"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter argues that the same record can feel different when sequence changes.",
+        "direct": "The point is that order can change interpretation even when the information set is unchanged.",
+        "competitive": "The stack means something different when the doorway changes."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q06",
+      "prompt": "How does the chapter distinguish sequence from content?",
+      "choices": [
+        "Sequence changes what the evidence is",
+        "Sequence affects how evidence is interpreted even when the evidence set stays the same",
+        "Sequence matters only when evidence is weak"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter cares about the interpretive effect of order, not only about the evidence content itself.",
+        "direct": "Sequence is a design issue because it alters the posture into which later evidence arrives.",
+        "competitive": "The facts can stay still while the doorway tilts the read."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q07",
+      "prompt": "What does first exposure do in the chapter's mechanism?",
+      "choices": [
+        "It can prime what later evidence seems to confirm or resist",
+        "It guarantees the first impression can never change",
+        "It makes later evidence irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says early information can frame later interpretation.",
+        "direct": "First exposure matters because it helps determine what later evidence feels like it is supporting or challenging.",
+        "competitive": "The opening cue teaches the rest what kind of story it is entering."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q08",
+      "prompt": "What process-design lesson does the chapter push?",
+      "choices": [
+        "Treat order as part of judgment hygiene rather than as formatting",
+        "Ignore order because evidence speaks for itself",
+        "Assume one better judge removes the need for sequencing control"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter moves sequence into the process-design category.",
+        "direct": "It argues that order should be treated as part of the machinery of judgment quality.",
+        "competitive": "Stop calling it layout if it is steering the call."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q09",
+      "prompt": "Why does the chapter resist treating sequencing as a total fix?",
+      "choices": [
+        "Because it reduces one source of distortion without solving every judgment problem",
+        "Because sequence never matters much in practice",
+        "Because order should be left to chance to avoid overdesign"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the claim narrow and practical.",
+        "direct": "Its point is that better order design can reduce one avoidable source of drift without curing all bias and noise.",
+        "competitive": "One lever matters, but it is not the whole machine."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch12-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If process order matters here, the next question is how inputs are selected and aggregated in forecasting",
+        "The next chapter abandons process design entirely",
+        "The next chapter proves sequence matters only in forensic science"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move widens from order to the broader design of inputs and their combination.",
+        "direct": "The bridge works because forecasting expands the process question from sequence to selection and aggregation.",
+        "competitive": "If order matters, the whole intake system is next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "e02511dc19dd9bf7a4a056efc435456484e75807adf3dd727f85a1e74701b4bf",
+    "ch02": "893e230198f4d735038ce81d4a394b095d6b6ed636afd834a2c312eaaf5af46a",
+    "ch03": "803b5b73f6af58b22903202eef10302f8f1ff90ba4dd998caf9471ef430dc535",
+    "ch04": "6617e1dfb837713195ba763b24c1a696c823c2058d78900eaba6b11a395bb1f8",
+    "ch05": "dc46ae7d2a381ed9e236289735f6f120702881f36e396a75360d6254862a9f27",
+    "ch06": "a4aee3c0d424939481119d23e070858f227a89b292c0daa159b18cb7062bc272",
+    "ch07": "53a7104c6c5875a5087e11435ca7f403a5f9a7a01703122366148361308e028a",
+    "ch08": "c4b51a58f9ed675237d04b25c5bece00545129fb1901a7aee418428c7a028990",
+    "ch09": "75c0fda454a014fdf21b8f5aef944173fbb673d042e8d0929335fb8f8e6f2f35",
+    "ch10": "e6c43cdc9232868fd4a98b5f134ee812044a789dc3ed80f8238d5ff6c1737fc8"
+  },
+  "baselineQuality": {
+    "establishedThroughChapter": 2,
+    "chapters": {
+      "ch01": {
+        "criticScore": 11,
+        "validatedChapterSha256": "e6bf97fb962c00fc32c5ff5d74ed9111de62bd0f084c4b465ed29fd5219e9041"
+      },
+      "ch02": {
+        "criticScore": 10,
+        "validatedChapterSha256": "92354f265f76f41f8bc6208dbcaeafb5a6a18f2da9ce62688273a78ecd604a61"
+      }
+    },
+    "qualityDecayStopDelta": 1.5,
+    "reportPath": ".chapterflow/runs/competing-against-luck/20260411-174341/reports/baseline-quality.md"
+  }
+}

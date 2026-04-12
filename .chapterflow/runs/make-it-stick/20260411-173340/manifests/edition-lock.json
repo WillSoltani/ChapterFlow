@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "chapterflow.v13.edition-lock",
+  "bookId": "make-it-stick",
+  "runId": "20260411-173340",
+  "lockedAt": "2026-04-11T14:36:59-03:00",
+  "title": "Make It Stick",
+  "subtitle": "The Science of Successful Learning",
+  "author": "Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel",
+  "language": "English",
+  "selectedEdition": {
+    "publisher": "Belknap Press of Harvard University Press",
+    "publishedYear": 2014,
+    "format": "hardcover_or_ebook_canonical_text",
+    "isbn13": "9780674729018",
+    "ebookIsbn13": "9780674419377",
+    "openLibraryEditionId": "OL26459567M"
+  },
+  "dominantChapterMap": {
+    "count": 8,
+    "entries": [
+      "Learning Is Misunderstood",
+      "To Learn, Retrieve",
+      "Mix Up Your Practice",
+      "Embrace Difficulties",
+      "Avoid Illusions of Knowing",
+      "Get Beyond Learning Styles",
+      "Increase Your Abilities",
+      "Make It Stick"
+    ]
+  },
+  "decision": "auto_locked",
+  "ambiguityAssessment": {
+    "materialEditionAmbiguity": false,
+    "reason": "The Google Books preview, De Gruyter/Harvard title page, and Open Library record all point to the same 2014 English Belknap/Harvard edition and the same eight-chapter map. No translation or revised-edition ambiguity materially changes chapter structure."
+  },
+  "quotePolicy": {
+    "exactQuotesAllowedOnlyWhenFrozenSupportExists": true,
+    "defaultMode": "paraphrase_first"
+  }
+}

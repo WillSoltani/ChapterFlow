@@ -8,6 +8,7 @@ Read:
 - PACK_ROOT/rules/readability-rules.md
 - PACK_ROOT/rules/hard-depth-rules.md
 - PACK_ROOT/rules/chapter-quality-gate.md
+- continuity/concept-graph.json (if it exists)
 - the chapter brief
 - the chapter outline
 - the edited draft
@@ -19,6 +20,7 @@ Job:
 - score the prose before structure
 - locate the weakest paragraphs
 - identify repetition, meta-distance, weak hook/bridge, thin anchors, and hard-edge loss
+- if concept-graph.json exists, verify the draft does not reference concepts that are not yet introduced by a prior chapter (prerequisite violation)
 - request only local fixes where possible
 
 Do not rewrite the whole chapter in the report.

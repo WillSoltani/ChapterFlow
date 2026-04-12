@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What rule does Chapter 6 give for assigning disruptive responsibility?",
+      "choices": [
+        "Put the effort with the organization whose customers need the disruptive technology",
+        "Always keep the effort in the largest incumbent unit",
+        "Move every disruptive project into an outside company immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says responsibility should follow customer need.",
+        "direct": "Customer-fit placement is the chapter's central rule.",
+        "competitive": "Send the work where demand is alive."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Why does customer pull matter so much in this chapter?",
+      "choices": [
+        "Because customer demand shapes what an organization seriously prioritizes",
+        "Because executive speeches stop mattering completely",
+        "Because disruptive technologies have no technical challenges"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Organizations keep following the customers that define their success.",
+        "direct": "Budgets and attention bend toward the demand system the unit already serves.",
+        "competitive": "The paying audience writes the urgency list."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Why can the wrong organizational home damage a disruptive effort?",
+      "choices": [
+        "Because the unit may rationally keep serving different customers instead",
+        "Because all incumbent units are badly managed",
+        "Because structure never matters in innovation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The unit can neglect the effort simply because its customers do not need it enough.",
+        "direct": "Wrong-home ownership creates rational neglect, not necessarily open sabotage.",
+        "competitive": "The project gets starved by a smart unit serving the wrong people."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Elena's pilot sits in the premium unit, but that unit's customers do not want the disruptive offering. What best fits Chapter 6?",
+      "choices": [
+        "Keep the project there because the premium unit has the most prestige",
+        "Move responsibility toward the group whose customers would actually need the offering",
+        "Cancel the effort because it lacks mainstream pull"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ownership should go where customer need gives the effort a real reason to matter.",
+        "direct": "The chapter says placement should follow live demand, not incumbent status.",
+        "competitive": "Stop letting the wrong customers run the case."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "What does Chapter 6 say about executive support?",
+      "choices": [
+        "It solves the ownership problem by itself",
+        "It matters, but it cannot fully override the priorities created by the unit's customer base",
+        "It should be ignored whenever a project is disruptive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Leaders can support the project, but the unit still follows the customers that justify its work.",
+        "direct": "Executive intention has limits when customer pull keeps shaping the organization's priorities.",
+        "competitive": "A blessing from above does not silence the live queue."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "What is a misreading of Chapter 6?",
+      "choices": [
+        "Every disruptive effort must become a fully separate company immediately",
+        "The wrong home can create rational neglect",
+        "Autonomy matters when it changes which customers define success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's rule is narrower than that. It is about customer-fit placement.",
+        "direct": "Chapter 6 does not turn separation into a universal command.",
+        "competitive": "This is not spin-off theater for everything."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "In a school workshop, a beginner tool is owned by the advanced elective team even though beginners use it daily. What should the class reconsider?",
+      "choices": [
+        "Whether ownership should follow the group whose users actually need the tool",
+        "Whether beginners should stop using the tool",
+        "Whether advanced students should be banned from tool decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The right home is decided by need, not status alone.",
+        "direct": "Chapter 6 asks who the real customer is before deciding who should own the work.",
+        "competitive": "Let demand, not prestige, choose the judges."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Why does Priya's side project keep getting buried in the main backlog?",
+      "choices": [
+        "Because the established unit's customers barely notice it, so other work keeps scoring higher",
+        "Because side projects never matter strategically",
+        "Because smaller groups are always less competent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The owning unit keeps serving the customers who matter most to it right now.",
+        "direct": "The project stalls because it sits inside the wrong customer logic.",
+        "competitive": "The queue keeps voting for other work."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "Why is Chapter 6 more unsettling than a simple call to 'support innovation'?",
+      "choices": [
+        "Because it shows that a competent organization can still starve a disruptive effort when the wrong customers define success",
+        "Because it argues that customers never matter",
+        "Because it says organization charts are the only thing that matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is deeper than attitude. The wrong home can produce neglect even with capable managers.",
+        "direct": "Rational underinvestment can emerge from structural customer misfit rather than obvious resistance.",
+        "competitive": "Good process can still suffocate the future if the wrong demand system rules."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "If Chapter 6 fixes the ownership problem, what question does Chapter 7 naturally open next?",
+      "choices": [
+        "Whether the owning organization is the right size for the market it serves",
+        "Whether customers should be ignored after ownership changes",
+        "Whether every future chapter can now skip organizational design"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the effort has the right home, managers still have to ask whether that home can live on the market's scale.",
+        "direct": "The next issue is market-size fit, not ownership alone.",
+        "competitive": "After the right address comes the scale test."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

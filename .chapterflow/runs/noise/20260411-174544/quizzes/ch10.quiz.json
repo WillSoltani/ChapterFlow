@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What new improvement lever does this chapter bring into view?",
+      "choices": [
+        "Better judges and better judging conditions",
+        "Abolishing all judgment and replacing it with rules",
+        "Treating system design as the only meaningful factor"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter says stronger judgments depend partly on the people doing the judging and the conditions around them.",
+        "direct": "Correct. Judge quality becomes one real lever for better judgment here.",
+        "competitive": "The readers and the room finally come under the light."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "Why does judge quality matter in this chapter?",
+      "choices": [
+        "Because the people making judgments help shape how steady those judgments are",
+        "Because systems never matter once good judges are present",
+        "Because better judges guarantee perfect outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter adds the people and their conditions to the improvement picture.",
+        "direct": "Judge quality matters because the same system can still yield weaker or stronger readings depending on the judges inside it.",
+        "competitive": "The same map can still produce bad readings if the readers are shaky."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "What does the chapter mean by better judges?",
+      "choices": [
+        "Perfect or flawless people",
+        "Stronger judges inside real limits and conditions",
+        "People who no longer need systems or support"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Better judges are not perfect judges; they are stronger judges working inside real conditions and limits.",
+        "direct": "The chapter rejects flawless-individual fantasies and keeps better judges practical.",
+        "competitive": "No miracle-worker theory is being smuggled in here."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "Elena sees two hiring assessors use the same rubric but produce very different notes. What chapter lesson fits best?",
+      "choices": [
+        "The rubric alone explains everything important",
+        "Judge quality and judging conditions still matter inside the same system",
+        "The only answer is to eliminate human judgment entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The same system can still yield different quality because the judges and their conditions differ.",
+        "direct": "The chapter says better judgments require attention to the human side alongside the shared structure.",
+        "competitive": "If the same map yields different readings, the readers belong on the board."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "Priya hears uneven standards in an admissions room. Why is that important here?",
+      "choices": [
+        "Because reader quality and room conditions can change the steadiness of judgment",
+        "Because school panels never need structure again",
+        "Because one room automatically proves all systems fail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats the readers and the conditions around them as part of the improvement problem.",
+        "direct": "Uneven standards in the room show that human quality and judging conditions matter within the same broader process.",
+        "competitive": "If the room sounds uneven, the human side is already leaking into the results."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "How does this chapter describe the relationship between systems and judges?",
+      "choices": [
+        "Systems replace the need for good judges",
+        "Judge quality matters alongside systems rather than instead of them",
+        "Only judges matter once noise is visible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps both levers in view at once.",
+        "direct": "It treats judge quality as a complement to system design, not a substitute for it.",
+        "competitive": "The answer is not structure alone or readers alone."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "Why do judging conditions matter as much as judge quality here?",
+      "choices": [
+        "Because stronger judges still need settings that support steadier readings",
+        "Because conditions make judge quality irrelevant",
+        "Because a quiet room automatically creates perfect judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter includes the room, timing, and context as part of the human side of judgment.",
+        "direct": "Judging conditions matter because they help or weaken what judges can do inside the system.",
+        "competitive": "A strong reader in a weak setup still pays for the setup."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "What improvement move does the chapter make more concrete?",
+      "choices": [
+        "Treating who is judging and how they are judging as part of the repair plan",
+        "Replacing every judgment with a fixed formula immediately",
+        "Assuming better intentions are enough by themselves"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter turns abstract improvement into questions about judges and conditions.",
+        "direct": "It makes the human-side lever part of practical design instead of leaving it vague.",
+        "competitive": "Repair gets sharper when the readers and the room enter the plan."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "Why does the chapter resist relying on talent alone?",
+      "choices": [
+        "Because hero-judge thinking ignores limits, conditions, and the continuing role of systems",
+        "Because talented judges never exist at all",
+        "Because improvement should ignore the human side completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter rejects hero stories because they blur the real interaction between judges, conditions, and systems.",
+        "direct": "Talent alone is too crude because the chapter keeps judge quality practical, limited, and tied to broader design.",
+        "competitive": "Hero worship would turn a real lever into a lazy myth."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once judges matter more, the next question is how to help them judge better through decision hygiene",
+        "The next chapter abandons the human side and returns to complaint",
+        "The next chapter proves systems are irrelevant forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Once the judges come into view, the next move is practical discipline for steadier judgment.",
+        "direct": "The bridge works because decision hygiene becomes the concrete continuation of taking judge quality seriously.",
+        "competitive": "If the readers matter, the next step is building method around them."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

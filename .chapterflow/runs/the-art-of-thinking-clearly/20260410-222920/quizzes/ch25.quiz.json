@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch25-q01",
+      "prompt": "What is the core mistake in groupthink?",
+      "choices": [
+        "Treating silence or smooth alignment as proof of real consensus",
+        "Assuming every disagreement improves a decision",
+        "Believing individuals never make mistakes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The group is giving too much meaning to quiet agreement.",
+        "direct": "Correct. Silence is being mistaken for tested consensus rather than recognized as possibly pressured.",
+        "competitive": "That is the trap. The room is cashing calm as truth."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch25-q02",
+      "prompt": "Why can groupthink spread so easily?",
+      "choices": [
+        "Because dissent can feel socially costly while staying quiet feels safer",
+        "Because groups always prefer bad decisions",
+        "Because conflict automatically destroys teamwork"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Objection often feels riskier than silence.",
+        "direct": "Exactly. People are weighing belonging, status, and friction costs along with the decision itself.",
+        "competitive": "That is it. Going along is often cheaper than pushing back."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch25-q03",
+      "prompt": "Which situation best fits groupthink?",
+      "choices": [
+        "A meeting ends with no objections even though several people privately have concerns",
+        "A team debates openly before deciding",
+        "A student revises an idea after receiving direct criticism"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Private doubt is being hidden behind outward calm.",
+        "direct": "Correct. The group's apparent certainty is being inflated by suppressed dissent.",
+        "competitive": "That is the move. The room looks aligned because the objections stayed underground."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch25-q04",
+      "prompt": "Nina notices her team approved a launch unusually quickly. What should she test first?",
+      "choices": [
+        "Whether the plan sounds exciting enough to justify speed",
+        "Whether key objections stayed unspoken because dissent felt risky",
+        "Whether the fastest decision is usually the strongest one"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. She should check whether silence reflected confidence or pressure.",
+        "direct": "That is the key. Quick alignment is not trustworthy until the room's dissent conditions have been examined.",
+        "competitive": "Exactly. Make the launch survive the pushback the room may have taxed out."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch25-q05",
+      "prompt": "Omar's class group keeps the first proposal because no one wants to challenge the strongest voice. What is most likely happening?",
+      "choices": [
+        "Real consensus formed immediately because the first idea was obviously correct",
+        "Belonging pressure is suppressing dissent and creating false agreement",
+        "The group is wisely avoiding unnecessary complexity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The group's quiet may reflect social cost more than true agreement.",
+        "direct": "The likely distortion is that objection feels too expensive, so the room is sounding more certain than it really is.",
+        "competitive": "That is the bias. The loudest voice is renting fake consensus from the room."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch25-q06",
+      "prompt": "What is the cleanest practical correction before a group closes a decision?",
+      "choices": [
+        "Assume silence means support unless someone interrupts",
+        "Invite objections explicitly and protect disagreement before treating the consensus as real",
+        "Push for more speed so the group does not overthink"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The group needs a safe path for concerns to surface.",
+        "direct": "That correction works because it tests whether calm survives once dissent is made socially possible.",
+        "competitive": "Exactly. Give pushback cover before you let the room stamp the call."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch25-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Groups should always stay in conflict to avoid mistakes",
+        "Cohesion can help, but calm alignment should not be trusted until dissent is safe",
+        "Fast consensus proves a mature group culture"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter warns against false consensus, not against all teamwork.",
+        "direct": "That keeps the boundary intact: unity can matter, but it cannot certify itself when objections were not protected.",
+        "competitive": "Exactly. Teamwork can stay, but calm does not get automatic truth status."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch25-q08",
+      "prompt": "Why can a quiet room still be risky?",
+      "choices": [
+        "Because silence may reflect self-censorship rather than confidence",
+        "Because noise is required for intelligence",
+        "Because groups only learn through conflict"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Quiet does not tell you why people are quiet.",
+        "direct": "The danger is that apparent harmony can be produced by pressure, hierarchy, or politeness instead of real agreement.",
+        "competitive": "That is the issue. The silence may be bought, not earned."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch25-q09",
+      "prompt": "A committee looks fully aligned, but the chair wants to test whether the consensus is real. Which earlier chapter pairs best with groupthink here?",
+      "choices": [
+        "Liking Bias, because affection always causes group decisions",
+        "Paradox of Choice, because too many options always remove dissent",
+        "Coincidence, because visible calm may be overinterpreted just as a striking overlap can be overinterpreted"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn against giving too much meaning to a surface pattern before the hidden background is checked.",
+        "direct": "This pairing works because each bias promotes an outward signal into a stronger conclusion than the underlying support has earned.",
+        "competitive": "That is the strongest link. A smooth room or a vivid pattern can both fake more certainty than they deserve."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch25-q10",
+      "prompt": "A sound group consensus survives which test?",
+      "choices": [
+        "It still stands after dissent is made safe and objections get a real chance to surface",
+        "It formed quickly enough to avoid discomfort",
+        "It keeps the room emotionally calm"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Real agreement should remain strong even after concerns are invited out.",
+        "direct": "That is the decisive test because it shows whether the consensus depends on merit or on the suppression of dissent.",
+        "competitive": "Exactly. If the agreement folds when pushback gets cover, it was never real consensus."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "chapterflow-v13-edition-lock",
+  "bookId": "never-eat-alone",
+  "runId": "20260411-214036",
+  "lockedAt": "2026-04-11T21:40:36-03:00",
+  "decisionMode": "auto_locked",
+  "userQuestionNeeded": false,
+  "workEdition": {
+    "title": "Never Eat Alone, Expanded and Updated: And Other Secrets to Success, One Relationship at a Time",
+    "authors": [
+      "Keith Ferrazzi",
+      "Tahl Raz"
+    ],
+    "publisher": "Crown",
+    "imprint": "Crown Currency / Penguin Random House",
+    "publishedYear": 2014,
+    "isbn10": "0385346654",
+    "isbn13": "9780385346658",
+    "editionNotes": "Expanded and updated current in-print English edition with digital-age material and the fullest authorized support located in the freeze window.",
+    "sourceText": ".chapterflow/runs/never-eat-alone/20260411-214036/source-freeze/book-source.md",
+    "sourceProvenance": "Authorized source bundle centered on Penguin Random House Higher Education and Google Books, with chapter-map cross-checks recorded in manifests/source-ledger.json."
+  },
+  "originalWork": {
+    "publishedYear": 2005,
+    "notes": "The original edition exists and remains bibliographically relevant, but the current expanded-and-updated edition is the dominant work edition for this run."
+  },
+  "whyLocked": [
+    "No translation ambiguity exists for this English-language business title.",
+    "The 2014 Crown expanded-and-updated edition is the strongest officially supported edition available through current publisher and authorized preview sources.",
+    "The current edition materially adds digital-age content and the current chapter map, so using the official current in-print edition avoids mixing chapter structures across edition families.",
+    "The accessible authorized sources align on the expanded-edition metadata and support the same numbered chapter sequence, so no user choice is required."
+  ],
+  "materialAmbiguity": {
+    "exists": false,
+    "notes": "The earlier 2005 edition differs, but the run can safely auto-lock the current 2014 expanded edition because it is the dominant officially supported version and the user gave no conflicting edition preference."
+  }
+}

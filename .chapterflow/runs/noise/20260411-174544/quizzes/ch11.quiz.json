@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "What practical remedy family does this chapter introduce?",
+      "choices": [
+        "Debiasing and decision hygiene",
+        "Perfect judges and fixed rules",
+        "Removing all uncertainty from judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter turns toward debiasing and decision hygiene as practical ways to improve judgment.",
+        "direct": "Correct. It introduces process-oriented remedies rather than another appeal to better intentions.",
+        "competitive": "This is where motive stops being enough and the process gets drafted."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "Why are good intentions not enough in this chapter?",
+      "choices": [
+        "Because sincerity does not reliably keep judgment from drifting",
+        "Because good intentions are always fake",
+        "Because only rules matter in every setting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says people can mean well and still judge unstably.",
+        "direct": "Good intentions are insufficient because drift can survive without stronger process support.",
+        "competitive": "Wanting to be fair still leaks if the process stays weak."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "How does the chapter relate debiasing to decision hygiene?",
+      "choices": [
+        "They are identical in every respect",
+        "Debiasing is part of the discussion, but hygiene is broader",
+        "Decision hygiene matters only after debiasing is finished"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter keeps them connected without flattening them into the same thing.",
+        "direct": "Debiasing targets distortions in thought, while hygiene also includes routines and process design around judgment.",
+        "competitive": "One tool is inside the kit, not the whole kit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "Nadia sees a hiring team care about fairness but still drift. What chapter move fits best?",
+      "choices": [
+        "Assume motive is enough if everyone agrees",
+        "Ask what routine or constraint would make the review steadier",
+        "Conclude hiring judgment should be abandoned entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter wants process support, not only sincere intention.",
+        "direct": "The right move is to ask what procedural discipline would reduce the drift.",
+        "competitive": "If motive is carrying the whole load, the setup needs repair."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "Why does Priya's steadier scholarship routine matter?",
+      "choices": [
+        "Because routines can improve the baseline without promising perfect judgment",
+        "Because committees no longer need judgment once a routine exists",
+        "Because routines prove bias has disappeared entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The routine matters because it supports steadier judgment rather than curing judgment completely.",
+        "direct": "The chapter treats routines as part of decision hygiene: a way to improve the process baseline.",
+        "competitive": "A steadier routine lowers drift without pretending to create miracles."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "Why does the chapter keep bias and noise related but not identical?",
+      "choices": [
+        "Because every judgment problem is really just noise",
+        "Because debiasing and hygiene address overlapping but different parts of the problem",
+        "Because bias disappears once hygiene begins"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter avoids collapsing every problem into one label.",
+        "direct": "It distinguishes mental distortions from the broader routines and constraints around judgment.",
+        "competitive": "If one word swallows the whole problem, the process vanishes from view."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "What does decision hygiene change most directly?",
+      "choices": [
+        "The procedures surrounding how judgment gets made",
+        "The existence of uncertainty itself",
+        "The need for any human judge at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter focuses on routines, constraints, and process design.",
+        "direct": "Decision hygiene works most directly on the way the judgment is organized and supported.",
+        "competitive": "It changes the scaffolding, not reality itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "What practical shift does the chapter make?",
+      "choices": [
+        "From intention alone toward procedural discipline",
+        "From process toward pure intuition",
+        "From better judges back to complaint only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter pushes improvement toward process support.",
+        "direct": "It reframes stronger judgment as something aided by routines and constraints, not only by motive.",
+        "competitive": "The fix starts leaning on structure instead of speeches."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "Why does the chapter resist treating hygiene as a cure-all?",
+      "choices": [
+        "Because disciplined process can improve judgment without eliminating all weakness",
+        "Because no process can ever help at all",
+        "Because better intentions always outperform structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter argues for meaningful improvement, not a fantasy cure.",
+        "direct": "Its claim is narrower: stronger procedure raises the baseline without promising perfect decisions.",
+        "competitive": "A better floor is the goal, not a miracle story."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once process support matters, information order becomes the next concrete hygiene lever",
+        "The next chapter abandons process and returns to motive",
+        "The next chapter proves bias and noise are the same thing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move narrows into one specific process choice: sequence.",
+        "direct": "The bridge works because sequencing information becomes the concrete continuation of decision hygiene.",
+        "competitive": "If process matters, what arrives first is about to matter a lot."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

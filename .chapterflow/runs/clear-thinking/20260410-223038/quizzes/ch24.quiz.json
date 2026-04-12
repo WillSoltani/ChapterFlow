@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is regret in this chapter?",
+      "choices": [
+        "A permanent sentence that should dominate every present decision",
+        "What hindsight reveals was neglected, overvalued, or misprioritized",
+        "Any sad feeling about the past whether it teaches anything or not"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Regret is used here as hindsight about what was valued poorly or left unprotected.",
+        "direct": "The chapter treats regret as information about misaligned priorities, not as endless guilt.",
+        "competitive": "It is the replay showing the bad trade."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does elder wisdom matter in this chapter?",
+      "choices": [
+        "Because older people all want exactly the same things",
+        "Because longer experience can reveal what later still holds up as worthwhile",
+        "Because present choices should be abandoned whenever elders disagree"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values elder perspective because longer lives can show patterns more clearly.",
+        "direct": "Elder wisdom matters as a source of hindsight about what tends to keep or lose importance later.",
+        "competitive": "Long roads show what short ambition hides."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What distinction is central to this chapter?",
+      "choices": [
+        "Impressive life versus satisfying life",
+        "Luck versus discipline",
+        "Boldness versus caution"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Something can look impressive without creating real life satisfaction.",
+        "direct": "The chapter separates outer approval from whether a life feels well used from the inside.",
+        "competitive": "Applause and owner-grade are not the same score."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Farah is tempted by a prestigious promotion that may consume the parts of life she could later value more. What best fits the chapter?",
+      "choices": [
+        "Accept it because present prestige settles the question",
+        "Reject it because all ambition leads to regret",
+        "Test whether the promotion still looks worthwhile when future regret is allowed to speak"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants a goal tested through later perspective, not judged only by present admiration.",
+        "direct": "A stronger move is to ask what hindsight may reveal about the role's cost before calling it an obvious win.",
+        "competitive": "Run the title through the replay before you crown it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a work dialogue, Julianne notices everyone praising a path because it looks enviable. What question would best strengthen the conversation?",
+      "choices": [
+        "How much admiration does this path attract right now?",
+        "What later still feels worthwhile about this path, and what might it quietly cost?",
+        "Who in the room has the most impressive résumé?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter shifts the conversation from praise to hindsight and deeper fit.",
+        "direct": "A better dialogue asks whether the path holds up under later perspective rather than under image alone.",
+        "competitive": "Make the room answer to the replay, not the clapping."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Kofi feels graduation pressure to choose the path that sounds strongest. According to the chapter, what is the strongest test?",
+      "choices": [
+        "Ask what future regret might say about what the choice would crowd out",
+        "Take the option that others admire most quickly",
+        "Avoid every ambitious path to stay safe from regret"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants immediate pressure checked against later perspective.",
+        "direct": "A stronger test asks what the choice may displace and whether it still looks right from farther down the road.",
+        "competitive": "Run the hallway choice through the old-age filter."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What are priorities in this chapter?",
+      "choices": [
+        "Whatever receives time, attention, protection, and sacrifice when choices become real",
+        "Whatever gets praised most loudly in the moment",
+        "Only the goals with the highest income potential"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Priorities are what a person actually gives life to when tradeoffs become concrete.",
+        "direct": "The chapter defines priorities by where time, care, and sacrifice really go, not by what sounds noble in theory.",
+        "competitive": "Priorities are where the life actually gets spent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter reject the idea that regret is just guilt?",
+      "choices": [
+        "Because regret should be ignored whenever it feels uncomfortable",
+        "Because regret can clarify what was misprioritized without becoming self-punishment",
+        "Because regret proves every ambition was a mistake"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses regret as guidance about what matters more, not just as pain.",
+        "direct": "Regret is valuable here because it can identify misaligned priorities without turning into a life sentence of shame.",
+        "competitive": "Take the signal. Drop the self-beating."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How can hindsight clarify without becoming a checklist for living?",
+      "choices": [
+        "By treating later perspective as one serious test of priority rather than as a rigid script",
+        "By avoiding all demanding goals before they can create regret",
+        "By copying other people's lives exactly once they are older"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants hindsight to sharpen judgment without becoming fear-driven rule-following.",
+        "direct": "Parrish keeps later perspective useful by resisting both denial and overcorrection into a formula.",
+        "competitive": "Respect the replay without letting it coach from panic."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "According to the chapter's threshold test, when is a pursuit still worth the cost?",
+      "choices": [
+        "When it still looks worthwhile through later regret, elder hindsight, and life satisfaction",
+        "When it attracts enough present admiration to silence doubt",
+        "When it avoids every possible future tradeoff"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A strong pursuit survives later perspective rather than depending only on the rush of the present.",
+        "direct": "The chapter tests a goal by whether it still looks worth a life's cost from farther down the road.",
+        "competitive": "If the chase cannot survive the replay, it does not deserve the spend."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

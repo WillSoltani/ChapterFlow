@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch16-q01",
+      "prompt": "What is the chapter's orienting claim about hiring?",
+      "choices": [
+        "Hiring becomes steadier when its process is more structured",
+        "Hiring quality depends only on evaluator talent",
+        "Hiring becomes automatic once any process is added"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats hiring as a case where stronger structure can improve consistency.",
+        "direct": "Correct. Structure in hiring is presented as a practical way to steady candidate judgment.",
+        "competitive": "This chapter says the room needs more than vibes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch16-q02",
+      "prompt": "Why is hiring a vivid case for this chapter?",
+      "choices": [
+        "Because candidate comparisons can drift in consequential ways",
+        "Because hiring decisions require no real judgment",
+        "Because structure removes all subjectivity from selection"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Hiring makes the problem visible because similar candidates can receive different readings.",
+        "direct": "The setting matters because high-stakes candidate comparison can vary when the process is too loose.",
+        "competitive": "Loose impressions get expensive fast in the interview room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch16-q03",
+      "prompt": "Why does judgment still remain under stronger hiring structure?",
+      "choices": [
+        "Because evaluators still need to weigh fit, tradeoffs, and complexity",
+        "Because structure matters only after the final choice is made",
+        "Because hiring cannot involve comparison at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps discretion visible because hiring does not become mechanical.",
+        "direct": "Judgment remains because stronger process does not eliminate the need to interpret candidate fit and competing strengths.",
+        "competitive": "The frame helps, but it still needs live minds inside it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch16-q04",
+      "prompt": "Nadia sees a panel keep shifting its standards from one candidate packet to the next. What lesson fits best?",
+      "choices": [
+        "The process likely needs stronger structure to stabilize comparisons",
+        "The panel should trust impressions even more heavily",
+        "The room has already proven it does not need shared criteria"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says loose comparison frames can increase avoidable variation.",
+        "direct": "The right move is to treat hiring structure as support for steadier candidate comparison.",
+        "competitive": "If the room keeps reinventing the contest, the frame is too weak."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q05",
+      "prompt": "Why does Priya's school hiring binder matter in this chapter?",
+      "choices": [
+        "Because shared criteria can keep candidate discussion on steadier terms",
+        "Because binders eliminate the need for judgment entirely",
+        "Because school committees prove structure has no tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The binder helps because shared structure can improve consistency across candidates.",
+        "direct": "The school example matters because it shows how a stronger comparison frame supports steadier judgment without eliminating discretion.",
+        "competitive": "The binder keeps the room from changing the rules midstream."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q06",
+      "prompt": "How does the chapter frame the tension between structure and flexibility?",
+      "choices": [
+        "Structure can help comparison without turning hiring into rigid automation",
+        "Flexibility disappears whenever any structure appears",
+        "Only fully unstructured interviews preserve good judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps both steadier process and preserved discretion in view.",
+        "direct": "Its central tension is that structure improves the baseline without removing fit judgments or creating perfect automation.",
+        "competitive": "The frame matters without taking over the whole room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q07",
+      "prompt": "Why does shared comparison support matter in hiring?",
+      "choices": [
+        "Because it can reduce some avoidable variation across candidate evaluations",
+        "Because it guarantees every evaluator will think identically",
+        "Because it removes all need for discussion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says better structure can tighten the spread in candidate judgments.",
+        "direct": "Shared comparison support matters because it gives evaluators firmer terms for judging candidates.",
+        "competitive": "A stronger frame can stop the room from freelancing the contest."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q08",
+      "prompt": "What does structure not solve according to the chapter?",
+      "choices": [
+        "It does not remove complexity, fit judgments, or the risk of overformalization",
+        "It does not affect variation at all",
+        "It does not matter unless candidates are identical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter keeps the limits of structure visible.",
+        "direct": "Structure does not erase discretion or eliminate the danger that process becomes rigid for its own sake.",
+        "competitive": "The frame helps, but it can still stiffen the room or leave hard calls alive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q09",
+      "prompt": "Which overclaim does the chapter reject?",
+      "choices": [
+        "That more process always means better hiring with no tradeoffs",
+        "That hiring is a high-stakes judgment setting",
+        "That structure can sometimes improve consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the benefit of structure narrower than that.",
+        "direct": "It rejects the idea that every added step improves hiring rather than sometimes hardening into overformalization.",
+        "competitive": "Extra procedure is not automatically extra wisdom."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch16-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If better structure improves hiring, the next question is how occasion noise still creates variation",
+        "The next chapter abandons all process design concerns",
+        "The next chapter proves structure solves all hiring problems"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move asks why judgments can still vary even after structure improves.",
+        "direct": "The bridge works because the book turns from process design in hiring to occasion noise as another source of spread.",
+        "competitive": "If the frame firms up here, the next leak is occasion noise."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

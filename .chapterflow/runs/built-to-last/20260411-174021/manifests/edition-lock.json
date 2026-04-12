@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "chapterflow-v13-edition-lock",
+  "bookId": "built-to-last",
+  "runId": "20260411-174021",
+  "lockedAt": "2026-04-11T17:40:21-03:00",
+  "decisionMode": "auto_locked",
+  "userQuestionNeeded": false,
+  "workEdition": {
+    "title": "Built to Last: Successful Habits of Visionary Companies",
+    "authors": [
+      "Jim Collins",
+      "Jerry I. Porras"
+    ],
+    "publisher": "Harper Collins",
+    "imprint": "HarperBusiness",
+    "publishedYear": 2004,
+    "isbn10": "0060566108",
+    "isbn13": "9780060566104",
+    "editionNotes": "illustrated, revised, annotated",
+    "sourceText": ".chapterflow/runs/built-to-last/20260411-174021/source-freeze/book-source.md",
+    "sourceProvenance": "Authorized preview bundle centered on Google Books, cross-checked with Open Library and official Jim Collins materials."
+  },
+  "originalWork": {
+    "publishedYear": 1994,
+    "notes": "Core chapter structure appears stable across the original work and the accessible later previewed editions."
+  },
+  "whyLocked": [
+    "No translation ambiguity exists for this English-language business title.",
+    "The accessible 2004 Harper Collins preview is the strongest authorized source available in the freeze window.",
+    "Observed chapter order and concept set match secondary chapter-map references, so edition differences do not materially change chapter-level scope for this run."
+  ],
+  "materialAmbiguity": {
+    "exists": false,
+    "notes": "No evidence of abridged-vs-full chapter drift or revised chapter sequencing that would force a user choice before chapter work."
+  }
+}

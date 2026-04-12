@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central idea of the counterattack strategy?",
+      "choices": [
+        "Answer every attack immediately",
+        "Wait until the opponent attacks, exposes something, and then counter before they recover",
+        "Ignore the attack until it disappears"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter treats the first strike as information as well as pressure.",
+        "direct": "Start with the core rule: absorb, read, and counter inside the opening.",
+        "competitive": "Counterattack means making the enemy pay after they expose themselves."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can an attacker become vulnerable right after moving first?",
+      "choices": [
+        "They have committed force and revealed intention",
+        "They always lose credibility instantly",
+        "They stop caring about the outcome"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "A first move can narrow the attacker's options.",
+        "direct": "Notice what the strike reveals: commitment, priorities, and possible overreach.",
+        "competitive": "A lunge shows structure and can open a target."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What are the chapter's two timing mistakes?",
+      "choices": [
+        "Countering emotionally and countering politely",
+        "Countering publicly and countering privately",
+        "Countering before commitment or after recovery"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter warns against both haste and delay.",
+        "direct": "Greene names two bad windows: too early and too late.",
+        "competitive": "Miss the band and the opening collapses."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mara has evidence, but the rival keeps expanding the accusation. What is the stronger move?",
+      "choices": [
+        "Reply instantly before the accusation settles",
+        "Wait until the claim overextends, then answer with the contradiction it created",
+        "Stay silent until everyone forgets the issue"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Mara benefits when the accusation grows beyond what it can support.",
+        "direct": "Mara shows the timing rule: let commitment harden, then counter on proof.",
+        "competitive": "Do not interrupt the enemy while they are making the move more punishable."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Quentin let the procedural objection keep expanding before answering it?",
+      "choices": [
+        "He forgot his response",
+        "The panel forbids immediate replies",
+        "The objection becomes weaker as its overreach becomes visible"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Quentin is waiting for the flaw to become easier for others to see.",
+        "direct": "Quentin's case works because overbreadth creates contradiction.",
+        "competitive": "A broader objection can hand you a sharper target."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Anika is facing a claim that changes in each retelling. What does the chapter suggest?",
+      "choices": [
+        "Wait for the attacker to commit to one clearer version before countering",
+        "Counter every retelling separately",
+        "Withdraw from the issue entirely"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "An unstable claim has not fully committed yet.",
+        "direct": "Timing matters here: the better counter comes after the line stabilizes.",
+        "competitive": "Let the enemy pick a lane before you hit the lane."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Damon hears an extreme opening demand in negotiation. How should he use it?",
+      "choices": [
+        "Reject it angrily so the other side sees strength",
+        "Treat it as useless noise",
+        "Use the demand itself to read the other side's fear and build the counteroffer"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The first demand can reveal what the other side is protecting.",
+        "direct": "The demand itself is usable data for the counter.",
+        "competitive": "Their opening number can expose the real nerve in the deal."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "When does patience stop being strategic in this chapter?",
+      "choices": [
+        "When the operator feels offended",
+        "When the pressure is only grinding attrition and no clean opening is forming",
+        "When the other side is louder than expected"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Patience helps only while exposure is increasing.",
+        "direct": "Attrition changes the diagnosis because waiting may just permit more loss.",
+        "competitive": "If there is no lunge, you may be getting bled out."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's main ethical limit on counterattack?",
+      "choices": [
+        "A good counter should correct position, not become revenge theater",
+        "A counter should always humiliate the attacker so it never happens again",
+        "Ethics do not apply once the first strike lands"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "reflective",
+      "explanation": {
+        "gentle": "The return should answer the exposure without drifting into excess.",
+        "direct": "Ethically, the warning is against turning reversal into an excuse for punishment.",
+        "competitive": "Use the opening to reset the board, not to indulge vanity."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "When would Chapter 10's deterrence logic be better than Chapter 9's counterattack logic?",
+      "choices": [
+        "When you want to wait for the opponent to overcommit first",
+        "When the goal is to make the opponent hesitate before attacking at all",
+        "When the opponent has already exposed a contradiction"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "reflective",
+      "explanation": {
+        "gentle": "The next chapter moves earlier in time than counterattack does.",
+        "direct": "Deterrence differs because it tries to price the attack out before it starts.",
+        "competitive": "Better than reversing the blow is making the enemy fear throwing it."
+      }
+    }
+  ]
+}

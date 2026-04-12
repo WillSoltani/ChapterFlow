@@ -1,0 +1,75 @@
+{
+  "bookId": "the-pyramid-principle",
+  "runId": "20260411-213929",
+  "createdAt": "2026-04-11",
+  "selectionSummary": {
+    "mode": "web_bundle",
+    "policy": "public_or_authorized_plus_secondary",
+    "notes": "No public-domain full text was found. The frozen bundle uses official Pearson product metadata and table of contents, Google Books bibliographic data plus partial contents, and Open Library edition metadata."
+  },
+  "sources": [
+    {
+      "id": "pearson-ft-2021",
+      "title": "Pyramid Principle, The: Logic In Writing and Thinking, 3rd edition",
+      "url": "https://www.pearson.com/en-gb/subject-catalog/p/minto-the-pyramid-principle-logic-in-writing-and-thinking-3rd-edition/P200000005042?view=educator",
+      "type": "official_product_page",
+      "role": "primary_authorized_preview",
+      "confidence": "high",
+      "notes": "Official publisher page with title overview, publication year, ISBN, and full chapter-level table of contents."
+    },
+    {
+      "id": "pearson-2026-paperback",
+      "title": "The Pyramid Principle, 3rd edition",
+      "url": "https://www.pearson.com/en-au/subject-catalog/p/the-pyramid-principle/P200000015259/9781292763255",
+      "type": "official_product_page",
+      "role": "edition_crosscheck",
+      "confidence": "medium",
+      "notes": "Later Pearson paperback listing observed in 2026 with matching table of contents; used only to confirm that chapter structure is stable."
+    },
+    {
+      "id": "google-books-2009",
+      "title": "The Pyramid Principle: Logic in Writing and Thinking",
+      "url": "https://books.google.com/books/about/The_Pyramid_Principle.html?id=cpUowkjMX_gC",
+      "type": "authorized_preview_index",
+      "role": "primary_contents_support",
+      "confidence": "high",
+      "notes": "Google Books bibliographic record with partial contents lines that expose chapter and subsection names for the revised edition."
+    },
+    {
+      "id": "google-books-2021",
+      "title": "The Pyramid Principle",
+      "url": "https://books.google.com/books/about/The_Pyramid_Principle.html?id=LupWzgEACAAJ",
+      "type": "bibliographic_record",
+      "role": "edition_support",
+      "confidence": "medium",
+      "notes": "Google Books record for the 2021 Financial Times Prentice Hall edition; used to support edition lock."
+    },
+    {
+      "id": "open-library-2021",
+      "title": "The Pyramid Principle",
+      "url": "https://openlibrary.org/books/OL34775309M/The_Pyramid_Principle",
+      "type": "library_metadata",
+      "role": "secondary_metadata",
+      "confidence": "medium",
+      "notes": "Library metadata and high-level description matching the core framing of the book."
+    },
+    {
+      "id": "mckinsey-barbara-minto-interview",
+      "title": "Barbara Minto: 'MECE: I invented it, so I get to say how to pronounce it'",
+      "url": "https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it",
+      "type": "primary_author_interview",
+      "role": "concept_origin_support",
+      "confidence": "high",
+      "notes": "Primary interview describing the origin problem, the pyramid as a way to find out what you think, and the three logical rules for grouping ideas."
+    },
+    {
+      "id": "future-talent-nutshell",
+      "title": "Nutshell: Bottom-up; top-down: structuring communications with The Pyramid Principle",
+      "url": "https://www.futuretalentlearning.com/programme-resources/nutshell-bottom-up-top-down-structuring-communications-with-the-pyramid-principle?hs_amp=true",
+      "type": "secondary_explainer",
+      "role": "chapter_mechanics_support",
+      "confidence": "medium-high",
+      "notes": "Concise explainer consistent with the official sources, covering bottom-up synthesis, top-down communication, and MECE grouping."
+    }
+  ]
+}

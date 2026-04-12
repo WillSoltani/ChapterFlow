@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is blitzkrieg mainly doing in this chapter?",
+      "choices": [
+        "Creating reaction lag through faster decision and execution",
+        "Replacing judgment with urgency",
+        "Avoiding direct pressure altogether"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter treats speed as a way to make resistance form too late.",
+        "direct": "Start with the mechanism: a faster loop forces the opponent behind the present moment.",
+        "competitive": "Blitzkrieg wins by making their answer late."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does operational tempo mean here?",
+      "choices": [
+        "A culture of visible busyness",
+        "Linked speed across observation, judgment, decision, and execution",
+        "A refusal to gather feedback"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter cares about a repeatable fast loop, not loud urgency.",
+        "direct": "Notice the structure: tempo links perception, judgment, decision, and execution tightly.",
+        "competitive": "Tempo is the loop, not the noise."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's main reversal about speed?",
+      "choices": [
+        "Speed matters only in startups",
+        "Slow teams are always wiser",
+        "Fast movement in the wrong direction compounds error"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter warns that fast-wrong is still wrong.",
+        "direct": "The reversal is severe: acceleration magnifies bad direction too.",
+        "competitive": "A bad heading at speed digs a deeper hole."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Rhea can ship a smaller update now and another quickly after it, while the rival still needs a week to respond. What best fits the chapter?",
+      "choices": [
+        "Wait for one perfect giant release",
+        "Use the shorter cycle to keep the rival reacting late",
+        "Slow down so the rival has time to process"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Rhea should use tempo to keep the field moving before the rival stabilizes.",
+        "direct": "In Rhea's case, the shorter loop is the leverage.",
+        "competitive": "She should make their memo obsolete again."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Petra's team moves faster than a better resourced team because it keeps judgment inside the loop. What is the lesson?",
+      "choices": [
+        "Fast teams should remove all review",
+        "Useful speed requires judgment built into the cycle",
+        "Resources do not matter at all"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The chapter wants thoughtful speed, not blind rush.",
+        "direct": "For Petra, speed works because the loop still thinks while moving.",
+        "competitive": "Fast is dangerous only when the loop can still aim."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Lucia's team looks intense, but approvals still stall every release. According to the chapter, what is the problem?",
+      "choices": [
+        "The team is moving too carefully",
+        "The team should add more meetings",
+        "The team has urgency theater instead of structural tempo"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Visible energy is not the same as a shorter useful loop.",
+        "direct": "Read the bottleneck: the process is still slow where it matters.",
+        "competitive": "This is noise without loop speed."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Milo wants to move faster, but the core assumption has not been checked and a quick launch could spread a bad call. What should happen?",
+      "choices": [
+        "Accelerate immediately because tempo always wins",
+        "Pause everything indefinitely",
+        "Keep speed but preserve the judgment check that protects direction"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The chapter keeps one eye on direction while speeding up the loop.",
+        "direct": "Tempo helps only if the heading is good enough to deserve acceleration.",
+        "competitive": "Protect the aim before you slam the gas."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Sabin says the team is fast because everyone feels constant urgency, but decisions still arrive late and feedback is weak. What does the chapter suggest?",
+      "choices": [
+        "That is real tempo because people feel pressure",
+        "The team needs a shorter cleaner loop, not more hurry",
+        "The team should stop seeking feedback"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Tempo comes from cleaner cycles, not just stronger urgency.",
+        "direct": "Watch the distinction: hurry can coexist with a slow loop.",
+        "competitive": "Cut drag, not just patience."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does speed become ethically weak instead of strategically useful?",
+      "choices": [
+        "When it is used to outrun scrutiny or suppress correction",
+        "When it creates reaction lag",
+        "When it shortens decision cycles"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The line is crossed when pace starts blinding your own side instead of pressuring the other side.",
+        "direct": "Measure the target of the speed: outrunning scrutiny is misuse, not strategy.",
+        "competitive": "Speed turns dirty when it becomes cover for bad calls."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After Chapter 14 establishes tempo advantage, what does Chapter 15 add?",
+      "choices": [
+        "Control of the terms, agenda, and dynamic itself",
+        "A rule to abandon speed entirely",
+        "A demand to slow every process down"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next chapter widens from speed to broader initiative.",
+        "direct": "Bridge forward carefully: after tempo comes control of the dynamic itself.",
+        "competitive": "Next the book moves from acceleration to term-setting."
+      }
+    }
+  ]
+}

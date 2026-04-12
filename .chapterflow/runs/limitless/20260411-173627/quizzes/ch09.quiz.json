@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main role of small simple steps in this chapter?",
+      "choices": [
+        "Making the final goal permanently smaller",
+        "Lowering the cost of beginning so action can start",
+        "Replacing energy and purpose with habit tricks"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter treats small simple steps as a way to make the first move easier to enter.",
+        "direct": "Their job is to reduce initiation cost so work becomes more startable.",
+        "competitive": "They cut the launch weight, not the mission."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a learner still fail to start even when the goal matters?",
+      "choices": [
+        "Because entry cost can be too high",
+        "Because goals should always feel easy",
+        "Because seriousness disappears after one delay"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps showing that the start itself may be too heavy.",
+        "direct": "A person can care and still freeze if the opening move is too large or vague.",
+        "competitive": "The launch can choke before the will does."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A learner cares about the result but avoids the task because the opener feels huge. What would Chapter 9 advise?",
+      "choices": [
+        "Wait for stronger confidence before touching it",
+        "Cut the task to one honest first action",
+        "Prove commitment by keeping the opening difficult"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants a smaller honest entry point.",
+        "direct": "Redesign the opener so the first move is concrete and startable.",
+        "competitive": "Trim the launch and win the first rep."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Ivy keeps waiting for the full productive mood. What move fits Chapter 9?",
+      "choices": [
+        "Define one visible action that begins the task now",
+        "Keep postponing until the session can be perfect",
+        "Assume mood must lead action every time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter shifts from mood drama to entry design.",
+        "direct": "Ivy should reduce the start to a move she can begin immediately.",
+        "competitive": "Stop praying for the big launch and clear the first rep."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Gabe’s postmortem reveal?",
+      "choices": [
+        "That the project was too meaningful to simplify",
+        "That a vague heavy opener blocked action at the threshold",
+        "That work tasks do not benefit from small starts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The launch itself was the main problem.",
+        "direct": "Gabe sees that the project kept stalling because the entry cost stayed too broad and expensive.",
+        "competitive": "The runway failed before the engine did."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement would Chapter 9 reject as a misreading?",
+      "choices": [
+        "Small starts lower initiation cost",
+        "A smaller first move means the overall goal should stay small",
+        "Beginning can get easier once the first move happens"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps the aim meaningful while reducing the threshold.",
+        "direct": "It shrinks the opener, not the importance or depth of the work.",
+        "competitive": "Cut the launch, not the mission."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the first move have special leverage in this chapter?",
+      "choices": [
+        "Because initiation is often costlier than the next move",
+        "Because only the first move matters",
+        "Because momentum should replace planning completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats beginning as the hardest part to enter.",
+        "direct": "Before motion exists, there is no momentum or narrowed focus yet, so initiation costs more.",
+        "competitive": "The first rep is pricey because the machine is still dead still."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Ruben gets more consistency from a smaller restart after a lapse. What does that show?",
+      "choices": [
+        "That re-entry can improve when the comeback move is lighter",
+        "That breaks permanently ruin momentum",
+        "That confidence must return before action can resume"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter expects re-entry to work better when the threshold is reduced.",
+        "direct": "A lighter restart can restore contact with the task before confidence feels dramatic.",
+        "competitive": "The small reboot beat the heroic comeback."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What tension does the chapter protect most carefully?",
+      "choices": [
+        "How to lower the threshold without lowering the standard for real work",
+        "How to make all hard work feel comfortable forever",
+        "How to avoid repetition after the task begins"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter wants easier entry without sentimentalizing the work.",
+        "direct": "Its guardrail is that small starts help launch action without replacing later depth, repetition, or challenge.",
+        "competitive": "Make the launch cheaper without gutting the standard."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 9 prepare the next chapter?",
+      "choices": [
+        "It finishes the whole methods section early",
+        "It raises the question of how begun action turns into deeper engagement",
+        "It proves small starts remove the need for focus"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Once action can begin, the next question is how it deepens.",
+        "direct": "The chapter sets up flow by making entry possible before asking how immersion develops.",
+        "competitive": "First breach the threshold, then ask how the work absorbs you."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

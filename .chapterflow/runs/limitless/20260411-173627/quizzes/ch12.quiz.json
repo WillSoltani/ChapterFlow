@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is study doing in this chapter?",
+      "choices": [
+        "Acting as passive time near the material",
+        "Acting as active processing that tests understanding",
+        "Replacing the need for focus"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter treats study as active work on the material.",
+        "direct": "Study here means interacting with the material in ways that reveal and strengthen understanding.",
+        "competitive": "It is making the rep answer, not hovering near it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is familiarity not enough in this chapter?",
+      "choices": [
+        "Because recognizable material may still be weak, unusable, or hard to retrieve",
+        "Because familiarity is always useless",
+        "Because only memory matters once material looks known"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps separating recognition from deeper understanding.",
+        "direct": "Material can look known before it becomes retrievable, usable, or well integrated.",
+        "competitive": "A friendly-looking rep can still fold under demand."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A learner keeps rereading the same material until it feels known. What would Chapter 12 most likely say?",
+      "choices": [
+        "That this alone proves mastery",
+        "That stronger study asks the learner to do something active with the material",
+        "That passive exposure is the strongest study method"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants more than repeated exposure.",
+        "direct": "Better study makes the learner retrieve, restate, question, connect, or otherwise work the material.",
+        "competitive": "Stop petting the rep and make it answer."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya is choosing between rereading highlighted pages and restating the core idea without looking. What fits Chapter 12?",
+      "choices": [
+        "Choose the move that gives stronger evidence of understanding",
+        "Choose the smoother move because comfort means learning",
+        "Stay with the page until it feels familiar enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter favors active proof over passive comfort.",
+        "direct": "Priya should pick the action that reveals whether understanding is really present.",
+        "competitive": "Make the rep talk."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Mateo’s postmortem reveal?",
+      "choices": [
+        "That training slides should never be reviewed twice",
+        "That repeated exposure created familiarity without equally strong learning",
+        "That time on the material always guarantees retention"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter treats this as a familiarity trap.",
+        "direct": "Mateo sees that the material stayed recognizable without becoming sturdy or usable enough.",
+        "competitive": "The rep looked friendly but stayed soft."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement would Chapter 12 reject as a misreading?",
+      "choices": [
+        "Active interaction can improve study quality",
+        "Familiarity is the same thing as mastery",
+        "Study uses attention better when it does more than passive review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps warning that familiarity can mislead.",
+        "direct": "Recognition is weaker evidence than retrieval, reconstruction, or usable explanation.",
+        "competitive": "A smiling rep is not the same as a strong one."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can active processing improve learning quality?",
+      "choices": [
+        "Because it forces understanding to reveal itself more honestly",
+        "Because it removes all effort from studying",
+        "Because it makes every subject identical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter values actions that expose whether learning is real.",
+        "direct": "Active study strengthens learning because the material has to be retrieved, tested, or worked instead of merely revisited.",
+        "competitive": "Pressure tells the truth about the rep."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Jordan’s understanding gets sharper before confidence rises when review becomes active. What does that show?",
+      "choices": [
+        "That active study can improve clarity before it feels comfortable or impressive",
+        "That confidence no longer matters at all",
+        "That active review only works in tutoring centers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter expects stronger evidence before stronger feeling.",
+        "direct": "Active processing can sharpen understanding before confidence noticeably catches up.",
+        "competitive": "The rep got honest before it got flattering."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What tension does the chapter protect most carefully?",
+      "choices": [
+        "How to study actively without turning the session into frantic technique theater",
+        "How to make passive review the enemy in every context",
+        "How to replace memory with study method entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter wants better study without decorative method mania.",
+        "direct": "Its guardrail is that active processing matters, but study should still stay practical rather than theatrical.",
+        "competitive": "Work the rep hard without cosplaying brilliance around it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 12 prepare the next chapter?",
+      "choices": [
+        "It completes memory in advance",
+        "It deepens the learning encounter so the next question becomes how to retain and retrieve it",
+        "It proves study matters more than every other method"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Once study becomes active, memory becomes the next practical question.",
+        "direct": "The chapter bridges into memory by asking how what was actively worked can later be kept and retrieved.",
+        "competitive": "Make the rep real first, then ask how to keep it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

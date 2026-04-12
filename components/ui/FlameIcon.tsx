@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import styles from "./FlameIcon.module.css";
 
 interface FlameIconProps {
   size?: number;
@@ -9,15 +7,12 @@ interface FlameIconProps {
 
 export function FlameIcon({ size = 22, className = "" }: FlameIconProps) {
   return (
-    <motion.svg
+    <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      className={`flame-icon ${className}`.trim()}
-      style={{ filter: "drop-shadow(0 0 8px var(--accent-flame-glow))" }}
-      animate={{ opacity: [0.8, 1, 0.85, 1] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+      className={`flame-icon ${styles.flame} ${className}`.trim()}
     >
       <path
         d="M12 2.5C12 2.5 6.5 9.5 6.5 14C6.5 17.04 9 19.5 12 19.5C15 19.5 17.5 17.04 17.5 14C17.5 9.5 12 2.5 12 2.5Z"
@@ -28,6 +23,6 @@ export function FlameIcon({ size = 22, className = "" }: FlameIconProps) {
         fill="#FFB874"
         opacity={0.85}
       />
-    </motion.svg>
+    </svg>
   );
 }

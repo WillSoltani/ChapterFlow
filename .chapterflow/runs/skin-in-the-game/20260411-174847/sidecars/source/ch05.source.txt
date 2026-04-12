@@ -1,0 +1,21 @@
+# Chapter 5 Source Sidecar
+
+Chapter: 5
+Title: Life in the Simulation Machine
+
+Frozen basis:
+- source-freeze/toc.json confirms chapter title, order, and page anchor family.
+- sidecars/source/source-heading-index.json confirms `ch05` label in the locked chapter map.
+- source-freeze/book-source.md sets the authorized freeze boundary: use chapter order and naming as structure truth; remain paraphrase-first and narrower than uncertain memory when no chapter-linked excerpt text is frozen.
+- skeleton/book-skeleton.md records the run's chapter intent for Chapter 5: contrast reality-tested judgment with model-driven detachment that ignores lived consequences.
+- publisher and metadata themes in source-freeze/book-source.md foreground skin in the game as a symmetry principle spanning expertise, risk, and distrust of detached no-risk reasoning.
+
+Usable chapter anchors:
+- simulation versus reality-tested judgment
+- abstraction costs when actors do not personally absorb consequences
+- continuity with the book's anti-detachment and anti-no-risk-expert spine
+
+Restrictions:
+- no exact quotations
+- do not claim scene-level details not supported by the frozen source bundle
+- stay narrower than memory and frame the chapter around Taleb's recurring asymmetry mechanism rather than speculative examples from outside the freeze

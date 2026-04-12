@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "How does the chapter treat the natural talent objection?",
+      "choices": [
+        "As the strongest serious challenge to a development-centered view",
+        "As a silly argument that can be ignored",
+        "As proof that practice matters very little"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says talent is the hardest objection, so it must be faced directly.",
+        "direct": "It treats biological differences as a real challenge rather than as a strawman.",
+        "competitive": "The hard witness is allowed into the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What distinction does the chapter insist on early?",
+      "choices": [
+        "Biological influence is not the same thing as fatalism",
+        "Biology explains nothing important",
+        "Starting advantages disappear immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says real differences can matter without deciding the whole outcome.",
+        "direct": "It separates biological influence from the larger claim that performance is mostly fate.",
+        "competitive": "Difference is real, but destiny is the overreach."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why do talent stories often overclaim?",
+      "choices": [
+        "Because visible outcomes get treated as if they had only one cause",
+        "Because biology never affects learning",
+        "Because all training works equally well for everyone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says people compress many causes into one talent label too quickly.",
+        "direct": "Visible success often gets explained as a gift while developmental history disappears from view.",
+        "competitive": "One glamorous word ends up doing too much causal work."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is Lena learning in the hiring-packet example?",
+      "choices": [
+        "A polished performance can hide years of structure and support",
+        "Presentations are the best way to detect talent instantly",
+        "Mentorship usually matters less than body type"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She sees that visible polish may reflect long preparation, not just talent.",
+        "direct": "The example shows how a simple talent label can erase developmental evidence.",
+        "competitive": "The file ruins the myth before it gets crowned."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Tori's track dilemma show?",
+      "choices": [
+        "A real physical constraint can matter without becoming a total fate story",
+        "Body constraints are always illusions created by mindset",
+        "Training has no value once one limit appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps real constraints visible without turning them into complete defeat.",
+        "direct": "Tori shows the difference between acknowledging a limit and surrendering to fatalism.",
+        "competitive": "The limit is real, but the full biography it tries to write is not."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why are selection effects important in this chapter?",
+      "choices": [
+        "Because visible top performers are a filtered sample, not the whole population",
+        "Because selection effects prove biology is irrelevant",
+        "Because winners always come from identical conditions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says many hidden cases disappear before observers start comparing winners.",
+        "direct": "Selection matters because the visible group has already been narrowed by support, dropout, and opportunity.",
+        "competitive": "The spotlight lands after the field has already been cut."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does survivorship add to the distortion?",
+      "choices": [
+        "It removes the hidden cases that would complicate a simple talent story",
+        "It guarantees that all visible winners had the same support",
+        "It proves the visible winners are an unbiased sample"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the missing cases vanish from the explanation even though they matter.",
+        "direct": "Survivorship makes talent look cleaner because the non-visible cases stop testifying against the simple story.",
+        "competitive": "The story gets neat only because the missing witnesses are gone."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which claim would the chapter reject?",
+      "choices": [
+        "Biology can matter at the margins without explaining everything",
+        "Talent stories often hide training structure and filtered opportunity",
+        "Because biology matters in some cases, fate explains most outcomes"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects the jump from influence to broad destiny.",
+        "direct": "Acknowledging biology is not the same as granting fatalism about performance.",
+        "competitive": "The body gets a vote, not the whole government."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's best explanation for why talent narratives often overstate biology?",
+      "choices": [
+        "They ignore development, structure, selection, and the hidden cases outside the spotlight",
+        "They focus too much on training and not enough on winners",
+        "They underestimate how quickly fate becomes obvious"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter emphasizes that many missing parts of the story vanish when people explain success too quickly.",
+        "direct": "Talent narratives often collapse a multi-causal developmental history into a single glamorous label.",
+        "competitive": "The myth gets stronger every time the hidden evidence gets edited out."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter connect to the final chapter?",
+      "choices": [
+        "It leads to the question of what schools and institutions should do once talent stops serving as an all-purpose answer",
+        "It proves institutional differences do not matter",
+        "It ends the book's argument by settling the talent issue completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what society should do with a clearer view of human development.",
+        "direct": "The bridge moves from the talent debate to institutional responsibility for developing potential.",
+        "competitive": "Once talent loses its alibi power, systems have fewer excuses left."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "complex"
+    }
+  ]
+}

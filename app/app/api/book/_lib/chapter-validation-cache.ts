@@ -26,6 +26,12 @@ function cacheKey(bookId: string, chapterNumber: number): string {
   return `${bookId}:${chapterNumber}`;
 }
 
+function evictExpired(now: number) {
+  for (const [key, entry] of cache) {
+    if (entry.expiresAt <= now) cache.delete(key);
+  }
+}
+
 function evictIfNeeded() {
   if (cache.size <= MAX_ENTRIES) return;
   // Map iteration is insertion-order, so the first key is the oldest entry.
@@ -53,6 +59,7 @@ export async function getCachedChapterValidation(params: {
 }): Promise<{ exampleIds: ReadonlySet<string>; bookTitle: string }> {
   const key = cacheKey(params.bookId, params.chapterNumber);
   const now = Date.now();
+  evictExpired(now);
   const cached = cache.get(key);
   if (cached && cached.expiresAt > now) {
     // Re-insert to keep the entry "hot" in insertion order (LRU-ish).

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the first problem Chapter 3 attacks?",
+      "choices": [
+        "Forecast language that sounds useful but stays too vague to measure",
+        "A lack of enough professional credentials among forecasters",
+        "An overreliance on historical examples"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter starts by showing that fuzzy wording blocks real learning because nobody can score it cleanly later.",
+        "direct": "Ambiguous forecast language is the first structural weakness the chapter targets.",
+        "competitive": "Blur is where bad forecasts first hide."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Sherman Kent matter in this chapter?",
+      "choices": [
+        "He argued that verbal hedges are more flexible than numbers",
+        "He pushed probability language toward numerical ranges",
+        "He proved that intelligence work should avoid forecasting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Kent matters because he tried to turn slippery forecast language into something explicit enough to check later.",
+        "direct": "His contribution is numerical probability language as an accountability tool.",
+        "competitive": "He made the forecast hold still long enough to be judged."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does calibration measure?",
+      "choices": [
+        "Whether confidence matches reality over repeated forecasts",
+        "Whether a forecaster uses enough technical terms",
+        "Whether all predictions stay close to 50 percent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Calibration asks whether your confidence levels line up with what actually happens over time.",
+        "direct": "It measures alignment between stated certainty and later outcomes.",
+        "competitive": "Calibration checks whether your confidence scale tells the truth."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira is revising a risk memo full of words like likely and serious possibility. What move best fits the chapter?",
+      "choices": [
+        "Leave the language alone so the team stays flexible",
+        "Replace the phrases with percentages, dates, and conditions",
+        "Remove the forecast section entirely until certainty is available"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the memo turned into a claim the team can later compare with what happened.",
+        "direct": "Choice B converts verbal blur into measurable accountability.",
+        "competitive": "Pin the forecast down so it cannot slither away later."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the main trap in always staying near 50 percent?",
+      "choices": [
+        "It guarantees overconfidence",
+        "It can look prudent while avoiding useful distinctions",
+        "It makes Brier scoring impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Safe middle numbers can protect a forecaster from embarrassment while also keeping them from saying anything sharp enough to help.",
+        "direct": "The chapter warns that low resolution can disguise itself as modesty.",
+        "competitive": "Camping in the middle can be cowardice wearing caution."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why do foxes usually outperform hedgehogs once forecasts are scored?",
+      "choices": [
+        "Foxes are always smarter in every domain",
+        "Foxes use many smaller clues and revise more freely",
+        "Hedgehogs refuse to use any data"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Foxes handle contradiction and smaller pieces of evidence better, which helps once the record starts judging them.",
+        "direct": "Measured forecasting rewards revisable thinking more than one-big-idea rigidity.",
+        "competitive": "The scoreboard punishes theory loyalty when reality keeps pushing back."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lian keeps saying maybe the flight price will drop. What would improve her judgment most?",
+      "choices": [
+        "Turning the hunch into a probability and a deadline",
+        "Avoiding all numbers because travel is unpredictable",
+        "Waiting until the decision disappears on its own"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors making the claim explicit enough to guide action and later learning.",
+        "direct": "A probability plus time window is better than a verbal hedge that never becomes testable.",
+        "competitive": "Maybe cannot be corrected. A number can."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does aggregation add that a lone forecaster often lacks?",
+      "choices": [
+        "A guarantee that every estimate becomes more optimistic",
+        "Several partial views that can outperform one narrow angle",
+        "A way to avoid ever changing your mind"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Aggregation matters because different people often see different useful parts of the same problem.",
+        "direct": "The chapter treats combined disciplined judgments as a protection against individual blind spots.",
+        "competitive": "Several clean fragments can beat one polished tunnel vision."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist on keeping task difficulty attached to Brier scores?",
+      "choices": [
+        "Because the same raw score can mean different things in easy and hard environments",
+        "Because Brier scores only work in political forecasting",
+        "Because difficult forecasts should never be quantified"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A number looks cleaner than it is if the terrain behind it disappears from view.",
+        "direct": "Context matters because identical scores can reflect very different levels of forecasting skill.",
+        "competitive": "Do not let a neat metric flatter weak terrain."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 3 makes the record public, what question does that naturally set up next?",
+      "choices": [
+        "Which forecasters keep outperforming once their judgments are scored",
+        "Whether forecasting should return to verbal language",
+        "Whether all grand theories are useless in every context"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the scoreboard is real, the obvious next question is who actually keeps doing well under it.",
+        "direct": "The chapter bridges naturally toward the people and processes that survive public measurement.",
+        "competitive": "The next fight is not about whether to score. It is about who wins when scoring starts."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

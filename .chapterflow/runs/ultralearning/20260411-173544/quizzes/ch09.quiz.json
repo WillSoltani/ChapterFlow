@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "How does this chapter define feedback?",
+      "choices": [
+        "Exposing work to correction rather than dodging it",
+        "Collecting as many opinions as possible",
+        "Waiting until confidence is perfect before showing the work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Young defines feedback through exposure to correction, not through opinion collection or delay.",
+        "direct": "A is correct because the chapter treats feedback as real work meeting corrective response.",
+        "competitive": "The move is to let the work get hit, not to hide it until it feels invincible."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Why do learners often dodge feedback according to this chapter?",
+      "choices": [
+        "Because correction can sting and threaten confidence",
+        "Because correction is always useless",
+        "Because private practice automatically fixes every flaw"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says people avoid feedback partly because correction feels uncomfortable and exposing.",
+        "direct": "A captures the chapter's dodge logic: the sting of correction is exactly what makes it tempting to postpone.",
+        "competitive": "They duck because the punch names the weakness too clearly."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "Iris keeps polishing a draft privately instead of sending it for review. What move best follows the chapter?",
+      "choices": [
+        "Send the draft for relevant critique while there is still time to revise",
+        "Keep polishing privately until no criticism is possible",
+        "Avoid review because confidence matters more than correction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would expose the draft to correction early enough that the response can still shape the work.",
+        "direct": "A follows feedback by replacing protected polishing with relevant critique and revision.",
+        "competitive": "Let the draft take the hit before the flaw gets any more private reps."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "What is the main cost of keeping work protected inside private practice?",
+      "choices": [
+        "The same error can keep surviving and getting reinforced",
+        "The learner becomes too motivated",
+        "The work gets too much signal too early"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Without correction, the work can keep repeating a weakness that no outside response has interrupted.",
+        "direct": "A is correct because private protection can overtrain the flaw alongside the skill.",
+        "competitive": "Sheltered reps can make you better at carrying the same mistake."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "How does the chapter treat noisy or irrelevant comments?",
+      "choices": [
+        "They should be filtered out without using them as an excuse to avoid all feedback",
+        "They prove that all correction is worthless",
+        "They should control the whole revision process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter accepts that noise exists, but it still asks the learner to face useful correction.",
+        "direct": "A fits the chapter's limit: exposure is required, and filtering keeps feedback tied to the target task.",
+        "competitive": "Noise is real, but it is not your cover for staying hidden."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "What limit does the chapter place on feedback?",
+      "choices": [
+        "Not every opinion is equally valuable or relevant",
+        "Every harsh comment must be obeyed",
+        "Correction should arrive only after mastery is secure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Young does not treat all response as equal. Useful feedback has to connect to the real task.",
+        "direct": "A states the chapter's boundary: correction matters, but relevance still matters too.",
+        "competitive": "Take the hit that fits the fight, not every swing in the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "Malik hears the same critique twice about a transition in his presentation. Why does that matter in this chapter?",
+      "choices": [
+        "Repeated correction suggests a real signal he should revise around",
+        "It proves feedback is unfair and should be ignored",
+        "It means he should avoid presenting again until perfect"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Repeated correction can reveal a blind spot that the learner should no longer dismiss.",
+        "direct": "A follows the chapter because recurring critique often exposes the flaw private rehearsal kept normalizing.",
+        "competitive": "When the same punch lands twice, stop calling it bad luck."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "When is \u2018one more round of preparation\u2019 most likely functioning as avoidance?",
+      "choices": [
+        "When it keeps delaying relevant correction the work already needs",
+        "When it includes a revision based on clear signal",
+        "When it follows targeted critique from the real task"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that extra preparation can become a way of hiding from the response that should be shaping the work.",
+        "direct": "A is right because preparation becomes dodge behavior when it protects the work from needed correction.",
+        "competitive": "If the extra round only adds padding, it is a duck, not a strategy."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Why does feedback make learning more accurate?",
+      "choices": [
+        "Because it reveals blind spots that self-protected practice can keep missing",
+        "Because all outside opinions are wiser than the learner",
+        "Because criticism automatically improves motivation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correction helps because it shows what private effort may have normalized or overlooked.",
+        "direct": "A fits the chapter because feedback makes the work answerable to response beyond the learner's own impression.",
+        "competitive": "Accuracy rises when the work finally meets something that can hit the flaw cleanly."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "Once useful correction is landing, what question naturally comes next?",
+      "choices": [
+        "How to keep the learning from leaking away over time",
+        "How to avoid all future feedback",
+        "How to replace practice entirely with critique"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After feedback improves the work, the next issue is holding onto the gain instead of letting it fade.",
+        "direct": "A is the right bridge because the following principle asks about retention rather than correction.",
+        "competitive": "After the punch improves you, the next question is how not to leak the gain."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

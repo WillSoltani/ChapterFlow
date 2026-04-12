@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What defines Mediocristan?",
+      "choices": [
+        "A domain where one case can dominate the total.",
+        "A domain of bounded variation where no single case overwhelms the whole.",
+        "A domain with no uncertainty at all."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mediocristan is the tame world.",
+        "direct": "No single observation gets political control of the sum there.",
+        "competitive": "The whole stays bigger than any one part."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What makes Extremistan different?",
+      "choices": [
+        "Outliers can dominate the total.",
+        "Everyone is nearly identical.",
+        "Averages always stay stable."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Extremistan is outlier-driven.",
+        "direct": "One case can move the whole picture sharply.",
+        "competitive": "A giant can own the scoreboard."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why must the domain be identified before trusting the math?",
+      "choices": [
+        "Because all equations are false.",
+        "Because tools that behave well in bounded domains can fail in outlier-dominated ones.",
+        "Because statistics should be ignored."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb is disciplining method by domain.",
+        "direct": "Wrong-world intuition creates later mathematical error.",
+        "competitive": "Ask the kingdom first."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A single bestseller dominates annual publishing revenue. Which domain logic fits best?",
+      "choices": [
+        "Mediocristan.",
+        "Extremistan.",
+        "Perfect equilibrium."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One case is dominating the total.",
+        "direct": "That is the signature of Extremistan.",
+        "competitive": "The giant owns too much of the sum."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is human height a better image for Mediocristan than wealth?",
+      "choices": [
+        "Because height has bounded extremes while wealth can scale wildly.",
+        "Because height has no variation.",
+        "Because wealth is easy to average."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Bodily measures are bounded in a way fortunes are not.",
+        "direct": "This keeps one case from dominating the whole.",
+        "competitive": "Height stays tamer than wealth."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How can an average become fragile?",
+      "choices": [
+        "When one observation carries disproportionate weight in the total.",
+        "When every observation is the same size.",
+        "When the domain is bounded."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A giant case can move the summary sharply.",
+        "direct": "The mean becomes weak when concentration is high.",
+        "competitive": "One entrant can hijack the sum."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A planner treats city sizes like body heights and misreads the distribution. What failed?",
+      "choices": [
+        "Domain diagnosis.",
+        "Arithmetic itself.",
+        "The existence of cities."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The planner imported the wrong intuition.",
+        "direct": "A bounded model was carried into a concentrated domain.",
+        "competitive": "The map failed before the metric."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 14 prepare Chapter 15?",
+      "choices": [
+        "It shows why Gaussian comfort becomes suspicious in outlier-driven domains.",
+        "It proves the bell curve fits everything.",
+        "It ends the statistical argument."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter prosecutes bell-curve overreach.",
+        "direct": "This chapter supplies the terrain map that makes the accusation clear.",
+        "competitive": "First map the kingdom, then indict the ruler."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures Extremistan?",
+      "choices": [
+        "No single case matters much.",
+        "One giant can rewrite the totals.",
+        "Variation is always small."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the central image.",
+        "direct": "Outlier power defines the domain.",
+        "competitive": "A giant owns the scoreboard."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the deeper lesson of Chapter 14?",
+      "choices": [
+        "Statistical intuition must answer to domain type.",
+        "Every field is chaotic.",
+        "Averages are always useless."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb wants terrain sorting before mathematical trust.",
+        "direct": "The issue is jurisdiction, not the abolition of method.",
+        "competitive": "Ask what kingdom the curve has entered."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

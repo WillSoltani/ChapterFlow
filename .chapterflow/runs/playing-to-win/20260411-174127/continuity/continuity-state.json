@@ -1,0 +1,236 @@
+{
+  "nameUsage": {
+    "Maya": [
+      "ch01"
+    ],
+    "Priya": [
+      "ch01",
+      "ch06"
+    ],
+    "Elena": [
+      "ch01"
+    ],
+    "Leo": [
+      "ch01"
+    ],
+    "Nina": [
+      "ch02"
+    ],
+    "Daniel": [
+      "ch02"
+    ],
+    "Carmen": [
+      "ch02"
+    ],
+    "Victor": [
+      "ch02",
+      "ch07"
+    ],
+    "Asha": [
+      "ch02"
+    ],
+    "Julian": [
+      "ch02"
+    ],
+    "Talia": [
+      "ch03"
+    ],
+    "Marcus": [
+      "ch03"
+    ],
+    "Imani": [
+      "ch03"
+    ],
+    "Rafael": [
+      "ch03"
+    ],
+    "Noa": [
+      "ch03"
+    ],
+    "Felix": [
+      "ch03"
+    ],
+    "Leila": [
+      "ch04"
+    ],
+    "Owen": [
+      "ch04"
+    ],
+    "Sumi": [
+      "ch04"
+    ],
+    "Dante": [
+      "ch04"
+    ],
+    "Hazel": [
+      "ch04"
+    ],
+    "Karim": [
+      "ch04"
+    ],
+    "Mira": [
+      "ch05"
+    ],
+    "Jonah": [
+      "ch05"
+    ],
+    "Aileen": [
+      "ch05"
+    ],
+    "Omar": [
+      "ch05"
+    ],
+    "Tessa": [
+      "ch05"
+    ],
+    "Rohan": [
+      "ch05"
+    ],
+    "Celia": [
+      "ch06"
+    ],
+    "Evan": [
+      "ch06"
+    ],
+    "Mateo": [
+      "ch06"
+    ],
+    "Inez": [
+      "ch06"
+    ],
+    "Lucas": [
+      "ch06"
+    ],
+    "Nadia": [
+      "ch07"
+    ],
+    "Elise": [
+      "ch07"
+    ],
+    "Samir": [
+      "ch07"
+    ],
+    "Chloe": [
+      "ch07"
+    ],
+    "Adrian": [
+      "ch07"
+    ],
+    "Serena": [
+      "ch08"
+    ],
+    "Malik": [
+      "ch08"
+    ],
+    "Dana": [
+      "ch08"
+    ],
+    "Theo": [
+      "ch08"
+    ],
+    "April": [
+      "ch08"
+    ],
+    "Gavin": [
+      "ch08"
+    ]
+  },
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch01": [
+      "Maya",
+      "Priya",
+      "Elena",
+      "Omar",
+      "Keisha",
+      "Leo"
+    ],
+    "ch02": [
+      "Nina",
+      "Daniel",
+      "Asha",
+      "Julian",
+      "Carmen",
+      "Victor"
+    ],
+    "ch03": [
+      "Talia",
+      "Marcus",
+      "Imani",
+      "Rafael",
+      "Noa",
+      "Felix"
+    ],
+    "ch04": [
+      "Leila",
+      "Owen",
+      "Sumi",
+      "Dante",
+      "Hazel",
+      "Karim"
+    ],
+    "ch05": [
+      "Mira",
+      "Jonah",
+      "Aileen",
+      "Omar",
+      "Tessa",
+      "Rohan"
+    ],
+    "ch06": [
+      "Celia",
+      "Evan",
+      "Priya",
+      "Mateo",
+      "Inez",
+      "Lucas"
+    ],
+    "ch07": [
+      "Nadia",
+      "Victor",
+      "Elise",
+      "Samir",
+      "Chloe",
+      "Adrian"
+    ],
+    "ch08": [
+      "Serena",
+      "Malik",
+      "Dana",
+      "Theo",
+      "April",
+      "Gavin"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "f107ad213bf7d99a05ca699530ec2585cb1e0a5ba9e2efe0859005b7a7766842",
+    "ch02": "dc9b02aa7ae6b117fae1ef3a2d5ebcdd2690714b3f790855226c12f41513d305",
+    "ch03": "e21f6b37b2f9f1579a29f0a081051aa7d26307dc49730157ab572c0689554b31",
+    "ch04": "ece9af63253c7153987993412e9258e0b2c423fe4fef8b1908b68569b8436a43",
+    "ch05": "1fef457c5df4cfdb2c6a384f6d8e8b58d7cca97932eec23aa05fc4792ef53eff",
+    "ch06": "9e999ade73b8f708d9ab5893976af456bc8dd90f9758c8b962e0ef93be652a02",
+    "ch07": "b2df6c3e87aca905e179697d20f9bb3ae16b74d38ce7f22f9be8e530127ab897",
+    "ch08": "2673fe435f0ed14d1e335a8620af6026558f63bee7ff77dae205de921a710572"
+  },
+  "baselineQuality": {
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "criticScores": {
+      "ch01": "11/12",
+      "ch02": "11/12"
+    },
+    "qualityFloorEstablished": true
+  }
+}

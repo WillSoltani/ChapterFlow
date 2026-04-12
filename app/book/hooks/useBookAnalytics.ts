@@ -614,20 +614,43 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const heatmapCells = buildHeatmap(readingByDay);
         const completedBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "completed");
         const inProgressBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "in_progress");
-        const upcomingReviews: UpcomingReviewItem[] = inProgressBookSnapshots.slice(0, 3).map((item, index) => {
-          const dueDate = new Date();
-          dueDate.setDate(dueDate.getDate() + index + 1);
-          return {
-            id: `${item.book.id}-review-${index}`,
-            prompt: `Review ${item.book.title}: chapter ${Math.max(item.completedChapters, 1)} takeaways`,
-            dueLabel: dueDate.toLocaleDateString(undefined, {
-              weekday: "short",
-              month: "short",
-              day: "numeric",
-            }),
-            bookId: item.book.id,
-          };
-        });
+        // Try loading FSRS review cards; fall back to placeholder if unavailable
+        let upcomingReviews: UpcomingReviewItem[] = [];
+        try {
+          const fsrsResponse = await fetchBookJson<{ cards: Array<{ cardId: string; front: string; dueAt: string; bookId: string }> }>(
+            "/app/api/book/me/reviews?limit=5"
+          );
+          if (fsrsResponse.cards && fsrsResponse.cards.length > 0) {
+            upcomingReviews = fsrsResponse.cards.map((card) => ({
+              id: card.cardId,
+              prompt: card.front,
+              dueLabel: new Date(card.dueAt).toLocaleDateString(undefined, {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+              }),
+              bookId: card.bookId,
+            }));
+          }
+        } catch {
+          // FSRS not available — use placeholder reviews
+        }
+        if (upcomingReviews.length === 0) {
+          upcomingReviews = inProgressBookSnapshots.slice(0, 3).map((item, index) => {
+            const dueDate = new Date();
+            dueDate.setDate(dueDate.getDate() + index + 1);
+            return {
+              id: `${item.book.id}-review-${index}`,
+              prompt: `Review ${item.book.title}: chapter ${Math.max(item.completedChapters, 1)} takeaways`,
+              dueLabel: dueDate.toLocaleDateString(undefined, {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+              }),
+              bookId: item.book.id,
+            };
+          });
+        }
 
         setAnalytics({
           streakDays: currentStreak,

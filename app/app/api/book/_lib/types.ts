@@ -140,6 +140,28 @@ export type BookPackageBook = {
   chapterRange?: string;
 };
 
+// ── Concept Dependency Graph ──────────────────────────────────────────────────
+
+export type ConceptNode = {
+  id: string;
+  label: string;
+  introducedIn: string;
+  summary?: string;
+};
+
+export type ConceptEdge = {
+  from: string;
+  to: string;
+  type: "prerequisite";
+};
+
+export type ConceptGraph = {
+  concepts: ConceptNode[];
+  edges: ConceptEdge[];
+  chapterIntroduces: Record<string, string[]>;
+  chapterRequires: Record<string, string[]>;
+};
+
 export type BookPackage = {
   schemaVersion: string;
   packageId: string;
@@ -148,6 +170,7 @@ export type BookPackage = {
   licenseNotes?: string;
   book: BookPackageBook;
   chapters: BookPackageChapter[];
+  conceptGraph?: ConceptGraph;
 };
 
 export type ChapterSummaryPayload = {
@@ -432,6 +455,7 @@ export type BookUserTierItem = {
   avgQuizScoreSum: number;
   avgQuizScoreCount: number;
   categoriesExplored: string[];
+  completedBooksByCategory: Record<string, string[]>;
   tiersAdvanced: TierName[];
   tierAdvancedAt: string | null;
   createdAt: string;
@@ -463,6 +487,61 @@ export type BookUserLoopItem = {
   learningMode: string;
   isFirstAttempt: boolean;
   category: string;
+  loopCompleteIPAmount?: number;
+  streakUpdatedAt?: string;
+  tierUpdatedAt?: string;
+  achievementsCheckedAt?: string;
+  insightSparkCheckedAt?: string;
+  createdAt: string;
+};
+
+// ── Notification Preferences ───────────────────────────────────────────────
+
+export type NotificationChannel = "in_app" | "email" | "push";
+
+export type NotificationPreferences = {
+  channels: { inApp: boolean; email: boolean; push: boolean };
+  readingReminderEnabled: boolean;
+  reminderTimeLocal?: string;
+  reminderTimezone?: string;
+  streakReminderEnabled: boolean;
+  badgeCelebrationEnabled: boolean;
+  achievementAlertsEnabled: boolean;
+};
+
+export type BookUserNotificationItem = {
+  userId: string;
+  notificationId: string;
+  type: "badge_earned" | "tier_up" | "streak_milestone" | "insight_spark" | "reading_reminder";
+  title: string;
+  body: string;
+  channel: NotificationChannel;
+  readAt: string | null;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+};
+
+// ── Device Token (Push Notifications) ──────────────────────────────────────
+
+export type BookUserDeviceTokenItem = {
+  userId: string;
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+  platform: "web";
+  createdAt: string;
+  lastSeenAt: string;
+};
+
+// ── Gift Code (§5.1) ──────────────────────────────────────────────────────
+
+export type BookUserGiftCodeItem = {
+  code: string;
+  giverUserId: string;
+  giftType: "pro_week";
+  ipCost: number;
+  status: "available" | "redeemed" | "expired";
+  redeemedBy?: string;
+  redeemedAt?: string;
   createdAt: string;
 };
 
@@ -647,4 +726,59 @@ export type BookUserBadgeAwardItem = {
   earnedAt: string;
   updatedAt: string;
   tier?: string;
+};
+
+// ── FSRS Spaced Repetition (§ Algorithm Feature 4) ──────────────────────────
+
+export type FSRSCardState = {
+  userId: string;
+  cardId: string;
+  bookId: string;
+  chapterNumber: number;
+  stability: number;
+  difficulty: number;
+  elapsedDays: number;
+  scheduledDays: number;
+  reps: number;
+  lapses: number;
+  state: "new" | "learning" | "review" | "relearning";
+  dueAt: string;
+  lastReviewAt: string;
+  front: string;
+  back: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type FSRSRating = 1 | 2 | 3 | 4;
+
+export type FSRSReviewLog = {
+  userId: string;
+  reviewId: string;
+  cardId: string;
+  bookId: string;
+  rating: FSRSRating;
+  scheduledDays: number;
+  elapsedDays: number;
+  reviewedAt: string;
+  state: "new" | "learning" | "review" | "relearning";
+};
+
+// ── Adaptive Depth Routing (§ Algorithm Feature 5) ──────────────────────────
+
+export type DepthFeatureVector = {
+  avgQuizScore: number;
+  avgReadingTimeRatio: number;
+  recentScoreTrend: number;
+  reviewCardRecall: number;
+};
+
+export type BookUserDepthModelItem = {
+  userId: string;
+  bookId: string;
+  recommendedDepth: VariantKey;
+  confidence: number;
+  featureVector: DepthFeatureVector;
+  lastUpdatedChapter: number;
+  updatedAt: string;
 };

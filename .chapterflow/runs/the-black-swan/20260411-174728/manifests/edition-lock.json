@@ -1,0 +1,23 @@
+{
+  "bookId": "the-black-swan",
+  "runId": "20260411-174728",
+  "decidedAt": "2026-04-11T17:49:36Z",
+  "decisionMode": "user_confirmed_after_material_ambiguity",
+  "selectedEdition": {
+    "name": "The Black Swan: The Impact of the Highly Improbable",
+    "publisher": "Random House",
+    "publishedYear": 2007,
+    "publicationDate": "2007-04-17",
+    "editionLabel": "First edition",
+    "isbn13": "9781400063512",
+    "chapterRange": "1-19"
+  },
+  "rejectedAlternatives": [
+    {
+      "name": "The Black Swan: Second Edition",
+      "publishedYear": 2010,
+      "reason": "Adds a later section, 'On Robustness and Fragility,' which materially changes the later map and release scope."
+    }
+  ],
+  "whyLocked": "The user chose the first edition after the edition split was identified as materially relevant to the chapter map. The first edition is therefore the authoritative structure for this run."
+}

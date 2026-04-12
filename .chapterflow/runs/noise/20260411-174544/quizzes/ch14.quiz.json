@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch14-q01",
+      "prompt": "What central role do guidelines play in this chapter?",
+      "choices": [
+        "They serve as structure for reducing variation",
+        "They eliminate the need for all professional judgment",
+        "They replace every hard case with automatic certainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter presents guidelines as support for more consistent judgment.",
+        "direct": "Correct. Guidance is treated as a structural tool for narrowing variation.",
+        "competitive": "This chapter puts the protocol in the consistency fight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch14-q02",
+      "prompt": "Why does medicine matter as the setting for this chapter?",
+      "choices": [
+        "Because it is a high-stakes domain where judgment variation matters",
+        "Because medicine is the only field where guidance exists",
+        "Because medical judgment can be fully automated by protocol"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The stakes make reduced variation especially important here.",
+        "direct": "Medicine matters because it provides a serious case for why guidance and consistency support matter.",
+        "competitive": "The clinic makes loose spread harder to excuse."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch14-q03",
+      "prompt": "Why does judgment still remain under guidelines?",
+      "choices": [
+        "Because real cases still raise fit, complexity, and exception questions",
+        "Because guidelines are intentionally random",
+        "Because guidance matters only after the judgment is finished"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps discretion alive because not every case fits one pattern perfectly.",
+        "direct": "Judgment remains necessary because professionals still need to interpret how the guidance fits the actual case.",
+        "competitive": "The sheet narrows the field, but the case can still push back."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch14-q04",
+      "prompt": "Elena checks a protocol sheet but still sees the case strain against the page. What chapter lesson fits best?",
+      "choices": [
+        "Guidance should be ignored whenever a case feels difficult",
+        "Guidelines can steady the judgment while still leaving room for fit-based discretion",
+        "The protocol proves all similar cases are identical"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter says structure helps without removing the need to judge fit.",
+        "direct": "The right lesson is that guidance narrows variation while professionals still interpret where the case fits or strains.",
+        "competitive": "The protocol can tighten the spread without confiscating the brain."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q05",
+      "prompt": "Why does Priya's school nurse form work as an analogue?",
+      "choices": [
+        "Because a shared rubric can improve consistency while still leaving room for exceptions",
+        "Because school forms make judgment unnecessary",
+        "Because analogues prove medicine has no tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The analogue shows how structure can narrow spread without becoming total automation.",
+        "direct": "The school form matters because it mirrors the chapter's balance between consistency support and remaining discretion.",
+        "competitive": "The form steadies the room without freezing it solid."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q06",
+      "prompt": "How does the chapter frame the tension between structure and discretion?",
+      "choices": [
+        "Guidance helps only when discretion disappears",
+        "Guidelines can reduce variation while still leaving judgment active",
+        "Discretion matters only when there is no guidance at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps both consistency support and real judgment in view.",
+        "direct": "Its core tension is that structure improves the baseline without turning practice into automatic rule-following.",
+        "competitive": "The guide matters, but it does not get total control."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q07",
+      "prompt": "Why can guidelines reduce variation?",
+      "choices": [
+        "Because they provide a shared structure for similar judgments",
+        "Because they make all professionals think identically",
+        "Because they eliminate every difficult case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter treats shared guidance as a way to narrow the spread across similar cases.",
+        "direct": "Guidelines help because they create a common baseline for professional judgment.",
+        "competitive": "The protocol gives the room a tighter floor."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q08",
+      "prompt": "What does guidance not solve according to the chapter?",
+      "choices": [
+        "It does not remove the tradeoffs of rigidity, fit, and professional discretion",
+        "It does not matter unless every case is identical",
+        "It does not affect variation at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter keeps the limits of structure visible.",
+        "direct": "Guidance does not erase the need to judge fit, manage complexity, or avoid overstandardization.",
+        "competitive": "The guide can help and still scrape against reality."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q09",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That more guidance always means better judgment with no tradeoffs",
+        "That medicine is a high-stakes setting",
+        "That structure can sometimes reduce variation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter resists the idea that more standardization is automatically better.",
+        "direct": "It rejects the claim that guidance can expand indefinitely without rigidity or fit costs.",
+        "competitive": "More rules do not automatically mean more wisdom."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch14-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If guidance shapes judgment here, the next question is how scales shape judgment in performance ratings",
+        "The next chapter abandons structure and returns to free-form impressions",
+        "The next chapter proves medicine can be fully standardized"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move looks at the design of scales in performance ratings.",
+        "direct": "The bridge works because the book shifts from guidance structures to the rating scales that express judgment.",
+        "competitive": "If the protocol bends the call here, the score grid is next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

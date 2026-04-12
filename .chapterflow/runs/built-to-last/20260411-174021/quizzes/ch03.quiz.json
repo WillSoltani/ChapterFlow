@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's basic claim about profit?",
+      "choices": [
+        "Profit is unnecessary if the company has a strong mission",
+        "Profit matters but is too thin to serve as the deepest organizing center",
+        "Profit and purpose always conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps profit important while refusing to let profit explain the whole reason the company exists.",
+        "direct": "Its claim is hierarchical, not anti-profit: viability matters, but deeper identity requires more than revenue.",
+        "competitive": "Money stays necessary. It just cannot be the entire soul of the institution."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care so much about core values and purpose surviving leadership turnover?",
+      "choices": [
+        "Because a real center should outlast whoever currently holds power",
+        "Because leaders should never interpret values differently",
+        "Because turnover automatically weakens every organization"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants the institution to remain recognizable even when leaders change.",
+        "direct": "Core ideology matters because it keeps continuity from dissolving into current leadership preference.",
+        "competitive": "If the center rotates with the boss, the center was never built deep enough."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A company posts values everywhere, but those values never change a meaningful decision. Using the chapter's logic, what does that show?",
+      "choices": [
+        "That the company has reached values maturity",
+        "That the values are likely decorative rather than governing",
+        "That the company should remove profit targets entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a value becomes real when it shapes a hard choice, not when it sounds good.",
+        "direct": "If the language never constrains action, it is not functioning as a core principle.",
+        "competitive": "No cost, no core. That is the exposure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Tessa is reviewing a profitable pricing memo that conflicts with the company's stated trust value. What choice fits the chapter best?",
+      "choices": [
+        "Approve the memo because profit is the only measurable reality",
+        "Delay the decision until the value statement can be rewritten more elegantly",
+        "Reject the hidden-term shortcut and force the company to honor the value in the proposal"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter asks whether a value can actually change a profitable decision when pressure is real.",
+        "direct": "Treating trust as core means letting it constrain the proposal rather than decorating it.",
+        "competitive": "The value has to beat the easy money at least once or it was never governing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement is the strongest trap answer for this chapter?",
+      "choices": [
+        "Since profit is not the deepest center, financial discipline does not matter much",
+        "A durable company needs both viability and a deeper core beyond viability",
+        "Purpose becomes credible only when it shapes real tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter never dismisses profit. It changes profit's rank, not its necessity.",
+        "direct": "Option A mistakes a hierarchy argument for an anti-business argument.",
+        "competitive": "The chapter is not giving anyone permission to romanticize weakness."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main warning about purpose language?",
+      "choices": [
+        "Purpose language should be avoided because it is always manipulative",
+        "Purpose language can become fake if leaders use it without operational consequence",
+        "Purpose language matters only in nonprofit settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps a real skepticism alive: purpose talk becomes weak if it never changes costly choices.",
+        "direct": "Its failure mode is decorative ideology, not ideology itself.",
+        "competitive": "Noble language without sacrifice is camouflage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student club says its mission is direct service, but it keeps choosing flashy events that bring more attention instead. What question best applies the chapter?",
+      "choices": [
+        "What mission statement sounds better to new members?",
+        "What decision is the mission actually changing right now?",
+        "How can the club avoid all fundraising from now on?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks whether the mission can guide a real choice under pressure.",
+        "direct": "The strongest test is decision consequence, not language quality.",
+        "competitive": "If the mission cannot win one argument, it is just banner text."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Joel sees a strategy packet where the purpose statement on page one conflicts with the growth move on page seven. What is the strongest response?",
+      "choices": [
+        "Ignore the contradiction because growth strategy should always outrank purpose",
+        "Ask what the purpose statement still governs if the company approves the move anyway",
+        "Remove the purpose statement from future packets to avoid hypocrisy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter turns purpose into a test of what the company will protect under pressure.",
+        "direct": "Joel should use the contradiction to see whether the purpose statement functions as a real governor or only as ceremony.",
+        "competitive": "Make the room choose between a real core and expensive wallpaper."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What best shows that a company's deeper center is real rather than leader-dependent?",
+      "choices": [
+        "The values remain visible and decision-relevant even after leadership turnover",
+        "The founder continues giving strong speeches after retirement",
+        "The company earns enough money to keep operating"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter looks for what survives beyond current leaders while still guiding choices.",
+        "direct": "A deeper center is institutional when it outlasts leader turnover and continues shaping costly decisions.",
+        "competitive": "If the core still rules after the personalities rotate, then the core is finally real."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a company has a real core deeper than profit, what tension naturally comes next in the book's logic?",
+      "choices": [
+        "How to preserve that core without freezing the company's methods",
+        "How to eliminate all pressure from future decisions",
+        "How to make values identical across every industry"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next step asks how an institution can protect its core while still moving and adapting.",
+        "direct": "The bridge forward is the tension between preserving identity and stimulating progress.",
+        "competitive": "Once the company gets a center, the next risk is turning that center into dead weight."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

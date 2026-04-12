@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What problem does Chapter 5 attack first in its programming case study?",
+      "choices": [
+        "Programming looks so large and abstract that learners delay execution",
+        "Programming mostly fails because learners do not buy enough tools",
+        "Programming becomes impossible without advanced mathematics at the start"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens on conceptual sprawl and the feeling that the whole field must be understood before anything can run.",
+        "direct": "Chapter 5 begins by rejecting the field's intimidating largeness as the entry standard.",
+        "competitive": "The first enemy is scale theater."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why does breakdown matter so much in this chapter?",
+      "choices": [
+        "Because smaller tasks automatically guarantee correct code",
+        "Because decomposition turns abstract ambition into one runnable slice",
+        "Because programming is mostly about staying organized on paper"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Breaking the work down helps because it makes the next step executable instead of only imaginable.",
+        "direct": "The chapter values breakdown as entry control: cut the task until reality can answer back.",
+        "competitive": "A good cut gets you to the terminal faster."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What does the chapter mean by real-problem iteration?",
+      "choices": [
+        "Staying with a live task long enough to build, test, and revise against actual output",
+        "Reading through many example problems before trying any of them",
+        "Avoiding small tasks until the full architecture feels clear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants the learner inside a loop where code runs and the result teaches the next change.",
+        "direct": "Real-problem iteration means using a live task to generate evidence instead of collecting explanations from a distance.",
+        "competitive": "The problem has to hit back before it can teach."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Lena keeps adding tutorial tabs before running a simple automation script. What response best fits Chapter 5?",
+      "choices": [
+        "Run the first useful slice now and let the output decide what to learn next",
+        "Keep reading until she can explain the entire scripting environment clearly",
+        "Drop the script and wait for a project that feels less messy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would keep only the research that changes the next run and then move into execution.",
+        "direct": "This is the anti-tutorial-paralysis move in action: execute early enough that the code starts producing evidence.",
+        "competitive": "She needs terminal truth, not prettier delay."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Why does Chapter 5 treat debugging as part of learning instead of as a side annoyance?",
+      "choices": [
+        "Because debugging proves the learner should have studied more before starting",
+        "Because errors and wrong output often localize what the learner misunderstands",
+        "Because debugging is mainly useful after the learner has mastered the basics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A failure in code often points more clearly to the next lesson than another general explanation does.",
+        "direct": "The chapter trusts debugging because failure frequently leaves inspectable traces that guide the next fix.",
+        "competitive": "The bug is the map, not just the bruise."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "When does research become a trap in this chapter's logic?",
+      "choices": [
+        "When it keeps growing without improving the next executable attempt",
+        "When it includes syntax or conceptual vocabulary at all",
+        "When it happens after the learner has already run one small script"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter still allows orientation. It objects when orientation starts replacing execution.",
+        "direct": "Research becomes a trap when it improves the feeling of preparedness more than it improves the next run.",
+        "competitive": "If the tabs expand and the code does not move, the stall is active."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "How would the chapter most likely apply to another cognitively dense skill?",
+      "choices": [
+        "Cut the work to one real executable or testable slice and learn from the evidence it produces",
+        "Delay execution until the whole conceptual map feels stable",
+        "Prefer more explanation over any early failure signals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The broader lesson is to reduce sprawl until the next step can produce visible evidence.",
+        "direct": "Chapter 5 generalizes through executable slices, feedback traces, and anti-paralysis discipline.",
+        "competitive": "Same rule elsewhere: make the work small enough to answer back."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Marcus predicts the bug is in the API, but a narrower run shows it is in local parsing. Why is that moment so important to the chapter?",
+      "choices": [
+        "It proves predictions are usually a waste in programming",
+        "It shows that targeted execution can correct a bad theory faster than more broad research",
+        "It means API work should always be avoided by beginners"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values this because the code answered a concrete question and redirected the next fix quickly.",
+        "direct": "A narrow run produced sharper evidence than more general reading would have produced.",
+        "competitive": "The script contradicted the story before the story got expensive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What is the chapter's hardest warning about smaller programming tasks?",
+      "choices": [
+        "That all small tasks are too simplistic to teach much",
+        "That decomposition can become evasive if the slice no longer touches a real problem",
+        "That a learner should never use toy examples while beginning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter likes smaller slices only when they still produce meaningful feedback from real execution.",
+        "direct": "The method breaks when simplification protects the learner from consequence instead of leading to clearer consequence.",
+        "competitive": "Small goes fake when it loses its teeth."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "If Chapter 5 solves programming sprawl through tighter evidence loops, what is the most natural bridge to Chapter 6?",
+      "choices": [
+        "How the method changes when the next skill is about overwriting an old habit rather than entering a new conceptual field",
+        "How to replace debugging with more patient reading in later chapters",
+        "How programming proves that all difficult skills are mainly abstract"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how evidence-first learning behaves when the obstacle is a familiar bad pattern instead of conceptual sprawl.",
+        "direct": "Chapter 6 can test the method under habit repair rather than under conceptual decomposition.",
+        "competitive": "The next problem is no longer field size. It is old muscle memory."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

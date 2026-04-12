@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Greene's core definition of grand strategy in this chapter?",
+      "choices": [
+        "A string of aggressive moves made without pause",
+        "A long-horizon design that gives meaning to individual battles",
+        "A plan to avoid all short-term losses"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter anchors short-term action inside a larger design.",
+        "direct": "Begin with the frame: grand strategy is the long war that tells you what each battle means.",
+        "competitive": "Grand strategy names the campaign before the skirmish starts shouting."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can one lost battle still be strategic under grand strategy?",
+      "choices": [
+        "Because the loss may protect a larger future position",
+        "Because losing always creates better morale",
+        "Because short-term results never matter"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "A setback can be worthwhile when it preserves something more important later.",
+        "direct": "Notice the trade: the chapter allows losses that strengthen the larger war.",
+        "competitive": "Some blood in the skirmish buys control of the real battlefield."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's main reversal about long-range planning?",
+      "choices": [
+        "Every good plan should stay unchanged for consistency",
+        "The operator should abandon the long horizon whenever pressure rises",
+        "The route must be revised when reality breaks the original assumptions"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter keeps the horizon steady but allows the path to change.",
+        "direct": "The reversal is adaptation: a grand strategy that never updates turns rigid fast.",
+        "competitive": "Keep the war, kill the dead map."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Leith can win a large enterprise contract only by warping the roadmap away from the market his company actually wants. What best fits the chapter?",
+      "choices": [
+        "Take the contract because visible revenue always strengthens strategy",
+        "Decline the contract if winning it damages the longer market position",
+        "Delay the decision until the client chooses for him"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Leith has to judge the deal by the future it builds, not only by the quarter it flatters.",
+        "direct": "In Leith's case, roadmap distortion makes the battle too expensive for the war.",
+        "competitive": "Do not sell the campaign for a scoreboard pop."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Samira can force a public amendment fight now, but doing so would likely split the coalition needed for the final campus package. What is the stronger move?",
+      "choices": [
+        "Push the amendment anyway so no one doubts her conviction",
+        "Let the amendment go and preserve the coalition for the final vote",
+        "Withdraw from all policy work because compromise means defeat"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The larger institutional outcome matters more than one visible clash.",
+        "direct": "For Samira, the coalition is the war and the amendment is only one battle.",
+        "competitive": "She should sacrifice the podium moment to keep the real prize alive."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Ephraim keeps chasing whichever project will get the most praise this month, even when the projects do not build toward the same future. What is the diagnosis?",
+      "choices": [
+        "He is practicing disciplined grand strategy",
+        "He is using short-term applause to coordinate the campaign",
+        "He is drifting opportunistically without a coherent war"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "A sequence of attractive wins can still lack overall direction.",
+        "direct": "Read the pattern, not the applause: he is chasing battles without naming the war.",
+        "competitive": "This is decorative movement, not command."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Nessa leads a team with a clear multi-year goal, but new evidence shows the original path will not reach it. What should she do?",
+      "choices": [
+        "Revise the route while keeping the larger objective clear",
+        "Protect the original plan to show consistency",
+        "Replace the long-term goal with whatever looks easiest next week"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The chapter wants loyalty to the goal, not blind loyalty to the first path.",
+        "direct": "Test the assumptions and rewrite the route when the field changes.",
+        "competitive": "Keep the conquest, retool the march."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Quinlan says every public debate is worth taking because visibility always helps. Based on the chapter, what is the problem with that claim?",
+      "choices": [
+        "Visibility automatically creates long-term alignment",
+        "It mistakes every battle for the war and ignores sequence",
+        "It proves he is flexible and adaptive"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Not every visible contest deserves the same weight.",
+        "direct": "Watch the sequencing error: he is treating each skirmish as decisive.",
+        "competitive": "He is letting microphones command the campaign."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does long-horizon thinking become ethically weak instead of strategically serious?",
+      "choices": [
+        "When it is used to excuse vague goals, weak execution, or sacrifices that never compound",
+        "When it includes short-term milestones",
+        "When it changes course after new evidence"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The strategy becomes weak when the future story hides present avoidance.",
+        "direct": "Measure the claim against results: vague wars and empty sacrifices are warning signs.",
+        "competitive": "Grand language turns dirty when it launders ego and inaction."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After Chapter 12 defines the larger war, what does Chapter 13 add before attack begins?",
+      "choices": [
+        "Permission to improvise without preparation",
+        "A rule that every battle must now be fought immediately",
+        "A demand for accurate intelligence about the opponent"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next step is understanding the opponent accurately.",
+        "direct": "Bridge forward carefully: grand strategy still needs intelligence before action.",
+        "competitive": "A chosen war still fails if you attack a fantasy enemy."
+      }
+    }
+  ]
+}

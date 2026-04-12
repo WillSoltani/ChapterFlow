@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What problem is the chapter mainly trying to make visible?",
+      "choices": [
+        "The spread across judgments that should be closer together",
+        "The fact that experts are usually overconfident in every field",
+        "The need to replace all human judgment with rules"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter's first job is to help you see unstable spread across comparable judgments as a real problem.",
+        "direct": "Correct. The opening argument is about variability in matched cases, not a blanket attack on expertise or a total ban on judgment.",
+        "competitive": "That is the target. The chapter is hunting unjustified spread, not performing a cheap anti-human rant."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does the underwriter example matter so much in the opening?",
+      "choices": [
+        "It proves that insurance is a uniquely noisy industry",
+        "It turns hidden variation into something directly comparable",
+        "It shows that averages are never useful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The example works because matched cases reveal the spread clearly.",
+        "direct": "The power of the case is that the same inputs were judged side by side, making hidden variation obvious.",
+        "competitive": "That lineup is the weapon. Same cases in, unstable range out."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "Which distinction does the chapter insist on early?",
+      "choices": [
+        "Noise is instability across judgments, while bias is directional error",
+        "Noise and bias are two names for the same thing",
+        "Bias matters only when money is involved"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter separates spread from directional leaning so the problem does not get blurred.",
+        "direct": "The authors distinguish unstable variation from directional error because each reveals a different kind of process failure.",
+        "competitive": "Do not merge the two. One tracks lean. The other tracks wobble."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Elena sees three managers rate matched renewal accounts very differently, and each explanation sounds reasonable by itself. What chapter move best fits the situation?",
+      "choices": [
+        "Trust the explanations if each manager sounds experienced",
+        "Compare the matched cases directly and ask what justifies the spread",
+        "Average the scores immediately and ignore the range"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter says the range has to be inspected, not hidden under isolated stories.",
+        "direct": "Direct comparison is the right move because the real issue may live in the spread rather than in one dramatic mistake.",
+        "competitive": "Make the range answer for itself. That is where the weakness may be hiding."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Why do sentencing examples sharpen the chapter's point?",
+      "choices": [
+        "They show that judges should always follow rigid formulas",
+        "They turn unstable variation into a fairness problem people can feel",
+        "They prove that all punishment systems are hopeless"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Sentencing makes variability feel like unequal treatment rather than harmless difference.",
+        "direct": "The legal example matters because instability now carries moral and human stakes, not just technical ones.",
+        "competitive": "The spread gets uglier when liberty is on the line."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "A school sees the same essay receive two very different grades under the same rubric. What is the chapter most likely to say?",
+      "choices": [
+        "The problem is only with the weaker teacher",
+        "The score difference may reveal process-level noise, not just one bad call",
+        "Different grades always mean one teacher is biased"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's lens. The spread may signal instability in the process itself.",
+        "direct": "Matched-case disagreement under the same rubric pushes you to inspect the scoring system, not only one grader's personality.",
+        "competitive": "One grade is a story. Two grades on the same essay can expose the process."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Why is noise often neglected inside organizations?",
+      "choices": [
+        "Because every case is too unique to compare meaningfully",
+        "Because people care only about speed and never about fairness",
+        "Because single judgments can sound reasonable even when the overall range is too wide"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. The pattern is easy to miss when each separate call has its own defense.",
+        "direct": "Noise hides because isolated explanations can sound persuasive while the distribution stays unseen.",
+        "competitive": "Case-by-case credibility is how unstable systems keep their cover."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Tessa gets different recommendations from two doctors about the same symptom pattern. Which response best fits the chapter's limit?",
+      "choices": [
+        "Treat all disagreement as proof that the process failed",
+        "Ask what in the case justifies the spread before deciding whether it is drift or real discretion",
+        "Ignore the difference because professional judgment should not be questioned"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter keeps space for uncertainty while still asking whether the range earns its place.",
+        "direct": "The right move is to test the basis of the disagreement rather than assuming all variation is either harmless or defective.",
+        "competitive": "Force the range to justify itself. That is how you separate judgment from drift."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What boundary keeps the chapter from collapsing into a simple anti-discretion argument?",
+      "choices": [
+        "Some variation belongs to uncertainty, hard cases, or humane judgment",
+        "Only expert disagreement should count as noise",
+        "Bias matters more than noise in every setting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter says not every difference is a defect, so the line has to be examined carefully.",
+        "direct": "The argument stays honest by admitting that uncertainty and legitimate discretion can create real variation.",
+        "competitive": "The goal is not zero spread. The goal is spread that can defend itself."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "What is the strongest reason the chapter naturally leads into noisy punishment next?",
+      "choices": [
+        "Punishment is the only domain where noise exists",
+        "Punishment tests the same spread problem where liberty makes the stakes harder to soften",
+        "Punishment removes all uncertainty, making measurement easy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The next chapter tightens the same issue by placing it where human consequences are immediate.",
+        "direct": "Sentencing is the next step because variability now carries obvious fairness and liberty stakes.",
+        "competitive": "The same spread looks far uglier when the output is a sentence instead of a spreadsheet."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

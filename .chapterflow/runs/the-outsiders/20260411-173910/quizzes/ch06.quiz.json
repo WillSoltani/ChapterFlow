@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What scorecard correction does Chapter 6 make first?",
+      "choices": [
+        "Public ownership automatically requires soft standards",
+        "Public status does not excuse weak discipline",
+        "Broad portfolios are always stronger than focused ones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter begins by rejecting the idea that public companies must be managed softly.",
+        "direct": "Thorndike attacks public-company softness as an excuse, not as a fact of nature.",
+        "competitive": "Being public is not permission to get lazy."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is Ralston Purina's setting difficult in this chapter?",
+      "choices": [
+        "Because the company had no real portfolio choices left",
+        "Because broad sprawl and diluted attention made softness easier to hide",
+        "Because the chapter stops caring about economics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The company had grown broad enough to hide weak uses of capital and attention.",
+        "direct": "Sprawl made the scorecard blurrier and softer.",
+        "competitive": "Too much breadth let weakness dress up as scale."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the phrase public LBO mean in this chapter?",
+      "choices": [
+        "The company actually leaves the public market",
+        "Management copies private-equity slang without changing behavior",
+        "A public company adopts owner-like discipline while staying public"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The company stays public, but the internal standards get harder.",
+        "direct": "The title names a discipline standard, not a change in listing status.",
+        "competitive": "Ownership stays put; the excuses do not."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Sadie sees two side projects draining the strongest line. What fits Chapter 6 best?",
+      "choices": [
+        "Keep all projects so the portfolio still looks broad",
+        "Cut the weaker projects if doing so strengthens the core economics",
+        "Add another side project to spread risk further"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says focus tightening matters when it improves the stronger business.",
+        "direct": "Choice B matches Stiritz's logic: breadth loses when it weakens the core.",
+        "competitive": "Protect the engine, not the decorations."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which belief does Chapter 6 challenge most directly?",
+      "choices": [
+        "Cuts and harsh tone automatically prove discipline",
+        "Public ownership can justify soft standards",
+        "Both A and B"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects both excuses: softness because of public status and fake rigor because of harshness.",
+        "direct": "Thorndike pushes against public-company drift and against toughness theater.",
+        "competitive": "Soft excuses and loud costumes both fail here."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Andre's club entered too many competitions and weakened all of them. What is the chapter's best diagnosis?",
+      "choices": [
+        "The club is confusing broad reach with strong focus",
+        "The club should add even more commitments",
+        "The club is wisely avoiding all hard tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The group spread effort too thin and weakened the strongest work.",
+        "direct": "This is Chapter 6 in miniature: sprawl is diluting the core.",
+        "competitive": "They diversified themselves into mediocrity."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is operating rigor necessary in addition to portfolio moves?",
+      "choices": [
+        "Because buying and selling units prove discipline automatically",
+        "Because the remaining business has to become less tolerant of weak capital use too",
+        "Because public companies should avoid accountability after divestitures"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the internal standards have to get tougher, not just the portfolio headlines.",
+        "direct": "Owner discipline is real only when the operating scorecard tightens after the moves.",
+        "competitive": "The announcement means nothing if the survivors stay soft."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit keeps Chapter 6 from turning into private-equity worship?",
+      "choices": [
+        "Severity matters only when it improves the economics and clarifies the scorecard",
+        "Any harsher culture must be creating value",
+        "The public market should be ignored entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays strict by asking whether harder standards actually make the business better.",
+        "direct": "Harshness earns respect only when the economics become clearer and stronger afterward.",
+        "competitive": "A rough style without a sharper scorecard is just theater."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes Stiritz's discipline rational in Thorndike's frame?",
+      "choices": [
+        "It makes management sound more dangerous",
+        "It pushes capital and attention toward a stronger, clearer core",
+        "It guarantees every cut will be popular"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The discipline matters because the remaining business is supposed to get stronger and clearer.",
+        "direct": "Thorndike makes better economics, not harsher style, the evidence that counts.",
+        "competitive": "The proof is a tougher core, not a scarier memo."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 6 prepare the move toward Dick Smith in Chapter 7?",
+      "choices": [
+        "It shows owner-like discipline inside a public company before the next chapter moves into family-control constraints",
+        "It argues that ownership structure no longer matters at all",
+        "It proves broad portfolios are always irrational"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Stiritz tightens public-company discipline before the next case shifts to owner logic under family control.",
+        "direct": "Chapter 6 hardens the scorecard in public markets, then Chapter 7 changes the ownership constraint.",
+        "competitive": "First public softness gets cut down, then family structure takes its turn."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

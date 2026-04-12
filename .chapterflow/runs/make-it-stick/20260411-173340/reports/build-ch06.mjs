@@ -1,0 +1,511 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const runRoot = "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/make-it-stick/20260411-173340";
+const writeJson = (rel, value) => fs.writeFileSync(path.join(runRoot, rel), JSON.stringify(value, null, 2) + "\n");
+const wordCount = (s) => s.trim().split(/\s+/).length;
+
+const chapter = {
+  chapterId: "ch06",
+  number: 6,
+  title: "Get Beyond Learning Styles",
+  readingTimeMinutes: 7,
+  contentVariants: {
+    easy: {
+      chapterBreakdown: {
+        gentle: `It is easy to think that a learner's style explains what teaching should look like. One person says they are visual, another says auditory, and a third says hands-on. This chapter questions that shortcut. Preference is real as a preference, but it is not the same as proof of stronger learning. Better design asks what the material requires, what the learner already knows, and what kind of practice will make understanding usable. The chapter keeps learner differences visible, but it moves attention away from style labels and toward evidence-backed choices.`,
+        direct: `Learning styles sound intuitive because they seem to respect individual differences. This chapter argues that style matching is not the main route to stronger learning. The better question is whether the representation fits the material and whether the learner is being asked to retrieve, explain, and apply. Prior knowledge also matters because a struggle that looks like style mismatch may actually come from missing background understanding. The chapter therefore redirects the reader toward content fit, preparation, and active processing.`,
+        competitive: `Style labels can feel like explanations, but they often do less work than people think. Calling a learner visual or auditory sounds precise, yet it can distract from stronger design questions. Does the material need a diagram, an explanation, a demonstration, or all three? What background knowledge is missing? What practice will make the idea usable? This chapter pushes past the style story and toward evidence that the learning actually improved.`
+      },
+      keyTakeaways: [
+        { point: { gentle: "Preference is not the same as stronger learning.", direct: "Style labels are weaker than evidence about what works.", competitive: "A favorite format is not a verdict." } },
+        { point: { gentle: "Representation should fit the material.", direct: "Choose diagrams, words, or demonstrations because the task calls for them.", competitive: "Let the content pick the tool." } },
+        { point: { gentle: "Prior knowledge and active practice matter more than style matching.", direct: "Background understanding and retrieval design often explain learning better.", competitive: "Do not let a style label hide the real lever." } }
+      ],
+      oneMinuteRecap: {
+        gentle: { retrieve: "What is the difference between preference and stronger learning here?", connect: "Why should the material help decide the format?", preview: "What question about ability does the next chapter raise?" },
+        direct: { retrieve: "Why is style matching not the main answer in this chapter?", connect: "How do prior knowledge and retrieval matter more than labels?", preview: "Why does the next chapter turn toward beliefs about ability?" },
+        competitive: { retrieve: "Why is a favorite format not enough evidence?", connect: "What stronger design question should replace the style label?", preview: "If styles are a weak story, what deeper story about ability gets tested next?" }
+      }
+    },
+    medium: {
+      chapterBreakdown: {
+        gentle: `Style labels are attractive because they sound like explanations. A learner says they are visual. Another says they need to hear it. Someone else says they learn only by doing. These claims can feel respectful because they seem to honor difference. This chapter challenges the stronger conclusion that instruction works best mainly by matching those declared styles.
+
+The authors redirect attention to a different question: what does the material require? Some ideas are easier to grasp with diagrams because relationships are spatial. Some need words, examples, demonstrations, or a combination because the content itself demands it. That is not the same as style matching. It is material fit.
+
+The chapter also brings prior knowledge into view. A learner may struggle because a background concept is missing, not because the lesson came in the wrong sensory form. Style language can hide that gap by offering a simple label where a more careful diagnosis is needed.
+
+This is why the chapter keeps active processing at the center. Retrieval, explanation, comparison, and practice do more for learning than simply presenting information in a preferred format. A learner can enjoy a format and still learn weakly from it if the lesson stays passive. Another format may feel less comfortable yet teach better because it fits the material and asks the learner to do more.
+
+The argument is therefore corrective, not dismissive. Preferences can be real. The chapter does not need to deny that people like some formats more than others. Its stronger claim is that preference should not be confused with evidence about what improves learning most.
+
+So the book asks the reader to move beyond style labels and toward evidence-backed design. Choose representations because the content calls for them. Check what the learner already knows. Build retrieval and explanation into instruction. That prepares the next chapter's move from myths about styles to beliefs about whether ability itself can expand through strategy and practice.`,
+        direct: `A popular explanation for learning trouble says that students learn best mainly when instruction is matched to a preferred style. The authors argue that this claim is overstated. Preference is not the same as evidence that learning improved.
+
+The stronger guide is the material itself. Some topics benefit from diagrams because relationships are spatial. Others need verbal explanation, worked examples, or demonstrations because the task demands those forms. Good design therefore asks what representation serves the content instead of starting with a style label.
+
+Prior knowledge matters just as much. A learner may appear lost not because the lesson came in the wrong mode, but because key background concepts are missing. Style language can become a convenient but shallow diagnosis that misses the real problem.
+
+The chapter also keeps active processing in focus. Retrieval, explanation, comparison, and application matter more than preference matching because they make the learner work with the idea. A lesson that perfectly matches a preferred format can still teach weakly if it remains passive. A less preferred format may teach better if it fits the material and requires useful effort.
+
+This is why the chapter should not be read as saying learner differences do not matter. It says something narrower and more demanding. Differences matter, but style labels are a poor master explanation. Material fit, prior knowledge, and evidence-backed practice give stronger guidance.
+
+So the chapter redirects the reader from a tidy myth toward more disciplined design choices. It asks teachers and learners to choose formats that serve the task, inspect background understanding, and build retrieval into the lesson. The next chapter follows by questioning another belief that feels natural but can restrict learning: the idea that ability itself is largely fixed.`,
+        competitive: `Learning styles survive because they sound humane and precise at the same time. Say a learner is visual, auditory, or kinesthetic, and it feels like the problem has been diagnosed. This chapter says that diagnosis is often too cheap. Preference is real, but it is not proof that matching instruction to that preference is the main route to better learning.
+
+The sharper question is what the material demands. Some content needs a diagram because the relationships are spatial. Some needs words, examples, demonstration, or a blend because the task itself calls for them. The format should answer to the content, not to a label that sounds explanatory.
+
+Prior knowledge matters too. A learner may struggle because a key concept is missing, not because the lesson came through the wrong channel. Style talk can hide that deeper issue by handing out a quick story instead of a real diagnosis.
+
+The chapter also refuses to ignore practice design. Retrieval, explanation, comparison, and application matter more than style matching because they make learning active. A preferred format can still produce weak learning if the learner stays passive. A less comfortable format can still teach better if it fits the material and makes the learner work.
+
+That is why the chapter is corrective without being contemptuous. It does not mock differences. It rejects a weak theory. People can prefer some modes over others, but the book wants stronger evidence to decide what should happen next.
+
+So Chapter 6 strips authority away from the style label and gives it back to the task, the learner's preparation, and the design of practice. Once that cleanup is done, the next chapter can challenge an even more personal story: whether ability is a fixed ceiling or something disciplined effort can expand.`
+      },
+      keyTakeaways: [
+        {
+          point: { gentle: "A preferred style is not proof of stronger learning.", direct: "Preference and evidence should not be confused.", competitive: "Liking a format does not crown it king." },
+          moreDetails: { gentle: "A learner may enjoy a format or feel comfortable with it without actually learning more from it.", direct: "The chapter separates declared preference from demonstrated improvement.", competitive: "Comfort can cast a vote, but it does not get the final say." }
+        },
+        {
+          point: { gentle: "Representation should fit the material.", direct: "The task should help decide the format.", competitive: "Let the content choose the tool." },
+          moreDetails: { gentle: "Diagrams, words, demonstrations, and examples have value when they serve what the learner must understand.", direct: "Good design begins with the structure of the material, not with a style label applied in advance.", competitive: "Use the wrench because the bolt needs it, not because the learner likes shiny tools." }
+        },
+        {
+          point: { gentle: "Missing prior knowledge can matter more than style mismatch.", direct: "Background gaps often explain difficulty better than sensory labels do.", competitive: "Sometimes the problem is not the channel. It is the missing foundation." },
+          moreDetails: { gentle: "A learner can struggle because key ideas were never built, even if the format feels comfortable.", direct: "Style language can distract from the real need to check what concepts the learner already has available.", competitive: "The style story can be a cheap excuse for a hole in the floor." }
+        },
+        {
+          point: { gentle: "Retrieval and explanation matter more than passive preference matching.", direct: "Practice design outweighs style labels.", competitive: "A favorite format cannot save a passive lesson." },
+          moreDetails: { gentle: "Learning improves when the learner has to explain, recall, compare, and use the idea, not only receive it in a preferred form.", direct: "A lesson can be perfectly matched to preference and still teach weakly if it never demands active processing.", competitive: "If the learner never has to work, the style win is mostly theater." }
+        },
+        {
+          point: { gentle: "Style talk can distract from stronger evidence-backed choices.", direct: "The chapter wants design decisions guided by task, preparation, and evidence.", competitive: "The label can steal attention from the real levers." },
+          moreDetails: { gentle: "Teachers and learners need better questions than “What style am I?” if they want stronger learning.", direct: "The more useful questions concern content fit, prior knowledge, and what practice will make understanding durable.", competitive: "The style badge can talk loudly while the real controls sit untouched." }
+        }
+      ],
+      activationPrompt: {
+        gentle: "Choose one lesson and ask what the material requires before asking what format feels nicest.",
+        direct: "Take one study or training plan and redesign it around content fit, prior knowledge, and retrieval.",
+        competitive: "Pick one routine built around labels and make the task, not the myth, call the shots."
+      },
+      selfCheckPrompt: {
+        gentle: "Can you explain why preference is weaker than evidence here?",
+        direct: "Why does the chapter redirect attention from style labels to task fit and prior knowledge?",
+        competitive: "If a learner likes a format, what still has to be proven?"
+      },
+      oneMinuteRecap: {
+        retrieve: { gentle: "Why is preference not enough by itself?", direct: "What makes style matching too weak as the main answer?", competitive: "Why is a favorite format not a verdict?" },
+        connect: { gentle: "How do material fit and prior knowledge guide better design?", direct: "Why do retrieval and explanation matter more than style labels?", competitive: "What stronger levers replace the badge?" },
+        preview: { gentle: "What question about ability comes next?", direct: "Why does the next chapter move from styles to beliefs about ability?", competitive: "If labels are weak, what deeper ceiling story gets challenged next?" }
+      }
+    },
+    hard: {
+      chapterBreakdown: {
+        gentle: `A learner difference can be real without being the main explanation for what improves learning. That is the tension this chapter has to manage. Style labels feel persuasive because they sound respectful and precise. One learner says they are visual. Another says they need to hear it. A third says doing is the only route that works. The labels seem to explain what instruction should look like. Chapter 6 questions that confidence.
+
+The correction begins by separating preference from evidence. A learner can prefer a format, feel more comfortable with it, or even feel more fluent while using it. None of that automatically proves stronger learning. Comfort and preference are weak signals unless they are tied to what the learner can later retrieve, explain, or apply.
+
+The chapter then redirects attention toward the material itself. Some content needs a diagram because relationships are spatial. Some needs words, examples, demonstrations, or more than one representation because the task calls for different forms of understanding. That is not style matching. It is choosing tools that fit the work.
+
+Prior knowledge matters just as much. A learner may struggle because a prerequisite idea is missing, because vocabulary is thin, or because the conceptual frame has not been built. Style language can blur that diagnosis by giving the teacher and learner a quick story that feels personal but explains little.
+
+The chapter also keeps active processing central. Retrieval, explanation, comparison, and practice matter more than simply delivering information in a preferred channel. A lesson can flatter the learner by matching preference and still produce weak learning if the learner stays passive. A less preferred format can teach better when it fits the material and requires the learner to think, retrieve, and connect.
+
+This is why the chapter should not be misheard as saying learner differences do not matter. It says something more disciplined. Differences matter, but style labels are a weak organizing theory for instruction. Better guidance comes from the nature of the material, the learner's preparation, and evidence-backed practice design.
+
+Chapter 6 therefore performs a cleanup job for the whole book. It refuses another explanation that feels tidy while steering attention away from stronger mechanisms. Once the style label loses its authority, the next chapter can challenge a more intimate story: whether ability itself is fixed or whether disciplined practice can expand what the learner can do.`,
+        direct: `The chapter challenges the idea that matching instruction to a preferred learning style is the main route to better learning. That idea is appealing because it sounds both individualized and practical. The authors argue that it is also too weak. Preference is not evidence of stronger learning.
+
+The first correction is to ask what the material demands. Some concepts are best served by diagrams because the relationships are spatial. Others need verbal explanation, worked examples, physical demonstration, or some combination because the task itself requires those forms. Instruction should therefore begin with content fit rather than with a style label.
+
+The second correction is to inspect prior knowledge. Learners often struggle because key background concepts are missing, not because the lesson arrived through the wrong sensory channel. A style label can become a shallow explanation that hides the real source of difficulty.
+
+The chapter also insists that practice design matters more than preference matching. Retrieval, explanation, comparison, and application are stronger levers because they determine what the learner has to do with the idea. A preferred format can still support weak learning when the lesson is passive. A less preferred format can support stronger learning when it fits the content and requires active processing.
+
+This is why the chapter should not be read as flattening all learners into one mold. Differences in preparation, skill, and comfort remain relevant. The narrower claim is that style labels are a poor master explanation. Better design comes from material fit, background diagnosis, and evidence-backed practice.
+
+That makes Chapter 6 another anti-shortcut chapter. It removes a popular but weak theory so the book can stay focused on stronger mechanisms. The next chapter continues the pattern by challenging a belief that can limit learning even more deeply: the belief that ability is fixed.`,
+        competitive: `Learning styles survive because they flatter everyone involved. The learner gets a neat identity. The teacher gets a quick diagnosis. The lesson gets a story that sounds tailored. Chapter 6 says that story is often too cheap. Preference is real, but it is not proof that matching instruction to that preference is the main path to stronger learning.
+
+The sharper question is what the task demands. Some content needs a diagram because the structure is spatial. Some needs words, examples, demonstration, or a blend because the work itself calls for them. The lesson should answer to the material, not to a badge that sounds explanatory.
+
+Prior knowledge is another stronger lever. A learner may be lost because the foundation is missing, not because the content came through the wrong channel. Style talk can hide that deeper problem by handing out a label where a diagnosis should go.
+
+Practice design matters too. Retrieval, explanation, comparison, and application beat passive preference matching because they make learning do something. A favorite format can still produce weak learning if the learner never has to retrieve or connect. A less cozy format can still win if it fits the task and forces real work.
+
+That is why the chapter is careful rather than sneering. It does not mock difference. It strips power from a weak theory. People can have preferences, but preference does not get to run the whole lesson unless evidence says it should.
+
+So Chapter 6 takes one more tidy story off the throne and hands authority back to the task, the learner's preparation, and the design of practice. After that, the book is ready to challenge an even sharper limit story: whether ability itself is fixed or whether disciplined strategy can move the ceiling.`
+      },
+      keyTakeaways: [
+        {
+          point: { gentle: "Preference is not the same as evidence of better learning.", direct: "Style labels are weaker than demonstrated outcomes.", competitive: "A favorite channel is not a crown." },
+          moreDetails: { gentle: "A learner can feel comfortable in a format without learning more from it.", direct: "The chapter separates what learners like from what helps them retain and use the material.", competitive: "Comfort can campaign hard, but it still has to win at the ballot box of evidence." }
+        },
+        {
+          point: { gentle: "Instruction should fit the material.", direct: "Task demands should guide representation.", competitive: "The content should pick the weapon." },
+          moreDetails: { gentle: "Different forms such as diagrams, examples, and explanations matter when they serve what must be understood.", direct: "Good design starts with the structure of the concept or skill, not with a style label that arrives first.", competitive: "Choose the tool that fits the job, not the badge that sounds elegant." }
+        },
+        {
+          point: { gentle: "Prior knowledge often explains difficulty better than style labels.", direct: "Background gaps are a stronger diagnosis than sensory preference.", competitive: "Sometimes the learner is not mismatched. They are underbuilt." },
+          moreDetails: { gentle: "A student may need missing concepts or vocabulary more than a different presentation mode.", direct: "Style talk can obscure the need to inspect what the learner already knows and what prerequisites are absent.", competitive: "The style story can hide a missing floorboard under a painted sign." }
+        },
+        {
+          point: { gentle: "Active retrieval and explanation matter more than passive preference matching.", direct: "Practice design outranks style labels.", competitive: "A cozy channel cannot rescue a passive lesson." },
+          moreDetails: { gentle: "Learning strengthens when the learner has to recall, explain, compare, and apply, not only receive information in a comfortable format.", direct: "Even a preferred mode teaches weakly if the learner remains mostly passive.", competitive: "If the learner never has to work, the style advantage is mostly costume." }
+        },
+        {
+          point: { gentle: "The chapter rejects a weak theory, not learner differences themselves.", direct: "Nuance matters: differences remain, but style labels are poor masters.", competitive: "The myth goes out. The human difference stays." },
+          moreDetails: { gentle: "Teachers still need to consider background knowledge, skill, and task demands even after style matching loses authority.", direct: "The correction is not one-size-fits-all teaching. It is better criteria for variation.", competitive: "The badge loses power, but the real diagnostics stay in the room." }
+        }
+      ],
+      activationPrompt: {
+        gentle: "Take one lesson and ask what the content demands before you ask what style someone prefers.",
+        direct: "Audit one teaching or study plan for material fit, prior knowledge, and retrieval design.",
+        competitive: "Pick one label-driven routine and make the task, not the myth, decide the next move."
+      },
+      selfCheckPrompts: [
+        { gentle: "Can you explain why preference is weaker than evidence as a guide to instruction?", direct: "Why does the chapter begin with material fit rather than style labels?", competitive: "If a learner likes a format, what still has to earn the final vote?" },
+        { gentle: "Can you describe how prior knowledge changes the diagnosis of learning trouble?", direct: "Why can a style explanation hide a missing background concept?", competitive: "When does the label distract from the missing floor?" }
+      ],
+      predictionPrompt: {
+        gentle: "If the style story has been corrected, what deeper belief about learning is ready to be challenged next?",
+        direct: "Why does the next chapter turn from styles to fixed-versus-expandable ability beliefs?",
+        competitive: "Once the label myth falls, what ceiling myth stands next in line?"
+      }
+    }
+  },
+  examples: [
+    {
+      exampleId: "ch06-ex01",
+      title: "Maya Chooses the Science Format by Task, Not by Label",
+      category: "school",
+      format: "decision_point",
+      endingType: "broader_principle",
+      contexts: ["science diagram", "verbal explanation", "hands-on example"],
+      scenario: {
+        gentle: "Maya's class can use a diagram, a spoken explanation, and a short demonstration. The teacher has to decide based on what the lesson requires rather than on student style labels alone.",
+        direct: "Maya's teacher stops asking which style students claim and starts asking which representation best fits the science concept being taught.",
+        competitive: "The lesson can chase labels, or it can let the task pick the tools."
+      },
+      whatToDo: {
+        gentle: "Choose the mix of formats that serves the concept and then add a retrieval check.",
+        direct: "Match representation to the content and require explanation or recall afterward.",
+        competitive: "Let the concept call the formation, then make the class prove it stuck."
+      },
+      whyItMatters: {
+        gentle: "The chapter values material fit over style matching.",
+        direct: "Good design begins with the task, not with a declared preference.",
+        competitive: "The content is the coach here, not the label."
+      }
+    },
+    {
+      exampleId: "ch06-ex02",
+      title: "Victor Blamed Learning Styles When the Real Gap Was Background Knowledge",
+      category: "work",
+      format: "postmortem",
+      endingType: "self_directed_question",
+      contexts: ["onboarding module", "missing prerequisite", "training diagnosis"],
+      scenario: {
+        gentle: "Victor thought new hires were struggling because the training was in the wrong style. The postmortem showed they were missing a key background concept.",
+        direct: "Victor used style language to explain weak performance, but the review showed the real issue was missing prior knowledge and too little retrieval practice.",
+        competitive: "Victor blamed the channel. The real leak was in the foundation."
+      },
+      whatToDo: {
+        gentle: "Check what the learners already know and add retrieval before blaming style mismatch.",
+        direct: "Diagnose background gaps and practice design before reaching for style explanations.",
+        competitive: "Inspect the floorboards before repainting the label."
+      },
+      whyItMatters: {
+        gentle: "Prior knowledge often explains difficulty better than style labels do.",
+        direct: "The chapter wants a stronger diagnosis than a quick sensory story.",
+        competitive: "A neat badge can hide a missing foundation."
+      }
+    },
+    {
+      exampleId: "ch06-ex03",
+      title: "Elena and Omar Debate Liking a Format Versus Learning From It",
+      category: "personal",
+      format: "dialogue",
+      endingType: "surprising_implication",
+      contexts: ["podcast lesson", "worked diagram", "preference"],
+      scenario: {
+        gentle: "Elena loves listening to lessons as audio. Omar asks whether that preference proves she learns best that way for every topic.",
+        direct: "Elena prefers podcasts, but Omar points out that liking a format is not the same as showing stronger learning from it.", 
+        competitive: "Elena votes for the channel she enjoys. Omar asks whether enjoyment won the evidence."
+      },
+      whatToDo: {
+        gentle: "Choose the format by what the topic requires and then test learning with recall or explanation.",
+        direct: "Let preference matter less than task fit and active processing.",
+        competitive: "Do not let comfort run the room. Make the task and the check decide."
+      },
+      whyItMatters: {
+        gentle: "Preference alone is weaker than evidence from performance.",
+        direct: "The chapter separates what feels good from what teaches well.",
+        competitive: "A favorite channel still has to win under the scoreboard."
+      }
+    },
+    {
+      exampleId: "ch06-ex04",
+      title: "Priya Compares Style-Matched Review With Retrieval-Based Geometry Practice",
+      category: "school",
+      format: "predict_reveal",
+      endingType: "cross_domain",
+      contexts: ["geometry set", "retrieval review", "style label"],
+      scenario: {
+        gentle: "Priya predicts that a review built around her preferred style will help more than a geometry session built around diagrams, worked examples, and retrieval. The later result favors the task-fit review.",
+        direct: "Priya expects preference matching to win, but the review designed around the geometry content and active recall teaches more.",
+        competitive: "Priya bets on the label. The task-fit session takes the point."
+      },
+      whatToDo: {
+        gentle: "Use the result to give more weight to material fit and retrieval.",
+        direct: "Let the stronger performance from the geometry-aligned review outrank the comfort of preference matching.",
+        competitive: "Trust the format that served the task and made the learner work."
+      },
+      whyItMatters: {
+        gentle: "The chapter asks the learner to judge by evidence, not by label comfort.",
+        direct: "Task fit plus active processing beat style matching here.",
+        competitive: "The content picked the better formation, and the score proved it."
+      }
+    },
+    {
+      exampleId: "ch06-ex05",
+      title: "Nina Redesigns Training Without Leaning on Style Labels",
+      category: "work",
+      format: "dilemma",
+      endingType: "common_trap",
+      contexts: ["team training", "format choice", "retrieval prompt"],
+      scenario: {
+        gentle: "Nina wants to respect differences on her team but worries that leaning on style labels will oversimplify what the training needs.",
+        direct: "Nina has to redesign training without hiding behind style categories, while still accounting for different starting points and task demands.",
+        competitive: "Nina needs nuance without handing the whole wheel to a weak myth."
+      },
+      whatToDo: {
+        gentle: "Choose formats that fit the work, inspect background knowledge, and add retrieval checks for everyone.",
+        direct: "Replace label-driven choices with task-driven representation and active practice.",
+        competitive: "Let the job shape the lesson and make the checks expose what actually landed."
+      },
+      whyItMatters: {
+        gentle: "The chapter rejects one-size-fits-all myths, not thoughtful design.",
+        direct: "Nina can honor differences better by checking preparation and choosing representations that fit the task.", 
+        competitive: "Real nuance beats decorative labels."
+      }
+    },
+    {
+      exampleId: "ch06-ex06",
+      title: "Maya Stops Asking What Style She Is and Starts Asking What the Task Needs",
+      category: "personal",
+      format: "before_after",
+      endingType: "perspective_reframe",
+      contexts: ["study plan", "task fit", "retrieval habit"],
+      scenario: {
+        gentle: "Maya used to begin by asking what style she was. Now she asks what the material requires and how she will retrieve it later.",
+        direct: "Maya shifts from identity labels to content fit, prior knowledge, and active practice.", 
+        competitive: "Maya fires the badge and hires the task."
+      },
+      whatToDo: {
+        gentle: "Keep starting with the content and the check, not with the label.",
+        direct: "Design each study session around representation fit and retrieval demands.",
+        competitive: "Ask the task what tool it needs, then make memory prove it worked."
+      },
+      whyItMatters: {
+        gentle: "The new question produces better design than a style label does.",
+        direct: "It keeps the learner focused on evidence-backed choices rather than a myth of fit.",
+        competitive: "The badge loses glamour, and the real levers get touched."
+      }
+    }
+  ],
+  implementationPlan: {
+    coreSkill: {
+      gentle: "The core skill is choosing learning formats by task fit, prior knowledge, and active processing rather than by style labels alone.",
+      direct: "Core skill: replace style matching with evidence-backed design choices.",
+      competitive: "Core skill: stop letting the badge run the lesson."
+    },
+    ifThenPlans: [
+      {
+        context: "school",
+        plan: {
+          gentle: "If I am choosing a format for a lesson, then I will ask what the material requires and how students will retrieve it later.",
+          direct: "If a topic is hard, then I will check task fit and prior knowledge before blaming style mismatch.",
+          competitive: "If the lesson stalls, I audit the task and the foundation before I salute the label."
+        }
+      },
+      {
+        context: "work",
+        plan: {
+          gentle: "If training is not landing, then I will inspect background knowledge and practice design first.",
+          direct: "If people struggle, then I will test prerequisites and retrieval demands before redesigning around style language.",
+          competitive: "If performance slips, I diagnose the floor and the reps before I blame the channel."
+        }
+      },
+      {
+        context: "personal",
+        plan: {
+          gentle: "If I catch myself asking what style I am, then I will ask what the task needs instead.",
+          direct: "If preference is steering the study plan, then I will make the content and the evidence take over.",
+          competitive: "If the badge starts calling plays, I hand the clipboard back to the task."
+        }
+      }
+    ],
+    twentyFourHourChallenge: {
+      gentle: "Within 24 hours, redesign one lesson or study session around material fit and a retrieval check.",
+      direct: "In the next day, replace one style-based choice with a task-fit representation and active practice.",
+      competitive: "Today, bench one label-driven move and let the content set the formation."
+    },
+    weeklyPractice: {
+      gentle: "For one week, notice one time per day when you can choose by task fit instead of by style language.",
+      direct: "Track one design decision each day this week and ask whether it came from evidence or from a label.",
+      competitive: "For seven days, every style claim has to face the task and the scoreboard."
+    }
+  },
+  reviewCards: [
+    {
+      cardId: "ch06-rc01",
+      front: {
+        gentle: "What does the chapter reject about learning styles?",
+        direct: "What claim about style matching does the chapter push back on?",
+        competitive: "What weak throne does the chapter knock over?"
+      },
+      back: {
+        gentle: "It rejects the idea that matching instruction to a preferred style is the main route to stronger learning.",
+        direct: "The chapter challenges the claim that style labels are the best guide for designing learning.",
+        competitive: "It takes the crown off the label that pretends to run the whole lesson."
+      },
+      difficulty: "easy"
+    },
+    {
+      cardId: "ch06-rc02",
+      front: {
+        gentle: "What should help decide the format instead?",
+        direct: "What stronger guide replaces the style label here?",
+        competitive: "Who gets the playbook after the badge loses power?"
+      },
+      back: {
+        gentle: "The material, the task, and what the learner needs to do with the idea.",
+        direct: "The chapter points to content fit, prior knowledge, and active practice as stronger guides.",
+        competitive: "The task, the foundation, and the reps get the clipboard."
+      },
+      difficulty: "easy"
+    },
+    {
+      cardId: "ch06-rc03",
+      front: {
+        gentle: "Why does prior knowledge matter so much?",
+        direct: "How can missing background knowledge look like a style problem?",
+        competitive: "What hidden floor can the style story cover up?"
+      },
+      back: {
+        gentle: "A learner may struggle because key concepts are missing, not because the lesson came in the wrong format.",
+        direct: "Background gaps can explain difficulty better than style labels do, so they should be checked first.",
+        competitive: "The learner may not need a new channel. They may need the missing floor."
+      },
+      difficulty: "medium"
+    },
+    {
+      cardId: "ch06-rc04",
+      front: {
+        gentle: "Why is active retrieval more important than style matching?",
+        direct: "What can a preferred format fail to do if the lesson stays passive?",
+        competitive: "Why can't a cozy channel save a passive lesson?"
+      },
+      back: {
+        gentle: "Because learning strengthens when the learner has to recall, explain, and apply the idea.",
+        direct: "A preferred format can still teach weakly if it does not require active processing.",
+        competitive: "If the learner never has to work, the style advantage is mostly decoration."
+      },
+      difficulty: "medium"
+    },
+    {
+      cardId: "ch06-rc05",
+      front: {
+        gentle: "Does the chapter say learner differences do not matter?",
+        direct: "How does the chapter stay nuanced about differences?",
+        competitive: "What stays after the myth gets thrown out?"
+      },
+      back: {
+        gentle: "No. It says differences matter, but style labels are a weak way to organize instruction.",
+        direct: "The chapter keeps differences in preparation, task demands, and comfort visible while rejecting style matching as the master explanation.",
+        competitive: "The myth goes out, but the real diagnostics stay in the room."
+      },
+      difficulty: "hard"
+    }
+  ],
+  keyTakeawayCard: {
+    gentle: "Chapter 6 asks the reader to move beyond style labels and toward stronger design questions. What does the material require, what background knowledge is missing, and what practice will make the idea retrievable and usable?",
+    direct: "The chapter rejects style matching as the main answer and replaces it with content fit, prior knowledge, and active retrieval or explanation.",
+    competitive: "Fire the badge. Hire the task, the foundation, and the reps."
+  }
+};
+
+const quiz = {
+  passingScorePercent: 80,
+  questions: [
+    { questionId: "ch06-q01", prompt: "What does the chapter reject about learning styles?", choices: ["That preferences exist at all", "That matching instruction to a preferred style is the main route to stronger learning", "That diagrams and demonstrations can help learning"], correctIndex: 1, explanation: { gentle: "The chapter does not deny preferences. It challenges the larger claim about style matching as the main answer.", direct: "The target is the theory that style labels should dominate instructional design.", competitive: "The badge is not allowed to run the whole lesson." }, bloomsLevel: "remember", depthLevel: "easy" },
+    { questionId: "ch06-q02", prompt: "Why is preference weaker than evidence here?", choices: ["Because learners never know what they like", "Because liking a format does not prove it leads to stronger learning", "Because all formats teach equally well"], correctIndex: 1, explanation: { gentle: "A learner may feel comfortable in a format without learning more from it.", direct: "The chapter separates what feels good from what produces stronger retention and use.", competitive: "Comfort can vote, but it still has to win on the scoreboard." }, bloomsLevel: "understand", depthLevel: "easy" },
+    { questionId: "ch06-q03", prompt: "How should a teacher choose representation for a science or geometry lesson according to this chapter?", choices: ["By asking only which style students prefer", "By choosing the format that fits the material and then requiring active processing", "By avoiding diagrams so no style is favored"], correctIndex: 1, explanation: { gentle: "The chapter wants the content to guide the format.", direct: "Representation should serve the task, and learning should still include retrieval or explanation.", competitive: "Let the content call the formation, then make the learner run the play." }, bloomsLevel: "apply", depthLevel: "medium" },
+    { questionId: "ch06-q04", prompt: "What did Victor's postmortem show?", choices: ["The team needed a stronger style label", "The real problem was missing prior knowledge and weak practice design", "Training always fails when it uses mixed formats"], correctIndex: 1, explanation: { gentle: "The postmortem showed a background gap, not a style mismatch.", direct: "Prior knowledge and practice demands explained the failure better than style language did.", competitive: "The leak was in the foundation, not in the channel." }, bloomsLevel: "apply", depthLevel: "medium" },
+    { questionId: "ch06-q05", prompt: "Why does prior knowledge matter so much here?", choices: ["Because it can explain struggle more accurately than a style label", "Because it removes the need for retrieval", "Because only experts benefit from it"], correctIndex: 0, explanation: { gentle: "A learner may be missing background concepts rather than the right presentation style.", direct: "The chapter treats prior knowledge as a stronger diagnostic lever than sensory preference.", competitive: "Sometimes the learner needs a floor, not a new badge." }, bloomsLevel: "understand", depthLevel: "medium" },
+    { questionId: "ch06-q06", prompt: "Which misreading would the chapter reject?", choices: ["Learner differences do not matter at all", "Material fit matters", "Retrieval and explanation help learning"], correctIndex: 0, explanation: { gentle: "The chapter does not flatten all learners into one mold.", direct: "It rejects style matching as a master theory while preserving differences in preparation and task needs.", competitive: "The myth goes out, not the human differences." }, bloomsLevel: "analyze", depthLevel: "hard" },
+    { questionId: "ch06-q07", prompt: "What should Elena do if she loves podcasts but wants to learn a topic well?", choices: ["Assume audio is always her best option", "Choose the format by what the topic requires and then test learning actively", "Avoid all preferred formats"], correctIndex: 1, explanation: { gentle: "The chapter asks Elena to let the task and the check guide the choice.", direct: "Preference can remain, but it should not outrank content fit and retrieval demands.", competitive: "Let enjoyment speak, but make the task and the scoreboard decide." }, bloomsLevel: "apply", depthLevel: "medium" },
+    { questionId: "ch06-q08", prompt: "Why does the next chapter follow this one?", choices: ["Because the book is done challenging common beliefs", "Because it moves from style myths to beliefs about whether ability is fixed", "Because it is returning to passive review"], correctIndex: 1, explanation: { gentle: "After correcting style labels, the book turns to beliefs about ability itself.", direct: "Chapter 7 continues the anti-shortcut pattern by examining fixed-versus-expandable ability beliefs.", competitive: "The label myth falls, and the ceiling myth comes next." }, bloomsLevel: "understand", depthLevel: "easy" },
+    { questionId: "ch06-q09", prompt: "What matters more than style matching according to the chapter?", choices: ["Passive comfort in a preferred mode", "Material fit, prior knowledge, and active retrieval or explanation", "Keeping every learner in one identical format"], correctIndex: 1, explanation: { gentle: "The chapter points to stronger design levers than style labels.", direct: "Task fit, preparation, and active processing give better guidance for learning design.", competitive: "The real levers are the job, the floor, and the reps." }, bloomsLevel: "analyze", depthLevel: "hard" },
+    { questionId: "ch06-q10", prompt: "What should guide instruction if not a simple style label?", choices: ["Whatever format feels most comfortable first", "The representation that looks trendiest", "The demands of the material, the learner's preparation, and the practice needed for understanding to stick"], correctIndex: 2, explanation: { gentle: "The chapter wants design decisions grounded in the task and in what learners need to do with the content.", direct: "Instruction should answer to content fit, prior knowledge, and evidence-backed practice rather than to a single label.", competitive: "Let the task call the shots, check the foundation, and make the reps count." }, bloomsLevel: "analyze", depthLevel: "hard" }
+  ]
+};
+
+chapter.quiz = quiz;
+const book = {
+  bookId: "make-it-stick",
+  title: "Make It Stick",
+  author: "Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel",
+  categories: [],
+  tags: [],
+  variantFamily: "EMH",
+  edition: {
+    name: "2014 Belknap Press of Harvard University Press English edition",
+    translator: "",
+    publishedYear: 2014,
+    translationYear: null,
+    sourceText: ".chapterflow/runs/make-it-stick/20260411-173340/source-freeze/book-source.md",
+    sourceProvenance: "Frozen web bundle only; paraphrase-first."
+  }
+};
+const critic = `# ch06 Critic Report
+
+## Result
+- Status: PASS with local edit notes
+
+## Strengths
+- The chapter rejects style matching without sliding into a sneering anti-myth rant.
+- The edited draft keeps material fit, prior knowledge, and active processing as the stronger alternatives.
+- The bridge into Chapter 7's ability-belief question is clear.
+
+## Local Issues Repaired Before Conversion
+- Tightened the opening so it starts from the appeal of style labels rather than from a generic debunking posture.
+- Sharpened the distinction between preference and evidence.
+- Repaired one drift toward one-size-fits-all language by keeping learner differences visible through task and preparation.
+
+## Critic Gate Decision
+- Prose clears the chapter-specific critic gate and may proceed to structured conversion.
+`;
+const metrics = {
+  chapterId: "ch06",
+  canonicalDraftWords: wordCount(fs.readFileSync(path.join(runRoot, "drafts/canonical/ch06.md"), "utf8")),
+  editedDraftWords: wordCount(fs.readFileSync(path.join(runRoot, "drafts/edited/ch06.md"), "utf8")),
+  easyBreakdownWords: Object.fromEntries(Object.entries(chapter.contentVariants.easy.chapterBreakdown).map(([k, v]) => [k, wordCount(v)])),
+  mediumBreakdownWords: Object.fromEntries(Object.entries(chapter.contentVariants.medium.chapterBreakdown).map(([k, v]) => [k, wordCount(v)])),
+  hardBreakdownWords: Object.fromEntries(Object.entries(chapter.contentVariants.hard.chapterBreakdown).map(([k, v]) => [k, wordCount(v)])),
+  examplesCount: chapter.examples.length,
+  reviewCardsCount: chapter.reviewCards.length,
+  quizQuestionsCount: quiz.questions.length
+};
+writeJson("structured/ch06.chapter.json", chapter);
+writeJson("quizzes/ch06.quiz.json", quiz);
+writeJson("validated/ch06.chapter.json", chapter);
+writeJson("validated/ch06.review-package.json", { schemaVersion: "chapterflow.v13.chapter-review-package", packageId: "make-it-stick-20260411-173340-ch06", createdAt: "2026-04-11T15:22:41-03:00", contentOwner: "ChapterFlow", book, chapters: [chapter] });
+writeJson("sidecars/ch06.reading-metrics.json", metrics);
+fs.writeFileSync(path.join(runRoot, "reports/ch06.critic.md"), critic);
+console.log(JSON.stringify(metrics, null, 2));

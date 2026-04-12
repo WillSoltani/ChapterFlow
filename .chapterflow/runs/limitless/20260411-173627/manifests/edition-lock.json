@@ -1,0 +1,26 @@
+{
+  "bookId": "limitless",
+  "runId": "20260411-173627",
+  "lockedAt": "2026-04-11T17:36:27-03:00",
+  "selectionMode": "auto_lock",
+  "reason": "The dominant base edition for the intended ChapterFlow run is the 2020 Hay House 15-chapter edition. Expanded editions add later chapters and would materially change chapter count, chapter order, and release structure.",
+  "chosenEdition": {
+    "name": "Limitless: Upgrade Your Brain, Learn Anything Faster, and Unlock Your Exceptional Life",
+    "author": "Jim Kwik",
+    "publisher": "Hay House",
+    "publishedDate": "2020-04-07",
+    "publishedYear": 2020,
+    "format": "Hardcover in English",
+    "isbn10": "1401958249",
+    "isbn13": "9781401958244",
+    "sourceText": ".chapterflow/runs/limitless/20260411-173627/source-freeze/book-source.md",
+    "sourceProvenance": "Frozen web bundle from Open Library base-edition metadata and TOC, Google Books expanded-edition divergence check, Hay House publisher page, and SuperSummary secondary summaries."
+  },
+  "rejectedCandidates": [
+    {
+      "name": "Limitless Expanded Edition",
+      "reason": "Expanded-edition contents include additional later chapters such as Brain Nutrition and AI-related material that are not part of the 2020 15-chapter base structure."
+    }
+  ],
+  "userQuestionNeeded": false
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What explanation of superforecasting does Chapter 7 reject first?",
+      "choices": [
+        "That superforecasters mainly win because they read more news",
+        "That forecasts can be revised at all",
+        "That original forecasts ever matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter cuts down the idea that information volume alone explains the edge.",
+        "direct": "News consumption is the first shortcut the chapter narrows.",
+        "competitive": "It kills the lazy myth that more headlines automatically buy better odds."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter stress that superforecasters were already ahead before later updates?",
+      "choices": [
+        "To show that stronger starting forecasts still matter",
+        "To prove updates should usually be ignored",
+        "To argue that news is always harmful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants the reader to keep better initial judgment visible.",
+        "direct": "Original forecast quality still matters before update skill enters the picture.",
+        "competitive": "A stronger prior was already winning before the signal stream widened the gap."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the main lesson of Bill Flack's move from 60 percent to 65 percent?",
+      "choices": [
+        "Every new report should trigger a major reversal",
+        "A meaningful signal can justify a modest, proportionate update",
+        "Good forecasters avoid revising once they publish a number"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The revision mattered, but it was not theatrical.",
+        "direct": "Flack models update sizing rather than dramatic movement.",
+        "competitive": "Five points can reveal more discipline than a public flip."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Ava receives a new report that adds some evidence but does not overturn the case. What would Chapter 7 push her to do?",
+      "choices": [
+        "Ignore it completely",
+        "Make a limited revision tied to the strength of the signal",
+        "Reverse the whole forecast to show responsiveness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors movement sized to the evidence.",
+        "direct": "Choice B matches the chapter's calibration rule directly.",
+        "competitive": "Make the signal buy its movement instead of rewarding it with a coup."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the dilution effect warn against?",
+      "choices": [
+        "Using any evidence at all",
+        "Treating extra detail as if it automatically sharpens the forecast",
+        "Starting with a strong prior"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "More information can still fail to make the estimate meaningfully better.",
+        "direct": "The effect warns against confusing abundance with diagnostic value.",
+        "competitive": "A louder inbox can still be mostly noise."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What are the chapter's two opposing update failures?",
+      "choices": [
+        "Overconfidence and humility",
+        "Underreaction and overreaction",
+        "Curiosity and fatigue"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One error moves too little and the other too much.",
+        "direct": "The chapter pairs underreaction with overreaction as twin failures of revision.",
+        "competitive": "Frozen loyalty and headline panic are the mirror-image sins."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does Tim Minto matter in this chapter?",
+      "choices": [
+        "He proves forecasts should be changed only rarely",
+        "He models many small, proportionate updates",
+        "He shows that larger updates are always more honest"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "His pattern shows that frequent smaller corrections can be stronger than rare dramatic ones.",
+        "direct": "Minto provides the chapter's behavioral model of measured revision.",
+        "competitive": "He shows how the forecast can stay alive without turning twitchy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Keisha sees one surprising clue and wants to reverse her whole expectation. What would Chapter 7 most likely say?",
+      "choices": [
+        "Surprise should usually trigger a full reversal",
+        "Move by the amount the evidence earns, not by the amount of emotional shock",
+        "Never change a forecast once it is written down"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter respects surprise without letting surprise seize control.",
+        "direct": "Choice B captures the chapter's demand for proportionate movement.",
+        "competitive": "Do not let adrenaline decide the size of the revision."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's strongest claim about staying informed?",
+      "choices": [
+        "More information usually guarantees better forecasting",
+        "Information helps only when it is filtered and translated into revisions of the right size",
+        "Staying informed matters less than never changing your view"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps information in view while refusing to let it explain everything.",
+        "direct": "Its balanced claim is that signals matter only when update discipline governs movement.",
+        "competitive": "The edge is not who knows more. It is who moves better."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 7 gets updating under control, what question does it naturally raise next?",
+      "choices": [
+        "How forecasters keep improving their own process over time",
+        "Why forecasts should stop being revised once they are public",
+        "Why original forecasts no longer matter at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge points toward self-improvement and revising the self rather than only the forecast.",
+        "direct": "Once updating is disciplined, the next question is what keeps that discipline growing.",
+        "competitive": "The chapter tames the update problem and hands the next test to self-revision."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

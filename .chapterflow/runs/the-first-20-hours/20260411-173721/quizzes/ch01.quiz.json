@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What problem does Chapter 1 identify before it offers any method?",
+      "choices": [
+        "Adults have no genuine curiosity left after school",
+        "People often judge a new skill by a mastery-scale standard that makes starting feel irrational",
+        "Useful skills now require technology that most learners cannot access"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter starts with a crowded life, but the deeper issue is how the project is being priced. Mastery expectations make the time burden look larger than the opening goal really requires.",
+        "direct": "The opening pressure is not dead curiosity. It is a distorted cost model created when mastery is treated as the default benchmark for every skill.",
+        "competitive": "The learner is not losing to time alone. The learner is losing to inflated entry math."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does the chapter challenge the 10,000-hour idea in ordinary learning decisions?",
+      "choices": [
+        "Because the chapter claims expertise is mostly a myth",
+        "Because the benchmark is useful only for children, not adults",
+        "Because an expertise benchmark can freeze practical skill entry when applied to modest goals"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The point is not that deep expertise is fake. The point is that using an expert horizon to reject a smaller learning goal creates the wrong decision.",
+        "direct": "Chapter 1 treats the benchmark as misapplied. It becomes harmful when a standard for exceptional performance is used to price basic competence.",
+        "competitive": "The number is not the villain by itself. The misuse is."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "What changes when a learner switches from a mastery target to a competence target?",
+      "choices": [
+        "The learner no longer needs real practice time",
+        "The learner starts evaluating the project by functional ability instead of exceptional performance",
+        "The learner should avoid skills that feel frustrating early on"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Competence does not erase effort. It changes the threshold from greatness to usefulness.",
+        "direct": "The reset is about target selection. The learner asks how to become usable rather than how to become elite immediately.",
+        "competitive": "The project gets priced by function, not prestige."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Elena has postponed data visualization for months because she keeps imagining full analytics expertise. What response best fits Chapter 1?",
+      "choices": [
+        "Define one live competence target, such as building a clear chart for the next board deck",
+        "Wait until she has enough time to study the whole field properly",
+        "Drop the idea because partial learning usually creates bad habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A narrower target makes the skill believable inside a real schedule. The chapter favors usable competence over prestige-loaded delay.",
+        "direct": "This is the chapter's core move in action: replace the expert benchmark with a concrete functional threshold tied to real work.",
+        "competitive": "She needs one useful win, not a new identity."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which mistake is the chapter most concerned about?",
+      "choices": [
+        "Treating beginner discomfort as proof that the skill does not fit you",
+        "Taking too many notes before the first practice session",
+        "Choosing a skill that does not impress other people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter names early frustration because many learners turn that feeling into a final judgment too quickly.",
+        "direct": "Beginner pain is noisy and easy to misread. The chapter pushes back against treating it as a verdict of incapacity.",
+        "competitive": "The trap is confusing the toll with the border."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "A reader says, \"If I am not aiming for mastery, why bother?\" Which answer best matches the chapter?",
+      "choices": [
+        "Because practical competence can still make the skill usable, enjoyable, and worth continuing",
+        "Because mastery is no longer valuable in modern life",
+        "Because the chapter promises that competence always arrives quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter argues that usefulness can arrive before greatness, and that usefulness is a real threshold.",
+        "direct": "Chapter 1 defends competence as a meaningful outcome. It does not attack mastery or promise instant success.",
+        "competitive": "A skill does not need to be elite before it starts paying rent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Marcus quits a language course after one bad speaking drill. According to the chapter, what is the strongest reinterpretation of that moment?",
+      "choices": [
+        "The embarrassment proves he picked the wrong skill",
+        "The frustration likely reflects normal beginner cost plus an inflated fluency standard",
+        "The teacher moved too slowly for his learning style"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would ask whether he expected too much too soon and treated an awkward early session like a final answer.",
+        "direct": "This combines the chapter's two pressures: oversized standards and misread beginner pain.",
+        "competitive": "He got hit by normal entry pain and called it destiny."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "What makes the early stage of practice especially deceptive?",
+      "choices": [
+        "It is physically dangerous in most domains",
+        "Learners make many mistakes before they can judge which mistakes actually matter",
+        "Experts usually hide the best beginner strategies from newcomers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A beginner often feels overwhelmed because everything looks equally wrong at first.",
+        "direct": "The learner lacks interpretive skill, so the opening stage produces more confusion than clear feedback.",
+        "competitive": "Too much noise arrives before enough judgment."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "When does a competence-first target stop being strategic and start becoming an excuse?",
+      "choices": [
+        "When the learner chooses a concrete functional threshold and works until it is real",
+        "When the learner uses vague 'good enough' language to avoid the hard middle of practice",
+        "When the learner expects some frustration during the first hours"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter supports a smaller target only when the target is honest and testable. Vagueness turns the idea into self-protection.",
+        "direct": "This is the hard boundary condition. Competence-first thinking fails when it becomes a polite cover for quitting early.",
+        "competitive": "Lowering the line is smart only if the line still costs something."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If Chapter 1 resets the target to usable competence, what question does that naturally create for the next chapter?",
+      "choices": [
+        "How can a learner move through the first hours productively enough to reach that competence faster?",
+        "How can a learner prove that mastery is unnecessary in every field?",
+        "How can a learner avoid practicing until motivation feels stronger?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the target is believable, the next need is method. The reader wants principles that help real practice produce traction.",
+        "direct": "Chapter 1 diagnoses the opening trap. The logical next move is a rule set for crossing the early barrier effectively.",
+        "competitive": "The reset creates demand for operating discipline, not more encouragement."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

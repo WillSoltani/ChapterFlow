@@ -1,0 +1,26 @@
+{
+  "bookId": "the-pyramid-principle",
+  "runId": "20260411-213929",
+  "selectionDate": "2026-04-11",
+  "selectionMode": "auto_lock",
+  "editionPreference": "ask_if_ambiguous",
+  "decision": {
+    "lockedEdition": {
+      "title": "The Pyramid Principle: Logic in Writing and Thinking",
+      "author": "Barbara Minto",
+      "publisher": "FT Publishing International / Pearson",
+      "editionLabel": "3rd revised edition",
+      "publishedYear": 2021,
+      "isbn13": "9781292372266"
+    },
+    "translation": null,
+    "materialAmbiguity": false,
+    "whyLocked": [
+      "The official Pearson 2021 listing provides the chapter-level table of contents needed for chapter scoping.",
+      "A later 2026 Pearson paperback listing presents the same high-level chapter structure, indicating no material chapter-order ambiguity for this run.",
+      "No evidence was found of competing translations, abridgments, or revised chapter maps that would change chapter boundaries."
+    ],
+    "workingSourceText": ".chapterflow/runs/the-pyramid-principle/20260411-213929/source-freeze/book-source.md",
+    "chapterMapSource": ".chapterflow/runs/the-pyramid-principle/20260411-213929/source-freeze/toc.json"
+  }
+}

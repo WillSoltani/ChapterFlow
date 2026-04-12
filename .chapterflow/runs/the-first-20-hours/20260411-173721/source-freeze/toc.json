@@ -1,0 +1,19 @@
+{
+  "bookId": "the-first-20-hours",
+  "title": "The First 20 Hours: How to Learn Anything... Fast!",
+  "source": "https://first20hours.com/",
+  "items": [
+    { "order": 1, "type": "frontmatter", "label": "A Note to the Reader" },
+    { "order": 2, "type": "frontmatter", "label": "Introduction" },
+    { "order": 3, "type": "chapter", "chapterNumber": 1, "title": "A Portrait of the Author as a Learning Junkie" },
+    { "order": 4, "type": "chapter", "chapterNumber": 2, "title": "10 Principles of Rapid Skill Acquisition" },
+    { "order": 5, "type": "chapter", "chapterNumber": 3, "title": "10 Principles of Effective Learning" },
+    { "order": 6, "type": "chapter", "chapterNumber": 4, "title": "Yoga" },
+    { "order": 7, "type": "chapter", "chapterNumber": 5, "title": "Programming" },
+    { "order": 8, "type": "chapter", "chapterNumber": 6, "title": "Touch Typing" },
+    { "order": 9, "type": "chapter", "chapterNumber": 7, "title": "Go" },
+    { "order": 10, "type": "chapter", "chapterNumber": 8, "title": "Ukulele" },
+    { "order": 11, "type": "chapter", "chapterNumber": 9, "title": "Windsurfing" },
+    { "order": 12, "type": "backmatter", "label": "Afterword: What do you want to learn?" }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "Which setup best matches the chapter's idea of ultralearning?",
+      "choices": [
+        "A self-directed mission with a borrowed curriculum and clear proof standard",
+        "A burst of motivation supported by lots of interesting resources",
+        "A long study period that stays flexible so the learner does not feel pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This chapter keeps returning to structure. Ultralearning becomes real when the learner chooses a mission, borrows an outside standard, and defines proof before effort starts drifting.",
+        "direct": "The opener does not define ultralearning as enthusiasm. It defines it as self-directed learning constrained by mission, benchmark, and evidence.",
+        "competitive": "Option A wins because it lets reality grade the work. The other answers protect comfort more than credibility."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "What makes the MIT Challenge more than a story about studying hard?",
+      "choices": [
+        "It proves institutions no longer matter",
+        "It uses a real curriculum, exams, projects, and a live deadline",
+        "It relies on talent that ordinary learners do not have"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats the challenge as serious because it has structure that can answer back. Borrowed standards and visible proof matter more than raw intensity here.",
+        "direct": "B is correct because the challenge gains credibility from curriculum, benchmarks, and time pressure. The chapter never claims institutions are irrelevant or that talent makes structure unnecessary.",
+        "competitive": "The force of the example comes from resistant standards, not mythologizing the learner."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A learner spends months reading about data science but never solves a full problem set or builds a project. According to the chapter, what is missing?",
+      "choices": [
+        "Better motivation slogans",
+        "More diverse resources",
+        "A proof standard that can test the learning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter warns that exposure can feel rich while evidence stays thin. A proof standard turns learning from private confidence into something testable.",
+        "direct": "C fits the chapter's mechanism. The issue is not inspiration or variety. The issue is that nothing external is judging whether the knowledge can be used.",
+        "competitive": "Without proof, the learner is still sheltered by consumption."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Elena wants to move from marketing into product analytics. Which next move best follows the chapter's logic?",
+      "choices": [
+        "Subscribe to several newsletters so she stays immersed in the field",
+        "Pick one respected analytics curriculum, attach a deadline, and define portfolio proof",
+        "Wait until she feels fully committed before choosing a narrower path"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would push Elena toward structure she can be judged by. A borrowed curriculum and clear evidence beat open-ended exposure.",
+        "direct": "Option B is the chapter's design rule in action. Mission, external path, and proof make the career pivot serious.",
+        "competitive": "She needs a standard that bites, not a prettier version of delay."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Why does the chapter care so much about borrowing an outside curriculum?",
+      "choices": [
+        "Because prestige automatically raises motivation",
+        "Because outside sequence reduces comfort-based drift",
+        "Because the learner should avoid adapting anything to personal goals"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "An outside curriculum matters because it keeps the learner from redesigning the project around the easiest parts whenever discomfort appears.",
+        "direct": "B is strongest. The chapter uses borrowed structure as an anti-drift tool, not as prestige theater or a ban on thoughtful adaptation.",
+        "competitive": "External sequence closes one of the favorite escape routes: editing scope whenever the work gets ugly."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Which statement would the chapter reject?",
+      "choices": [
+        "A self-directed project can produce serious learning without giving you the same credential value as a degree",
+        "Once learning is real, the institutional package becomes irrelevant",
+        "A rigorous personal project needs standards that are harder than private satisfaction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps the distinction honest. Real learning outside school can be powerful, but that does not erase all the benefits institutions still provide.",
+        "direct": "The rejected statement is B. Young separates learning from credentialing, yet he does not claim the second one vanishes once the first is achieved.",
+        "competitive": "This is the fake-radical trap. The chapter attacks lazy assumptions, not reality."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Priya has six weeks before a summer lab starts. What is the strongest study setup for the chapter's standard?",
+      "choices": [
+        "A mix of interesting videos chosen day by day",
+        "A syllabus with sequence, checkpoints, and one finished project at the end",
+        "A promise to study every morning no matter what topic seems useful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants a path and proof, not only a promise of effort. A syllabus with checkpoints creates both.",
+        "direct": "B wins because it supplies sequence and evidence. The other options still leave success vague.",
+        "competitive": "Discipline without a standard still leaves too much room to fake progress."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Marcus realizes his coding project has turned into endless tutorials. What recovery move best fits the chapter?",
+      "choices": [
+        "Keep the tutorials going until confidence feels higher",
+        "Restart with one small build and a public artifact that others can inspect",
+        "Switch topics so the early effort does not feel wasted"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Recovery happens when Marcus changes the proof standard. A build that can be inspected is stronger than more private confidence.",
+        "direct": "The chapter would move him from content exposure to output judged outside himself. That is why B is the strongest answer.",
+        "competitive": "He does not need another layer of preparation. He needs evidence that can survive outside his head."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What is the deepest reason the one-year clock matters in the MIT Challenge?",
+      "choices": [
+        "It makes the story more exciting to tell afterward",
+        "It compresses the room available for drift and exposes weak design",
+        "It guarantees faster learning is always better learning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The clock is not just dramatic decoration. It forces choices and reveals whether the project was designed clearly enough to survive pressure.",
+        "direct": "B captures the deeper mechanism. Deadlines matter here because they expose sequencing flaws and vague scope before those weaknesses can hide in more preparation.",
+        "competitive": "A live clock acts like a truth serum for project design. The wrong answers confuse pressure with showmanship or with a universal rule about speed."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If the MIT Challenge proves self-directed learning can be serious, what larger question naturally follows into the next chapter?",
+      "choices": [
+        "Why would more people need this kind of learning now instead of later?",
+        "How can every institution be replaced by low-cost alternatives?",
+        "Which prestige brand supplies the best curriculum for self-study?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next useful move is not institutional chest-thumping. It is asking why this path matters under current pressures in work and life.",
+        "direct": "A is the strongest bridge because the opener establishes plausibility. The next chapter's job is to address stakes, not to repeat the anti-institution frame.",
+        "competitive": "Once the path is real, the strategic question becomes who needs it and why now. The other answers drift into caricature."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

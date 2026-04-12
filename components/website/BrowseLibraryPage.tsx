@@ -15,8 +15,11 @@ import { BookCover } from "@/app/book/components/BookCover";
 import { BookRequestSection } from "@/components/website/BookRequestSection";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { BOOKS_CATALOG, getBookSynopsis } from "@/app/book/data/booksCatalog";
-import { BOOK_PACKAGES } from "@/app/book/data/bookPackages";
+import {
+  BOOKS_CATALOG,
+  getBookSynopsis,
+  getBookChapterCount,
+} from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
@@ -59,10 +62,6 @@ const FREE_IDS = new Set<string>();
 
 const STAFF_PICK_IDS = new Set<string>();
 
-const CHAPTER_COUNTS = new Map(
-  BOOK_PACKAGES.map((pkg) => [pkg.book.bookId, pkg.chapters.length]),
-);
-
 const TOTAL_BOOK_COUNT = BOOKS_CATALOG.length;
 
 function truncateSynopsis(text: string, max = 120): string {
@@ -81,7 +80,7 @@ const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
     title: cat.title,
     author: cat.author,
     category: cat.category,
-    chapters: CHAPTER_COUNTS.get(cat.id) || 6,
+    chapters: getBookChapterCount(cat.id) || 6,
     difficulty: cat.difficulty.toLowerCase() as "easy" | "medium" | "hard",
     estimatedHours: Math.round((cat.estimatedMinutes / 60) * 10) / 10,
     description: desc || cat.title,

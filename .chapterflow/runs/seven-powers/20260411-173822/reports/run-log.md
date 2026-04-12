@@ -1,0 +1,25 @@
+# Run Log
+
+- 2026-04-11T20:54:00Z Preflight confirmed manifest policy for `seven-powers / 20260411-173822` and normalized the book metadata to the locked 2016 English edition family.
+- 2026-04-11T20:54:00Z Phase 0 complete.
+- 2026-04-11T20:54:00Z Phase 1 source discovery froze the authorized/secondary bundle, wrote `source-ledger.json`, `edition-lock.json`, `source-freeze/*`, and `sidecars/source/source-heading-index.json`.
+- 2026-04-11T20:58:00Z `chapterflow_v13_source_guard.py` returned `FAIL=0 WARN=0`.
+- 2026-04-11T20:59:00Z Phase 2 complete. Wrote compact style memory, quality memory, and role cards for writer/editor/critic/converter/quiz/validator/patch.
+- 2026-04-11T21:00:00Z Phase 3 complete. Wrote `skeleton/book-skeleton.md` with chapter order, source richness, density, risk notes, example rotation, and premium-routing candidates.
+- 2026-04-11T21:05:00Z Phase 4 pre-writer artifacts for Chapter 1 completed: brief, outline, quiz blueprint, and chapter-local source sidecars for `Scale Economies`.
+- 2026-04-11T21:24:00Z Chapter 1 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T21:24:00Z `chapterflow_v13_lint.py` returned `FAIL=0 WARN=0` for `structured/ch01.chapter.json`, `validated/ch01.chapter.json`, and `validated/ch01.review-package.json`.
+- 2026-04-11T21:24:00Z Chapter 1 continuity seal written after validation pass.
+- 2026-04-11T21:30:00Z Phase 5 pre-writer artifacts for Chapter 2 completed: brief, outline, quiz blueprint, and chapter-local source sidecars for `Network Economies`.
+- 2026-04-11T21:37:00Z Chapter 2 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T21:37:00Z `chapterflow_v13_lint.py` returned `FAIL=0 WARN=0` for `structured/ch02.chapter.json`.
+- 2026-04-11T21:37:00Z Chapter 2 continuity seal written after validation pass.
+- 2026-04-11T21:45:00Z Chapter 3 pre-writer artifacts completed: brief, outline, quiz blueprint, and chapter-local source sidecars for `Counter-Positioning`.
+- 2026-04-11T18:28:00Z Chapter 3 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T18:45:00Z Chapter 4 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T19:02:00Z Chapter 5 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T19:16:00Z Chapter 6 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T19:31:00Z Chapter 7 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T19:47:00Z Chapter 8 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T19:18:53Z Chapter 9 full chain completed: writer -> editor -> critic -> converter -> quiz -> validator.
+- 2026-04-11T19:20:22Z Release assembled from validated chapters only: release/book.release.json.

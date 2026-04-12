@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch15-q01",
+      "prompt": "What is the core mistake in overconfidence?",
+      "choices": [
+        "Treating strong certainty as if it were strong evidence",
+        "Refusing to make decisions until every fact is known",
+        "Assuming confidence is always harmful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The feeling of certainty is getting more trust than the support deserves.",
+        "direct": "Correct. Conviction is being mistaken for grounding.",
+        "competitive": "That is the trap. Certainty starts forging proof."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q02",
+      "prompt": "Why does confidence often feel persuasive?",
+      "choices": [
+        "Because certainty reduces hesitation and makes claims sound stronger",
+        "Because confident claims are automatically correct",
+        "Because evidence matters less than delivery"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Confidence feels efficient and settled.",
+        "direct": "Correct. The speed and clarity of certainty can make a claim seem stronger than it is.",
+        "competitive": "Exactly. Swagger travels fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q03",
+      "prompt": "Which example best fits the overconfidence effect?",
+      "choices": [
+        "A team presents a bold forecast even though the supporting data are still thin",
+        "A team lowers its certainty because key evidence is missing",
+        "A student marks which parts of an answer remain unclear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The confidence is larger than the support underneath it.",
+        "direct": "Correct. The certainty level is outrunning the available evidence.",
+        "competitive": "That is it. The projection is flexing on borrowed weight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q04",
+      "prompt": "What makes overconfidence dangerous in work and school?",
+      "choices": [
+        "It gives weakly supported judgments the appearance of strength",
+        "It prevents people from acting at all",
+        "It makes every uncertain claim useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A strong tone can make a shaky claim look solid.",
+        "direct": "Correct. Miscalibrated certainty adds fake authority to the judgment.",
+        "competitive": "Right. Style starts benching the proof."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q05",
+      "prompt": "Why is feeling very sure not enough by itself?",
+      "choices": [
+        "Because confidence can be high even when support is partial or weak",
+        "Because all confident judgments are irrational",
+        "Because hesitation is always superior to action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A strong feeling can still sit on weak support.",
+        "direct": "Correct. Subjective certainty does not guarantee objective grounding.",
+        "competitive": "Exactly. Heat is not proof."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Ask what evidence actually earns the current level of confidence",
+        "Eliminate confidence from every decision",
+        "Trust the strongest delivery in the room"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The fix is to check what truly supports the certainty.",
+        "direct": "Correct. Calibration begins by inspecting support, inference, and missing facts.",
+        "competitive": "Exactly. Make boldness show the receipts."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q07",
+      "prompt": "What does overconfidence confuse?",
+      "choices": [
+        "Internal certainty with external support",
+        "Evidence with curiosity",
+        "Planning with memory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Feeling sure gets mistaken for being well grounded.",
+        "direct": "Correct. The bias treats conviction as if it were validation.",
+        "competitive": "Yes. Certainty starts faking credentials."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q08",
+      "prompt": "Why can a confident claim still be weak?",
+      "choices": [
+        "Because strong delivery can hide thin evidence and unchecked assumptions",
+        "Because confident language is always deceptive",
+        "Because uncertainty never deserves action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A firm tone can hide a weak base.",
+        "direct": "Correct. Confidence may be outrunning the support that the claim can actually sustain.",
+        "competitive": "Exactly. The swagger can be lifting more than the proof."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q09",
+      "prompt": "What is the deepest practical correction in overconfidence?",
+      "choices": [
+        "Force certainty to answer to evidence, assumptions, and missing facts before trusting it",
+        "Refuse to act until every uncertainty disappears",
+        "Prefer whichever judgment sounds most decisive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to check what truly earns the confidence.",
+        "direct": "Correct. Better judgment recalibrates conviction by separating support from style and inference.",
+        "competitive": "Right. Make the claim fight at real weight."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "What evidence actually earns this level of confidence?",
+        "How certain do I feel right now?",
+        "Which confident voice do I trust most?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question brings the confidence back under evidence.",
+        "direct": "Correct. It tests whether the certainty is really supported or merely forceful.",
+        "competitive": "That is the cut. Does the claim still hit that hard after the swagger bonus is gone?"
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

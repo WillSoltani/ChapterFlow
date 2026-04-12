@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main definition of winning aspiration?",
+      "choices": [
+        "A broad mission statement everyone can support",
+        "A result strong enough to guide later strategic choices",
+        "A motivational slogan for the sales team"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats aspiration as the first force-setting strategic choice, not as a slogan.",
+        "direct": "Winning aspiration matters because it is supposed to sharpen later field and advantage choices.",
+        "competitive": "The right answer changes the strategy. The other two only decorate it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the difference between playing to win and playing to play?",
+      "choices": [
+        "Playing to win is louder, while playing to play is quieter",
+        "Playing to win seeks a route to victory, while playing to play settles for participation",
+        "Playing to win applies only to large companies"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The difference is not tone. It is whether the aspiration demands a path to victory or only staying present.",
+        "direct": "Playing to play accepts participation-level success. Playing to win pushes the strategy toward stronger commitment and exclusion.",
+        "competitive": "Presence is easier to protect than victory. The chapter wants you to notice the cost of that choice."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A leadership team says its goal is to 'remain competitive while keeping flexibility.' Which diagnosis fits the chapter best?",
+      "choices": [
+        "The aspiration is soft enough to weaken later strategic choices",
+        "The team has already defined a clear route to victory",
+        "The statement matters only after the budget is finished"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The language sounds prudent, but it does not force the sharper choices that a winning aspiration should create.",
+        "direct": "This is participation-level aspiration. It protects comfort more than it directs the cascade.",
+        "competitive": "Respectable caution is still caution, and the strategy will inherit it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nina's division says it wants to win in a segment, but the budget still protects every product line almost equally. What should Nina conclude first?",
+      "choices": [
+        "The aspiration and the downstream commitment do not match yet",
+        "The equal allocation proves the aspiration is realistic",
+        "Winning aspiration does not need to affect allocation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A real aspiration usually changes what gets emphasis first.",
+        "direct": "If the budget does not move, the aspiration may still be rhetorical rather than strategic.",
+        "competitive": "The money is revealing whether the company is built to win or just built to sound bold."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter use Saturn as a cautionary case?",
+      "choices": [
+        "Because it proves every car brand needs the same aspiration",
+        "Because it shows how defensive ambition can limit strategic force",
+        "Because it demonstrates that aspiration matters only in manufacturing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The example matters because the aspiration stayed close to participation rather than victory.",
+        "direct": "Saturn illustrates how a serious effort can still be constrained by a defensive winning standard.",
+        "competitive": "The case shows that entering the game is not the same as organizing to own it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Daniel's student team says it wants to 'do well' in a competition. Which move best matches the chapter?",
+      "choices": [
+        "Keep the aspiration broad so nobody feels pressure",
+        "Translate 'do well' into a clearer winning standard that changes the recommendation",
+        "Ignore aspiration and focus only on slide design"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the aspiration to become clear enough to change the later choices.",
+        "direct": "A soft goal produces cautious strategy. A clearer winning standard should reshape what the team recommends.",
+        "competitive": "Respectable performance goals are usually too weak to drive forceful decisions."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter's limit on strong aspiration?",
+      "choices": [
+        "Aspirations should always stay modest to avoid risk",
+        "A stronger aspiration fails when it cannot guide later field and advantage choices",
+        "Winning aspiration matters only after capabilities are built"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against vanity as well as caution.",
+        "direct": "Aspiration becomes weak again when it floats above strategy instead of directing later choices.",
+        "competitive": "If the aspiration does not tighten the choices, it is just louder vagueness."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Victor has three positive life goals and treats all of them as equally primary. Which reading best fits the chapter?",
+      "choices": [
+        "He has multiple winning aspirations, which always strengthens strategy",
+        "He needs one aspiration strong enough to lead the others for this season",
+        "He should avoid ambition entirely and focus on consistency"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's logic still holds outside business. A winning aspiration should reorganize attention rather than coexist equally with everything else.",
+        "direct": "If every aspiration stays equally primary, none of them sets the force of the system.",
+        "competitive": "Without one aspiration leading, every goal remains strategically weak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does a softer aspiration often produce mediocrity even when the team works hard?",
+      "choices": [
+        "Because effort stops mattering once aspiration is named",
+        "Because the aspiration lowers the level of exclusion and commitment the later strategy will tolerate",
+        "Because only aggressive competitors ever succeed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues that aspiration sets the level of strategic force, not just the mood.",
+        "direct": "A modest aspiration becomes a structural limit: later choices tend to stay broader, safer, and less committed.",
+        "competitive": "Hard work under a low ambition ceiling is still trapped by the ceiling."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a company finally defines winning clearly enough to matter, what should the next strategic move do?",
+      "choices": [
+        "Treat every market and segment as equally important",
+        "Narrow where that aspiration will actually play",
+        "Delay field choice until the management systems are complete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A sharper aspiration should make the field of play narrower, not wider.",
+        "direct": "Once winning is defined clearly, the next step is to choose where that aspiration will live through a where-to-play decision.",
+        "competitive": "Strong ambition without a chosen field loses force fast. The next move has to cut the game down."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What scorecard correction does Chapter 7 make first?",
+      "choices": [
+        "Continuity automatically proves discipline",
+        "Family control removes the need for hard tradeoffs",
+        "Protected continuity still has to earn trust under a scorecard"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter starts by refusing to treat continuity as proof by itself.",
+        "direct": "Thorndike challenges the idea that family-linked stability already counts as stewardship.",
+        "competitive": "Protection is not evidence."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does a family-control setting create pressure in this chapter?",
+      "choices": [
+        "Because family influence can preserve patience but also soften accountability",
+        "Because family firms never think long term",
+        "Because continuity ends all allocation problems"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same protection that creates patience can also make weak habits harder to challenge.",
+        "direct": "Family control changes incentives in both useful and risky ways.",
+        "competitive": "The shelter can protect strength or hide weakness."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does optimization mean in this chapter?",
+      "choices": [
+        "Improving the enterprise without worshipping either disruption or tradition",
+        "Keeping everything the family already prefers",
+        "Choosing dramatic reinvention to prove courage"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Optimization means making the firm better inside continuity rather than treating continuity as untouchable.",
+        "direct": "The chapter defines optimization as disciplined improvement under ownership constraints.",
+        "competitive": "The point is a stronger company, not prettier loyalty or louder rebellion."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lila sees legacy routines surviving because of history. What fits Chapter 7 best?",
+      "choices": [
+        "Preserve all of them because continuity matters most",
+        "Test the routines against the work they still improve",
+        "Replace every old habit immediately to prove change"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says continuity deserves respect only when it keeps helping the enterprise.",
+        "direct": "Choice B matches Smith's logic: optimization audits the protected habits instead of worshipping or destroying them automatically.",
+        "competitive": "Make the history win on merit."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which belief does Chapter 7 challenge most directly?",
+      "choices": [
+        "Family control is always wise",
+        "Optimization means avoiding hard choices",
+        "Both A and B"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects easy praise of family control and easy softness disguised as optimization.",
+        "direct": "Thorndike pushes against romanticizing the structure and against using continuity as cover for weak decisions.",
+        "competitive": "Dynasty worship and conflict avoidance both fail here."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Connor sees the student paper protecting a slow routine because it feels traditional. What is the chapter's best diagnosis?",
+      "choices": [
+        "The routine deserves protection because it is part of the identity",
+        "The group is letting continuity grade itself instead of auditing it",
+        "The only rational move is to reject every tradition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The group is protecting the routine before checking whether it still helps the mission.",
+        "direct": "This is Chapter 7 in miniature: insulation is softening the scorecard.",
+        "competitive": "The tradition is collecting respect without earning it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is the anti-insulation rule necessary here?",
+      "choices": [
+        "Because protected structures can let weak tradeoffs survive too long",
+        "Because family influence eliminates emotional pressure",
+        "Because continuity should always be broken quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Protection can make it easier for weak choices to keep surviving.",
+        "direct": "The chapter needs anti-insulation discipline because social and emotional shelter can blur accountability.",
+        "competitive": "Weakness loves a protected room."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit keeps Chapter 7 from becoming a romantic family-business story?",
+      "choices": [
+        "Continuity only deserves respect when it improves stewardship and allocation",
+        "Family control always creates superior patience",
+        "Optimization means never questioning protected units"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays strict by asking whether the protected structure still makes the business better.",
+        "direct": "Family control earns respect only when discipline remains stronger than insulation.",
+        "competitive": "Sentiment loses when the scorecard gets serious."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes Smith's continuity rational in Thorndike's frame?",
+      "choices": [
+        "The family structure itself guarantees good stewardship",
+        "Continuity is forced to improve the enterprise instead of merely preserving it",
+        "The chapter avoids judging capital allocation directly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The continuity matters only because it still has to produce a better business.",
+        "direct": "Thorndike makes stewardship quality, not structure alone, the evidence that counts.",
+        "competitive": "The firm has to get better, not just stay familiar."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 7 prepare the move toward Buffett in Chapter 8?",
+      "choices": [
+        "It proves ownership structure no longer matters at all",
+        "It shows disciplined allocation surviving inside family control before Buffett makes investor logic the operating center",
+        "It argues continuity is more important than capital allocation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Smith keeps allocation discipline alive inside family control before Buffett clarifies it further in Berkshire.",
+        "direct": "Chapter 7 tests rationality under protected continuity, then Chapter 8 makes investor-operator logic more explicit.",
+        "competitive": "First continuity gets disciplined, then allocation becomes the whole operating brain."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

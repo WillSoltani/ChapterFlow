@@ -31,8 +31,8 @@ function makeQueryClient() {
           Math.min(1000 * 2 ** attemptIndex, 10000),
         // Default staleTime for most queries (Tier 2)
         staleTime: 30 * 1000,
-        // Keep unused data in cache for 5 minutes
-        gcTime: 5 * 60 * 1000,
+        // Keep unused data in cache for 2 minutes (down from 5)
+        gcTime: 2 * 60 * 1000,
         refetchOnWindowFocus: true,
       },
       mutations: {
@@ -42,22 +42,37 @@ function makeQueryClient() {
   });
 }
 
+const MAX_PERSISTED_BYTES = 512 * 1024; // 512KB
+
 const persister = createSyncStoragePersister({
   storage: typeof window !== "undefined" ? window.localStorage : undefined,
   key: "chapterflow-query-cache",
   throttleTime: 1000,
   serialize: (data: PersistedClient) => {
-    // Only persist queries matching our prefix filter
-    const filtered: PersistedClient = {
+    const filteredQueries = data.clientState.queries.filter((q) =>
+      shouldPersistQuery(q.queryKey as readonly unknown[]),
+    );
+
+    filteredQueries.sort(
+      (a, b) =>
+        (b.state.dataUpdatedAt ?? 0) - (a.state.dataUpdatedAt ?? 0),
+    );
+
+    let trimmed = filteredQueries;
+    let serialized = JSON.stringify({
       ...data,
-      clientState: {
-        ...data.clientState,
-        queries: data.clientState.queries.filter((q) =>
-          shouldPersistQuery(q.queryKey as readonly unknown[])
-        ),
-      },
-    };
-    return JSON.stringify(filtered);
+      clientState: { ...data.clientState, queries: trimmed },
+    });
+
+    while (serialized.length > MAX_PERSISTED_BYTES && trimmed.length > 0) {
+      trimmed = trimmed.slice(0, -1);
+      serialized = JSON.stringify({
+        ...data,
+        clientState: { ...data.clientState, queries: trimmed },
+      });
+    }
+
+    return serialized;
   },
 });
 
@@ -75,8 +90,8 @@ export function BookQueryProvider({ children }: { children: ReactNode }) {
       client={queryClient}
       persistOptions={{
         persister,
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        buster: "", // cache buster string, update to invalidate all persisted data
+        maxAge: 4 * 60 * 60 * 1000, // 4 hours (down from 24h)
+        buster: "v2", // cache buster — bump to invalidate all persisted data
       }}
     >
       {children}

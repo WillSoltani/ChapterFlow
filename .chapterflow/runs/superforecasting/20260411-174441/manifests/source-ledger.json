@@ -1,0 +1,97 @@
+{
+  "bookId": "superforecasting",
+  "runId": "20260411-174441",
+  "createdAt": "2026-04-11T17:47:52Z",
+  "sources": [
+    {
+      "sourceId": "src-prh-book-page",
+      "title": "Superforecasting by Philip E. Tetlock, Dan Gardner",
+      "url": "https://www.penguinrandomhouse.com/books/227815/superforecasting-by-philip-e-tetlock-and-dan-gardner/",
+      "type": "official_publisher",
+      "role": "official metadata, edition confirmation, authorized sample entry",
+      "confidence": "high",
+      "notes": "Penguin Random House page confirms the 2015 ebook and 2016 paperback and supplies the official jacket description."
+    },
+    {
+      "sourceId": "src-google-books",
+      "title": "Superforecasting: The Art and Science of Prediction - Google Books",
+      "url": "https://books.google.com/books/about/Superforecasting.html?id=hC_qBQAAQBAJ",
+      "type": "authorized_preview",
+      "role": "bibliographic record, preview metadata, partial table of contents",
+      "confidence": "high",
+      "notes": "Google Books confirms Crown as publisher, the 2015 publication date, 352 pages, ISBN 9780804136709, and a preview-accessible contents page."
+    },
+    {
+      "sourceId": "src-tcdc-catalog",
+      "title": "TCDC Resource Center catalog entry for Superforecasting",
+      "url": "https://library.tcdc.or.th/record/view/b00038772",
+      "type": "library_catalog",
+      "role": "full chapter map cross-check",
+      "confidence": "medium",
+      "notes": "Used only to complete the full table of contents after cross-checking the chapter order against Google Books."
+    },
+    {
+      "sourceId": "src-ted-neward-notes",
+      "title": "Superforecasting: The Art and Science of Prediction - reading notes",
+      "url": "https://research.tedneward.com/thinking/superforecasters/index.html",
+      "type": "secondary_notes",
+      "role": "chapter 1 interpretive support and chapter map cross-check",
+      "confidence": "medium",
+      "notes": "Provides concise notes for Chapter 1 and a chapter-by-chapter outline that matches the frozen table of contents."
+    },
+    {
+      "sourceId": "src-pmc-cochrane",
+      "title": "Treating nerves: from anecdote to systematic review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC539596/",
+      "type": "reputable_secondary",
+      "role": "chapter 2 anchor support for Archie Cochrane and evidence-based medicine",
+      "confidence": "medium",
+      "notes": "Used to keep the Cochrane material narrow and factual when Chapter 2 turns from confidence to evidence."
+    },
+    {
+      "sourceId": "src-supersummary-3-4",
+      "title": "Superforecasting Chapters 3-4 Summary & Analysis",
+      "url": "https://www.supersummary.com/superforecasting/chapters-3-4-summary/",
+      "type": "secondary_summary",
+      "role": "chapter 3 and chapter 4 support on scorekeeping, Brier scores, hedgehogs versus foxes, Iraq WMDs, and GJP tournament details",
+      "confidence": "medium",
+      "notes": "Used narrowly to support pre-writer artifacts for Chapters 3 and 4 after the frozen bundle for the opener proved too thin for later chapter-specific briefing."
+    },
+    {
+      "sourceId": "src-supersummary-5-7",
+      "title": "Superforecasting Chapters 5-7 Summary & Analysis",
+      "url": "https://www.supersummary.com/superforecasting/chapters-5-7-summary/",
+      "type": "secondary_summary",
+      "role": "chapter 5 and chapter 6 support on intelligence, Fermi decomposition, need for cognition, numeracy, probability ranges, granularity, and calibrated updating",
+      "confidence": "medium",
+      "notes": "Used narrowly to support pre-writer artifacts for Chapters 5 and 6 and kept paraphrase-first because the frozen official preview does not expose these chapters in detail."
+    },
+    {
+      "sourceId": "src-supersummary-8-9",
+      "title": "Superforecasting Chapters 8-9 Summary & Analysis",
+      "url": "https://www.supersummary.com/superforecasting/chapters-8-9-summary/",
+      "type": "secondary_summary",
+      "role": "chapter 8 support on perpetual beta, growth mindset, hindsight bias, feedback hunger, and chapter 9 support on groupthink, superteams, and psychologically safe pushback",
+      "confidence": "medium",
+      "notes": "Used narrowly to support pre-writer artifacts for Chapters 8 and 9 after the earlier frozen bundle remained too thin for later chapter-specific briefing."
+    },
+    {
+      "sourceId": "src-supersummary-10-11",
+      "title": "Superforecasting Chapters 10-11 Summary & Analysis",
+      "url": "https://www.supersummary.com/superforecasting/chapters-10-11-summary/",
+      "type": "secondary_summary",
+      "role": "chapter 10 support on leadership under uncertainty, Moltke-style decentralized initiative, and confidence balanced by humility, plus chapter 11 support on Kahneman, Taleb, black swans, and the limits of forecasting",
+      "confidence": "medium",
+      "notes": "Used narrowly to support pre-writer artifacts for Chapters 10 and 11 after the original frozen bundle proved too thin for later leadership and critique chapters. Kept paraphrase-first and tighter than the secondary summary language."
+    },
+    {
+      "sourceId": "src-supersummary-12-appendix",
+      "title": "Superforecasting Chapter 12-Appendix Summary & Analysis",
+      "url": "https://www.supersummary.com/superforecasting/chapter-12-appendix-summary/",
+      "type": "secondary_summary",
+      "role": "chapter 12 support on the future of forecasting, scorekeeping, superquestioners, small questions under big questions, and cautiously optimistic institutional reform themes",
+      "confidence": "medium",
+      "notes": "Used narrowly to support pre-writer artifacts for Chapter 12 after the existing frozen bundle remained too thin for the closing outlook chapter. Kept paraphrase-first and narrower than the secondary-summary wording."
+    }
+  ]
+}

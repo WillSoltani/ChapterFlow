@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch23-q01",
+      "prompt": "What is the core mistake in the endowment effect?",
+      "choices": [
+        "Letting ownership inflate value beyond what neutral evidence supports",
+        "Ignoring every personal use case when pricing an item",
+        "Assuming all market prices are perfect"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The object feels more valuable mainly because it is already owned.",
+        "direct": "Correct. Possession is distorting valuation instead of the price being anchored only in the object's support.",
+        "competitive": "That is the trap. Ownership is juicing the number."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch23-q02",
+      "prompt": "Why can this bias arrive so quickly after ownership begins?",
+      "choices": [
+        "Because keeping the item starts feeling normal while giving it up starts feeling like loss",
+        "Because ownership instantly improves the object's quality",
+        "Because buyers usually know less than sellers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Ownership changes how surrender feels.",
+        "direct": "Exactly. The emotional frame shifts fast, so parting with the item can feel costlier than before.",
+        "competitive": "That is it. The second it is yours, letting go starts charging a fee."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch23-q03",
+      "prompt": "Which situation best fits the endowment effect?",
+      "choices": [
+        "A seller asks much more for a used guitar than similar buyers are willing to pay because it feels special to them",
+        "A shopper compares several guitars before buying one",
+        "A musician replaces an instrument after it breaks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Ownership is making the item feel worth more than the outside market supports.",
+        "direct": "Correct. The seller's possession and attachment are inflating the price beyond a neutral valuation.",
+        "competitive": "That is the move. The owner glow is marking up the guitar."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch23-q04",
+      "prompt": "Maya keeps defending an internal tool her team built even though a better external option now exists. What is most likely happening?",
+      "choices": [
+        "Ownership of the tool is inflating its perceived value",
+        "The outside tool must secretly be worse in every way",
+        "The team is wisely ignoring switching costs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Built-here ownership can make the tool feel more valuable than it currently is.",
+        "direct": "The likely distortion is that possession and authorship are carrying the judgment farther than present utility does.",
+        "competitive": "That is the bias. The team-built badge is padding the score."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch23-q05",
+      "prompt": "Evan refuses to cut a weak section from his paper because he wrote it and feels attached to it. What should he test first?",
+      "choices": [
+        "Whether the section would still seem worth keeping if someone else had written it",
+        "Whether attachment proves the section has hidden quality",
+        "Whether every draft should be preserved out of fairness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. He needs to judge the section from outside ownership.",
+        "direct": "The useful check is whether the passage survives once authorship is removed from the evaluation.",
+        "competitive": "Good. Take his name off the paragraph and make it fight clean."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch23-q06",
+      "prompt": "Nora lists her old sofa for far above nearby sale prices because it still feels valuable to her household. Which principle explains the gap best?",
+      "choices": [
+        "Neutral buyers are irrationally cheap",
+        "Ownership is adding emotional exit costs into the valuation",
+        "Household goods always deserve sentimental premiums"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The asking price is being pushed up by how costly letting go feels.",
+        "direct": "That is the key. The valuation is absorbing ownership-based reluctance rather than tracking outside evidence alone.",
+        "competitive": "Exactly. The price is billing for exit pain, not just for the sofa."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch23-q07",
+      "prompt": "What is the cleanest practical correction when a possession feels unusually hard to sell?",
+      "choices": [
+        "Wait until the feeling fades completely before deciding",
+        "Ask what you would honestly pay if the item were not already yours",
+        "Assume buyers will eventually see the value you see"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. That question helps separate value from ownership feeling.",
+        "direct": "A non-owner pricing check is the cleanest way to see whether possession is inflating the number.",
+        "competitive": "That is the move. Make the item defend its price without your label on it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch23-q08",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "All attachment to owned things is irrational",
+        "Use and replacement cost may matter, but ownership alone should not act like a premium multiplier",
+        "Owners can never know anything useful about their possessions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter warns about ownership alone inflating value, not about every real cost or use factor.",
+        "direct": "That line preserves the boundary: some support can be real, but possession itself should not quietly do the pricing.",
+        "competitive": "Exactly. Utility can count, but the owner bonus does not get to run the number."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch23-q09",
+      "prompt": "A manager is choosing whether to keep an owned asset that feels expensive to give up. Which earlier chapter's lesson pairs best with the endowment effect here?",
+      "choices": [
+        "Outcome Bias, because a recent good result alone should not decide the asset's value",
+        "Liking Bias, because the manager must like the asset personally",
+        "Chauffeur Knowledge, because the team may speak confidently about the asset"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A recent outcome should not replace a cleaner look at the asset's present value and the ownership distortion around it.",
+        "direct": "This pairing works because both chapters warn against letting something adjacent to quality or value stand in for direct evaluation.",
+        "competitive": "That is the strongest link. A lucky result and an owner bonus can both fake the score."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch23-q10",
+      "prompt": "A fair valuation survives which test?",
+      "choices": [
+        "The owner's pride in having chosen or built the item",
+        "A promise that the item will always feel special",
+        "A non-owner view that still supports the price after possession is mentally removed"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The price should still make sense from outside ownership.",
+        "direct": "That is the decisive test because it asks whether the valuation can stand once possession stops doing hidden work.",
+        "competitive": "Exactly. If the number folds without your label on it, it was never standing clean."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

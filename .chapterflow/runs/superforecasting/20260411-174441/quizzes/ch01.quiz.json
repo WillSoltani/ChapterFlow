@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What opening contrast does the chapter use to split prestige from forecasting skill?",
+      "choices": [
+        "Tom Friedman and Bill Flack",
+        "Mohamed Bouazizi and Edward Lorenz",
+        "David Ferrucci and Philip Tetlock"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The Friedman and Flack contrast matters because one has public authority while the other has the better forecasting edge.",
+        "direct": "The chapter opens by separating fame from record through Friedman and Flack.",
+        "competitive": "That pair is the first strike against prestige as proof."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is Tetlock's long expert study so important in the chapter?",
+      "choices": [
+        "It proves all experts are useless",
+        "It finally checks predictions against later outcomes",
+        "It shows long-term forecasts are easy when enough data exists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The study matters because forecasts were tracked instead of merely admired.",
+        "direct": "Scoring converts opinion into accountable performance, which is the study's real force.",
+        "competitive": "The scoreboard is what made confidence answer to reality."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How should the Bouazizi and Arab Spring material change the reader's stance?",
+      "choices": [
+        "It should end any attempt to forecast serious events",
+        "It should remind the reader that some systems have real predictability limits",
+        "It should prove that experts fail only when they ignore politics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The example keeps the chapter honest by showing that some shocks really are hard to map in advance.",
+        "direct": "Its role is to mark a structural limit on predictability, not to kill the whole forecasting project.",
+        "competitive": "The point is terrain, not surrender."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elena must choose between a launch forecast delivered with high confidence and one delivered with explicit ranges plus a visible record. Which choice best fits the chapter?",
+      "choices": [
+        "Choose the confident forecast because leadership needs decisiveness",
+        "Choose the forecast that exposes its range and track record",
+        "Ignore both because no forecast deserves trust"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors accountability over polish, so the forecast with a record deserves more trust.",
+        "direct": "Choice B fits because calibrated claims tied to evidence can later be checked and improved.",
+        "competitive": "Back the estimate that can survive a scoreboard."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A lecturer makes bold political forecasts but offers no history of scored predictions. What is the chapter's strongest warning?",
+      "choices": [
+        "Fluency can be mistaken for justified confidence",
+        "Any forecast from a lecturer is automatically weak",
+        "The best response is to stop listening to experts entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The danger is not the job title. It is the temptation to confuse polished certainty with a tested record.",
+        "direct": "The chapter warns against treating confidence and status as substitutes for accountability.",
+        "competitive": "A powerful delivery is still only theater if the record is hidden."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which response best captures the chapter's stance toward uncertainty?",
+      "choices": [
+        "Real uncertainty means forecasts should stay vague so nobody can be blamed later",
+        "Real uncertainty means prediction is pointless across all serious questions",
+        "Real uncertainty should narrow claims and push effort toward the questions that can still be learned from"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not choose between swagger and despair. It narrows claims and keeps effort where learning is still possible.",
+        "direct": "Choice C captures the selective-effort rule at the center of the optimistic skeptic posture.",
+        "competitive": "Respect the fog, then fight only where the ground still gives you traction."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Marcus is planning a weather-sensitive trip. What does the chapter suggest he should do?",
+      "choices": [
+        "Wait until the forecast sounds absolute before making any plan",
+        "Treat the forecast as a probability signal and plan for downside",
+        "Ignore the forecast because weather is inherently chaotic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors acting with a backup instead of demanding impossible certainty.",
+        "direct": "The right move is to use probability and downside awareness, not to wait for perfection or abandon judgment.",
+        "competitive": "A good plan survives uncertainty instead of whining about it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why would rewriting a board memo into measurable ranges improve judgment?",
+      "choices": [
+        "It makes the writing sound less emotional",
+        "It turns a performance statement into a claim that can be scored later",
+        "It guarantees the forecast will be more optimistic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Clear ranges make later learning possible because results can answer the claim.",
+        "direct": "Measurement matters because it gives reality a path back into the forecast.",
+        "competitive": "If the memo cannot be punished by results, it is hiding from real forecasting."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes the optimistic skeptic stance harder than simple skepticism?",
+      "choices": [
+        "It requires respecting limits while still exposing your judgments to feedback",
+        "It requires refusing to make probabilities at all",
+        "It requires trusting famous experts only when they sound cautious"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The stance is demanding because it keeps humility and effort together instead of choosing one.",
+        "direct": "Its difficulty comes from refusing both bluffing and resignation while staying accountable to results.",
+        "competitive": "You do not get to hide behind certainty or behind fog."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If scorekeeping is missing outside the forecaster, what inner problem does the next chapter most naturally examine?",
+      "choices": [
+        "The mind's habit of mistaking confidence for knowledge",
+        "The economics of media advertising",
+        "Whether teams always outperform individuals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge leads from public accountability to the inner illusion that certainty can feel earned before it is.",
+        "direct": "The next problem is cognitive: why weak explanations often feel stronger than the evidence allows.",
+        "competitive": "If no scoreboard checks the outside, false certainty starts recruiting from the inside."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Chapter 6 Source Sidecar
+
+Chapter: 6
+Title: The Intellectual Yet Idiot
+
+Frozen basis:
+- source-freeze/toc.json confirms chapter title and sequence.
+- sidecars/source/source-heading-index.json confirms `ch06` label in the locked chapter map.
+- manifests/source-ledger.json includes `medium-intellectual-yet-idiot` as an authorized Taleb-authored chapter-linked excerpt.
+- source-freeze/book-source.md lists `The Intellectual Yet Idiot` among the authorized chapter-linked excerpts and sets the paraphrase-first restriction.
+- skeleton/book-skeleton.md records the run's chapter intent: attack expert classes whose credentials and theories outrun contact with consequences.
+
+Usable chapter anchors:
+- critique of credentialed but detached expert classes
+- hostility to theory without consequence exposure
+- satire joined to argument, not satire alone
+- bridge from simulation/detachment into class critique
+
+Restrictions:
+- no exact quotations because excerpt text is not frozen locally in this run state
+- treat the Medium excerpt's existence as support for chapter identity and direction, not as permission to reconstruct exact lines
+- stay mechanism-first: no-risk expertise, abstraction, class insulation, and contempt for lived knowledge

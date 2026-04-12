@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch28-q01",
+      "prompt": "What is the core mistake in base-rate neglect?",
+      "choices": [
+        "Giving one vivid case more weight than the broader frequency pattern",
+        "Ignoring every individual detail in favor of statistics",
+        "Assuming all cases are identical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The specific case is being allowed to crowd out the wider pattern.",
+        "direct": "Correct. The vivid example is receiving more influence than the base rate that should frame it.",
+        "competitive": "That is the trap. One story is passing for the whole field."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch28-q02",
+      "prompt": "Why can this bias feel persuasive?",
+      "choices": [
+        "Because one detailed story feels more concrete than an abstract population pattern",
+        "Because general frequencies are always less relevant than individual cases",
+        "Because vivid examples automatically represent the majority"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The case feels more alive than the background pattern.",
+        "direct": "Exactly. Specific detail is easier to picture and trust than an abstract rate or distribution.",
+        "competitive": "That is it. The anecdote has a face while the base rate looks like paperwork."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch28-q03",
+      "prompt": "Which situation best fits base-rate neglect?",
+      "choices": [
+        "A person lets one striking example outweigh what usually happens across the broader population",
+        "A team combines a case with background data before deciding",
+        "A student reviews several representative examples together"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. One case is replacing the wider pattern.",
+        "direct": "Correct. The judgment is being driven by case vividness more than by base-rate context.",
+        "competitive": "That is the move. The story is benching the population."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch28-q04",
+      "prompt": "A hiring team becomes convinced by one unusual candidate story. What should they check first?",
+      "choices": [
+        "Whether the story feels vivid enough to justify a special conclusion",
+        "Whether the story fits the broader hiring pattern or merely feels memorable",
+        "Whether rare candidates automatically outperform common ones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. They need the wider pattern back before trusting the case too much.",
+        "direct": "That is the key. The team should compare the vivid candidate story with the broader pool of relevant outcomes.",
+        "competitive": "Exactly. Make the story fight with the whole hiring field before it gets the offer."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q05",
+      "prompt": "A teacher treats one poor performance as if it defines the student. What is most likely happening?",
+      "choices": [
+        "The single case is crowding out the broader distribution of the student's work",
+        "One result always reveals the deepest truth",
+        "Base rates no longer matter once a result is emotional"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. One performance is replacing the wider pattern.",
+        "direct": "The likely distortion is that a vivid result is being weighted more than the student's broader base rate of performance.",
+        "competitive": "That is the bias. One clip is trying to rewrite the whole reel."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q06",
+      "prompt": "What is the cleanest practical correction when one story feels unusually persuasive?",
+      "choices": [
+        "Assume the story is representative because it is memorable",
+        "Restore the base rate before letting the story dominate the conclusion",
+        "Ignore all case details completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The broader pattern needs to come back into view.",
+        "direct": "That correction works because it forces the vivid case to be judged against what normally happens.",
+        "competitive": "Exactly. Drag the population back in before the story locks the verdict."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Case details never matter once statistics appear",
+        "Specific examples matter, but they should not erase the broader population pattern",
+        "One unusual case usually reveals more than the base rate"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter is about restoring context, not erasing the case.",
+        "direct": "That keeps the boundary intact: individual detail matters, but it should be interpreted inside the broader frequency pattern.",
+        "competitive": "Exactly. The story can stay, but it does not get to own the whole field."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q08",
+      "prompt": "Why can a vivid case overpower the base rate?",
+      "choices": [
+        "Because representativeness and vividness can feel stronger than abstract background frequency",
+        "Because the wider population is never useful once a case is known",
+        "Because abstract information is automatically false"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The vivid case feels more real even when the broader pattern still matters.",
+        "direct": "The danger is that narrative force makes the case easier to trust than the colder but still essential background distribution.",
+        "competitive": "That is the issue. The high-definition example can outshout the wider field."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch28-q09",
+      "prompt": "A manager wants to test whether the team is overreacting to one anecdote. Which earlier chapter pairs best with base-rate neglect here?",
+      "choices": [
+        "Neglect of Probability, because both chapters warn against letting what feels vivid outrun broader quantitative reality",
+        "Scarcity Error, because scarcity always causes anecdotes",
+        "Groupthink, because base rates only disappear in groups"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn against letting vividness overpower the larger numerical frame that should guide judgment.",
+        "direct": "This pairing works because each bias lets emotionally available information dominate the broader quantitative context.",
+        "competitive": "That is the strongest link. A hot story or hot scenario can both fake more weight than the wider numbers justify."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch28-q10",
+      "prompt": "A sound judgment about a vivid case survives which test?",
+      "choices": [
+        "The case still feels memorable after retelling it",
+        "The conclusion still holds after the broader base rate is restored beside the case",
+        "The case is unusual enough to ignore the wider population"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The wider pattern should still support the conclusion once it returns to view.",
+        "direct": "That is the decisive test because it shows whether the case remains persuasive after population-level context is restored.",
+        "competitive": "Exactly. If the verdict folds when the base rate walks back in, the story was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

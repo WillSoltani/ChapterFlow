@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 10 say Jobs Theory helps explain more clearly?",
+      "choices": [
+        "Why customer choice makes sense when progress in context becomes visible",
+        "Why demographic labels are always enough on their own",
+        "Why innovation can now be fully automated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the theory makes demand more intelligible by clarifying the progress someone is trying to make.",
+        "direct": "Correct. Jobs Theory helps explain choice through progress and circumstance rather than through labels alone.",
+        "competitive": "It turns mystery into causality instead of worshipping product trivia."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What stays weaker than job-based interpretation in the chapter conclusion?",
+      "choices": [
+        "Product categories or customer profiles by themselves",
+        "Evidence gathered from real customer situations",
+        "Careful judgment about tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conclusion keeps saying that products and profiles alone miss too much about the choice moment.",
+        "direct": "The chapter treats categories and profiles as weaker explanatory units than progress in context.",
+        "competitive": "Flat labels lose to the real job every time."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team forecasts demand mainly from feature comparisons inside its category. What would Chapter 10 say is missing?",
+      "choices": [
+        "A better causal read on the customer progress and circumstances",
+        "More confidence in the category map",
+        "A promise that uncertainty should disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team still needs to understand the progress people are trying to make in real situations.",
+        "direct": "Chapter 10 says category reasoning is thinner than a job-based explanation of the choice.",
+        "competitive": "They are counting surfaces while missing the force underneath."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Theo argues that Jobs Theory should make prediction perfect. How does the chapter answer him?",
+      "choices": [
+        "The theory removes judgment if the team uses enough data",
+        "The theory improves explanation and judgment without abolishing uncertainty",
+        "The theory matters only for marketing language"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the theory helps, but it does not make uncertainty vanish.",
+        "direct": "This is a central limit: better causal understanding is not the same as certainty or total control.",
+        "competitive": "The lens gets sharper, but reality does not suddenly start obeying your ego."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter return to circumstances and forces shaping behavior?",
+      "choices": [
+        "To keep the theory grounded in what drives choice in real moments",
+        "To replace the job with personality segments",
+        "To prove that every buyer is the same"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps demand tied to the situation and progress, not to abstract labels.",
+        "direct": "It preserves the theory focus on what is pushing and pulling the chooser in context.",
+        "competitive": "The real fight happens in the moment, not in a spreadsheet identity box."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What claim does Chapter 10 refuse to make about Jobs Theory?",
+      "choices": [
+        "That the theory guarantees flawless prediction and innovation success",
+        "That the theory clarifies customer choice",
+        "That progress can matter more than product labels"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays disciplined and does not promise a miracle.",
+        "direct": "It presents Jobs Theory as a stronger lens, not as a guarantee of perfect outcomes.",
+        "competitive": "No magic wand, no prophecy, no excuse for lazy thinking."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A campus service understands students better once it stops grouping them only by label and starts tracing the progress each one seeks in context. Which final observation does that reflect?",
+      "choices": [
+        "Jobs Theory sharpens explanation by focusing on progress in context",
+        "Categories become more important once the service gets busier",
+        "The theory matters only when products are expensive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The service understands choice better by looking at progress inside the situation.",
+        "direct": "That example fits the chapter claim that Jobs Theory improves judgment by changing the unit of explanation.",
+        "competitive": "They stopped sorting people like files and started reading the real job."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mira says two options looked similar on paper, but only one fit the moment she was actually in. What does Chapter 10 say that reveals?",
+      "choices": [
+        "Circumstance can explain choice better than category similarity alone",
+        "Features never matter in any situation",
+        "Profiles predict every purchase by themselves"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Her choice makes more sense once the situation is understood clearly.",
+        "direct": "The chapter says the job in context can reveal why similar-looking options are not equal competitors.",
+        "competitive": "Paper similarity lost because the real moment wanted something else."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best fits the chapter disciplined conclusion?",
+      "choices": [
+        "Jobs Theory is useful because it gives a stronger causal lens without promising certainty",
+        "Jobs Theory matters only when it produces total control",
+        "Jobs Theory should end by introducing a final master formula"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first answer matches the chapter careful balance of value and limit.",
+        "direct": "That choice captures the ending: stronger explanation and judgment, but no guarantee or final doctrine.",
+        "competitive": "The theory earns respect by sharpening causality, not by pretending to be divine."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the book end with final observations instead of another new tool?",
+      "choices": [
+        "Because the last move is to reflect on why the theory deserves to guide judgment",
+        "Because the earlier chapters made theory irrelevant",
+        "Because the conclusion abandons customer choice entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The ending explains why the lens matters after showing how it works.",
+        "direct": "Chapter 10 closes by reflecting on the theory itself rather than opening a fresh method.",
+        "competitive": "After the work is shown, the ending tells you why the lens is worth trusting."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

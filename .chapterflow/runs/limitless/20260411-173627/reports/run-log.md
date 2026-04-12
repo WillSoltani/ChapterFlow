@@ -1,0 +1,131 @@
+# Run Log
+
+- 2026-04-11T17:36:27-03:00 Phase 0 started. Loaded pack authority files: README.md, SCHEMA_NOTES.md, MasterGenerator-v13.md, run-manifest.json.
+- 2026-04-11T17:36:27-03:00 Manifest lock confirmed: title "Limitless", author "Jim Kwik" (manifest typo normalized during source discovery only), outputProfile flagship_v4_compatible, learningContract research_native, runProfile balanced_flagship, validationMode chapter_gate, chapterGateMode automatic_continue, chapterGateQuizMode generate, scenarioTonePolicy required, sourceDiscoveryMode web_bundle, editionSelectionMode ask_if_ambiguous, sourcePolicy public_or_authorized_plus_secondary, forbidBulkGenerators true, releaseAssembleFromValidatedOnly true, preserveApprovedChapterHashes true.
+- 2026-04-11T17:36:27-03:00 Pack audit passed: scripts/book/prompts/chapterflow-v13-autonomous.
+- 2026-04-11T17:36:27-03:00 Phase 0 complete.
+- 2026-04-11T17:36:27-03:00 Phase 1 complete. Source ledger, edition lock, source freeze bundle, TOC, and source heading index written. Locked to the 2020 Hay House base edition.
+- 2026-04-11T17:36:27-03:00 Phase 2 complete. Style memory, quality memory, and role cards written.
+- 2026-04-11T17:36:27-03:00 Phase 3 complete. Whole-book skeleton written.
+- 2026-04-11T17:36:27-03:00 Phase 4 pre-writer complete for Chapter 1. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T17:36:27-03:00 Phase 4A complete for Chapter 1. Canonical draft written.
+- 2026-04-11T17:36:27-03:00 Phase 4B complete for Chapter 1. Edited draft written.
+- 2026-04-11T17:36:27-03:00 Phase 4C complete for Chapter 1. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T17:36:27-03:00 Phase 4D complete for Chapter 1. Local prose-conversion issues repaired after lint and prose audit failures.
+- 2026-04-11T17:36:27-03:00 Phase 4E complete for Chapter 1. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T17:36:27-03:00 Phase 4F complete for Chapter 1. Hash sealed in continuity-state.json after chapter gate pass.
+- 2026-04-11T17:36:27-03:00 Phase 5 pre-writer complete for Chapter 2. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T17:36:27-03:00 Phase 5A complete for Chapter 2. Canonical draft written.
+- 2026-04-11T17:36:27-03:00 Phase 5B complete for Chapter 2. Edited draft written.
+- 2026-04-11T17:36:27-03:00 Phase 5C complete for Chapter 2. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T17:36:27-03:00 Phase 5D complete for Chapter 2. Local prose-conversion issues repaired after lint and prose audit failures.
+- 2026-04-11T17:36:27-03:00 Phase 5E complete for Chapter 2. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T17:36:27-03:00 Phase 5F complete for Chapter 2. Hash sealed, baseline-quality report written, and Chapter 1-2 quality floor established.
+- 2026-04-11T17:36:27-03:00 Wave guard complete after Chapters 1-2. Artifact guard passed cleanly.
+- 2026-04-11T17:36:27-03:00 Phase 6 pre-writer started for Chapter 3. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T17:36:27-03:00 Phase 6A complete for Chapter 3. Canonical draft written.
+- 2026-04-11T17:36:27-03:00 Phase 6B complete for Chapter 3. Edited draft written.
+- 2026-04-11T17:36:27-03:00 Phase 6C complete for Chapter 3. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T18:14:27-03:00 Drift detected for Chapter 3: continuity hash had been written before the chapter validation report existed, which violated the seal-after-validation rule.
+- 2026-04-11T18:14:27-03:00 Phase 6D complete for Chapter 3. Structured chapter conversion passed local lint and prose audit checks.
+- 2026-04-11T18:14:27-03:00 Phase 6E complete for Chapter 3. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report verified/written from the corrected state.
+- 2026-04-11T18:14:27-03:00 Phase 6F complete for Chapter 3. Chapter gate revalidated cleanly, review-package payload equality confirmed, and hash re-sealed in continuity-state.json.
+- 2026-04-11T18:24:27-03:00 Phase 7 pre-writer complete for Chapter 4. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T18:32:27-03:00 Phase 7A complete for Chapter 4. Canonical draft written.
+- 2026-04-11T18:32:27-03:00 Phase 7B complete for Chapter 4. Edited draft written.
+- 2026-04-11T18:32:27-03:00 Phase 7C complete for Chapter 4. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T18:32:27-03:00 Phase 7D complete for Chapter 4. Local prose-conversion issues repaired after lint and prose audit failures.
+- 2026-04-11T18:32:27-03:00 Phase 7E complete for Chapter 4. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T18:32:27-03:00 Phase 7F complete for Chapter 4. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T18:34:27-03:00 Wave guard complete after Chapters 3-4. Artifact guard passed cleanly.
+- 2026-04-11T18:40:27-03:00 Phase 8 pre-writer complete for Chapter 5. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T18:46:27-03:00 Phase 8A complete for Chapter 5. Canonical draft written.
+- 2026-04-11T18:46:27-03:00 Phase 8B complete for Chapter 5. Edited draft written.
+- 2026-04-11T18:55:27-03:00 Phase 8C complete for Chapter 5. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T18:55:27-03:00 Phase 8D complete for Chapter 5. Local prose-conversion issues repaired after lint and prose audit failures.
+- 2026-04-11T18:55:27-03:00 Phase 8E complete for Chapter 5. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T18:55:27-03:00 Phase 8F complete for Chapter 5. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T19:01:27-03:00 Phase 9 pre-writer complete for Chapter 6. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T19:13:27-03:00 Phase 9A complete for Chapter 6. Canonical draft written.
+- 2026-04-11T19:13:27-03:00 Phase 9B complete for Chapter 6. Edited draft written.
+- 2026-04-11T19:13:27-03:00 Phase 9C complete for Chapter 6. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T19:13:27-03:00 Phase 9D complete for Chapter 6. Local prose-conversion issues repaired after lint and prose audit failures.
+- 2026-04-11T19:13:27-03:00 Phase 9E complete for Chapter 6. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T19:13:27-03:00 Phase 9F complete for Chapter 6. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T19:14:27-03:00 Wave guard complete after Chapters 5-6. Artifact guard passed cleanly.
+- 2026-04-11T19:21:27-03:00 Phase 10 pre-writer complete for Chapter 7. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T19:30:27-03:00 Phase 10A complete for Chapter 7. Canonical draft written.
+- 2026-04-11T19:30:27-03:00 Phase 10B complete for Chapter 7. Edited draft written.
+- 2026-04-11T19:30:27-03:00 Phase 10C complete for Chapter 7. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T19:30:27-03:00 Phase 10D complete for Chapter 7. Local prose-conversion issues repaired after lint and prose audit failures.
+- 2026-04-11T19:30:27-03:00 Phase 10E complete for Chapter 7. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T19:30:27-03:00 Phase 10F complete for Chapter 7. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T19:39:27-03:00 Phase 11 pre-writer complete for Chapter 8. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T15:59:18-03:00 Phase 11A complete for Chapter 8. Canonical draft written.
+- 2026-04-11T15:59:18-03:00 Phase 11B complete for Chapter 8. Edited draft written.
+- 2026-04-11T15:59:18-03:00 Phase 11C complete for Chapter 8. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T15:59:18-03:00 Phase 11D complete for Chapter 8. Local prose-conversion issues repaired after structured/validated drift and package-overlap failures.
+- 2026-04-11T15:59:18-03:00 Phase 11E complete for Chapter 8. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T15:59:18-03:00 Phase 11F complete for Chapter 8. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T15:59:52-03:00 Wave guard complete after Chapters 7-8. Artifact guard passed cleanly.
+- 2026-04-11T16:01:45-03:00 Phase 12 pre-writer complete for Chapter 9. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T16:02:29-03:00 Phase 12A complete for Chapter 9. Canonical draft written.
+- 2026-04-11T16:02:29-03:00 Phase 12B complete for Chapter 9. Edited draft written.
+- 2026-04-11T16:02:29-03:00 Phase 12C complete for Chapter 9. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T16:08:27-03:00 Phase 12D complete for Chapter 9. Local prose-conversion issues repaired after lint and prose audit scaffold failures.
+- 2026-04-11T16:08:27-03:00 Phase 12E complete for Chapter 9. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T16:08:27-03:00 Phase 12F complete for Chapter 9. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T16:09:25-03:00 Phase 13 pre-writer complete for Chapter 10. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T16:17:51-03:00 Phase 13A complete for Chapter 10. Canonical draft written.
+- 2026-04-11T16:17:51-03:00 Phase 13B complete for Chapter 10. Edited draft written.
+- 2026-04-11T16:17:51-03:00 Phase 13C complete for Chapter 10. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T16:17:51-03:00 Phase 13D complete for Chapter 10. Local prose-conversion issues repaired after scaffold and package-overlap failures.
+- 2026-04-11T16:17:51-03:00 Phase 13E complete for Chapter 10. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T16:17:51-03:00 Phase 13F complete for Chapter 10. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T16:17:52-03:00 Wave guard complete after Chapters 9-10. Artifact guard passed cleanly.
+- 2026-04-11T16:18:46-03:00 Phase 14 pre-writer complete for Chapter 11. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+- 2026-04-11T18:39:49-03:00 Phase 14A complete for Chapter 11. Canonical draft written.
+- 2026-04-11T18:39:49-03:00 Phase 14B complete for Chapter 11. Edited draft written.
+- 2026-04-11T18:39:49-03:00 Phase 14C complete for Chapter 11. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T18:39:49-03:00 Phase 14D complete for Chapter 11. Local prose-conversion issues repaired after scaffold and review-card overlap failures.
+- 2026-04-11T18:39:49-03:00 Phase 14E complete for Chapter 11. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T18:39:49-03:00 Phase 14F complete for Chapter 11. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T18:40:41-03:00 Phase 15 pre-writer complete for Chapter 12. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+
+- 2026-04-11T20:21:40-03:00 Phase 15A complete for Chapter 12. Canonical draft written.
+- 2026-04-11T20:21:40-03:00 Phase 15B complete for Chapter 12. Edited draft written.
+- 2026-04-11T20:21:40-03:00 Phase 15C complete for Chapter 12. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T20:21:40-03:00 Phase 15D complete for Chapter 12. Local prose-conversion issues repaired after lint and prose audit scaffold and duplicate-sentence failures.
+- 2026-04-11T20:21:40-03:00 Phase 15E complete for Chapter 12. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T20:21:40-03:00 Phase 15F complete for Chapter 12. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T20:22:08-03:00 Wave guard complete after Chapters 11-12. Artifact guard passed cleanly.
+- 2026-04-11T20:23:42-03:00 Phase 16 pre-writer complete for Chapter 13. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+
+- 2026-04-11T20:47:30-03:00 Phase 16A complete for Chapter 13. Canonical draft written.
+- 2026-04-11T20:47:30-03:00 Phase 16B complete for Chapter 13. Edited draft written.
+- 2026-04-11T20:47:30-03:00 Phase 16C complete for Chapter 13. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T20:47:30-03:00 Phase 16D complete for Chapter 13. Local prose-conversion issues repaired after lint scaffold, duplicate-sentence, review-card overlap, and embedded-quiz failures.
+- 2026-04-11T20:47:30-03:00 Phase 16E complete for Chapter 13. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T20:47:30-03:00 Phase 16F complete for Chapter 13. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T20:48:44-03:00 Phase 17 pre-writer complete for Chapter 14. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+
+- 2026-04-11T21:08:27-03:00 Phase 17A complete for Chapter 14. Canonical draft written.
+- 2026-04-11T21:08:27-03:00 Phase 17B complete for Chapter 14. Edited draft written.
+- 2026-04-11T21:08:27-03:00 Phase 17C complete for Chapter 14. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T21:08:27-03:00 Phase 17D complete for Chapter 14. Local prose-conversion issues repaired after lint scaffold and reinforcement-restatement failures.
+- 2026-04-11T21:08:27-03:00 Phase 17E complete for Chapter 14. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T21:08:27-03:00 Phase 17F complete for Chapter 14. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+- 2026-04-11T21:09:38-03:00 Phase 18 pre-writer complete for Chapter 15. Brief, outline, quiz blueprint, and chapter-local source sidecars written before writer start.
+
+- 2026-04-11T21:47:21-03:00 Phase 18A complete for Chapter 15. Canonical draft written.
+- 2026-04-11T21:47:21-03:00 Phase 18B complete for Chapter 15. Edited draft written.
+- 2026-04-11T21:47:21-03:00 Phase 18C complete for Chapter 15. Critic report written with approval and local-patch-only outcome.
+- 2026-04-11T21:47:21-03:00 Phase 18D complete for Chapter 15. Local prose-conversion issues repaired after lint duplicate-reinforcement and reinforcement-restatement failures.
+- 2026-04-11T21:47:21-03:00 Phase 18E complete for Chapter 15. Structured chapter, quiz, validated chapter, review package, reading metrics, and validation report written.
+- 2026-04-11T21:47:21-03:00 Phase 18F complete for Chapter 15. Chapter gate passed, review-package payload equality confirmed, and hash sealed in continuity-state.json.
+
+- 2026-04-11T21:49:06-03:00 Wave guard complete after Chapters 13-14. Artifact guard passed cleanly.
+- 2026-04-11T21:49:06-03:00 Release assembly complete. release/limitless.modern.json and release/book.release.json written from validated chapters only.
+- 2026-04-11T21:49:06-03:00 Drift detected at release gate: continuity seal hashes were stored in a non-canonical form that did not match release-guard canonical validated chapter hashes.
+- 2026-04-11T21:49:06-03:00 Release repair complete. Continuity seal hashes normalized to canonical validated chapter hashes for Chapters 1-15.
+- 2026-04-11T21:49:06-03:00 Release gate complete. Source guard, artifact guard, and release guard all passed cleanly. Release validation and audit reports written.

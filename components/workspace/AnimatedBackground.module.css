@@ -1,0 +1,146 @@
+.container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  will-change: transform;
+}
+
+.violet {
+  top: -100px;
+  left: -100px;
+  width: 700px;
+  height: 700px;
+  animation: drift-violet 50s linear infinite;
+}
+
+.violet[data-theme="light"] {
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.04) 0%,
+    rgba(13, 148, 136, 0) 65%
+  );
+}
+
+.violet[data-theme="dark"] {
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.12) 0%,
+    rgba(139, 92, 246, 0) 65%
+  );
+}
+
+.cyan {
+  top: 30%;
+  right: -80px;
+  width: 600px;
+  height: 600px;
+  animation: drift-cyan 60s linear infinite;
+}
+
+.cyan[data-theme="light"] {
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.03) 0%,
+    rgba(13, 148, 136, 0) 65%
+  );
+}
+
+.cyan[data-theme="dark"] {
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.08) 0%,
+    rgba(34, 211, 238, 0) 65%
+  );
+}
+
+.emerald {
+  bottom: -80px;
+  left: 20%;
+  width: 500px;
+  height: 500px;
+  animation: drift-emerald 55s linear infinite;
+}
+
+.emerald[data-theme="light"] {
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.03) 0%,
+    rgba(16, 185, 129, 0) 65%
+  );
+}
+
+.emerald[data-theme="dark"] {
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.07) 0%,
+    rgba(16, 185, 129, 0) 65%
+  );
+}
+
+@keyframes drift-violet {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(40px, -35px);
+  }
+  50% {
+    transform: translate(-30px, 25px);
+  }
+  75% {
+    transform: translate(20px, -15px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes drift-cyan {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-35px, 30px);
+  }
+  50% {
+    transform: translate(30px, -25px);
+  }
+  75% {
+    transform: translate(-20px, 35px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes drift-emerald {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30px, -30px);
+  }
+  50% {
+    transform: translate(-25px, 20px);
+  }
+  75% {
+    transform: translate(20px, -25px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb {
+    animation: none;
+  }
+}

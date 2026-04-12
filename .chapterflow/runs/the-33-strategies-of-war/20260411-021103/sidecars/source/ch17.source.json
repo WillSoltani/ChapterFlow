@@ -1,0 +1,36 @@
+{
+  "chapterId": "ch17",
+  "title": "The Divide-and-Conquer Strategy: Defeat Them in Detail",
+  "heading": "The Divide-and-Conquer Strategy: Defeat Them in Detail",
+  "approxWords": 123,
+  "properNouns": [
+    "Robert Greene",
+    "Penguin Random House",
+    "Google Books"
+  ],
+  "repeatedTerms": [
+    "divide and conquer",
+    "coalition",
+    "wedge",
+    "seam",
+    "alliance",
+    "delicacy"
+  ],
+  "sourceReferences": [
+    {
+      "url": "local:/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/sources/the-33-strategies-of-war/the-33-strategies-of-war.txt",
+      "role": "frozen_secondary_support",
+      "confidence": 0.94
+    },
+    {
+      "url": "https://books.google.com/books/about/The_33_Strategies_of_War.html?id=GYSeURI4OQcC",
+      "role": "authorized_metadata",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://www.penguinrandomhouseretail.com/book/?isbn=9780143112785",
+      "role": "publisher_confirmation",
+      "confidence": 0.97
+    }
+  ]
+}

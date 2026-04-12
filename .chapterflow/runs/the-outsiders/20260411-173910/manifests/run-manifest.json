@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-outsiders",
+  "runId": "20260411-173910",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-outsiders/20260411-173910",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
+    "author": "William N. Thorndike Jr.",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "the-outsiders",
+    "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
+    "author": "William N. Thorndike Jr.",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
+      "translator": "",
+      "publishedYear": 2012,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-outsiders/20260411-173910/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle from O'Reilly preview pages, Google Books bibliographic and table-of-contents record, and reputable secondary support for Capital Cities/ABC."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-9"
+  }
+}

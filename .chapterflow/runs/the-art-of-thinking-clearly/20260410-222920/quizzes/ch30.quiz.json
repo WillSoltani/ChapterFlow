@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch30-q01",
+      "prompt": "What is the core mistake in anchoring?",
+      "choices": [
+        "Letting the first number shape later judgment too much",
+        "Ignoring every reference point in every decision",
+        "Assuming later numbers are always wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The opening figure is getting more influence than it deserves.",
+        "direct": "Correct. The first number is distorting what later values now feel plausible or fair.",
+        "competitive": "That is the trap. The opener is trying to own the whole map."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch30-q02",
+      "prompt": "Why can anchors work so easily?",
+      "choices": [
+        "Because the first figure gives the mind a reference point to adjust from",
+        "Because every opening number is automatically true",
+        "Because early numbers cancel the need for evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The first number gives the mind a starting place.",
+        "direct": "Exactly. Later judgment often adjusts from the opener instead of building a fresh estimate from scratch.",
+        "competitive": "That is it. The opener gives the mind a foothold and starts charging rent."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch30-q03",
+      "prompt": "Which situation best fits anchoring?",
+      "choices": [
+        "A first price quietly sets what every later price feels like",
+        "A team makes separate estimates before hearing the opening figure",
+        "A student builds a score range from the rubric alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The first figure is setting the frame for what follows.",
+        "direct": "Correct. Later judgments are being pulled toward the opening number instead of being formed independently.",
+        "competitive": "That is the move. The opener lands and starts redrawing the range."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch30-q04",
+      "prompt": "A team hears an opening budget number before anyone has built a forecast. What should they do first?",
+      "choices": [
+        "Treat the first number as the natural range because it came first",
+        "Generate independent estimates before letting the opener frame the room",
+        "Assume every later number must stay close to the anchor"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. They need a range that comes from their own evidence first.",
+        "direct": "That is the key. Independent estimates reduce how much hidden control the opening budget can exert.",
+        "competitive": "Exactly. Build your own map before the opener rents out the whole neighborhood."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch30-q05",
+      "prompt": "Maya sees a high list price and suddenly the discounted price feels very fair. What is most likely happening?",
+      "choices": [
+        "The discount proves the product is worth that amount",
+        "The list price is anchoring what now feels reasonable",
+        "The first number has no effect because it was arbitrary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The opening price is shifting the frame.",
+        "direct": "The likely distortion is that the list price is anchoring the range before the product's value was judged independently.",
+        "competitive": "That is the bias. The opener is trying to rent out the bargain."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch30-q06",
+      "prompt": "What is the cleanest practical correction when a first number appears early?",
+      "choices": [
+        "Accept that the first figure probably sets the correct neighborhood",
+        "Build an independent estimate before reacting to the anchor",
+        "Refuse to use any numbers at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The independent estimate is what reduces anchor pull.",
+        "direct": "That correction works because it gives the judgment another frame besides the opening number.",
+        "competitive": "Exactly. Draw your own map before the opener plants its flag."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch30-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "All reference points are harmful and should be ignored",
+        "Some first numbers contain information, but they should not control the frame automatically",
+        "The first figure is usually the most trustworthy because it appeared first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter warns against over-weighting the opener, not against every reference point.",
+        "direct": "That keeps the boundary intact: anchors may inform, but they should not monopolize the estimate before evidence is weighed independently.",
+        "competitive": "Exactly. The opener can talk, but it does not get to own the map by default."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch30-q08",
+      "prompt": "Why can an arbitrary first number still affect judgment?",
+      "choices": [
+        "Because sequence alone can give the opener more influence than its quality deserves",
+        "Because arbitrary numbers are secretly accurate",
+        "Because later numbers stop mattering once an anchor appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The opener can matter just because it showed up first.",
+        "direct": "The danger is that firstness creates a frame even when the number itself is weakly grounded.",
+        "competitive": "That is the issue. The opener can win the room by timing, not by evidence."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch30-q09",
+      "prompt": "A negotiator wants to test whether the opening offer is shaping the whole discussion too much. Which earlier chapter pairs best with anchoring here?",
+      "choices": [
+        "The Anchor pairs best with Outcome Bias because the first number and a salient result can both overpower more grounded evaluation",
+        "Gambler's Fallacy, because every opening offer creates a debt",
+        "Base-Rate Neglect, because anchors only matter in population data"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn against a salient early signal overpowering more careful evaluation of the underlying evidence.",
+        "direct": "This pairing works because each bias lets one prominent input distort the full judgment more than its support warrants.",
+        "competitive": "That is the strongest link. A loud opener or a loud outcome can both fake more authority than the evidence should allow."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch30-q10",
+      "prompt": "A sound judgment after seeing an opening figure survives which test?",
+      "choices": [
+        "The number still feels familiar after hearing it several times",
+        "The estimate still makes sense after you rebuild the range without the opener",
+        "The first figure was large enough to set the market"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. A stronger judgment should still hold after the opening frame is stripped away.",
+        "direct": "That is the decisive test because it shows whether the estimate depends on the anchor or on evidence that stands on its own.",
+        "competitive": "Exactly. If the range falls apart without the opener, the opener was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

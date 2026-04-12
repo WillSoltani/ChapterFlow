@@ -103,6 +103,16 @@ function readStrArray(value: unknown): string[] {
   return value.filter((v): v is string => typeof v === "string");
 }
 
+function readCompletedBooksByCategory(value: unknown): Record<string, string[]> {
+  if (!value || typeof value !== "object") return {};
+  const out: Record<string, string[]> = {};
+  for (const [key, raw] of Object.entries(value as Record<string, unknown>)) {
+    const ids = readStrArray(raw);
+    if (ids.length > 0) out[key] = ids;
+  }
+  return out;
+}
+
 function isConditionalCheckFailed(error: unknown): boolean {
   if (!error || typeof error !== "object") return false;
   const rec = error as Record<string, unknown>;
@@ -124,6 +134,7 @@ function parseTierItem(
     avgQuizScoreSum: Math.max(0, readNum(item?.avgQuizScoreSum) ?? 0),
     avgQuizScoreCount: Math.max(0, readNum(item?.avgQuizScoreCount) ?? 0),
     categoriesExplored: readStrArray(item?.categoriesExplored),
+    completedBooksByCategory: readCompletedBooksByCategory(item?.completedBooksByCategory),
     tiersAdvanced: readStrArray(item?.tiersAdvanced) as TierName[],
     tierAdvancedAt: readStr(item?.tierAdvancedAt) ?? null,
     createdAt: readStr(item?.createdAt) ?? "",
@@ -154,6 +165,7 @@ export async function getOrCreateTier(
     avgQuizScoreSum: 0,
     avgQuizScoreCount: 0,
     categoriesExplored: [],
+    completedBooksByCategory: {},
     tiersAdvanced: [],
     tierAdvancedAt: null,
     createdAt: now,
@@ -199,24 +211,42 @@ export type TierUpdateResult = {
   definition: TierDefinition | null;
 };
 
+export type UpdateTierOptions = {
+  completedBookNow?: boolean;
+  bookId?: string;
+  skipLoopCountIncrement?: boolean;
+};
+
 export async function updateTierOnLoopComplete(
   tableName: string,
   userId: string,
   quizScore: number,
-  category: string
+  category: string,
+  options: UpdateTierOptions = {}
 ): Promise<TierUpdateResult> {
   const tier = await getOrCreateTier(tableName, userId);
   const now = nowIso();
 
-  // Increment loop count and update score running average
-  const newLoops = tier.totalLoopsCompleted + 1;
-  const newScoreSum = tier.avgQuizScoreSum + quizScore;
-  const newScoreCount = tier.avgQuizScoreCount + 1;
+  const skipCounter = options.skipLoopCountIncrement === true;
+  const newLoops = skipCounter ? tier.totalLoopsCompleted : tier.totalLoopsCompleted + 1;
+  const newScoreSum = skipCounter ? tier.avgQuizScoreSum : tier.avgQuizScoreSum + quizScore;
+  const newScoreCount = skipCounter ? tier.avgQuizScoreCount : tier.avgQuizScoreCount + 1;
 
   // Add category if not already explored
   const newCategories = tier.categoriesExplored.includes(category)
     ? tier.categoriesExplored
     : [...tier.categoriesExplored, category];
+
+  // Track fully-completed books per category
+  const newCompletedBooksByCategory: Record<string, string[]> = {
+    ...tier.completedBooksByCategory,
+  };
+  if (options.completedBookNow && options.bookId && category) {
+    const existing = newCompletedBooksByCategory[category] ?? [];
+    if (!existing.includes(options.bookId)) {
+      newCompletedBooksByCategory[category] = [...existing, options.bookId];
+    }
+  }
 
   // Update tier record
   await ddbDoc.send(
@@ -224,12 +254,13 @@ export async function updateTierOnLoopComplete(
       TableName: tableName,
       Key: { PK: bookUserPk(userId), SK: tierSk() },
       UpdateExpression:
-        "SET totalLoopsCompleted = :loops, avgQuizScoreSum = :scoreSum, avgQuizScoreCount = :scoreCount, categoriesExplored = :cats, updatedAt = :now",
+        "SET totalLoopsCompleted = :loops, avgQuizScoreSum = :scoreSum, avgQuizScoreCount = :scoreCount, categoriesExplored = :cats, completedBooksByCategory = :completed, updatedAt = :now",
       ExpressionAttributeValues: {
         ":loops": newLoops,
         ":scoreSum": newScoreSum,
         ":scoreCount": newScoreCount,
         ":cats": newCategories,
+        ":completed": newCompletedBooksByCategory,
         ":now": now,
       },
     })
@@ -246,6 +277,7 @@ export async function updateTierOnLoopComplete(
       avgQuizScoreSum: newScoreSum,
       avgQuizScoreCount: newScoreCount,
       categoriesExplored: newCategories,
+      completedBooksByCategory: newCompletedBooksByCategory,
       updatedAt: now,
     },
     advanced: false,

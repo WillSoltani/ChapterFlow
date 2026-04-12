@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the Power Progression in this chapter?",
+      "choices": [
+        "A map showing that different powers fit different stages and timing windows",
+        "A ranking of which moats are strongest in every market",
+        "A list of the seven powers ordered by popularity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter organizes powers by stage and timing rather than by general attractiveness.",
+        "direct": "Power Progression means stage matching among moats plus the timing pressure around them.",
+        "competitive": "It puts the moats on a clock."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which stages structure the chapter's timing map?",
+      "choices": [
+        "Launch, dominance, and decline",
+        "Origination, take-off, and stability",
+        "Search, scale, and exit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Those are the three supported stages in the frozen notes.",
+        "direct": "The chapter's map is organized around origination, take-off, and stability.",
+        "competitive": "Those are the three clocks Helmer uses."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which stage-to-power pairing matches the frozen notes?",
+      "choices": [
+        "Branding in origination and process power in take-off",
+        "Counter-positioning in take-off and switching costs in stability",
+        "Counter-positioning and cornered resource in origination"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The frozen sequence places those two powers in origination.",
+        "direct": "Origination is the stage where the notes align counter-positioning and cornered resource.",
+        "competitive": "That is the supported early-stage pairing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya's company wants a mature-style moat, but its current stage is much earlier. What should she ask first?",
+      "choices": [
+        "Whether that moat actually fits the current stage and timing window",
+        "Whether the team likes that moat most emotionally",
+        "Whether rivals are currently discussing the same moat"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says stage fit matters before abstract moat preference.",
+        "direct": "Maya should test whether the current phase actually supports that power.",
+        "competitive": "The clock gets the first vote."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Priya's campus service is in growth mode. Which set of powers best fits the take-off stage from the frozen notes?",
+      "choices": [
+        "Scale economies, network economies, and switching costs",
+        "Counter-positioning and cornered resource",
+        "Branding and process power"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The frozen sequence places those three powers in take-off.",
+        "direct": "Take-off aligns with the reinforcing growth powers in the notes: scale, networks, and switching costs.",
+        "competitive": "That is the growth-stage moat cluster."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Jordan's club missed an early timing window and now wants the same early-stage advantage later. What does the chapter suggest?",
+      "choices": [
+        "Late desire automatically reopens the same strategic window",
+        "Missed windows can permanently narrow later options",
+        "Timing never matters if execution improves enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that some later options stay narrower once the earlier stage has passed.",
+        "direct": "Timing matters because missing the original build stage can permanently reduce what remains available.",
+        "competitive": "The clock does not reopen old doors on request."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lena redraws her side project's stage map and drops a moat that no longer fits. What changed?",
+      "choices": [
+        "She shifted from moat preference to stage-matched strategy",
+        "She decided all moats are equally reachable",
+        "She concluded timing matters only for branding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She moved from abstract desire to stage-aware judgment.",
+        "direct": "The chapter changes the decision from 'which moat sounds best' to 'which moat fits the phase and timing'.",
+        "competitive": "She let the clock edit the wish list."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does timing matter so much in this chapter?",
+      "choices": [
+        "Because different powers become more or less buildable depending on the stage",
+        "Because every power strengthens automatically over time",
+        "Because late-stage firms stop needing strategy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's point is that the clock changes which moats are realistically available.",
+        "direct": "Timing matters because stage progression affects whether a given power can still be built cleanly.",
+        "competitive": "The menu shrinks and shifts as the clock moves."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What most strongly captures the risk of stage mismatch?",
+      "choices": [
+        "Chasing a power that is attractive in theory but poorly timed in practice",
+        "Choosing a power that fewer rivals talk about publicly",
+        "Using more than one power at the same time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that not every desirable moat remains practically available.",
+        "direct": "Stage mismatch happens when a firm wants a power whose build window is premature or already narrowing.",
+        "competitive": "A great moat on the wrong clock is still a bad bet."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the book's closing synthesis once this chapter is added?",
+      "choices": [
+        "Strategy is about choosing the most fashionable moat",
+        "Strategy joins moat type, build path, stage fit, and timing into one judgment",
+        "Strategy is mainly about perfect execution within the current game"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The final chapter ties together what power is, how it gets built, and when each type fits.",
+        "direct": "The synthesis combines statics, dynamics, stage fit, and timing pressure into one strategic framework.",
+        "competitive": "The full answer is moat plus route plus clock."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    }
+  ]
+}

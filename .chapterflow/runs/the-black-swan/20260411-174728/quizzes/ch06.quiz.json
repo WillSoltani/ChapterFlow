@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the narrative fallacy?",
+      "choices": [
+        "A ban on all storytelling.",
+        "The habit of compressing messy reality into a tidy explanatory story.",
+        "A refusal to discuss causes."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb is targeting overclean explanation.",
+        "direct": "Narrative fallacy means stories claim more order than the evidence earned.",
+        "competitive": "It is polished coherence pretending to be full understanding."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are stories so persuasive after events happen?",
+      "choices": [
+        "Because they keep all uncertainty visible.",
+        "Because they select details, assign causes, and remove mess.",
+        "Because stories are always false."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Stories become persuasive by compressing complexity.",
+        "direct": "Selection and omission help them feel complete.",
+        "competitive": "The plot wins because the mess lost screen time."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What role does omission play here?",
+      "choices": [
+        "Omission is irrelevant.",
+        "Omission helps the explanation feel cleaner and more complete than reality was.",
+        "Omission only matters in fiction."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "What gets left out is central.",
+        "direct": "A story often persuades by trimming away uncertainty and rival paths.",
+        "competitive": "Cuts are doing half the explaining."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A postmortem gives one elegant cause for a failed launch. What correction fits Chapter 6?",
+      "choices": [
+        "Accept the clean story quickly.",
+        "Ask what uncertainty and omitted factors were cut away.",
+        "Reject all explanation forever."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter resists premature closure.",
+        "direct": "Elegant explanation should trigger questions about omission.",
+        "competitive": "Bring the missing mess back before trusting the plot."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "How does hindsight strengthen narrative fallacy?",
+      "choices": [
+        "It makes writers forget the ending.",
+        "It lets causes be arranged as if they had been obvious all along.",
+        "It removes chronology completely."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Knowing the ending gives narrative unfair power.",
+        "direct": "The result lends certainty backward to the explanation.",
+        "competitive": "The script steals confidence from the outcome."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is narrative pleasure epistemically risky?",
+      "choices": [
+        "Because pleasure itself is immoral.",
+        "Because emotional relief can be mistaken for genuine understanding.",
+        "Because stories contain no facts."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Feeling satisfied is not the same as knowing more.",
+        "direct": "The mind thanks the story for removing mess and mistakes that relief for truth.",
+        "competitive": "A calm feeling can be counterfeit understanding."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What stronger question should follow a perfectly shaped explanation?",
+      "choices": [
+        "How can we make it even smoother?",
+        "What had to be cut away to make it look that clean?",
+        "Who told the story first?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb wants omission made visible.",
+        "direct": "A clean story should trigger suspicion about excluded uncertainty.",
+        "competitive": "Every beautiful plot deserves an autopsy for missing mess."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 6 affect later thinking about prediction?",
+      "choices": [
+        "It makes the future look easier to forecast.",
+        "It shows that polished explanations can train forecast overconfidence.",
+        "It proves prediction is impossible in every case."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Neat stories about the past flatter confidence about the future.",
+        "direct": "Narrative fallacy is rehearsal space for forecast vanity.",
+        "competitive": "Story-shaped memory becomes swaggering prediction."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A family story turns one career into a noble arc. Which idea is most relevant?",
+      "choices": [
+        "Narrative compression of luck and omitted factors.",
+        "Statistical sampling error only.",
+        "Linear payoff logic."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The story is sanding off contingency.",
+        "direct": "Narrative fallacy often hides luck, help, and rival possibilities.",
+        "competitive": "The legend feels pure because randomness was edited out."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which statement best fits Taleb here?",
+      "choices": [
+        "A polished explanation may reveal style more than truth.",
+        "The best story is always the truest story.",
+        "Causality should never be discussed."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is warning against smooth overclaiming.",
+        "direct": "Narrative can smuggle certainty past scrutiny.",
+        "competitive": "Elegance can be a danger signal."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

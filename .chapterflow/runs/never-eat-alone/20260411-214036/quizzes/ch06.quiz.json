@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main warning?",
+      "choices": [
+        "Networking fails when the other person feels used or reduced to utility",
+        "Ambition should always stay hidden",
+        "Politeness matters more than substance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter focuses on networking that feels extractive from the receiving side.",
+        "direct": "Its core warning is against self-centered networking that erodes trust.",
+        "competitive": "If they feel mined, the move is weak."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is polish not enough in this chapter's logic?",
+      "choices": [
+        "Because charm cannot fully hide visible self-focus",
+        "Because polished people are usually dishonest",
+        "Because directness is always a mistake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says people can still feel extraction beneath smooth wording.",
+        "direct": "Surface competence does not solve a self-centered attention pattern.",
+        "competitive": "Style does not erase the scent."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Maya's notes for a meeting are entirely about what she wants from Vincent. What best fits the chapter?",
+      "choices": [
+        "Add questions that show genuine interest in Vincent's experience",
+        "Keep the notes as they are because clarity is all that matters",
+        "Hide her agenda but keep the same narrow preparation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants the other person to feel engaged rather than used.",
+        "direct": "Curiosity is the correction when agenda management has taken over.",
+        "competitive": "Make the prep less extractive."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is Leon's strongest move after the panel Q&A?",
+      "choices": [
+        "Open with a specific question that shows he was listening",
+        "Deliver a long summary of his own goals first",
+        "Avoid saying anything direct so he cannot seem selfish"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Listening and relevance keep the exchange from feeling like self-display.",
+        "direct": "Curiosity leads better than self-promotion in a short access window.",
+        "competitive": "Interest first, ambition second."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the chapter mean by receiving-side trust?",
+      "choices": [
+        "Whether you believe your intentions were pure",
+        "How the interaction feels to the other person",
+        "How quickly the other person replies"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter judges networking by the other person's experience.",
+        "direct": "Receiving-side trust means the impact of the interaction on the other person.",
+        "competitive": "Their read is the score."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject most clearly?",
+      "choices": [
+        "That ambition itself is the problem",
+        "That self-centered networking pushes people away",
+        "That curiosity and listening matter strategically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not anti-ambition. It is anti-extraction.",
+        "direct": "Direct asks and healthy initiative remain valid if the interaction stays reciprocal.",
+        "competitive": "Drive survives. Climber scent does not."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Priya usually contacts Rachel only when she wants a favor. What does the chapter suggest?",
+      "choices": [
+        "Change the pattern so the relationship is not gain-only",
+        "Use warmer wording in the next favor request",
+        "Stop asking for anything ever again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about pattern and impact, not just message tone.",
+        "direct": "Friendly phrasing does not solve a relationship that activates mainly for utility.",
+        "competitive": "Fix the pattern, not the perfume."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does curiosity matter strategically in this chapter?",
+      "choices": [
+        "Because it replaces all direct asks",
+        "Because it broadens the interaction beyond your own agenda and builds reciprocity",
+        "Because it makes you seem mysterious"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Curiosity helps the other person feel seen instead of instrumentalized.",
+        "direct": "Listening changes the structure of the interaction from extraction to exchange.",
+        "competitive": "Attention gives the bond oxygen."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Elise thinks she meant well, but the room felt cooler after she centered every conversation on her project. What should she learn from that?",
+      "choices": [
+        "Intent matters more than atmosphere",
+        "Receiving-side impact can reveal problems your self-story misses",
+        "The group probably disliked ambition itself"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks readers to judge the interaction by how it lands, not only by what they meant.",
+        "direct": "Cooling in the room is data about receiving-side trust.",
+        "competitive": "Read the chill honestly."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What chapter direction naturally follows this warning?",
+      "choices": [
+        "Doing more homework so curiosity becomes concrete and credible",
+        "Relying more heavily on charm",
+        "Avoiding all ambition in conversations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge points toward preparation because real interest needs substance behind it.",
+        "direct": "After anti-extractive networking comes the demand to do your homework.",
+        "competitive": "Next: prove the curiosity with prep."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

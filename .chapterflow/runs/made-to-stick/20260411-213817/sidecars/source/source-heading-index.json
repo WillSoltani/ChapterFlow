@@ -1,0 +1,53 @@
+{
+  "bookId": "made-to-stick",
+  "headingIndex": [
+    {
+      "chapterId": "intro",
+      "chapterNumber": 0,
+      "title": "What Sticks?",
+      "sourceRefs": ["google_books_preview", "supersummary_intro_ch1"]
+    },
+    {
+      "chapterId": "ch01",
+      "chapterNumber": 1,
+      "title": "Simple",
+      "sourceRefs": ["google_books_preview", "supersummary_intro_ch1"]
+    },
+    {
+      "chapterId": "ch02",
+      "chapterNumber": 2,
+      "title": "Unexpected",
+      "sourceRefs": ["supersummary_ch2_ch4"]
+    },
+    {
+      "chapterId": "ch03",
+      "chapterNumber": 3,
+      "title": "Concrete",
+      "sourceRefs": ["supersummary_ch2_ch4"]
+    },
+    {
+      "chapterId": "ch04",
+      "chapterNumber": 4,
+      "title": "Credible",
+      "sourceRefs": ["supersummary_ch2_ch4"]
+    },
+    {
+      "chapterId": "ch05",
+      "chapterNumber": 5,
+      "title": "Emotional",
+      "sourceRefs": ["supersummary_ch5_epilogue"]
+    },
+    {
+      "chapterId": "ch06",
+      "chapterNumber": 6,
+      "title": "Stories",
+      "sourceRefs": ["google_books_preview", "supersummary_ch5_epilogue", "tom_holmes_notes"]
+    },
+    {
+      "chapterId": "epilogue",
+      "chapterNumber": 7,
+      "title": "What Sticks",
+      "sourceRefs": ["google_books_preview", "supersummary_ch5_epilogue"]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch26-q01",
+      "prompt": "What is the core mistake in neglect of probability?",
+      "choices": [
+        "Reacting to an outcome without properly weighting how likely it is",
+        "Ignoring consequences completely",
+        "Assuming every probability estimate is exact"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The outcome is getting more attention than the odds behind it.",
+        "direct": "Correct. A vivid possibility is being weighted as though its likelihood were larger than it really is.",
+        "competitive": "That is the trap. The story is passing for the percentage."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch26-q02",
+      "prompt": "Why can this bias feel so persuasive?",
+      "choices": [
+        "Because vivid scenarios are easier to imagine than abstract likelihood",
+        "Because rare outcomes are always more important than common ones",
+        "Because emotion automatically improves weighting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The mind can picture the outcome faster than it can respect the odds.",
+        "direct": "Exactly. Dramatic possibility arrives with emotional clarity while probability often remains vague and quiet.",
+        "competitive": "That is it. The movie hits before the math wakes up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch26-q03",
+      "prompt": "Which situation best fits neglect of probability?",
+      "choices": [
+        "A person fears a vivid rare event as though it were common without checking the odds",
+        "A team compares several likely outcomes before deciding",
+        "A student reviews past performance before estimating risk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The vivid possibility is overpowering likelihood.",
+        "direct": "Correct. The reaction is being driven by the scenario itself rather than by weighted probability.",
+        "competitive": "That is the move. The loud story is benching the real numbers."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch26-q04",
+      "prompt": "A product team delays a launch because of one dramatic failure scenario. What should they check first?",
+      "choices": [
+        "Whether the downside feels vivid enough to justify caution",
+        "Whether the failure scenario is actually likely enough to deserve that much weight",
+        "Whether every low-probability risk can be ignored safely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. They need the actual odds, not just the vivid story.",
+        "direct": "That is the key. The decision should be reweighted only after the team makes the probability explicit.",
+        "competitive": "Exactly. Make the scary scenario show its percentage before it vetoes the launch."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch26-q05",
+      "prompt": "Mira is panicking about failing a course even though her preparation and past performance make that outcome unlikely. What is most likely happening?",
+      "choices": [
+        "The vivid downside is getting more weight than its actual probability supports",
+        "The rare outcome is guaranteed because it feels intense",
+        "Probability no longer matters once an outcome is important"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Her fear image is overpowering the likelihood evidence.",
+        "direct": "The likely distortion is that emotionally sharp failure is being treated as if it were statistically close.",
+        "competitive": "That is the bias. The panic story is inflating its percentage."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch26-q06",
+      "prompt": "What is the cleanest practical correction when a possible outcome feels overwhelming?",
+      "choices": [
+        "Assume the vivid scenario is important enough to drive the whole decision",
+        "Put the actual odds beside the scenario before reacting",
+        "Ignore the outcome because probability is never knowable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The decision needs likelihood back in view.",
+        "direct": "That correction works because it forces consequence and probability into the same frame.",
+        "competitive": "Exactly. Make the scenario wear its real numbers before it runs the room."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch26-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Rare outcomes never matter enough to influence decisions",
+        "Importance and probability both matter, and vivid consequence should not erase likelihood",
+        "The safest rule is to respond only to what feels urgent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter is about weighting, not about denying serious consequences.",
+        "direct": "That keeps the boundary intact: consequence matters, but it cannot monopolize the judgment by pushing chance out of sight.",
+        "competitive": "Exactly. Big stakes can stay, but they do not get to gag the odds."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch26-q08",
+      "prompt": "Why can a long-shot reward feel more attractive than it should?",
+      "choices": [
+        "Because possibility and probability are being treated as if they were the same thing",
+        "Because low odds automatically improve the value of the outcome",
+        "Because reward stories are usually statistically reliable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The attractive scenario is being overweighted simply because it can happen.",
+        "direct": "The danger is that emotional vividness makes the long-shot payoff feel closer and weightier than its odds justify.",
+        "competitive": "That is the issue. The shiny story is self-promoting into a real chance."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch26-q09",
+      "prompt": "A manager wants to test whether the team is reacting to a dramatic scenario or to weighted reality. Which earlier chapter pairs best with neglect of probability here?",
+      "choices": [
+        "Paradox of Choice, because every probability problem comes from too many options",
+        "Outcome Bias, because both chapters warn against letting a salient outcome outrun the quality of the supporting judgment",
+        "Liking Bias, because probability depends on who tells the story"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn against letting a vivid result dominate the decision more than its support deserves.",
+        "direct": "This pairing works because each bias overweights what is salient at the expense of better-calibrated evaluation.",
+        "competitive": "That is the strongest link. A flashy result or flashy scenario can both fake more weight than they earned."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch26-q10",
+      "prompt": "A sound reaction to risk or opportunity survives which test?",
+      "choices": [
+        "The scenario still feels dramatic after you imagine it again",
+        "The reaction still makes sense after the actual odds are placed beside the story",
+        "The outcome is serious enough to ignore the percentage"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. A proportional decision should still hold once the probability is explicit.",
+        "direct": "That is the decisive test because it shows whether the response reflects weighted reality rather than vivid imagination alone.",
+        "competitive": "Exactly. If the reaction falls apart when the numbers show up, the story was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

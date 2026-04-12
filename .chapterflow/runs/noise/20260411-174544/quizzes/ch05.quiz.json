@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What does the title metaphor add to the book's argument?",
+      "choices": [
+        "It treats the mind as an instrument producing readings",
+        "It proves judgments should be replaced by machines",
+        "It shows that only external systems create noise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter turns attention toward the mind as part of how judgments are produced.",
+        "direct": "Correct. The metaphor says the mind functions like a measuring instrument whose reading shapes the answer.",
+        "competitive": "That is the move. The scale enters the story."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why does instrument reliability matter in this chapter?",
+      "choices": [
+        "Because the same case can receive a different reading if the instrument shifts",
+        "Because reliable people never need judgment",
+        "Because files change every time they are reread"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The reading can move even when the object has not materially changed.",
+        "direct": "Instrument reliability matters because equal objects do not guarantee equal assessments when the reader is less steady than assumed.",
+        "competitive": "A moving scale keeps moving the answer."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What changes once the mind is treated as part of the measurement problem?",
+      "choices": [
+        "The case stops mattering altogether",
+        "Some uncertainty belongs to the judge as well as to the evidence",
+        "All confidence becomes impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the case important, but it no longer lets the case explain everything.",
+        "direct": "The metaphor adds reader uncertainty to case uncertainty rather than replacing one with the other.",
+        "competitive": "The scale enters the mystery."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Mira rereads the same admissions file and it feels slightly different the next morning. What principle fits best?",
+      "choices": [
+        "The file must have changed overnight",
+        "The difference may say something about the instrument reading it",
+        "The first reading should always be trusted more than the second"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter asks whether the shift belongs to the reader as well as the file.",
+        "direct": "The changed assessment may be evidence about instrument reliability, not only about the object being judged.",
+        "competitive": "Inspect the scale before blaming the file."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Why does the chapter sharpen the previous discussion of singular decisions?",
+      "choices": [
+        "Because it explains why lonely answers can feel more exact than they deserve",
+        "Because it proves singular decisions are always wrong",
+        "Because it removes uncertainty from one-off judgments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Some of the hidden uncertainty belongs to the reader, not only to the case.",
+        "direct": "The measuring-instrument metaphor explains why a one-off answer can look self-sealing when the reader's variability is still present.",
+        "competitive": "No lineup gave the scale cover."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Why is the case alone not the full explanation of a judgment anymore?",
+      "choices": [
+        "Because every case is secretly subjective",
+        "Because the instrument interpreting the case also helps produce the answer",
+        "Because only the judge matters once this chapter begins"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps both object and reader in view.",
+        "direct": "A judgment is produced by evidence plus the instrument reading that evidence, not by the case in isolation.",
+        "competitive": "The file does not get full custody of the answer."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "What kind of humility does the chapter recommend?",
+      "choices": [
+        "A refusal to make any decisions",
+        "An operational humility that adjusts confidence to instrument reliability",
+        "A belief that evidence never matters much"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter does not erase action. It changes what responsible confidence requires.",
+        "direct": "Humility here means treating trust in the answer as conditional on both evidence quality and reader steadiness.",
+        "competitive": "This is scale discipline, not surrender."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Priya asks whether her certainty comes from the case or from trust in herself as the reader. What is she doing?",
+      "choices": [
+        "Splitting confidence between evidence strength and instrument reliability",
+        "Abandoning judgment for pure instinct",
+        "Assuming the file no longer matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits the chapter well. She is making the instrument visible in the explanation.",
+        "direct": "The move is to separate confidence in the evidence from confidence in the reader producing the assessment.",
+        "competitive": "She is forcing the scale to show its share of the certainty."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "Why does the chapter resist reducing judgment to mechanics?",
+      "choices": [
+        "Because measurement metaphors are always misleading",
+        "Because people still have to judge even if the instrument is imperfect",
+        "Because only emotions can explain unstable readings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the value of human judgment while questioning its steadiness.",
+        "direct": "The point is not to replace judgment but to treat the judging instrument as fallible and therefore relevant.",
+        "competitive": "Imperfect scales can still matter. They just do not get to hide."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once the instrument is visible, the next question is when it is truly doing judgment",
+        "The next chapter abandons human judgment for formal scoring",
+        "The next chapter returns to systems and leaves the mind behind"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The book next has to define where this instrument is actually active as judgment.",
+        "direct": "The bridge works because the scope of judgment must be clarified before error inside judgment can be measured well.",
+        "competitive": "Now the book has to ask when the scale is really deciding."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

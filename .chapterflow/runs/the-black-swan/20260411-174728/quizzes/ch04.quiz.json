@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the turkey's core mistake?",
+      "choices": [
+        "Ignoring all evidence.",
+        "Treating repeated support as proof of permanent safety.",
+        "Expecting food to arrive."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is not missing data.",
+        "direct": "The turkey promotes the pattern into a guarantee.",
+        "competitive": "The bird dies from inference, not laziness."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is the turkey example so unsettling?",
+      "choices": [
+        "Because the evidence is fake.",
+        "Because the evidence is real but the implied conclusion is wrong.",
+        "Because the turkey predicts too little."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The daily pattern genuinely occurs.",
+        "direct": "Taleb attacks the leap from support to security.",
+        "competitive": "Real data can still train a sucker if the structure stays hidden."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How can confidence and danger rise together?",
+      "choices": [
+        "Confidence always lowers danger.",
+        "A longer calm streak can inflate trust without changing the hidden regime.",
+        "Danger rises only when fear is obvious."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A calm sample can feel stronger than it really is.",
+        "direct": "Sample size can grow faster than structural knowledge.",
+        "competitive": "The smoothest stretch can sit nearest the trapdoor."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A firm adds leverage after a long stable period. Which lesson applies?",
+      "choices": [
+        "Repetition has certified the future.",
+        "Calm is being converted into permission too aggressively.",
+        "More history always means less tail risk."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against turning reassurance into exposure.",
+        "direct": "Stable periods often tempt actors to remove margins they still need.",
+        "competitive": "The turkey becomes management when smoothness starts writing policy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is Taleb rejecting in this chapter?",
+      "choices": [
+        "All use of patterns.",
+        "Any routine at all.",
+        "The promotion of past support into guaranteed continuation."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Patterns can still help locally.",
+        "direct": "Taleb is not banning ordinary inference.",
+        "competitive": "He is denying repetition the right to certify the regime."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does day one thousand feel safer than day ten to the turkey?",
+      "choices": [
+        "Because the hidden structure has improved.",
+        "Because longer confirmation feels like stronger knowledge.",
+        "Because the farmer made a promise."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The emotional force of the sample keeps rising.",
+        "direct": "Confidence grows with the streak even if the regime has not changed.",
+        "competitive": "Repetition flatters the observer into overclaiming."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which response best fits the chapter when someone says, Nothing bad has happened for years, so we can relax?",
+      "choices": [
+        "That proves the danger is gone.",
+        "The calm record describes the past interval, not every future condition.",
+        "Evidence should be ignored."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The pattern is real but limited.",
+        "direct": "Recent support should not be promoted into immunity.",
+        "competitive": "A polite streak is not a signed treaty with the future."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What makes the turkey a model for institutions too?",
+      "choices": [
+        "Institutions never use history.",
+        "Institutions also remove cushions when long calm periods make them feel safe.",
+        "Institutions are simpler than farms."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The logic scales.",
+        "direct": "Organizations also turn reassurance into leverage and reduced slack.",
+        "competitive": "The bird is only the cleanest version of a broader managerial habit."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures the chapter's discipline?",
+      "choices": [
+        "Fear everything.",
+        "Let the sample describe the past without certifying the regime.",
+        "Trust long records completely."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The correction is bounded humility, not panic.",
+        "direct": "Use patterns locally while refusing them sovereignty over hidden structure.",
+        "competitive": "The adult move is anti-sucker caution, not superstition."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why can maximum confidence be the most dangerous point?",
+      "choices": [
+        "Because confidence proves nothing can go wrong.",
+        "Because the observer may have removed protections precisely when the hidden reversal is nearest.",
+        "Because certainty always creates disaster."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Confidence can encourage the loss of margin.",
+        "direct": "Subjective safety may peak while objective exposure remains unpriced.",
+        "competitive": "The trap is worst when smoothness has already talked you into nakedness."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

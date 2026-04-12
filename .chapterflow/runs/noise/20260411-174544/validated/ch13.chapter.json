@@ -1,0 +1,550 @@
+{
+  "chapterId": "ch13-selection-and-aggregation-in-forecasting",
+  "number": 13,
+  "title": "Selection and Aggregation in Forecasting",
+  "readingTimeMinutes": 8,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "Forecasting widens the process question from what arrives first to what enters the judgment pool at all. The chapter title points to two linked choices: selection and aggregation. Better forecasting depends on both.\n\nThat move matters because one forecast no longer carries the whole burden alone. A combined judgment can be steadier when multiple estimates are used more intelligently.",
+        "direct": "The chapter shifts from one process lever to a broader forecasting problem: which judgments enter the pool and how they get combined. Selection and aggregation become practical ways to improve the baseline.\n\nThat is the central move. Better forecasting depends on pool quality as well as combination.",
+        "competitive": "The chapter stops acting as if one forecaster has to see everything clearly. It turns to the pool and asks who gets in and how the estimates get combined.\n\nThat pressure matters because a stronger forecast can come from smarter combination, not just from hunting for one perfect guess."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Aggregation is one lever for steadier forecasting.",
+            "direct": "Combining judgments can improve the baseline.",
+            "competitive": "One guess does not get to rule the room."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Selection still matters because the pool shapes the result.",
+            "direct": "Forecast quality depends on what enters the combination.",
+            "competitive": "A sloppy pool poisons the average."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Better combination does not remove uncertainty.",
+            "direct": "Aggregation helps without promising perfect foresight.",
+            "competitive": "A stronger baseline is not a crystal ball."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "The chapter says forecasting improves when judgments are selected well and combined carefully.",
+        "direct": "Selection and aggregation become practical forecast-quality levers here.",
+        "competitive": "The pool matters, and so does how the pool gets fused."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "Forecasting widens the process question from what arrives first to what enters the judgment pool at all. The chapter title points to two linked choices: selection and aggregation. Better forecasting depends on both.\n\nThat move matters because one individual estimate stops looking like the whole story once multiple judgments are available. A combined forecast can reduce some avoidable noise, not because every estimate is equally strong, but because a better process can use more than one judgment without handing total authority to any single one.\n\nThis is where selection and aggregation have to stay separate while still working together. Selection asks which forecasts belong in the pool. Aggregation asks how those inputs are combined. The chapter needs both because the quality of the result depends on the composition of the pool as well as on the act of combining.\n\nThe chapter keeps one useful limit in place. Aggregation is not a promise of perfect foresight, and a larger pool does not make every input equally valuable. The point is narrower and more practical. A better combination can improve the baseline while uncertainty remains real.\n\nThat is what makes forecasting the right next case after sequencing. It shows a broader form of process design, one that improves judgment by shaping multiple inputs rather than by relying on one forecaster to get everything right.",
+        "direct": "The chapter shifts from one process lever to a broader forecasting problem: which judgments enter the pool and how they get combined. Selection and aggregation become practical ways to improve the baseline.\n\nThat matters because forecast quality is not only a property of one person seeing clearly. It also depends on whether the pool of judgments is chosen with discipline and whether the combination method turns multiple estimates into something steadier than any one estimate alone.\n\nThis is the distinction the chapter has to hold. Selection is about what enters. Aggregation is about how what entered gets combined. They are linked, but they are not the same task. The book needs both because a combined forecast is shaped by the pool before the combination ever begins.\n\nThe chapter keeps the limit visible. Aggregation does not eliminate uncertainty, and combining estimates does not make individual quality irrelevant. It is claiming something narrower: a better process can raise the baseline without pretending uncertainty disappears.\n\nThat prepares the next move. Once structured combination helps in forecasting, the book can test structured guidance in another high-stakes setting: medicine.",
+        "competitive": "The chapter stops acting as if one forecaster has to see everything clearly. It turns to the pool and asks who gets in and how the estimates get combined.\n\nThat matters because forecast quality is not just a personality contest. A room full of estimates can beat one confident guess, but only if the pool is chosen with some discipline and the combination is not treated like a mindless dump.\n\nThis is where the tools get separated. Selection decides whose judgment even counts in the pool. Aggregation decides how the pool gets fused. If those get blurred together, the process sounds wiser than it really is.\n\nThe discipline stays narrow on purpose. No promise of perfect foresight is being made here, and no one gets to pretend every estimate becomes good merely by joining the pile. The chapter argues for a steadier baseline, not for prophecy.\n\nThat is what earns the next step. If structure can improve forecasting by shaping inputs and combination, guidance in medicine becomes the next serious place to test structure against variation."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Aggregation is a real forecast-quality lever.",
+            "direct": "Combining judgments can reduce some avoidable noise.",
+            "competitive": "The pool can beat the lone star."
+          },
+          "moreDetails": {
+            "gentle": "The chapter treats combination as part of judgment design rather than as an afterthought.",
+            "direct": "Forecast quality can improve when multiple estimates are turned into a steadier combined reading.",
+            "competitive": "If the process can fuse estimates well, one confident guess loses its monopoly."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Selection shapes the pool before aggregation begins.",
+            "direct": "What enters the forecast matters as much as how it is combined.",
+            "competitive": "A weak intake system drags the whole pool down."
+          },
+          "moreDetails": {
+            "gentle": "The chapter keeps pool composition visible so aggregation is not treated like magic.",
+            "direct": "Selection matters because the combined result depends on which estimates were allowed into the pool in the first place.",
+            "competitive": "If bad inputs stroll in unchecked, combination cannot pretend they arrived clean."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Selection and aggregation are related but distinct.",
+            "direct": "The chapter separates choosing inputs from combining them.",
+            "competitive": "Picking the team is not the same as calling the play."
+          },
+          "moreDetails": {
+            "gentle": "That distinction matters because both choices shape the final forecast in different ways.",
+            "direct": "Selection governs pool composition, while aggregation governs how the pool becomes one judgment.",
+            "competitive": "If the tasks blur together, the process starts sounding smarter than it is."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Aggregation helps without erasing uncertainty.",
+            "direct": "Better combination improves the baseline rather than promising certainty.",
+            "competitive": "A steadier read is still not prophecy."
+          },
+          "moreDetails": {
+            "gentle": "The chapter stays practical by refusing to turn combination into a cure-all.",
+            "direct": "Uncertainty remains, even when process design reduces some avoidable drift in forecasting.",
+            "competitive": "The floor can rise without the fog disappearing."
+          }
+        },
+        {
+          "point": {
+            "gentle": "The chapter bridges into medical guidelines.",
+            "direct": "The next move tests structure in medicine rather than in forecasting.",
+            "competitive": "The structure argument is about to walk into a clinic."
+          },
+          "moreDetails": {
+            "gentle": "That bridge matters because the next chapter asks how guidance reduces variation in a different high-stakes setting.",
+            "direct": "Forecast aggregation prepares the shift toward guidelines that support steadier professional judgment in medicine.",
+            "competitive": "Once input design matters here, guidance design is next."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Think of one forecasting situation you know. What changes when more than one estimate enters the judgment instead of just one?",
+        "direct": "Pick one estimate-driven setting and ask how pool selection and combination might matter separately.",
+        "competitive": "Find one forecast that still leans too hard on a single voice and ask what the pool should be doing."
+      },
+      "selfCheckPrompt": {
+        "gentle": "Can you explain why the chapter keeps selection and aggregation connected but distinct?",
+        "direct": "How does the chapter argue that forecast quality depends on both the pool and the combination?",
+        "competitive": "Why is smarter pooling more than just adding more guesses?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "Recall the chain: multiple inputs matter, selection shapes the pool, aggregation shapes the result, uncertainty remains, medicine next.",
+          "direct": "Name the structure: pool choice, combination choice, steadier baseline, no certainty promise, guidelines next.",
+          "competitive": "What turns one guess into a process problem?"
+        },
+        "connect": {
+          "gentle": "Where have you seen a group estimate improve because the judgment was combined rather than left to one person?",
+          "direct": "Identify one setting where you would want to inspect both who entered the pool and how their estimates were combined.",
+          "competitive": "Which forecast around you is still letting intake or combination stay lazy?"
+        },
+        "preview": {
+          "gentle": "If structure can help forecasting this way, how might guidance help narrow variation in medicine next?",
+          "direct": "How does this chapter set up medical guidelines as the next structure question?",
+          "competitive": "If the pool can be designed, what happens when the rulebook gets designed next?"
+        }
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "Forecasting widens the process question from what arrives first to what enters the judgment pool at all. The chapter title points to two linked choices: selection and aggregation. Better forecasting depends on both.\n\nThat move matters because one individual estimate stops looking like the whole story once multiple judgments are available. A combined forecast can reduce some avoidable noise, not because every estimate is equally strong, but because a better process can use more than one judgment without handing total authority to any single one.\n\nHard depth sharpens the distinction. Selection governs the composition of the pool: which forecasters or estimates are allowed to count. Aggregation governs the act of combination: how those inputs become one reading. The chapter keeps them separate because the quality of the result can be damaged before combination begins if the intake into the pool is careless.\n\nThat limit is part of the discipline. Aggregation does not promise perfect foresight, and a larger pool does not automatically make each input good. The point is to build a steadier baseline under uncertainty, not to suggest that combination dissolves uncertainty or makes quality differences disappear.\n\nThis is what changes after the chapter on information order. Process design is no longer only about the sequence of inputs. It is now also about the architecture of multiple judgments: who enters, how they are combined, and what kind of baseline that process can support.\n\nThat is what makes the next move feel earned. Once structured combination helps forecasting, the book can test structured guidance in medicine, where variation also matters but discretion cannot disappear.",
+        "direct": "The chapter shifts from one process lever to a broader forecasting problem: which judgments enter the pool and how they get combined. Selection and aggregation become practical ways to improve the baseline.\n\nThat matters because forecast quality is not only about one individual seeing clearly. It is also about whether the pool is composed with discipline and whether combination makes the group judgment steadier than a single estimate would be.\n\nThis is the harder distinction the chapter needs to hold. Selection concerns intake. Aggregation concerns fusion. The first shapes the pool before combination starts, while the second shapes what the pool becomes once it is combined. Without that distinction, aggregation gets credited for quality that may really depend on who was allowed into the pool.\n\nThe limit remains essential. Combining estimates does not eliminate uncertainty, and it does not make individual quality irrelevant. The chapter is claiming something narrower and tougher: a better process can raise the floor of forecasting without pretending the future becomes clear.\n\nThat is what sets up the next move. Once process design improves group forecasting, the book can ask how structured guidance narrows variation in medicine while still leaving judgment alive.",
+        "competitive": "The chapter stops acting as if one forecaster has to carry the whole burden. It turns to the intake system and the fusion step: who gets into the pool and what happens to the pool once it is there.\n\nThat matters because a room full of estimates can beat one sharp guess, but not by accident. The pool has to be chosen with some discipline, and the combination step cannot hide the fact that garbage can walk in before the math ever starts.\n\nThis is where the chapter gets exact. Selection is intake control. Aggregation is the fusion rule. If those are blurred together, the process sounds wiser than it is and quality differences vanish behind a feel-good story about numbers.\n\nThe discipline stays narrow on purpose. No prophecy is being promised here. More estimates do not mean certainty, and joining the pool does not turn every forecast into a strong one. The chapter argues for a higher floor, not for perfect foresight.\n\nThat is what earns the next step. If structure can improve forecasting through intake and fusion, medicine is the next place to test what structured guidance can and cannot do."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Aggregation is a serious baseline lever.",
+            "direct": "Combining estimates can improve the floor of forecasting.",
+            "competitive": "The pool can raise the floor if the process earns it."
+          },
+          "moreDetails": {
+            "gentle": "The chapter treats aggregation as a practical way to reduce some avoidable noise in forecasting.",
+            "direct": "A combined judgment can be steadier than any one estimate when the process is designed well enough.",
+            "competitive": "One voice loses control when the pool is built and fused with discipline."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Selection shapes quality before aggregation starts.",
+            "direct": "Pool composition matters before combination can help.",
+            "competitive": "Intake control matters before the fusion step gets credit."
+          },
+          "moreDetails": {
+            "gentle": "The chapter keeps selection visible so the combined result is not treated like magic.",
+            "direct": "If the pool is built carelessly, aggregation inherits that weakness rather than erasing it.",
+            "competitive": "Bad intake can walk straight through the front door and poison the whole result."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Selection and aggregation do different jobs.",
+            "direct": "Choosing inputs and fusing inputs are distinct design tasks.",
+            "competitive": "Drafting the team is not the same as running the offense."
+          },
+          "moreDetails": {
+            "gentle": "That distinction matters because the chapter is explaining two separate sources of forecast quality.",
+            "direct": "Selection determines who counts, while aggregation determines how those counted judgments become one forecast.",
+            "competitive": "If intake and fusion blur together, the process gets fake credit."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Better combination leaves uncertainty in place.",
+            "direct": "Aggregation raises the floor without clearing the fog.",
+            "competitive": "A stronger baseline is still not foresight."
+          },
+          "moreDetails": {
+            "gentle": "The chapter resists overselling combination as a cure for the difficulty of forecasting.",
+            "direct": "Uncertainty remains, even when the process makes group judgment steadier than lone judgment.",
+            "competitive": "The future stays hard even after the process gets smarter."
+          }
+        },
+        {
+          "point": {
+            "gentle": "The next test is guidance in medicine.",
+            "direct": "The structure argument now moves from forecasting pools to medical guidelines.",
+            "competitive": "The structure fight is leaving the forecast room for the clinic."
+          },
+          "moreDetails": {
+            "gentle": "That bridge matters because the next chapter asks how structure narrows variation in a professional domain.",
+            "direct": "Medical guidelines become the next case for structured support without total automation.",
+            "competitive": "The process question is about to trade pool design for rule design."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Choose one forecasting setting you know and ask what part of its weakness comes from intake and what part comes from combination.",
+        "direct": "Take one group estimate and separate the pool-composition question from the combination question.",
+        "competitive": "Pick one forecast and ask whether the leak is at intake, fusion, or both."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Why does the chapter keep selection and aggregation distinct?",
+          "direct": "How does pool composition shape the result before combination begins?",
+          "competitive": "Why does intake deserve blame before fusion gets praise?"
+        },
+        {
+          "gentle": "Why does the chapter resist turning aggregation into a cure-all?",
+          "direct": "How does it keep better combination compatible with ongoing uncertainty?",
+          "competitive": "Why does the floor rise without the fog clearing?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "If structured combination helps forecasting, what happens when structure appears next as medical guidance rather than as forecast pooling?",
+        "direct": "How does the chapter point from group forecasting toward guidelines in medicine?",
+        "competitive": "If intake and fusion matter here, what does rule design have to prove next?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "Name the chain: multiple inputs matter, intake shapes the pool, fusion shapes the result, uncertainty remains, medicine next.",
+          "direct": "Rebuild the structure: selection, aggregation, higher floor, no foresight promise, guidelines next.",
+          "competitive": "What turns forecasting into an intake-and-fusion problem?"
+        },
+        "connect": {
+          "gentle": "Where have you seen a group estimate improve only after both the pool and the combination were treated seriously?",
+          "direct": "Identify one setting where you would inspect intake and fusion separately before trusting the forecast.",
+          "competitive": "Which forecast around you is still hiding a weak intake system behind a confident number?"
+        },
+        "preview": {
+          "gentle": "If forecasting gets stronger through structure, how might medical guidance narrow variation next without removing judgment?",
+          "direct": "How does the forecasting chapter prepare the move into guidelines in medicine?",
+          "competitive": "If the pool can be designed, what does the clinic do when the design becomes guidance?"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "title": "Nadia Looks at a Whiteboard Full of Estimates",
+      "format": "decision_point",
+      "category": "work",
+      "endingType": "warning",
+      "scenario": {
+        "gentle": "Nadia stands in front of a whiteboard covered with sales ranges from different teammates and notices that the meeting keeps drifting back to one confident number as if the rest are decorative.",
+        "direct": "A forecasting team has multiple estimates on the board, but the process still leans too hard on one voice.",
+        "competitive": "Nadia watches a whole wall of estimates get bullied by one confident guess."
+      },
+      "whatToDo": {
+        "gentle": "Ask which estimates belong in the pool and how the team should combine them instead of letting one number dominate by habit.",
+        "direct": "Treat pool selection and aggregation as separate design choices rather than as an informal conversation.",
+        "competitive": "Stop pretending the pool exists if one voice still runs the room."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter argues that forecast quality depends on both what enters the pool and how the pool becomes one judgment.",
+        "direct": "Selection and aggregation matter because combined judgment can be steadier than lone judgment without making every input equal.",
+        "competitive": "The pool only helps if intake and fusion both get real discipline."
+      }
+    },
+    {
+      "title": "Felix Lets One Family Guess Set the Budget",
+      "format": "conflict",
+      "category": "personal",
+      "endingType": "reveal",
+      "scenario": {
+        "gentle": "Felix is planning a family move and notices that everyone keeps building around one relative's cost guess even though several people offered different ranges on a planning sheet.",
+        "direct": "A family planning estimate is distorted because one guess displaces the rest instead of being combined with them.",
+        "competitive": "Felix sees one loud estimate hijack a whole planning sheet full of ranges."
+      },
+      "whatToDo": {
+        "gentle": "Separate the question of whose estimates should count from the question of how the shared judgment should be formed.",
+        "direct": "Use the other ranges to make pool composition and combination visible rather than letting one estimate become the answer by momentum.",
+        "competitive": "Put intake and fusion on the table before one guess crowns itself king."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter says better combined judgment comes from using multiple inputs more intelligently, not just from hearing them briefly.",
+        "direct": "Forecast quality can improve when the group stops treating one estimate as the whole story.",
+        "competitive": "The room does not get smarter by inviting voices it never actually uses."
+      }
+    },
+    {
+      "title": "Priya Reworks a School Yield Table",
+      "format": "debrief",
+      "category": "school",
+      "endingType": "correction",
+      "scenario": {
+        "gentle": "Priya studies an admissions yield table with several staff estimates in different columns and notices that the final forecast looked sharper only after the team stopped defaulting to the principal's first number.",
+        "direct": "A school enrollment estimate improves when multiple views are treated as a pool rather than as background to one authority figure.",
+        "competitive": "Priya watches a school yield table stop orbiting one favorite number."
+      },
+      "whatToDo": {
+        "gentle": "Ask which estimates belong in the table and how the combined result should be treated as more than a courtesy average.",
+        "direct": "Turn the yield exercise into a real selection-and-aggregation process instead of a ritual around one forecast.",
+        "competitive": "Make the pool real instead of letting one chair's estimate wear a group costume."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter uses forecasting to show that process design can improve the baseline without needing flawless individual judges.",
+        "direct": "This example shows how a combined estimate can be steadier when multiple inputs are selected and combined with discipline.",
+        "competitive": "A sturdier number can come from better pooling, not from a more glamorous guesser."
+      }
+    },
+    {
+      "title": "Owen Compares a Solo Forecast to the Pooled One",
+      "format": "comparison",
+      "category": "work",
+      "endingType": "pressure_test",
+      "scenario": {
+        "gentle": "Owen compares last quarter's single-manager forecast with a pooled forecast from several team estimates and sees that the combined view gives the team a steadier starting point.",
+        "direct": "A work comparison shows that a pooled judgment can outperform reliance on one forecaster as the sole baseline.",
+        "competitive": "Owen puts the lone-star forecast next to the pooled one and the monopoly starts looking shaky."
+      },
+      "whatToDo": {
+        "gentle": "Compare what changes when the team relies on one estimate versus when it combines several selected estimates.",
+        "direct": "Use the side-by-side result to inspect both pool composition and combination rather than praising crowds in the abstract.",
+        "competitive": "Run the matchup and make the solo hero explain why the pool should stay silent."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter's point is that better forecasting can come from process design, not only from individual excellence.",
+        "direct": "Combined judgment matters because forecast quality depends on more than one person's clarity.",
+        "competitive": "The floor can rise when the process stops worshipping one forecaster."
+      }
+    },
+    {
+      "title": "Dana Stops Calling More Inputs Automatically Better",
+      "format": "reversal",
+      "category": "personal",
+      "endingType": "tradeoff",
+      "scenario": {
+        "gentle": "Dana begins by assuming that more estimates must always produce a better forecast, then notices that some entries on the list were included with no discipline about relevance or fit.",
+        "direct": "A personal forecasting exercise reveals that adding more inputs without selection can weaken the pool rather than strengthen it.",
+        "competitive": "Dana catches herself confusing a crowded pool with a smart one."
+      },
+      "whatToDo": {
+        "gentle": "Treat broader input as a selection question before treating it as a combination virtue.",
+        "direct": "Keep pool discipline visible so aggregation is not turned into magic that blesses every estimate equally.",
+        "competitive": "Stop calling it wisdom if the intake door has no standards."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter warns that selection still matters even when aggregation can help.",
+        "direct": "This keeps the book from sliding into the false claim that more forecasts are always better forecasts.",
+        "competitive": "The pool can help, but it does not launder weak inputs."
+      }
+    },
+    {
+      "title": "Marcus Builds a Pooling Checklist",
+      "format": "checklist",
+      "category": "school",
+      "endingType": "bridge",
+      "scenario": {
+        "gentle": "Marcus adds a short note beside a scholarship projection sheet: whose estimates entered the pool, why were they included, and how was the combined judgment produced? The checklist makes the process visible.",
+        "direct": "A school planning checklist asks who entered the pool and how the group estimate was formed before anyone trusts the forecast.",
+        "competitive": "Marcus makes the intake door and the fusion step show themselves before the room salutes the number."
+      },
+      "whatToDo": {
+        "gentle": "Use a short check that asks both who counted and how the final estimate was combined.",
+        "direct": "Inspect selection and aggregation explicitly rather than letting the group forecast arrive as a black box.",
+        "competitive": "Interrogate the intake and fusion before the number gets to act inevitable."
+      },
+      "whyItMatters": {
+        "gentle": "This is the bridge from pooled forecasting toward the next question of structured guidance in medicine.",
+        "direct": "Once process design shapes group forecasting, the next chapter can ask how guidelines shape professional judgment.",
+        "competitive": "The structure argument is about to move from pooled estimates to clinical guidance."
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch13-q01",
+        "prompt": "What two process choices does this chapter bring into forecasting?",
+        "choices": [
+          "Selection and aggregation",
+          "Sequencing and automation",
+          "Rules and punishments"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The chapter focuses on which forecasts enter the pool and how they are combined.",
+          "direct": "Correct. Selection and aggregation are the two linked process choices introduced here.",
+          "competitive": "This chapter puts intake and fusion on the board."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch13-q02",
+        "prompt": "Why does aggregation matter in this chapter?",
+        "choices": [
+          "Because combining judgments can reduce some avoidable noise",
+          "Because aggregation makes every forecaster equally accurate",
+          "Because one forecast should always be ignored"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Exactly. The chapter treats combination as a way to get a steadier baseline.",
+          "direct": "Aggregation matters because multiple judgments can produce a stronger starting point than one estimate alone.",
+          "competitive": "The pool can raise the floor without turning into prophecy."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch13-q03",
+        "prompt": "Why does selection still matter even when aggregation helps?",
+        "choices": [
+          "Because the pool shapes the combined result before combination begins",
+          "Because aggregation works only when there is a single forecaster",
+          "Because selection eliminates all uncertainty"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Right. The chapter says the quality of the pool affects the quality of the result.",
+          "direct": "Selection matters because aggregation inherits the strengths and weaknesses of the inputs it receives.",
+          "competitive": "A weak intake system drags the whole pool down."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch13-q04",
+        "prompt": "Nadia sees a whiteboard full of estimates, but one confident number still dominates. What lesson fits best?",
+        "choices": [
+          "The team should ignore the rest of the estimates to avoid confusion",
+          "The group should treat pool selection and combination as real design choices",
+          "A larger pool guarantees the dominant number is correct"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Good. The chapter says multiple estimates help only when the pool and combination are taken seriously.",
+          "direct": "The right move is to separate who should count from how the combined judgment should be formed.",
+          "competitive": "If one voice still runs the room, the pool is just theater."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch13-q05",
+        "prompt": "Why does Priya's school yield table matter in the chapter?",
+        "choices": [
+          "Because pooled estimates can provide a steadier baseline than deference to one authority figure",
+          "Because school estimates never require judgment once there is a table",
+          "Because the principal's first estimate should always overrule the pool"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The chapter uses pooled judgment to show how process design can improve the baseline.",
+          "direct": "The school example matters because multiple selected estimates can produce a stronger forecast than relying on one person alone.",
+          "competitive": "The yield table stops being a stage prop once the pool actually counts."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch13-q06",
+        "prompt": "How does the chapter distinguish aggregation from individual forecast quality?",
+        "choices": [
+          "Aggregation removes the need to care about input quality",
+          "Aggregation can improve the baseline without making every input equally good",
+          "Aggregation matters only when every estimate is identical"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Correct. The chapter keeps combination useful without pretending all forecasts are equally strong.",
+          "direct": "Its claim is that a combined judgment can help while individual input quality still matters.",
+          "competitive": "The pool can help without laundering weak guesses."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch13-q07",
+        "prompt": "Why does uncertainty remain even after aggregation?",
+        "choices": [
+          "Because better combination improves the floor without making the future perfectly clear",
+          "Because aggregation matters only for past events",
+          "Because uncertainty vanishes only when the pool is large enough"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Exactly. The chapter says aggregation helps without becoming a cure-all.",
+          "direct": "Uncertainty remains because stronger process does not turn forecasting into certainty.",
+          "competitive": "The floor can rise while the fog stays put."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch13-q08",
+        "prompt": "What practical change does better combination make?",
+        "choices": [
+          "It improves the baseline by turning multiple selected judgments into a steadier result",
+          "It proves the best forecaster in the room can be ignored entirely",
+          "It removes the need to decide which inputs belong in the pool"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "That fits. The chapter treats combination as a way to get a steadier overall reading.",
+          "direct": "Better aggregation helps by making the combined judgment more reliable than leaving the process to one estimate alone.",
+          "competitive": "The process starts earning a stronger floor instead of worshipping one number."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch13-q09",
+        "prompt": "Which misreading does the chapter reject?",
+        "choices": [
+          "That more inputs always improve a forecast regardless of selection discipline",
+          "That forecast quality depends partly on process design",
+          "That uncertainty remains after combination"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Right. The chapter warns against treating a larger pool as automatically better.",
+          "direct": "It rejects the claim that adding more estimates helps regardless of who or what those estimates are.",
+          "competitive": "A crowded pool is not the same as a smart pool."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch13-q10",
+        "prompt": "What is the strongest bridge from this chapter into the next one?",
+        "choices": [
+          "If structure can improve forecasting through pooling and combination, the next question is how guidance narrows variation in medicine",
+          "The next chapter abandons structure and returns to lone judgment",
+          "The next chapter proves forecasting is the only domain where process design matters"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Yes. The next move tests structure again, this time as guidance in medicine.",
+          "direct": "The bridge works because the book moves from designed forecast pools to designed medical guidance.",
+          "competitive": "If intake and fusion matter here, the clinic is next."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  }
+}

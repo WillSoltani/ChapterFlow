@@ -231,6 +231,39 @@ export function inventorySk(itemType: string, itemId: string): string {
   return `INVENTORY#${itemType}#${itemId}`;
 }
 
+// ── Device token keys ──────────────────────────────────────────────────────
+
+export function deviceTokenSk(endpoint: string): string {
+  const hash = endpoint.slice(-32).replace(/[^a-zA-Z0-9]/g, "");
+  return `DEVICE#${hash}`;
+}
+
+// ── Notification keys ──────────────────────────────────────────────────────
+
+export function notificationSk(createdAt: string, notificationId: string): string {
+  return `NOTIF#${createdAt}#${notificationId}`;
+}
+
+// ── Daily metrics keys ─────────────────────────────────────────────────────
+
+export function bookMetricsPk(bookId: string): string {
+  return `BOOKMETRICS#${bookId}`;
+}
+
+export function dailyMetricsSk(dayKey: string): string {
+  return `DAY#${dayKey}`;
+}
+
+// ── Gift code keys ─────────────────────────────────────────────────────────
+
+export function giftCodePk(): string {
+  return "BOOKGIFT#CODES";
+}
+
+export function giftCodeSk(code: string): string {
+  return `CODE#${code.toUpperCase()}`;
+}
+
 // ── Content keys ────────────────────────────────────────────────────────────
 
 export function buildContentPrefix(bookId: string, version: number): string {
@@ -251,4 +284,24 @@ export function buildChapterKey(prefix: string, chapterNumber: number): string {
 
 export function buildQuizKey(prefix: string, chapterNumber: number): string {
   return `${prefix}/quizzes/${padChapterNumber(chapterNumber)}.json`;
+}
+
+export function buildConceptGraphKey(prefix: string): string {
+  return `${prefix}/concept-graph.json`;
+}
+
+// ── FSRS Spaced Repetition keys ───────────────────────────────────────────────
+
+export function fsrsCardSk(cardId: string): string {
+  return `FSRS#CARD#${cardId}`;
+}
+
+export function fsrsReviewLogSk(reviewedAt: string, reviewId: string): string {
+  return `FSRS#LOG#${reviewedAt}#${reviewId}`;
+}
+
+// ── Adaptive Depth Routing keys ───────────────────────────────────────────────
+
+export function depthModelSk(bookId: string): string {
+  return `DEPTHMODEL#${bookId}`;
 }

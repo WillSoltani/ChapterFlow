@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the chapter mean by a mental representation?",
+      "choices": [
+        "An internal model that organizes meaningful patterns in a field",
+        "A motivational speech a learner gives to stay focused",
+        "A permanent talent level that practice cannot change"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses the term for the inner structure that helps experts notice and organize what matters.",
+        "direct": "A mental representation is the internal model that makes domain information more usable.",
+        "competitive": "It is stored structure, not pep talk and not destiny."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do experts often seem to notice relevant cues faster than novices?",
+      "choices": [
+        "Because they are always naturally calmer people",
+        "Because their internal models make some cues stand out sooner",
+        "Because they remember every detail equally well"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says better representation changes attention, so important patterns become easier to spot.",
+        "direct": "Experts sort the field faster because their models rank and group cues.",
+        "competitive": "They are not staring harder at the same fog. They are operating with less fog."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter explain expert memory?",
+      "choices": [
+        "Experts have unlimited storage for all details",
+        "Experts mostly memorize by luck after enough years",
+        "Experts recall more because information is grouped into meaningful chunks"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Memory improves when the material has shape and relationship, not only when more pieces are stored.",
+        "direct": "Chunking meaningful structure is the chapter's main answer to the memory question.",
+        "competitive": "Compression beats hauling a bigger pile of loose fragments."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Priya's clinic scenario, what training shift best fits the chapter?",
+      "choices": [
+        "Move from isolated symptom drill toward full pattern comparison",
+        "Have clinicians memorize longer vocabulary lists",
+        "Ignore patterns and trust first impressions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors building the pattern map behind judgment, not adding disconnected facts.",
+        "direct": "Pattern discrimination fits the representational logic better than isolated fact rehearsal.",
+        "competitive": "If the team cannot read the constellation, more fragments will not save the case."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Marcus compare two students after the same lecture?",
+      "choices": [
+        "To show that one student is simply more gifted in every domain",
+        "To show that better organized understanding changes what can be recalled",
+        "To prove lectures are useless unless they include lab work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The contrast shows memory improving when the material is organized into systems and relations.",
+        "direct": "Marcus is demonstrating that representation shapes recall quality.",
+        "competitive": "One student stored fragments. The other built a system that could survive pressure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Elena's chess dilemma mainly contrasts which two study approaches?",
+      "choices": [
+        "Opening-line memorization versus position understanding",
+        "Speed chess versus tournament chess",
+        "White-piece training versus black-piece training"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Her problem is that memorized lines are weak without the deeper position patterns behind them.",
+        "direct": "The scenario contrasts script recall with representational understanding.",
+        "competitive": "She can keep renting moves or start buying the board logic that makes them useful."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does stronger representation improve self-correction?",
+      "choices": [
+        "It removes the need for any outside feedback",
+        "It makes the target picture clearer, so mismatch shows up earlier",
+        "It guarantees that experts stop making mistakes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A clearer inner standard lets a person notice drift sooner.",
+        "direct": "Self-correction strengthens when the performer knows more precisely what good should look like.",
+        "competitive": "You catch the leak early only if the standard is sharp enough to expose it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which claim would the chapter reject?",
+      "choices": [
+        "Expert perception can be built through field-specific practice",
+        "A strong representation in one field automatically transfers wholesale to distant fields",
+        "Prediction often improves when the field has more internal structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps saying these representations are specific to the fields that built them.",
+        "direct": "Wholesale transfer is exactly the flattering mistake the chapter blocks.",
+        "competitive": "One win does not secretly install an expert eye everywhere else."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can expert speed remain accurate rather than becoming guesswork?",
+      "choices": [
+        "Because experts avoid uncertainty entirely",
+        "Because they know they are smarter than everyone else",
+        "Because their internal models make likely developments easier to anticipate"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Prediction grows out of structure, which helps the person prepare before the next event fully arrives.",
+        "direct": "Accuracy under speed comes from better anticipation, not from blind reaction.",
+        "competitive": "The model has already mapped likely paths, so speed does not have to improvise every step."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does this chapter naturally hand to the next one?",
+      "choices": [
+        "Which practice conditions build strong representations most reliably?",
+        "Why should talent replace all structured training?",
+        "How can every skill transfer instantly into every other skill?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once representation matters, the next practical question is how training builds it.",
+        "direct": "The chapter points forward to deliberate practice as the method problem.",
+        "competitive": "If the model is the prize, the next fight is over what training actually forges it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "complex"
+    }
+  ]
+}

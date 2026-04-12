@@ -1,0 +1,35 @@
+{
+  "chapterId": "ch06",
+  "title": "Cornered Resource",
+  "heading": "Cornered Resource",
+  "approxWords": 650,
+  "properNouns": [
+    "Hamilton Helmer"
+  ],
+  "repeatedTerms": [
+    "resource",
+    "scarce",
+    "access",
+    "substitute",
+    "patent",
+    "talent",
+    "independent value"
+  ],
+  "sourceReferences": [
+    {
+      "url": "https://books.google.com/books/about/7_Powers.html?hl=en&id=heEuvgAACAAJ",
+      "role": "authorized_book_level_power_framing",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://sellingsherpa.com/index.php/2020/06/24/7-powers-the-foundations-of-business-strategy-book-summary/",
+      "role": "chapter_map_and_subtitle_crosscheck",
+      "confidence": 0.82
+    },
+    {
+      "url": "https://www.cdebassa.com/notes/7-powers-the-foundations-of-business-strategy",
+      "role": "book_level_crosscheck_for_cornered_resource_logic",
+      "confidence": 0.78
+    }
+  ]
+}

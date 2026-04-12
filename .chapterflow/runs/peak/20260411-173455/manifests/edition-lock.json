@@ -1,0 +1,35 @@
+{
+  "bookId": "peak",
+  "runId": "20260411-173455",
+  "status": "locked_without_user_question",
+  "selectionReason": "One dominant English chapter family appears across the Google Books authorized preview, Open Library edition records, and library catalog metadata. The visible differences are publisher and format branches rather than materially different chapter structures, so no user question was required.",
+  "chosenEdition": {
+    "title": "Peak: Secrets from the New Science of Expertise",
+    "authors": [
+      "Anders Ericsson",
+      "Robert Pool"
+    ],
+    "language": "English",
+    "publisher": "Eamon Dolan / Houghton Mifflin Harcourt / Mariner Books / Bodley Head",
+    "publishedYear": 2016,
+    "isbn13": "9780544456235",
+    "isbn10": "0544456238",
+    "chapterRange": "1-9",
+    "sourceText": ".chapterflow/runs/peak/20260411-173455/source-freeze/book-source.md",
+    "sourceProvenance": "Frozen from Google Books authorized preview metadata and contents, Open Library edition records, Community Library Network table-of-contents metadata, and the secondary chapter-summary bundle recorded in manifests/source-ledger.json."
+  },
+  "rejectedAlternatives": [
+    {
+      "title": "Peak: Secrets from the New Science of Expertise",
+      "publisher": "HarperOne paperback",
+      "publishedYear": 2017,
+      "reason": "Format and imprint branch of the same English chapter family for package purposes."
+    },
+    {
+      "title": "Peak: Secrets from the New Science of Expertise",
+      "publisher": "Bodley Head",
+      "publishedYear": 2016,
+      "reason": "UK imprint branch with the same chapter-level sequence for this run."
+    }
+  ]
+}

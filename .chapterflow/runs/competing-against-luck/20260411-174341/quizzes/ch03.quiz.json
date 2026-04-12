@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 3 mainly trying to prove?",
+      "choices": [
+        "That every market uses the same product features",
+        "That Jobs Theory can explain demand beyond the opening example",
+        "That one vivid anecdote is enough for strategy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter widens the theory beyond the first case and asks whether it still works in new settings.",
+        "direct": "Correct. Chapter 3 is a portability test, not a feature discussion.",
+        "competitive": "The frame has to survive outside the neat first story."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "According to this chapter, what should travel from one setting to another?",
+      "choices": [
+        "The diagnostic questions",
+        "The same customer profile",
+        "The same winning product category"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the method should travel, not the old story or old category answer.",
+        "direct": "What moves across settings is the question set used to diagnose the job.",
+        "competitive": "Carry the questions, not the anecdote."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team copies language from a past success into a new market without fresh observation. What is the chapter's best reading?",
+      "choices": [
+        "They are applying portability correctly",
+        "They are reusing an anecdote instead of using the method",
+        "They are proving the new market is identical to the old one"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against pasting an old answer into a new situation.",
+        "direct": "That move confuses portable method with copied demand story.",
+        "competitive": "They moved the story, not the discipline."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya's whiteboard is full of category competitors, but interviews show users mainly want relief from last-minute confusion. What should happen next?",
+      "choices": [
+        "Keep the board focused on products that look most similar",
+        "Redraw the competition around which alternatives can create the same progress",
+        "Ignore the interviews because feature similarity is more objective"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The job changes which alternatives count as real competitors.",
+        "direct": "Once the progress target is clear, the substitute set has to be rebuilt from the situation outward.",
+        "competitive": "Map the movement and the fake rivals start dropping away."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter say unlike options can become direct rivals?",
+      "choices": [
+        "Because buyers compare ways to make the same movement under the same constraints",
+        "Because categories do not exist at all",
+        "Because visual design matters less than price"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Jobs thinking looks at progress, so different-looking options can still compete if they help with the same situation.",
+        "direct": "The substitute set is organized by the job, not by surface resemblance.",
+        "competitive": "Same movement, same battlefield."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's limit on portability?",
+      "choices": [
+        "Portability means every setting should yield the same answer",
+        "Portability means the same questions travel while each local answer still has to be earned",
+        "Portability means teams can skip fresh observation if the pattern feels familiar"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps portability tied to local observation and fresh diagnosis.",
+        "direct": "Portable method is not portable evidence. Each situation still has to answer for itself.",
+        "competitive": "The questions travel. The proof does not."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Malik sees two students request the same form for different reasons. What does that show?",
+      "choices": [
+        "The same visible transaction can hide different progress movements",
+        "Administrative services should avoid asking why people came in",
+        "The form itself is the job"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The shared form is the object, but the progress each student wants is different.",
+        "direct": "This is how jobs appear in the wild: similar transactions can carry different demand stories.",
+        "competitive": "Same form, different movement."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Nora compares a notebook, an app, and a coaching session because each might restore control before a stressful month. What does the chapter say this comparison reveals?",
+      "choices": [
+        "She is shopping irrationally across unrelated categories",
+        "She is using the job to evaluate unlike alternatives against one progress target",
+        "She should eliminate the most expensive option first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once the movement is clear, unlike options can be compared against the same better state.",
+        "direct": "The chapter expands the substitute set beyond category labels when progress is the real target.",
+        "competitive": "Odd options become rivals when the movement is the same."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best preserves the chapter's disciplined version of portability?",
+      "choices": [
+        "The same example can usually be reused in most markets if the audience is similar",
+        "A theory is portable only when it keeps the questions stable and the answers locally grounded",
+        "Once a job is found in one category, it can be treated as universal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The middle choice keeps the method traveling while still respecting the new situation.",
+        "direct": "That statement matches the chapter's balance between wide applicability and local evidence.",
+        "competitive": "Traveling questions, earned answers."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 3 is right, what should the book teach next?",
+      "choices": [
+        "How to turn Jobs Theory into organization design immediately",
+        "How to hunt for jobs deliberately in the field",
+        "How to stop using categories in any business discussion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once jobs can be recognized across settings, the next step is learning how to find them on purpose.",
+        "direct": "Chapter 3 sets up a move from recognition to deliberate job hunting.",
+        "competitive": "If the frame travels, the next move is the hunt."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

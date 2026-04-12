@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What has to happen before simple growth counts as scale power in this chapter?",
+      "choices": [
+        "A company must become the most talked-about brand in its category",
+        "Added volume must lower unit cost in a way that becomes hard for smaller rivals to match cleanly",
+        "Management must prove it can expand into multiple regions at once"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ties scale power to cheaper unit economics plus a real follower barrier, not just bigger presence.",
+        "direct": "Growth matters only when it changes the cost structure and leaves the imitation path unattractive for smaller rivals.",
+        "competitive": "Bigger without harsher follower math is noise, not power."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which answer best captures the role of the barrier in scale economies?",
+      "choices": [
+        "It keeps the leader's cost advantage durable because followers face worse economics while trying to catch up",
+        "It ensures that no competitor can ever understand the leader's business model",
+        "It guarantees that the largest company always has the best product"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The follower does not need to be confused. It only needs to face an unattractive path to matching the leader's economics.",
+        "direct": "Barrier here means imitation is visible but costly for the smaller rival, not mysterious or impossible to describe.",
+        "competitive": "They can see the move. They just hate the math of copying it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A founder says, \"Our user count doubled, so we now have scale power.\" What is the strongest response from this chapter?",
+      "choices": [
+        "Only if the larger user base lowered unit cost through a real mechanism and made catch-up uglier for followers",
+        "Yes, because fast growth always signals that the market has chosen a winner",
+        "Yes, as long as the company keeps spending aggressively to protect momentum"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "User growth is not enough by itself. The chapter asks what changed in the economics underneath it.",
+        "direct": "Scale power requires cost improvement and follower pain, not just a bigger top-line usage number.",
+        "competitive": "Doubling the crowd proves attention. It does not prove a moat."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya can open a second warehouse now to look nationwide, but order density outside her current hub is still thin. What choice best fits the chapter's logic?",
+      "choices": [
+        "Open it now because fixed cost automatically creates a future barrier",
+        "Wait until denser demand means the new facility will actually lower unit cost per shipment",
+        "Open it now and cut marketing later if the economics do not improve"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants density, not symbolic expansion. Fixed cost helps only when the volume can carry it well.",
+        "direct": "A premature warehouse adds overhead before the scale mechanism is real, so the barrier never forms.",
+        "competitive": "Do not buy fake scale with real rent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Priya's student newspaper can print more copies at a lower per-copy rate, but unsold stacks already pile up in the newsroom. Which answer wins?",
+      "choices": [
+        "Take the bigger print run because the quoted unit rate is lower",
+        "Keep volume tied to real pickup demand so the economics improve after waste is counted",
+        "Print extra copies and hand them out free to simulate scale"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A lower print quote is not the same thing as lower real cost if waste rises with it.",
+        "direct": "Scale logic only holds when larger volume improves actual unit economics, not when it shifts cost into unused output.",
+        "competitive": "Cheaper per copy is meaningless if the dead copies become the real expense."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which situation best shows the difference between benefit and barrier?",
+      "choices": [
+        "A company cuts internal waste, and every rival can copy the same fix within a quarter",
+        "A company wins an award that increases attention for one season",
+        "A company's larger network lets it buy cheaper inputs while smaller rivals still pay materially worse terms"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The third option contains both pieces: a lower-cost benefit for the leader and a weaker imitation position for the smaller rival.",
+        "direct": "Benefit is the cheaper input cost. Barrier is the follower's inability to get the same terms on equal footing.",
+        "competitive": "One firm buys from strength. The others buy from weakness. That is the structure Helmer wants."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A neighborhood food co-op can place a huge bulk order at a lower unit price, but storage is tight and spoilage risk is high. According to the chapter, what should the group do?",
+      "choices": [
+        "Order the largest amount anyway because scale always begins with courage",
+        "Match volume to the amount the group can actually move and store without hidden waste",
+        "Split the order equally among members so the risk feels fair"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors real economics over attractive unit quotes. Waste can erase the apparent gain.",
+        "direct": "Volume helps only when the whole system can support it cleanly. Hidden spoilage means the cost curve is not truly improving.",
+        "competitive": "Bulk buying is not scale power if half the advantage rots."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the Netflix example fit this chapter so well?",
+      "choices": [
+        "It proves that entertainment companies always dominate software firms",
+        "It shows how a large commitment can become easier to carry per unit as the subscriber base grows, while smaller followers face harsher math",
+        "It shows that premium content automatically creates branding and network economies at the same time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The example matters because the same kind of commitment feels different at different scale, not because media is unique.",
+        "direct": "Netflix illustrates scale economics by spreading a heavy commitment across a much larger base than a follower could.",
+        "competitive": "Same bet. Bigger base. Better arithmetic."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When is aggressive expansion most likely to destroy value instead of building scale power?",
+      "choices": [
+        "When the company enlarges fixed commitments before volume, density, or market significance can support them",
+        "When the founders speak publicly about growth goals before hitting them",
+        "When the leadership team prefers lower prices to higher prices"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The danger is premature burden. Bigger commitments can weigh the business down before the cost benefits arrive.",
+        "direct": "Scale investment fails when the barrier never forms and the added fixed load arrives ahead of the economics that should carry it.",
+        "competitive": "If the moat never hardens, expansion just magnifies exposure."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "This chapter focuses on scale making a business cheaper to run. What shift would signal the next chapter's logic instead?",
+      "choices": [
+        "More users make the offering itself more valuable to each user",
+        "Managers become more disciplined about warehouse utilization",
+        "Suppliers begin offering seasonal discounts to all buyers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That answer points toward network economies, where participation raises user value rather than only lowering cost.",
+        "direct": "The next chapter changes the source of power from cost improvement to value improvement through more users.",
+        "competitive": "The variable flips: not cheaper delivery, but stronger product through the crowd."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

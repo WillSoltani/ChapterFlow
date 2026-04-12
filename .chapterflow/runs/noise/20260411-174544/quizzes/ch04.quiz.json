@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What makes a decision singular in this chapter's sense?",
+      "choices": [
+        "It arrives without an obvious comparison set",
+        "It is always made by only one person",
+        "It has no consequences outside the moment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter defines singular decisions by the lack of an easy lineup, not by triviality or solo authorship.",
+        "direct": "Correct. A singular decision is one-off because no direct comparison set is available in the moment.",
+        "competitive": "That is the key feature. The call stands alone."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why is noise harder to see in a singular decision?",
+      "choices": [
+        "Because singular decisions are usually more accurate",
+        "Because the spread is hidden when no side-by-side lineup is visible",
+        "Because one-off calls never involve judgment climates"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The risk stays present, but the comparison that would expose it is missing.",
+        "direct": "The chapter says hidden variability is harder to inspect because the decision arrives without nearby cases for direct contrast.",
+        "competitive": "No lineup means the wobble stays offstage."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What mistake does the chapter warn against most directly?",
+      "choices": [
+        "Treating invisibility as proof of stability",
+        "Treating every decision as a system failure",
+        "Treating caution as incompatible with action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps saying that hidden spread can still matter.",
+        "direct": "The central warning is against confusing a missing comparison set with a stable judgment.",
+        "competitive": "The empty column is not an acquittal."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Nora has one finalist on her laptop screen and no side-by-side candidate in view. What chapter move fits best?",
+      "choices": [
+        "Assume the isolation proves the answer is obvious",
+        "Ask what evidence or comparison would genuinely narrow the uncertainty",
+        "Delay all decisions until a full batch appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter asks for more disciplined confidence, not instant certainty or total freezing.",
+        "direct": "The right move is to identify what would actually sharpen the call rather than mistaking solitude for clarity.",
+        "competitive": "Make the confidence earn itself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Mira has one late admissions appeal on the desk. Why does that setup create a special noise problem?",
+      "choices": [
+        "Because school decisions are less important than forecast decisions",
+        "Because a lone file can feel self-explanatory even when the spread is only hidden",
+        "Because one-off cases should be handled entirely by instinct"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The file can look cleaner than it really is simply because the nearby contrasts are gone.",
+        "direct": "The singular setup invites false precision because the missing lineup weakens diagnosis without removing variability.",
+        "competitive": "One folder alone can still wobble."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Why does invisibility not erase the problem of noise?",
+      "choices": [
+        "Because hidden spread can still shape the judgment's trustworthiness",
+        "Because every singular decision secretly has a duplicate",
+        "Because intuition always knows when spread is present"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter separates difficulty of seeing the spread from absence of spread.",
+        "direct": "Hidden variability still matters because the decision may have moved under different conditions even if that movement is not observable on the spot.",
+        "competitive": "Unseen movement still moves the answer."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "What response does the chapter recommend instead of paralysis?",
+      "choices": [
+        "Disciplined caution that still acts under uncertainty",
+        "Total reliance on intuition because comparison is missing",
+        "Permanent delay until the perfect audit appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter keeps room for action while tightening the standard for confidence.",
+        "direct": "Responsible judgment here means caution without surrender: act, but resist false precision.",
+        "competitive": "Tighten the call without pretending the risk vanished."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Priya asks what new fact would change her answer before locking in a one-off choice. What chapter principle is she using?",
+      "choices": [
+        "Treating the current answer as final because it feels clear",
+        "Testing what evidence would narrow uncertainty or reverse the call",
+        "Ignoring uncertainty because personal decisions are unique"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That fits the chapter well. She is making the judgment admit what could still move it.",
+        "direct": "The move is to specify what evidence would materially change the answer instead of letting isolation create overconfidence.",
+        "competitive": "She is forcing the call to show its weak spots."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Why does the chapter resist making intuition the ruler of singular decisions?",
+      "choices": [
+        "Because intuition is never useful in any domain",
+        "Because intuition cannot substitute for missing comparison or measurement by itself",
+        "Because all singular decisions should be delegated to groups"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter treats intuition as limited, not as a license created by uncertainty.",
+        "direct": "A singular decision may require judgment, but intuition alone does not solve the hidden-spread problem.",
+        "competitive": "The blind spot does not crown instinct king."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once comparison disappears, the mind that makes the judgment becomes the next instrument to inspect",
+        "The next chapter abandons judgment and focuses only on data collection",
+        "Singular decisions prove that systems matter less than people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. If outside comparison is weak, the book naturally turns to the judging instrument itself.",
+        "direct": "The bridge works because hidden spread in singular decisions makes the reliability of the mind more central.",
+        "competitive": "When the outside check disappears, the scale becomes part of the case."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

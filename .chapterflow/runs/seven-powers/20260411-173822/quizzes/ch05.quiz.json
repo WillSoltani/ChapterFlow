@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's core definition of branding?",
+      "choices": [
+        "A product becomes famous enough that everyone recognizes it",
+        "Customers pay more for an objectively similar offering because historical signals have shaped expectation and feeling",
+        "A company uses distinctive packaging and design to stand out visually"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares about a premium on a similar offer, not just about attention or style.",
+        "direct": "Branding exists here when history changes willingness to pay.",
+        "competitive": "No premium on similar substance, no strategic proof."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are time and uncertainty the barrier in this chapter?",
+      "choices": [
+        "Because rivals cannot legally advertise in the same way",
+        "Because customers need time to forget the incumbent's product quality",
+        "Because rivals cannot quickly copy years of earned trust and meaning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A challenger can copy surface cues faster than it can copy built-up confidence.",
+        "direct": "Time matters because historical trust cannot be compressed into a quick imitation.",
+        "competitive": "The rival can steal the look before it steals the belief."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which result best separates awareness from real brand power?",
+      "choices": [
+        "A campaign gets noticed, but customers still refuse to pay more for a similar offer",
+        "A brand receives more likes on social media than its rival",
+        "A logo becomes easier to recognize from far away"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Attention alone is not enough if the willingness-to-pay premium does not appear.",
+        "direct": "The missing premium shows that visibility has not become the chapter's form of power.",
+        "competitive": "The spotlight is bright, but the moat is thin."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya's company just had a successful campaign. What should she test before calling the result brand power?",
+      "choices": [
+        "Whether customers will still pay more when the offer is compared with similar alternatives after the excitement fades",
+        "Whether the company can post more frequently than rivals",
+        "Whether the campaign visuals are harder for rivals to imitate"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The premium has to survive beyond the attention spike.",
+        "direct": "Brand power requires willingness to pay above similar alternatives, not just temporary buzz.",
+        "competitive": "When the noise fades, the price test starts."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "At Priya's campus cafe, two drinks are very similar, yet students still pay a bit more for the established option. What does that most likely show?",
+      "choices": [
+        "Scale economies",
+        "Branding through trust and expectation on a similar offer",
+        "Switching costs because students cannot change drinks easily"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The key clue is a premium on a similar option because one choice feels more trusted.",
+        "direct": "When offers are close, a higher price tied to expectation points toward branding.",
+        "competitive": "The extra charge is coming from belief, not from product distance."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement best fits the chapter's view of strong brands?",
+      "choices": [
+        "One strong brand should eventually eliminate all other brands in its category",
+        "Several strong brands can coexist because each can build its own trust and meaning",
+        "A strong brand matters only when customers are locked in by switching costs"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter explicitly allows more than one brand to stay strong.",
+        "direct": "Branding is not exclusive by default because several brands can build distinct trust pools.",
+        "competitive": "Strong does not automatically mean solitary."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lena notices she accepts a slightly higher price at one local shop after many reliable experiences. What changed?",
+      "choices": [
+        "The shop developed network economies",
+        "Historical signals changed her willingness to pay for a similar offer",
+        "The shop cornered a scarce resource"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Repeated reliability changed expectation and made the premium feel acceptable.",
+        "direct": "The customer's history with the shop created brand value by lifting price tolerance.",
+        "competitive": "Reliability taught her to pay for belief."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why might a copied campaign still fail to erase an incumbent's brand power?",
+      "choices": [
+        "Because customers care only about originality in ads",
+        "Because campaign mechanics matter less than the trust and association earned over time",
+        "Because legal protection always blocks imitation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The copied surface may not carry the same earned confidence.",
+        "direct": "Brand power survives when the imitator still lacks the historical trust behind the presentation.",
+        "competitive": "The rival stole the costume and missed the authority."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When would branding be weaker under this chapter's logic?",
+      "choices": [
+        "When customers can compare quality instantly and uncertainty is low",
+        "When the brand uses a simpler visual identity",
+        "When the company operates in more than one market"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If customers can verify quality immediately, historical signals have less work to do.",
+        "direct": "Branding weakens when low uncertainty reduces the value of accumulated trust and expectation.",
+        "competitive": "When the proof is instant, the old belief earns less extra rent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "This chapter's edge comes from willingness to pay shaped by trust and meaning. What would signal the next chapter's barrier instead?",
+      "choices": [
+        "Customers stay because leaving would destroy built-up continuity value",
+        "A firm gains preferential access on attractive terms to a scarce resource that independently matters",
+        "More users make the product more valuable for other users"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter turns to cornered resource, where the edge comes from scarce access rather than perception.",
+        "direct": "The barrier shifts from customer expectation to privileged control of an important input.",
+        "competitive": "Next, the moat sits in what the firm can get, not in what customers feel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    }
+  ]
+}

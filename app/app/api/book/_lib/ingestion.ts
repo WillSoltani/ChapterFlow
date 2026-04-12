@@ -2,6 +2,7 @@ import { BookApiError } from "./errors";
 import {
   buildBookJsonKey,
   buildChapterKey,
+  buildConceptGraphKey,
   buildContentPrefix,
   buildManifestKey,
   buildQuizKey,
@@ -93,6 +94,14 @@ export async function ingestBookPackageFromS3(params: {
   }
   for (const quiz of quizPayloads) {
     await writeJsonToS3(params.contentBucket, buildQuizKey(contentPrefix, quiz.number), quiz);
+  }
+
+  if (pkg.conceptGraph) {
+    await writeJsonToS3(
+      params.contentBucket,
+      buildConceptGraphKey(contentPrefix),
+      pkg.conceptGraph
+    );
   }
 
   await upsertBookMetaAndCatalog(params.tableName, {

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What turns a collection of decisions into a noisy system in this chapter?",
+      "choices": [
+        "Several judgment points adding spread across one route",
+        "A single judge or manager making one unusually bad call",
+        "Any process that uses more than one reviewer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter focuses on cumulative spread across a chain, not one dramatic miss or a blanket attack on multi-step review.",
+        "direct": "Correct. A noisy system emerges when comparable cases pass through several judgment nodes and the full route becomes less stable than it should be.",
+        "competitive": "That is the mechanism. The route keeps widening the range."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why can system noise stay hidden for a long time?",
+      "choices": [
+        "Because each checkpoint can sound reasonable on its own",
+        "Because organizations never keep records of decisions",
+        "Because only outsiders can see instability"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Local explanations can sound serious even while the whole route drifts.",
+        "direct": "The chapter says system instability hides because step-level defensibility is easier to hear than route-level spread.",
+        "competitive": "Each station sounds clean, so the chain keeps its cover."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What is the chapter's key local-versus-global tension?",
+      "choices": [
+        "Local justifications do not automatically prove global stability",
+        "Global rules are always smarter than local judgment",
+        "Local reviewers should be ignored once the process scales"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The process still has to answer for its full output, not only the stories told at each step.",
+        "direct": "A route can be full of defensible local moves and still produce unstable overall outcomes.",
+        "competitive": "Serious fragments can still build a weak chain."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Nora sees a candidate rated marginal, promising, split, and yes across four hiring checkpoints. What chapter move best fits?",
+      "choices": [
+        "Defend the most senior checkpoint and ignore the earlier steps",
+        "Audit the full route and ask whether the combined spread is defensible",
+        "Average the impressions so the process feels balanced"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter wants route-level inspection, not checkpoint favoritism.",
+        "direct": "The right move is to compare the full path because system noise often lives in cumulative spread, not one isolated rating.",
+        "competitive": "Make the route answer for the whole pattern."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Why does cumulative spread matter more than one checkpoint's tone?",
+      "choices": [
+        "Because polished explanations can still hide a drifting distribution",
+        "Because one checkpoint never matters in any system",
+        "Because later checkpoints always erase earlier ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A route can look careful step by step and still end up unstable overall.",
+        "direct": "Cumulative spread matters because the chain can grow less stable even when each local move sounds plausible.",
+        "competitive": "The paperwork can stay polished while the distribution slips."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "What accountability problem does the chapter attach to noisy systems?",
+      "choices": [
+        "The process becomes too easy to centralize",
+        "Responsibility disperses across checkpoints until nobody owns the combined range clearly",
+        "Only the final approver can ever be blamed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. Diffused ownership is one reason noisy systems can normalize their own spread.",
+        "direct": "The chapter's structural blind spot is that route-level instability often lacks a visible owner even while step-level explanations remain strong.",
+        "competitive": "Everyone owns a slice, so the spread keeps slipping through."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "A scholarship process sounds thoughtful at reader, panel, and dean stages, but comparable applicants still get unstable treatment. What principle fits best?",
+      "choices": [
+        "Thoughtful stages guarantee a stable system",
+        "The route still has to answer for the full distribution it creates",
+        "The dean should ignore earlier stages entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's point. Careful local voices do not by themselves prove route-level stability.",
+        "direct": "The process must be judged by what the whole chain does to comparable cases, not only by the seriousness of each stage.",
+        "competitive": "Respectable checkpoints do not acquit a drifting pipeline."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Leah wants to blame one checkpoint for a bad outcome, but the answer shifted at three handoffs. What is the better chapter-consistent move?",
+      "choices": [
+        "Treat the visible checkpoint as the full cause",
+        "Map the route before deciding whether one step or the chain explains the instability",
+        "Stop analyzing because distributed systems are always too messy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter warns that one visible step can distract from route-level drift.",
+        "direct": "The stronger explanation may be the chain itself, so the handoffs have to be mapped before blame is assigned.",
+        "competitive": "Audit the route before you crown a culprit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why does the chapter resist treating all distributed judgment as failure?",
+      "choices": [
+        "Because multiple viewpoints can catch blind spots if the system still owns the combined range",
+        "Because systems never need accountability if several people are involved",
+        "Because centralized decisions are always worse than distributed ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps room for multiple viewpoints while insisting on route-level accountability.",
+        "direct": "Distributed judgment can help, but only if the institution also governs the distribution those viewpoints create together.",
+        "competitive": "More eyes help only when someone still owns the output."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "What is the strongest bridge from this chapter into singular decisions?",
+      "choices": [
+        "Once the route disappears, noise disappears with it",
+        "Singular decisions remove the visible chain but keep the risk of instability in a different form",
+        "The next chapter only repeats the system argument with fewer people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The route goes away, but the risk does not. It simply becomes harder to see.",
+        "direct": "The bridge works because singular decisions hide spread differently than systems do, not because the problem vanishes.",
+        "competitive": "Lose the pipeline, keep the risk. That is the next move."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

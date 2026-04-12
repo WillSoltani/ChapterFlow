@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch33-q01",
+      "prompt": "What is the core problem in social loafing?",
+      "choices": [
+        "Effort falls because contribution is hidden inside the group",
+        "Groups always perform worse than individuals",
+        "Shared tasks remove the need for ownership"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The issue is that hidden contribution can weaken effort.",
+        "direct": "Correct. A shared task is lowering accountability because individual contribution is hard to isolate.",
+        "competitive": "That is the trap. The crowd is giving effort cover."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch33-q02",
+      "prompt": "Why can group settings make this bias more likely?",
+      "choices": [
+        "Because blurred ownership can weaken the tie between one person and the result",
+        "Because cooperation automatically removes accountability",
+        "Because teams never contain invisible work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Shared responsibility can make one person feel less clearly responsible.",
+        "direct": "Exactly. When ownership is vague, effort can weaken because accountability is diluted.",
+        "competitive": "That is it. The fog makes the hook feel looser."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch33-q03",
+      "prompt": "Which situation best fits social loafing?",
+      "choices": [
+        "A group project drifts because no one clearly owns each part",
+        "A team assigns named owners for every deliverable",
+        "A household task is completed by the person scheduled for it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The missing ownership gives effort room to slip.",
+        "direct": "Correct. The structure is blurring contribution enough to weaken accountability.",
+        "competitive": "That is the move. The project has turned into camouflage."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch33-q04",
+      "prompt": "A team leaves a meeting with a list of shared tasks but no owners. What is the cleanest correction?",
+      "choices": [
+        "Assume the group will sort it out naturally",
+        "Assign one visible owner to each deliverable",
+        "Wait to see who feels most motivated later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Visible ownership helps effort stay connected to one person.",
+        "direct": "That is the key. Named ownership restores attribution and reduces the hiding space inside the group.",
+        "competitive": "Exactly. Put names on the task list before the fog gets there."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q05",
+      "prompt": "Why is social loafing not the same as saying people are simply lazy?",
+      "choices": [
+        "Because group structure can reduce effort by diluting accountability",
+        "Because low effort never happens in groups",
+        "Because visible ownership makes no difference"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The setup itself can weaken contribution.",
+        "direct": "The disciplined view is that undercontribution can come from blurred accountability, not only from bad character.",
+        "competitive": "That is it. Sometimes the structure writes the loophole before anyone uses it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q06",
+      "prompt": "What is the best practical defense against social loafing?",
+      "choices": [
+        "Keep work collective but vague",
+        "Make contribution attributable and visible",
+        "Avoid groups completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Clear ownership helps protect effort.",
+        "direct": "Visible attribution reduces the cover that lets effort weaken inside the group.",
+        "competitive": "Exactly. Fingerprints beat fog."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "All group work is inferior",
+        "Teams can work well, but blurred ownership can reduce effort",
+        "Weak group output always proves bad character"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The warning is about hidden contribution, not about attacking all teamwork.",
+        "direct": "That keeps the boundary intact: cooperation can succeed, but structures that obscure contribution can weaken accountability.",
+        "competitive": "Exactly. Teams can win; camouflage is the problem."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q08",
+      "prompt": "What question best reveals whether a shared task is vulnerable to social loafing?",
+      "choices": [
+        "Can everyone describe the mission?",
+        "Can each contribution be clearly attributed to someone?",
+        "Does the group like each other?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Visibility of contribution is the key test.",
+        "direct": "That question exposes whether accountability is concrete enough to sustain effort.",
+        "competitive": "That is the cut. If nobody owns it visibly, the fog is already moving in."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch33-q09",
+      "prompt": "Which earlier chapter pairs best with Social Loafing here?",
+      "choices": [
+        "Diffusion of responsibility inside a group pairs best with Social Proof because both can let the crowd overpower individual judgment and action",
+        "Loss Aversion, because every group task feels risky",
+        "Induction, because every team creates a broad rule"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn that the group can overpower the individual's clearer judgment or effort.",
+        "direct": "This pairing works because each bias involves the crowd changing what one person does, either by shaping belief or by weakening personal responsibility.",
+        "competitive": "That is the strongest link. The crowd can bend both thinking and effort."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch33-q10",
+      "prompt": "A group structure is healthier when which test starts going well?",
+      "choices": [
+        "Effort would still hold if every contribution were clearly attributable",
+        "No one ever disagrees about the task",
+        "The group simply feels cooperative"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Stronger structure survives visible ownership.",
+        "direct": "That is the decisive test because it shows whether effort depends on clear accountability or on the blur of the group.",
+        "competitive": "Exactly. If the work falls apart once the fingerprints show up, the fog was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

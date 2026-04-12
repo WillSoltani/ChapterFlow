@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 8 mainly warning about?",
+      "choices": [
+        "That a company can drift away from the job even after early alignment",
+        "That the job should never be mentioned again",
+        "That every organizational change is automatically bad"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says early alignment is not enough by itself to keep focus on the job.",
+        "direct": "Correct. Chapter 8 is about drift risk after the organization first lines up around the right job.",
+        "competitive": "The first win does not stop the relapse."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What should happen to new priorities and exceptions in this chapter?",
+      "choices": [
+        "They should automatically be accepted if they seem urgent",
+        "They should be tested against whether they still support the hired progress",
+        "They should replace the original job whenever they appear"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the job should stay active as a filter for later choices.",
+        "direct": "New priorities still need to be judged against whether they strengthen or blur the buyer's progress.",
+        "competitive": "Run the new move through the job or expect drift."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does drift usually appear according to Chapter 8?",
+      "choices": [
+        "Through one dramatic public announcement",
+        "Through ordinary decisions that slowly return the company to familiar internal logic",
+        "Only when buyers stop caring about progress"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says small familiar choices can slowly add up to losing focus on the job.",
+        "direct": "Drift often comes through routine feature, metric, and exception decisions rather than one large break.",
+        "competitive": "The relapse comes in everyday clothes."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Ava's team once aligned around the job, but now every roadmap meeting starts with feature requests and easy-to-track metrics. What would Chapter 8 say is happening?",
+      "choices": [
+        "The team is keeping perfect focus on the job",
+        "The company is slowly drifting back into familiar internal logic",
+        "The job no longer matters once a roadmap exists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team is letting familiar internal categories take over again.",
+        "direct": "This is the chapter's drift risk: the company still talks about the job but starts deciding through easier internal logic.",
+        "competitive": "The roadmap just exposed that comfort is stealing the wheel back."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's best correction to the idea that sustained focus just means repeating the same slogan?",
+      "choices": [
+        "Focus means refusing all change forever",
+        "Focus means keeping the job active as a test for later priorities and tradeoffs",
+        "Focus means letting each department interpret the job however it wants"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the job to guide judgment, not just shared language.",
+        "direct": "It treats sustained focus as recurring evaluation of whether changes still support the hired progress.",
+        "competitive": "If the job is not vetoing bad moves, the slogan is dead weight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter mention habit as part of the problem?",
+      "choices": [
+        "Because habit can pull the organization back toward familiar logic after change begins",
+        "Because habits always help companies stay aligned",
+        "Because the chapter argues routines should disappear completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Habit is part of why earlier progress can fade over time.",
+        "direct": "The chapter uses habit carefully to explain why relapse into old decision patterns is a live risk.",
+        "competitive": "Old habits keep lobbying for the old rules."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "At a tutoring center, Jonah notices the staff had improved the student path, but old office rules slowly returned and the experience became confusing again. What would Chapter 8 call that?",
+      "choices": [
+        "A normal sign that the job is no longer useful",
+        "Drift away from the job through familiar routines",
+        "Proof that initial alignment never mattered"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The service is slipping back toward old habits instead of protecting the student's progress.",
+        "direct": "This is Chapter 8's point: familiar routines can slowly override job-centered attention after early gains.",
+        "competitive": "The old process just clawed the job back into confusion."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mira stays with a service only while it still feels tuned to the same progress she hires it for. What is she effectively noticing?",
+      "choices": [
+        "Whether the company is keeping its eye on the job",
+        "Whether the service adds the most features possible",
+        "Whether every change is automatically a mistake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She is noticing whether the service still protects the same progress clearly.",
+        "direct": "Her judgment reflects the chapter's claim that sustained focus shows up in whether later decisions still serve the hired outcome.",
+        "competitive": "She can feel when the company is still serving the job and when it is just serving itself."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best fits Chapter 8's disciplined claim?",
+      "choices": [
+        "Once the job is named, later choices do not need a test",
+        "The job has to remain an active filter so drift does not quietly replace it",
+        "Any adaptation after alignment proves the company has failed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The middle option matches the chapter's narrow argument about sustained focus.",
+        "direct": "That answer keeps the claim disciplined: the chapter is about recurring job-centered judgment, not paralysis or complacency.",
+        "competitive": "Keep the job screening choices or watch convenience take over."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 8 is right, what should the book be ready to describe next?",
+      "choices": [
+        "The broader jobs-focused organization that can sustain attention to the job",
+        "A return to generic product attributes",
+        "Why organizations should stop adapting altogether"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once sustained focus is believable, the book can describe the larger organization built around it.",
+        "direct": "Chapter 8 prepares Chapter 9 by showing that job-centered attention can survive pressure over time.",
+        "competitive": "Hold the line on the job first, then cash the bigger organizational claim."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem is this chapter trying to solve first?",
+      "choices": [
+        "Social drift that makes networking busy but weak",
+        "A shortage of ambitious people",
+        "The idea that all rooms matter equally"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens by questioning busyness without direction.",
+        "direct": "Its target is random accumulation and scattered relationship-building.",
+        "competitive": "The first enemy is noise dressed up as motion."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How is mission being used in this chapter?",
+      "choices": [
+        "As a way to guarantee certainty about the future",
+        "As a filter for relevance in people, rooms, and communities",
+        "As a substitute for contribution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mission matters here because it helps sort what deserves energy.",
+        "direct": "The chapter uses mission as a practical filter, not as a grand speech.",
+        "competitive": "Aim is doing selection work."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Alia can attend either a large generic mixer or a smaller event tightly aligned with her work direction. What best fits the chapter?",
+      "choices": [
+        "Choose the aligned room because relevance is stronger than random volume",
+        "Choose the larger room because more contacts automatically means better networking",
+        "Avoid both because mission should stay private"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors rooms that fit a real direction over rooms that only look socially full.",
+        "direct": "Mission improves selection, so alignment beats generic volume here.",
+        "competitive": "Signal wins over crowd size."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Dev is asked by a mentor what kind of work he wants to move toward. What is the strongest response under this chapter's logic?",
+      "choices": [
+        "State a practical direction and one thing he still needs to learn",
+        "Speak in broad inspirational language so the mentor can fill in the rest",
+        "Act completely certain so he sounds more impressive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants clarity without rigid theater.",
+        "direct": "A useful mission statement is specific enough to create relevance and open enough to invite guidance.",
+        "competitive": "Focused beats polished-pretty certainty."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's strongest case against random contact accumulation?",
+      "choices": [
+        "It is morally wrong to meet people without a plan",
+        "It makes every relationship cynical",
+        "It creates width without enough coherence to build depth"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The problem is not meeting people. It is doing so without a real organizing direction.",
+        "direct": "Random accumulation spreads effort broadly without creating a strong pattern of relevance.",
+        "competitive": "You end up with sprawl, not strength."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject most clearly?",
+      "choices": [
+        "That mission should become a fixed script that leaves no room for surprise",
+        "That direction can ever help networking",
+        "That relevant rooms deserve repeated attention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps flexibility visible so mission does not harden into ego performance.",
+        "direct": "Direction helps, but it should still be revisable by reality.",
+        "competitive": "Aim works until it turns into costume."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Serena joined a high-status community that does not fit what she actually cares about. What would this chapter most likely recommend?",
+      "choices": [
+        "Stay because prestige always improves a network",
+        "Realign toward communities that fit her direction more honestly",
+        "Leave every group until her mission is perfect"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats alignment as more important than shiny but irrelevant membership.",
+        "direct": "Mission should correct status-driven drift rather than justify it.",
+        "competitive": "A shiny wrong room is still wrong."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Malik wants to build a stronger network around climate operations work. Which strategy best matches the chapter?",
+      "choices": [
+        "Network everywhere until the right people appear by chance",
+        "Build a short relevance map of people, rooms, and communities tied to that work",
+        "Wait until his career path is fully certain before meeting anyone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants focus without paralysis.",
+        "direct": "Turning mission into a smaller relationship map is exactly how direction becomes useful here.",
+        "competitive": "Shrink the field until the signal gets sharper."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that mission should improve contribution as well as selection?",
+      "choices": [
+        "Because networking is only about receiving opportunities",
+        "Because direction makes questions, offers, and learning more relevant inside the relationship",
+        "Because contribution matters less once the right room is chosen"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is stronger because mission helps a person bring more fitting value, not just find better targets.",
+        "direct": "Selection without improved contribution would still leave the network too thin and one-sided.",
+        "competitive": "Aim has to sharpen your value, not only your hunting."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If mission clarifies which relationships matter more, what question naturally follows next?",
+      "choices": [
+        "When those relationships should be built, rather than waiting for urgency",
+        "How to stop meeting new people entirely",
+        "Whether mission should replace generosity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge forward is about timing once relevance is clearer.",
+        "direct": "After direction comes the question of whether those relationships are being built early enough.",
+        "competitive": "Relevance makes procrastination look weaker."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

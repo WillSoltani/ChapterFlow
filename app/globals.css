@@ -1182,6 +1182,22 @@ html[data-motion="reduced"] *::after {
   50% { box-shadow: 0 0 30px rgba(245,158,11,0.2); }
 }
 
+@keyframes badge-icon-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+.badge-icon-pulse {
+  animation: badge-icon-pulse 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-icon-pulse {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ── Pro badge shimmer (Settings) ── */
 @keyframes shimmer {
   0% { transform: translateX(-100%); }

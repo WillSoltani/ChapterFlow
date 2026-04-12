@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does Chapter 5 mainly address?",
+      "choices": [
+        "How to hear the hiring logic when literal customer wording is incomplete",
+        "How to replace every interview with survey automation",
+        "How to remove anxiety from all buying decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says teams can reach the right situation and still miss the job if they listen only for surface wording.",
+        "direct": "Correct. Chapter 5 turns from search toward disciplined interpretation of what customers reveal indirectly.",
+        "competitive": "Finding the fight is not enough. You still have to hear it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are customer statements alone incomplete evidence?",
+      "choices": [
+        "Because customers never know anything useful",
+        "Because wording often reflects surface solutions while forces and circumstances shape the real decision",
+        "Because only demographic data can reveal the job"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People often describe the easiest visible answer rather than the deeper pressure shaping the choice.",
+        "direct": "The chapter keeps customer words, but it treats them as partial evidence that must be interpreted in context.",
+        "competitive": "The quote is real, but it is rarely the whole causal story."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A buyer praises a new option but keeps using the old workaround. Which Chapter 5 reading fits best?",
+      "choices": [
+        "Pull may be present, but habit and anxiety still matter",
+        "The buyer must be lying",
+        "The new option is automatically the wrong category"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says words and actions can differ because several forces are active at once.",
+        "direct": "Positive language alone does not prove switching is near if habit and anxiety still anchor the present.",
+        "competitive": "Praise is cheap when fear and inertia still own the decision."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Hannah hears a customer ask for a faster dashboard. What should she listen for next?",
+      "choices": [
+        "Which ad campaign produced the request",
+        "What awkward delay, compromise, or switching pressure made that request feel necessary",
+        "Whether the customer used the word innovation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The request matters, but the pressured situation behind it matters more.",
+        "direct": "Chapter 5 pushes the listener from wording toward the force structure and tradeoffs around the request.",
+        "competitive": "Do not worship the feature line. Hunt the pressure that produced it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What do push, pull, habit, and anxiety add to listening?",
+      "choices": [
+        "A way to organize why buyers move, stall, or stay put",
+        "A guarantee that every interview will reveal the whole job",
+        "A replacement for observing behavior"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The four forces help explain what the customer's words and actions mean together.",
+        "direct": "They provide structure for interpreting change pressure and resistance without leaving the situation behind.",
+        "competitive": "The forces turn scattered clues into a readable fight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's limit on hearing what customers do not say?",
+      "choices": [
+        "The listener should invent hidden motives whenever the quote feels vague",
+        "Interpretation has to stay tied to observable tradeoffs, behavior, and switching pressure",
+        "Only expert interviewers are allowed to use the framework"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against guessing beyond the evidence in the situation.",
+        "direct": "Good interpretation is earned by linking the claim back to real behavior and concrete context.",
+        "competitive": "No scene, no right to claim deeper truth."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "At a campus help desk, Mira hears the same complaint repeatedly, but students still avoid the new self-service tool. What should she study?",
+      "choices": [
+        "Only the wording of the complaint",
+        "The habit and anxiety that keep the old behavior alive despite the complaint",
+        "Whether the students belong to the same age bracket"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says repeated complaints are not enough if the old answer still feels safer or easier.",
+        "direct": "Mira should look at what keeps the present arrangement in place even when the push is visible.",
+        "competitive": "The complaint is loud, but inertia may still be louder."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Lucas says he wants a cheaper option, but his behavior shows he mainly wants to avoid a risky switch. What does that show?",
+      "choices": [
+        "The literal request may hide anxiety as part of the real job logic",
+        "Price can never matter in jobs thinking",
+        "Customers should not be interviewed directly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A stated wish can be real and still fail to capture the deeper force shaping the choice.",
+        "direct": "Chapter 5 says the listener should interpret the request through the forces visible in the situation.",
+        "competitive": "The cheap answer may just be the respectable cover for fear."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best fits Chapter 5's listening discipline?",
+      "choices": [
+        "The best interviews ignore behavior and focus on eloquent quotes",
+        "Strong listening combines customer wording with observable hesitation, compromise, and force structure",
+        "If a buyer sounds confident, the job is already fully known"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The middle option keeps listening tied to both words and evidence from the situation.",
+        "direct": "That answer matches the chapter's argument for disciplined interpretation rather than literal transcription alone.",
+        "competitive": "Quotes plus pressure beat quotes alone."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 5 is right, what should the book teach next?",
+      "choices": [
+        "How repeated hires build a resume for what a solution gets hired to do",
+        "How to eliminate all customer anxiety immediately",
+        "How to stop using substitutes in analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the team can hear one hire more clearly, it can start noticing the repeated pattern across many hires.",
+        "direct": "Chapter 5 sets up Chapter 6 by making recurring hiring logic easier to hear and compare.",
+        "competitive": "Clearer hearing is what lets repetition become a resume."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

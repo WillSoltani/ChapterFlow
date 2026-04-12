@@ -1,0 +1,746 @@
+{
+  "schemaVersion": "chapterflow.v13.review-package",
+  "packageId": "the-black-swan-ch05-review-package",
+  "createdAt": "2026-04-11T18:44:12Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "the-black-swan",
+    "title": "The Black Swan",
+    "author": "Nassim N. Taleb",
+    "categories": [
+      "risk",
+      "probability",
+      "decision-making",
+      "epistemology"
+    ],
+    "tags": [
+      "uncertainty",
+      "black swan",
+      "narrative fallacy",
+      "silent evidence",
+      "extremistan"
+    ],
+    "edition": {
+      "name": "First Edition",
+      "translator": "",
+      "publishedYear": 2007,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-black-swan/20260411-174728/source-freeze/book-source.md",
+      "sourceProvenance": "Random House hardcover, published April 17, 2007; chapter map cross-checked against Google Books limited preview"
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-19"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch05",
+      "number": 5,
+      "title": "Confirmation Shmonfirmation!",
+      "readingTimeMinutes": 2,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Taleb is mocking a habit most people mistake for rigor. Instead of testing a belief, they gather support that lets the belief stay comfortable. Confirmation feels strong because agreement feels like proof.",
+            "direct": "The chapter shows that beliefs are often defended by evidence selection rather than by honest testing. Supportive facts are welcomed. Disconfirming facts are ignored, delayed, or treated as irrelevant. That produces confidence without real calibration.",
+            "competitive": "Taleb is forcing you to stop admiring a belief merely because it can collect friendly evidence. If the search itself is biased, the conclusion is being protected, not tested."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Confirmation bias is selective evidence handling.",
+                "direct": "Support alone does not prove a claim was tested well.",
+                "competitive": "Friendly evidence can be a padded courtroom."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Disconfirming evidence matters most.",
+                "direct": "A belief becomes dangerous when hostile evidence is screened out.",
+                "competitive": "What hurts the claim is the only evidence that can discipline it."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Filtered evidence creates false confidence.",
+                "direct": "Conviction can grow faster than calibration.",
+                "competitive": "A protected belief starts sounding like knowledge."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "What does confirmation bias protect?",
+            "direct": "Why is friendly support not enough?",
+            "competitive": "What happens when disconfirming evidence never gets a fair hearing?"
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Taleb's chapter title announces contempt for a familiar intellectual vice. People like to say they are following the evidence, but much of the time they are looking for evidence that flatters a belief they already own. Confirmation feels disciplined because the mind experiences agreement as support and support as progress.\n\nThe chapter becomes sharper when it asks a harder question: what happened to the evidence that would have injured the claim? A person can gather supportive facts for a long time and still know very little if the search itself was biased. The problem is not empty evidence. It is filtered evidence.\n\nThat is why confirmation bias does not stay inside private opinion. It appears in analysis, management, education, and prediction wherever people reward coherence more than stress-testing.",
+            "direct": "Taleb is not making a generic plea for open-mindedness. He is diagnosing how beliefs protect themselves. Analysts prefer reports that support the trade they already want. Managers notice the dashboard that flatters the plan they already approved. Students collect sources that defend the thesis they already drafted. In each case, support feels scientific while disconfirmation gets postponed.\n\nThe chapter matters because selective confirmation manufactures confidence. A claim that survives only because hostile evidence never got real access begins to feel proven. That sensation is dangerous because it resembles knowledge while being built from self-protection.\n\nThe correction therefore changes the burden of proof. Instead of asking how much support a claim can accumulate, ask what would count against it and whether that pressure was genuinely invited.",
+            "competitive": "Smooth confidence can be an artifact of selective search. That is the wound Taleb keeps pressing here. If you design the evidence stream to flatter your starting belief, that belief will keep looking stronger than it is. The belief does not earn security. It rents it from curation.\n\nThis has consequences beyond a single argument. A system that rewards supportive evidence teaches people to confuse agreement with truth and repetition with testing. Once that habit sets in, the mind is ready for the next mistake: turning the curated sample into a tidy story that feels comprehensive.\n\nChapter 6 follows naturally because narrative does for explanation what confirmation does for evidence. It packages preference into apparent order."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Confirmation bias is active filtering, not passive error.",
+                "direct": "Beliefs often defend themselves by selecting agreeable evidence.",
+                "competitive": "The claim survives because the search was rigged in its favor."
+              },
+              "moreDetails": {
+                "gentle": "A belief can feel well supported even when its strongest opponents were never invited into view.",
+                "direct": "Taleb is emphasizing the evidence pipeline, not just the final opinion.",
+                "competitive": "If the stream is curated, the conclusion is living on soft credit."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Supportive evidence is weaker than real disconfirmation pressure.",
+                "direct": "A claim earns trust when hostile facts fail to break it, not when friendly facts applaud it.",
+                "competitive": "A belief grows up only after it survives a fair fight."
+              },
+              "moreDetails": {
+                "gentle": "Friendly evidence is easy to collect because it begins from sympathy.",
+                "direct": "What tests a belief is the evidence that would have made continuation painful.",
+                "competitive": "Without adversarial pressure, support is often just decoration."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Selective confirmation creates overconfidence.",
+                "direct": "Conviction can expand even when real understanding does not.",
+                "competitive": "Protected beliefs start talking like knowledge."
+              },
+              "moreDetails": {
+                "gentle": "The mind reads agreement as proof even when the agreement was recruited by biased attention.",
+                "direct": "This is why self-protective beliefs can feel intellectually respectable.",
+                "competitive": "The emotional texture of certainty tells you almost nothing about the honesty of the search."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter scales into institutions.",
+                "direct": "Forecasting, management, and schooling all reward confirmation if no one designs a real challenge process.",
+                "competitive": "The bias becomes organizational the moment support is easier to report than contradiction."
+              },
+              "moreDetails": {
+                "gentle": "Taleb keeps the chapter practical by showing that selection pressure lives in workflows, not just inside skulls.",
+                "direct": "A dashboard, memo, or reading list can become a machine for flattering priors.",
+                "competitive": "Once institutions reward pleasing evidence, error starts dressing like rigor."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Chapter 5 sets up narrative fallacy.",
+                "direct": "Curated evidence is easy to turn into a tidy story.",
+                "competitive": "Once the sample is filtered, the story almost writes itself."
+              },
+              "moreDetails": {
+                "gentle": "Confirmation chooses the pieces. Narrative arranges them.",
+                "direct": "The next chapter shows how a selected evidence set can be compressed into something that looks inevitable.",
+                "competitive": "Filtered proof is the raw material of fake coherence."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one belief you defend quickly. What evidence would genuinely count against it?",
+            "direct": "Choose one claim you currently trust and ask whether contradiction got a real chance to appear.",
+            "competitive": "Find one belief that may be living on friendly evidence only."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why is support alone a weak test of belief?",
+              "direct": "Explain why the evidence pipeline matters as much as the conclusion.",
+              "competitive": "How can a belief look rigorous while being protected?"
+            },
+            {
+              "gentle": "What would disconfirmation look like in one real claim you hold?",
+              "direct": "How does selective attention manufacture confidence?",
+              "competitive": "Where do you still mistake applause for a trial?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If evidence is already being filtered, what happens when those selected pieces get arranged into a story?",
+            "direct": "What chapter follows naturally once beliefs are living on curated proof?",
+            "competitive": "How does confirmation prepare the ground for narrative overconfidence?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What is Taleb mocking in this chapter?",
+              "direct": "Why is disconfirming evidence more valuable than friendly support?",
+              "competitive": "How can filtered evidence raise confidence without improving knowledge?"
+            },
+            "connect": {
+              "gentle": "The chapter links belief defense to evidence selection and then to false confidence.",
+              "direct": "Taleb connects confirmation bias to institutional workflow, not just private psychology.",
+              "competitive": "Supportive evidence becomes dangerous when it replaces adversarial testing."
+            },
+            "preview": {
+              "gentle": "The next chapter shows how selected evidence becomes a smooth story.",
+              "direct": "Chapter 6 turns from evidence filtering to explanation filtering.",
+              "competitive": "After confirmation comes fake coherence."
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Taleb's sneer in the title is precise. Confirmation is often mistaken for rigor because it looks empirical. Facts are gathered, examples are cited, patterns are noticed. But the chapter argues that the real question is upstream: what kind of evidence was allowed into the room? Once that question is ignored, empirical style can conceal intellectual cowardice.\n\nA belief protected by selective search does not become stronger by accumulating agreement. It becomes more insulated. The apparent solidity is a byproduct of curation. Hostile evidence is missing, softened, or never pursued, so the claim starts mistaking shelter for truth.\n\nThat is why Taleb's criticism bites harder than the phrase confirmation bias usually does. He is describing a process that manufactures certainty while preserving the appearance of method.",
+            "direct": "The chapter's deeper lesson is procedural. Good reasoning is not just about having evidence. It is about arranging the search so that contradiction can actually reach the claim. Without that discipline, support becomes cheap. A well-defended prior can always collect sympathetic facts from a large enough world.\n\nThis matters most in institutions. Forecasting teams, executives, and researchers often inherit incentives that make agreement easier to report than contradiction. Once that happens, error no longer looks sloppy. It looks coordinated.\n\nTaleb is therefore attacking a false image of rationality: a belief that looks busy, documented, and evidence-rich while remaining structurally protected from injury.",
+            "competitive": "The chapter also explains why overconfidence can survive contact with many facts. Facts alone are not the antidote if the selection rule is biased. A mind can touch a large amount of information and still learn very little if the information stream was curated toward comfort.\n\nThat brings the bridge into view. Once evidence has been filtered, a narrative can present the filtered set as if it were the whole terrain. The next chapter is not a detour. It is the packaging phase of the same error.\n\nConfirmation chooses what gets seen. Narrative chooses how the chosen pieces will feel."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "The chapter attacks protected empiricism.",
+                "direct": "Evidence-rich style can conceal a belief that was never exposed to real contradiction.",
+                "competitive": "A busy method can still be a cowardly method."
+              },
+              "moreDetails": {
+                "gentle": "Taleb is distinguishing the presence of facts from the honesty of the search procedure.",
+                "direct": "A claim can look empirical while being safeguarded upstream by selection.",
+                "competitive": "The danger lies in mistaking documentation for vulnerability."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Selective search insulates priors.",
+                "direct": "Accumulated agreement can harden a belief without truly strengthening it.",
+                "competitive": "The prior gets padded, not tested."
+              },
+              "moreDetails": {
+                "gentle": "When hostile evidence is absent, support becomes structurally cheap.",
+                "direct": "The belief feels tougher only because injury was made less likely to arrive.",
+                "competitive": "Shelter is not the same thing as robustness."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Real reasoning requires open channels for disconfirmation.",
+                "direct": "Contradiction must be allowed procedural access to the claim.",
+                "competitive": "A belief that cannot be wounded cannot be trusted."
+              },
+              "moreDetails": {
+                "gentle": "This is why the chapter is procedural rather than motivational.",
+                "direct": "Taleb is not asking for nicer minds. He is asking for harsher testing rules.",
+                "competitive": "Without adversarial access, support remains ceremonial."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Institutional incentives can industrialize confirmation bias.",
+                "direct": "Organizations often reward pleasing evidence more easily than damaging evidence.",
+                "competitive": "A firm can mass-produce comfortable error."
+              },
+              "moreDetails": {
+                "gentle": "Once contradiction is politically expensive, the evidence stream starts flattering power.",
+                "direct": "Dashboards, memos, and research summaries can all become confirmation devices.",
+                "competitive": "That is how false rigor acquires uniforms and meetings."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Narrative fallacy is the next stage of the same problem.",
+                "direct": "Chapter 6 will show how curated evidence gets compressed into a coherent after-story.",
+                "competitive": "After selection comes packaging."
+              },
+              "moreDetails": {
+                "gentle": "Confirmation picks the sample. Narrative supplies the inevitability.",
+                "direct": "The two chapters are adjacent because they describe different layers of one defense mechanism.",
+                "competitive": "Curated proof begs for a polished plot."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Name one belief that feels heavily documented but may still be protected from contradiction.",
+            "direct": "Take one evidence-rich claim you trust and ask how hostile facts gain access to it.",
+            "competitive": "Where is method doing theater for a protected prior?"
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why can a fact-heavy process still be intellectually dishonest?",
+              "direct": "How does selection upstream change the meaning of evidence downstream?",
+              "competitive": "Why is documentation not the same as vulnerability?"
+            },
+            {
+              "gentle": "How do institutions make confirmation bias look respectable?",
+              "direct": "Why is contradiction often harder to report than support?",
+              "competitive": "Where does your environment reward flattering evidence over injuring evidence?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "Once curated evidence exists, how will the mind make it feel complete?",
+            "direct": "What does the packaging phase of confirmation look like?",
+            "competitive": "How does a filtered sample become a world-sized story?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What upstream question matters most in this chapter?",
+              "direct": "Why is supportive evidence structurally cheap?",
+              "competitive": "What must real reasoning allow into the room?"
+            },
+            "connect": {
+              "gentle": "Taleb connects selective search, protected priors, and institutional comfort into one criticism of false rigor.",
+              "direct": "The chapter treats overconfidence as a procedural outcome, not just a personality flaw.",
+              "competitive": "Evidence becomes misleading when contradiction loses access to the claim."
+            },
+            "preview": {
+              "gentle": "The next chapter turns from selecting evidence to arranging it into narrative form.",
+              "direct": "Chapter 6 explains how curated proof becomes tidy explanation.",
+              "competitive": "After protected empiricism comes polished myth."
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "title": "Mara Reads Only Bullish Research Before Buying",
+          "format": "decision_point",
+          "category": "finance",
+          "endingType": "diagnose",
+          "scenario": {
+            "gentle": "Mara keeps opening research notes that support the stock she already wants to buy.",
+            "direct": "Mara is gathering support while quietly avoiding contradiction.",
+            "competitive": "The trade already has counsel, jury, and judge on payroll."
+          },
+          "whatToDo": {
+            "gentle": "Pause and ask what evidence would seriously count against the trade.",
+            "direct": "Force one real disconfirming case onto the desk before deciding.",
+            "competitive": "Bring in the witness most likely to wound the thesis."
+          },
+          "whyItMatters": {
+            "gentle": "Friendly support is easy to collect.",
+            "direct": "The hard work is exposing the claim to injury.",
+            "competitive": "A padded thesis can feel brilliant right before it fails."
+          }
+        },
+        {
+          "title": "A Student Builds a Thesis From Sympathetic Sources",
+          "format": "school_case",
+          "category": "school",
+          "endingType": "reframe",
+          "scenario": {
+            "gentle": "A student keeps citing articles that support the argument already chosen for the essay.",
+            "direct": "The reading list is flattering the thesis rather than testing it.",
+            "competitive": "The paper is collecting applause, not pressure."
+          },
+          "whatToDo": {
+            "gentle": "Add the strongest opposing sources and let them reshape the argument.",
+            "direct": "Design the paper around what the thesis must survive, not just what likes it.",
+            "competitive": "Stop writing a fan club and build a trial."
+          },
+          "whyItMatters": {
+            "gentle": "Research becomes stronger when contradiction gets access.",
+            "direct": "Supportive sources can create the illusion of certainty.",
+            "competitive": "The thesis grows up only after a real fight."
+          }
+        },
+        {
+          "title": "An Operations Team Loves the Dashboard It Built",
+          "format": "work_case",
+          "category": "work",
+          "endingType": "reflect",
+          "scenario": {
+            "gentle": "An operations team keeps highlighting the metrics that validate the plan it already approved.",
+            "direct": "The dashboard is functioning like a confirmation device.",
+            "competitive": "Management built a mirror and started calling it a window."
+          },
+          "whatToDo": {
+            "gentle": "Ask which metric would embarrass the plan and put that metric in view.",
+            "direct": "Redesign the dashboard so contradiction is harder to hide.",
+            "competitive": "Make the dashboard capable of betrayal."
+          },
+          "whyItMatters": {
+            "gentle": "Selective visibility creates false security.",
+            "direct": "A plan becomes dangerous when it only sees supportive evidence.",
+            "competitive": "What flatters the plan is usually not what disciplines it."
+          }
+        },
+        {
+          "title": "Noah Argues About Diet Using Only Success Stories",
+          "format": "personal_case",
+          "category": "health",
+          "endingType": "diagnose",
+          "scenario": {
+            "gentle": "Noah keeps citing success stories for a diet while ignoring reports of failure or side effects.",
+            "direct": "Noah is building confidence from a friendly sample.",
+            "competitive": "He is feeding a belief with testimonials and calling it proof."
+          },
+          "whatToDo": {
+            "gentle": "Ask what evidence would count against the diet and seek it deliberately.",
+            "direct": "Balance visible wins against ignored failures before making the claim stronger.",
+            "competitive": "Look for the wreckage, not just the poster children."
+          },
+          "whyItMatters": {
+            "gentle": "A belief can look well supported while being badly filtered.",
+            "direct": "Disconfirming evidence protects people from easy overconfidence.",
+            "competitive": "The missing cases often carry the real warning."
+          }
+        },
+        {
+          "title": "A Hiring Committee Loves One Narrative of Leadership",
+          "format": "committee_case",
+          "category": "work",
+          "endingType": "reframe",
+          "scenario": {
+            "gentle": "A hiring committee keeps interpreting every resume detail as support for the preferred candidate.",
+            "direct": "The committee has started collecting evidence for a choice it already made emotionally.",
+            "competitive": "Once the favorite appeared, every fact began wearing campaign colors."
+          },
+          "whatToDo": {
+            "gentle": "Require each committee member to state one serious reason the preferred candidate could be wrong.",
+            "direct": "Make disconfirmation procedural rather than optional.",
+            "competitive": "Force the room to file charges against its favorite."
+          },
+          "whyItMatters": {
+            "gentle": "Committees can industrialize confirmation bias.",
+            "direct": "Without a challenge rule, consensus often means coordinated filtering.",
+            "competitive": "The meeting starts sounding objective precisely when it is becoming protected."
+          }
+        },
+        {
+          "title": "A Founder Keeps Testing With Friendly Customers",
+          "format": "product_case",
+          "category": "business",
+          "endingType": "diagnose",
+          "scenario": {
+            "gentle": "A founder keeps showing the product to users who already like the category.",
+            "direct": "The tests are recruiting agreement rather than stress-testing demand.",
+            "competitive": "The startup is interviewing fans and mistaking applause for traction."
+          },
+          "whatToDo": {
+            "gentle": "Show the product to indifferent or skeptical users and watch what breaks.",
+            "direct": "Let the market segment least likely to care become part of the test.",
+            "competitive": "Bring in the customers most likely to say no."
+          },
+          "whyItMatters": {
+            "gentle": "A filtered test can create dangerous product confidence.",
+            "direct": "The product becomes legible only when unfriendly conditions get a turn.",
+            "competitive": "Real demand survives cold contact, not just warm rooms."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "What is Taleb mocking in Chapter 5?",
+            "choices": [
+              "A habit of collecting friendly support for existing beliefs.",
+              "All use of evidence.",
+              "Any form of confidence."
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter targets selective confirmation.",
+              "direct": "Taleb is criticizing protected belief, not evidence itself.",
+              "competitive": "He is sneering at padded proof."
+            },
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Why is disconfirming evidence so important?",
+            "choices": [
+              "Because it is more stylish than support.",
+              "Because it can genuinely test whether the claim survives pressure.",
+              "Because supportive evidence is always false."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Hostile evidence is what can actually hurt the claim.",
+              "direct": "A belief earns trust when contradiction gets access to it.",
+              "competitive": "What wounds the thesis is what makes it adult."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "What is the core procedural problem in confirmation bias?",
+            "choices": [
+              "Too much information.",
+              "A biased evidence pipeline.",
+              "A lack of memory."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The issue begins before the conclusion.",
+              "direct": "Selection upstream changes the meaning of support downstream.",
+              "competitive": "The pipeline is rigged before the verdict arrives."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A manager highlights only metrics that favor the approved plan. What is happening?",
+            "choices": [
+              "Balanced evaluation.",
+              "Confirmation through selective visibility.",
+              "Healthy optimism."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The plan is being protected by what gets shown.",
+              "direct": "A flattering dashboard can become a confirmation device.",
+              "competitive": "Management built a mirror and called it evidence."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "What stronger question replaces, How much support does the claim have?",
+            "choices": [
+              "How quickly can we announce it?",
+              "What would count against it and was that pressure invited?",
+              "How many people agree with it?"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Taleb shifts the burden of proof.",
+              "direct": "The key is whether contradiction got real access.",
+              "competitive": "A safe claim is not the same as a tested claim."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "How can a fact-heavy process still fail?",
+            "choices": [
+              "Facts automatically create truth.",
+              "Facts can be curated toward comfort.",
+              "The more facts, the less accuracy."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "A belief can touch many facts and still learn very little.",
+              "direct": "Evidence-rich style can conceal a protected prior.",
+              "competitive": "Busy method is not the same as honest method."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "What makes confirmation bias dangerous inside institutions?",
+            "choices": [
+              "It rewards challenge more than support.",
+              "It can make flattering evidence easier to report than contradiction.",
+              "It removes all incentives."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Organizations can industrialize selective confirmation.",
+              "direct": "Incentives can make support politically cheaper than disproof.",
+              "competitive": "Comfort gets uniforms, meetings, and dashboards."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A founder tests only with enthusiastic users. Which correction fits the chapter?",
+            "choices": [
+              "Keep the tests warm and positive.",
+              "Bring in users most likely to say no.",
+              "Ignore user feedback entirely."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Friendly rooms do not test the product well.",
+              "direct": "The claim gets stronger when unfriendly conditions get a turn.",
+              "competitive": "Real traction survives cold contact."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "How does Chapter 5 lead into Chapter 6?",
+            "choices": [
+              "It shows how curated evidence can become a tidy story.",
+              "It abandons uncertainty for storytelling.",
+              "It proves stories are useless."
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Confirmation chooses the pieces; narrative arranges them.",
+              "direct": "The next chapter is the packaging phase of the same mistake.",
+              "competitive": "Filtered proof begs for polished coherence."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "q10",
+            "prompt": "Which statement best fits Taleb here?",
+            "choices": [
+              "Supportive evidence is enough if there is a lot of it.",
+              "A belief that cannot be wounded cannot be trusted.",
+              "Neutrality is impossible, so testing does not matter."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Taleb wants contradiction to reach the claim.",
+              "direct": "Trust comes from surviving pressure, not collecting applause.",
+              "competitive": "If it cannot be cut, it has not been tested."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deeper"
+          }
+        ]
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "Practice looking for what would injure a claim.",
+          "direct": "Train yourself to test beliefs through disconfirmation, not applause.",
+          "competitive": "Stop feeding priors with friendly evidence only."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a dashboard flatters your plan, then ask which metric would embarrass it.",
+              "direct": "If the evidence all points one way, then check whether contradiction was allowed into the process.",
+              "competitive": "If the room agrees too fast, then hunt for the damaging fact."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If your sources all support the thesis, then add the strongest opposing source before drafting further.",
+              "direct": "If the paper feels too clean, then ask what argument it has not yet survived.",
+              "competitive": "If the essay reads like a victory lap, then make it fight first."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If a belief keeps winning easy support, then seek one source or example that could really challenge it.",
+              "direct": "If you notice yourself collecting proof, then ask what you are avoiding.",
+              "competitive": "If the prior feels loved, then bring it an enemy."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Pick one belief you hold strongly and write what evidence would seriously count against it.",
+          "direct": "Review one current decision and name the contradiction that has not yet had a fair chance to appear.",
+          "competitive": "Take one padded belief and force a real adversary into the room."
+        },
+        "weeklyPractice": {
+          "gentle": "For one week, add one disconfirming question to each important decision.",
+          "direct": "Keep a short log of where you noticed yourself preferring support over testing.",
+          "competitive": "Spend a week refusing to let applause count as proof."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch05-rc01",
+          "front": {
+            "gentle": "What habit is Taleb mocking in this chapter?",
+            "direct": "What is confirmation bias here?",
+            "competitive": "Finish the line: support is not the same as..."
+          },
+          "back": {
+            "gentle": "Selective support for an existing belief.",
+            "direct": "It is biased evidence handling that protects a prior.",
+            "competitive": "...a fair test."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-rc02",
+          "front": {
+            "gentle": "Why is disconfirming evidence more valuable?",
+            "direct": "What kind of evidence really disciplines a claim?",
+            "competitive": "What must a belief survive to earn trust?"
+          },
+          "back": {
+            "gentle": "Because it can genuinely injure the claim.",
+            "direct": "Hostile evidence is what tests belief seriously.",
+            "competitive": "A real contradiction."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-rc03",
+          "front": {
+            "gentle": "What upstream problem does the chapter emphasize?",
+            "direct": "Why does the evidence pipeline matter?",
+            "competitive": "Where does false rigor begin?"
+          },
+          "back": {
+            "gentle": "Selection before conclusion.",
+            "direct": "A biased search makes support misleading.",
+            "competitive": "False rigor begins when the pipeline is flattering the prior."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc04",
+          "front": {
+            "gentle": "How do institutions amplify confirmation bias?",
+            "direct": "What makes organizational confirmation especially dangerous?",
+            "competitive": "How does a firm mass-produce comfortable error?"
+          },
+          "back": {
+            "gentle": "They reward flattering evidence more easily than contradiction.",
+            "direct": "Workflows can turn confirmation into policy and reporting habit.",
+            "competitive": "By making support cheap and challenge costly."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc05",
+          "front": {
+            "gentle": "How does this chapter lead into narrative fallacy?",
+            "direct": "What comes after evidence is filtered?",
+            "competitive": "What is the next phase after confirmation?"
+          },
+          "back": {
+            "gentle": "Curated evidence becomes easy to package into a story.",
+            "direct": "Narrative arranges the selected pieces into fake coherence.",
+            "competitive": "After selection comes the plot machine."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "Do not ask only how much support a claim has. Ask what could break it.",
+        "direct": "A belief grows dangerous when contradiction loses access to it.",
+        "competitive": "Friendly evidence can make a protected prior feel like knowledge."
+      },
+      "book": {
+        "bookId": "the-black-swan",
+        "title": "The Black Swan",
+        "author": "Nassim N. Taleb",
+        "categories": [
+          "risk",
+          "probability",
+          "decision-making",
+          "epistemology"
+        ],
+        "tags": [
+          "uncertainty",
+          "black swan",
+          "narrative fallacy",
+          "silent evidence",
+          "extremistan"
+        ],
+        "edition": {
+          "name": "First Edition",
+          "translator": "",
+          "publishedYear": 2007,
+          "translationYear": null,
+          "sourceText": ".chapterflow/runs/the-black-swan/20260411-174728/source-freeze/book-source.md",
+          "sourceProvenance": "Random House hardcover, published April 17, 2007; chapter map cross-checked against Google Books limited preview"
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "1-19"
+      }
+    }
+  ]
+}

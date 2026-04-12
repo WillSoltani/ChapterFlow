@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch25-q01",
+      "prompt": "What is the main advantage of occupying the moral high ground in a watched conflict?",
+      "choices": [
+        "It makes attacks against your side costlier in the eyes of observers",
+        "It guarantees that your side is actually innocent",
+        "It removes the need for strategic restraint"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter treats moral high ground as a structural advantage under observation.",
+        "direct": "Start with the mechanism: public judgment changes the cost of escalation.",
+        "competitive": "At its sharpest, the move makes aggression against you more expensive to carry."
+      }
+    },
+    {
+      "questionId": "ch25-q02",
+      "prompt": "What must exist before moral framing can work reliably?",
+      "choices": [
+        "Only a strong slogan",
+        "Conduct that outsiders can recognize as defensible",
+        "A promise to avoid all conflict"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter puts substance before message because framing cannot support conduct it contradicts.",
+        "direct": "Keep the order clear: recognizable conduct has to exist before the rhetoric can carry it.",
+        "competitive": "No amount of clean language can float a rotten record for long."
+      }
+    },
+    {
+      "questionId": "ch25-q03",
+      "prompt": "What is the chapter's main reversal about moral high ground?",
+      "choices": [
+        "It is easy to reclaim after any contradiction",
+        "It works only when the audience is politically neutral",
+        "A single visible hypocrisy can collapse it quickly"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The posture is powerful and brittle at the same time.",
+        "direct": "Notice the danger: one exposed contradiction can wipe out the credibility the posture depended on.",
+        "competitive": "The reversal is brutal because hypocrisy detonates the strategy from the inside."
+      }
+    },
+    {
+      "questionId": "ch25-q04",
+      "prompt": "Leonie's allies want hotter language and a humiliating public line. What fits the chapter best?",
+      "choices": [
+        "Keep the language if it will energize supporters",
+        "Cut the lines that weaken disciplined public posture",
+        "Delay all messaging until the other side attacks first"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Leonie succeeds by protecting the legitimacy structure before public collision begins.",
+        "direct": "Here the correct move is restraint that keeps the side readable as measured and defensible.",
+        "competitive": "She wins more by preserving the cost asymmetry than by buying one satisfying headline."
+      }
+    },
+    {
+      "questionId": "ch25-q05",
+      "prompt": "Phelan says moral high ground is a credibility structure, not branding. What does that mean?",
+      "choices": [
+        "Legitimacy depends on consistency between conduct and public claim",
+        "The best moral strategy is to keep arguments abstract",
+        "Observers always choose the side with the most polished language"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Phelan ties legitimacy to what behavior can actually support.",
+        "direct": "The key point is that rhetoric amplifies consistency rather than replacing it.",
+        "competitive": "He is saying the posture lives or dies on whether conduct can carry the claim."
+      }
+    },
+    {
+      "questionId": "ch25-q06",
+      "prompt": "Merritt has a public frame that sounds fair, but the team's conduct underneath it is sloppy and retaliatory. What should happen first?",
+      "choices": [
+        "Push the frame harder so observers focus on language",
+        "Repair the conduct before expanding the moral claim",
+        "Abandon all public communication"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter treats contradiction as strategic debt that must be addressed before scaling the message.",
+        "direct": "Fix the behavior first, because a louder claim only raises the cost of later exposure.",
+        "competitive": "If the conduct breaks the frame, amplifying the frame just builds a bigger collapse."
+      }
+    },
+    {
+      "questionId": "ch25-q07",
+      "prompt": "Saoirse notices she wants to look like the better person more than she wants repair. What is the chapter's best guidance?",
+      "choices": [
+        "Escalate the moral contrast so observers can force accountability",
+        "Keep gathering allies until the other side apologizes",
+        "Step away from righteousness theater and address the real conflict directly"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "This personal example exists to mark the boundary between principle and sympathy-seeking.",
+        "direct": "The better move is to drop the halo if audience approval is replacing honest repair.",
+        "competitive": "Once being seen as righteous matters more than getting clear, the tactic has turned inward and ugly."
+      }
+    },
+    {
+      "questionId": "ch25-q08",
+      "prompt": "Ilan sees that a group's fairness rhetoric outruns its actual behavior. What is the best response?",
+      "choices": [
+        "Ignore the mismatch if the public case is strong enough",
+        "Fix the internal contradiction before claiming the high ground",
+        "Switch to a more emotional message"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Ilan should treat the contradiction as a strategic threat, not an optics footnote.",
+        "direct": "The move is to repair the hypocrisy before the audience discovers it and rewrites the whole posture.",
+        "competitive": "If the group's structure refutes its slogan, the slogan becomes evidence against it."
+      }
+    },
+    {
+      "questionId": "ch25-q09",
+      "prompt": "Which judgment best captures the limit of this strategy?",
+      "choices": [
+        "Public sympathy always proves your side is morally right",
+        "Any principled side should avoid strategic framing entirely",
+        "Righteous posture is useful only when it rests on disciplined conduct rather than performative virtue"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter rejects both naive moralism and empty branding.",
+        "direct": "Balance the reading carefully: legitimacy can be strategic, but only when conduct carries the claim.",
+        "competitive": "The line is between principled consistency and theatrical purity performance."
+      }
+    },
+    {
+      "questionId": "ch25-q10",
+      "prompt": "How does Chapter 25 differ from Chapter 26?",
+      "choices": [
+        "Chapter 25 seeks legitimacy through visibility, while Chapter 26 seeks safety through target denial",
+        "Chapter 25 is about timing, while Chapter 26 is about public sympathy",
+        "Chapter 25 is about personal repair, while Chapter 26 is about school politics"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The bridge turns on visibility itself.",
+        "direct": "Separate the moves: one chapter wants to be seen as just, while the next wants to be hard to fix in place at all.",
+        "competitive": "The difference is moral visibility versus strategic disappearance."
+      }
+    }
+  ]
+}

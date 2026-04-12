@@ -230,6 +230,15 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
     );
 
+    // SES access — notification emails
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "SesSendAccess",
+        actions: ["ses:SendEmail", "sesv2:SendEmail"],
+        resources: ["*"],
+      }),
+    );
+
     // SQS access — revalidation queue
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({

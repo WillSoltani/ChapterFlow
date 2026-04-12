@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What scorecard correction does Chapter 8 make first?",
+      "choices": [
+        "Fame is the strongest proof of governance quality",
+        "Investor logic can become the operating logic of a company",
+        "Decentralization works best when the center disappears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter starts by turning investor judgment into a way of running the firm, not just judging it from outside.",
+        "direct": "Thorndike first rejects the idea that investing and managing must stay separate jobs.",
+        "competitive": "The investor is inside the machine now."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Berkshire's setting create pressure in this chapter?",
+      "choices": [
+        "Because a decentralized holding company can drift into neglect or sprawl if the center is weak or intrusive",
+        "Because decentralization removes all need for capital discipline",
+        "Because the company has no real local operators"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The center has to matter without taking over everything.",
+        "direct": "Berkshire's structure makes central capital judgment necessary and delicate.",
+        "competitive": "Too little center drifts. Too much center smothers."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does investor-operator fusion mean in this chapter?",
+      "choices": [
+        "The CEO copies investing language without changing governance",
+        "The investor's capital-allocation logic and the operator's responsibility are carried by the same leadership role",
+        "The business stops caring about operations"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Buffett matters because the same person allocates capital and governs the company.",
+        "direct": "The chapter treats capital allocation as governance, not as commentary from outside the firm.",
+        "competitive": "The allocator is also the operator's boss."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Paige trusts her teams but still controls the quarterly budget. What fits Chapter 8 best?",
+      "choices": [
+        "She should take over each team's daily work too",
+        "She should keep local autonomy while governing capital allocation centrally",
+        "She should let every team spend independently because autonomy is the goal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says autonomy and central allocation can reinforce each other.",
+        "direct": "Choice B matches Buffett's logic: decentralized execution, disciplined central capital judgment.",
+        "competitive": "Trust the teams and govern the chips."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which belief does Chapter 8 challenge most directly?",
+      "choices": [
+        "Fame and decentralization can substitute for governance mechanism",
+        "Investor logic belongs only outside operating leadership",
+        "Both A and B"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects celebrity shortcuts and the separation between investing and managing.",
+        "direct": "Thorndike pushes against both hero worship and the idea that allocation is only a finance side job.",
+        "competitive": "Myth and compartmentalization both fail here."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Dominic lets debate squads run themselves but keeps one central prep budget. What is the chapter's best diagnosis?",
+      "choices": [
+        "He is mixing autonomy and capital discipline in the right way",
+        "He should decentralize the shared budget too",
+        "He should abandon squad autonomy entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says local freedom works better when the shared capital still has one governing center.",
+        "direct": "This is Chapter 8 in school form: decentralized execution with centralized allocation.",
+        "competitive": "Let the squads improvise, not mint money."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is central capital judgment necessary in addition to decentralization?",
+      "choices": [
+        "Because autonomy becomes stronger when the shared resources are still governed rationally",
+        "Because local operators cannot be trusted with execution at all",
+        "Because headquarters should approve every small decision"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says decentralization needs a rational allocator so the whole firm stays coherent.",
+        "direct": "Local autonomy depends on central clarity about where resources belong.",
+        "competitive": "Freedom lasts longer when the money still has a brain."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit keeps Chapter 8 from becoming Buffett mythology?",
+      "choices": [
+        "Reputation is enough because everyone already knows the result",
+        "The case only works when the governance mechanism stays more visible than the fame",
+        "Decentralization should be admired without asking how capital is judged"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter stays strict by making the mechanism matter more than Buffett's fame.",
+        "direct": "The anti-celebrity rule forces readers back to capital allocation, trust, and governance logic.",
+        "competitive": "If the aura explains the case, the case is gone."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes Buffett's decentralization rational in Thorndike's frame?",
+      "choices": [
+        "The center disappears and lets every unit decide alone",
+        "Central capital allocation stays strong enough to make local autonomy coherent",
+        "Berkshire's reputation keeps everyone aligned automatically"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The autonomy works because the center still governs resources clearly.",
+        "direct": "Thorndike makes disciplined allocation, not loose culture, the evidence that counts.",
+        "competitive": "The freedom makes sense because the allocator never falls asleep."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 8 prepare the move into the final synthesis chapter?",
+      "choices": [
+        "It makes the outsider pattern clearest by fusing investing, leadership, allocation, and trust into one mechanism",
+        "It proves fame is the final outsider trait",
+        "It argues case studies are no longer needed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Buffett clarifies the core pattern so the next chapter can distill it into principles.",
+        "direct": "Chapter 8 gathers the earlier outsider traits into the clearest investor-operator case before the final synthesis.",
+        "competitive": "First the mechanism gets clean, then the book can name it."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

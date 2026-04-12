@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's central warning?",
+      "choices": [
+        "Generosity weakens ambition",
+        "Hidden scorekeeping corrodes relationships",
+        "People should stop asking others for help"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that private accounting changes how help feels and how trust grows.",
+        "direct": "The main danger is the hidden ledger, not generosity itself.",
+        "competitive": "The quiet math is the real threat."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the official \"it's never simply about getting what you want\" line matter?",
+      "choices": [
+        "It widens the relationship so the other person's goals matter too",
+        "It proves people should never pursue personal ambition",
+        "It means asking for help is morally wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That line keeps the relationship from shrinking into one person's agenda.",
+        "direct": "The chapter uses it to broaden the exchange beyond private gain.",
+        "competitive": "If only your goals matter, the bond gets thin fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A coworker needs a quick template you already have, but there is no obvious upside to helping. What fits the chapter best?",
+      "choices": [
+        "Help cleanly if you can do it without turning it into future debt",
+        "Ignore the message because strategic help should always be selective",
+        "Help, then remind them later so they understand what they owe"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors broad useful help when it can be given freely and practically.",
+        "direct": "Small contribution builds trust best when it is not loaded with accounting pressure.",
+        "competitive": "Be useful or decline. Do not help just to create leverage."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In a student organization, Omar wants to help the president without sounding like he wants future credit. What is the strongest move?",
+      "choices": [
+        "Offer one specific piece of low-drama help tied to the immediate problem",
+        "Promise to do whatever is needed so everyone sees his commitment",
+        "Wait until the stress passes, then mention that he was willing to help"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Specific practical help feels more trustworthy than broad performative offers.",
+        "direct": "The cleanest contribution is concrete, useful, and not packaged as a bid for status.",
+        "competitive": "Solve the problem. Do not audition while pretending to solve it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's strongest case against selective generosity aimed only at powerful people?",
+      "choices": [
+        "It is always morally worse than any other form of helping",
+        "It reveals opportunism and ignores how influence changes over time",
+        "It guarantees people will reject the help immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says broad generosity is wiser because status changes and patterns matter.",
+        "direct": "Helping only obvious winners exposes the strategy too clearly and narrows your understanding of the network.",
+        "competitive": "Upward-only giving is just bet-placing with nicer language."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject most clearly?",
+      "choices": [
+        "That not keeping score means having no boundaries",
+        "That generosity is sometimes useful",
+        "That repeated small favors can matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps limits visible so generosity does not turn into self-erasure.",
+        "direct": "Rejecting the hidden ledger is not the same as rejecting judgment or boundaries.",
+        "competitive": "Drop the invoice, not your spine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Nina feels angry after a friend's small cancellation, but the reaction seems too strong. What does the chapter suggest she examine first?",
+      "choices": [
+        "Whether the friend is secretly jealous",
+        "Whether a hidden ledger has been building beneath her favors",
+        "Whether she should stop helping anyone at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats out-of-proportion resentment as a sign that quiet accounting may already be active.",
+        "direct": "Before blaming the friend, Nina should check the private expectation structure she has been carrying.",
+        "competitive": "The missed dinner may be the spark, but the ledger is the fuel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Lucas wants a stronger reputation at work. Which strategy best fits the chapter?",
+      "choices": [
+        "Make one dramatic public gesture so everyone notices",
+        "Build visibility through repeated practical contribution",
+        "Stay quiet because generosity should never affect reputation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors patterns of useful help over isolated dramatic moves.",
+        "direct": "Contribution-based reputation is stronger because it comes from repeated evidence people have actually felt.",
+        "competitive": "Steady usefulness carries farther than one loud move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is resentment such an important signal in this chapter?",
+      "choices": [
+        "It always proves the other person is exploitative",
+        "It can reveal boundary failure, exploitation, or the return of hidden accounting",
+        "It means the relationship should end immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats resentment as information that something in the giving pattern needs to be examined.",
+        "direct": "Resentment matters because it can expose several failures, including the hidden ledger the chapter warns against.",
+        "competitive": "Bitterness is often the alarm telling you the giving pattern has gone bad."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If this chapter removes scorekeeping from the center of relationship-building, what question naturally follows next?",
+      "choices": [
+        "How to stop helping people altogether",
+        "How to identify which relationships deserve deeper long-term energy through a larger mission",
+        "How to turn generosity into a faster growth tactic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once generosity is clarified, the next question is where relationship energy should be aimed most meaningfully.",
+        "direct": "The bridge forward is direction: what mission should shape which relationships you build more deeply?",
+        "competitive": "If the ledger is gone, aim becomes the next hard problem."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

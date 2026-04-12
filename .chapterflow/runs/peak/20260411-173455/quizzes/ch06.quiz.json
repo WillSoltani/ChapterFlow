@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does the chapter treat everyday life as a weak training environment?",
+      "choices": [
+        "Because ordinary learning usually lacks built-in coaching, scoring, and review",
+        "Because hobbies never involve skill",
+        "Because informal practice should avoid repetition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says ordinary settings often come without the structures that make feedback easier.",
+        "direct": "Everyday life usually lacks formal coaching, clean scoring, and enforced review loops.",
+        "competitive": "The setting is loose enough to let the miss hide comfortably."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the chapter's first practical move for ordinary learners?",
+      "choices": [
+        "Expand the goal until the whole skill feels inspiring",
+        "Narrow the target to one visible subskill",
+        "Wait for motivation to become stronger"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants one tractable target, not a broad wish.",
+        "direct": "Specific subskills are easier to inspect and correct than whole diffuse ambitions.",
+        "competitive": "Cut the blur smaller or the error keeps its hiding place."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does feedback have to be created on purpose in everyday practice?",
+      "choices": [
+        "Because ordinary settings often do not provide strong natural signals",
+        "Because feedback only matters in elite training",
+        "Because learners should ignore comparison"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The environment may not naturally show whether the target changed.",
+        "direct": "Recordings, notes, and comparisons create signals that informal learning often lacks.",
+        "competitive": "If the setting will not give a verdict, the learner has to build one."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Talia's language-study example, what best fits the chapter's advice?",
+      "choices": [
+        "Keep collecting more lesson minutes without checking a specific sound",
+        "Choose one pronunciation problem and record short comparisons",
+        "Stop practicing until a teacher appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "She makes the session more real by tracking one sound.",
+        "direct": "The chapter favors one narrow pronunciation target with a recording loop over broad study time.",
+        "competitive": "She stops letting the streak protect the same swallowed sound."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What lesson comes from Ben's rehearsal-room example?",
+      "choices": [
+        "A full hour of effort matters more than one visible bar",
+        "One repeated passage can teach more than a broad practice session",
+        "Listening back always makes practice worse"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The example shows how one short passage can become a clear review target.",
+        "direct": "Narrowing the session to one bar makes correction possible in a way broad effort does not.",
+        "competitive": "The weak bar teaches more once the rest of the piece loses its alibi."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What danger does the chapter see in broad self-improvement routines?",
+      "choices": [
+        "They can feel sincere while leaving the same mistake unchanged",
+        "They always remove all motivation",
+        "They make feedback impossible in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a person can keep trying without fixing the actual error.",
+        "direct": "Ordinary effort can stay broad and earnest while the same technical miss survives untouched.",
+        "competitive": "Pleasant seriousness can become a shelter for the same leak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What makes self-monitoring useful in this chapter?",
+      "choices": [
+        "It focuses on one recurring visible pattern",
+        "It replaces all evidence with confidence",
+        "It works only when the learner feels inspired"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Useful self-monitoring notices the same pattern across attempts.",
+        "direct": "The chapter wants evidence-based review of one recurring miss, not a general feeling of effort.",
+        "competitive": "A pattern can be audited. A mood cannot."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which claim would the chapter reject?",
+      "choices": [
+        "Everyday learners can borrow some deliberate-practice principles",
+        "Motivation can support consistency without replacing feedback",
+        "Ordinary life becomes elite training once someone feels serious about it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps saying ordinary adaptation is real but bounded.",
+        "direct": "Informal learning does not become equivalent to elite training just because commitment is high.",
+        "competitive": "Caring deeply does not turn the kitchen table into an academy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's best advice for keeping ordinary practice concrete?",
+      "choices": [
+        "Choose one target, build one feedback loop, and review one recurring miss",
+        "Expand the goal until the whole skill feels meaningful",
+        "Avoid all comparison so the routine stays enjoyable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter emphasizes a narrow target, designed feedback, and visible review.",
+        "direct": "Concrete ordinary practice depends on a specific subskill, a real signal, and a check on whether correction happened.",
+        "competitive": "Pick the error, build the verdict, and make the next rep answer for it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter connect to the next one, The Road to Extraordinary?",
+      "choices": [
+        "It asks how small ordinary loops can accumulate into extraordinary performance",
+        "It argues that ordinary practice should stay small forever",
+        "It claims extraordinary performance has nothing to do with review"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what happens when these ordinary loops compound.",
+        "direct": "The bridge moves from bounded everyday adaptation to the possibility of extraordinary results.",
+        "competitive": "Once one honest loop survives, the next question is how many loops it takes before the result stops looking ordinary."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "complex"
+    }
+  ]
+}

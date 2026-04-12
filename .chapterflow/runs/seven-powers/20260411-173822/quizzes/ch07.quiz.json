@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's core definition of process power?",
+      "choices": [
+        "A company becomes very efficient and disciplined over time",
+        "A deeply embedded set of interlocking activities yields lower cost or better product and rivals need prolonged commitment to match it",
+        "A company owns a scarce input that rivals cannot buy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter requires an interlocking system plus a hard replication burden, not just general efficiency.",
+        "direct": "Process power exists when the coordinated machine, not one routine, creates the advantage.",
+        "competitive": "No welded system, no process moat."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do interlocking activities matter in this chapter?",
+      "choices": [
+        "Because they help a company look more organized to outsiders",
+        "Because the benefit comes from how routines reinforce one another rather than from one isolated move",
+        "Because regulators require process documentation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's benefit comes from coordinated links among activities.",
+        "direct": "Interlocking activities matter because the system, not a single practice, creates the result.",
+        "competitive": "The moat lives in the links, not in the headline tactic."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which case best shows ordinary operational excellence rather than process power?",
+      "choices": [
+        "A firm has one efficient routine, but copying it would erase most of the advantage",
+        "A rival needs years to rebuild many linked routines that support lower cost",
+        "A company has an embedded system whose visible routines underperform when copied outside the full structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If copying one routine removes most of the edge, the system moat is probably weak.",
+        "direct": "The first option lacks the deeper interlocking structure that the chapter requires.",
+        "competitive": "One good move is not the same as a buried machine."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya sees a rival copying one visible workflow tactic. What should she test before assuming the moat is gone?",
+      "choices": [
+        "Whether the copied move depended on a larger reinforcing system that the rival has not rebuilt",
+        "Whether the rival used similar colors and labels",
+        "Whether the copied tactic is easier to explain in a presentation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The visible move may have drawn strength from hidden linked routines.",
+        "direct": "Maya should check whether the copied tactic still lacks the surrounding system that made it powerful.",
+        "competitive": "The rival may have stolen the storefront and missed the engine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Priya's capstone team uses a board that other teams can copy, but the real speed seems to come from linked review and handoff habits. What does that suggest?",
+      "choices": [
+        "The board alone is the full source of process power",
+        "The visible tool is only one piece of a larger interlocking system",
+        "The team really has cornered-resource power"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The board matters, but the linked routines around it appear to carry the deeper advantage.",
+        "direct": "This fits the chapter's warning that one visible practice is not the whole moat.",
+        "competitive": "The sticky notes are not the machine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student organization copies one tactic from a stronger peer group and still fails to match results. What is the strongest explanation?",
+      "choices": [
+        "The tactic was illegal to copy correctly",
+        "The original advantage depended on reinforcing routines that were not reproduced",
+        "The stronger group actually had branding power instead"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The visible tactic probably depended on a deeper system of linked activities.",
+        "direct": "The failure suggests the copycat missed the interlocking routines that carried the original result.",
+        "competitive": "They stole the move and left the machinery behind."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lena notices a local service's quality comes from many small linked routines rather than one trick. What changed in her understanding?",
+      "choices": [
+        "She shifted from seeing a tactic to seeing a reinforcing process",
+        "She discovered the service had switching costs",
+        "She realized the service had a cornered resource"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She now sees the result as a system effect rather than as a single clever move.",
+        "direct": "The linked habits reveal process logic instead of isolated operational flair.",
+        "competitive": "She stopped praising the trick and found the machine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does prolonged commitment matter so much in this chapter?",
+      "choices": [
+        "Because rivals must rebuild many reinforcing routines coherently over time",
+        "Because long meetings improve organizational memory",
+        "Because customers prefer firms with older procedures"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One copied move is easy, but rebuilding the whole supporting system is not.",
+        "direct": "Process power is protected because replication requires sustained work across many linked activities.",
+        "competitive": "The rival is rebuilding a machine, not photocopying a memo."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What would most weaken a claim of process power?",
+      "choices": [
+        "The advantage disappears as soon as one visible routine is copied",
+        "The process includes many handoffs and standards",
+        "The operation produces lower cost and better output together"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A real process moat should survive surface imitation better than that.",
+        "direct": "If copying one visible move erases the edge, the deeper interlocking barrier was probably overstated.",
+        "competitive": "If the shiny routine was the whole moat, there was no buried machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "This chapter closes strategy statics with an embedded operating system moat. What would signal the next chapter's focus instead?",
+      "choices": [
+        "How firms build power through dynamics rather than merely describing existing power",
+        "How customers pay a premium because of brand trust",
+        "How scarce inputs create hard-to-match access"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter moves from what existing power looks like to how power gets built.",
+        "direct": "The book shifts from statics to dynamics by focusing on the path to power.",
+        "competitive": "Next, the question stops being 'what is the moat' and becomes 'how do you build one'."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    }
+  ]
+}

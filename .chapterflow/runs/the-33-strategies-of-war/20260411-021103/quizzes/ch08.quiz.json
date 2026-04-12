@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central idea of the perfect-economy strategy?",
+      "choices": [
+        "Fight only where the return justifies the spend of finite resources",
+        "Avoid conflict entirely whenever possible",
+        "Answer every challenge quickly so reputation stays sharp"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter treats conflict as a resource decision.",
+        "direct": "Begin with the core rule: selective fights preserve finite leverage.",
+        "competitive": "Perfect economy means spending force only where the board really moves."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which two questions organize battle triage in this chapter?",
+      "choices": [
+        "Who started it, and who will apologize first?",
+        "What does winning get me, and what does losing cost me?",
+        "Can I win quickly, and will others admire it?"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The screening test is payoff and downside.",
+        "direct": "Notice the chapter's two filters: gain from victory and cost of defeat.",
+        "competitive": "The strategy starts by pricing the fight before entering it."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What reversal complicates the advice to ignore most fights?",
+      "choices": [
+        "Every small fight eventually becomes a major fight",
+        "The strategy works only for senior leaders",
+        "Some fights matter because silence is also a signal to the right audience"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter adds a reputational exception.",
+        "direct": "Keep the reversal clear: retreat can become costly when the decisive audience is reading it.",
+        "competitive": "Silence is not free when the right observers treat it as information."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Which conflict should Tessa spend political capital on?",
+      "choices": [
+        "The staffing decision that changes control of meaningful work",
+        "A minor process tweak that irritates her",
+        "A low-stakes credit dispute that will fade in a day"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Tessa should spend force where the board actually changes.",
+        "direct": "Read the stakes correctly: the staffing call has durable consequence.",
+        "competitive": "Save premium capital for the fight with structural payoff."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Karim is deciding whether to argue about presentation details or answer a zoning objection. Which audience matters most?",
+      "choices": [
+        "Classmates who enjoy the debate",
+        "The review board that can change the proposal's fate",
+        "Any observer, since all audiences count equally"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Karim should allocate effort toward the audience that changes the result.",
+        "direct": "Focus on consequence: the review board is the decisive observer here.",
+        "competitive": "Do not perform for noise when the scoring audience is elsewhere."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Willa feels slighted in a meeting, but the exchange will not affect authority, promotion, or trust. What fits the chapter best?",
+      "choices": [
+        "Escalate immediately so no insult goes unanswered",
+        "Document the moment as if it were a major reputational threat",
+        "Ignore the slight and preserve force for a higher-return conflict"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Willa should let a low-return fight die.",
+        "direct": "Test the exchange by payoff and downside, not by sting.",
+        "competitive": "Cheap insults are expensive if you answer all of them."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Arjun keeps winning minor contract clauses but loses leverage on the one term that matters. What is the chapter's diagnosis?",
+      "choices": [
+        "He should fight harder on every clause so the other side gets tired",
+        "He is overspending leverage before the decisive point arrives",
+        "The negotiation is impossible because no clause is minor"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Arjun is using premium force on low-value lines.",
+        "direct": "See the pattern: leverage is being drained before the decisive clause appears.",
+        "competitive": "He is emptying the magazine into trivial targets."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Celeste answers a cutting classroom comment mainly because it stings, even though faculty judgment does not change. What went wrong?",
+      "choices": [
+        "She was right to defend every slight publicly",
+        "She needed more people to watch before deciding",
+        "She confused ego damage with signal damage"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Celeste answered pride, not consequence.",
+        "direct": "Separate emotional irritation from actual audience-driven risk.",
+        "competitive": "The wound felt real, but the board stayed still."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which criticism best captures the ethical limit of the chapter?",
+      "choices": [
+        "Overfighting can be vanity disguised as strength",
+        "It values reputation more than all material outcomes",
+        "It works only when conflicts are public"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "challenging",
+      "explanation": {
+        "gentle": "The chapter warns against spending force just to feel formidable.",
+        "direct": "Judge the misuse by asking whether the operator is buying outcome or only self-image.",
+        "competitive": "Constant fighting often masks insecurity with theater."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 9 logically follow this one?",
+      "choices": [
+        "Because Chapter 9 rejects restraint completely",
+        "Because some patterns become too costly to keep declining and require counterattack",
+        "Because audience no longer matters once a fight starts"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "challenging",
+      "explanation": {
+        "gentle": "Restraint eventually reaches a limit.",
+        "direct": "Place the bridge correctly: the next move appears when nonresponse becomes the more expensive choice.",
+        "competitive": "A strong economy changes when letting the pattern continue costs too much."
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the horizontal relationship test in a support group?",
+      "choices": [
+        "Whether the sibling points are the same kind of thing",
+        "Whether the heading sounds strong enough",
+        "Whether the bullets are the same length"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first question is whether the lower points truly belong to the same class, not whether they merely look matched.",
+        "direct": "Horizontal logic is about parallel function, not parallel formatting.",
+        "competitive": "The real test is sibling logic, not bullet cosmetics."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a neat bullet list still fail structurally?",
+      "choices": [
+        "Because headings always oversimplify",
+        "Because matching grammar can hide mixed roles underneath",
+        "Because short lists are better than long ones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The page can look calm while one bullet names a cause, another an action, and another a result.",
+        "direct": "Visual symmetry is not proof of logical sameness.",
+        "competitive": "The formatting can stay disciplined while the support group is already broken."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the vertical relationship require?",
+      "choices": [
+        "That the top line truly summarizes what the lower points mean together",
+        "That the heading appears before every example",
+        "That every support group contains exactly three bullets"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The higher line has to say only what the lower set can honestly support.",
+        "direct": "A strong-sounding heading still fails if it overclaims what the support beneath it actually says.",
+        "competitive": "A top line that outruns the support is bluffing."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya's outline lists a cause, a recommendation, and an effect under one thesis point. What is the best fix?",
+      "choices": [
+        "Keep the list and shorten the thesis",
+        "Sort the lower points by role before deciding what the thesis can summarize",
+        "Add one more bullet so the group feels more complete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The lower points need regrouping before the higher line can become honest.",
+        "direct": "She should classify the support points first. Only then can she know what summary belongs above them.",
+        "competitive": "Stop polishing the thesis while the bullets underneath it are still cross-wired."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What role does order play in a real support group?",
+      "choices": [
+        "It is optional as long as the bullets are parallel",
+        "It only matters in historical writing",
+        "It is part of the meaning because the sequence helps the reader see the relationship among the points"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Sequence is part of the group's logic, not a final grooming step.",
+        "direct": "Temporal, structural, or causal order can all work, but random stacking weakens the set.",
+        "competitive": "A support group with no governing sequence makes the reader invent the logic."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Omar's family decision list mixes repairs, emotions, and taxes under one heading. What is the chapter warning about?",
+      "choices": [
+        "That personal decisions should never be outlined",
+        "That a tidy heading can hide mixed categories underneath",
+        "That long lists are always confusing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The page may look organized while the lower points still belong to different kinds of conversation.",
+        "direct": "This is inside failure: one heading trying to compress unlike pressures into one group.",
+        "competitive": "The shell looks disciplined while the support underneath it is still a pile."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does regrouping often force a rewrite of the higher summary?",
+      "choices": [
+        "Because the original top line may have claimed more than the mixed support could honestly carry",
+        "Because summaries should always be written last no matter what",
+        "Because readers dislike headings that stay unchanged"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the lower points are sorted honestly, the earlier heading may no longer fit what they really say together.",
+        "direct": "Regrouping exposes whether the old summary was earned or merely polished.",
+        "competitive": "The bluff dies when the support gets sorted by type."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Jordan's heading sounds decisive, but the points underneath it are one risk, one staffing move, and one hoped-for reaction. What is the strongest diagnosis?",
+      "choices": [
+        "The heading is fine and the audience should infer the structure",
+        "The only problem is that the slide needs more detail",
+        "The support set lacks true sibling logic, so the top line is borrowing confidence from formatting"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The lower group is mixed, so the confidence of the heading is not yet earned.",
+        "direct": "This is a horizontal failure that creates a vertical overclaim.",
+        "competitive": "The title sounds strong because the page props it up, not because the support deserves it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's hardest warning about polished documents?",
+      "choices": [
+        "Professional formatting is less persuasive than casual formatting",
+        "Writers should avoid bullet points whenever possible",
+        "A pyramid can fail from the inside while still looking finished from the outside"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Neat bullets and calm spacing can delay detection of mixed logic, but they cannot repair it.",
+        "direct": "Outer polish does not certify inner coherence. The defect can stay hidden inside a professional-looking shell.",
+        "competitive": "False neatness remains false, even in presentation-ready form."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a writer now understands parallel support, honest summary, and meaningful order, what natural problem comes next?",
+      "choices": [
+        "How to build those relationships deliberately instead of discovering too late that the inside does not hold",
+        "How to reduce every support group to exactly three bullets",
+        "How to make headings sound more executive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the writer can diagnose inside failure, the next challenge is construction.",
+        "direct": "The next move is a building process that produces stable groups on purpose.",
+        "competitive": "Spotting the lie is not enough. The next move is learning how to build the truth."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

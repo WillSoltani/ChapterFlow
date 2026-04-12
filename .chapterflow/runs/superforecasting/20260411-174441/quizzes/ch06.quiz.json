@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What explanation of superforecasting does Chapter 6 narrow first?",
+      "choices": [
+        "That superforecasters mainly win because they are math geniuses",
+        "That forecasts can include probabilities",
+        "That uncertainty ever persists"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter cuts down the idea that advanced math alone explains the edge.",
+        "direct": "Quantitative prodigy is the first shortcut it rejects.",
+        "competitive": "It kills the flattering number myth before building the real case."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the bin Laden estimate spread matter in this chapter?",
+      "choices": [
+        "It proves forecasting should avoid percentages",
+        "It shows that disciplined disagreement can remain honest on a hard problem",
+        "It shows leaders only need one confident analyst"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The spread reflects real uncertainty rather than uselessness.",
+        "direct": "Several probability estimates can be informative on a hard question.",
+        "competitive": "The range is honesty under pressure, not failure."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does probabilistic thinking preserve that certainty tries to erase?",
+      "choices": [
+        "Residual room for alternative outcomes",
+        "The need for all forecasts to be 50 percent",
+        "A reason to avoid updating"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A percentage still leaves some chance for the other outcome.",
+        "direct": "Probability weights possibilities instead of erasing the loser.",
+        "competitive": "It keeps the losing case alive in the right proportion."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Jalen cannot tell whether uncertainty in a report is reducible or just part of the world. Which chapter move fits best?",
+      "choices": [
+        "Force one number immediately",
+        "Separate epistemic uncertainty from aleatory uncertainty",
+        "Ignore the distinction because all uncertainty is the same"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the forecaster to name what kind of uncertainty is present.",
+        "direct": "Choice B matches the chapter distinction exactly.",
+        "competitive": "Name which fog can lift and which fog is the weather."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Barbara Mellers mainly add to the chapter?",
+      "choices": [
+        "A case against using percentages",
+        "The idea that better forecasters use more granular estimates when evidence justifies it",
+        "Proof that one consensus number is always superior"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mellers matters because stronger forecasters can make finer distinctions.",
+        "direct": "Her role is granularity: sharper percentage cuts when the case supports them.",
+        "competitive": "She gives the chapter a finer blade for uncertainty."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why are many small updates better than one dramatic swing?",
+      "choices": [
+        "They keep the estimate proportionate to evidence",
+        "They eliminate the need for uncertainty",
+        "They guarantee the forecast will end up correct"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values revisions that match the size of the evidentiary change.",
+        "direct": "Small updates often reflect better calibration than freeze-and-lurch behavior.",
+        "competitive": "Disciplined movement beats dramatic correction."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the main risk of confusing epistemic and aleatory uncertainty?",
+      "choices": [
+        "You may demand the wrong kind of certainty from the situation",
+        "You will always update too often",
+        "You will stop using percentages entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The distinction matters because not all uncertainty shrinks in the same way.",
+        "direct": "Mixing them up distorts both confidence and expectations.",
+        "competitive": "Ask the wrong fog for certainty and it punishes you."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Priya wants to flip her whole forecast after one new report. What would Chapter 6 push her to do?",
+      "choices": [
+        "Keep the forecast frozen forever",
+        "Make a proportionate update instead of a total swing",
+        "Ignore the new evidence because probabilities already exist"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values better-sized revision over dramatic movement.",
+        "direct": "Choice B matches the small-update discipline directly.",
+        "competitive": "Do not stage a coup when the evidence earned a nudge."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter strongest claim about numeracy?",
+      "choices": [
+        "Advanced math is usually enough to produce forecasting excellence",
+        "Numbers matter only when they serve probabilistic honesty and calibrated revision",
+        "Numeracy is mostly irrelevant once people read more news"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps number use in view while refusing to let math prestige explain everything.",
+        "direct": "Its balanced claim is that numeracy helps only when governed by probability discipline.",
+        "competitive": "Numbers become an edge only when they stop serving ego."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 6 gets numbers under control, what question does it naturally push toward next?",
+      "choices": [
+        "How forecasters handle a flood of incoming news without getting jerked around",
+        "How to stop revising forecasts once granularity improves",
+        "Why leaders should avoid probability ranges permanently"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge points toward how strong forecasters process constant information flow.",
+        "direct": "Once probabilistic thinking is clear, the next issue is updating under heavy news intake.",
+        "competitive": "The chapter tames the number myth and hands the next test to the news cycle."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

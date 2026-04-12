@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "Why does the final chapter treat the book as a system?",
+      "choices": [
+        "Because one tactic is enough by itself",
+        "Because the methods are stronger together than alone",
+        "Because earlier chapters were only examples"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter brings the methods together because they reinforce one another.",
+        "direct": "Durable learning appears when the mechanisms interact inside one routine.",
+        "competitive": "The machine beats the gadget shelf."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "What does retrieval contribute inside the final routine?",
+      "choices": [
+        "It keeps the answer visible at all times",
+        "It forces memory to produce instead of only recognize",
+        "It replaces the need for spacing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Retrieval asks memory to bring the idea back without simply looking at it.",
+        "direct": "The routine needs retrieval because passive exposure is not enough.",
+        "competitive": "Retrieval makes memory carry its own weight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Why is Priya's weekly exam plan stronger than a cram block?",
+      "choices": [
+        "Because it looks calmer",
+        "Because it combines delay, recall, mixing, and checks over time",
+        "Because it avoids mistakes entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The weekly plan uses several methods together instead of one intense burst.",
+        "direct": "The chapter favors routine because repeated return and honest checking build durability.",
+        "competitive": "The build beats the burst."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "What did Victor's training redesign add?",
+      "choices": [
+        "Only more inspiration",
+        "Recurring return, recall, mixed cases, and repair",
+        "A stronger dependence on passive review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Victor turned separate tips into one system.",
+        "direct": "The redesign put the methods on a schedule so they could reinforce one another.",
+        "competitive": "He wired the tools into infrastructure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Why are calibration checks necessary in the final system?",
+      "choices": [
+        "Because confidence should answer to evidence",
+        "Because the learner should stay uncertain forever",
+        "Because retrieval no longer matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Checks keep the learner from mistaking feeling sure for actually knowing.",
+        "direct": "Calibration is the part of the system that verifies what holds without cues.",
+        "competitive": "The referee keeps swagger from grading its own tape."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Which idea would the chapter reject?",
+      "choices": [
+        "One favorite tactic is enough if it feels effective",
+        "Methods should reinforce one another",
+        "Weak spots should be repaired inside the routine"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter argues against relying on one isolated trick.",
+        "direct": "A single tactic leaves blind spots that the full system is meant to cover.",
+        "competitive": "One shiny tool is not the machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "Why does repair belong inside the routine?",
+      "choices": [
+        "Because weak spots need revisiting after they are exposed",
+        "Because errors should be hidden quickly",
+        "Because spacing removes the need for correction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Repair matters because the system should strengthen weak spots, not just reveal them.",
+        "direct": "A routine that checks without revisiting gaps stops at inspection instead of improvement.",
+        "competitive": "The machine has to patch leaks, not just point at them."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "What does the chapter mean by saying learning is a design problem?",
+      "choices": [
+        "Talent decides everything before practice begins",
+        "Durable learning comes from building better conditions over time",
+        "Only teachers can influence it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The book closes by emphasizing structure and repeated honest practice.",
+        "direct": "Design matters because what lasts is repeatedly retrieved, mixed, checked, and repaired.",
+        "competitive": "The future belongs to architecture, not luck."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "What makes the full routine stronger than one tactic?",
+      "choices": [
+        "Each method counters a different weakness or illusion",
+        "One tactic is too hard to remember",
+        "Routines remove the need for effort"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Different parts of the routine do different jobs.",
+        "direct": "The synthesis is strong because each mechanism catches a separate failure mode in learning.",
+        "competitive": "Every tool hunts its own lie, and the build brings the whole crew."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "What does it mean to make learning stick according to the final chapter?",
+      "choices": [
+        "To wait for the right mood before studying",
+        "To use the most comfortable tactic repeatedly",
+        "To build a routine that retrieves, spaces, mixes, checks, and repairs over time"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter defines durability through repeated honest practice in a system.",
+        "direct": "Learning sticks when the methods recur together as habit, not just as isolated advice.",
+        "competitive": "Build the machine and keep it running."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is the main job of \"research, but not too much\" in Chapter 3?",
+      "choices": [
+        "To stop preparation from growing into a substitute for practice",
+        "To prove that beginners should avoid study whenever possible",
+        "To show that speed matters more than understanding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter still wants orientation and useful learning. It only limits research when research starts replacing the next attempt.",
+        "direct": "Bounded research is an anti-delay rule, not an anti-learning rule.",
+        "competitive": "The point is to keep study from becoming a smarter stall."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why does the chapter pair \"jump in\" with bounded research?",
+      "choices": [
+        "Because practice should always begin before any preparation",
+        "Because direct contact reveals which unanswered questions are actually real",
+        "Because frustration is the fastest teacher in every situation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the learner to start once the basics are sufficient, then let real attempts show what more needs to be learned.",
+        "direct": "Contact with the skill acts like a diagnostic filter on future learning.",
+        "competitive": "Reality exposes the true gaps faster than another abstract loop usually can."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What do mental models, hooks, predictions, and tests have in common in the chapter's logic?",
+      "choices": [
+        "They make learning active enough to organize, retrieve, and apply",
+        "They eliminate the need for direct practice once they are in place",
+        "They are mainly useful for highly academic skills, not practical ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "These tools help information stick and then check whether it can actually be used.",
+        "direct": "The chapter values them because they reduce passive familiarity and increase usable recall or application.",
+        "competitive": "They force knowledge to survive contact instead of hiding inside recognition."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Rosa keeps reading background material for a class presentation even though she already knows enough to draft an opening. What response best fits Chapter 3?",
+      "choices": [
+        "Keep collecting background because more information always improves the first attempt",
+        "Start the draft and let the weak spots in the draft decide what to study next",
+        "Wait until she feels fully confident before turning reading into writing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The draft would show Rosa which gaps are real instead of letting her guess forever from outside the task.",
+        "direct": "Chapter 3 would move her into contact once the preparation is sufficient to produce evidence.",
+        "competitive": "She needs better problems, not more respectable postponement."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "What mistake is the chapter trying to prevent with predictions and tests?",
+      "choices": [
+        "Treating any checklist as a sign of weak understanding",
+        "Confusing passive familiarity from review with usable understanding",
+        "Assuming practitioner advice is always more valuable than personal effort"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A concept can feel familiar during review without being ready for recall or use. Testing reveals the difference.",
+        "direct": "Predictions and tests stop recognition from pretending to be competence.",
+        "competitive": "They catch the lie before comfort hardens into false confidence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "How does the chapter treat checklists and scaffolds?",
+      "choices": [
+        "As permanent substitutes for deep understanding",
+        "As temporary supports that should make early reps less confusing and more possible",
+        "As tools that mostly matter after the learner has already stabilized the skill"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter likes supports when they help the learner act, not when they become another thing to manage forever.",
+        "direct": "A scaffold is legitimate while it reduces overload and improves live performance during unstable early reps.",
+        "competitive": "Support should launch the rep, not become the new bunker."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Ethan watches many art videos but produces very few sketches. Which diagnosis best fits the chapter?",
+      "choices": [
+        "He is wisely building a broad foundation before any real practice",
+        "He has let instruction stay detached from retrieval, testing, and direct action",
+        "He should stop learning from others and rely only on instinct"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The videos are not the issue by themselves. The issue is that the learning never gets tested in the skill.",
+        "direct": "Chapter 3 objects when study grows without producing contact, correction, or evidence.",
+        "competitive": "He built a theory room and left the hand unemployed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Why do eliminating distractions and honoring your biology belong in this chapter?",
+      "choices": [
+        "Because the book claims tired people should never study or practice",
+        "Because attention quality changes how much learning can actually be retained and used",
+        "Because the chapter is mainly about lifestyle optimization rather than skill learning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The point is not perfection. The point is that distracted or exhausted attention often learns less than it pretends to.",
+        "direct": "Chapter 3 treats focus and timing as part of learning quality, not as side issues.",
+        "competitive": "A foggy hour can still be a weak hour, no matter how disciplined it looks."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "When does preparation cross into elegant delay according to the chapter's hardest logic?",
+      "choices": [
+        "When it improves the next attempt but still feels slow",
+        "When it becomes a polished activity of its own without making the next rep better or sooner",
+        "When it includes practitioner advice or simple mental models"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not judge preparation by how neat or serious it looks. It judges it by what it changes in practice.",
+        "direct": "Preparation becomes delay when it stops raising rep quality, reducing confusion, or speeding correction.",
+        "competitive": "If the rep does not gain, the prep has gone counterfeit."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "If Chapter 3 disciplines learning so it stays subordinate to practice, what is the most natural bridge into Chapter 4?",
+      "choices": [
+        "How these rules behave when applied inside a real embodied skill like yoga",
+        "How to replace all practice with better note-taking and recall systems",
+        "How to prove that research is unnecessary once a learner has motivation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next logical move is to see how bounded learning and live correction work inside a concrete skill chapter.",
+        "direct": "Chapter 4 can test whether these principles still hold when the learner must use them in physical practice rather than only discussing them abstractly.",
+        "competitive": "The rules now have to survive the mat, not just the notebook."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

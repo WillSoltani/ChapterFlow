@@ -191,6 +191,12 @@ class ChapterFlowFrontendStack extends cdk.Stack {
                 `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter/*`,
             ],
         }));
+        // SES access — notification emails
+        lambdaRole.addToPolicy(new iam.PolicyStatement({
+            sid: "SesSendAccess",
+            actions: ["ses:SendEmail", "sesv2:SendEmail"],
+            resources: ["*"],
+        }));
         // SQS access — revalidation queue
         lambdaRole.addToPolicy(new iam.PolicyStatement({
             sid: "RevalidationQueueAccess",

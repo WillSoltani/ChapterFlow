@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch04",
+  "chapterNumber": 4,
+  "chapterTitle": "Abandon Blame",
+  "bookId": "difficult-conversations",
+  "runId": "20260406-01",
+  "provenanceNote": "All content original paraphrase. No verbatim text from published book. All scenarios invented fresh.",
+  "frameworks": [
+    {
+      "termId": "blame-vs-contribution",
+      "term": "Blame vs. Contribution",
+      "definition": "Blame looks backward for who deserves punishment, apology, or moral defeat. Contribution looks forward for what each person is doing that keeps the pattern going and what could change starting now.",
+      "introducedInChapter": 4
+    },
+    {
+      "termId": "four-contribution-types",
+      "term": "Four Contribution Types",
+      "definition": "The recurring contribution patterns named here are avoiding until now, being unapproachable, style intersections, and problematic role assumptions. Each tends to be invisible from inside the role.",
+      "introducedInChapter": 4
+    },
+    {
+      "termId": "contribution-system",
+      "term": "Contribution System",
+      "definition": "The problem is often not one villain but a system of roles and reactions that keeps reproducing the same outcome. The system is the target of change.",
+      "introducedInChapter": 4
+    },
+    {
+      "termId": "unequal-contributions",
+      "term": "Unequal Contributions",
+      "definition": "Contribution mapping does not imply equal fault. Situations can be 90/10 or 70/30, and naming your smaller contribution still matters because it identifies what you can change directly.",
+      "introducedInChapter": 4
+    }
+  ],
+  "anchors": [
+    {
+      "anchorId": "anchor-1",
+      "label": "Remote employee and manager cycle",
+      "description": "Dara has gone increasingly silent in check-ins and Thursday standups, while Felix has responded by adding oversight, questions, and extra one-on-ones.",
+      "friction": "Each person's escalation confirms the other's original story and deepens the cycle.",
+      "consequence": "Three months later the pattern is worse, and neither person has named their own contribution."
+    },
+    {
+      "anchorId": "anchor-2",
+      "label": "Sibling holiday logistics pattern",
+      "description": "Marta keeps carrying all holiday planning and raises it as a complaint; Sione keeps defending the current arrangement and benefiting from her competence.",
+      "friction": "Marta's competence and Sione's avoidance lock both into roles neither explicitly chose.",
+      "consequence": "A decade-long pattern survives because each sees only the other's role."
+    },
+    {
+      "anchorId": "anchor-3",
+      "label": "Co-worker handoff style intersection",
+      "description": "Yemi works fast and rough; Kwame works slow and comprehensive. Neither has named the expectation mismatch.",
+      "friction": "Two non-wrong work styles combine into a predictable conflict each reads as the other person's flaw.",
+      "consequence": "Both now want reassignment instead of diagnosing the style intersection."
+    }
+  ],
+  "limits": [
+    "Contribution mapping is not a claim of equal responsibility; flattening asymmetry is its own distortion.",
+    "In high-power or high-harm contexts, asking the less-powerful party for their contribution can be used to deflect accountability from the more powerful party.",
+    "Naming the contribution of avoiding until now should not be used to reassign fault to the person who had less safety to raise the issue earlier."
+  ],
+  "unsupportedZones": [
+    "Legal or HR determinations of fault",
+    "Management or mediation techniques beyond the contribution frame",
+    "Identity conversation mechanics from Ch06",
+    "Listening or expression scripts from later chapters"
+  ],
+  "nameledger": {
+    "primary": [
+      "Dara",
+      "Felix",
+      "Marta",
+      "Sione",
+      "Yemi",
+      "Kwame",
+      "Isabel",
+      "Nola",
+      "Dani",
+      "Sage"
+    ],
+    "secondary": [
+      "Professor Chen",
+      "Remy"
+    ],
+    "banned": [
+      "Naomi",
+      "Derek",
+      "Aaliyah",
+      "Professor Okafor",
+      "Carmen",
+      "Miguel",
+      "Samir",
+      "Kezia",
+      "Theo",
+      "Jordan",
+      "Leila",
+      "Sasha",
+      "Reza",
+      "Yuki",
+      "Ananya",
+      "Nneka",
+      "Omar",
+      "Fatima",
+      "Dev",
+      "Bram",
+      "Yara",
+      "Elan",
+      "Professor Reyes",
+      "Tomás",
+      "Andre",
+      "Kai",
+      "Miriam",
+      "Rodrigo",
+      "Soleil",
+      "Hayden",
+      "Lars",
+      "Brianna",
+      "Adaeze",
+      "Celia",
+      "Professor Nkosi",
+      "Bex",
+      "Maya",
+      "Priya",
+      "Marcus",
+      "Elena"
+    ]
+  },
+  "scenarioAssets": [
+    {
+      "scenarioIndex": 1,
+      "format": "decision_point",
+      "category": "work",
+      "endingType": "decision_reframe",
+      "primaryName": "Dara",
+      "secondaryName": "Felix"
+    },
+    {
+      "scenarioIndex": 2,
+      "format": "postmortem",
+      "category": "school",
+      "endingType": "hidden_cost",
+      "primaryName": "Isabel",
+      "secondaryName": "Nola"
+    },
+    {
+      "scenarioIndex": 3,
+      "format": "dialogue",
+      "category": "personal",
+      "endingType": "relationship_turn",
+      "primaryName": "Marta",
+      "secondaryName": "Sione"
+    },
+    {
+      "scenarioIndex": 4,
+      "format": "predict_reveal",
+      "category": "work",
+      "endingType": "broader_principle",
+      "primaryName": "Yemi",
+      "secondaryName": "Kwame"
+    },
+    {
+      "scenarioIndex": 5,
+      "format": "dilemma",
+      "category": "school",
+      "endingType": "self_diagnosis",
+      "primaryName": "Dani",
+      "secondaryName": "Professor Chen"
+    },
+    {
+      "scenarioIndex": 6,
+      "format": "before_after",
+      "category": "personal",
+      "endingType": "behavior_shift",
+      "primaryName": "Sage",
+      "secondaryName": "Remy"
+    }
+  ]
+}

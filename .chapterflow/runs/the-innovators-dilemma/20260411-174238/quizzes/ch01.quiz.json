@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "Which choice best captures sustaining innovation in this chapter's logic?",
+      "choices": [
+        "Improving a product along dimensions current customers already value",
+        "Launching a weaker product into a neglected segment on purpose",
+        "Ignoring profitable buyers to protect future flexibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Sustaining innovation means making the existing product better for the customers the firm already serves well.",
+        "direct": "Sustaining innovation follows the current market's idea of improvement rather than changing the contest first.",
+        "competitive": "The firm keeps climbing the scorecard its best buyers already respect."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does Christensen lean so heavily on the hard disk drive industry at the start?",
+      "choices": [
+        "Because it is the only industry where disruption ever occurred",
+        "Because rapid product generations make leadership turnover easy to observe",
+        "Because the chapter needs a market where customers never change their minds"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The industry changes quickly enough that patterns of rise and decline become visible in a compressed form.",
+        "direct": "Fast generational change makes repeated leadership handoffs easier to see, which strengthens the structural argument.",
+        "competitive": "Disk drives let Christensen show failure under pressure instead of asking you to trust one slow anecdote."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A manager says, \"Our best customers do not want this weaker product, so we should ignore it.\" What is the chapter's strongest response?",
+      "choices": [
+        "Best customers are usually bad sources of feedback",
+        "A weak-looking product can still matter if it fits another market first",
+        "Any new technology deserves funding whether customers want it or not"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reject customer feedback. It warns that current top buyers may not reveal the value of a product aimed at a different segment.",
+        "direct": "The product may be weak in the core market and still viable in another one, which is why dismissal can be strategically early.",
+        "competitive": "Weak to your best buyers is not the same thing as harmless."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Elena's premium clients keep asking for advanced features, while a stripped-down tool is gaining traction with smaller buyers. Which move best fits Chapter 1?",
+      "choices": [
+        "Judge the simpler tool only by the premium clients' standards",
+        "Assume the smaller buyers are irrelevant until revenue matches the core business",
+        "Examine whether the simpler tool is serving a different market that could improve upward"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Elena should ask what job the simpler tool already does well before deciding it is strategically unimportant.",
+        "direct": "The chapter's logic says a lower-end foothold can matter even when the core market dismisses it.",
+        "competitive": "The right move is to test the climb, not worship the current podium."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which statement best explains why incumbents often miss disruption?",
+      "choices": [
+        "They stop improving existing products once they reach market leadership",
+        "They fund what current profitable demand rewards and underweight weak-looking emerging markets",
+        "They usually refuse to invest in technology at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's trap is not inactivity. It is coherent investment inside the current business.",
+        "direct": "Incumbents keep allocating resources toward sustaining improvements because that is where present demand and margin live.",
+        "competitive": "They are not asleep. They are busy feeding the wrong horizon."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "What is the chapter's limit on the phrase \"listen to your customers\"?",
+      "choices": [
+        "It is useless advice because customers rarely know what they want",
+        "It works only for low-end entrants, not for established firms",
+        "It helps inside the current market but may not reveal where a new market is forming"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Customer listening still matters, but it mainly clarifies the present business rather than the whole future.",
+        "direct": "The chapter complicates, rather than rejects, customer focus. Current buyers illuminate current demand most clearly.",
+        "competitive": "Your best customers tell you how to win today's game, not automatically where the game will move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "In a robotics lab, the team keeps polishing the advanced bot that judges admire while ignoring a clunky beginner-friendly design. Which reading matches Christensen's argument?",
+      "choices": [
+        "The beginner design may matter if it opens a different path of use and improvement",
+        "The advanced bot is always the right choice because it wins by the highest standard",
+        "The team should stop serving skilled users entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A rough design can still be strategically meaningful if it fits users the polished version does not serve well.",
+        "direct": "The chapter asks whether the team is judging both options by one inherited standard when the markets may differ.",
+        "competitive": "The ugly prototype can still be the live threat if it owns a lane the polished bot ignores."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Sofia keeps upgrading a planning system that looks impressive but is hard to use, while a plain notebook routine actually works. Which principle is closest to Chapter 1?",
+      "choices": [
+        "A stronger-looking option can lose if it no longer fits the job that matters",
+        "Simple tools always outperform advanced tools",
+        "Personal systems should never change once they work once"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's idea is about fit, not glamour. A polished option can still miss the demand that counts.",
+        "direct": "The notebook wins because it serves the real context better, even if it looks weaker by prestige standards.",
+        "competitive": "If the fancy system flatters the ego and fails the job, it is losing the real contest."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Why is Chapter 1 more unsettling than a simple \"adapt faster\" lesson?",
+      "choices": [
+        "Because it argues that firms fail mainly when they stop listening to customers",
+        "Because it shows that disciplined short-run logic can itself generate long-run blindness",
+        "Because it claims every lower-end product becomes a winner"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is unsettling because the failure grows out of behavior that looks sensible in the present.",
+        "direct": "Christensen's argument bites harder than a speed lesson. The firm's discipline can reinforce the frame that makes it late.",
+        "competitive": "The danger is not slow reaction by itself. The danger is polished reasoning inside a shrinking horizon."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If incumbents are often acting rationally when they miss disruption, what question naturally pushes into the next chapter?",
+      "choices": [
+        "Which market logic makes some innovations look worthwhile and others look trivial?",
+        "How can firms force customers to want lower-end products sooner?",
+        "Why do engineers prefer disruptive technologies over sustaining ones?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next step is to ask what market lens is guiding these judgments in the first place.",
+        "direct": "Chapter 2 naturally follows by explaining the structure that makes incumbent choices feel reasonable from the inside.",
+        "competitive": "Once you accept the leaders are not irrational, you have to ask what frame is training their rationality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

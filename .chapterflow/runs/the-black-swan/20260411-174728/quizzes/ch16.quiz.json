@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why is randomness often misread in Chapter 16?",
+      "choices": [
+        "Because order feels more attractive than noise.",
+        "Because randomness has no effects.",
+        "Because all patterns are false."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is highlighting aesthetic attraction.",
+        "direct": "Smooth order feels better than rough noise.",
+        "competitive": "Beauty gets a head start."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does the mind do to noise here?",
+      "choices": [
+        "It beautifies it into pattern and story.",
+        "It ignores all shape.",
+        "It becomes perfectly objective."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Pattern-hunger is doing the work.",
+        "direct": "The mind styles chance into coherence too quickly.",
+        "competitive": "Accident gets overdressed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why can weak models survive after poor fit?",
+      "choices": [
+        "Because elegance and familiarity keep them attractive.",
+        "Because truth no longer matters.",
+        "Because randomness disappears."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Beauty can shelter bad fit.",
+        "direct": "The model may remain easy to admire, teach, and defend.",
+        "competitive": "Grace slows eviction."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A team trusts the cleaner chart even though the underlying record is messy. What fits best?",
+      "choices": [
+        "Aesthetic attraction sheltering weak inference.",
+        "Proof that cleanliness equals truth.",
+        "The end of randomness."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chart is winning partly on style.",
+        "direct": "Taleb is attacking this aesthetic subsidy.",
+        "competitive": "The outfit is persuading."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is this chapter more than a generic bias list?",
+      "choices": [
+        "Because it focuses on beauty, taste, and the social advantage of smooth form.",
+        "Because it denies psychology.",
+        "Because it ignores randomness."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is after sensibility, not a checklist of quirks.",
+        "direct": "The problem is aesthetic as well as analytic.",
+        "competitive": "Taste is in the dock."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How can taste become infrastructure for error?",
+      "choices": [
+        "By giving false order a credibility subsidy before analysis starts.",
+        "By removing all interpretation.",
+        "By making noise beautiful to everyone."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Beauty can pre-sort what feels trustworthy.",
+        "direct": "Aesthetic preference helps weak models survive.",
+        "competitive": "The red carpet goes down early."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student turns a few noisy score swings into a story of destiny. What is Taleb pushing back against?",
+      "choices": [
+        "Beautifying randomness into pattern.",
+        "The use of evidence.",
+        "The existence of trends."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Pattern-hunger is styling the record too quickly.",
+        "direct": "Noise is being given an unearned plotline.",
+        "competitive": "The dots got cast too soon."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 16 prepare Chapter 17?",
+      "choices": [
+        "It shows why neat curves and summaries get welcomed into places they do not belong.",
+        "It proves aesthetics never matter.",
+        "It ends the argument about statistics."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taste makes technical trespass easier.",
+        "direct": "The next chapter will expose curves in the wrong places.",
+        "competitive": "The eye lays the carpet first."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures Taleb here?",
+      "choices": [
+        "Noise is socially overdressed.",
+        "False form arrives socially overdressed.",
+        "Beauty never matters."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This captures the aesthetic subsidy behind false order.",
+        "direct": "A beautiful shape can gain trust too early.",
+        "competitive": "Form is arriving in evening wear."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the chapter's deeper claim?",
+      "choices": [
+        "Randomness loses both to weak reasoning and to stronger taste for order.",
+        "All patterns are equally false.",
+        "Elegance is always dishonest."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is widening the account of error.",
+        "direct": "Taste and analysis can cooperate against noisy truth.",
+        "competitive": "The eye becomes an accomplice."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

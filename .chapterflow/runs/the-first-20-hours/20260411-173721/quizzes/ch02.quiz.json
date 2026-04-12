@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "Why does Chapter 2 put lovable project next to one skill at a time?",
+      "choices": [
+        "Because emotional pull and narrow scope both protect the learner's return to practice",
+        "Because the chapter wants learners to sample many small hobbies at once",
+        "Because motivation matters only after the skill is mostly mastered"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The project has to matter enough to revisit, but it also has to stay small enough for repetition to compound.",
+        "direct": "The pair works together: interest keeps the loop alive, and scope control keeps the loop from fragmenting.",
+        "competitive": "Desire gets you back. Narrowing stops the session from leaking everywhere."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "What job does target performance level do in the chapter's method?",
+      "choices": [
+        "It gives the learner a visible threshold that tells practice what to serve",
+        "It replaces the need for deconstruction and feedback",
+        "It proves that long sessions are no longer necessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A clear performance line shows what usable success would look like and helps the learner choose what to practice first.",
+        "direct": "The target level creates selection pressure. It turns a broad dream into a nearer functional standard.",
+        "competitive": "Without the line, every subskill keeps stealing time."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "Which move best reflects the chapter's view of deconstruction?",
+      "choices": [
+        "Breaking the skill into parts so the most important parts can receive early reps",
+        "Studying every subskill equally to avoid blind spots",
+        "Delaying practice until the full map of the skill is complete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values deconstruction because it helps the learner isolate what matters now.",
+        "direct": "Breaking the skill down is useful only when it directs repetition toward the critical few elements.",
+        "competitive": "Deconstruction earns its keep when it creates sharper reps, not larger diagrams."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Priya keeps practicing her entire robotics competition at once and leaves each session scattered. What response best fits Chapter 2?",
+      "choices": [
+        "Keep broad practice for motivation and trust that repetition will sort it out later",
+        "Choose one visible subskill and repeat it against a clear threshold tonight",
+        "Pause practice until the team agrees on the perfect season-long training plan"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would narrow the target so repetition can finally compound on one trainable piece.",
+        "direct": "One-skill focus plus a visible performance line is the right correction to scattered effort.",
+        "competitive": "She needs one rep lane, not a bigger fantasy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "What is the strongest reason the chapter cares about barriers to practice?",
+      "choices": [
+        "They determine how often the learner actually reaches the first rep",
+        "They prove whether the learner truly wants the skill badly enough",
+        "They make it easier to justify buying better tools"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Small bits of friction often decide whether practice happens at all.",
+        "direct": "Barrier removal matters because entry cost controls return frequency.",
+        "competitive": "Setup friction is one of the quietest ways to starve a project."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "The chapter warns that speed can backfire. When does that happen?",
+      "choices": [
+        "When the learner moves quickly enough to stay emotionally engaged",
+        "When faster cycles happen without useful feedback to correct the next attempt",
+        "When the learner uses short sessions instead of long sessions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Faster reps help only when the learner gets enough signal to improve the next one.",
+        "direct": "Speed without correction can automate error instead of building competence.",
+        "competitive": "Fast mistakes are still mistakes if the loop never teaches."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Luis thinks only two-hour weekend coding blocks will move him forward. Chapter 2 would most likely say what?",
+      "choices": [
+        "Shorter weekday bursts are stronger if they produce more corrected attempts",
+        "Weekend marathons are always superior because they feel more serious",
+        "He should stop coding until he has more uninterrupted time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values session design by what increases return frequency and useful feedback, not by what looks impressive.",
+        "direct": "If shorter bursts create denser, feedback-rich reps, they are the better loop.",
+        "competitive": "Heroic duration loses to repeatable correction."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Owen keeps improving his guitar setup but rarely plays. Which diagnosis best fits the chapter?",
+      "choices": [
+        "He is wisely building motivation through better tools",
+        "He has confused barrier removal with readiness theater and is not shortening the path to the next rep",
+        "He should add more planning so the setup becomes fully optimized"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter supports preparation only when it makes practice easier to begin right away.",
+        "direct": "Useful setup lowers entry cost. Owen's behavior is drifting into preparation that feels serious without increasing contact.",
+        "competitive": "His discipline costume is hiding empty hands."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "When does a clean practice system become setup theater according to the chapter's hardest warning?",
+      "choices": [
+        "When the learner uses timers, checklists, and tools to support real repetition",
+        "When the structure looks organized but does not increase dense, informed attempts at the right subskill",
+        "When the learner focuses on one skill instead of many"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's real test is not whether the system looks good. It is whether the loop is producing more useful contact with the skill.",
+        "direct": "Preparation crosses into theater when it improves the appearance of seriousness without tightening the rep-and-feedback loop.",
+        "competitive": "If the reps stay thin, the machine is fake."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If Chapter 2 explains how to tighten the rep loop, what is the most natural next question for Chapter 3?",
+      "choices": [
+        "How much pre-practice learning helps the loop before it turns into delay?",
+        "How can a learner remove all frustration from practice?",
+        "How can a learner skip deconstruction and go straight to speed?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the loop is designed, the reader still needs to know how much study strengthens it without replacing action.",
+        "direct": "Chapter 2 raises the preparation boundary problem. Chapter 3 logically asks where useful learning ends and research mode begins.",
+        "competitive": "The next fight is against elegant delay, not against structure."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

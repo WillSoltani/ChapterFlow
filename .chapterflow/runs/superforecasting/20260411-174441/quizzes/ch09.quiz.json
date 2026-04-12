@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What makes a team a superteam in Chapter 9?",
+      "choices": [
+        "Fast agreement",
+        "Preserved disagreement that improves the forecast",
+        "Maximum harmony"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the team advantage comes from keeping disagreement useful.",
+        "direct": "Superteams preserve difference long enough to sharpen the estimate.",
+        "competitive": "The edge comes from productive friction, not from looking aligned."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter reject harmony as a full explanation of team strength?",
+      "choices": [
+        "Because harmony can coexist with weak judgment",
+        "Because conflict is always better than trust",
+        "Because large teams should never agree"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A calm room can still be thinking badly.",
+        "direct": "Smooth interaction is not enough when dissent has vanished.",
+        "competitive": "Social ease can hide intellectual softness."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the central team-level danger in this chapter?",
+      "choices": [
+        "Overplanning",
+        "Groupthink",
+        "Numeracy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter centers on the risk that consensus pressure weakens judgment.",
+        "direct": "Groupthink is the failure mode that makes smart rooms think worse.",
+        "competitive": "It is the moment calm starts beating truth."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Rina notices the room is agreeing quickly before the strongest objection has surfaced. What would Chapter 9 push her to do?",
+      "choices": [
+        "Protect the calm by staying silent",
+        "Surface the missing objection before closure",
+        "Assume quick agreement proves the team is strong"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors challenge before premature closure.",
+        "direct": "Choice B matches the demand to keep dissent operational.",
+        "competitive": "Break the false calm before it hardens into a polished mistake."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What trap does Chapter 9 set between collaboration and conformity?",
+      "choices": [
+        "Teams should avoid all disagreement",
+        "Teams can look collaborative while suppressing challenge",
+        "Collaboration always weakens forecasting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A group can seem cooperative while still making itself less honest.",
+        "direct": "The chapter warns that collaboration can slide into consensus pressure.",
+        "competitive": "The room can perform teamwork while quietly killing truth."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a postmortem, Omar finds that one teammate raised a concern early but the group ignored it. What lesson fits Chapter 9?",
+      "choices": [
+        "The team lacked enough members",
+        "Suppressed pushback weakened the forecast",
+        "Early objections should be discouraged to save time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem was not only the final miss but the way challenge got filtered out.",
+        "direct": "Choice B identifies the chapter's warning about dissent becoming too easy to ignore.",
+        "competitive": "The room priced the warning too low and bought a worse miss later."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does psychologically safe pushback matter to forecasting?",
+      "choices": [
+        "It removes the need for final decisions",
+        "It keeps correction socially possible",
+        "It ensures everyone feels equally confident"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The group needs enough trust for honest challenge to happen.",
+        "direct": "Pushback matters because correction has to remain socially available.",
+        "competitive": "Challenge must stay legal if the room is going to stay smart."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Yara worries that raising a reservation will make the group tense. What response best fits Chapter 9?",
+      "choices": [
+        "Treat the reservation as part of the team's forecasting work",
+        "Stay silent so the team remains unified",
+        "Wait until after the decision to mention it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats useful dissent as part of real teamwork.",
+        "direct": "It asks the forecaster to see the reservation as signal, not as disloyalty.",
+        "competitive": "Spend the comfort now before the room spends accuracy later."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does aggregation matter more than premature agreement?",
+      "choices": [
+        "Because it keeps different views alive long enough to improve the estimate",
+        "Because teams should avoid ever settling on one forecast",
+        "Because disagreement is valuable only when it stays unresolved"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team advantage comes from combining multiple views intelligently.",
+        "direct": "The chapter says the estimate gets stronger when differences survive before being merged.",
+        "competitive": "The room gets edge only if it does not liquidate difference too early."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 9 shows that good teams need dissent, what question does it naturally raise next?",
+      "choices": [
+        "Why teams should stop using leaders",
+        "How a leader should use dissent without crushing it",
+        "Why individual forecasts no longer matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge points toward leadership under uncertainty.",
+        "direct": "The next chapter asks what leaders should do with valuable challenge inside teams.",
+        "competitive": "Once dissent matters, the next problem is how command stops killing it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

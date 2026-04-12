@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What does Chapter 9 claim about organizational capabilities?",
+      "choices": [
+        "They are context-bound rather than universally transferable",
+        "They always improve as firms get older",
+        "They matter less than market size"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A capability only counts as a strength in the right setting.",
+        "direct": "The chapter defines capability relative to a task and market.",
+        "competitive": "A strength means nothing until the road is named."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Why can a strong routine become a disability in a new market?",
+      "choices": [
+        "Because all routines are harmful during disruption",
+        "Because a process built for one task may misfit a different one",
+        "Because new markets eliminate the need for discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The routine may still be strong, but for the wrong context.",
+        "direct": "A capability can reverse when the task and market change.",
+        "competitive": "The old win can become the new jam."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "What is the main appraisal question Chapter 9 wants managers to ask?",
+      "choices": [
+        "Whether the organization's strengths fit the current task",
+        "Whether the organization has the most awards",
+        "Whether routines should be removed entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks about fit, not abstract praise.",
+        "direct": "Managers must ask what the organization is built to do well under present conditions.",
+        "competitive": "Test the machine against the road."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Elena sees that a polished core-business process is slowing the new pilot. What best fits Chapter 9?",
+      "choices": [
+        "Keep the process unchanged because proven excellence always transfers",
+        "Ask whether the routine is a capability for this new task or only for the old one",
+        "Abandon all processes immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The routine may be strong in one setting and harmful in another.",
+        "direct": "Chapter 9 calls for fit-based appraisal rather than blanket trust in old excellence.",
+        "competitive": "Make the old win prove it belongs on this road."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "What makes Chapter 9 more demanding than simple confidence in the organization?",
+      "choices": [
+        "It says organizations should ignore strengths",
+        "It separates being strong overall from being fitted to the new task",
+        "It argues that markets do not matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A company can be strong and still misfit the new work.",
+        "direct": "Excellence in the abstract does not guarantee current organizational fit.",
+        "competitive": "The admired machine can still be the wrong tool."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "What is a misreading of Chapter 9?",
+      "choices": [
+        "Every established routine becomes harmful during disruption",
+        "Capabilities depend on the relationship between strengths and task demands",
+        "A strength can reverse into a disability across contexts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not condemning every routine.",
+        "direct": "It limits organizational strengths by context; it does not say all established processes are bad.",
+        "competitive": "This is not anti-machine theater."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "In a seminar, students wonder whether the habits of the top program fit a very different learner group. What should they reconsider?",
+      "choices": [
+        "Whether those habits are capabilities only in the old context",
+        "Whether high-performing groups should stop using routines",
+        "Whether new learner groups should be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A top habit in one setting may not fit another setting.",
+        "direct": "Chapter 9 asks evaluators to match routines to task context rather than assuming transfer.",
+        "competitive": "Name the road before praising the machine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "Why should Aaron revisit a new opportunity after realizing he trusted old strengths too automatically?",
+      "choices": [
+        "Because admiration is not the same as fit",
+        "Because all old strengths are fake",
+        "Because markets no longer matter once routines are judged"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He needs to ask what the organization is actually built to do well here.",
+        "direct": "The chapter warns against treating proven excellence as universal readiness.",
+        "competitive": "Old medals do not settle current relevance."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Why is Chapter 9 more unsettling than a simple complaint that incumbents are rigid?",
+      "choices": [
+        "Because it shows a genuinely strong organization can still be mismatched to the new task",
+        "Because it argues strength never matters",
+        "Because it says routines should never be repeated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The organization can be excellent and still be the wrong instrument.",
+        "direct": "The chapter's point is about contextual misfit, not simple weakness or stupidity.",
+        "competitive": "The machine can deserve respect and still fail the new road."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "If Chapter 9 appraises organizational fit, what question naturally comes next in Chapter 10?",
+      "choices": [
+        "How strategy should be developed under those organizational conditions",
+        "Why markets should be ignored during strategy",
+        "Why capabilities no longer matter once discovered"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once managers know the organization's strengths and limits, they still need a way to form strategy.",
+        "direct": "The next chapter turns from organizational appraisal to the strategy development process.",
+        "competitive": "After the inspection comes the steering problem."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

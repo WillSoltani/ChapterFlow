@@ -1,0 +1,337 @@
+{
+  "nameUsage": {
+    "Elena": 1,
+    "Marcus": 1,
+    "Priya": 2,
+    "Diego": 1,
+    "Naomi": 1,
+    "Evan": 1,
+    "Jordan": 2,
+    "Professor Liu": 1,
+    "Gloria": 2,
+    "Tessa": 2,
+    "Omar": 2,
+    "Nina": 2,
+    "Lucas": 1,
+    "Farah": 1,
+    "Ben": 1,
+    "Professor Ellis": 1,
+    "Monica": 1,
+    "Ravi": 1,
+    "Helen": 1,
+    "Chris": 1,
+    "Alia": 1,
+    "Dev": 1,
+    "Serena": 1,
+    "Malik": 1,
+    "June": 1,
+    "Theo": 1,
+    "Paula": 1,
+    "Dean Ortiz": 1,
+    "Marnie": 1,
+    "Ross": 1,
+    "Alicia": 1,
+    "Grant": 1,
+    "Carla": 1,
+    "Jin": 1,
+    "Brooke": 1,
+    "Andre": 1,
+    "Mina": 1,
+    "Scott": 1,
+    "Dana": 1,
+    "Professor Shah": 1,
+    "Lila": 1,
+    "Victor": 1,
+    "Rosa": 1,
+    "Ethan": 1,
+    "Lena": 1,
+    "Marcos": 1,
+    "Professor Velasquez": 1,
+    "Imani": 1,
+    "Priyanka": 1,
+    "Caleb": 1,
+    "Joel": 1,
+    "Ruby": 1,
+    "Aaron": 1,
+    "Sonia": 1,
+    "Maya": 1,
+    "Vincent": 1,
+    "Leon": 1,
+    "Professor Ahmed": 1,
+    "Rachel": 1,
+    "Damon": 1,
+    "Elise": 1,
+    "Noah": 1,
+    "Cole": 1
+  },
+  "formatCategoryHistory": [
+    {
+      "chapter": "ch01",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch02",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch03",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch04",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch05",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch06",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    }
+  ],
+  "schoolSettingUsage": {
+    "alumni mixer": 1,
+    "seminar room": 1,
+    "student org office": 1,
+    "advising hallway": 1,
+    "career center": 1,
+    "lab corridor": 1,
+    "office hours corridor": 1,
+    "alumni panel": 1,
+    "faculty reception": 1,
+    "entrepreneurship club": 1,
+    "panel Q&A": 1,
+    "student leadership meeting": 1
+  },
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {
+    "ch01": [
+      "reframing",
+      "comparison",
+      "warning",
+      "test",
+      "tradeoff",
+      "bridge"
+    ],
+    "ch02": [
+      "warning",
+      "reframing",
+      "bridge",
+      "comparison",
+      "tradeoff",
+      "test"
+    ],
+    "ch03": [
+      "comparison",
+      "bridge",
+      "tradeoff",
+      "warning",
+      "reframing",
+      "test"
+    ],
+    "ch04": [
+      "bridge",
+      "warning",
+      "comparison",
+      "tradeoff",
+      "reframing",
+      "test"
+    ],
+    "ch05": [
+      "test",
+      "warning",
+      "comparison",
+      "bridge",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch06": [
+      "warning",
+      "comparison",
+      "reframing",
+      "test",
+      "bridge",
+      "tradeoff"
+    ]
+  },
+  "withinChapterNames": {
+    "ch01": [
+      "Elena",
+      "Marcus",
+      "Priya",
+      "Diego",
+      "Naomi",
+      "Evan",
+      "Jordan",
+      "Professor Liu",
+      "Gloria",
+      "Tessa",
+      "Omar",
+      "Nina"
+    ],
+    "ch02": [
+      "Tessa",
+      "Omar",
+      "Nina",
+      "Lucas",
+      "Farah",
+      "Ben",
+      "Jordan",
+      "Professor Ellis",
+      "Monica",
+      "Ravi",
+      "Helen",
+      "Chris"
+    ],
+    "ch03": [
+      "Alia",
+      "Dev",
+      "Serena",
+      "Malik",
+      "June",
+      "Theo",
+      "Paula",
+      "Dean Ortiz",
+      "Marnie",
+      "Ross",
+      "Alicia",
+      "Grant"
+    ],
+    "ch04": [
+      "Carla",
+      "Jin",
+      "Brooke",
+      "Andre",
+      "Mina",
+      "Scott",
+      "Dana",
+      "Professor Shah",
+      "Lila",
+      "Victor",
+      "Rosa",
+      "Ethan"
+    ],
+    "ch05": [
+      "Lena",
+      "Marcos",
+      "Professor Velasquez",
+      "Imani",
+      "Priyanka",
+      "Caleb",
+      "Joel",
+      "Ruby",
+      "Aaron",
+      "Sonia"
+    ],
+    "ch06": [
+      "Maya",
+      "Vincent",
+      "Leon",
+      "Professor Ahmed",
+      "Priya",
+      "Rachel",
+      "Damon",
+      "Gloria",
+      "Elise",
+      "Noah",
+      "Cole"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "5714c29c495654dd314f41d21a69f37f9b44cc144506ee4c854f36a6208936f4",
+    "ch02": "8a99bba62bf90be8231f47d887f676e253e30861e5d2c1decb20d4162565e478",
+    "ch03": "4225696c1a160b92dca93f95339e5b75d6374749c4ee925da197f5753af95977",
+    "ch04": "ba4983146bc6441bbe9316ed9b781a7893d810813c289c25fc1265d1ea48f207",
+    "ch05": "999081996e436168cf49c42bfe76ac7d5f99ce7cb32ceac8a791589019ccb5c0",
+    "ch06": "3e58c683f106b02579b421d99c327bbd65b8e7597f9514de9662430c9dcb135c"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": 11,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch02": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "floor": {
+      "chapters": [
+        "ch01",
+        "ch02"
+      ],
+      "status": "established"
+    },
+    "ch03": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch04": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch05": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch06": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    }
+  }
+}

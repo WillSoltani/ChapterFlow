@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What problem does Chapter 7 attack first in its Go case study?",
+      "choices": [
+        "The board feels so strategically large that full mastery seems like the only honest entry point",
+        "Go mainly fails because the learner lacks memorized opening sequences",
+        "The game is too repetitive to stay engaging for beginners"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens on strategic vastness and the fear that the whole board must be understood before play can begin.",
+        "direct": "Chapter 7 first rejects the idea that total command is the required starting condition.",
+        "competitive": "The opening enemy is the mastery stall."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Why does pattern recognition matter so much in this chapter?",
+      "choices": [
+        "Because one pattern can replace the need to read local pressure",
+        "Because recurring shapes reduce strategic sprawl enough for the next move to become readable",
+        "Because Go is mostly a game of memorizing decorative board forms"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A pattern helps because it gives the learner something stable to notice inside a very large game.",
+        "direct": "The chapter values patterns as an entry tool, not as a full substitute for judgment.",
+        "competitive": "A real shape makes the next move less blind."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "What role do attack and defense play in Chapter 7's version of Go?",
+      "choices": [
+        "They keep local reading grounded in live pressure instead of empty pattern naming",
+        "They matter only after the learner has mastered the full board",
+        "They mainly serve to make the game feel more dramatic for beginners"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps patterns tied to local pressure where something can still be protected or lost.",
+        "direct": "Attack and defense are what keep recognition from turning into decorative vocabulary.",
+        "competitive": "Pressure is what gives the shape teeth."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Soren says he should wait until the whole board makes sense before playing. What response best fits Chapter 7?",
+      "choices": [
+        "Enter through one smaller local fight and let bounded reading count as honest learning",
+        "Study the full game longer until local uncertainty disappears",
+        "Ignore local pressure entirely and trust pattern memory alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would let one smaller reading count as a real way into the game.",
+        "direct": "This is selective competence in action: a bounded local decision can still be meaningful.",
+        "competitive": "He needs one honest battle, not a god's-eye fantasy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Why does Chapter 7 treat selective competence as legitimate rather than dishonest?",
+      "choices": [
+        "Because total mastery is unnecessary for any serious strategic skill",
+        "Because a partial local reading can still teach and produce a real move",
+        "Because strategy becomes mostly intuitive once one pattern is known"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows a smaller area of real competence because otherwise the game stays too large to enter.",
+        "direct": "Selective competence works when it produces honest bounded decisions without pretending the whole board is owned.",
+        "competitive": "Partial can still be real if the boundary stays honest."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "When does pattern recognition become a trap in this chapter's logic?",
+      "choices": [
+        "When the learner stops reading the actual position because one pattern feels familiar",
+        "When a local fight becomes harder than expected",
+        "When the learner starts using smaller areas of the board to study"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a familiar shape can still produce a bad move if the learner stops paying attention too early.",
+        "direct": "Recognition becomes a trap when it replaces attention instead of sharpening it.",
+        "competitive": "The pattern turns fake when it flatters a lazy read."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "How would Chapter 7 most likely apply to another strategically complex skill?",
+      "choices": [
+        "Find recurring structures, read one smaller contested area honestly, and begin without demanding total mastery first",
+        "Wait for complete clarity because strategic systems punish any bounded entry",
+        "Trust broad intuition and avoid narrow local analysis whenever possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The broader lesson is to enter complexity through a readable smaller area rather than the whole field at once.",
+        "direct": "Chapter 7 generalizes through patterns, local pressure, and disciplined partial competence.",
+        "competitive": "Same rule elsewhere: cut the scale and enter one real fight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "Nadia predicts the attack will settle the local position, but the defense changes the reading. Why is that moment important to the chapter?",
+      "choices": [
+        "It proves that defense is always stronger than attack in Go",
+        "It shows that a known pattern still has to survive real local pressure",
+        "It means pattern recognition should be avoided until much later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values this because recognition must still face the actual pressure of the position.",
+        "direct": "A pattern is useful only when it sharpens reading under live attack and defense rather than replacing it.",
+        "competitive": "The board makes the pattern earn its keep."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "What is the chapter's hardest warning about not needing total mastery?",
+      "choices": [
+        "That the learner can mistake one familiar pattern for full understanding and stop reading too early",
+        "That local fights should always be solved by instinct alone",
+        "That partial competence is mainly useful for avoiding difficult positions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is careful here. Partial competence helps only while it stays humble about what is still unread.",
+        "direct": "The danger is not bounded entry but counterfeit confidence that recognition has already solved the position.",
+        "competitive": "The permission to enter can rot into vanity fast."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "If Chapter 7 enters Go through smaller strategic readings, what is the most natural bridge to Chapter 8?",
+      "choices": [
+        "How the method changes when the next skill is narrowed toward a public-ready musical subset instead of a strategic board",
+        "How strategic reading can replace repetition in all later performance skills",
+        "How Go proves that public performance should be avoided until total mastery arrives"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how the method behaves when the skill is narrowed toward performance rather than local board pressure.",
+        "direct": "Chapter 8 can test whether deliberate narrowing works when the next challenge is a playable musical subset with a public standard.",
+        "competitive": "The next battlefield is not the board. It is the stage-ready slice."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "bookId": "skin-in-the-game",
+  "runId": "20260411-174847",
+  "decisionDate": "2026-04-11",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "userQuestionRequired": false,
+  "decision": {
+    "status": "locked",
+    "chosenEdition": {
+      "label": "Random House Publishing Group first U.S. trade edition family",
+      "canonicalWorkingEdition": {
+        "format": "hardcover",
+        "publisher": "Random House Publishing Group",
+        "publicationDate": "2018-02-27",
+        "pageCount": 304,
+        "isbn13": "9780425284629"
+      },
+      "compatibleEditionFamily": [
+        {
+          "format": "ebook",
+          "publisher": "Random House Publishing Group",
+          "publicationDate": "2018-02-27",
+          "pageCount": 304,
+          "isbn13": "9780425284636"
+        },
+        {
+          "format": "paperback",
+          "publisher": "Random House Trade Paperbacks",
+          "publicationDate": "2020-01-07",
+          "pageCount": 304,
+          "isbn13": "9780425284643"
+        }
+      ]
+    },
+    "reasoning": [
+      "Publisher metadata and Google Books metadata point to the 2018 Random House release as the dominant canonical source family.",
+      "The later 2020 paperback appears to preserve the same work-level chapter structure rather than introducing a revised or abridged chapter map.",
+      "No translation ambiguity exists for this English-language run, and no conflicting chapter-order evidence was found across the consulted sources."
+    ],
+    "contentImpactAssessment": {
+      "materialChapterStructureDifferenceDetected": false,
+      "translationAmbiguityDetected": false,
+      "abridgmentRiskDetected": false
+    }
+  },
+  "evidence": [
+    {
+      "sourceId": "google-books-2018-rh",
+      "usedFor": [
+        "metadata",
+        "contents"
+      ]
+    },
+    {
+      "sourceId": "prh-book-page",
+      "usedFor": [
+        "publisher-controlled edition family",
+        "format comparison"
+      ]
+    },
+    {
+      "sourceId": "richland-library-catalog",
+      "usedFor": [
+        "chapter-map cross-check"
+      ]
+    }
+  ]
+}

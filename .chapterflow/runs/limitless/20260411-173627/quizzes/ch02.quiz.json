@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main distinction between access and understanding?",
+      "choices": [
+        "Access becomes understanding automatically when information is abundant enough",
+        "Access means information is nearby, while understanding means it can be recalled and used",
+        "Access matters only in school, while understanding matters only at work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's core line. Information can be close to you without becoming something your mind can actually use.",
+        "direct": "The chapter separates nearness to information from usable comprehension, recall, and judgment.",
+        "competitive": "Proximity is cheap. Possession has to be earned."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does overload weaken learning in this chapter's logic?",
+      "choices": [
+        "Because people now encounter too many facts for the brain to ever handle",
+        "Because fragmentation keeps attention from staying with ideas long enough to consolidate them",
+        "Because technology has made deep thought impossible for most people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter's concern is not endless doom. It is broken attention that keeps understanding from settling.",
+        "direct": "Fragmentation is the mechanism. Constant interruption weakens comprehension and retention before they can stabilize.",
+        "competitive": "The flood wins by splitting the mind, not by proving thinking is impossible."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A person saves dozens of articles every week but struggles to explain any of them later. Which reading fits the chapter best?",
+      "choices": [
+        "The person has strong learning habits because they keep gathering useful material",
+        "The person is likely mistaking proximity to information for durable understanding",
+        "The person simply needs more information from more sources"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the trap the chapter keeps naming. Saving and seeing can feel productive while recall remains weak.",
+        "direct": "The problem is poor conversion from access to usable knowledge, not lack of available material.",
+        "competitive": "The archive looks stronger than the mind behind it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Ava starts her day with a crowded inbox, three chat channels, and several tabs tied to one project. Which response best matches the chapter?",
+      "choices": [
+        "React to every message first so nothing gets missed",
+        "Pick the few updates that change action before responding to the rest",
+        "Leave all channels open and trust that context switching will keep her flexible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Filtering comes first because abundance helps only when attention can sort it.",
+        "direct": "Ava needs signal selection, not total exposure, if she wants information to become judgment.",
+        "competitive": "The day gets stronger when the flood stops choosing the priorities."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Daniel has pages of lecture notes but cannot explain the material during review. What is the chapter's diagnosis?",
+      "choices": [
+        "He probably lacked motivation but had the right study structure",
+        "He confused note accumulation with actual understanding and recall",
+        "He should stop taking notes because storage is never useful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The notes are not useless, but they are incomplete. The chapter says collection is not the same as learning.",
+        "direct": "Daniel's issue is weak conversion from exposure and storage into comprehension and retrieval.",
+        "competitive": "He built inventory instead of memory."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the strongest correction to the idea that this chapter is just an anti-technology complaint?",
+      "choices": [
+        "It argues that information and tools are useful, but abundance without filtration creates weakness",
+        "It claims that the only solution is to avoid modern tools entirely",
+        "It says distraction is a moral failure caused by weak character"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter's argument is sharper than panic. The issue is weak conversion, not the existence of tools.",
+        "direct": "Information is not treated as the enemy. The danger comes from passive abundance without focus, retention, and filtering.",
+        "competitive": "The villain is not the tool. It is the unfiltered flood."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can more information still lead to shallower understanding, according to the chapter?",
+      "choices": [
+        "Because the brain rejects new ideas after a certain daily limit",
+        "Because more input often increases distraction, weak retention, and poor filtering when those capacities are undertrained",
+        "Because modern knowledge is less valuable than older knowledge"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's hard tension is that abundance helps only if the mind can actually handle it well.",
+        "direct": "More input can still thin understanding when attention, memory, and selection fail to keep pace.",
+        "competitive": "The flood strengthens weak gates only in fantasy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mateo adapts quickly after his team's tools change, while more experienced coworkers struggle. What chapter principle does this best show?",
+      "choices": [
+        "Static expertise always beats learning speed under change",
+        "Adaptation matters more than sheer exposure when the environment keeps shifting",
+        "Changing tools usually has little effect on real performance"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's leverage argument. The advantage goes to the person who can learn and adapt cleanly under change.",
+        "direct": "Adaptive conversion beats passive familiarity once conditions move.",
+        "competitive": "Yesterday's knowledge loses value fast when the ground starts shifting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A student has one evening left before an exam and can either gather more summaries or spend the time recalling the core ideas already in front of them. Why does the chapter favor recall work?",
+      "choices": [
+        "Because reducing inputs is always better than reviewing them",
+        "Because the missing piece is conversion into retention, not more proximity to material",
+        "Because summaries are useful only in professional settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The student already has access. The chapter says the stronger move is turning that access into something the mind can keep and use.",
+        "direct": "Recall work matters because it closes the gap between exposure and usable understanding.",
+        "competitive": "A bigger pile is worthless if the mind cannot deploy it tomorrow."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Chapter 2 widens the stakes from one person's story to a broader condition. What question does that set up next?",
+      "choices": [
+        "How can a reader avoid all modern information sources entirely?",
+        "What kind of brain and mental capacity is actually being asked to handle this pressure?",
+        "Why is motivation less important than memory in every setting?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's urgency naturally points toward understanding the brain that has to handle all this input.",
+        "direct": "Once the environment pressure is clear, the next move is to ask what mental hardware and capacity the reader is working with.",
+        "competitive": "The flood makes one next question unavoidable: what exactly is the hardware being tested?"
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

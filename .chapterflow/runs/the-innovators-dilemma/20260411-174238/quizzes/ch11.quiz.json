@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "What is the final chapter mainly trying to do?",
+      "choices": [
+        "Synthesize the book's recurring innovation dilemmas",
+        "Introduce a brand-new proprietary framework",
+        "Return to one industry case in more detail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter gathers the book's earlier mechanisms into one summary pattern.",
+        "direct": "Its role is synthesis, not a new framework or fresh case chapter.",
+        "competitive": "It closes the loop instead of opening a new system."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "What paradox does the summary preserve about great firms?",
+      "choices": [
+        "They fail only when managers stop caring",
+        "They can fail while following rational incumbent logic",
+        "They always beat disruptors once they notice them"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The book says strong firms can fail even while acting sensibly inside the old business.",
+        "direct": "Rational incumbent behavior can still misfit disruptive change.",
+        "competitive": "The smart old script can still lose."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "Why does the final chapter reject one-cause explanations?",
+      "choices": [
+        "Because disruption always comes from personal laziness",
+        "Because several pressures interact to shape failure and response",
+        "Because the earlier chapters were all unrelated"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The summary says different dilemmas work together.",
+        "direct": "Value networks, market size, structure, capabilities, and strategy process interact.",
+        "competitive": "The trap is linked, not single-piece."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "Sofia's team wants to blame disruption on one cause even though multiple constraints are visible. What best fits Chapter 11?",
+      "choices": [
+        "Widen the diagnosis to the full pattern of dilemmas",
+        "Ignore the other constraints to keep the message simple",
+        "Treat structure, capabilities, and strategy process as irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the honest summary keeps several tensions in view.",
+        "direct": "A one-fix response can fail if the rest of the pattern is still active.",
+        "competitive": "Name the whole trap, not one loud part."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "Which answer best matches the final chapter's view of managerial response?",
+      "choices": [
+        "One universal fix solves disruption once found",
+        "Responses have to fit several interacting constraints",
+        "Managers should stop making strategic choices"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Different parts of the pattern require different kinds of fit.",
+        "direct": "The summary rejects universal cure language because multiple dilemmas interact.",
+        "competitive": "One repair does not free the whole machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "What is a misreading of the book's ending?",
+      "choices": [
+        "Managers fail only because they are foolish",
+        "The book closes with recurring dilemmas rather than certainty",
+        "Several rational pressures can reinforce one another"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The final chapter does not reduce failure to foolishness.",
+        "direct": "It preserves the paradox that competence and failure can coexist.",
+        "competitive": "The villain story is too cheap for this ending."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "In a seminar, students want to end with one rule that explains every chapter. What should they reconsider?",
+      "choices": [
+        "Whether a single rule erases the book's interacting tensions",
+        "Whether the summary should add a new unsupported framework",
+        "Whether rational incumbent failure should be removed from the conclusion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The book's ending is stronger when it keeps the tensions connected.",
+        "direct": "A one-rule summary loses the interaction among the book's mechanisms.",
+        "competitive": "The neat slogan cuts away the trap."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "Why should Aaron rewrite his summary after flattening the book into one cause?",
+      "choices": [
+        "Because the final chapter connects multiple dilemmas into one pattern",
+        "Because the final chapter says details no longer matter",
+        "Because the book ends by rejecting all organizational analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The ending works by pulling several tensions together.",
+        "direct": "His first summary missed the interacting structure of the book's conclusion.",
+        "competitive": "He dropped the hidden links that make the trap real."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "Why is the final chapter more demanding than a simple disruption slogan?",
+      "choices": [
+        "Because it removes all need for managerial judgment",
+        "Because it treats innovation as interacting dilemmas that still require diagnosis and fit",
+        "Because it proves the same response works in every market"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ends with a map of tensions, not a shortcut answer.",
+        "direct": "Its conclusion is harder because several constraints must be judged together rather than reduced to one rule.",
+        "competitive": "No bumper sticker can do the work of this ending."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "What does the final chapter contribute to the book as a whole?",
+      "choices": [
+        "It turns the earlier chapters into a connected summary of recurring innovation dilemmas",
+        "It abandons the earlier mechanisms in favor of a new one",
+        "It narrows the book to only customer dependence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter gathers the whole argument into one closing pattern.",
+        "direct": "It synthesizes the book's mechanisms rather than replacing them.",
+        "competitive": "It closes the circuit instead of rewiring it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -2,9 +2,13 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
+import * as events from "aws-cdk-lib/aws-events";
+import * as targets from "aws-cdk-lib/aws-events-targets";
 import * as iam from "aws-cdk-lib/aws-iam";
+import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as ssm from "aws-cdk-lib/aws-ssm";
+import * as path from "path";
 
 function normalizeCorsOrigin(raw: string): string | null {
   const trimmed = raw.trim();
@@ -333,6 +337,45 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
       alarmDescription: "Alerts when ChapterFlow analytics table experiences throttling.",
     });
+
+    // -------------------------------------------------------------------
+    // Lambda — Reading reminder cron (hourly)
+    // -------------------------------------------------------------------
+
+    // Pre-bundled with esbuild — run before deploying:
+    //   npx esbuild lambda/reading-reminder-cron.ts --bundle --platform=node \
+    //     --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
+    //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
+    //     --external:@aws-sdk/client-sesv2
+    const reminderFn = new lambda.Function(this, "ReadingReminderCron", {
+      functionName: "ChapterFlowReadingReminder",
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "reading-reminder-cron.handler",
+      code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      memorySize: 256,
+      timeout: cdk.Duration.minutes(5),
+      environment: {
+        BOOK_TABLE_NAME: this.appTable.tableName,
+        SES_SENDER_EMAIL: "noreply@chapterflow.siliconx.ca",
+      },
+    });
+
+    this.appTable.grantReadWriteData(reminderFn);
+    reminderFn.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["ses:SendEmail", "sesv2:SendEmail"],
+        resources: ["*"],
+      })
+    );
+
+    new events.Rule(this, "ReminderSchedule", {
+      schedule: events.Schedule.rate(cdk.Duration.hours(1)),
+      targets: [new targets.LambdaFunction(reminderFn)],
+    });
+
+    // -------------------------------------------------------------------
+    // Stack outputs
+    // -------------------------------------------------------------------
 
     new cdk.CfnOutput(this, "BookTableName", { value: this.appTable.tableName });
     new cdk.CfnOutput(this, "BookAnalyticsTableName", {

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What replaces prediction in Chapter 11?",
+      "choices": [
+        "More elaborate prophecy.",
+        "Practical search and noticing.",
+        "Withdrawal from action."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb is not recommending passivity.",
+        "direct": "He wants exploratory contact with reality.",
+        "competitive": "Search beats skyline theater."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Taleb use the bird-poop image?",
+      "choices": [
+        "To mock nature writing.",
+        "To shift attention to traces that reality actually leaves.",
+        "To prove birds are predictable."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The image is practical rather than decorative.",
+        "direct": "Residue can be more actionable than imagined trajectories.",
+        "competitive": "Look at what lands."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes search stronger than fake foresight here?",
+      "choices": [
+        "It creates feedback under opacity.",
+        "It guarantees success.",
+        "It removes uncertainty."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Search can generate signal.",
+        "direct": "Probes reveal the terrain before confidence hardens.",
+        "competitive": "Action buys clues."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A founder runs small tests before making a big market bet. Which idea fits best?",
+      "choices": [
+        "Prediction theater.",
+        "Exploratory contact with reality.",
+        "Cynical indecision."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The founder is using search.",
+        "direct": "Small probes create signal that forecasts alone cannot.",
+        "competitive": "The scout is working."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does optionality matter in this chapter?",
+      "choices": [
+        "It preserves room to respond when a real opening appears.",
+        "It eliminates the need to learn.",
+        "It makes all outcomes equal."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Optionality keeps discovery usable.",
+        "direct": "Room to move matters once the trace shows up.",
+        "competitive": "Slack lets surprise become an asset."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does Taleb keep pragmatism from sliding into cynicism?",
+      "choices": [
+        "By demanding honest humility about what cannot be seen.",
+        "By banning action.",
+        "By praising manipulation."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays anti-cynical.",
+        "direct": "Search is honest contact with reality, not exploitation of fog.",
+        "competitive": "Humility polices the method."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A team reads complaints and anomalies instead of trusting a clean forecast deck. What are they doing?",
+      "choices": [
+        "Letting traces challenge the map.",
+        "Abandoning evidence.",
+        "Making uncertainty disappear."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "They are reading the residue of reality.",
+        "direct": "Messy direct signals are being used to correct polished narratives.",
+        "competitive": "The ground is checking the slides."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 11 prepare Chapter 12?",
+      "choices": [
+        "It proves all expertise is fraud.",
+        "It shifts the question from forecasting to who deserves authority under opacity.",
+        "It ends the book's concern with institutions."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Search posture changes the standard for legitimacy.",
+        "direct": "Once prophets lose status, authority itself gets audited.",
+        "competitive": "The podium comes next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures this chapter?",
+      "choices": [
+        "The sky owes you a map.",
+        "Search honestly before you speak grandly.",
+        "Silence is the only discipline."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb wants active humility.",
+        "direct": "The chapter favors exploratory learning over prestige speech.",
+        "competitive": "Scout first."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the deeper gain of a good probe?",
+      "choices": [
+        "It generates knowledge by touching reality.",
+        "It removes the need for judgment.",
+        "It turns uncertainty into certainty."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A probe is not just a bet.",
+        "direct": "It is a learning move inside opacity.",
+        "competitive": "Contact creates clues."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

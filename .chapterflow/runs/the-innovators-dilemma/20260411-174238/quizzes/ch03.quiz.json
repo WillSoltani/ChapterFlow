@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "Why does Christensen move to the mechanical excavator industry in Chapter 3?",
+      "choices": [
+        "To replace the disruption theory with a new framework",
+        "To test whether the same pattern survives outside disk drives",
+        "To prove every industry changes at the same speed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter checks whether the disruptive pattern repeats in a very different industry.",
+        "direct": "Christensen is stress-testing the theory across industries rather than relying on one famous case.",
+        "competitive": "The argument has to win away from home to stay credible."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "What role do cable-actuated excavators play in the chapter's logic?",
+      "choices": [
+        "They show that incumbents were defending a market that still made sense to serve",
+        "They prove the old technology had no real customers left",
+        "They demonstrate that incumbents never valued performance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Cable machines matter because the old market fit was real, not absurd.",
+        "direct": "The chapter keeps incumbent behavior grounded by showing that the established product still matched mainstream demand.",
+        "competitive": "The old product earned its market, which is why the entrant had to start elsewhere."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What is the main lesson of the hydraulic excavator foothold?",
+      "choices": [
+        "A disruptive technology must beat the mainstream product immediately",
+        "A product can begin in another market where different tradeoffs make it useful enough to improve",
+        "A technology only matters if incumbents have never heard of it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The foothold shows that a product can matter first in another market rather than the mainstream one.",
+        "direct": "Hydraulics illustrate that early usefulness in an alternate network can be enough to keep learning alive.",
+        "competitive": "The first win is not dominance. It is a market where the product gets to breathe."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Devon's company finally built the smaller product, but it still pitches it only to premium buyers who do not want it. Which response fits Chapter 3?",
+      "choices": [
+        "The company has solved the problem because it now owns the technology",
+        "The company should find the market that values the product first instead of forcing the old audience",
+        "The company should abandon the product until premium buyers change their minds"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Owning the product is not enough if the first market for it is still being ignored.",
+        "direct": "Chapter 3 separates technology ownership from commercialization fit, which is why the launch audience matters.",
+        "competitive": "Building the tool means nothing if the wrong crowd still runs the pitch."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Which statement best captures the chapter's harder limit on incumbent response?",
+      "choices": [
+        "Incumbents always lose because they never participate in the new technology",
+        "Incumbents can engage the new technology and still stay late if they commercialize it through the old market's standards",
+        "Incumbents win automatically once they copy the entrant's design"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that response can still be weak if it is shaped by the wrong market logic.",
+        "direct": "Christensen's sharper claim is that engagement with the technology does not guarantee fit with the market that values it first.",
+        "competitive": "Touching the disruption is not the same as launching it in the right world."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "What would be a misreading of Chapter 3?",
+      "choices": [
+        "The chapter shows a repeated structure across industries",
+        "The chapter proves every industry will repeat the same details in the same order",
+        "The chapter strengthens the theory by moving beyond disk drives"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter supports repeated structure, not a rigid script with copied details in every industry.",
+        "direct": "Christensen is arguing for recurrence in mechanism, not identical surface history everywhere.",
+        "competitive": "Same trap is not the same timeline."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "A workshop team dismisses a compact design because it looks weak by the advanced competition standard, even though beginners can use it. What should they examine?",
+      "choices": [
+        "Whether the compact design has a first market with different standards",
+        "Whether all beginner use should be ignored",
+        "Whether the design should be judged only by the highest-status users"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "They should ask whether the design fits a different user group well enough to matter first.",
+        "direct": "The chapter turns this into a foothold question rather than a prestige question.",
+        "competitive": "A different market may be giving the tool life before the elite standard ever will."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Why does Elena misjudge the smaller home-repair tool when she compares it only to heavy-duty tasks?",
+      "choices": [
+        "Because the tool has no real market",
+        "Because she is ignoring the first use case where the tool actually fits",
+        "Because compact tools are always stronger than full-size ones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The tool may be weak for one job and still be right for the use case that first makes it worthwhile.",
+        "direct": "She is applying the old benchmark instead of asking what first market gives the product real value.",
+        "competitive": "She is grading the foothold tool by the crown-jewel task."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why is Chapter 3 stronger than a simple \"here is another example\" move?",
+      "choices": [
+        "Because it proves surface details do not matter at all",
+        "Because it shows the same underlying mechanism recurring in a different industry",
+        "Because it abandons the value-network idea and replaces it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter matters because a repeated mechanism in a different setting strengthens the theory.",
+        "direct": "Christensen is using recurrence across industries to argue that the pattern is structural rather than accidental.",
+        "competitive": "New machinery, same deeper trap. That is what gives the chapter force."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "If Chapter 3 shows footholds forming in neglected markets, what question naturally pushes into Chapter 4?",
+      "choices": [
+        "Why are incumbents so ready to move upward while leaving those lower-end footholds behind?",
+        "Why do entrants always choose construction industries first?",
+        "Why should every incumbent copy every entrant immediately?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next issue is the structural pull that makes incumbents keep rising while footholds grow below.",
+        "direct": "Chapter 4 follows by asking why upmarket movement is attractive and downmarket defense is so hard to justify.",
+        "competitive": "Once the foothold is real, the next question is why the leader keeps clearing space for it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

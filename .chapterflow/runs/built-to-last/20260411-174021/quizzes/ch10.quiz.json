@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What safe ending does the final chapter reject first?",
+      "choices": [
+        "Admiration without application",
+        "Any interest in systems",
+        "All discussion of culture"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects finishing the book with admiration alone while avoiding the work of building anything durable.",
+        "direct": "Its first move is against understanding that never becomes application.",
+        "competitive": "It kills the easy exit of praising the machine from a distance."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How does the chapter say the full book should be understood?",
+      "choices": [
+        "As a set of isolated tricks",
+        "As one integrated design logic",
+        "As a list of great anecdotes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The final chapter says the book adds up to one coherent design for durable institutions.",
+        "direct": "It argues for architecture rather than a pile of separate lessons.",
+        "competitive": "The book becomes a machine, not a slogan shelf."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A reader can explain every concept but has changed no design choices in their own institution. What is the strongest chapter judgment?",
+      "choices": [
+        "The reader may still be at admiration rather than application",
+        "The reader has completed the framework fully",
+        "The reader should now ignore the architecture"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter distinguishes understanding the framework from building by it.",
+        "direct": "Recognition alone is insufficient if no real design responsibility follows.",
+        "competitive": "Knowing the blueprint without using it is still spectator mode."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lydia sees that her company still depends too much on her personal brilliance. Which response best fits the chapter?",
+      "choices": [
+        "Keep solving everything personally because it is faster",
+        "Ask what parts of the architecture still live inside one person instead of the institution",
+        "Stop thinking about systems because the company is growing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter pushes the builder to move from hero dependence toward durable institutional design.",
+        "direct": "It asks Lydia to apply the full framework rather than admire it abstractly.",
+        "competitive": "The machine has to start replacing the founder's centrality."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement best captures why the concepts must be held together?",
+      "choices": [
+        "Because each idea corrects and strengthens the others",
+        "Because only one idea really matters",
+        "Because summary is more important than design"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the framework works because the major ideas reinforce one another.",
+        "direct": "Its architecture depends on interlocking concepts rather than isolated insights.",
+        "competitive": "The machine holds because the parts keep each other honest."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main failure mode for synthesis?",
+      "choices": [
+        "Reducing the framework to recap or slogans",
+        "Having too much architecture",
+        "Keeping any standards at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter fails if it becomes recap only instead of integration and application.",
+        "direct": "Checklist thinking and slogan reduction are the risks it resists.",
+        "competitive": "The machine dies the moment it gets chopped back into poster lines."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A school group admires strong institutions but keeps patching problems one by one. What question best applies the chapter?",
+      "choices": [
+        "What kind of whole architecture is the group failing to build?",
+        "How can the group collect more favorite quotes?",
+        "How can the group avoid all structural thinking?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks the group to move from patchwork and praise toward system design.",
+        "direct": "It would test whether the team's issues are really parts of one underbuilt institution.",
+        "competitive": "Stop chasing symptoms and ask what machine is missing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which sign most strongly suggests that the framework has become application rather than just recognition?",
+      "choices": [
+        "The reader can quote multiple chapters from memory",
+        "The reader is using the full architecture to shape real design choices",
+        "The reader prefers one favorite concept over the others"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Application begins when the integrated framework starts guiding actual institutional design.",
+        "direct": "Real use appears when the architecture shapes choices rather than remaining conceptual knowledge.",
+        "competitive": "The blueprint becomes real the moment it starts costing you decisions."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter say the framework is architectural rather than checklist-like?",
+      "choices": [
+        "Because the concepts operate as mutually reinforcing constraints",
+        "Because checklists are always evil",
+        "Because only culture matters in the end"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The framework is architectural because its parts depend on and correct one another.",
+        "direct": "Each concept solves a structural risk created by the others, which makes the system integrated.",
+        "competitive": "It is a machine because every major piece has a job in controlling another failure mode."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What does the title The End of the Beginning mean in the chapter's logic?",
+      "choices": [
+        "The book is ending before any serious idea appeared",
+        "Conceptual recognition is over and the burden of building begins",
+        "The framework should now be forgotten"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The title means understanding was only the opening phase and application now begins.",
+        "direct": "Recognition closes one stage so real institution-building responsibility can start.",
+        "competitive": "The lecture ends where the builder's cost begins."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "deep"
+    }
+  ]
+}

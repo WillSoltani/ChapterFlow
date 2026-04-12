@@ -1,0 +1,54 @@
+{
+  "bookId": "playing-to-win",
+  "title": "Playing to Win",
+  "author": "A.G. Lafley, Roger L. Martin",
+  "selectionDate": "2026-04-11",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "decision": "auto_lock",
+  "lockedEdition": {
+    "name": "Playing to Win: How Strategy Really Works",
+    "publisher": "Harvard Business Review Press",
+    "publishedDate": "2013-02-05",
+    "publishedYear": 2013,
+    "isbn13": "9781422187395",
+    "language": "English",
+    "translator": "",
+    "format": "hardcover / ebook trade family",
+    "chapterCount": 8,
+    "sectionCount": 0
+  },
+  "rationale": [
+    "The 2013 English-original Harvard Business Review Press edition family is the dominant canonical working text in the official and authorized metadata trail.",
+    "Google Books, O'Reilly authorized preview pages, MIT Bookstore metadata, and the Case Centre chapter catalog all point to the same eight numbered chapters with no material chapter-order divergence.",
+    "No translation or revised-edition ambiguity surfaced that would materially change chapter count, chapter order, or chapter-level interpretation for this run."
+  ],
+  "candidateEditionsReviewed": [
+    {
+      "label": "2013 English original trade family",
+      "status": "selected",
+      "reason": "Strongest combined official, authorized-preview, and metadata support with a stable eight-chapter map."
+    },
+    {
+      "label": "Alternate ebook / library preview variants",
+      "status": "not_selected_separately",
+      "reason": "Useful as authorized-preview support, but they preserve the same chapter structure and do not require a separate lock decision."
+    },
+    {
+      "label": "Translations and later reprints",
+      "status": "not_selected",
+      "reason": "No translated edition was requested, and no material chapter-level divergence was needed for the English run."
+    }
+  ],
+  "sourceIds": [
+    "hbr_book_page",
+    "hbr_free_chapter_landing",
+    "google_books_preview",
+    "oreilly_contents",
+    "mit_bookstore_metadata",
+    "casecentre_catalog"
+  ],
+  "notes": [
+    "Treat the 2013 English trade family as one stable working text family for this run.",
+    "Use paraphrase-first because the frozen bundle is metadata-plus-preview-plus-secondary rather than a full licensed local text."
+  ]
+}

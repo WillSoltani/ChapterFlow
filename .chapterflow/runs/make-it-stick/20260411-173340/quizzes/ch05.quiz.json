@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is an illusion of knowing in this chapter?",
+      "choices": [
+        "A feeling of confidence based on familiarity rather than demonstrated recall",
+        "A refusal to highlight important material",
+        "A belief that delay always hurts memory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses the phrase for confidence that has not survived an honest check.",
+        "direct": "An illusion of knowing appears when familiarity and recognition are mistaken for durable access.",
+        "competitive": "It is swagger borrowed from the cue, not strength earned without it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why can rereading inflate confidence?",
+      "choices": [
+        "Because it removes all value from the material",
+        "Because the answer stays visible while the learner is judging mastery",
+        "Because memory improves too quickly during review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The material looks familiar partly because the page keeps providing support.",
+        "direct": "Cue support remains present during evaluation, so confidence can outrun independent recall.",
+        "competitive": "The page keeps coaching, and the learner mistakes coaching for ownership."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "Why is Priya's closed-book biology explanation useful?",
+      "choices": [
+        "It makes the topic feel more familiar",
+        "It forces the idea to stand on its own without cues",
+        "It guarantees she will never need review again"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The explanation reveals what Priya can really produce without looking.",
+        "direct": "Cue-free explanation separates recognition from genuine retrieval and organization.",
+        "competitive": "The notebook stops lending credit, so the real balance shows up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "What did Elena's onboarding postmortem reveal?",
+      "choices": [
+        "Recognition of the slide deck did not equal recall of the workflow",
+        "The team needed more highlighting",
+        "Immediate fluency always predicts later use"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team recognized the slides but could not bring back the steps once the cues were gone.",
+        "direct": "The postmortem shows how familiarity during review can mislead when later performance requires independent recall.",
+        "competitive": "They knew the screen, not the sequence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "How does the chapter treat highlighting?",
+      "choices": [
+        "As a perfect replacement for testing",
+        "As completely forbidden",
+        "As potentially useful for marking attention but weak for judging mastery"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Highlighting can organize attention, but it is not strong proof that the idea can be recalled later.",
+        "direct": "The chapter criticizes highlighting as a calibration tool, not as a universally useless act.",
+        "competitive": "Color can guide the eye, but it cannot certify the memory by itself."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Why are delayed self-checks especially informative?",
+      "choices": [
+        "They eliminate the need for explanation",
+        "They reduce the false help of recent exposure",
+        "They make every answer easier to remember"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Delay shows what lasted after freshness faded.",
+        "direct": "A later check is more revealing because recency is doing less hidden work.",
+        "competitive": "Once the review heat cools, the bluff has fewer places to hide."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "What should Marcus do before trusting his highlighted page as learned?",
+      "choices": [
+        "Read it once more until it feels smooth",
+        "Explain the argument without looking",
+        "Assume the color coding proves understanding"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Explanation tests whether Marcus can organize the idea without the page in view.",
+        "direct": "The chapter prefers cue-free explanation because it gives a truer reading than marked-up familiarity.",
+        "competitive": "Make the argument walk without the highlighter acting as a crutch."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Why does the next chapter follow this one?",
+      "choices": [
+        "Because calibration solved every learning problem",
+        "Because the book now wants to challenge another tidy but misleading learning story",
+        "Because the book is returning to passive review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "After fixing self-judgment, the book turns to another popular explanation that can mislead learners.",
+        "direct": "Chapter 6 moves from false confidence about knowledge to a broader misconception about how learning should be designed.",
+        "competitive": "One bluff is private confidence. The next bluff is a public theory."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What should confidence answer to according to the chapter?",
+      "choices": [
+        "Whether the material still feels warm and familiar",
+        "Whether the learner can recall, explain, or use it without cues",
+        "Whether the learner spent a long time reviewing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ties certainty to what the learner can actually do.",
+        "direct": "Evidence from honest checks outranks subjective ease or time spent reviewing.",
+        "competitive": "Confidence gets licensed by proof, not by glow."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "What makes a learning check honest here?",
+      "choices": [
+        "It keeps the answer visible so the learner stays calm",
+        "It asks for recognition of highlighted wording only",
+        "It forces the idea to stand on its own through recall, explanation, or transfer"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "An honest check removes some support so the learner has to produce independently.",
+        "direct": "The chapter trusts checks that reveal what survives without visible cues.",
+        "competitive": "If the cue still carries the load, the check is too friendly to tell the truth."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

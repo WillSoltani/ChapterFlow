@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is the chapter's core mechanism behind a small minority setting the default for everyone else?",
+      "choices": [
+        "The minority is usually wealthier than the majority",
+        "The minority refuses violation while the majority can still tolerate the minority-compatible option",
+        "The majority secretly prefers strict rules but is afraid to admit it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The mechanism is asymmetric tolerance. One side cannot bend, while the other side can still live with the stricter-compatible option.",
+        "direct": "Taleb's point is structural, not psychological. The minority wins when violation is unacceptable for them and accommodation remains tolerable for the majority.",
+        "competitive": "The rule is not money or hidden majority desire. It is hard refusal meeting soft flexibility."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does the kosher lemonade example matter so much in this chapter?",
+      "choices": [
+        "It proves most consumers have strong religious commitments they rarely mention",
+        "It shows how a tiny visible certification can let the strict-compatible product become universal because others can still accept it",
+        "It shows that food companies always prefer stricter regulation when they can get it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The kosher mark matters because it reveals the asymmetry cleanly. One drinker needs it. The others can still accept it. That is enough to shift the default.",
+        "direct": "The example isolates the mechanism before the chapter scales it. The producer can simplify around the stricter-compatible option because the flexible side still consumes it.",
+        "competitive": "That tiny symbol is the whole game in miniature: one hard constraint, many easy adapters, one flipped default."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "A team switches all meetings into English because one member cannot work in the local language, while everyone else can use English well enough. How should this be read through the chapter's lens?",
+      "choices": [
+        "As proof that the majority truly prefers English",
+        "As a random courtesy with no deeper pattern",
+        "As an example of a flexible majority adapting to an intransigent constraint"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The switch may still be the right move, but the mechanism is not majority preference. It is asymmetry in who can and cannot bend.",
+        "direct": "The room flips because the local-language track no longer covers the inflexible participant while English still covers the flexible majority. That is minority rule in procedural form.",
+        "competitive": "The meeting did not discover consensus. It optimized around the one person who could not absorb the old default."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Nora is planning a school event menu. One student has a severe peanut allergy, while the rest of the committee could easily eat a peanut-free dessert. What is the cleanest reading of the decision pressure Nora sees?",
+      "choices": [
+        "The allergy-safe option becomes the likely default because it is the only one compatible with everyone in the room",
+        "The committee should ignore the allergy because one person should not matter more than the majority",
+        "The outcome mainly depends on whether the allergic student argues emotionally enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The allergy-safe dessert becomes the universal option because the flexible side can still accept it, while the allergic student cannot safely absorb the peanut option.",
+        "direct": "This is the chapter's mechanism in a school setting. The group is not primarily deciding by taste. It is deciding around asymmetric tolerance.",
+        "competitive": "One hard constraint just took over the menu because everyone else can still eat the strict-compatible option."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Which claim best avoids the chapter's main interpretive trap?",
+      "choices": [
+        "Whenever a minority wins the default, it has morally earned that outcome",
+        "Minority rule describes leverage, not virtue",
+        "Any widespread norm is fake and should be rejected immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter explains how leverage works. It does not automatically bless the norm that spreads.",
+        "direct": "Taleb is diagnosing a structural mechanism. Converting that diagnosis into moral praise is the error the chapter warns against.",
+        "competitive": "Winning the default proves force, not righteousness. Confuse the two and you stop analyzing."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "When is the minority-rule mechanism most likely to stall rather than spread?",
+      "choices": [
+        "When the majority finds the stricter-compatible option degrading, taboo, or too costly to absorb",
+        "When the minority cares intensely about the rule",
+        "When the visible default has already spread through several stores"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The rule spreads only when the flexible side still finds the minority-compatible option bearable enough to carry.",
+        "direct": "The limiter is neutrality. Once the majority experiences the stricter rule as too loaded or too costly, flexibility disappears and the mechanism weakens.",
+        "competitive": "Cheap-to-absorb travels. Expensive-to-absorb sparks resistance. That is the real boundary."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A distributor drops its standard product line after one strict buyer's preferred line proves usable for all other customers too. Which chapter concept is doing the most work here?",
+      "choices": [
+        "Renormalization through repeated simplification around the same hard constraint",
+        "Hidden majority demand that had always been waiting to surface",
+        "Sudden moral conversion by the entire supply chain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The supply chain changes because each layer finds it easier to simplify around the strict-compatible option than to preserve two systems.",
+        "direct": "This is renormalization in commercial form. A local constraint becomes a wider default through repeated optimization, not through mass conversion.",
+        "competitive": "One hard client rewrites the warehouse because simplification compounds upward. That is the scaling engine."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "A merged school district suddenly applies one formerly local bus-food rule across the whole system. What changed most?",
+      "choices": [
+        "The rule became more virtuous after the merger",
+        "The local minority preference gained wider reach because the separate containers disappeared",
+        "The majority finally developed strong enthusiasm for the old local rule"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The merger matters because it removed the local container that used to keep the rule from spreading farther.",
+        "direct": "Decentralization had been containing the threshold locally. Once the units merged, the same minority leverage could propagate through the combined system.",
+        "competitive": "The rule did not become nobler. It got a bigger machine."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does decentralization matter so much to the hard version of this chapter's argument?",
+      "choices": [
+        "Because decentralized systems eliminate minority rule entirely",
+        "Because scale is irrelevant once a minority becomes intransigent",
+        "Because separate units can keep thresholds local while merged systems can amplify the same asymmetry across a much larger map"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Decentralization does not erase the mechanism. It changes its reach by keeping some thresholds trapped in smaller spaces.",
+        "direct": "The chapter's deeper point is that unit design affects propagation. Local containers can contain minority leverage; merged systems can magnify it.",
+        "competitive": "Fragment the map and the asymmetry stays patchy. Fuse the map and the same tiny group can go system-wide."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "Chapter 2 shows how a small group can bend a system's defaults. Which next move best prepares the logic for Chapter 3?",
+      "choices": [
+        "Ask what happens when the asymmetry no longer lives in a market or institution, but inside one person's dependence on another",
+        "Assume group leverage has nothing to do with domination at the person-to-person level",
+        "Conclude that all future chapters will just repeat the same majority-minority examples"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The natural bridge is from system-level adjustment costs to person-level dependence and domination. The scale narrows, but the asymmetry remains.",
+        "direct": "The next chapter can tighten the frame from institutional defaults to practical freedom under another person's leverage. That is a coherent extension of today's logic.",
+        "competitive": "If a few people can bend a system, the next question is what one person can do when someone else cannot afford to resist."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What does the chapter reject about learning styles?",
+      "choices": [
+        "That preferences exist at all",
+        "That matching instruction to a preferred style is the main route to stronger learning",
+        "That diagrams and demonstrations can help learning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not deny preferences. It challenges the larger claim about style matching as the main answer.",
+        "direct": "The target is the theory that style labels should dominate instructional design.",
+        "competitive": "The badge is not allowed to run the whole lesson."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Why is preference weaker than evidence here?",
+      "choices": [
+        "Because learners never know what they like",
+        "Because liking a format does not prove it leads to stronger learning",
+        "Because all formats teach equally well"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A learner may feel comfortable in a format without learning more from it.",
+        "direct": "The chapter separates what feels good from what produces stronger retention and use.",
+        "competitive": "Comfort can vote, but it still has to win on the scoreboard."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "How should a teacher choose representation for a science or geometry lesson according to this chapter?",
+      "choices": [
+        "By asking only which style students prefer",
+        "By choosing the format that fits the material and then requiring active processing",
+        "By avoiding diagrams so no style is favored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the content to guide the format.",
+        "direct": "Representation should serve the task, and learning should still include retrieval or explanation.",
+        "competitive": "Let the content call the formation, then make the learner run the play."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "What did Victor's postmortem show?",
+      "choices": [
+        "The team needed a stronger style label",
+        "The real problem was missing prior knowledge and weak practice design",
+        "Training always fails when it uses mixed formats"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The postmortem showed a background gap, not a style mismatch.",
+        "direct": "Prior knowledge and practice demands explained the failure better than style language did.",
+        "competitive": "The leak was in the foundation, not in the channel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Why does prior knowledge matter so much here?",
+      "choices": [
+        "Because it can explain struggle more accurately than a style label",
+        "Because it removes the need for retrieval",
+        "Because only experts benefit from it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A learner may be missing background concepts rather than the right presentation style.",
+        "direct": "The chapter treats prior knowledge as a stronger diagnostic lever than sensory preference.",
+        "competitive": "Sometimes the learner needs a floor, not a new badge."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Which misreading would the chapter reject?",
+      "choices": [
+        "Learner differences do not matter at all",
+        "Material fit matters",
+        "Retrieval and explanation help learning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not flatten all learners into one mold.",
+        "direct": "It rejects style matching as a master theory while preserving differences in preparation and task needs.",
+        "competitive": "The myth goes out, not the human differences."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "What should Elena do if she loves podcasts but wants to learn a topic well?",
+      "choices": [
+        "Assume audio is always her best option",
+        "Choose the format by what the topic requires and then test learning actively",
+        "Avoid all preferred formats"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks Elena to let the task and the check guide the choice.",
+        "direct": "Preference can remain, but it should not outrank content fit and retrieval demands.",
+        "competitive": "Let enjoyment speak, but make the task and the scoreboard decide."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Why does the next chapter follow this one?",
+      "choices": [
+        "Because the book is done challenging common beliefs",
+        "Because it moves from style myths to beliefs about whether ability is fixed",
+        "Because it is returning to passive review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "After correcting style labels, the book turns to beliefs about ability itself.",
+        "direct": "Chapter 7 continues the anti-shortcut pattern by examining fixed-versus-expandable ability beliefs.",
+        "competitive": "The label myth falls, and the ceiling myth comes next."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "What matters more than style matching according to the chapter?",
+      "choices": [
+        "Passive comfort in a preferred mode",
+        "Material fit, prior knowledge, and active retrieval or explanation",
+        "Keeping every learner in one identical format"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter points to stronger design levers than style labels.",
+        "direct": "Task fit, preparation, and active processing give better guidance for learning design.",
+        "competitive": "The real levers are the job, the floor, and the reps."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "What should guide instruction if not a simple style label?",
+      "choices": [
+        "Whatever format feels most comfortable first",
+        "The representation that looks trendiest",
+        "The demands of the material, the learner's preparation, and the practice needed for understanding to stick"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants design decisions grounded in the task and in what learners need to do with the content.",
+        "direct": "Instruction should answer to content fit, prior knowledge, and evidence-backed practice rather than to a single label.",
+        "competitive": "Let the task call the shots, check the foundation, and make the reps count."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch29-q01",
+      "prompt": "What is the core mistake in gambler's fallacy?",
+      "choices": [
+        "Treating a random streak as if it makes the opposite outcome due",
+        "Ignoring every pattern in every system",
+        "Assuming all outcomes are equally valuable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The streak is being allowed to change expectations it should not change.",
+        "direct": "Correct. Past independent outcomes are being treated as if they alter the next random event.",
+        "competitive": "That is the trap. The run is writing fake debts for the next result."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q02",
+      "prompt": "Why can this bias feel persuasive?",
+      "choices": [
+        "Because lopsided runs create discomfort and make balance feel overdue",
+        "Because random processes always self-correct quickly",
+        "Because every streak reveals a hidden mechanism"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The mind starts wanting symmetry back.",
+        "direct": "Exactly. Imbalance feels psychologically wrong, and that feeling gets mistaken for changed probability.",
+        "competitive": "That is it. Crooked runs make the mind start sending balance invoices."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q03",
+      "prompt": "Which situation best fits gambler's fallacy?",
+      "choices": [
+        "A person thinks the opposite result must come next because a random streak already ran too long",
+        "A team checks whether a system has feedback before revising a forecast",
+        "A student evaluates the current question on its own evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The due feeling is replacing a cleaner look at the process.",
+        "direct": "Correct. The streak is being treated as if it has changed the next independent odds.",
+        "competitive": "That is the move. The run is trying to force a comeback."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q04",
+      "prompt": "A team sees a short run of weak sales and assumes a rebound is now built into next week. What should they test first?",
+      "choices": [
+        "Whether the process actually contains a mechanism that makes past results alter the next one",
+        "Whether the run feels uncomfortable enough to justify expecting correction",
+        "Whether all streaks naturally reverse after a few rounds"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. They need to know whether the process has memory.",
+        "direct": "That is the key. The team should check for real dependence before letting a short streak rewrite the forecast.",
+        "competitive": "Exactly. Make the process show its memory before you bet on a rebound."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q05",
+      "prompt": "Nina changes an exam answer because too many earlier answers were the same letter. What is most likely happening?",
+      "choices": [
+        "A random-looking sequence is being treated as if it owes a different next result",
+        "The test necessarily alternates by design",
+        "The previous pattern proves the current answer is wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The earlier answers are creating a false due feeling.",
+        "direct": "The likely distortion is that answer imbalance is being mistaken for evidence that the current item must now switch.",
+        "competitive": "That is the bias. The streak is bossing the next answer around without permission."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q06",
+      "prompt": "What is the cleanest practical correction when reversal feels due after a streak?",
+      "choices": [
+        "Assume the process wants symmetry back",
+        "Ask whether the next event is actually influenced by the previous ones",
+        "Avoid any decision until the streak ends"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The memory question is what matters most.",
+        "direct": "That correction works because it tests mechanism rather than obeying discomfort with imbalance.",
+        "competitive": "Exactly. Make the next event prove it remembers before you call it payback."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Every streak is meaningless in every kind of system",
+        "Independent random processes do not owe reversal just because the run looks uneven",
+        "The opposite result becomes more likely whenever a sequence feels lopsided"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter is about independent randomness, not about denying every real pattern.",
+        "direct": "That keeps the boundary intact: some systems have memory, but independent ones do not self-correct on demand.",
+        "competitive": "Exactly. A memoryless run does not get to forge a comeback promise."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q08",
+      "prompt": "Why can a long random run feel like evidence the next result has changed?",
+      "choices": [
+        "Because discomfort with imbalance can be mistaken for a real shift in odds",
+        "Because the process secretly tracks fairness",
+        "Because all random systems store a record of prior events"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The due feeling comes from the observer more than from the process.",
+        "direct": "The danger is that lopsidedness feels so strong that people read it as evidence of correction even when no mechanism exists.",
+        "competitive": "That is the issue. The run looks ugly, and the mind starts billing ugliness as probability."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q09",
+      "prompt": "A manager wants to check whether a streak really matters or only feels lopsided. Which earlier chapter pairs best with gambler's fallacy here?",
+      "choices": [
+        "Regression to Mean, because both chapters can involve sequences, but only one should be applied after asking whether the process is actually self-correcting",
+        "Scarcity Error, because all streaks come from limited supply",
+        "Liking Bias, because reversal depends on who wants it most"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters involve change across sequences, but this chapter specifically warns against projecting correction onto independent randomness without mechanism.",
+        "direct": "This pairing works because it forces the judgment to distinguish real self-correction from merely feeling that a random run is due to reverse.",
+        "competitive": "That is the strongest link. A sequence can look crooked, but you still have to ask whether the system actually owes a comeback."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch29-q10",
+      "prompt": "A sound prediction after a streak survives which test?",
+      "choices": [
+        "The sequence still looks lopsided enough to feel uncomfortable",
+        "The process still supports the expectation after you check whether the next event has any memory of the past",
+        "The opposite outcome now feels emotionally fair"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The mechanism matters more than the streak feeling.",
+        "direct": "That is the decisive test because it shows whether the prediction survives after independence and memory are examined directly.",
+        "competitive": "Exactly. If the forecast dies when memory is taken off the board, the streak was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch23-q01",
+      "prompt": "What is the main target of a misperception strategy in this chapter?",
+      "choices": [
+        "The other side's logistics chain",
+        "The other side's emotional attachment to the past",
+        "The other side's picture of reality"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter keeps returning to perception because the operator is trying to shape how the other side reads the situation.",
+        "direct": "Start with the target: this strategy works on the opponent's internal map of events.",
+        "competitive": "On the sharpest reading, the move wins by bending the read before the field visibly moves."
+      }
+    },
+    {
+      "questionId": "ch23-q02",
+      "prompt": "Which option best separates strategic framing from propaganda?",
+      "choices": [
+        "Framing uses true emphasis, while propaganda depends on false belief or hidden core reality.",
+        "Framing is always ethical, while propaganda is always illegal.",
+        "Framing works only in public settings, while propaganda works only in private ones."
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The distinction turns on truth and belief, not on polish or venue.",
+        "direct": "Notice the boundary: truthful emphasis stays different from tactics that require the audience to believe something untrue.",
+        "competitive": "The clean split is between steering attention inside reality and installing a synthetic reality."
+      }
+    },
+    {
+      "questionId": "ch23-q03",
+      "prompt": "Why does exposure make false-belief tactics strategically costly?",
+      "choices": [
+        "Because the operator loses access to sequence and timing forever",
+        "Because discovery can collapse trust beyond the immediate contest",
+        "Because the target becomes impossible to persuade again in any context"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Once people realize they were pushed into the wrong world, the trust damage usually reaches past the first win.",
+        "direct": "A key consequence is broader credibility loss, not just failure of the single tactic.",
+        "competitive": "Exposure poisons later ground because the target stops trusting the operator's account of reality."
+      }
+    },
+    {
+      "questionId": "ch23-q04",
+      "prompt": "Salome can plant a false claim or sequence accurate details so the counterparty chases the wrong implication. Which choice fits the chapter's defensible line?",
+      "choices": [
+        "Plant the false claim because the counterparty is hostile",
+        "Use the accurate sequence and avoid inventing the core fact",
+        "Combine both so the framing lands faster"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Salome's anchor matters because she refuses fabrication even when it looks more efficient.",
+        "direct": "Here the right move is the narrower one: guide interpretation with true signals rather than falsehood.",
+        "competitive": "Under pressure, disciplined operators still avoid manufacturing the world outright."
+      }
+    },
+    {
+      "questionId": "ch23-q05",
+      "prompt": "Torin asks what exact belief a message is trying to create. What is he testing?",
+      "choices": [
+        "Whether the message is aesthetically persuasive",
+        "Whether the audience remains inside truth after the framing move",
+        "Whether the speaker has enough evidence to sound confident"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Torin's question is a truth-condition test, not a style test.",
+        "direct": "The seminar anchor asks whether the target belief is still true once attention has been steered.",
+        "competitive": "His rule exposes the real issue: does the tactic depend on reality or on counterfeit belief?"
+      }
+    },
+    {
+      "questionId": "ch23-q06",
+      "prompt": "Elspeth's memo is technically accurate but omits the vulnerability that would change the board's reading. How should that omission be judged?",
+      "choices": [
+        "It is fine because every sentence is true",
+        "It is acceptable if the board could ask follow-up questions later",
+        "It crosses the line if the omission changes the reality the board is acting inside"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Technical truth is not enough if the hidden center makes the audience form the wrong core belief.",
+        "direct": "Accuracy on paper does not save the move when omission is doing lie-level work.",
+        "competitive": "The decisive test is whether the omission installs a false world for the decision maker."
+      }
+    },
+    {
+      "questionId": "ch23-q07",
+      "prompt": "Leda could hide one key fact to get Miro to agree to a difficult family visit. What does the chapter recommend?",
+      "choices": [
+        "Drop the tactic because the relationship depends on informed agreement",
+        "Use the tactic because personal resistance makes timing important",
+        "Run the tactic now and repair trust later with a full explanation"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "This personal example exists to show when the framework should be put down entirely.",
+        "direct": "The correct move is candor because the other side is not an opponent and consent matters more than leverage.",
+        "competitive": "Not every room is a battlefield, and using it that way bills the relationship for a cheap win."
+      }
+    },
+    {
+      "questionId": "ch23-q08",
+      "prompt": "Varen wants to keep a true statistic on a student campaign poster but crop out the comparison that changes its meaning. What is the best response?",
+      "choices": [
+        "Keep the crop because the number itself is still true",
+        "Restore the comparison if the crop would create the wrong core belief",
+        "Replace the number with a more emotional message"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Visual framing can cross the same line as verbal framing when it alters the truth of the conclusion.",
+        "direct": "Context has to return if the design would otherwise push viewers into the wrong reading.",
+        "competitive": "A cropped reality can lie just as effectively as a written falsehood."
+      }
+    },
+    {
+      "questionId": "ch23-q09",
+      "prompt": "Which judgment best matches the chapter's ethical limit?",
+      "choices": [
+        "Any perception management is manipulative and should never be used",
+        "Any tactic against an opponent is acceptable if it works",
+        "Truthful emphasis may be legitimate in conflict, but false-belief manufacture and consent-sensitive use are out of bounds"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter rejects both total prohibition and blanket admiration.",
+        "direct": "Balance the reading carefully: narrow truthful framing can survive, but fabrication and misuse in trust-heavy contexts cannot.",
+        "competitive": "The serious limit is not cleverness. It is whether the move stays inside truth and inside the right kind of relationship."
+      }
+    },
+    {
+      "questionId": "ch23-q10",
+      "prompt": "How does Chapter 23 differ from the unpredictability strategy that follows in Chapter 24?",
+      "choices": [
+        "Chapter 23 shapes what the other side thinks is true, while Chapter 24 breaks pattern-based expectation about what happens next",
+        "Chapter 23 focuses on direct force, while Chapter 24 focuses on indirect force",
+        "Chapter 23 is about exit timing, while Chapter 24 is about moral restraint"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The bridge matters because the two chapters work on different parts of the opponent's reasoning.",
+        "direct": "One chapter manages interpretation of reality, while the next scrambles forecast and pattern recognition.",
+        "competitive": "Misperception bends the map. Unpredictability shatters the forecast."
+      }
+    }
+  ]
+}

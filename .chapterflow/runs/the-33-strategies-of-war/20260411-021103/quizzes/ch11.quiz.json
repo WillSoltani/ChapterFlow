@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the core move in Greene's nonengagement strategy?",
+      "choices": [
+        "Fight immediately before the stronger side settles",
+        "Yield exposed ground and buy time instead of fighting on stronger terms",
+        "Hide your real intention until after losing the first battle"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter is about refusing battle on the stronger side's preferred ground.",
+        "direct": "Start with the mechanism: trade space for time rather than absorb superior force head-on.",
+        "competitive": "Nonengagement means leaving the kill zone before it kills the campaign."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is really being bought when space is traded in this chapter?",
+      "choices": [
+        "Public admiration",
+        "More allies immediately",
+        "Time for rebuilding, repositioning, or waiting for overextension"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The ground matters because of the time it can create.",
+        "direct": "Notice the real asset: time that can be spent productively later.",
+        "competitive": "The retreat is paying for clock, not for dignity."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's main reversal about strategic depth?",
+      "choices": [
+        "Withdrawal always creates new options",
+        "Strategic depth matters only in military settings",
+        "If there is no fallback depth, retreat may become liquidation"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter only works where something can be given up safely.",
+        "direct": "The reversal is simple: no depth means no safe trade of space for time.",
+        "competitive": "No second field means the retreat may end the war instead of saving it."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Joelle is facing a giant in a prestige segment her startup cannot afford to defend. What fits the chapter best?",
+      "choices": [
+        "Stay and match the spending race so outsiders see resolve",
+        "Exit early, preserve capital, and strengthen a weaker flank for later competition",
+        "Wait until the company is almost out of cash before deciding"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Joelle needs to preserve the company, not the optics of the segment.",
+        "direct": "Joelle uses nonengagement correctly when retreat preserves force for better terrain later.",
+        "competitive": "Leave the giant's arena before it turns your balance sheet into rubble."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Malik decline the public forum with the better resourced rival team?",
+      "choices": [
+        "Because he has no opinion on the issue",
+        "Because the forum serves the rival's timing and resources more than the work",
+        "Because he wants to avoid all future hearings"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Malik is refusing a venue that favors the stronger side right now.",
+        "direct": "The chapter backs Malik because he is trading weak optics for a better later field.",
+        "competitive": "He denies them the stage built for his loss."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Briony can only survive by leaving one market segment a giant now dominates. What is the strategic logic?",
+      "choices": [
+        "Giving up bad ground can preserve the larger campaign",
+        "Every retreat guarantees later victory",
+        "Prestige markets should never be abandoned"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Briony is choosing campaign survival over symbolic presence.",
+        "direct": "The move works because the surrendered segment is less valuable than the force it would consume.",
+        "competitive": "Lose the lane if it saves the war chest."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Cyrus is stuck on one contract point the stronger side can defend forever. What does the chapter suggest?",
+      "choices": [
+        "Keep escalating on that point because retreat always looks weak",
+        "Trade the exposed point if doing so preserves the larger negotiation",
+        "Walk away from all future deals entirely"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "One surrendered point can keep a larger objective alive.",
+        "direct": "Cyrus uses nonengagement when he gives up the unwinnable position to save the rest.",
+        "competitive": "Drop the trapped inch if it keeps the contract breathing."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does retreat fail for Elian in the single-opportunity fellowship case?",
+      "choices": [
+        "Because he lacked strategic depth and the position was the whole doorway",
+        "Because retreat is always unethical",
+        "Because stronger rivals always respect delay"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Elian had no real fallback behind the withdrawal.",
+        "direct": "The strategy fails because there was no depth to trade safely.",
+        "competitive": "He stepped back off the only ledge he had."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's main ethical danger in using retreat badly?",
+      "choices": [
+        "Retreat can become an excuse for avoiding necessary struggle",
+        "Retreat always destroys reputation permanently",
+        "Retreat removes all responsibility for later action"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "reflective",
+      "explanation": {
+        "gentle": "The chapter goes weak when withdrawal protects comfort more than the campaign.",
+        "direct": "Ethically, the warning is against dressing fear or drift up as strategy.",
+        "competitive": "A fake retreat is just avoidance wearing military language."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What has to happen after Chapter 11 buys time for the operator?",
+      "choices": [
+        "The operator should stay defensive forever",
+        "The surrendered ground should be forgotten completely",
+        "The saved interval has to be used in service of a larger strategic design"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "reflective",
+      "explanation": {
+        "gentle": "Chapter 12 asks what longer war the bought time is actually serving.",
+        "direct": "The bridge forward is grand strategy: saved time has to be spent on a larger design.",
+        "competitive": "The clock matters only if it feeds the next offensive plan."
+      }
+    }
+  ]
+}

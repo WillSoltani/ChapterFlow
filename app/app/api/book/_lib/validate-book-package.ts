@@ -6,6 +6,7 @@ import type {
   BookPackageEdition,
   BookPackageExample,
   BookPackageQuizQuestion,
+  ConceptGraph,
   OneMinuteRecapToneKeyed,
   ToneKeyed,
   VariantFamily,
@@ -25,6 +26,7 @@ const ROOT_KEYS = new Set([
   "licenseNotes",
   "book",
   "chapters",
+  "conceptGraph",
 ]);
 
 const BOOK_KEYS = new Set([
@@ -861,6 +863,83 @@ function parseQuestion(
   };
 }
 
+function parseConceptGraph(
+  value: unknown,
+  chapters: BookPackageChapter[],
+  issues: ValidationIssue[]
+): ConceptGraph | undefined {
+  if (value == null) return undefined;
+  if (!isRecord(value)) {
+    issues.push({ path: "conceptGraph", message: "conceptGraph must be an object." });
+    return undefined;
+  }
+
+  const concepts = Array.isArray(value.concepts) ? value.concepts : [];
+  const edges = Array.isArray(value.edges) ? value.edges : [];
+  const chapterIntroduces = isRecord(value.chapterIntroduces) ? value.chapterIntroduces : {};
+  const chapterRequires = isRecord(value.chapterRequires) ? value.chapterRequires : {};
+
+  const parsedConcepts = concepts
+    .filter((c): c is Record<string, unknown> => isRecord(c))
+    .map((c) => ({
+      id: typeof c.id === "string" ? c.id : "",
+      label: typeof c.label === "string" ? c.label : "",
+      introducedIn: typeof c.introducedIn === "string" ? c.introducedIn : "",
+      summary: typeof c.summary === "string" ? c.summary : undefined,
+    }));
+
+  const parsedEdges = edges
+    .filter((e): e is Record<string, unknown> => isRecord(e))
+    .map((e) => ({
+      from: typeof e.from === "string" ? e.from : "",
+      to: typeof e.to === "string" ? e.to : "",
+      type: "prerequisite" as const,
+    }));
+
+  const parsedIntroduces: Record<string, string[]> = {};
+  for (const [k, v] of Object.entries(chapterIntroduces)) {
+    parsedIntroduces[k] = Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
+  }
+
+  const parsedRequires: Record<string, string[]> = {};
+  for (const [k, v] of Object.entries(chapterRequires)) {
+    parsedRequires[k] = Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
+  }
+
+  const conceptIds = new Set(parsedConcepts.map((c) => c.id));
+  const chapterNumbers = new Set(chapters.map((c) => c.number));
+
+  for (const [chapterKey, requiredConcepts] of Object.entries(parsedRequires)) {
+    const chapterNum = parseInt(chapterKey.replace("ch", ""), 10);
+    for (const conceptId of requiredConcepts) {
+      if (!conceptIds.has(conceptId)) {
+        issues.push({
+          path: `conceptGraph.chapterRequires.${chapterKey}`,
+          message: `Required concept "${conceptId}" is not defined in concepts list.`,
+        });
+        continue;
+      }
+      const introducedIn = parsedConcepts.find((c) => c.id === conceptId)?.introducedIn;
+      if (introducedIn) {
+        const introducedNum = parseInt(introducedIn.replace("ch", ""), 10);
+        if (introducedNum >= chapterNum) {
+          issues.push({
+            path: `conceptGraph.chapterRequires.${chapterKey}`,
+            message: `Concept "${conceptId}" is required by ${chapterKey} but not introduced until ${introducedIn}.`,
+          });
+        }
+      }
+    }
+  }
+
+  return {
+    concepts: parsedConcepts,
+    edges: parsedEdges,
+    chapterIntroduces: parsedIntroduces,
+    chapterRequires: parsedRequires,
+  };
+}
+
 function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
   const chapterIds = new Set<string>();
   const chapterNumbers = new Set<number>();
@@ -934,6 +1013,9 @@ export function validateBookPackage(raw: unknown): BookPackage {
 
   hasOnlyKeys(raw, ROOT_KEYS, "$", issues);
 
+  const chapters = parseChapters(raw.chapters, raw.book, issues);
+  const conceptGraph = parseConceptGraph(raw.conceptGraph, chapters, issues);
+
   const pkg: BookPackage = {
     schemaVersion: readString(raw.schemaVersion, "schemaVersion", issues, { max: 80 }),
     packageId: readString(raw.packageId, "packageId", issues, { max: 120 }),
@@ -945,7 +1027,8 @@ export function validateBookPackage(raw: unknown): BookPackage {
       max: 4000,
     }),
     book: parseBook(raw.book, issues),
-    chapters: parseChapters(raw.chapters, raw.book, issues),
+    chapters,
+    conceptGraph,
   };
 
   enforceSemanticRules(pkg, issues);

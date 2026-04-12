@@ -1,0 +1,36 @@
+{
+  "chapterId": "ch12",
+  "title": "Grand Strategy: Lose Battles but Win the War",
+  "heading": "Grand Strategy: Lose Battles but Win the War",
+  "approxWords": 172,
+  "properNouns": [
+    "Robert Greene",
+    "Penguin Random House",
+    "Google Books"
+  ],
+  "repeatedTerms": [
+    "grand",
+    "strategy",
+    "war",
+    "long-horizon",
+    "battle",
+    "plan"
+  ],
+  "sourceReferences": [
+    {
+      "url": "local:/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/sources/the-33-strategies-of-war/the-33-strategies-of-war.txt",
+      "role": "frozen_secondary_support",
+      "confidence": 0.94
+    },
+    {
+      "url": "https://books.google.com/books/about/The_33_Strategies_of_War.html?id=GYSeURI4OQcC",
+      "role": "authorized_metadata",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://www.penguinrandomhouseretail.com/book/?isbn=9780143112785",
+      "role": "publisher_confirmation",
+      "confidence": 0.97
+    }
+  ]
+}

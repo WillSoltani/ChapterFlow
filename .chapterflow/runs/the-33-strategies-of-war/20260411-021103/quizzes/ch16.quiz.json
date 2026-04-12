@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the center of gravity in this chapter?",
+      "choices": [
+        "The loudest target in the room",
+        "The load bearing point supporting the rest of the system",
+        "The target with the most emotional force"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter defines center of gravity as the support whose weakening affects the rest.",
+        "direct": "Start with the definition: the decisive point is the load bearing support, not the flashiest asset.",
+        "competitive": "Find the hinge, not the headline."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are visible targets often secondary in Greene's framing here?",
+      "choices": [
+        "Because visible targets are always fake",
+        "Because visible targets are illegal to challenge",
+        "Because visible strength may depend on a quieter support underneath it"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "Visible strength can be real and still rest on something more decisive beneath it.",
+        "direct": "Notice the mechanism: the public facing strength may be downstream from a premise or dependency.",
+        "competitive": "The banner can be real and still not be the hinge."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's main warning about bad target selection?",
+      "choices": [
+        "Misidentification can waste force on a secondary point",
+        "Every target is equally decisive",
+        "Good strategy avoids diagnosis"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The warning is that a strong move can still fail if it lands on the wrong point.",
+        "direct": "The reversal is clear: wrong diagnosis turns a real strike into wasted effort.",
+        "competitive": "Miss the hinge and the hit means little."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Inara's team wants to attack a rival flagship product feature for feature. What best fits the chapter?",
+      "choices": [
+        "Match the flagship everywhere because it is visible",
+        "Look for the assumption supporting the premium position instead",
+        "Avoid analysis and act fast"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Inara should test what the flagship depends on before treating it as the decisive point.",
+        "direct": "Choose the support under the product shell if that support is what keeps the whole position stable.",
+        "competitive": "Ignore the trophy fight and cut the fuel line."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Lucan hears a polished policy proposal with strong moral language. What should he test first?",
+      "choices": [
+        "The one disputed premise carrying the architecture",
+        "The speaker's confidence level",
+        "The most memorable phrase in the opening"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Lucan should identify the support the proposal would struggle to survive without.",
+        "direct": "Strip away the rhetoric and test the load bearing premise first.",
+        "competitive": "Go under the gloss and hit the strut."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Blythe can criticize a competitor's visible dashboard or audit the renewal metric behind it. Which move is stronger here?",
+      "choices": [
+        "Criticize the visible dashboard because it gets attention",
+        "Do both equally so nothing is missed",
+        "Audit the renewal metric if it is what keeps the product line persuasive"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The better move is to test the support if that support carries the visible strength.",
+        "direct": "Follow the dependency, not the spectacle.",
+        "competitive": "Cut the engine, not the paint."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Hollis's team damaged a rival offer but the rival's hold barely moved because partner trust stayed intact. What does this show?",
+      "choices": [
+        "They found the center of gravity",
+        "They attacked a real target that was still secondary",
+        "They should stop mapping dependencies"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "The team hit something real, but not the support the wider position depended on.",
+        "direct": "This is the classic failure mode: tactical damage with no strategic shift.",
+        "competitive": "They bruised the shell and left the engine running."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Eira has time to challenge one element of a proposal. Which choice best fits this chapter?",
+      "choices": [
+        "Challenge the premise whose failure would weaken the whole case",
+        "Attack the most dramatic sentence for rhetorical effect",
+        "Spread effort across every weak point lightly"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "She should choose the point whose weakening would travel through the rest.",
+        "direct": "Select the load bearing element, not the loud element.",
+        "competitive": "Hit the hinge, not the fireworks."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does Greene connect this strategy to intelligence and mapping?",
+      "choices": [
+        "Because mapping makes every visible target equally decisive",
+        "Because any map automatically justifies the strike",
+        "Because target choice depends on tracing what the visible system quietly rests on"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "Better action depends on tracing which support is actually carrying the rest.",
+        "direct": "Mapping matters because force only multiplies when it enters the real dependency structure.",
+        "competitive": "Without a map, you are just swinging at scenery."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After identifying one decisive support point in Chapter 16, what is the next strategic move introduced in Chapter 17?",
+      "choices": [
+        "Return to broad frontal attacks",
+        "Break the opponent into weaker pieces and beat them separately",
+        "Keep every target equally active"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next chapter shifts from one decisive point to breaking the larger position into smaller vulnerabilities.",
+        "direct": "Move from center of gravity to divide and conquer.",
+        "competitive": "After the hinge, start splitting the body."
+      }
+    }
+  ]
+}

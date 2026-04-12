@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Nina sees 18 calm months and says the system is understood. What is the mistake?",
+      "choices": [
+        "Treating calm as proof of understanding.",
+        "Using too much recent data.",
+        "Being too cautious."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Calm data do not prove the absence of a sharp break.",
+        "direct": "A smooth sample cannot certify the whole system.",
+        "competitive": "Quiet numbers are not armor."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "After a campus protest, Diego says the signs were obvious. Which response fits the chapter?",
+      "choices": [
+        "The rupture was fully predictable.",
+        "People tidy the story after the shock lands.",
+        "Explanation is useless."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against backward neatness.",
+        "direct": "Hindsight upgrades scattered facts into fake foresight.",
+        "competitive": "The polished after-story is doing more work than the pre-event evidence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What kind of experience helps most?",
+      "choices": [
+        "Experience that confirms you.",
+        "Experience that marks your blind spots.",
+        "Experience that speeds certainty."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Useful experience shows where sight fails.",
+        "direct": "Taleb values contact with limits, not comfort.",
+        "competitive": "Helpful experience bruises arrogance."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Jared cuts contingency spending after a quiet year. What is the stronger reading?",
+      "choices": [
+        "Normal risk management.",
+        "An untested system is being mistaken for a resilient one.",
+        "Healthy refusal to overreact."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "No stress does not prove stress capacity.",
+        "direct": "The chapter says quiet intervals can hide fragility.",
+        "competitive": "A green dashboard that never took a punch is weak evidence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Professor Lane explains a panic with five causes that now seem obvious. Why stay cautious?",
+      "choices": [
+        "Because post-event stories can feel cleaner than reality was.",
+        "Because markets have no causes.",
+        "Because only insiders can explain shocks."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The issue is timing, not total mystery.",
+        "direct": "Explanation built after the fact can outrun what was knowable before the break.",
+        "competitive": "The story may be neat because the damage is already visible."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A supplier network looked stable until one geopolitical shock shut two vendors at once. Which lesson applies?",
+      "choices": [
+        "A calm interval can hide structural fragility.",
+        "Global shocks matter only to finance.",
+        "Intuition should replace evidence."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Continuity can be a poor teacher.",
+        "direct": "Recent smoothness can generate false confidence.",
+        "competitive": "The system was quiet, not certified."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A founder says, I still act, but I no longer pretend my spreadsheet has conquered uncertainty. What is that?",
+      "choices": [
+        "Paralysis.",
+        "Empirical skepticism.",
+        "Optimism bias."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The founder is dropping false certainty, not action.",
+        "direct": "Empirical skepticism means acting with respect for unseen structure.",
+        "competitive": "This is disciplined doubt, not surrender."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What board briefing best matches the chapter?",
+      "choices": [
+        "One elegant after-story.",
+        "A split between what was visible before and what looks clear now.",
+        "No explanation at all."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rewards boundary marking.",
+        "direct": "Separate pre-event evidence from later stitching.",
+        "competitive": "Chronology keeps hindsight from posing as foresight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which planning posture survives this chapter best?",
+      "choices": [
+        "Elegant prediction above spare capacity.",
+        "Humility about calm records.",
+        "Copy the latest trend line."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter pushes toward modesty about calm samples.",
+        "direct": "The stronger posture keeps room for discontinuity.",
+        "competitive": "If the world jumps, trend worship is already behind."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 2 logically follow Chapter 1?",
+      "choices": [
+        "Because skepticism about shocks should extend to stories about winners.",
+        "Because success is fake.",
+        "Because success and rupture are identical."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Both chapters target hindsight polishing.",
+        "direct": "Chapter 1 pressures after-stories about breaks; Chapter 2 pressures after-stories about triumph.",
+        "competitive": "The same narrative machinery smooths both disaster and fame."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

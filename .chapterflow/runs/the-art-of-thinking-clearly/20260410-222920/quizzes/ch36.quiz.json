@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch36-q01",
+      "prompt": "What is the core problem in fundamental attribution error?",
+      "choices": [
+        "Behavior is explained by character before situation is examined",
+        "Character is ignored in every judgment",
+        "Context always removes responsibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The mistake is jumping from behavior to trait too quickly.",
+        "direct": "Correct. Personality gets too much causal weight while context gets too little.",
+        "competitive": "That is the trick. One scene gets promoted into a whole character sentence."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch36-q02",
+      "prompt": "Why is this bias so tempting?",
+      "choices": [
+        "Because the actor is more visible than the surrounding pressure",
+        "Because context is always morally irrelevant",
+        "Because people never behave differently across situations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The person stands out more than the hidden conditions.",
+        "direct": "Exactly. Salience pulls explanation toward the actor and away from context.",
+        "competitive": "That is it. The face is bright and the pressure stays backstage."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch36-q03",
+      "prompt": "Which example best fits this chapter?",
+      "choices": [
+        "A quiet student is called lazy without checking confusion or embarrassment",
+        "A student studies hard and earns a good grade",
+        "A teacher changes the seating chart after class"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The behavior is being overread as character.",
+        "direct": "Correct. A trait judgment is being made before situational causes are examined.",
+        "competitive": "Exactly. The room writes a personality story from a scene it barely understands."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch36-q04",
+      "prompt": "A coworker sends a sharp email during a chaotic week. What is the better first move?",
+      "choices": [
+        "Ask what pressure or constraints may have shaped the message",
+        "Decide the coworker is simply a rude person",
+        "Assume context makes the email fully acceptable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Situation should be checked before the trait is declared.",
+        "direct": "Correct. Context inspection improves explanation without erasing accountability.",
+        "competitive": "That is the move. Pull pressure into the file before the label starts flexing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch36-q05",
+      "prompt": "What boundary matters in this chapter?",
+      "choices": [
+        "Checking context is not the same as excusing behavior",
+        "Character never matters at all",
+        "Only strangers trigger this bias"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter is about explanation quality, not blanket pardon.",
+        "direct": "Exactly. Situational analysis can coexist with accountability.",
+        "competitive": "Yes. Let context sharpen the diagnosis without turning into mush."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch36-q06",
+      "prompt": "A missed deadline is blamed on laziness before anyone checks the workflow. What is being underweighted?",
+      "choices": [
+        "Process, constraints, and conflicting demands",
+        "The idea that all deadlines are unfair",
+        "The possibility that no cause exists"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Context may be doing more causal work than observers see.",
+        "direct": "Correct. Situational causes are being ignored while the person absorbs the blame.",
+        "competitive": "That is the miss. The system ducks out while the trait story hogs the lights."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch36-q07",
+      "prompt": "What is the hard diagnostic question in this chapter?",
+      "choices": [
+        "What in the situation could be shaping this behavior before I decide what kind of person this is?",
+        "How can I decide fastest what trait explains the action?",
+        "Why should I avoid all character judgments forever?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The correction is to inspect the setting before the trait verdict lands.",
+        "direct": "Correct. Context must be examined before personality is treated as the main cause.",
+        "competitive": "Exactly. Drag the setting into court before the label grabs the gavel."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch36-q08",
+      "prompt": "Why does this bias distort response as well as explanation?",
+      "choices": [
+        "Because the wrong cause gets targeted when a situational problem is mistaken for a personality problem",
+        "Because every behavior should be ignored",
+        "Because all interventions fail once traits are mentioned"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Poor explanation can lead to the wrong response.",
+        "direct": "Exactly. If the cause is misdiagnosed, the intervention will often be clumsy or unfair.",
+        "competitive": "That is the damage. Call the system a person problem and you start punching the wrong target."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch36-q09",
+      "prompt": "Which response best counters the bias after an ugly interaction?",
+      "choices": [
+        "Describe the behavior narrowly, inspect context, then revisit any trait judgment",
+        "Decide the first trait story is probably enough",
+        "Assume context automatically removes responsibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A slower explanation is usually a fairer one.",
+        "direct": "Correct. The disciplined sequence is behavior first, context next, trait inference later.",
+        "competitive": "Exactly. Keep the label on the bench until the setting has testified."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch36-q10",
+      "prompt": "What distinction does this chapter ask you to preserve?",
+      "choices": [
+        "A person's behavior in one moment is different from full knowledge of that person's character",
+        "Behavior and personality are always identical",
+        "Context is more important than behavior in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. One act is not a complete character file.",
+        "direct": "Correct. The chapter protects the difference between observed conduct and stable personality inference.",
+        "competitive": "That is the split. One scene does not entitle you to a whole biography."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

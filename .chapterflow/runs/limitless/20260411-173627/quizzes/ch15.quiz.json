@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is thinking doing in this chapter?",
+      "choices": [
+        "Acting as automatic improvement once enough facts are gathered",
+        "Acting as the quality of how information is interpreted, connected, and used",
+        "Replacing the need for learning methods"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter treats thinking as a processing skill rather than as raw accumulation.",
+        "direct": "Thinking here means interpreting, connecting, judging, and using what enters the mind more deliberately.",
+        "competitive": "It is what the mind does with the rep, not just how much rep it hoards."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter say more information is not enough by itself?",
+      "choices": [
+        "Because more input can still leave judgment unclear if it is never processed well",
+        "Because information never matters",
+        "Because thinking should avoid memory entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter separates quantity of input from quality of thought.",
+        "direct": "A crowded mind can still think poorly if the material is not interpreted, connected, or used well.",
+        "competitive": "More rep on the shelf does not guarantee a sharper mind."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A learner keeps collecting notes but still makes muddy decisions. What would Chapter 15 most likely say?",
+      "choices": [
+        "That collection alone is not enough without interpretation and judgment",
+        "That more notes always fix the problem",
+        "That thought quality is only an inborn trait"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants more than accumulation.",
+        "direct": "Better thinking comes from processing what is known, not only from storing more of it.",
+        "competitive": "Stop stacking rep and call it judgment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Simone is choosing between reacting fast and framing the information more carefully. What fits Chapter 15?",
+      "choices": [
+        "Choose the move that improves interpretation before judgment",
+        "Choose the faster reaction because speed guarantees clarity",
+        "Collect one more source and avoid thinking with the current material"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter favors clearer interpretation over quick reaction.",
+        "direct": "Simone should improve the framing and connection work before treating the conclusion as ready.",
+        "competitive": "Clean the thinking before you fire the decision."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Carter\u2019s postmortem on heavy note-taking reveal?",
+      "choices": [
+        "That more notes automatically produce better thinking",
+        "That ideas can stay disconnected even when they are well recorded",
+        "That schools should avoid note-taking entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter treats this as a processing gap.",
+        "direct": "Carter sees that stored information still needs synthesis, connection, and judgment before it improves thought quality.",
+        "competitive": "The rep was collected but never made to work together."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement would Chapter 15 reject as a misreading?",
+      "choices": [
+        "Thinking quality improves when interpretation and judgment improve",
+        "Better learning methods support better decisions later",
+        "Good thinking eliminates uncertainty and guarantees perfect decisions"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The chapter avoids certainty theater.",
+        "direct": "It rejects the idea that better thinking produces flawless certainty or perfect decisions in every case.",
+        "competitive": "No genius cape, no perfect verdict machine."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can clearer processing improve judgment?",
+      "choices": [
+        "Because interpretation and connection help information become usable",
+        "Because judgment should ignore inputs entirely",
+        "Because more speed always beats more clarity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter values processing that turns input into use.",
+        "direct": "Thought quality rises when information is compared, connected, tested, and interpreted rather than merely stored.",
+        "competitive": "The rep gets dangerous once it is actually worked."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Lila thinks better after connecting ideas she already had instead of collecting three more articles. What does that show?",
+      "choices": [
+        "That connection work can improve thought quality more than one extra input",
+        "That more input is always harmful",
+        "That thinking only matters in personal life"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter expects clearer processing to matter.",
+        "direct": "Lila learns that interpretation and synthesis can improve judgment more than more accumulation alone.",
+        "competitive": "Sometimes the missing move is not more rep. It is making the rep talk to itself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What tension does the chapter protect most carefully?",
+      "choices": [
+        "How to improve thought quality without promising certainty, genius, or flawless decisions",
+        "How to make every decision fast",
+        "How to replace learning with abstract philosophy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter wants better thinking without certainty theater.",
+        "direct": "Its guardrail is that stronger thinking improves interpretation and judgment without abolishing ambiguity.",
+        "competitive": "Build a sharper mind without pretending the fog is gone forever."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 15 complete the methods arc?",
+      "choices": [
+        "It starts a new methods sequence about another technique",
+        "It shows what focus, study, memory, and reading speed are for by turning better inputs into judgment and use",
+        "It proves thought matters more than every earlier chapter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter closes the arc by explaining what the earlier methods enable.",
+        "direct": "Thinking becomes the use-stage of the earlier methods by turning better attention, study, memory, and intake into interpretation and judgment.",
+        "competitive": "The rep finally gets turned into decisions, not just storage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ You are validating one structured chapter or an assembled book package.
 Policy:
 - fix mechanical and structural issues directly
 - do not silently rewrite major prose sections just to force a pass
+- after structural validation, run the semantic diversity checker (see `PACK_ROOT/rules/semantic-diversity-rules.md`)
 - if the issue is prose quality, write a repair report instead
 
 ## First Step

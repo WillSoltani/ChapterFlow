@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch27-q01",
+      "prompt": "What is the core mistake in scarcity error?",
+      "choices": [
+        "Treating limited access as proof that something is more valuable than it really is",
+        "Ignoring all supply information in every decision",
+        "Assuming abundant options are always better"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Rarity is being allowed to inflate value beyond the merits of the option.",
+        "direct": "Correct. The option is being scored too highly because scarcity is standing in for proof of worth.",
+        "competitive": "That is the trap. The countdown is passing for quality."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch27-q02",
+      "prompt": "Why can scarcity feel so persuasive?",
+      "choices": [
+        "Because limited access creates urgency that can feel like importance",
+        "Because rare things are always objectively better",
+        "Because time pressure improves judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The shrinking window makes the option feel more important.",
+        "direct": "Exactly. Urgency adds emotional pressure and can make disappearance look like evidence of value.",
+        "competitive": "That is it. The heat lands before the quality test does."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch27-q03",
+      "prompt": "Which situation best fits scarcity error?",
+      "choices": [
+        "A person wants a product much more once it becomes limited even though its quality is unchanged",
+        "A team compares several vendors on fit and cost",
+        "A student rejects an option after careful review of its weaknesses"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Scarcity is making the product look better than it looked under easy access.",
+        "direct": "Correct. Desire is being inflated by rarity rather than by new evidence about quality.",
+        "competitive": "That is the move. The limited label is juicing the score."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch27-q04",
+      "prompt": "A team becomes excited about an exclusive partnership mainly because few firms can get it. What should they test first?",
+      "choices": [
+        "Whether exclusivity itself proves the fit is exceptional",
+        "Whether the partnership would still look strong if similar access were common",
+        "Whether rarity removes the need to compare alternatives"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. They need to separate the partnership's substance from the rarity around it.",
+        "direct": "That is the key. The team should inspect whether the attraction survives once scarcity pressure is mentally removed.",
+        "competitive": "Exactly. Make the deal live without the velvet-rope effect before you crown it strategic."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch27-q05",
+      "prompt": "Lena suddenly wants a selective program much more once she hears only a few spots are left. What is most likely happening?",
+      "choices": [
+        "Scarcity is inflating desire beyond the actual fit of the program",
+        "The limited spots prove the program is perfect for her",
+        "Abundance would make the program objectively worse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The selectivity is adding heat to the decision.",
+        "direct": "The likely distortion is that limited access is being treated as stronger evidence than the program's actual value to her.",
+        "competitive": "That is the bias. The scarcity badge is padding the desire."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch27-q06",
+      "prompt": "What is the cleanest practical correction when an option feels urgent because it may disappear?",
+      "choices": [
+        "Assume the urgency proves it is worth grabbing",
+        "Ask whether you would still want it under imagined abundance",
+        "Avoid making any choice whenever scarcity appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The abundance test helps reveal whether value survives without pressure.",
+        "direct": "That correction works because it strips access pressure away and lets the underlying merits face inspection.",
+        "competitive": "Exactly. Rip the countdown off and see if the option can still sell itself."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch27-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Scarcity never carries any useful information at all",
+        "Limited access can matter, but it should not certify value by itself",
+        "If something is hard to get, it is usually worth overpaying for"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter warns against letting rarity do too much of the evaluation.",
+        "direct": "That keeps the boundary intact: supply constraints may matter, but scarcity alone cannot prove worth.",
+        "competitive": "Exactly. Scarcity can count, but it does not get to forge value papers."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch27-q08",
+      "prompt": "Why can a timer or shrinking window distort judgment?",
+      "choices": [
+        "Because urgency can be mistaken for importance or quality",
+        "Because all deadlines reveal hidden excellence",
+        "Because quick decisions are usually more accurate"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Pressure can make the option feel more meaningful than it really is.",
+        "direct": "The danger is that the timer changes the emotional atmosphere and lets urgency stand in for better evidence.",
+        "competitive": "That is the issue. The clock can start selling heat as value."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch27-q09",
+      "prompt": "A buyer wants to test whether a hot option is valuable or just scarcity-driven. Which earlier chapter pairs best with scarcity error here?",
+      "choices": [
+        "Endowment Effect, because both chapters warn that something surrounding an item can distort what it seems worth",
+        "Coincidence, because rarity and overlap are the same mechanism",
+        "Groupthink, because scarcity only matters in groups"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters show how value can be distorted by something adjacent to the object rather than by the object's merits alone.",
+        "direct": "This pairing works because each bias lets a surrounding condition inflate valuation beyond what neutral inspection would support.",
+        "competitive": "That is the strongest link. Ownership glow or scarcity heat can both fake extra worth."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch27-q10",
+      "prompt": "A sound judgment of a scarce option survives which test?",
+      "choices": [
+        "The option still feels urgent enough to act on immediately",
+        "The attraction remains strong after exclusivity and time pressure are mentally removed",
+        "The option is difficult enough to access that it must be good"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Real value should still stand after scarcity pressure is reduced.",
+        "direct": "That is the decisive test because it shows whether desire reflects the option's merits or merely the rarity surrounding it.",
+        "competitive": "Exactly. If the attraction dies when the countdown comes off, the heat was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

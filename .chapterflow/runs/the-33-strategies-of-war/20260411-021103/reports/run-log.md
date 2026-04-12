@@ -24,3 +24,9 @@
 - 2026-04-11T16:03:18Z: Chapter 5 and Chapter 6 pair seal completed. `approvedChapterHashes` now includes `ch05` and `ch06`.
 - 2026-04-11T16:03:58Z: Run-level artifact guard passed after the Chapter 5 and Chapter 6 pair seal (`FAIL=0 WARN=0`).
 - 2026-04-11T16:05:49Z: Chapter 7 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the morale chapter.
+- 2026-04-12T00:08:13Z: Chapter 25 validated under strict-v13 and deferred for pair seal with Chapter 26. contentHash=2498e045d3da1dc2ffb9d8690cb9a2679892b705f075eb1a413c2ed09444eebd; artifact set written; continuity reserved Leonie, Phelan, Merritt, Saoirse, Ilan, Nadine, Piper, Crispin; school=graduate-constitutional-law-seminar.
+- 2026-04-12T00:11:29Z: Continuity state rebuilt from briefs and validated chapters after regression was detected, restoring reserved names/schools through Chapter 25 and approved hash locks through Chapter 24. Chapter 26 front half started under strict-v13 with anchors Odalys and Gideon and school=graduate-information-security-seminar.
+- 2026-04-12T00:52:35Z: Chapter 26 validated under strict-v13. Review wrapper, metrics sidecar, quiz extract, and continuity updates written. SHA-256 sealed: `e4cd468851f1bdc3fb10cab9dfb97b04853df9e038c3088ab5e0d94de148ad6b`.
+- 2026-04-12T00:52:35Z: Chapter 25 and Chapter 26 pair seal completed. `approvedChapterHashes` now includes `ch25` and `ch26`.
+- 2026-04-12T00:53:44Z: Run-level artifact guard passed after the Chapter 25 and Chapter 26 pair seal (`FAIL=0 WARN=0`).
+- 2026-04-12T00:54:32Z: Chapter 27 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the alliance chapter.

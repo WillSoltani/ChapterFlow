@@ -1,5 +1,3 @@
-"use client";
-
 export const BOOK_STORAGE_EVENT = "book-accelerator:storage-changed";
 
 export function emitBookStorageChanged(scope: string) {

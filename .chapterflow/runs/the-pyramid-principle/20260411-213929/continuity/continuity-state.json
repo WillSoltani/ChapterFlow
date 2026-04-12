@@ -1,0 +1,43 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "hash": "ab2bda8d8ab15b9fffbc492b5a34ce109561e9b138eed5d2323bfcfe78d19cbb",
+      "validatedAt": "2026-04-11",
+      "title": "Why a pyramid structure",
+      "chapterId": "ch01-why-a-pyramid-structure"
+    },
+    "ch02": {
+      "hash": "87b600529ea5adc98e0b956065b10e4534b084a7ad4e47fef0f43acf00b354a8",
+      "validatedAt": "2026-04-11",
+      "title": "The substructures within the pyramid",
+      "chapterId": "ch02-substructures-within-the-pyramid"
+    },
+    "ch03": {
+      "hash": "9af5aee14550ce16de03e5cd7efb8f310f014594066b5e58780de4eb04d16e32",
+      "validatedAt": "2026-04-11",
+      "title": "How to build a pyramid structure",
+      "chapterId": "ch03-how-to-build-a-pyramid-structure"
+    }
+  },
+  "baselineQuality": {
+    "establishedAt": "2026-04-11",
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "standard": "Chapters 1 and 2 validated and sealed as baseline quality floor for remaining waves."
+  }
+}

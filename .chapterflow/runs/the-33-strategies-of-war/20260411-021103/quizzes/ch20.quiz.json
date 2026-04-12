@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the core mechanism of ripening-for-the-sickle in this chapter?",
+      "choices": [
+        "Waiting long enough for emotions to cool on their own",
+        "Making the opponent's later options worse than its earlier ones",
+        "Launching repeated direct attacks until resistance cracks"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter defines ripening as active option-shaping over time, not as passive waiting.",
+        "direct": "Start with the mechanism: the strategy narrows future choices before the final push.",
+        "competitive": "This chapter wins by starving the next menu."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can the final collapse look self-caused?",
+      "choices": [
+        "Because the opponent still makes the choice that weakens it inside a shaped field",
+        "Because the operator disappears and stops influencing events",
+        "Because the strategy depends on random bad luck"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The other side still chooses, but it is choosing from a thinner and less attractive set of options.",
+        "direct": "Keep the sequence straight: the operator shapes the corridor first, then the opponent selects the bad move.",
+        "competitive": "They sign the damage after you rig the menu."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's main warning about patience?",
+      "choices": [
+        "Patience is always better than direct action",
+        "Patience without real narrowing is only drift",
+        "Patience removes the need for later pressure"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter rejects the idea that time by itself solves the problem.",
+        "direct": "The warning is simple: if nothing is narrowing, you are waiting, not strategizing.",
+        "competitive": "No shrinking exits means fake patience."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Talin can force the deal question now or keep reshaping sequence so the counterparty's next round is weaker. Which fits the chapter best?",
+      "choices": [
+        "Force the question now so the conflict becomes visible",
+        "Pause entirely and hope the other side changes its mind",
+        "Keep shaping the sequence until the later menu is worse"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "Talin uses time to change the quality of later choices, not to delay for its own sake.",
+        "direct": "Apply the deal logic: the right move is the one that makes the next choice set weaker before the final ask lands.",
+        "competitive": "Do not rush the strong version when you can schedule the weaker one."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Corbet sees that each criticism leaves the proposal another fallback. What should he do next?",
+      "choices": [
+        "Repeat the same frontal critique with more force",
+        "Drop the issue because the proposal is clearly unbeatable",
+        "Expose the supports under the fallbacks over several rounds"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The proposal survives because its backups are still standing.",
+        "direct": "Read the seminar pattern: when the fallback stays healthy, attack the support structure beneath it.",
+        "competitive": "Rot the bunker instead of charging the flag again."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Oisin has been waiting three weeks, but the supplier's options have not changed at all. What does the chapter suggest?",
+      "choices": [
+        "He is drifting, not ripening the field",
+        "He should wait longer because patience always compounds",
+        "He should assume the supplier is secretly weakening anyway"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "Without changing the menu of future choices, the strategy has not begun.",
+        "direct": "Use the narrowing test: unchanged options mean the waiting period is not doing strategic work.",
+        "competitive": "If the exits are still healthy, the clock is feeding them."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Nikol wants to call a long delay strategic in a personal dispute even though nothing has been restructured. Which judgment fits the chapter?",
+      "choices": [
+        "It is misread patience because no conditions are changing",
+        "It proves the strategy works best in intimate conflict",
+        "It means the final collapse is guaranteed later"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The chapter asks for concrete change in options, incentives, or support, not just extra time.",
+        "direct": "Separate waiting from shaping: static conditions mean the tactic is being imagined rather than executed.",
+        "competitive": "A longer calendar is not a narrower corridor."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Blaise wants to know whether the proposal is truly ripening toward collapse. What is the best indicator?",
+      "choices": [
+        "The proposal's authors sound frustrated",
+        "Each fallback is less credible than the one before it",
+        "The debate has lasted a long time"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "A long process does not prove strategic progress by itself.",
+        "direct": "Check the corridor: the real signal is that later fallback positions are weaker than earlier ones.",
+        "competitive": "The setup is working only when every retreat gets worse."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Where is the main ethical line in this chapter's strategy?",
+      "choices": [
+        "Any slow strategy is manipulative by definition",
+        "It becomes suspect when delay hides the field so completely that the other side cannot understand the consequences of its choices",
+        "It is ethical only if the final decision happens in public"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "deeper",
+      "explanation": {
+        "gentle": "The chapter allows structured consequence, but not a total removal of clarity or fair understanding.",
+        "direct": "Hold the ethical line: shaping options is one thing, making consequences opaque enough to erase informed choice is another.",
+        "competitive": "A narrowed corridor is one thing. A hidden trap is another."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 20 lead into Chapter 21?",
+      "choices": [
+        "It ends long-view strategy and shifts to pure improvisation",
+        "It repeats annihilation with softer language",
+        "It moves from delayed weakening into negotiation that keeps advancing position during live contact"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "deeper",
+      "explanation": {
+        "gentle": "Chapter 20 still works through setup, but the next chapter brings the contest onto the bargaining table.",
+        "direct": "Track the bridge: Chapter 21 keeps the shaping mindset while moving the action into active negotiation.",
+        "competitive": "After the slow corridor comes the live table fight."
+      }
+    }
+  ]
+}

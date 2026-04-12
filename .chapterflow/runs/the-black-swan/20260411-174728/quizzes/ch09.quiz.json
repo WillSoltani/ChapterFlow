@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the ludic fallacy?",
+      "choices": [
+        "Disliking games.",
+        "Treating messy reality as if it behaved like a bounded game.",
+        "Using any formal model at all."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb is attacking transfer error, not play.",
+        "direct": "The issue is overapplying game-like clarity to open domains.",
+        "competitive": "A board is pretending to be the world."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do bounded games create false comfort when overtransferred?",
+      "choices": [
+        "Because they eliminate all skill.",
+        "Because fixed rules and countable moves make uncertainty look tamer than it is.",
+        "Because games are immoral."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Containment feels safer than open uncertainty.",
+        "direct": "The frame makes risk look domesticated.",
+        "competitive": "The board trains the mind to expect polite danger."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What question matters most after this chapter?",
+      "choices": [
+        "Is the model elegant?",
+        "Does the model belong to the domain?",
+        "Is the math difficult?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb cares about jurisdiction first.",
+        "direct": "Fit to reality matters more than polish.",
+        "competitive": "The board must answer to the world."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A risk model behaves cleanly under stable assumptions, so a team treats market danger as contained. What is happening?",
+      "choices": [
+        "Healthy realism.",
+        "The ludic fallacy through false containment.",
+        "A necessary rejection of uncertainty."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A neat frame is overpromoting its own boundaries.",
+        "direct": "The model contains the simulation, not necessarily the market.",
+        "competitive": "Paper safety is being mistaken for domain safety."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why can a beautiful model still fail badly?",
+      "choices": [
+        "Because beauty destroys logic.",
+        "Because internal coherence does not guarantee external fit.",
+        "Because all models are useless."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The model can be rigorous and still mismatched.",
+        "direct": "Seminar success is not world success.",
+        "competitive": "Elegance can hide jurisdiction failure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What makes precision dangerous in this chapter?",
+      "choices": [
+        "Precision always lies.",
+        "It can earn trust even when decisive uncertainty stays off-board.",
+        "Precision removes all uncertainty."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Sharpness can launder authority.",
+        "direct": "Formal clarity may exclude what matters most.",
+        "competitive": "The cleaner the board, the easier excluded risk disappears."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A scoring system works neatly until employees adapt around it. Which idea fits best?",
+      "choices": [
+        "Closed-game reliability.",
+        "An adaptive domain is escaping a bounded frame.",
+        "Proof that incentives do not matter."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The system is not as closed as the scorecard assumed.",
+        "direct": "Players change the game in live domains.",
+        "competitive": "The board cannot freeze an adaptive world."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 9 prepare Chapter 10?",
+      "choices": [
+        "It proves forecasting is impossible in every case.",
+        "It shows how overtrusted frames lend borrowed authority to predictions.",
+        "It abandons expertise entirely."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Prediction inherits authority from the frame beneath it.",
+        "direct": "Bad jurisdiction feeds forecast theater.",
+        "competitive": "The clean board becomes a megaphone for overconfidence."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures Taleb here?",
+      "choices": [
+        "The board is the domain.",
+        "A model must stay subordinate to the world it claims to describe.",
+        "Games should replace reality."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb wants rank discipline.",
+        "direct": "The frame must answer to the domain, not reverse the hierarchy.",
+        "competitive": "The world outranks the board."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is false jurisdiction?",
+      "choices": [
+        "When a bounded frame claims authority over an unbounded reality.",
+        "When math is taught in school.",
+        "When rules are written down."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the core prestige error here.",
+        "direct": "A contained system borrows too much authority over open domains.",
+        "competitive": "The board starts ruling a world it cannot contain."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

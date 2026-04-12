@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch18-q01",
+      "prompt": "What is the chapter's orienting claim about groups and noise?",
+      "choices": [
+        "Groups do not automatically reduce noise and can sometimes amplify it",
+        "Every group judgment is worse than individual judgment",
+        "More judges always smooth variation away"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats group amplification as a real collective risk.",
+        "direct": "Correct. Groups are not automatic noise reducers, and some collective processes can intensify spread.",
+        "competitive": "This chapter says the room can make the wobble louder."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch18-q02",
+      "prompt": "Why do more people not automatically help in this chapter?",
+      "choices": [
+        "Because collective interaction can intensify variation instead of averaging it away",
+        "Because only one person can ever judge well",
+        "Because groups eliminate all disagreement too quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says collective discussion can worsen rather than calm spread.",
+        "direct": "More people do not automatically help because the group process itself can amplify variation.",
+        "competitive": "Headcount is not a cleansing ritual."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch18-q03",
+      "prompt": "What does amplification mean in this chapter?",
+      "choices": [
+        "That collective judgment can make variation louder instead of quieter",
+        "That every group reaches the same conclusion",
+        "That individuals disappear inside the group"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter is about noise becoming more pronounced in some collective settings.",
+        "direct": "Amplification means group interaction can intensify spread rather than simply reducing it.",
+        "competitive": "The room can turn wobble into echo."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch18-q04",
+      "prompt": "Nadia sees a committee make the judgment less steady instead of more steady. What lesson fits best?",
+      "choices": [
+        "The group may be amplifying noise rather than reducing it",
+        "The larger room proves the judgment must be better",
+        "Committees never affect the quality of judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says committees can intensify variation instead of curing it.",
+        "direct": "The right move is to inspect the collective process rather than assuming the room is a built-in averaging device.",
+        "competitive": "If the room made it wobblier, the room is part of the problem."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q05",
+      "prompt": "Why does Priya's school board example matter in this chapter?",
+      "choices": [
+        "Because group deliberation can amplify spread instead of bringing judgments closer together",
+        "Because school boards always make worse decisions than individuals",
+        "Because collective judgment automatically solves disagreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The example shows that collective interaction can intensify variation.",
+        "direct": "The school board matters because it makes group amplification visible without turning the claim into blanket anti-group rhetoric.",
+        "competitive": "The board echoes the wobble instead of damping it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q06",
+      "prompt": "Which overclaim does the chapter reject about group amplification?",
+      "choices": [
+        "That all groups are uniformly bad in every case",
+        "That some collective processes can amplify noise",
+        "That more people is not a simple cure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps the warning narrower than blanket anti-group condemnation.",
+        "direct": "It rejects the claim that recognizing amplification means every group judgment must therefore be worse in every case.",
+        "competitive": "The warning is sharp without becoming lazy anti-committee talk."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q07",
+      "prompt": "What is collective noise risk in this chapter?",
+      "choices": [
+        "The chance that group interaction worsens spread rather than narrowing it",
+        "The certainty that every committee will fail",
+        "The disappearance of all individual judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter treats amplification as a real possibility inside collective judgment.",
+        "direct": "Collective noise risk means the group process can generate or worsen variation instead of reducing it.",
+        "competitive": "The meeting can spread the leak instead of sealing it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q08",
+      "prompt": "What can group discussion worsen according to the chapter?",
+      "choices": [
+        "Variation in judgment that many people assume the group would reduce",
+        "Only the speed of paperwork",
+        "Nothing, because collective discussion always improves clarity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter says the collective can make some spread louder instead of quieter.",
+        "direct": "Group discussion can worsen variation by intensifying rather than averaging it away.",
+        "competitive": "The room can echo the wobble instead of damping it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch18-q09",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That more voices always produce less noise",
+        "That group amplification is a real risk",
+        "That prediction is the next chapter's bridge"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter challenges the easy comfort that more opinions must clean the judgment up.",
+        "direct": "It rejects the assumption that increasing the number of judges automatically reduces variation.",
+        "competitive": "The crowd does not solve the problem by showing up."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch18-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If groups can amplify noise, the next question is how predictive judgments carry noise in their own way",
+        "The next chapter abandons the study of variation",
+        "The next chapter proves all committees are mistakes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move turns from group amplification toward predictive judgments.",
+        "direct": "The bridge works because the book shifts from collective noise risks to noise in another domain of judgment: prediction.",
+        "competitive": "After the room echoes the wobble, the forecast gets examined next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

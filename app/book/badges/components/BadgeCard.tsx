@@ -108,13 +108,11 @@ function EarnedBadgeCard({
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } }}
     >
       <div className="flex items-start justify-between gap-2">
-        <motion.span
-          className="text-[48px] leading-none"
-          animate={reduced ? undefined : { opacity: [0.85, 1, 0.85] }}
-          transition={reduced ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        <span
+          className={`text-[48px] leading-none ${reduced ? "" : "badge-icon-pulse"}`}
         >
           {badge.icon}
-        </motion.span>
+        </span>
         <TierPill tier={badge.tier} earned />
       </div>
 

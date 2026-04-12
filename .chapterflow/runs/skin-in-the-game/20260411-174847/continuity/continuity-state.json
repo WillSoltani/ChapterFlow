@@ -1,0 +1,76 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "0fb4f6c788aa6b5429e87b6732bfb11f661515eba37028550733b7b3004053bc",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch02": {
+      "sha256": "9a4c8adae9bb581d544916f881c177121ca60049f0a6673620829f6786f1cfaf",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch03": {
+      "sha256": "9b060b80fa345998803e2a1cbdde33ca4537137c0346067dbe30a70e9941bee7",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch04": {
+      "sha256": "235fc83fa0b118a76c91f2ef22754ea3e965886365c6f79c3dbdd501bb86a940",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch05": {
+      "sha256": "7258e54c7a32724987491fcbe4ec78f9d21459934f9efeac4f3c673e94f3f466",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch06": {
+      "sha256": "5f83fa24711d422a78ac522d9e40ddda0b027a595614f337bb450213baba4420",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch07": {
+      "sha256": "76a82da614eff964176820622a9831496ad3f771850dfc2ce1a60dc1d8ec6c14",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch08": {
+      "sha256": "4c1a4712d874464b35230782129c9e9c24eb23e4762df8cff9542e2c8d29370c",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    },
+    "ch09": {
+      "sha256": "cba658d358958892b91f685bb90fd547d9f23658e4beff95917ba5c9cea5f20c",
+      "validatedAt": "2026-04-11",
+      "status": "chapter_gate_passed"
+    }
+  },
+  "baselineQuality": {
+    "establishedFrom": [
+      "ch01",
+      "ch02"
+    ],
+    "establishedAt": "2026-04-11",
+    "criticScores": {
+      "ch01": "11/12",
+      "ch02": "10/12"
+    },
+    "qualityFloorReport": "reports/baseline-quality.md",
+    "artifactGuardReport": "reports/wave-01-artifact-guard.md",
+    "qualitySentryReport": "reports/wave-01-quality-sentry.md"
+  }
+}

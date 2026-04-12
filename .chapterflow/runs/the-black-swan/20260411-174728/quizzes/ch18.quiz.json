@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Who is the phony in Chapter 18?",
+      "choices": [
+        "An expert who performs certainty beyond real visibility.",
+        "Anyone who makes a mistake.",
+        "Someone who dislikes numbers."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The phony is defined by overclaim.",
+        "direct": "This is counterfeit certainty, not ordinary error.",
+        "competitive": "The speech outruns the sight."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does the phony sell beyond real visibility?",
+      "choices": [
+        "Precision and authority.",
+        "Silence and restraint.",
+        "Ignorance without disguise."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is targeting overprecision.",
+        "direct": "The phony markets certainty the domain never granted.",
+        "competitive": "The decimal outruns the fog."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What helps the phony look credible?",
+      "choices": [
+        "Prestige, method theater, and polished confidence.",
+        "Admitting limits constantly.",
+        "Avoiding all technical language."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The act depends on costume and props.",
+        "direct": "Status and style help weak visibility pass as knowledge.",
+        "competitive": "The bluff rents stage lights."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A speaker uses technical language and decimals to sound certain in a murky domain. What fits best?",
+      "choices": [
+        "Honest humility.",
+        "The phony performing overprecision.",
+        "The end of uncertainty."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This is the book's character in action.",
+        "direct": "The performance makes weak sight look stronger than it is.",
+        "competitive": "The fog got numerically overdressed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is the phony more than merely mistaken?",
+      "choices": [
+        "Because uncertainty is being hidden while authority is being performed.",
+        "Because every wrong claim is fraud.",
+        "Because no expert can know anything."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The concealment is part of the offense.",
+        "direct": "Ordinary error can still be honest about limits.",
+        "competitive": "Fraud starts when swagger seals the gap."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does Chapter 18 avoid anti-expert rhetoric?",
+      "choices": [
+        "By distinguishing real expertise with limits from counterfeit certainty.",
+        "By abolishing expertise altogether.",
+        "By ignoring opacity."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is preserving honest competence.",
+        "direct": "The target is bluff, not knowledge itself.",
+        "competitive": "The lab coat is not on trial, only the costume use."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A strategist keeps selling a model after it lost domain fit. What is Taleb pushing back against?",
+      "choices": [
+        "Public monetization of borrowed method authority.",
+        "The existence of strategy.",
+        "All formal tools."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The performer is living off expired paperwork.",
+        "direct": "This is the phony using a prop after its license is gone.",
+        "competitive": "Prestige is being rented."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 18 prepare Chapter 19?",
+      "choices": [
+        "It clears away counterfeit expertise so practical asymmetry can replace deference.",
+        "It restores blind trust in experts.",
+        "It ends the need for judgment."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter provides a workable posture after the phony loses glamour.",
+        "direct": "Taleb is moving from exposure to practice.",
+        "competitive": "The costume falls so the walk can begin."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures this chapter?",
+      "choices": [
+        "The phony talks in decimals where the domain only gave fog.",
+        "Every expert is fake.",
+        "Uncertainty should never be discussed."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That line captures overprecision under opacity.",
+        "direct": "The domain granted less than the speech is claiming.",
+        "competitive": "The decimal outran the weather."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the chapter's deeper claim?",
+      "choices": [
+        "Counterfeit expertise is the social performance of overclaim under uncertainty.",
+        "Knowledge and expertise are impossible.",
+        "Technical language is always dishonest."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Taleb is naming a public style of epistemic fraud.",
+        "direct": "The phony is assembled from the book's earlier props and errors.",
+        "competitive": "The costume has a business model."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

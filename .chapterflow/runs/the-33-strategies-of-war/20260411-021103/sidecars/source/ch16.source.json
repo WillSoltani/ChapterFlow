@@ -1,0 +1,36 @@
+{
+  "chapterId": "ch16",
+  "title": "The Center-of-Gravity Strategy: Hit Them Where It Hurts",
+  "heading": "The Center-of-Gravity Strategy: Hit Them Where It Hurts",
+  "approxWords": 124,
+  "properNouns": [
+    "Robert Greene",
+    "Penguin Random House",
+    "Google Books"
+  ],
+  "repeatedTerms": [
+    "center of gravity",
+    "target",
+    "assumption",
+    "support",
+    "diagnosis",
+    "decisive"
+  ],
+  "sourceReferences": [
+    {
+      "url": "local:/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/sources/the-33-strategies-of-war/the-33-strategies-of-war.txt",
+      "role": "frozen_secondary_support",
+      "confidence": 0.94
+    },
+    {
+      "url": "https://books.google.com/books/about/The_33_Strategies_of_War.html?id=GYSeURI4OQcC",
+      "role": "authorized_metadata",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://www.penguinrandomhouseretail.com/book/?isbn=9780143112785",
+      "role": "publisher_confirmation",
+      "confidence": 0.97
+    }
+  ]
+}

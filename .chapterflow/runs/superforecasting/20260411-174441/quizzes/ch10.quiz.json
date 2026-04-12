@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What tension opens Chapter 10?",
+      "choices": [
+        "Leaders must act while superforecasters must revise",
+        "Leaders should avoid teams entirely",
+        "Forecasts eliminate the need for command"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins with the apparent clash between decisive leaders and doubtful forecasters.",
+        "direct": "Its opening problem is action versus revision under uncertainty.",
+        "competitive": "Command looks like certainty while forecasting looks like doubt."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter reject certainty theater as good leadership?",
+      "choices": [
+        "Because overperformed certainty can become brittle and deaf to correction",
+        "Because leaders should never sound confident",
+        "Because uncertainty always blocks action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that too much performed certainty can weaken judgment.",
+        "direct": "Rigid confidence can cut leaders off from feedback and revision.",
+        "competitive": "The loudest certainty can be the fastest route to brittle command."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is Moltke used to show in this chapter?",
+      "choices": [
+        "That top-down control works best in all conditions",
+        "That local initiative matters when events move quickly",
+        "That leaders should avoid planning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "His example supports mission clarity plus room for local judgment.",
+        "direct": "The chapter uses Moltke to show the limits of central control under uncertainty.",
+        "competitive": "He breaks the fantasy that the top can script every useful move."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Tessa sees conditions changing faster than she can issue perfect instructions. What would Chapter 10 push her to do?",
+      "choices": [
+        "Tighten control over every decision",
+        "Restate the mission and allow local initiative",
+        "Delay action until uncertainty disappears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors mission clarity plus judgment below when reality moves fast.",
+        "direct": "Choice B matches the chapter's answer to overcontrol under uncertainty.",
+        "competitive": "Stop worshiping central control and start owning the purpose."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What trap does Chapter 10 set between confidence and arrogance?",
+      "choices": [
+        "Confidence should always replace humility",
+        "Confidence helps action only when it stays open to correction",
+        "Arrogance is necessary for decisive leaders"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants confidence that can still learn.",
+        "direct": "Its balance is decisive action plus intellectual humility.",
+        "competitive": "Move hard enough to lead and humble enough to keep updating."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a postmortem, Malik finds the team kept waiting for top-level approval while events changed locally. What lesson fits Chapter 10?",
+      "choices": [
+        "Overcentralized control weakened adaptation",
+        "The team needed more certainty theater from the top",
+        "Local judgment should have been avoided"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem was not only the event but the way command slowed adaptation.",
+        "direct": "Choice A identifies the chapter's warning about informational bottlenecks at the top.",
+        "competitive": "The system got trapped behind its own control fetish."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does intellectual humility matter to leadership here?",
+      "choices": [
+        "It allows feedback and initiative to remain useful",
+        "It removes the need for decisions",
+        "It proves leaders should never sound certain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Humility keeps the system open to learning.",
+        "direct": "The chapter treats humility as a practical condition for adaptation.",
+        "competitive": "Without it, command starts choking the intelligence it needs."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Naomi keeps waiting for more certainty before acting. What response best fits Chapter 10?",
+      "choices": [
+        "Delay until all major uncertainty is gone",
+        "Act once the purpose is clear enough while staying open to revision",
+        "Ignore uncertainty and force a decision immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects both paralysis and bravado.",
+        "direct": "It calls for action that remains corrigible instead of waiting for perfect clarity.",
+        "competitive": "Move before certainty arrives, but keep the decision teachable."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter treat leaders as both thinkers and doers?",
+      "choices": [
+        "Because reflection should replace action",
+        "Because action and learning must keep operating together",
+        "Because local teams should stop thinking independently"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Strong leadership has to move and keep learning at the same time.",
+        "direct": "The chapter fuses command with a structure that can still revise.",
+        "competitive": "The room has to keep moving without being frozen by one person's certainty."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 10 shows that leaders can borrow superforecasting habits, what question does it naturally raise next?",
+      "choices": [
+        "Why leadership should replace forecasting",
+        "Whether superforecasters are really durable under harder realities",
+        "Why uncertainty disappears in teams"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge points toward a broader test of superforecasters themselves.",
+        "direct": "The next chapter asks whether their strengths remain robust under tougher conditions.",
+        "competitive": "Once command can use these habits, the next test is whether the habits survive the wild parts of reality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

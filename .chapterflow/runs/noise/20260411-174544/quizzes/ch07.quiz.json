@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What is the chapter trying to do with error?",
+      "choices": [
+        "Treat it as an inspectable miss rather than a vague complaint",
+        "Eliminate all uncertainty from judgment",
+        "Reduce every bad outcome to one obvious cause"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter wants error visible enough to study rather than merely react to.",
+        "direct": "Correct. Measuring error means turning a miss into something inspectable instead of leaving it atmospheric.",
+        "competitive": "That is the move. Get the miss out of the fog."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Why does uncertainty not end the discussion of error?",
+      "choices": [
+        "Because judgment is secretly mechanical after all",
+        "Because a miss can still be compared against a steadier or more defensible reading",
+        "Because uncertain domains always contain obvious blunders"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The target may not be perfect, but comparison can still matter.",
+        "direct": "The chapter argues that ambiguity weakens precision without canceling the duty to inspect judgment gaps.",
+        "competitive": "Blur in the field does not hide the miss."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "What must error be separated from in this chapter?",
+      "choices": [
+        "Any kind of judgment at all",
+        "Disagreement, dissatisfaction, and vague bad feeling",
+        "Benchmarks and comparison"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Not every painful or uncomfortable result counts as a measurable miss.",
+        "direct": "The chapter narrows error by separating it from general disappointment and reaction.",
+        "competitive": "A sting is not yet a case."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Rina sees one forecast value miss badly. What chapter move best fits?",
+      "choices": [
+        "Treat the miss as irrelevant because forecasting is uncertain",
+        "Make the gap visible by comparing the delivered reading against a better benchmark",
+        "Assume every forecast miss is caused by bias rather than noise"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter wants the miss turned into a visible comparison rather than hidden behind uncertainty.",
+        "direct": "The right move is to make the delivered reading answer to a steadier or more defensible one.",
+        "competitive": "Put the miss on the page before anyone blames the weather."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Dana is judging one admissions score. What makes it a measurable miss rather than just a bad feeling?",
+      "choices": [
+        "The existence of a stronger reading the file could defensibly support",
+        "The fact that the score upset someone",
+        "The fact that no two readers ever agree completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The stronger reading gives the gap something concrete to answer to.",
+        "direct": "A measurable miss depends on comparison with a more defensible benchmark, not on reaction alone.",
+        "competitive": "The weak read needs a real opponent."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "What does a defensible reading do in this chapter?",
+      "choices": [
+        "It erases all ambiguity from the case",
+        "It provides a steadier benchmark against which the miss can be inspected",
+        "It proves every alternative reading is wrong"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter needs a benchmark that exposes the gap without pretending perfection.",
+        "direct": "A defensible reading matters because it lets the delivered judgment be compared to something stronger.",
+        "competitive": "The benchmark does not need to be flawless to catch the miss."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Why does ambiguity fail to excuse a weak reading completely?",
+      "choices": [
+        "Because ambiguity and measurement can coexist",
+        "Because ambiguity means the case was never hard in the first place",
+        "Because every difficult case has one exact hidden answer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The domain can remain difficult while a miss still deserves inspection.",
+        "direct": "The chapter rejects the false choice between perfect certainty and no error measurement at all.",
+        "competitive": "Even in a hazy field, a weak shot can still leave a mark."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "Priya asks whether she is reacting to pain or to a real gap from a better reading. What skill is she using?",
+      "choices": [
+        "Separating dissatisfaction from measurable error",
+        "Avoiding all judgment because feelings are involved",
+        "Treating every bad outcome as a clear miss"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits the chapter well. She is narrowing the category of error so it can be studied seriously.",
+        "direct": "The move is to distinguish reaction from a benchmarked gap before calling the outcome a measurable miss.",
+        "competitive": "She is making the bruise prove it belongs in the file."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "Why does the chapter resist treating error measurement as perfect certainty?",
+      "choices": [
+        "Because judgments can be inspected without becoming fully mechanical",
+        "Because measurement only works in objective sciences",
+        "Because all benchmarks are arbitrary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the domain difficult while still making misses visible enough to inspect.",
+        "direct": "The point is not to manufacture exactness but to refuse the idea that ambiguity erases meaningful comparison.",
+        "competitive": "The benchmark can have blur and still expose the weak shot."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "Once misses are visible, noise can be analyzed as a pattern",
+        "The next chapter abandons measurement and returns to intuition",
+        "The next chapter proves every inconsistency is the same kind of error"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The book needs visible misses before it can inspect noise in a broader way.",
+        "direct": "The bridge works because pattern analysis depends on errors becoming concrete enough to compare and group.",
+        "competitive": "First get the miss on the page, then map the pattern."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

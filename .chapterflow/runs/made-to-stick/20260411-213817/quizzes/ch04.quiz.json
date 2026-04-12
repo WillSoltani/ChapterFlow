@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is the chapter's core idea about credibility?",
+      "choices": [
+        "People believe ideas mainly because the wording sounds polished.",
+        "Credibility grows when evidence becomes easier to judge.",
+        "Authority always matters more than proof."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats belief as a judgment problem. Support has to feel near enough to inspect, not merely impressive from a distance.",
+        "direct": "Credibility is broader than status. It comes from evidence the audience can evaluate more directly.",
+        "competitive": "The room trusts faster when the proof gets close enough to stop hiding."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why do Barry Marshall and Robin Warren matter in this chapter?",
+      "choices": [
+        "They prove experts always win arguments through prestige alone.",
+        "They show how a claim gains force when proof becomes harder to dismiss.",
+        "They demonstrate that medical stories are naturally more memorable than other evidence."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Their role is to show that evidence becomes powerful when it no longer feels safely remote.",
+        "direct": "The chapter uses them to demonstrate confrontable proof, not generic expert status.",
+        "competitive": "The claim stopped sounding optional once the evidence moved into range."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "A proposal sounds confident but gives the audience nothing to inspect. What is missing according to the chapter?",
+      "choices": [
+        "A more prestigious title on the first slide.",
+        "Internal credibility through proof, detail, or testability.",
+        "A stronger emotional close before any evidence appears."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Confidence language is not the same thing as support. The chapter wants evidence that the room can judge.",
+        "direct": "The missing piece is internal credibility, not louder certainty.",
+        "competitive": "The claim is flexing without carrying its own weight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Elena says a new workflow will save time, but the room is unconvinced. Which move best follows the chapter?",
+      "choices": [
+        "Add a famous endorsement and keep the rest of the pitch unchanged.",
+        "Bring a demonstration or comparison the audience can inspect directly.",
+        "Use stronger certainty words so the proposal sounds more decisive."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Elena needs evidence that moves closer, not more confidence from afar. A direct demonstration gives the room something to judge.",
+        "direct": "Visible proof beats prestige and tone when the audience is skeptical.",
+        "competitive": "Move the proof into the room and let resistance deal with it there."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Which statement best captures the chapter's view of large statistics?",
+      "choices": [
+        "Numbers persuade automatically if they are large enough.",
+        "Numbers matter only when they are attached to a famous expert.",
+        "Numbers may prove scale and still fail until they are made humanly legible."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says scale can be real and still feel numb. Human-scale translation helps the audience feel what the evidence means.",
+        "direct": "Raw magnitude often proves size without producing judgment. Translation is what makes the evidence usable.",
+        "competitive": "A huge number can stay dead on arrival until it grows a human shape."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Why does the chapter value anti-authority voices like Pam Laffin?",
+      "choices": [
+        "Because lived cost can make a warning feel harder to dismiss than status alone.",
+        "Because institutional experts are never trustworthy.",
+        "Because personal stories eliminate the need for additional evidence."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The value is in lived consequence, not in rejecting expertise. The warning lands differently when the witness has paid the price being described.",
+        "direct": "Anti-authority reduces distance by making cost visible, but it does not replace all other proof.",
+        "competitive": "The scar helps because it carries real consequence, not because it settles every claim by itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "Priya is choosing between a prestigious source and a firsthand witness for a debate. What is the strongest move under this chapter's logic?",
+      "choices": [
+        "Always choose the higher-status source because it sounds safest.",
+        "Choose the support that best makes this specific claim answerable, and keep its scope honest.",
+        "Use both without explaining what each one actually proves."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares about fitness, not prestige by default. The right source is the one whose support matches the claim clearly and honestly.",
+        "direct": "Credibility depends on what the evidence can actually carry, not just on who sounds important.",
+        "competitive": "Pick the support that closes the distance without inflating what it proves."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Sofia wants her family to understand a health risk attached to a large percentage. Which move best follows the chapter?",
+      "choices": [
+        "Repeat the percentage more slowly until it sounds serious.",
+        "Translate the statistic into a faithful human-scale comparison and show the original number alongside it.",
+        "Replace the data with a generic warning about being careful."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the number to stay true while becoming easier to feel. Human-scale translation works when it clarifies instead of replacing the data.",
+        "direct": "Sofia should make the evidence legible without distorting its meaning.",
+        "competitive": "Give the number a human shape and keep the math honest."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Why can vivid proof devices become dangerous even when they make people believe faster?",
+      "choices": [
+        "Because persuasion is always morally wrong once it becomes effective.",
+        "Because vividness can simulate certainty that the underlying evidence has not earned.",
+        "Because audiences prefer abstract data to concrete support."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's warning is about fidelity. A proof tool becomes risky when it feels stronger than what the evidence can honestly support.",
+        "direct": "Vividness helps until it starts performing confidence instead of clarifying proof.",
+        "competitive": "The move breaks the moment the theater outruns the evidence."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Suppose the room now believes your idea. What challenge comes next in the book's sequence?",
+      "choices": [
+        "Making the message emotionally meaningful enough that people care to act.",
+        "Adding more proof until the message becomes impossible to question.",
+        "Returning to concreteness and replacing the credibility work with a new scene."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Belief is not the end of the sequence. After credibility, the next issue is whether the audience cares enough to move.",
+        "direct": "The book moves from trust to emotional significance. A believable idea still needs motive force.",
+        "competitive": "The room trusts the claim now. The next fight is getting it to care."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "chapterId": "ch04-the-skin-of-others-in-your-game",
+  "chapterNumber": 4,
+  "title": "The Skin of Others in Your Game",
+  "sources": [
+    {
+      "id": "medium-skin-of-others",
+      "url": "https://medium.com/incerto/the-skin-of-others-in-your-game-3f51d8ccc3fb",
+      "type": "authorized_excerpt",
+      "role": "primary",
+      "confidence": "high",
+      "coverage": [
+        "whistleblower dilemma",
+        "family vulnerability and mortgages",
+        "institutional pressure and smear campaigns",
+        "hidden vulnerabilities around independent actors",
+        "deterrence logic for actors without ordinary downside"
+      ]
+    },
+    {
+      "id": "google-books-2018-rh",
+      "url": "https://books.google.com/books/about/Skin_in_the_Game.html?id=4dQ0DwAAQBAJ",
+      "type": "authorized_preview_metadata",
+      "role": "primary",
+      "confidence": "high",
+      "coverage": [
+        "edition metadata",
+        "book/chapter placement"
+      ]
+    },
+    {
+      "id": "richland-library-catalog",
+      "url": "https://www.richlandlibrary.com/catalog/detail/2016268",
+      "type": "library_catalog",
+      "role": "secondary",
+      "confidence": "medium",
+      "coverage": [
+        "full chapter map confirmation"
+      ]
+    }
+  ],
+  "claimsLocked": [
+    "People become easier to control when others bear the cost of their choices.",
+    "Family and institutional vulnerability can silence ethical action.",
+    "Hostile actors target the vulnerable around a dissenter to impose indirect pressure.",
+    "Taleb is analyzing asymmetric deterrence, not praising cheap moral heroism."
+  ],
+  "quotePolicy": "paraphrase-first; quote only when directly supported by authorized excerpt lines",
+  "generatedAt": "2026-04-11"
+}

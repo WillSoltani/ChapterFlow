@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does where to play mean in this chapter?",
+      "choices": [
+        "Choosing the field where the company will compete",
+        "Writing a market-size forecast",
+        "Picking only a geography and nothing else"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats where to play as the field-defining choice, not as a forecasting exercise.",
+        "direct": "Where to play means choosing the boundaries of competition, including more than geography alone.",
+        "competitive": "The right answer gives the strategy ground. The other two only gesture at analysis."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter use Bounty?",
+      "choices": [
+        "To show that smaller brands should always leave global markets",
+        "To show that stronger field choice can improve a business",
+        "To prove that channel choice never matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Bounty matters because the case shows focus as a strategic field judgment.",
+        "direct": "The example demonstrates that better playing-field choices can strengthen the business more than generalized effort can.",
+        "competitive": "Bounty is evidence that smarter ground beats wider blur."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team says every customer segment and channel is still a top priority. What is the clearest diagnosis?",
+      "choices": [
+        "The team is wisely preserving all options",
+        "The field has not been chosen hard enough yet",
+        "The strategy is finished because the list is comprehensive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Protecting every field at once usually means the choice has not become real yet.",
+        "direct": "This is breadth as avoidance. Without a chosen field, later strategic force remains weak.",
+        "competitive": "Equal protection across every field is the tell that nobody accepted the cut."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Talia's product plan targets premium customers through a bargain-heavy retail route. What should she notice first?",
+      "choices": [
+        "The customer and channel field choices are fighting each other",
+        "The premium customer is always wrong",
+        "Only the execution timeline needs to change"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The plan's problem is the mismatch between field boundaries, not just the schedule.",
+        "direct": "Where-to-play choices can fail when individually reasonable boundaries create a collectively unstable field.",
+        "competitive": "The field is fractured before the execution work even starts."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter insist that where to play is more than geography?",
+      "choices": [
+        "Because segment, channel, category, and related boundaries also shape the field",
+        "Because geography never matters in strategy",
+        "Because field choice should be delayed until the very end"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The field can be wrong in several ways even when the geography is right.",
+        "direct": "The chapter broadens the idea of field choice beyond geography because many strategic mismatches happen in segment, channel, and category logic.",
+        "competitive": "A map alone cannot save a blurred field."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Noa inherited the same audience map her club has used for years and assumes it must stay that way. Which trap is she in?",
+      "choices": [
+        "The immutable-field trap",
+        "The premium-pricing trap",
+        "The capability-overload trap"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns against treating the current field as fate instead of choice.",
+        "direct": "This is the immutable-field trap: inherited boundaries are being preserved without fresh strategic judgment.",
+        "competitive": "Habit is pretending to be logic here."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Imani says her newsletter is for 'people interested in culture and ideas.' What is the chapter's main critique?",
+      "choices": [
+        "The audience is broad enough that the field still is not chosen clearly",
+        "She should always choose geography first",
+        "The idea is too creative for strategy work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The aspiration may be real, but the field is still too loose to guide voice or route.",
+        "direct": "A broad audience label does not define the customer, channel, or category boundaries clearly enough.",
+        "competitive": "She named a dream, not the ground."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What do the chapter's three main traps have in common?",
+      "choices": [
+        "They all reduce the need for later capabilities",
+        "They all postpone the pain of making a real field choice",
+        "They all require the company to shrink immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Serving everyone, buying your way out, and treating the field as fixed all help leaders delay the harder choice.",
+        "direct": "The common denominator is avoidance: each trap protects the organization from choosing the ground clearly.",
+        "competitive": "Different stories, same dodge. The field stays underchosen."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is a smaller field not automatically a stronger strategy?",
+      "choices": [
+        "Because narrower focus can still point the company toward a field with no believable route to win",
+        "Because strategy always improves with maximum coverage",
+        "Because field size never affects advantage"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's limit is clear: focus only helps if the chosen field can still support a win.",
+        "direct": "A smaller field is still weak if the business cannot build an advantage on that ground.",
+        "competitive": "Concentrated weakness is still weakness."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once the field is chosen clearly, what does the strategy need next?",
+      "choices": [
+        "A reason the company can beat the alternatives on that field",
+        "A return to broad market appetite",
+        "A delay on all further strategic choices"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Choosing the field sets up the next question rather than finishing the strategy.",
+        "direct": "The next move is how to win: the strategy now has to define the advantage that works on the chosen ground.",
+        "competitive": "Ground without edge is unfinished strategy."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

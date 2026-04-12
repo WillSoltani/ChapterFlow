@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What problem does Chapter 6 attack first in its touch typing case study?",
+      "choices": [
+        "The learner must replace a familiar bad pattern that still feels workable",
+        "The learner needs advanced typing shortcuts before basic practice can help",
+        "Typing is mainly limited by not owning the right keyboard"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins with habit repair, not total beginner confusion.",
+        "direct": "Touch typing is difficult here because the old pattern already feels familiar enough to defend.",
+        "competitive": "The first enemy is a bad habit that still pays rent."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Why does Chapter 6 ask the learner to slow down on purpose?",
+      "choices": [
+        "Because slower typing is always more accurate in the long run",
+        "Because the corrected pattern needs room before the old speed takes over",
+        "Because frustration disappears once the learner moves carefully enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The slowdown matters because it gives the cleaner fingering a chance to happen consistently.",
+        "direct": "The chapter treats the dip as structural: old speed keeps old error in charge.",
+        "competitive": "You slow down to steal reps from the wrong habit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "What does the chapter mean by corrected repetition?",
+      "choices": [
+        "Typing many words until the hands eventually sort themselves out",
+        "Repeating the cleaner fingering often enough that it starts replacing the old motion",
+        "Alternating between old and new patterns to stay comfortable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants reps that belong to the new pattern, not just more volume.",
+        "direct": "Corrected repetition means the specific replacement keeps getting rehearsed after visible mistakes.",
+        "competitive": "The right move has to own the reps."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "June can finish faster by returning to the old fingering in the keyboard lab. What response best fits Chapter 6?",
+      "choices": [
+        "Protect a block where the corrected pattern matters more than short-term speed",
+        "Ignore the corrected drill until typing feels natural again",
+        "Switch back and forth constantly so frustration never builds"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would keep one live block under the new pattern even if progress looks slower.",
+        "direct": "This is the habit-repair choice in action: which pattern gets reinforced under real conditions?",
+        "competitive": "She needs reps for the rewrite, not relief for the ego."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Why does Chapter 6 treat frustration tolerance as part of the mechanism instead of as a side issue?",
+      "choices": [
+        "Because the learner must interpret the dip without fleeing back to the smoother mistake",
+        "Because frustration itself teaches the fingers the correct positions",
+        "Because high frustration is the clearest sign that the best method was chosen"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The learner can misread the ugly interval as proof the correction is wrong unless frustration gets a better meaning.",
+        "direct": "The chapter builds emotional tolerance into repair because regression can be honest evidence of overwrite beginning.",
+        "competitive": "If discomfort gets the final vote, the old habit wins again."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "When does slower practice become a trap in this chapter's logic?",
+      "choices": [
+        "When it is paired with shorter sessions instead of one long drill",
+        "When it turns into careful movement without real pattern replacement",
+        "When it produces any temporary drop in fluency"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Slowdown fails when the learner is not actually installing anything cleaner.",
+        "direct": "The trap appears when calm pace disguises passive drift rather than useful overwrite.",
+        "competitive": "Slow goes fake when the old structure still owns the keys."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "How would the chapter most likely apply to another familiar skill with a bad pattern in it?",
+      "choices": [
+        "Accept a temporary dip, repeat the corrected version, and let stabilization serve that cleaner pattern",
+        "Move more slowly forever so the bad habit never gets a chance to return",
+        "Wait for rest alone to erase the old motion before practicing again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The broader lesson is habit overwrite through corrected repetition, not endless caution.",
+        "direct": "Chapter 6 generalizes through temporary regression, specific replacement, and disciplined stabilization.",
+        "competitive": "Same rule elsewhere: take the dip and feed the right move the reps."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Malik predicts that one longer angry session will help more than shorter corrected rounds with return. Why does Chapter 6 reject that prediction?",
+      "choices": [
+        "Because tired hands are always a sign that no learning happened",
+        "Because spacing and sleep can support a corrected pattern better than brute volume alone",
+        "Because long sessions are forbidden whenever a skill feels frustrating"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows effort, but it trusts corrected return more than sheer force.",
+        "direct": "Consolidation matters because repeated corrected rounds can stabilize across time in a way one angry marathon often cannot.",
+        "competitive": "Punishment volume is not repair."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "What is the chapter's hardest warning about the temporary performance dip?",
+      "choices": [
+        "That any visible regression means the learner chose the wrong fingering",
+        "That the dip can be misread as failure even when it is buying real replacement",
+        "That the learner should ignore all mistakes until consolidation has finished"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is careful here: worse-looking performance can still be honest progress during overwrite.",
+        "direct": "The danger is not the dip itself but the learner's urge to treat it as a verdict against correction.",
+        "competitive": "The ugly interval can tell the truth while still feeling humiliating."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "If Chapter 6 repairs a motor habit through corrected repetition, what is the most natural bridge to Chapter 7?",
+      "choices": [
+        "How the method changes when the next skill depends more on strategic complexity than on repetitive motor overwrite",
+        "How typing proves that all later skills should focus only on habit loops",
+        "How repetition can replace planning in every difficult domain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how the method behaves when the skill becomes more strategic and less repetitive.",
+        "direct": "Chapter 7 can test whether the method still works once the challenge is pattern-rich decision making instead of keyboard rewiring.",
+        "competitive": "The next battlefield is choice, not just reps."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

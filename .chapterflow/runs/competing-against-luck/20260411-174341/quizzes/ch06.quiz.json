@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 6 mainly trying to build?",
+      "choices": [
+        "A repeated hiring record for what a solution is trusted to do",
+        "A brand slogan for future campaigns",
+        "A literal career-style document for the product team"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a solution builds a resume through repeated hires, not through messaging alone.",
+        "direct": "Correct. Chapter 6 turns repeated hiring evidence into a usable record of trusted progress.",
+        "competitive": "The market writes the resume, not the copy team."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is one vivid customer story too weak by itself?",
+      "choices": [
+        "Because one story cannot show whether the same hiring logic repeats",
+        "Because stories are never useful in jobs thinking",
+        "Because only feature adoption data matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One story may be real, but the chapter says repetition is needed to build a stronger record.",
+        "direct": "A single case can still be accidental or narrow; repeated hires give stronger evidence.",
+        "competitive": "One good story can flatter a team without proving identity."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does repeated hiring reveal when it is consistent?",
+      "choices": [
+        "What progress buyers actually trust the offering to deliver",
+        "What message the marketing team likes best",
+        "That every buyer has exactly the same circumstances"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The repeated pattern shows what the solution is reliably trusted for in practice.",
+        "direct": "Chapter 6 says consistent rehiring creates a stronger record than aspiration or messaging.",
+        "competitive": "Repeat hires reveal the real job standing."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elena's team says its tool is for every planning task, but buyers keep rehiring it mainly for quick handoff coordination. What does Chapter 6 say that means?",
+      "choices": [
+        "The team's message automatically defines the resume",
+        "The earned resume may be narrower than the official positioning",
+        "The product has no real resume yet"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the repeated hiring record matters more than the broad claim.",
+        "direct": "When the market keeps trusting the product for one narrower kind of progress, that pattern deserves respect.",
+        "competitive": "The market just cut the slogan down to size."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is a solution's resume more earned than its positioning language?",
+      "choices": [
+        "Because it comes from repeated buyer behavior rather than self-description",
+        "Because positioning should never be written down",
+        "Because features stop mattering once the product launches"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The resume is built by what buyers keep doing, not only by what the company says.",
+        "direct": "Repeated hiring evidence is the chapter's stronger signal because it reflects earned trust.",
+        "competitive": "Buyers write the record with their hires."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What limit does the chapter put on repeated use?",
+      "choices": [
+        "Any repeat use automatically proves one stable job",
+        "The team still has to test whether the same kind of progress is truly recurring",
+        "Repeated use matters only when the company is already profitable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that several uses can still reflect different jobs if the team checks poorly.",
+        "direct": "Frequency alone is not enough; the same hiring logic has to recur.",
+        "competitive": "Repeat contact is not the same thing as repeat job."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "At a tutoring center, Mira notices students keep coming back for fast last-minute clarifications rather than for full lesson help. What would Chapter 6 call that pattern?",
+      "choices": [
+        "A clue about the service's earned resume",
+        "Proof that the service should ignore all other student needs",
+        "A reason to stop tracking repeated cases"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The repeated trust points toward what the service is really being rehired to do.",
+        "direct": "This is the chapter's logic: recurring hiring evidence reveals the job record more clearly than broad claims.",
+        "competitive": "The repeat pattern is writing the service's real standing."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Theo has one great experience with a new tool and assumes it has already earned a strong resume. What is Chapter 6's best correction?",
+      "choices": [
+        "One good experience is still weaker than repeated evidence across hires",
+        "A resume never changes after the first hire",
+        "Personal experience should be ignored completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says one hire can matter without yet being enough to define a durable record.",
+        "direct": "A single success may be informative, but repetition is what gives the resume real weight.",
+        "competitive": "One clean win is still too cheap to call identity."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best fits Chapter 6's disciplined use of the resume metaphor?",
+      "choices": [
+        "A resume is whatever story the company wants buyers to believe",
+        "A resume is an earned hiring record built from repeated trust in certain progress",
+        "A resume means every repeated use belongs to the same job"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The middle option keeps the metaphor tied to repeated hiring evidence.",
+        "direct": "That answer matches the chapter's effort to keep the resume narrower and more earned than branding language.",
+        "competitive": "The resume is a record, not a fantasy pitch."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 6 is right, what should the book teach next?",
+      "choices": [
+        "How to integrate an organization around the job the offering has actually earned",
+        "How to turn every feature into a broader slogan",
+        "How to stop comparing repeated hires"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the earned resume is clearer, the next issue is how the company aligns around that job.",
+        "direct": "Chapter 6 sets up Chapter 7 by clarifying the job record the organization should integrate around.",
+        "competitive": "First earn the record. Then build the firm around it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

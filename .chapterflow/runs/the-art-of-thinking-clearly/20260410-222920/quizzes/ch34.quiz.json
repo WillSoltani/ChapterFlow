@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch34-q01",
+      "prompt": "What is the core problem in exponential growth as used in this chapter?",
+      "choices": [
+        "A compounding process is being judged like simple addition",
+        "Every kind of growth is being treated as dangerous",
+        "Math always becomes impossible once numbers rise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The issue is mistaking compounding for straight-line increase.",
+        "direct": "Correct. A multiplicative process is being forecast with linear intuition.",
+        "competitive": "That is the trap. The ruler is trying to govern a multiplier."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch34-q02",
+      "prompt": "Why can this bias feel so believable at first?",
+      "choices": [
+        "Because the early stages can look small and manageable",
+        "Because exponential growth always starts with huge jumps",
+        "Because additive and multiplicative change look identical forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The opening can look calm even when the structure is compounding.",
+        "direct": "Exactly. Early visual modesty can invite a straight-line guess even though the base is growing.",
+        "competitive": "That is it. The calm opening lulls the gut while the engine loads up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch34-q03",
+      "prompt": "Which situation best fits the chapter's warning?",
+      "choices": [
+        "A repeated percentage change is projected forward as if the same amount were added each time",
+        "A fixed amount is added each week and treated as fixed",
+        "A curve is tested directly for whether it compounds"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A multiplying process is being treated like straight-line growth.",
+        "direct": "Correct. The process is compounding, but the forecast is additive in spirit.",
+        "competitive": "That is the move. A ruler just walked into a multiplier fight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch34-q04",
+      "prompt": "A team sees calm early demand growth and assumes the next periods will stay similarly calm. What should they do first?",
+      "choices": [
+        "Trust the opening slope because it looked modest",
+        "Check whether each period's increase is being applied to a larger base",
+        "Assume all growth curves become exponential eventually"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. They need to test whether the process compounds.",
+        "direct": "That is the key. A larger base can make later growth diverge sharply from the calm early appearance.",
+        "competitive": "Exactly. Look under the hood before the polite opening sells you a fake forecast."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch34-q05",
+      "prompt": "Why can a backlog become worse faster than expected?",
+      "choices": [
+        "Because repeated delay can create a compounding burden rather than a simple straight-line increase",
+        "Because all unfinished work grows at the same fixed amount forever",
+        "Because early stages always reveal the full long-term pace"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A multiplying burden can outrun a linear guess.",
+        "direct": "The disciplined view is that accumulating delay can build on itself rather than behaving like isolated equal steps.",
+        "competitive": "That is it. The quiet first misses can be loading heavier rounds later."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch34-q06",
+      "prompt": "What is the best practical defense against this bias?",
+      "choices": [
+        "Judge the curve by its opening look alone",
+        "Test whether the process is additive or multiplicative before projecting it",
+        "Assume every growth process is exponential just to be safe"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Mechanism matters more than the first visual impression.",
+        "direct": "Testing the structure of change is what protects judgment from applying linear intuition to a compounding process.",
+        "competitive": "Exactly. Inspect the engine before you trust the sketch."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch34-q07",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Every increase is secretly exponential",
+        "Compounding processes should not be judged with straight-line intuition",
+        "All calm beginnings become dangerous later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The warning is about mechanism, not about treating every line as explosive.",
+        "direct": "That keeps the boundary intact: some change is additive, but multiplicative growth should not be read as if it were linear.",
+        "competitive": "Exactly. Not every line is a monster, but the multiplier does not answer to your ruler."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch34-q08",
+      "prompt": "What question best reveals whether a calm-looking curve may accelerate later?",
+      "choices": [
+        "Does each increase build on a larger base than before?",
+        "Does the line feel comfortable to look at?",
+        "Was the first increase small enough to ignore?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question tests whether the process compounds.",
+        "direct": "It exposes whether the mechanism is multiplicative rather than additive, which is what determines later acceleration.",
+        "competitive": "That is the cut. Check the base, not the vibe."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch34-q09",
+      "prompt": "Which earlier chapter pairs best with Exponential Growth here?",
+      "choices": [
+        "Planning Fallacy pairs well because both can make the future look more manageable than the actual structure allows",
+        "Social Loafing, because every group project compounds",
+        "Loss Aversion, because every curve feels risky"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn that the future can look gentler than the actual structure will produce.",
+        "direct": "This pairing works because each bias lets a misleading intuitive picture understate what the real process will do over time.",
+        "competitive": "That is the strongest link. The future looks tame because the model is too soft."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch34-q10",
+      "prompt": "A healthier forecast survives which test?",
+      "choices": [
+        "It still makes sense after the additive-versus-multiplicative structure is made explicit",
+        "It still feels calm after looking at the first few points",
+        "It still matches the original ruler sketch exactly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A stronger forecast must survive once the real engine of change is named clearly.",
+        "direct": "That is the decisive test because it shows whether the estimate depends on linear intuition or on the actual mechanism of growth.",
+        "competitive": "Exactly. If the forecast dies when the engine is exposed, the ruler was bluffing."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

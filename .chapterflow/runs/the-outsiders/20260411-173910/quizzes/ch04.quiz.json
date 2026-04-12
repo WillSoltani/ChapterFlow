@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What scorecard correction does Chapter 4 make first?",
+      "choices": [
+        "The cleanest-looking plan is always the best one",
+        "Simple optics can still miss the real economics",
+        "Debt automatically makes a business smarter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Thorndike says a neat story can still be weaker if it ignores how value is really created.",
+        "direct": "The chapter starts by challenging the idea that simplicity is automatically superior.",
+        "competitive": "Clean is not the same as economically strong."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is TCI's setting structurally difficult in this chapter?",
+      "choices": [
+        "Because the company sits in a fast-moving, debt-heavy cable environment",
+        "Because the business has no financing choices at all",
+        "Because the chapter stops caring about operations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The industry is moving fast, debt matters, and structure affects value.",
+        "direct": "TCI's setting forces the reader to consider leverage and design as part of the economics.",
+        "competitive": "The business moves too fast for lazy scorecards."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter treat leverage?",
+      "choices": [
+        "As a moral vice that should always be rejected",
+        "As a disciplined tool that can sharpen or damage results depending on the economics",
+        "As a status symbol for sophisticated managers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Debt can help or hurt. The chapter only respects it when strong economics govern it.",
+        "direct": "Leverage is useful here as a governed instrument, not as a badge.",
+        "competitive": "Debt magnifies truth before it magnifies style."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Riley has one financing plan that looks cleaner and another that preserves more value. What fits Chapter 4 best?",
+      "choices": [
+        "Choose the cleaner plan because it is easier to defend",
+        "Choose the structure with stronger economics if the logic stays clear and auditable",
+        "Reject both plans because any complexity is suspicious"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says better economics can justify a harder-looking structure.",
+        "direct": "Choice B matches Malone's logic: the real test is retained value, not tidy optics.",
+        "competitive": "Take the ugly winner only if it survives the audit."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which belief does Chapter 4 challenge most directly?",
+      "choices": [
+        "Every complicated plan must be smarter than a simple one",
+        "A simple-looking plan is always the strongest discipline",
+        "After-tax outcomes are irrelevant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Thorndike pushes against the idea that easy-to-explain always means better.",
+        "direct": "The chapter attacks simplicity worship, not caution itself.",
+        "competitive": "Respectable neatness can still be lazy analysis."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Ethan's debate team resists a more layered prep system even though it improves results. What is the chapter's best diagnosis?",
+      "choices": [
+        "The team is correctly avoiding all complexity",
+        "The team is mistaking clean optics for stronger economics",
+        "The team should add more layers until nobody understands the system"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team prefers the cleaner story even though the new structure works better.",
+        "direct": "This is Chapter 4's problem in miniature: neatness is outranking outcome.",
+        "competitive": "They are choosing the prettier tool over the sharper one."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does tax-aware structure matter in this chapter?",
+      "choices": [
+        "Because owners only keep pre-tax value",
+        "Because after-tax outcomes are part of the real scorecard",
+        "Because tax talk automatically proves sophistication"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The structure matters if it changes what value owners actually keep.",
+        "direct": "Thorndike treats after-tax outcomes as real outcomes, not decorative details.",
+        "competitive": "Ignoring taxes is just ignoring a leak."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the anti-camouflage rule in Chapter 4?",
+      "choices": [
+        "Complexity deserves trust only when it clarifies value instead of hiding it",
+        "Every layered structure should be hidden from criticism",
+        "The hardest plan to explain is usually the smartest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps one plain test: does the design make the economics clearer or murkier?",
+        "direct": "Complexity only counts when it still answers a visible value scorecard.",
+        "competitive": "If scrutiny makes the case fuzzier, the sophistication is fake."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes Malone's complexity defensible rather than performative?",
+      "choices": [
+        "It is complicated enough that outsiders cannot question it",
+        "It improves the economics while remaining answerable to a plain value standard",
+        "It uses more debt than simpler rivals"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter only respects the complexity if it creates stronger value and still stays understandable.",
+        "direct": "Malone matters when difficult tools remain auditable under the scorecard.",
+        "competitive": "The structure has to get stronger the harder you look at it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 4 is about honest complexity under a clear scorecard, what is the strongest bridge into Katharine Graham's next chapter?",
+      "choices": [
+        "How can disciplined judgment survive in a human succession story where authority is inherited rather than engineered?",
+        "How can every future case avoid structure completely?",
+        "How can managers hide all difficult choices inside finance language?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next natural question is how outsider discipline works when the challenge is inheritance and confidence, not structural finance.",
+        "direct": "This is the right bridge because the next case turns from design complexity to judgment under succession pressure.",
+        "competitive": "Malone proves intelligence can survive the mess. Graham will have to prove it can survive inheritance."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

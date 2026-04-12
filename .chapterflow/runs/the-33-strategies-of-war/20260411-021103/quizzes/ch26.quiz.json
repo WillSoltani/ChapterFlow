@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch26-q01",
+      "prompt": "What is the core move in the strategy of the void?",
+      "choices": [
+        "Deny the opponent a clean target by distributing exposure",
+        "Disappear completely from every conflict",
+        "Publicly threaten retaliation before any attack lands"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter defines the void as denied target rather than magical invisibility.",
+        "direct": "Start with the target logic: the structure changes attack efficiency by removing one decisive strike point.",
+        "competitive": "The point is to make one blow worth less, not to float into mist."
+      }
+    },
+    {
+      "questionId": "ch26-q02",
+      "prompt": "Why are fixed centers dangerous for weaker operators?",
+      "choices": [
+        "They make morale permanently stronger",
+        "They give the opponent a clear node to isolate and hit",
+        "They prevent observers from understanding the conflict"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Fixed centers simplify the attacker's job because one hit can be made to look decisive.",
+        "direct": "Look at the geometry: a visible hub turns strategy into targeting aid for the stronger side.",
+        "competitive": "One legible node is an invitation to a kill shot."
+      }
+    },
+    {
+      "questionId": "ch26-q03",
+      "prompt": "What is the main reversal built into this chapter?",
+      "choices": [
+        "Any decentralized team automatically becomes more accountable",
+        "The strategy only works in private conflicts",
+        "Too much diffusion can preserve survival while destroying action clarity"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The warning is that resilience can flip into drift if ownership disappears.",
+        "direct": "Notice the reversal: diffusion stops helping when your own side can no longer decide or move clearly.",
+        "competitive": "A system can dodge the enemy and still lose to its own fog."
+      }
+    },
+    {
+      "questionId": "ch26-q04",
+      "prompt": "Odalys is being pushed to appoint one permanent spokesperson because it would look cleaner. What best fits the chapter?",
+      "choices": [
+        "Keep public burden distributed while preserving internal decision clarity",
+        "Accept one face because observers always reward simplicity",
+        "Stop communicating with allies so the rival learns nothing"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Odalys gains by removing the obvious person a stronger rival wants to isolate.",
+        "direct": "Focus on the strike path: one permanent face creates the clean target the strategy is trying to deny.",
+        "competitive": "Do not volunteer one throat to grab when shared exposure can keep the mission alive."
+      }
+    },
+    {
+      "questionId": "ch26-q05",
+      "prompt": "In Gideon's seminar, which test best separates coherent decentralization from disorder?",
+      "choices": [
+        "Whether the system uses modern collaboration tools",
+        "Whether it stays harder to target while remaining clear enough to run internally",
+        "Whether nobody can identify any leader at all"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Gideon keeps the chapter tied to architecture rather than to style.",
+        "direct": "Keep the distinction sharp: resilience means attack gets harder without operations becoming blurry.",
+        "competitive": "If the enemy loses the map but your team keeps it, the design is working."
+      }
+    },
+    {
+      "questionId": "ch26-q06",
+      "prompt": "Cerys wants to reduce single-point risk on a client account. Which move best fits the chapter?",
+      "choices": [
+        "Make the account lead handle every client interaction personally",
+        "Avoid documenting anything sensitive",
+        "Spread updates and records across the team while keeping internal ownership explicit"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The move is to distribute exposure without erasing responsibility.",
+        "direct": "Test the structure: redundancy helps only if people still know who owns the next action.",
+        "competitive": "Break the shutdown point, not the command line."
+      }
+    },
+    {
+      "questionId": "ch26-q07",
+      "prompt": "Halden is asked to become the lone public face of a sensitive neighborhood effort. When does refusing make strategic sense?",
+      "choices": [
+        "Whenever visibility feels emotionally uncomfortable",
+        "When one public face would hand a hostile campaign too much leverage over the whole effort",
+        "Only when he plans to leave the effort soon anyway"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter allows lower visibility when it removes an unnecessary strike point.",
+        "direct": "Separate caution from avoidance: the refusal is strategic when visibility would create a decisive target.",
+        "competitive": "Skipping the stage is smart if the stage comes with a bullseye that could sink the mission."
+      }
+    },
+    {
+      "questionId": "ch26-q08",
+      "prompt": "A student team says its work is decentralized, but no one can name who restores access after a system failure. What is the strongest diagnosis?",
+      "choices": [
+        "The structure may be diffused, but it is not yet coherent enough to count as resilient",
+        "The team has already mastered the void strategy",
+        "The lack of ownership proves hierarchy is always weak"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter says denial of target is not enough if the system cannot recover clearly.",
+        "direct": "Check responsibility first: resilience requires visible recovery ownership inside the team.",
+        "competitive": "Fog is not strength. If no one can restore the system, the team is bluffing."
+      }
+    },
+    {
+      "questionId": "ch26-q09",
+      "prompt": "Which judgment best captures the chapter's limit?",
+      "choices": [
+        "Any diffuse structure is preferable to a visible leader",
+        "The strategy works only if outsiders never notice the group exists",
+        "The strategy is strong only while reduced target value does not come at the cost of mission control"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter keeps asking whether the system remains able to act after it becomes harder to strike.",
+        "direct": "Judge the trade carefully: lower exposure is valuable only while internal control stays intact.",
+        "competitive": "Once mission control starts dissolving, the void is eating your side faster than the enemy is."
+      }
+    },
+    {
+      "questionId": "ch26-q10",
+      "prompt": "How does Chapter 26 differ from the alliance logic that follows in Chapter 27?",
+      "choices": [
+        "Chapter 26 wins by earning public legitimacy while Chapter 27 wins by seeking obscurity",
+        "Chapter 26 denies a clean target, while Chapter 27 makes stronger actors carry part of your effort because it serves them",
+        "Chapter 26 and Chapter 27 both rely on the same mechanism of moral framing"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The bridge turns from surviving attack through diffusion to gaining motion through aligned interests.",
+        "direct": "Bridge the chapters cleanly: this one removes the strike point, the next one recruits outside power through incentive.",
+        "competitive": "Here you spoil the hit. Next chapter you make bigger players push your campaign for their own reasons."
+      }
+    }
+  ]
+}

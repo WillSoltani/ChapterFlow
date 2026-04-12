@@ -1,0 +1,21 @@
+# Chapter 10 Source Sidecar
+
+Chapter: 10
+Title: Only the Rich Are Poisoned: The Preferences of Others
+
+Frozen basis:
+- source-freeze/toc.json confirms chapter title and chapter order.
+- sidecars/source/source-heading-index.json confirms `ch10` label in the locked map.
+- source-freeze/book-source.md provides the work-level theme spine and freeze boundary.
+- skeleton/book-skeleton.md records the run intent: show how wealth can detach people from their own preferences and expose them to constructed desires.
+
+Usable chapter anchors:
+- preferences shaped by others rather than by direct need or use
+- wealth or status insulation as a distortion of judgment
+- luxury and prestige as possible vectors of manipulated desire
+- continuity with earlier themes of asymmetry, signaling, and distance from reality
+
+Restrictions:
+- no exact quotations
+- no unsupported named luxury or consumer anecdotes from outside the frozen run state
+- keep the chapter focused on borrowed preference, insulation, and autonomy loss

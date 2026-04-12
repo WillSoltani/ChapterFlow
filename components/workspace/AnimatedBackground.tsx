@@ -1,92 +1,25 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useThemePreference } from "@/app/hooks/useThemePreference";
+import styles from "./AnimatedBackground.module.css";
 
 export function AnimatedBackground() {
-  const prefersReducedMotion = useReducedMotion();
   const { resolvedTheme } = useThemePreference();
   const isLight = resolvedTheme === "light";
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        overflow: "hidden",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}
-      aria-hidden="true"
-    >
-      {/* Violet orb — top left */}
-      <motion.div
-        style={{
-          position: "absolute",
-          top: "-100px",
-          left: "-100px",
-          width: 700,
-          height: 700,
-          borderRadius: "50%",
-          background: isLight
-            ? "radial-gradient(circle, rgba(13, 148, 136, 0.04) 0%, rgba(13, 148, 136, 0) 65%)"
-            : "radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0) 65%)",
-          filter: "blur(60px)",
-          willChange: "transform",
-        }}
-        animate={
-          prefersReducedMotion
-            ? {}
-            : { x: [0, 40, -30, 20, 0], y: [0, -35, 25, -15, 0] }
-        }
-        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+    <div className={styles.container} aria-hidden="true">
+      <div
+        className={`${styles.orb} ${styles.violet}`}
+        data-theme={isLight ? "light" : "dark"}
       />
-      {/* Cyan orb — center right */}
-      <motion.div
-        style={{
-          position: "absolute",
-          top: "30%",
-          right: "-80px",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background: isLight
-            ? "radial-gradient(circle, rgba(13, 148, 136, 0.03) 0%, rgba(13, 148, 136, 0) 65%)"
-            : "radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, rgba(34, 211, 238, 0) 65%)",
-          filter: "blur(60px)",
-          willChange: "transform",
-        }}
-        animate={
-          prefersReducedMotion
-            ? {}
-            : { x: [0, -35, 30, -20, 0], y: [0, 30, -25, 35, 0] }
-        }
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      <div
+        className={`${styles.orb} ${styles.cyan}`}
+        data-theme={isLight ? "light" : "dark"}
       />
-      {/* Emerald orb — bottom left */}
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: "-80px",
-          left: "20%",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background: isLight
-            ? "radial-gradient(circle, rgba(16, 185, 129, 0.03) 0%, rgba(16, 185, 129, 0) 65%)"
-            : "radial-gradient(circle, rgba(16, 185, 129, 0.07) 0%, rgba(16, 185, 129, 0) 65%)",
-          filter: "blur(60px)",
-          willChange: "transform",
-        }}
-        animate={
-          prefersReducedMotion
-            ? {}
-            : { x: [0, 30, -25, 20, 0], y: [0, -30, 20, -25, 0] }
-        }
-        transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
+      <div
+        className={`${styles.orb} ${styles.emerald}`}
+        data-theme={isLight ? "light" : "dark"}
       />
     </div>
   );

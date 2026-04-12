@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 4 mainly add to the book's workflow?",
+      "choices": [
+        "A way to hunt for jobs deliberately",
+        "A proof that categories no longer matter at all",
+        "A formula for choosing the best feature requests"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter turns jobs from something recognized after the fact into something a team can search for on purpose.",
+        "direct": "Correct. Chapter 4 opens the practical section by moving from explanation to discovery.",
+        "competitive": "The book stops admiring insight and starts hunting it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are feature requests weak hunting ground by themselves?",
+      "choices": [
+        "They often arrive after the struggle has already been translated into solution language",
+        "They always come from the wrong customers",
+        "They are useless for any design decision"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A request can hide the live situation that made the person want change in the first place.",
+        "direct": "The chapter says feature requests are often downstream evidence rather than primary causal evidence.",
+        "competitive": "By the time the wishlist shows up, the struggle has already been edited."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team has satisfaction scores and segment data but still cannot see what moment really matters. What does the chapter say they should do next?",
+      "choices": [
+        "Collect more segments until a pattern appears",
+        "Move closer to the live situation where progress is strained",
+        "Ignore the situation and focus on market size"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter pushes the search toward the real moment where progress feels difficult.",
+        "direct": "Flattened summaries are not enough. The team has to go back toward the pressured circumstance.",
+        "competitive": "Leave the summary deck and go to the stall point."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Omar's product team keeps reading feature requests from a dashboard. Which Chapter 4 move fits best?",
+      "choices": [
+        "Rank the requests by frequency and ship the top three",
+        "Look for the live situation where users are tolerating weak workarounds or costly delays",
+        "Ask marketing which segment is most valuable first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the team should hunt in the pressured moment, not just in the summary of comments.",
+        "direct": "This move gets the search closer to incomplete progress and real constraints.",
+        "competitive": "Go to the struggle, not the spreadsheet."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why do substitutes matter during job hunting?",
+      "choices": [
+        "Because they reveal what else is competing to create the same progress",
+        "Because they always cost less than the focal product",
+        "Because they remove the need to study the situation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People often show the job through what they compare, tolerate, or nearly choose instead.",
+        "direct": "The alternative set helps expose the real movement at stake more clearly than the focal product alone.",
+        "competitive": "The battlefield reveals the hire."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's limit on job hunting?",
+      "choices": [
+        "Every complaint should be treated like a potential strategic breakthrough",
+        "The search still needs circumstance, urgency, and meaningful alternatives",
+        "The hunt works only if the team already knows the right category"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that vague frustration alone is not enough to define a job.",
+        "direct": "Discovery goes soft without a clear situation, real pressure, and realistic substitutes.",
+        "competitive": "Not every complaint earns causality."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Tessa studies a campus service desk. What would Chapter 4 tell her to observe first?",
+      "choices": [
+        "Only which age group uses the desk most",
+        "Where progress is stalling and what alternatives students are using or avoiding",
+        "Which poster colors make the desk look most inviting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter pushes toward live struggle and substitutes rather than superficial descriptors.",
+        "direct": "The search should begin where the situation exposes incomplete progress and real tradeoffs.",
+        "competitive": "Watch the stall and the fallback, not the decoration."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Nora realizes her past purchases looked obvious only after she noticed the awkward workarounds she had been tolerating. What does that show?",
+      "choices": [
+        "Jobs can become clearer when weak current answers are examined directly",
+        "Past purchases are too unreliable to study",
+        "Workarounds should be ignored because they are not real products"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Weak or awkward current answers can reveal what better progress the person was really seeking.",
+        "direct": "This is the chapter's search logic: the live workaround often exposes the job better than later summary talk does.",
+        "competitive": "The patched fix points to the real fight."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best fits Chapter 4's disciplined search logic?",
+      "choices": [
+        "The safest way to hunt jobs is to start with broad demographics and stay there",
+        "Reliable job evidence appears where progress is strained and alternatives are in play",
+        "A large number of complaints automatically proves a durable job exists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The middle option keeps the search tied to live situation and real alternatives.",
+        "direct": "That statement matches the chapter's emphasis on pressured moments over flattened summaries.",
+        "competitive": "Strain plus substitutes beats complaint volume."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 4 is right, what should the book teach next?",
+      "choices": [
+        "How to redesign the organization around jobs immediately",
+        "How to hear what customers do not say directly once the team reaches the right situation",
+        "How to remove substitutes from the market"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "After the team knows where to look, it still has to learn how to listen and interpret well.",
+        "direct": "Chapter 4 sets up the next skill: hearing unsaid evidence once discovery is aimed correctly.",
+        "competitive": "The hunt gets you there. Listening decides what you learn."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

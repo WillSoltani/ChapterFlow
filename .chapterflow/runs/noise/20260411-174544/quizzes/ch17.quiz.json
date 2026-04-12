@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch17-q01",
+      "prompt": "What is the chapter's orienting claim about occasion noise?",
+      "choices": [
+        "Judgments can still vary across occasions even after process design improves",
+        "Occasion noise replaces every other explanation for variation",
+        "Better structure should eliminate all remaining spread"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter introduces occasion noise as a residual source of variation.",
+        "direct": "Correct. Occasion noise means judgments can still differ across moments even after genuine design improvements.",
+        "competitive": "This chapter names the wobble that survives the first repairs."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch17-q02",
+      "prompt": "Why does occasion noise matter after structure improves?",
+      "choices": [
+        "Because better design does not exhaust every source of variation",
+        "Because design improvements never matter much",
+        "Because occasion noise makes procedures irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says residual spread can remain after real progress.",
+        "direct": "Occasion noise matters because some variation persists even when the baseline process gets stronger.",
+        "competitive": "A sharper frame can still leave a leftover leak."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch17-q03",
+      "prompt": "Why does process design still remain relevant in this chapter?",
+      "choices": [
+        "Because occasion noise adds to the picture instead of replacing structural gains",
+        "Because occasion noise proves the process never improved",
+        "Because structure matters only after the judgment is complete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps better design and residual variation in the same frame.",
+        "direct": "Process design still matters because stronger structure raises the floor even if some spread remains across occasions.",
+        "competitive": "One new leak does not erase the value of the repairs."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch17-q04",
+      "prompt": "Elena sees the same kind of review land differently across two days. What lesson fits best?",
+      "choices": [
+        "Some residual spread may come from the occasion rather than from process weakness alone",
+        "The process must have changed completely between the two days",
+        "Repeated judgments should never differ once a form exists"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says some variation can persist across occasions even when structure stays similar.",
+        "direct": "The right move is to consider occasion noise instead of forcing every repeated difference back onto written design alone.",
+        "competitive": "If the frame stayed put, the wobble may belong to the moment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q05",
+      "prompt": "Why does Priya's repeated school rubric matter in this chapter?",
+      "choices": [
+        "Because repeat scoring can still drift slightly even under the same written structure",
+        "Because school rubrics remove all remaining variation",
+        "Because a repeated score proves the process is useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The example shows that residual variation can survive alongside better design.",
+        "direct": "The school case matters because it makes occasion-based spread visible without denying the value of structure.",
+        "competitive": "The same rubric can still leave room for a second wobble."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q06",
+      "prompt": "Which misreading does the chapter reject about occasion noise?",
+      "choices": [
+        "That occasion noise explains every remaining judgment difference",
+        "That some spread can remain after improvement",
+        "That process design can still matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps occasion noise as one layer, not the entire story.",
+        "direct": "It rejects the overclaim that every remaining difference should now be attributed to occasion noise alone.",
+        "competitive": "One leak does not get crowned king of the whole system."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q07",
+      "prompt": "What does residual variation mean in this chapter?",
+      "choices": [
+        "Spread that remains even after some process improvements are already in place",
+        "Variation caused only by people in different roles",
+        "A total failure of design reform"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Residual variation is what remains after some real gains have already been made.",
+        "direct": "The term refers to the spread that survives even after the baseline has been raised by better design.",
+        "competitive": "The leftover wobble matters because the easy fixes are already done."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q08",
+      "prompt": "What does occasion noise add to the analysis of variation?",
+      "choices": [
+        "Another source of spread beyond people and process design alone",
+        "Proof that all variation is random",
+        "A reason to stop improving procedures"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter deepens the map of where spread can come from.",
+        "direct": "Occasion noise adds a distinct layer to the analysis by treating the judgment moment itself as part of the picture.",
+        "competitive": "The map gets another leak instead of recycling the same old one."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q09",
+      "prompt": "Which overclaim does the chapter reject?",
+      "choices": [
+        "That better process should eliminate all remaining variation",
+        "That residual spread can remain after improvement",
+        "That occasion noise deepens the analysis of noise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the gain from structure real without making it total.",
+        "direct": "It rejects the idea that genuine process improvement must remove every last source of spread to count as progress.",
+        "competitive": "A real repair still counts even if the wobble survives."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch17-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If judgments can still vary across occasions, the next question is how groups can amplify that variation",
+        "The next chapter abandons noise analysis entirely",
+        "The next chapter proves occasion noise is the only important source of spread"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move widens from occasion-level variation to collective amplification.",
+        "direct": "The bridge works because the book turns from residual occasion-based spread to what happens when groups make judgments together.",
+        "competitive": "If one moment can wobble, the next room can make it louder."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

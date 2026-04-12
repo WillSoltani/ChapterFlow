@@ -1,0 +1,710 @@
+{
+  "chapterId": "ch10",
+  "number": 10,
+  "title": "The Scandal of Prediction",
+  "readingTimeMinutes": 2,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "Taleb's scandal is not only that forecasts fail. It is that forecasts are delivered with much more confidence than their signal deserves. The offense is overprecision.",
+        "direct": "This happens because confidence is socially rewarded. A crisp forecast sounds professional, while a careful admission of uncertainty sounds weak.",
+        "competitive": "Taleb is attacking prediction theater: uncertainty gets translated into authority language that sounds stronger than the evidence is."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "The scandal is inflated confidence.",
+            "direct": "Prediction often overspeaks its signal.",
+            "competitive": "The forecast is louder than the evidence."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Institutions reward crispness.",
+            "direct": "Confidence often outranks calibration in public settings.",
+            "competitive": "Fluency can beat honesty."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Prediction culture is systemic.",
+            "direct": "Forecast theater survives because audiences and institutions reward certainty style.",
+            "competitive": "The stage loves a number more than a boundary."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "What is the scandal in this chapter?",
+        "direct": "Why does prediction theater persist?",
+        "competitive": "What gets rewarded more than calibration?"
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "Taleb's scandal is not simply that people predict badly. It is that they predict badly while speaking as if the world had granted them more visibility than it has. The offense is inflated confidence. Error matters, but overprecision matters more because it turns uncertainty into authority theater.\n\nThis persists because prediction is socially rewarded when it sounds crisp. A hesitant forecast feels weak. A decisive forecast feels professional. Institutions, media, and organizations therefore keep selecting for people who can compress ambiguity into sentences that sound clean and final.\n\nCalibration loses status to fluency.",
+        "direct": "The chapter matters because this is not merely an individual flaw. It is an incentive structure. Forecasts travel upward through boardrooms, interviews, briefings, and management culture because they create the impression that reality is being domesticated. The person who says, I do not know, rarely gets the same prestige as the person who offers a number and a date.\n\nTaleb is not claiming that all foresight is worthless. He is claiming that prediction culture routinely exaggerates what is knowable. Experts borrow prestige from formality, from tidy models, and from the audience's appetite for certainty more than from real signal.\n\nThe forecast may therefore be respected for reasons that have little to do with genuine visibility.",
+        "competitive": "The correction is not permanent silence. It is harsher discipline about what deserves precision, what counts as knowledge, and when ignorance is the stronger answer. Prediction should shrink when the domain is opaque, tail-driven, or model-fragile. Instead it often expands.\n\nThat is why Chapter 11 follows naturally. Once false grandeur has been stripped from forecasting, the better question becomes how to search, notice, and act without pretending the map is already clear.\n\nTaleb is moving from prediction theater toward practical contact with uncertainty."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "The scandal is confidence inflation, not error alone.",
+            "direct": "Taleb cares most about forecasts sounding more certain than their signal warrants.",
+            "competitive": "The offense is overspeaking uncertainty."
+          },
+          "moreDetails": {
+            "gentle": "A wrong forecast can still be honest about its limits, but a confident forecast can mislead even before reality answers it.",
+            "direct": "Taleb is attacking the social packaging of foresight, not merely tallying hits and misses.",
+            "competitive": "Authority tone is doing part of the damage."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Prediction theater is institutionally rewarded.",
+            "direct": "Crisp forecasts earn status more easily than calibrated hesitation.",
+            "competitive": "The stage prefers certainty style."
+          },
+          "moreDetails": {
+            "gentle": "Organizations often promote the person who sounds decisive over the person who marks boundaries carefully.",
+            "direct": "This creates a system where fluency can outrank epistemic discipline.",
+            "competitive": "The confident number travels farther than the honest shrug."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Prestige can be borrowed from formality rather than from signal.",
+            "direct": "Experts often gain trust from tidy models and professional tone even when knowability is weak.",
+            "competitive": "A forecast can dress itself in method and call that vision."
+          },
+          "moreDetails": {
+            "gentle": "Taleb is pressing on the difference between institutional respectability and actual visibility.",
+            "direct": "The forecast may look rigorous because of its packaging rather than because the domain allowed real foresight.",
+            "competitive": "Professional form can become a prestige costume for weak signal."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Prediction should contract in opaque domains.",
+            "direct": "The murkier and more tail-driven the field, the less precision deserves to survive.",
+            "competitive": "Opacity should humble the sentence."
+          },
+          "moreDetails": {
+            "gentle": "Taleb wants confidence scaled to what the domain actually allows.",
+            "direct": "In practice prediction often expands right where it should grow smaller.",
+            "competitive": "The scandal worsens when opacity and confidence rise together."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Chapter 10 prepares a move toward pragmatic action.",
+            "direct": "Once prediction loses false authority, search and noticing become more important than forecast theater.",
+            "competitive": "After oversold maps comes better navigation."
+          },
+          "moreDetails": {
+            "gentle": "The next chapter asks how to proceed without pretending to own foresight.",
+            "direct": "Taleb is shifting from exposing prediction vanity to building a more practical stance.",
+            "competitive": "When confidence gets cut down, observation and search gain room."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Think of one forecast you trust. How much of that trust comes from tone and form rather than real signal?",
+        "direct": "Choose one expert prediction and ask what part of its authority comes from prestige packaging.",
+        "competitive": "Find one place where decisive language may be outranking calibration."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Why is overprecision more dangerous than simple error in this chapter?",
+          "direct": "How do institutions reward prediction theater?",
+          "competitive": "Why can a crisp forecast travel farther than an honest boundary?"
+        },
+        {
+          "gentle": "How does prestige get borrowed from formality rather than from signal?",
+          "direct": "Why should prediction shrink in opaque domains?",
+          "competitive": "Where do you still mistake decisiveness for visibility?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "Once prediction theater is exposed, what stronger alternative to fake foresight might Chapter 11 offer?",
+        "direct": "How do you proceed after stripping forecasts of borrowed grandeur?",
+        "competitive": "What does pragmatic contact with uncertainty look like after this scandal?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What is the scandal of prediction?",
+          "direct": "What keeps forecast theater socially alive?",
+          "competitive": "Which style outruns calibration in this ecology?"
+        },
+        "connect": {
+          "gentle": "The chapter links confidence inflation, institutional incentives, and prestige packaging into one critique of forecasting culture.",
+          "direct": "Taleb shows that prediction is often respected for tone, formality, and audience hunger rather than for signal.",
+          "competitive": "The forecast becomes socially strong where the evidence remains epistemically weak."
+        },
+        "preview": {
+          "gentle": "The next chapter shifts from exposing false foresight to acting without it.",
+          "direct": "Chapter 11 asks how to search and notice instead of overselling a map.",
+          "competitive": "After forecast theater comes pragmatic scouting."
+        }
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "Taleb's scandal is not mere predictive failure. It is predictive failure delivered with ceremonial confidence. The deeper offense is that uncertainty gets translated into social authority through tone, precision, and institutional ritual. A weakly knowable domain is made to sound legible because confidence itself is being sold as competence.\n\nThat is why overprecision matters so much. A forecast with false crispness does not merely risk being wrong later. It reshapes decisions, status, and attention in the present. The sentence becomes stronger than the signal.\n\nTaleb is therefore attacking the social life of prediction, not just its scorecard.",
+        "direct": "This system survives because institutions reward the appearance of domesticated reality. Boards, media, executives, and audiences prefer the person who can convert ambiguity into a date, a number, or a directional certainty. The forecaster who marks limits carefully often loses prestige to the forecaster who speaks with theatrical confidence.\n\nThat is why prediction culture is not a random collection of boastful individuals. It is an ecology that selects for fluency under opacity. Experts can therefore inherit authority from professional form, tidy models, and calm tone even when the underlying signal is weak.\n\nThe ritual of confidence becomes a prestige technology.",
+        "competitive": "The correction Taleb wants is not muteness but rank discipline. Precision must answer to knowability. In opaque, tail-heavy, model-fragile domains, forecasts should contract rather than expand. Instead public discourse often reverses that rule and rewards the strongest voice exactly where visibility is weakest.\n\nThis prepares the next move. Once forecast grandeur is cut down to size, the practical question is no longer how to sound certain. It is how to search, notice, and act under uncertainty without pretending to own the map.\n\nThe scandal of prediction is the prestige pipeline that Chapter 11 will refuse to inhabit."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "The scandal is ceremonial confidence under weak knowability.",
+            "direct": "Prediction becomes socially powerful by sounding more certain than the domain allows.",
+            "competitive": "The sentence outranks the signal."
+          },
+          "moreDetails": {
+            "gentle": "Taleb is criticizing the present-tense authority of forecasting, not only its future miss rate.",
+            "direct": "False crispness changes decisions before reality has a chance to correct it.",
+            "competitive": "The harm begins when weak visibility is dressed as competence."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Prediction culture is an ecology, not just a personality problem.",
+            "direct": "Institutions systematically reward fluency under opacity.",
+            "competitive": "The system selects for crispness in the fog."
+          },
+          "moreDetails": {
+            "gentle": "Boards, media, and organizations keep promoting the forecaster who sounds domesticating rather than the one who marks limits.",
+            "direct": "This makes prediction theater durable even when accuracy is unimpressive.",
+            "competitive": "The ecology favors prestige tone over calibrated boundary work."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Prestige can be manufactured through formality.",
+            "direct": "Professional ritual, quantitative style, and polished delivery can imitate genuine signal.",
+            "competitive": "Method dress can impersonate vision."
+          },
+          "moreDetails": {
+            "gentle": "Taleb is exposing how forecasts borrow credibility from form rather than from contact with reality.",
+            "direct": "A model, title, or polished cadence can make weak foresight look institutionally legitimate.",
+            "competitive": "The costume of rigor can hide epistemic thinness."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Knowability should govern precision.",
+            "direct": "The more opaque and tail-driven the domain, the less crisp the forecast deserves to be.",
+            "competitive": "Opacity should starve the sentence."
+          },
+          "moreDetails": {
+            "gentle": "Taleb wants confidence scaled to domain conditions rather than to audience appetite.",
+            "direct": "Prediction culture often does the opposite by amplifying certainty where visibility is weakest.",
+            "competitive": "The scandal intensifies when precision expands in hostile domains."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Chapter 11 pivots from forecast prestige to pragmatic contact with uncertainty.",
+            "direct": "Once false foresight loses authority, search and noticing become more valuable.",
+            "competitive": "After the ceremony comes the scout."
+          },
+          "moreDetails": {
+            "gentle": "The next chapter does not leave the reader with silence alone.",
+            "direct": "It redirects attention from prediction theater toward practical orientation inside uncertainty.",
+            "competitive": "When the prestige pipeline is cut, observation gains rank."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Take one forecast you respect and strip away its tone, title, and formatting. What signal remains?",
+        "direct": "Choose one domain where people still speak too crisply and ask what knowability would really permit.",
+        "competitive": "Where is ceremonial confidence outrunning reality in your world?"
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Why is ceremonial confidence more damaging than simple forecasting error?",
+          "direct": "How does institutional ecology keep prediction theater alive?",
+          "competitive": "Why can the sentence become stronger than the signal?"
+        },
+        {
+          "gentle": "How does formality manufacture prestige in forecasting culture?",
+          "direct": "Why should opacity starve precision rather than feed it?",
+          "competitive": "Where do you still trust the costume of rigor too quickly?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "What practical stance becomes possible once prediction loses ceremonial authority?",
+        "direct": "How will Chapter 11 proceed without pretending to own foresight?",
+        "competitive": "What replaces prestige forecasting when the scout outranks the prophet?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What does Taleb mean by the scandal of prediction?",
+          "direct": "Why is the social life of prediction central here?",
+          "competitive": "What should govern the size of a forecast?"
+        },
+        "connect": {
+          "gentle": "The chapter connects overprecision, institutional reward, and prestige packaging into one criticism of modern forecasting culture.",
+          "direct": "Taleb shows that weak visibility can still become powerful speech through ceremonial confidence.",
+          "competitive": "Prediction becomes socially large precisely where knowability may be small."
+        },
+        "preview": {
+          "gentle": "The next chapter turns from ceremonial confidence to practical scouting under uncertainty.",
+          "direct": "Chapter 11 asks how to move without borrowing fake map authority.",
+          "competitive": "After the prophet comes the scout."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "title": "A TV Analyst Gives a Precise Market Date",
+      "format": "media_case",
+      "category": "finance",
+      "endingType": "diagnose",
+      "scenario": {
+        "gentle": "A TV analyst announces a precise market turning point with confident language despite weak signal and deep uncertainty.",
+        "direct": "Precision is being used as theater.",
+        "competitive": "The sentence is wearing more certainty than the market donated."
+      },
+      "whatToDo": {
+        "gentle": "Strip the forecast down to what the domain genuinely allows and mark the boundary conditions.",
+        "direct": "Ask how much of the authority comes from tone and format rather than from real visibility.",
+        "competitive": "Make the signal stand without its costume."
+      },
+      "whyItMatters": {
+        "gentle": "Confidence can outrank evidence socially.",
+        "direct": "Forecast theater moves decisions before reality gets a vote.",
+        "competitive": "The stage loves a date more than a boundary."
+      }
+    },
+    {
+      "title": "A Board Prefers the Exec With a Crisp Forecast",
+      "format": "work_case",
+      "category": "work",
+      "endingType": "reframe",
+      "scenario": {
+        "gentle": "A board rewards the executive who offers a confident forecast over the one who marks uncertainty carefully.",
+        "direct": "The institution is selecting for fluency over calibration.",
+        "competitive": "Prestige is being handed to the cleaner sentence."
+      },
+      "whatToDo": {
+        "gentle": "Reward boundary marking and knowability discipline rather than crisp overreach.",
+        "direct": "Ask what the domain permits before praising decisiveness.",
+        "competitive": "Stop promoting prophets for fog they did not clear."
+      },
+      "whyItMatters": {
+        "gentle": "Prediction culture is systemic, not merely personal.",
+        "direct": "Institutions can mass-produce overconfident speech.",
+        "competitive": "The ecology teaches people to sound certain before they learn to be careful."
+      }
+    },
+    {
+      "title": "A Student Trusts a Forecast Because It Looks Quantitative",
+      "format": "school_case",
+      "category": "school",
+      "endingType": "diagnose",
+      "scenario": {
+        "gentle": "A student assumes a forecast is strong because it is presented with charts, numbers, and polished formality.",
+        "direct": "Formality is borrowing authority for weak signal.",
+        "competitive": "The costume of rigor is doing the seeing."
+      },
+      "whatToDo": {
+        "gentle": "Ask what the numbers actually know about the domain and what remains opaque.",
+        "direct": "Separate formatting prestige from real visibility.",
+        "competitive": "Do not let the chart speak for the darkness around it."
+      },
+      "whyItMatters": {
+        "gentle": "Professional style can imitate insight.",
+        "direct": "Prediction often borrows credibility from presentation rather than from signal.",
+        "competitive": "A graph can become a social amplifier for weak foresight."
+      }
+    },
+    {
+      "title": "A Manager Gives Exact Timelines in a Turbulent Domain",
+      "format": "business_case",
+      "category": "business",
+      "endingType": "reflect",
+      "scenario": {
+        "gentle": "A manager gives exact delivery timelines in a volatile environment because ambiguity sounds unprofessional.",
+        "direct": "The forecast is expanding exactly where knowability is weak.",
+        "competitive": "Opacity is being bullied into a calendar date."
+      },
+      "whatToDo": {
+        "gentle": "Shrink precision to what the domain can support and mark the real uncertainty openly.",
+        "direct": "Let knowability govern the sentence rather than the audience's appetite for certainty.",
+        "competitive": "Starve the timeline until the domain earns it."
+      },
+      "whyItMatters": {
+        "gentle": "The scandal worsens when precision rises with opacity.",
+        "direct": "Crisp language can create fake control inside unstable systems.",
+        "competitive": "The date is stronger than the map."
+      }
+    },
+    {
+      "title": "A Political Pundit Converts Ambiguity Into Certainty",
+      "format": "policy_case",
+      "category": "policy",
+      "endingType": "diagnose",
+      "scenario": {
+        "gentle": "A pundit turns a messy political environment into a confident directional call because decisive speech wins airtime.",
+        "direct": "Prediction ecology is rewarding theater.",
+        "competitive": "Television is paying by the ounce for certainty tone."
+      },
+      "whatToDo": {
+        "gentle": "Ask what visibility the domain truly offers and discount the authority granted by platform and style.",
+        "direct": "Treat airtime confidence as a social reward signal, not as proof of foresight.",
+        "competitive": "Subtract the studio from the sentence."
+      },
+      "whyItMatters": {
+        "gentle": "Public prediction often survives because confidence is marketable.",
+        "direct": "The ecology selects for boldness where knowability is thin.",
+        "competitive": "The forecast may be socially fit and epistemically weak."
+      }
+    },
+    {
+      "title": "A Team Treats One Forecast as a Map",
+      "format": "team_case",
+      "category": "work",
+      "endingType": "reframe",
+      "scenario": {
+        "gentle": "A team organizes around one confident forecast as if it were a map rather than a fragile guess.",
+        "direct": "The forecast has borrowed too much rank.",
+        "competitive": "A sentence is trying to become terrain."
+      },
+      "whatToDo": {
+        "gentle": "Demote the forecast to a provisional tool and increase attention to search, noticing, and update loops.",
+        "direct": "Treat the plan as conditional rather than as a domesticating map.",
+        "competitive": "Give the scout more room than the prophet."
+      },
+      "whyItMatters": {
+        "gentle": "Forecast authority can crowd out better adaptive behavior.",
+        "direct": "The stronger alternative is not silence but more responsive contact with the domain.",
+        "competitive": "A brittle map can blind a moving team."
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What is the scandal in Chapter 10?",
+        "choices": [
+          "Forecasts are always impossible.",
+          "Forecasts are delivered with more confidence than their signal deserves.",
+          "Experts should never speak."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Taleb is targeting confidence inflation.",
+          "direct": "The offense is overprecision under uncertainty.",
+          "competitive": "The sentence is too strong for the evidence."
+        },
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Why does prediction theater persist?",
+        "choices": [
+          "Because calibration is more rewarded than fluency.",
+          "Because institutions reward crisp confident speech.",
+          "Because uncertainty is gone."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Confidence is socially marketable.",
+          "direct": "Boards, media, and organizations often prefer decisive tone.",
+          "competitive": "The ecology pays for crispness."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What outranks calibration in many prediction settings?",
+        "choices": [
+          "Fluency and decisiveness.",
+          "Humility and limits.",
+          "Silence and withdrawal."
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "That is one of Taleb's main complaints here.",
+          "direct": "The clean sentence often travels farther than the careful boundary.",
+          "competitive": "Style beats discipline too often."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A board prefers the executive with the crisp forecast over the one who marks uncertainty carefully. What does that show?",
+        "choices": [
+          "Healthy realism.",
+          "Prediction culture as an incentive system.",
+          "That the forecast is correct."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter is systemic, not merely personal.",
+          "direct": "Institutions can select for overconfident speech.",
+          "competitive": "The ecology is rewarding theater."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Why is overprecision more damaging than simple error?",
+        "choices": [
+          "Because wrongness never matters.",
+          "Because false crispness changes decisions before reality corrects it.",
+          "Because precision is immoral."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The harm begins in the present, not only after the miss.",
+          "direct": "A strong-sounding forecast can reshape action before it is falsified.",
+          "competitive": "The sentence moves people before the signal deserves that power."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "How can prestige be borrowed in forecasting culture?",
+        "choices": [
+          "Through polished formality and tidy models that imitate signal.",
+          "Through honest ignorance only.",
+          "Through refusing all numbers."
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Professional form can imitate real visibility.",
+          "direct": "Titles, charts, and tone can lend weak signal extra authority.",
+          "competitive": "The costume of rigor can do fake seeing."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What should happen to prediction in opaque, tail-heavy domains?",
+        "choices": [
+          "It should become more precise to compensate.",
+          "It should contract rather than expand.",
+          "It should dominate every decision."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Taleb wants knowability to govern precision.",
+          "direct": "Opacity should humble the sentence.",
+          "competitive": "Fog should starve the forecast."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "How does Chapter 10 lead into Chapter 11?",
+        "choices": [
+          "It shows why better search and noticing outrank false foresight.",
+          "It proves action is impossible without prediction.",
+          "It abandons uncertainty completely."
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "After forecast theater comes practical scouting.",
+          "direct": "Taleb is preparing a move from false map authority to adaptive contact with the domain.",
+          "competitive": "The scout replaces the prophet."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deeper"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Which phrase best fits the chapter?",
+        "choices": [
+          "The forecast is louder than the evidence.",
+          "Every prediction is evil.",
+          "Confidence proves visibility."
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "That is the core scandal.",
+          "direct": "Prediction culture overspeaks its signal.",
+          "competitive": "The sentence is stronger than the sight."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deeper"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "What should govern the size of a forecast?",
+        "choices": [
+          "Audience appetite for certainty.",
+          "Domain knowability and real signal.",
+          "Professional status alone."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Taleb wants rank discipline between knowability and precision.",
+          "direct": "The sentence should shrink or grow with what the domain allows.",
+          "competitive": "Signal, not theater, should size the forecast."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deeper"
+      }
+    ]
+  },
+  "implementationPlan": {
+    "coreSkill": {
+      "gentle": "Practice separating forecast authority from real signal.",
+      "direct": "Train yourself to discount ceremonial confidence and reward calibration.",
+      "competitive": "Stop letting crispness outrank knowability."
+    },
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If a forecast sounds unusually crisp, then ask what the domain genuinely permits it to know.",
+          "direct": "If the sentence feels strong, then separate the signal from the tone and format carrying it.",
+          "competitive": "If the prophecy glows, strip off its costume."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If a prediction looks credible because it is quantitative, then ask what uncertainty the numbers cannot domesticate.",
+          "direct": "If a chart feels persuasive, then inspect the knowability behind it before trusting the precision.",
+          "competitive": "If the graph looks sharp, ask what darkness it left off-screen."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If someone gives you a date and a confident voice, then ask whether the domain earned that precision.",
+          "direct": "If certainty sounds professional, then check whether fluency is outranking calibration.",
+          "competitive": "If the forecast feels important, make the signal stand without the ceremony."
+        }
+      }
+    ],
+    "twentyFourHourChallenge": {
+      "gentle": "Pick one forecast you trust and strip away the tone, title, and formatting to see what signal remains.",
+      "direct": "Review one confident prediction and write what the domain actually allows it to know.",
+      "competitive": "Take one polished forecast and shrink it to the precision the evidence earned."
+    },
+    "weeklyPractice": {
+      "gentle": "For one week, whenever a forecast sounds crisp, ask what part of its authority comes from style rather than signal.",
+      "direct": "Keep a short log of where you saw confidence outrank calibration in your environment.",
+      "competitive": "Spend one week forcing knowability to size every serious prediction."
+    }
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch10-rc01",
+      "front": {
+        "gentle": "What is the scandal of prediction?",
+        "direct": "What offense does Taleb care about most here?",
+        "competitive": "Finish the line: the forecast is..."
+      },
+      "back": {
+        "gentle": "Forecasts are delivered with more confidence than their signal deserves.",
+        "direct": "Taleb is targeting overprecision under uncertainty.",
+        "competitive": "...louder than the evidence."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch10-rc02",
+      "front": {
+        "gentle": "Why does prediction theater survive?",
+        "direct": "What does the ecology reward?",
+        "competitive": "Why does crispness travel so far?"
+      },
+      "back": {
+        "gentle": "Because institutions reward confident decisive speech.",
+        "direct": "Fluency often outranks calibration.",
+          "competitive": "Certainty style wins the casting call."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch10-rc03",
+      "front": {
+        "gentle": "Why is overprecision more harmful than simple error?",
+        "direct": "What damage happens before reality answers?",
+        "competitive": "Why does false crispness matter immediately?"
+      },
+      "back": {
+        "gentle": "Because it reshapes decisions in the present.",
+        "direct": "A strong-sounding forecast moves people before it is tested.",
+        "competitive": "The sentence gets power before the signal earns it."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch10-rc04",
+      "front": {
+        "gentle": "What should govern prediction size?",
+        "direct": "How do you discipline precision after this chapter?",
+        "competitive": "What must the sentence answer to?"
+      },
+      "back": {
+        "gentle": "Domain knowability and real signal.",
+        "direct": "Prediction should contract in opaque domains and expand only when visibility justifies it.",
+        "competitive": "The sentence must answer to knowability."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch10-rc05",
+      "front": {
+        "gentle": "How does Chapter 10 lead into Chapter 11?",
+        "direct": "What replaces the prophet next?",
+        "competitive": "What stronger posture follows forecast theater?"
+      },
+      "back": {
+        "gentle": "Pragmatic searching and noticing under uncertainty.",
+        "direct": "The scout outranks the prophet once false grandeur is cut down.",
+        "competitive": "After prediction theater comes adaptive contact."
+      },
+      "difficulty": "hard"
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "The scandal is not just failed forecasting but forecasting that speaks with more certainty than reality authorized.",
+    "direct": "Confidence often rides on prestige, formality, and audience appetite more than on genuine signal.",
+    "competitive": "When the forecast is louder than the evidence, the sentence has borrowed rank it did not earn."
+  },
+  "book": {
+    "bookId": "the-black-swan",
+    "title": "The Black Swan",
+    "author": "Nassim N. Taleb",
+    "categories": [
+      "risk",
+      "probability",
+      "decision-making",
+      "epistemology"
+    ],
+    "tags": [
+      "uncertainty",
+      "black swan",
+      "narrative fallacy",
+      "silent evidence",
+      "extremistan"
+    ],
+    "edition": {
+      "name": "First Edition",
+      "translator": "",
+      "publishedYear": 2007,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-black-swan/20260411-174728/source-freeze/book-source.md",
+      "sourceProvenance": "Random House hardcover, published April 17, 2007; chapter map cross-checked against Google Books limited preview"
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-19"
+  }
+}

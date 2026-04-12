@@ -1,0 +1,175 @@
+{
+  "chapterId": "ch05-life-in-the-simulation-machine",
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is Taleb mainly warning against with the phrase \"simulation machine\"?",
+      "choices": [
+        "Any use of abstract thinking",
+        "Treating a simplified model as if it were reality itself",
+        "Using data to make decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The danger is trusting the cleaned-up representation more than lived reality.",
+        "direct": "Taleb objects when simplification becomes a substitute world instead of a tool.",
+        "competitive": "The machine becomes dangerous when the map starts bossing the territory."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why does skin in the game matter in this chapter?",
+      "choices": [
+        "It makes models look more mathematical",
+        "It shows whether knowledge has faced consequences and correction",
+        "It proves that theory is useless"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exposure to downside changes how a person learns.",
+        "direct": "Taleb treats consequence exposure as a credibility test for judgment.",
+        "competitive": "If error never hits you, your certainty stays cheap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "Why can rough field judgment outperform polished theory in Taleb\u2019s frame?",
+      "choices": [
+        "Because experts are always wrong",
+        "Because real contact reveals frictions and hidden variables that models may suppress",
+        "Because messy thinking is more creative"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Real life pushes back in ways tidy abstraction may miss.",
+        "direct": "Field exposure uncovers factors protected environments often mute.",
+        "competitive": "Reality adds the bruises the clean model edited out."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "A policy designer keeps trusting a dashboard even though local staff say the metric is distorting behavior. Which chapter mechanism best explains the problem?",
+      "choices": [
+        "The designer has too little information to act at all",
+        "Protected representation is outranking lived correction while others absorb the error",
+        "The staff are biased against all measurement"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The protected model is being trusted over people facing the consequences.",
+        "direct": "This is Chapter 5\u2019s asymmetry: the clean representation keeps status while downstream actors bear the correction.",
+        "competitive": "The dashboard looks smart because someone else is eating the mistake."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "What is the difference between internal coherence and external validity in this chapter?",
+      "choices": [
+        "There is no important difference",
+        "Internal coherence is about looking neat inside the model, while external validity is about surviving real-world contact",
+        "External validity only matters in science labs"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A theory can make sense internally and still fail in life.",
+        "direct": "Taleb distinguishes tidy reasoning from judgment tested under lived consequences.",
+        "competitive": "A smooth story is not the same as a story that can take a punch."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Why does Taleb\u2019s critique here connect to authority rather than just method?",
+      "choices": [
+        "Because only leaders use models",
+        "Because people can gain status from representations they do not have to personally defend under consequences",
+        "Because authority is always irrational"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks who gets to describe reality without paying for bad description.",
+        "direct": "Protected actors can keep influence while others live inside the failures of their frameworks.",
+        "competitive": "The mapmaker keeps the microphone while other people absorb the crash."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "How does Chapter 5 extend the book\u2019s broader asymmetry rule?",
+      "choices": [
+        "It shifts from risk to representation, asking where explanatory error lands",
+        "It abandons asymmetry and focuses on style",
+        "It becomes only a psychology chapter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same question returns: who pays when something goes wrong?",
+        "direct": "Taleb extends asymmetry from decisions to the authority to describe the world.",
+        "competitive": "Even error gets outsourced in this chapter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "A team prefers an experienced operator\u2019s warning over a perfect simulation because the operator has repeatedly absorbed losses from similar failures. What is the most Taleb-like reading?",
+      "choices": [
+        "The team is being anti-intellectual",
+        "They are giving extra weight to reality-tested knowledge shaped by downside",
+        "They are rejecting all formal tools forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The operator has learned through real contact and consequence.",
+        "direct": "Taleb gives credibility weight to judgment that has survived correction under stakes.",
+        "competitive": "They are trusting the bruised learner over the protected explainer."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What does the chapter suggest you should ask when a model looks impressively clean?",
+      "choices": [
+        "Whether it uses enough technical vocabulary",
+        "What frictions, delays, or hidden variables may have been simplified away",
+        "Whether it was designed by a famous person"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Clean models often remove messiness that later matters.",
+        "direct": "The right question is what reality has been edited out to make the model look strong.",
+        "competitive": "Ask what got cut so the theory could stay pretty."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "How does Chapter 5 prepare the move into Chapter 6?",
+      "choices": [
+        "By showing how protected abstraction creates room for insulated expert authority",
+        "By ending Taleb\u2019s critique of experts",
+        "By shifting away from knowledge entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "It sets up the kind of person who thrives inside protected explanation.",
+        "direct": "The chapter prepares Taleb\u2019s next attack on credentialed experts insulated from lived correction.",
+        "competitive": "First comes the machine, then comes the class that lives off it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

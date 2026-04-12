@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What distinction does Chapter 9 make first?",
+      "choices": [
+        "Visible tactics are stronger than recurring principles",
+        "The outsider cases share a scorecard more than they share one tactic",
+        "Every outsider used the same visible strategy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The final chapter starts by separating recurring judgment from copied surface moves.",
+        "direct": "Thorndike first rejects the idea that one tactic ties the outsiders together.",
+        "competitive": "The pattern lives deeper than the move list."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is synthesis risky in the final chapter?",
+      "choices": [
+        "Because synthesis encourages readers to flatten different cases into slogans or formulas",
+        "Because the earlier cases had nothing in common",
+        "Because principles can never travel across contexts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The danger is turning real patterns into fake shortcuts.",
+        "direct": "Thorndike has to protect the recurring scorecard without erasing the differences among the cases.",
+        "competitive": "Compression gets dumb fast when it starts selling slogans."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does capital allocation keep returning in the synthesis?",
+      "choices": [
+        "Because every chapter is only about finance tactics",
+        "Because allocation makes judgment visible across different structures and pressures",
+        "Because capital allocation automatically means buybacks"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses capital allocation as a way to see what each leader really values.",
+        "direct": "Resources, authority, and attention reveal the recurring scorecard across otherwise different cases.",
+        "competitive": "Allocation is where the logic stops talking and starts showing."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira wants to copy a successful tactic from another team. What fits Chapter 9 best?",
+      "choices": [
+        "Copy it immediately because proven moves always transfer",
+        "Ignore it because no principle ever travels",
+        "Ask what scorecard made it rational before deciding whether it fits here"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says the principle can travel, but the tactic still has to earn its place locally.",
+        "direct": "Choice C matches the synthesis: test the borrowed move against the original logic and the new context.",
+        "competitive": "Steal the reasoning, not the skin."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which belief does Chapter 9 challenge most directly?",
+      "choices": [
+        "One outsider tactic is the secret formula",
+        "Admired traits can become fake when detached from value logic",
+        "Both A and B"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter attacks formula worship and warns that copied traits can become counterfeit.",
+        "direct": "Thorndike rejects both the search for one trick and the assumption that good-looking traits stay rational out of context.",
+        "competitive": "The shortcut and the counterfeit die together here."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Julian's team copied the surface of a winning system but not its judgment. What is the chapter's best diagnosis?",
+      "choices": [
+        "The team imported the shell and left the scorecard behind",
+        "The team is proving that visible routines are enough",
+        "The team should copy even more of the original system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The routine failed because the logic that made it useful did not come along.",
+        "direct": "This is the anti-fake boundary in action: copied structure without context becomes decorative discipline.",
+        "competitive": "They borrowed the costume and forgot the brain."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why are admired outsider traits dangerous when copied carelessly?",
+      "choices": [
+        "Because good traits should never be reused anywhere else",
+        "Because they can survive as rhetoric after the scorecard that justified them is gone",
+        "Because every context demands the same tactic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says traits like patience or decentralization can look wise even after they stop serving value.",
+        "direct": "Copied traits become fake when the logic behind them dies and the surface remains.",
+        "competitive": "The slogan can live longer than the judgment if no one checks it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit keeps the final chapter from turning into a manifesto?",
+      "choices": [
+        "It keeps cross-case differences alive and refuses to canonize one tactic list",
+        "It abandons principles entirely",
+        "It treats every earlier case as identical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays book-bound by preserving variation and resisting formula drift.",
+        "direct": "Thorndike protects the synthesis by keeping principle and case-specific pressures tied together.",
+        "competitive": "The ending stays smart by denying you a laminated cheat sheet."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What stays constant across the outsider cases in Thorndike's synthesis?",
+      "choices": [
+        "One shared tactic",
+        "A recurring scorecard that asks what creates real value under the actual conditions",
+        "One shared personality type"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The visible tools differ, but the harder value question keeps returning.",
+        "direct": "The synthesis keeps a recurring judgment standard while letting the tactics vary by context.",
+        "competitive": "Same discipline, different weapons."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the anti-fake boundary in the final chapter?",
+      "choices": [
+        "The rule that every admired outsider move should be copied quickly",
+        "The rule that admired traits fail when detached from the scorecard that made them rational",
+        "The rule that tactics matter more than principles"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ends by warning that good-looking moves can become fake once the logic behind them disappears.",
+        "direct": "Thorndike's anti-fake boundary protects the synthesis from becoming formula worship.",
+        "competitive": "A move goes counterfeit the second the value logic leaves and the costume stays."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

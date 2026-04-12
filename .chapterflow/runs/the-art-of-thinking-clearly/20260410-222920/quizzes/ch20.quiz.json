@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch20-q01",
+      "prompt": "What is the core mistake in outcome bias?",
+      "choices": [
+        "Treating the result as if it fully reveals the quality of the decision",
+        "Ignoring outcomes entirely",
+        "Assuming every bad result came from bad luck"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The outcome is getting too much control over the verdict.",
+        "direct": "Correct. Payoff quality is being mistaken for decision quality.",
+        "competitive": "That is the trap. The scoreboard is hijacking the case."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q02",
+      "prompt": "Why is this bias easy to fall into?",
+      "choices": [
+        "Because outcomes are vivid while process quality is harder to see",
+        "Because outcomes never contain any useful information",
+        "Because good reasoning always guarantees good results"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The ending is easier to notice than the process.",
+        "direct": "Correct. Payoff is concrete and reasoning under uncertainty is quieter.",
+        "competitive": "Exactly. The final score is louder than the playbook."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q03",
+      "prompt": "Which example best fits outcome bias?",
+      "choices": [
+        "A risky bet gets praised only because it happened to pay off",
+        "A careful decision is reviewed by looking at the information available at the time",
+        "A decision is compared with realistic alternatives before being judged"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The good outcome is flattering the decision too much.",
+        "direct": "Correct. A favorable payoff is being used as full proof of sound judgment.",
+        "competitive": "That is it. A lucky hit is laundering bad process."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q04",
+      "prompt": "What makes this bias dangerous in organizations?",
+      "choices": [
+        "It can reward weak process after lucky wins and punish sound process after unlucky losses",
+        "It proves outcomes should never be tracked",
+        "It means process review is just excuse-making"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The wrong lesson can be learned from visible results.",
+        "direct": "Correct. Luck and variance can distort praise and blame if process is ignored.",
+        "competitive": "Right. Noise starts paying bonuses and firing discipline."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q05",
+      "prompt": "Why can a bad result still come from a good decision?",
+      "choices": [
+        "Because luck, timing, and uncertainty can separate process quality from payoff",
+        "Because outcomes do not matter at all",
+        "Because all bad results are unfair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A careful process can still run into bad breaks.",
+        "direct": "Correct. Under uncertainty, a sound process can still produce an unfavorable outcome.",
+        "competitive": "Exactly. A bad break can mug real discipline."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Inspect the decision process before letting the outcome decide the verdict",
+        "Ignore results completely and trust only intention",
+        "Judge every decision only by confidence level"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The fix is to review the process first.",
+        "direct": "Correct. Better judgment checks information, tradeoffs, and reasoning before payoff dominates the evaluation.",
+        "competitive": "Exactly. Make the process take the stand before the score gets the mic."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q07",
+      "prompt": "What does outcome bias confuse?",
+      "choices": [
+        "Outcome quality with decision quality",
+        "Tradeoffs with memory",
+        "Planning with certainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The ending is being treated like the whole verdict.",
+        "direct": "Correct. The visible result is being used as a stand-in for process quality.",
+        "competitive": "Yes. The scoreboard is pretending it wrote the playbook."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q08",
+      "prompt": "Why can a good result be misleading in this chapter?",
+      "choices": [
+        "Because it may flatter weak reasoning and hide the role of luck",
+        "Because good results are always suspicious",
+        "Because process never matters after success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A strong ending can make a weak process look wiser than it was.",
+        "direct": "Correct. Favorable payoff can mask poor judgment under uncertainty.",
+        "competitive": "Exactly. A lucky win can rent genius for a day."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q09",
+      "prompt": "What is the deepest practical correction in this bias?",
+      "choices": [
+        "Evaluate process quality first, then treat the outcome as additional evidence rather than the whole verdict",
+        "Treat all outcomes as random noise",
+        "Assume identical outcomes always came from identical reasoning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to review the decision before the payoff writes the story.",
+        "direct": "Correct. Better judgment separates process review from result review instead of letting payoff dominate both.",
+        "competitive": "Right. Put the playbook on trial before the scoreboard gets to sentence it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "Would I still judge this decision the same way if the process were identical but the outcome differed?",
+        "How impressive does the final score look right now?",
+        "Which result feels easiest to explain?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question separates the process from the payoff.",
+        "direct": "Correct. It tests whether your verdict changes only because of the outcome.",
+        "competitive": "That is the cut. Flip the ending and see whether the score is ghostwriting your judgment."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

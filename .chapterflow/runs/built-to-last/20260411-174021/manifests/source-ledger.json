@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "chapterflow-v13-source-ledger",
+  "bookId": "built-to-last",
+  "runId": "20260411-174021",
+  "createdAt": "2026-04-11T17:40:21-03:00",
+  "title": "Built to Last: Successful Habits of Visionary Companies",
+  "authors": [
+    "Jim Collins",
+    "Jerry I. Porras"
+  ],
+  "selectionSummary": {
+    "mode": "public_or_authorized_plus_secondary",
+    "result": "authorized preview plus official concept material plus reputable chapter-map secondary source",
+    "notes": [
+      "No full authorized text was located in the initial freeze window.",
+      "Google Books and Open Library previews provide bibliographic confirmation and preview text support.",
+      "Official Jim Collins pages support core concepts used across the book."
+    ]
+  },
+  "sources": [
+    {
+      "id": "google-books-2004",
+      "title": "Built to Last: Successful Habits of Visionary Companies",
+      "url": "https://books.google.com/books/about/Built_to_Last.html?id=lRNtHbvDgRgC",
+      "type": "authorized_preview",
+      "role": "primary_preview",
+      "confidence": 0.97,
+      "notes": "Google Books page for the 2004 Harper Collins edition; confirms subtitle, authors, publisher, page count, and table of contents."
+    },
+    {
+      "id": "open-library-preview",
+      "title": "Built to last",
+      "url": "https://openlibrary.org/books/OL18219029M/Built_to_last",
+      "type": "library_preview",
+      "role": "primary_preview_crosscheck",
+      "confidence": 0.84,
+      "notes": "Open Library preview-only record used to cross-check bibliographic identity and opening description."
+    },
+    {
+      "id": "jim-collins-clock-building",
+      "title": "Funding: Time-Telling Vs. Clock-Building",
+      "url": "https://www.jimcollins.com/media_topics/Funding.html",
+      "type": "official_author_site",
+      "role": "concept_support",
+      "confidence": 0.89,
+      "notes": "Official Jim Collins material supporting the chapter 2 clock-building concept."
+    },
+    {
+      "id": "jim-collins-core-values",
+      "title": "And the Walls Came Tumbling Down",
+      "url": "https://www.jimcollins.com/article_topics/articles/and-the-walls.html",
+      "type": "official_author_site",
+      "role": "concept_support",
+      "confidence": 0.86,
+      "notes": "Official Jim Collins article supporting preserve-the-core and organization-vision concepts."
+    },
+    {
+      "id": "dimensione-controllo-toc",
+      "title": "Built to last. Successful Habits of Visionary Companies",
+      "url": "https://www.dimelab.us/riferimenti-bibliografici/built-to-last-successful-habits-of-visionary-companies/",
+      "type": "secondary_reference",
+      "role": "chapter_map_crosscheck",
+      "confidence": 0.7,
+      "notes": "Used only to cross-check the complete chapter list and appendix labels shown partially in preview sources."
+    }
+  ]
+}

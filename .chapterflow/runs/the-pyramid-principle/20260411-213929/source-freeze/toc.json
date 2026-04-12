@@ -1,0 +1,39 @@
+{
+  "bookId": "the-pyramid-principle",
+  "runId": "20260411-213929",
+  "edition": {
+    "title": "The Pyramid Principle: Logic in Writing and Thinking",
+    "author": "Barbara Minto",
+    "editionLabel": "3rd revised edition",
+    "publishedYear": 2021
+  },
+  "parts": [
+    {
+      "id": "part-1",
+      "title": "The Pyramid Principle: Logic in Writing",
+      "items": [
+        { "type": "intro", "title": "Intro to Part I" },
+        { "type": "chapter", "number": 1, "title": "Why a pyramid structure" },
+        { "type": "chapter", "number": 2, "title": "The substructures within the pyramid" },
+        { "type": "chapter", "number": 3, "title": "How to build a pyramid structure" },
+        { "type": "chapter", "number": 4, "title": "Fine points of introductions" },
+        { "type": "chapter", "number": 5, "title": "Deduction and induction: the difference" },
+        { "type": "chapter", "number": 6, "title": "How to highlight the structure" }
+      ]
+    },
+    {
+      "id": "part-2",
+      "title": "The Pyramid Principle: Logic in Thinking",
+      "items": [
+        { "type": "intro", "title": "Intro to Part II" },
+        { "type": "chapter", "number": 7, "title": "Questioning the order of a grouping" },
+        { "type": "chapter", "number": 8, "title": "Questioning the problem-solving process" },
+        { "type": "chapter", "number": 9, "title": "Questioning the summary statement" },
+        { "type": "chapter", "number": 10, "title": "Putting it into readable words" }
+      ]
+    }
+  ],
+  "appendix": {
+    "title": "Problem Solving in Structureless Situations"
+  }
+}

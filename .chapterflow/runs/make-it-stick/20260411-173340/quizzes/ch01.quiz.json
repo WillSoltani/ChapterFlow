@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What mistake does the chapter say many learners make?",
+      "choices": [
+        "They assume harder study is always better",
+        "They treat familiarity and smoothness as proof of learning",
+        "They ignore all forms of review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter focuses first on the false comfort of easy-feeling study. Familiarity can grow while durable recall stays weak.",
+        "direct": "The opening correction is that smoothness and familiarity are weak signals when they are mistaken for durable learning.",
+        "competitive": "The chapter attacks the lazy scorecard of comfort, not review itself and not difficulty by itself."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why can rereading make a learner feel more prepared than they really are?",
+      "choices": [
+        "Because recognition is easier when the answer stays visible",
+        "Because rereading always takes too little time",
+        "Because rereading removes all forgetting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Seeing the material again makes it feel more familiar, and that familiarity can be mistaken for learning.",
+        "direct": "Rereading often raises fluency by keeping cues present, which can inflate confidence without guaranteeing later recall.",
+        "competitive": "The page is still helping. That support can trick you into calling recognition real memory."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A student must choose between one more reread and a blank-page recall drill. Which choice best fits the chapter?",
+      "choices": [
+        "The reread, because confidence should stay high before the quiz",
+        "The recall drill, because reconstruction reveals and strengthens memory",
+        "Either choice, because all study difficulty works the same way"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors methods that test and build what can be recovered when the notes are closed.",
+        "direct": "Retrieval is stronger here because it forces reconstruction rather than another pass through visible answers.",
+        "competitive": "If you want the truth about memory, close the notes and make it produce."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Why did Devin's onboarding session look stronger than it really was?",
+      "choices": [
+        "The trainees were too tired to pay attention",
+        "The employees never needed recall on the job",
+        "The training relied on visible support and smooth repetition more than durable recall"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "People can look fluent while the examples are still present, then forget when the support disappears.",
+        "direct": "The chapter warns that guided smoothness can hide weak memory if later recall is never tested.",
+        "competitive": "A clean demo is cheap when the screen is still feeding the next move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "What do spacing and interleaving add to learning in this chapter?",
+      "choices": [
+        "They keep every session equally comfortable",
+        "They create recovery and discrimination that improve durability",
+        "They eliminate the need for retrieval"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Spacing asks memory to recover after a gap, and interleaving helps the learner tell similar situations apart.",
+        "direct": "These methods improve learning by forcing delayed recall and better choice among related options.",
+        "competitive": "They break the comfort loop and make memory recover and choose under more realistic pressure."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Which statement would the chapter reject?",
+      "choices": [
+        "Difficulty helps only when it has a learning mechanism",
+        "Any hard-feeling method must improve learning",
+        "Smooth study can be a misleading signal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against the opposite oversimplification that harder automatically means better.",
+        "direct": "Difficulty is not valuable by itself; it matters only when it strengthens recall, discrimination, or transfer.",
+        "competitive": "Pain is not the plan. Mechanism is the test."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Priya feels most confident on Friday after rereading. What should matter more by the chapter's standard?",
+      "choices": [
+        "Her Friday confidence",
+        "The Monday recall check after the weekend gap",
+        "How many pages she highlighted"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says learning should be judged by what remains later, not only by how the session felt at the time.",
+        "direct": "A delayed recall check gives stronger evidence of durable learning than immediate comfort does.",
+        "competitive": "Friday feelings are cheap. Monday memory is the real judge."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Why is retrieval the natural next focus after this chapter?",
+      "choices": [
+        "Because the chapter concludes all review should stop",
+        "Because retrieval is one concrete method that tests and builds durable learning",
+        "Because retrieval makes every session easier immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter resets the scorecard, and retrieval fits that new scorecard by showing what memory can recover.",
+        "direct": "Once fluency is exposed as weak evidence, retrieval becomes a logical next mechanism because it both measures and strengthens recall.",
+        "competitive": "If comfort has been demoted, retrieval is the next stress test that can actually earn trust."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Why is subjective ease a weak signal of learning?",
+      "choices": [
+        "Because real learning should always feel confusing",
+        "Because ease can reflect present cues and repetition instead of durable memory",
+        "Because learners should ignore all confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ease may come from seeing the same material again, not from having it ready later without help.",
+        "direct": "The chapter shows that comfort often describes the current session more than the future strength of recall.",
+        "competitive": "If the cues are doing part of the job, your confidence is reading the room, not the memory."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "What turns a hard-feeling study method into a productive difficulty?",
+      "choices": [
+        "It frustrates the learner enough to prove effort",
+        "It takes longer than passive review",
+        "It forces recall, discrimination, or transfer that weaker methods avoid"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps this boundary clear: the difficulty has to help learning do a specific job.",
+        "direct": "A productive difficulty improves memory or transfer because it creates a mechanism such as retrieval, delayed recovery, or sharper choice.",
+        "competitive": "Hard only counts when it builds something durable. Otherwise it is just wasted strain."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

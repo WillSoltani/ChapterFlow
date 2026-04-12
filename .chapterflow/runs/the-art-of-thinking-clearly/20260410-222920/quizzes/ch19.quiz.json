@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch19-q01",
+      "prompt": "What is the core mistake in regression to the mean?",
+      "choices": [
+        "Treating a rebound after an extreme result as automatic proof that the latest action caused it",
+        "Assuming all improvement is random",
+        "Believing that interventions never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A move toward ordinary levels is getting overread as intervention proof.",
+        "direct": "Correct. Ordinary reversion is being mistaken for strong causal effect.",
+        "competitive": "That is the trap. The last touch steals the headline from the baseline."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch19-q02",
+      "prompt": "Why is this bias easy to believe?",
+      "choices": [
+        "Because a clean before-and-after sequence feels like a satisfying causal story",
+        "Because extreme results always repeat at the same intensity",
+        "Because baseline variation is never relevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Sequence feels like explanation.",
+        "direct": "Correct. Dramatic swings invite neat causal stories.",
+        "competitive": "Exactly. Drama hates leaving the baseline on stage."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch19-q03",
+      "prompt": "Which example best fits regression to the mean?",
+      "choices": [
+        "A terrible month is followed by harsh feedback and then a more ordinary month, and the feedback gets full credit",
+        "A long-run improvement appears across many repeated observations after a new process is introduced",
+        "A score remains equally extreme across several trials"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The rebound may partly reflect the extreme starting point easing.",
+        "direct": "Correct. A single bounce from an extreme baseline is being overread as strong proof of the intervention.",
+        "competitive": "That is it. The lecture is surfing a rebound that may already have been coming."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch19-q04",
+      "prompt": "What makes this bias dangerous in feedback systems?",
+      "choices": [
+        "It can reward or punish the wrong cause after ordinary rebound from an extreme result",
+        "It proves that feedback should never be used",
+        "It means all performance variation is meaningless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. People can learn the wrong lesson from one rebound.",
+        "direct": "Correct. Praise or punishment can collect more credit than the evidence supports.",
+        "competitive": "Right. Ordinary variation gets turned into management mythology."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch19-q05",
+      "prompt": "Why do extreme results often soften next time?",
+      "choices": [
+        "Because part of what made them unusual often does not repeat with the same force",
+        "Because every next result is guaranteed to be average",
+        "Because any intervention always cancels the first result"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The unusual mix behind the extreme result often weakens.",
+        "direct": "Correct. Extreme observations often include rare factors that are not fully repeated.",
+        "competitive": "Exactly. The wild setup rarely shows up in the same costume twice."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch19-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Compare the rebound against what would likely happen after an extreme result anyway",
+        "Ignore all feedback after bad results",
+        "Assume the last intervention caused nothing at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The fix is to compare the change against ordinary variation.",
+        "direct": "Correct. Better judgment asks what expected reversion looks like before awarding causal credit.",
+        "competitive": "Exactly. Make the baseline testify before the speech begins."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch19-q07",
+      "prompt": "What does regression to the mean confuse?",
+      "choices": [
+        "Natural movement from an extreme result with strong proof that the latest action worked",
+        "Planning with memory",
+        "Routine with laziness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Ordinary rebound is being treated as decisive intervention effect.",
+        "direct": "Correct. Sequence is being mistaken for robust causal evidence after an extreme baseline.",
+        "competitive": "Yes. The last touch hijacks a swing the baseline already loaded."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch19-q08",
+      "prompt": "Why can praise or punishment be misleading after an extreme outcome?",
+      "choices": [
+        "Because some of the next change may have been likely even without the feedback",
+        "Because praise and punishment never affect behavior",
+        "Because all follow-up results are meaningless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next result may have softened partly on its own.",
+        "direct": "Correct. The extreme baseline can make a rebound look more causal than it really is.",
+        "competitive": "Exactly. The lecture may be grabbing applause from gravity."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch19-q09",
+      "prompt": "What is the deepest practical correction in this bias?",
+      "choices": [
+        "Use baseline variation and repeated comparisons before turning one rebound into a lesson",
+        "Assume every rebound is meaningless noise",
+        "Trust whichever explanation comes immediately after the swing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to compare the story against ordinary variation first.",
+        "direct": "Correct. Better judgment tests the rebound against broader evidence before claiming a strong cause.",
+        "competitive": "Right. Put the baseline in the record before the legend gets printed."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch19-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "Would some of this change likely have happened anyway because the starting point was extreme?",
+        "Which intervention sounds most convincing right now?",
+        "How dramatic was the rebound after the change?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question brings the baseline back into view.",
+        "direct": "Correct. It tests whether the change still looks special once expected reversion is considered.",
+        "competitive": "That is the cut. Was the swing already half-loaded before the intervention showed up?"
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

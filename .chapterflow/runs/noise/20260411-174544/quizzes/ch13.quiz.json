@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch13-q01",
+      "prompt": "What two process choices does this chapter bring into forecasting?",
+      "choices": [
+        "Selection and aggregation",
+        "Sequencing and automation",
+        "Rules and punishments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter focuses on which forecasts enter the pool and how they are combined.",
+        "direct": "Correct. Selection and aggregation are the two linked process choices introduced here.",
+        "competitive": "This chapter puts intake and fusion on the board."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q02",
+      "prompt": "Why does aggregation matter in this chapter?",
+      "choices": [
+        "Because combining judgments can reduce some avoidable noise",
+        "Because aggregation makes every forecaster equally accurate",
+        "Because one forecast should always be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter treats combination as a way to get a steadier baseline.",
+        "direct": "Aggregation matters because multiple judgments can produce a stronger starting point than one estimate alone.",
+        "competitive": "The pool can raise the floor without turning into prophecy."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q03",
+      "prompt": "Why does selection still matter even when aggregation helps?",
+      "choices": [
+        "Because the pool shapes the combined result before combination begins",
+        "Because aggregation works only when there is a single forecaster",
+        "Because selection eliminates all uncertainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter says the quality of the pool affects the quality of the result.",
+        "direct": "Selection matters because aggregation inherits the strengths and weaknesses of the inputs it receives.",
+        "competitive": "A weak intake system drags the whole pool down."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q04",
+      "prompt": "Nadia sees a whiteboard full of estimates, but one confident number still dominates. What lesson fits best?",
+      "choices": [
+        "The team should ignore the rest of the estimates to avoid confusion",
+        "The group should treat pool selection and combination as real design choices",
+        "A larger pool guarantees the dominant number is correct"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter says multiple estimates help only when the pool and combination are taken seriously.",
+        "direct": "The right move is to separate who should count from how the combined judgment should be formed.",
+        "competitive": "If one voice still runs the room, the pool is just theater."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q05",
+      "prompt": "Why does Priya's school yield table matter in the chapter?",
+      "choices": [
+        "Because pooled estimates can provide a steadier baseline than deference to one authority figure",
+        "Because school estimates never require judgment once there is a table",
+        "Because the principal's first estimate should always overrule the pool"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter uses pooled judgment to show how process design can improve the baseline.",
+        "direct": "The school example matters because multiple selected estimates can produce a stronger forecast than relying on one person alone.",
+        "competitive": "The yield table stops being a stage prop once the pool actually counts."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q06",
+      "prompt": "How does the chapter distinguish aggregation from individual forecast quality?",
+      "choices": [
+        "Aggregation removes the need to care about input quality",
+        "Aggregation can improve the baseline without making every input equally good",
+        "Aggregation matters only when every estimate is identical"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps combination useful without pretending all forecasts are equally strong.",
+        "direct": "Its claim is that a combined judgment can help while individual input quality still matters.",
+        "competitive": "The pool can help without laundering weak guesses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q07",
+      "prompt": "Why does uncertainty remain even after aggregation?",
+      "choices": [
+        "Because better combination improves the floor without making the future perfectly clear",
+        "Because aggregation matters only for past events",
+        "Because uncertainty vanishes only when the pool is large enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says aggregation helps without becoming a cure-all.",
+        "direct": "Uncertainty remains because stronger process does not turn forecasting into certainty.",
+        "competitive": "The floor can rise while the fog stays put."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q08",
+      "prompt": "What practical change does better combination make?",
+      "choices": [
+        "It improves the baseline by turning multiple selected judgments into a steadier result",
+        "It proves the best forecaster in the room can be ignored entirely",
+        "It removes the need to decide which inputs belong in the pool"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter treats combination as a way to get a steadier overall reading.",
+        "direct": "Better aggregation helps by making the combined judgment more reliable than leaving the process to one estimate alone.",
+        "competitive": "The process starts earning a stronger floor instead of worshipping one number."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q09",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That more inputs always improve a forecast regardless of selection discipline",
+        "That forecast quality depends partly on process design",
+        "That uncertainty remains after combination"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter warns against treating a larger pool as automatically better.",
+        "direct": "It rejects the claim that adding more estimates helps regardless of who or what those estimates are.",
+        "competitive": "A crowded pool is not the same as a smart pool."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch13-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If structure can improve forecasting through pooling and combination, the next question is how guidance narrows variation in medicine",
+        "The next chapter abandons structure and returns to lone judgment",
+        "The next chapter proves forecasting is the only domain where process design matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move tests structure again, this time as guidance in medicine.",
+        "direct": "The bridge works because the book moves from designed forecast pools to designed medical guidance.",
+        "competitive": "If intake and fusion matter here, the clinic is next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

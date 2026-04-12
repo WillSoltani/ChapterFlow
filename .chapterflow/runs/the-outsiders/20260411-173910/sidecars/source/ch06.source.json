@@ -1,0 +1,35 @@
+{
+  "title": "A Public LBO",
+  "heading": "Bill Stiritz and Ralston Purina",
+  "approxWords": 309,
+  "properNouns": [
+    "Bill Stiritz",
+    "William Stiritz",
+    "Ralston Purina",
+    "Purina Mills",
+    "Encyclopedia.com",
+    "Thorndike"
+  ],
+  "repeatedTerms": [
+    "focus",
+    "portfolio",
+    "discipline",
+    "public company",
+    "LBO",
+    "ownership"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "src-oreilly-contents",
+      "use": "chapter title and pairing support"
+    },
+    {
+      "sourceId": "src-google-books",
+      "use": "metadata support"
+    },
+    {
+      "sourceId": "src-encyclopedia-purina",
+      "use": "company context support for portfolio pruning and focus discipline"
+    }
+  ]
+}

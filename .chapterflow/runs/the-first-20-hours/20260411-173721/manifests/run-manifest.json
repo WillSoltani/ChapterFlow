@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-first-20-hours",
+  "runId": "20260411-173721",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-first-20-hours/20260411-173721",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "“The-First-20-Hours“",
+    "author": "“Josh-Kaufman”",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "the-first-20-hours",
+    "title": "“The-First-20-Hours“",
+    "author": "“Josh-Kaufman”",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "",
+      "translator": "",
+      "publishedYear": null,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-first-20-hours/20260411-173721/source-freeze/book-source.txt",
+      "sourceProvenance": ""
+    },
+    "variantFamily": "EMH",
+    "chapterRange": ""
+  }
+}

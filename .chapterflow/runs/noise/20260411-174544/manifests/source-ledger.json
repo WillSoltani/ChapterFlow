@@ -1,0 +1,34 @@
+{
+  "bookId": "noise",
+  "runId": "20260411-174544",
+  "createdAt": "2026-04-11T18:05:00-03:00",
+  "sources": [
+    {
+      "sourceId": "google-books-little-brown-2021",
+      "title": "Noise: A Flaw in Human Judgment",
+      "url": "https://books.google.com/books/about/Noise.html?id=fhIBEAAAQBAJ",
+      "type": "authorized_preview_metadata",
+      "role": "edition metadata, contents list, official synopsis",
+      "confidence": "high",
+      "notes": "Authorized Google Books entry for the Little, Brown 2021 edition. Used as the primary edition anchor and chapter-order source."
+    },
+    {
+      "sourceId": "readnoise-official-site",
+      "title": "The Noise Book",
+      "url": "https://readnoise.com/",
+      "type": "official_book_site",
+      "role": "official synopsis, cross-market positioning, example set",
+      "confidence": "high",
+      "notes": "Official book site used to confirm the book's central framing and recurring example families."
+    },
+    {
+      "sourceId": "barrons-kahneman-interview-2021-republished-2024",
+      "title": "Daniel Kahneman Says Noise Is Wrecking Your Judgment. Here's Why, and What to Do About It.",
+      "url": "https://www.barrons.com/articles/economist-daniel-kahneman-says-noise-is-wrecking-your-judgment-heres-why-and-what-to-do-about-it-51622228892",
+      "type": "author_interview",
+      "role": "chapter-1 support for underwriter example, noise definition, and early practical framing",
+      "confidence": "medium_high",
+      "notes": "Interview excerpt used as reputable secondary support where the authorized preview is thin on chapter-level detail."
+    }
+  ]
+}

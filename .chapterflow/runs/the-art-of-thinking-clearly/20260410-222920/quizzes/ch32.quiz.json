@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch32-q01",
+      "prompt": "What is the core mistake in loss aversion?",
+      "choices": [
+        "Weighting a possible loss more heavily than an equal possible gain",
+        "Ignoring every downside in favor of upside",
+        "Assuming all losses and gains are identical in reality"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The problem is that the loss side is receiving more force than an equal gain.",
+        "direct": "Correct. Equivalent stakes are being evaluated unevenly because the downside feels heavier.",
+        "competitive": "That is the trap. The downside is showing up overweight."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch32-q02",
+      "prompt": "Why can this bias feel so compelling?",
+      "choices": [
+        "Because losses often sting more than equal gains satisfy",
+        "Because every loss is objectively larger than every gain",
+        "Because careful decisions ignore upside entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Losing can feel sharper than gaining the same amount feels good.",
+        "direct": "Exactly. The emotional asymmetry gives the loss side more pull than the equal upside.",
+        "competitive": "That is it. The downside hits harder than the upside pays."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch32-q03",
+      "prompt": "Which situation best fits loss aversion?",
+      "choices": [
+        "A person rejects an equal tradeoff because the possible loss feels larger than the comparable gain",
+        "A team compares both sides symmetrically before choosing",
+        "A student notices that two options carry genuinely different stakes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The same stake is being felt unevenly because of the loss frame.",
+        "direct": "Correct. The tradeoff is being distorted because the downside is carrying more weight than the equivalent upside.",
+        "competitive": "That is the move. The downside is bullying the equal gain."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch32-q04",
+      "prompt": "A team resists a change because the possible setback feels worse than an equal improvement feels good. What should they do first?",
+      "choices": [
+        "Treat the setback as automatically wiser because losses matter more",
+        "Write the threatened loss and the matching gain in equally plain terms",
+        "Assume the upside does not matter once loss enters the picture"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. They need to compare the same stake more evenly.",
+        "direct": "That is the key. Symmetric framing helps reveal whether the caution is evidence-based or simply loss-heavy.",
+        "competitive": "Exactly. Strip the downside of free armor and make both sides stand under the same light."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch32-q05",
+      "prompt": "What is the best way to test whether a choice is being distorted by loss aversion?",
+      "choices": [
+        "Ignore the downside completely",
+        "See whether the preference changes when the same stake is reframed as a gain",
+        "Trust the first protective instinct because it is probably wiser"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Reframing helps show whether loss language is adding extra weight.",
+        "direct": "The disciplined move is to compare the same stake under both frames and inspect what survives.",
+        "competitive": "That is it. Make the downside fight on neutral ground."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch32-q06",
+      "prompt": "Which statement stays inside this chapter's boundary?",
+      "choices": [
+        "Every cautious choice is irrational",
+        "Equivalent stakes should not become badly imbalanced just because one side is framed as a loss",
+        "Losses and gains always deserve identical treatment in every real situation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The warning is about distortion, not about banning caution.",
+        "direct": "That keeps the boundary intact: prudence may still be justified, but framing alone should not create a major imbalance.",
+        "competitive": "Exactly. Caution can still win, but the downside does not get bonus votes for free."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch32-q07",
+      "prompt": "Why can keeping what you already have feel easier than taking an equal opportunity elsewhere?",
+      "choices": [
+        "Because parting with what is possessed can feel like a sharper loss than the equal gain feels rewarding",
+        "Because current possessions are always objectively better",
+        "Because opportunity only matters when no loss is possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The pain of giving up can outweigh the equal benefit of switching.",
+        "direct": "That is the mechanism: surrendering what is already held can carry more emotional force than gaining something comparable.",
+        "competitive": "That is the issue. Letting go can feel heavier than moving up."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch32-q08",
+      "prompt": "Which response best separates prudent caution from loss aversion?",
+      "choices": [
+        "Check whether the downside is genuinely larger or only feels larger because it is framed as a loss",
+        "Assume every fear of loss is proof that the protective choice is correct",
+        "Dismiss all concern about downside as weakness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The important question is whether the loss is truly larger or only emotionally heavier.",
+        "direct": "That distinction separates evidence-based prudence from a framing-driven overweighting of the downside.",
+        "competitive": "Exactly. Make the downside prove its size instead of letting it flex unchallenged."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch32-q09",
+      "prompt": "Which earlier chapter pairs best with Loss Aversion here?",
+      "choices": [
+        "Endowment Effect, because both chapters show how ownership and threatened loss can inflate what already feels mine",
+        "Gambler's Fallacy, because every loss means a gain is due next",
+        "Induction, because every downside becomes a universal law"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both chapters warn that what is already possessed can receive inflated value when loss enters the frame.",
+        "direct": "This pairing works because ownership and threatened subtraction can both make the current state feel more valuable than a balanced comparison would show.",
+        "competitive": "That is the strongest link. What is mine starts getting armored when losing it enters the room."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch32-q10",
+      "prompt": "A sound judgment after a feared loss survives which test?",
+      "choices": [
+        "The choice still makes sense after the equivalent loss and gain are described in balanced language",
+        "The downside still feels vivid after repeated discussion",
+        "The first protective instinct remains the loudest voice in the room"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A stronger judgment should still hold after the framing becomes more symmetrical.",
+        "direct": "That is the decisive test because it shows whether the preference depends on evidence or on the extra weight of loss framing.",
+        "competitive": "Exactly. If the choice collapses once the armor comes off, the downside was doing fake work."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

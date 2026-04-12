@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why can't most jobs use pure deliberate practice in the same way as elite sport or music?",
+      "choices": [
+        "Because work has delayed, noisy, and mixed feedback conditions",
+        "Because jobs never involve skill development",
+        "Because workers should avoid all repetition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says most jobs are too messy for the clean gold-standard loop.",
+        "direct": "Professional work usually lacks stable reps, fast signals, and clear scoring.",
+        "competitive": "The terrain is too dirty for a clean drill fantasy."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the chapter's main workaround for workplace messiness?",
+      "choices": [
+        "Ignore feedback and trust experience",
+        "Shrink the target to trainable subskills",
+        "Treat the whole profession as one repeated drill"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter moves from whole jobs to smaller repeatable parts of jobs.",
+        "direct": "Subskill isolation is the practical bridge between workplace mess and useful practice.",
+        "competitive": "If the whole blur cannot be trained, cut the blur smaller."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter say workplace feedback often has to be designed?",
+      "choices": [
+        "Because natural job outcomes are often delayed or confounded",
+        "Because all managers refuse to give feedback",
+        "Because feedback only matters in schools"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Job results often arrive too late or with too many mixed causes to teach clearly by themselves.",
+        "direct": "Designed loops are needed because raw workplace outcomes are usually too muddy.",
+        "competitive": "If the job will not hand you a sharp verdict, you have to build one."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Sonia's sales scenario, what best fits the chapter's advice?",
+      "choices": [
+        "Wait for quarterly revenue totals to explain every problem",
+        "Review one call opening as a trainable subskill",
+        "Stop tracking performance entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "She improves the loop by reviewing a smaller part of the job directly.",
+        "direct": "The call opening is specific enough to inspect and correct in ways revenue totals are not.",
+        "competitive": "She stops asking the scoreboard to explain the blur and corners one leaking move instead."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is Derek doing in the seminar-room teaching example?",
+      "choices": [
+        "Turning vague class confusion into one reviewable explanation problem",
+        "Proving that teaching cannot improve at all",
+        "Replacing all classroom judgment with a single metric"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He reduces a broad feeling to one part of the class that can be improved.",
+        "direct": "The chapter favors isolating a teaching subskill instead of judging the whole class in one blur.",
+        "competitive": "He puts one weak explanation sequence on trial instead of blaming the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What danger does the chapter see in ordinary busyness at work?",
+      "choices": [
+        "Busyness can hide the same recurring weakness for years",
+        "Busyness automatically lowers intelligence",
+        "Busyness prevents any experience from helping"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that activity can continue without real correction.",
+        "direct": "Routine and time served can preserve a flaw if the weak part never becomes visible.",
+        "competitive": "A full calendar can still be a shelter for the same old leak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does self-diagnosis matter more in workplace adaptation?",
+      "choices": [
+        "Because private reflection is always enough by itself",
+        "Because many professionals lack constant live coaching",
+        "Because workplace feedback should replace evidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Workers often need sharper self-review because no coach is standing beside them all day.",
+        "direct": "Self-diagnosis matters when external correction is thin, but it still needs evidence and structure.",
+        "competitive": "If no coach is coming, the flaw needs a sharper witness from inside the job."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which claim would the chapter reject?",
+      "choices": [
+        "Workplace improvement is a partial translation of deliberate-practice logic",
+        "Messy professions can still isolate some trainable moves",
+        "A professional job automatically becomes pure deliberate practice once review starts"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps saying translation is real but partial.",
+        "direct": "Starting review does not magically turn a noisy job into a clean gold-standard field.",
+        "competitive": "A review log is not a magic portal to a tennis court."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's best advice for designing stronger workplace practice?",
+      "choices": [
+        "Add more hours first and inspect structure later",
+        "Choose a trainable slice, build a sharper loop, and compare repeated situations",
+        "Avoid all outside feedback to preserve authenticity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter emphasizes smaller targets, better loops, and stronger evidence.",
+        "direct": "Practice on the job improves when professionals isolate one move and build feedback around it.",
+        "competitive": "Corner the move, sharpen the verdict, and make the next rep answer."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does this chapter hand to the next one?",
+      "choices": [
+        "How can everyday life borrow some of this logic when structure is even thinner?",
+        "Why should workers stop trying to improve at all?",
+        "How can every personal habit be scored like a tournament?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what survives when the setting becomes even less formal than work.",
+        "direct": "The bridge moves from professional adaptation to everyday-life adaptation.",
+        "competitive": "Once work has been treated honestly, the next problem is what survives even farther from structure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "complex"
+    }
+  ]
+}

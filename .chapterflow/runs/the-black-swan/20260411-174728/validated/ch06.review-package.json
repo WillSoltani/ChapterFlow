@@ -1,0 +1,746 @@
+{
+  "schemaVersion": "chapterflow.v13.review-package",
+  "packageId": "the-black-swan-ch06-review-package",
+  "createdAt": "2026-04-11T18:44:12Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "the-black-swan",
+    "title": "The Black Swan",
+    "author": "Nassim N. Taleb",
+    "categories": [
+      "risk",
+      "probability",
+      "decision-making",
+      "epistemology"
+    ],
+    "tags": [
+      "uncertainty",
+      "black swan",
+      "narrative fallacy",
+      "silent evidence",
+      "extremistan"
+    ],
+    "edition": {
+      "name": "First Edition",
+      "translator": "",
+      "publishedYear": 2007,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-black-swan/20260411-174728/source-freeze/book-source.md",
+      "sourceProvenance": "Random House hardcover, published April 17, 2007; chapter map cross-checked against Google Books limited preview"
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-19"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch06",
+      "number": 6,
+      "title": "The Narrative Fallacy",
+      "readingTimeMinutes": 2,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "People prefer a story to a pile of loose facts. Taleb calls the danger inside that preference the narrative fallacy. A story selects details, arranges them, assigns causes, and quietly removes the mess around the event.",
+            "direct": "The chapter shows how a polished explanation can feel like understanding even when it mainly reflects omission, editing, and hindsight. What makes the story persuasive is often what it leaves out.",
+            "competitive": "Taleb is not banning stories. He is attacking the moment when a tidy explanation starts pretending it has conquered randomness. Smoothness is doing more work than truth."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Stories compress uncertainty.",
+                "direct": "Narratives make messy events feel cleaner than they were.",
+                "competitive": "A tidy chain can hide a chaotic world."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Omission is part of the fallacy.",
+                "direct": "What gets left out matters as much as what gets included.",
+                "competitive": "A smooth story is built from cuts as much as from facts."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Narrative satisfaction can imitate understanding.",
+                "direct": "A polished explanation can overstate causality and control.",
+                "competitive": "The story feels complete because uncertainty was edited out."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "What does a story remove to feel persuasive?",
+            "direct": "Why can a tidy explanation still be weak understanding?",
+            "competitive": "What question should you ask when a narrative feels too clean?"
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Taleb's narrative fallacy begins with a simple appetite: people prefer a story to a scatter of fragments. That preference becomes dangerous when the story starts claiming more explanation than the evidence earned. A narrative selects, orders, and assigns causes while quietly dropping the noise around the event.\n\nWhat disappears in that compression is often the uncertainty that mattered most. Randomness moves into the background. Omitted variables stop existing the moment the story sounds complete. The result feels cleaner than reality was, and that cleanliness is exactly why it persuades.\n\nThe chapter therefore treats storytelling not as decoration but as a machine for overclaiming what the past meant.",
+            "direct": "This is why polished explanations spread so easily after shocks, careers, and market moves. Once the outcome is visible, a writer can guide the reader through motives and turning points that make the result feel almost destined. The story gives sequence, but it also hides how much opacity and chance were present before the result arrived.\n\nTaleb is not arguing that stories are useless. He is warning that stories can smuggle certainty past scrutiny. A narrative can feel like understanding while mainly reflecting omission, editing, and hindsight.\n\nThe practical cost is that neat after-stories train people to believe causes are clearer and prediction is stronger than the world deserves.",
+            "competitive": "Narrative satisfaction weakens calibration because it makes the past look more orderly than it was. Once that habit sets in, observers become easier to fool about success, failure, and control. The story does emotional work by removing mess, and that emotional relief often gets mistaken for knowledge.\n\nTaleb wants one question held open whenever an explanation sounds perfectly shaped: what had to be cut away to make it look that clean? That question keeps randomness, omission, and hidden alternatives from being erased by style.\n\nThe chapter becomes a bridge into later attacks on prediction because tidy stories teach people to overestimate the reach of explanation."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Narrative compresses messy reality into a causal sequence.",
+                "direct": "Stories select and arrange details until events feel more ordered than they were.",
+                "competitive": "A plot line can counterfeit understanding."
+              },
+              "moreDetails": {
+                "gentle": "The persuasive force of a story often comes from what it omits.",
+                "direct": "Once the chain is shaped, randomness and side conditions fade from view.",
+                "competitive": "The narrative looks intelligent partly because the mess was edited away."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Omitted uncertainty is central to the fallacy.",
+                "direct": "What the story leaves out can matter more than the details it highlights.",
+                "competitive": "Cuts are doing half the explanation."
+              },
+              "moreDetails": {
+                "gentle": "Taleb wants the reader to notice absence, not just coherence.",
+                "direct": "A polished explanation can seem total only because conflicting or messy facts were trimmed.",
+                "competitive": "Whenever the story feels complete, missing terrain should become suspicious."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Hindsight makes narratives feel inevitable.",
+                "direct": "After the outcome arrives, motives and turning points can be arranged to look destined.",
+                "competitive": "The event lands first, then the script starts acting prophetic."
+              },
+              "moreDetails": {
+                "gentle": "This is why after-stories about markets, careers, and crises sound so convincing.",
+                "direct": "Chronology gives the writer an unfair advantage because the ending is already known.",
+                "competitive": "The story borrows certainty from the result and smuggles it backward."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Narrative pleasure can weaken calibration.",
+                "direct": "A satisfying explanation can overstate causality and control.",
+                "competitive": "The cleaner the story feels, the more careful you should become."
+              },
+              "moreDetails": {
+                "gentle": "Emotional relief is not the same as deeper understanding.",
+                "direct": "Stories can lower uncertainty anxiety while raising epistemic arrogance.",
+                "competitive": "The mind thanks the narrative for removing mess and then mistakes that relief for truth."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter prepares later attacks on prediction.",
+                "direct": "If the past is routinely cleaned up, the future will look more legible than it is.",
+                "competitive": "Story-shaped memory becomes forecast-shaped overconfidence."
+              },
+              "moreDetails": {
+                "gentle": "Neat explanations teach people to underestimate opacity.",
+                "direct": "Once a person keeps consuming tidy causality, prediction begins to look less scandalous than it should.",
+                "competitive": "The narrative fallacy is training for forecast vanity."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one explanation you repeat confidently. What did it leave out to stay so smooth?",
+            "direct": "Choose one polished story about success or failure and ask which messy factors disappeared from it.",
+            "competitive": "Find one narrative that feels too complete and make the omissions visible."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why are stories persuasive even when they overstate understanding?",
+              "direct": "Explain how omission helps a narrative feel stronger than the evidence warrants.",
+              "competitive": "How can smoothness do epistemic damage?"
+            },
+            {
+              "gentle": "What role does hindsight play in polished explanation?",
+              "direct": "How does knowing the ending let writers overstate causality?",
+              "competitive": "Where do you still mistake sequence for explanation?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If stories keep making the past look orderly, what happens to confidence about the future?",
+            "direct": "How does narrative satisfaction prepare the ground for prediction error?",
+            "competitive": "What later chapters become easier once explanation has been polished into inevitability?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What is the narrative fallacy?",
+              "direct": "Why does omission matter so much here?",
+              "competitive": "How does hindsight make a story look inevitable?"
+            },
+            "connect": {
+              "gentle": "The chapter links story-making, omission, and false causal confidence.",
+              "direct": "Taleb connects polished explanation to overclaiming about control and understanding.",
+              "competitive": "A smooth story can shrink uncertainty without actually solving it."
+            },
+            "preview": {
+              "gentle": "The book can now widen from story error to prediction error.",
+              "direct": "Later chapters will show how cleaned-up explanations flatter forecasting confidence.",
+              "competitive": "After fake coherence comes forecast vanity."
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Taleb's narrative fallacy is not a complaint about literature. It is a complaint about epistemic compression. Human beings prefer stories because stories reduce cognitive friction. They turn scattered facts into sequence, sequence into cause, and cause into emotional relief. The problem begins when that relief starts masquerading as knowledge.\n\nA narrative does not merely report an event. It edits. It elevates some details, suppresses others, and converts a field of uncertainty into an intelligible chain. What disappears is often the most important part of the original situation: randomness, omitted alternatives, and the fact that many different paths could have produced a similar surface result.\n\nTaleb's criticism therefore targets not storytelling itself but the overclaim hidden inside polished storytelling.",
+            "direct": "The chapter matters because a tidy explanation can look more rigorous than a messy truth. Once the ending is known, motives and turning points can be arranged so skillfully that the outcome feels almost required. That is hindsight working through narrative form. The writer gains enormous leverage from already knowing where the sequence lands.\n\nThis has consequences beyond style. If institutions, media, and private memory keep absorbing past events through polished stories, then people begin to overestimate how clear causes are and how predictable outcomes should have been. Narrative is not a neutral wrapper around explanation. It can become a distortion engine.\n\nTaleb is pushing the reader to treat elegance as a warning sign when uncertainty should still be visible.",
+            "competitive": "The hard lesson is that omission can create the emotional texture of understanding without supplying the substance. A story feels complete because its loose ends were cut away. That makes it easy to mistake coherence for contact with reality.\n\nThis is why the chapter sits so early in the book. Once the mind learns to distrust polished after-stories, later attacks on prediction, expert certainty, and model worship become easier to see. Narrative fallacy is one of the great laundering mechanisms by which opacity gets dressed as explanation.\n\nThe disciplined response is not silence. It is asking what was excluded, what randomness remained live, and what rival story the same facts might also support."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Narrative is epistemic compression.",
+                "direct": "A story reduces cognitive friction by turning uncertainty into sequence and sequence into cause.",
+                "competitive": "Plot is a machine for making chaos feel domestic."
+              },
+              "moreDetails": {
+                "gentle": "Taleb is interested in what this compression hides, not just in how elegant it sounds.",
+                "direct": "The narrative performs selection and omission before it ever begins sounding wise.",
+                "competitive": "Smooth explanation is often purchased by cutting away wildness."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Omission can counterfeit understanding.",
+                "direct": "A story feels complete because rival paths and random elements were trimmed out.",
+                "competitive": "The plot closes because reality was cropped."
+              },
+              "moreDetails": {
+                "gentle": "This is why narrative satisfaction can feel intellectually richer than it really is.",
+                "direct": "Completion is often an aesthetic effect before it is an epistemic achievement.",
+                "competitive": "The closed loop in the story may be the very signal that too much was excluded."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Hindsight gives narrative unfair power.",
+                "direct": "Knowing the ending allows causes and motives to be arranged as if they were obvious all along.",
+                "competitive": "The script steals certainty from the outcome and carries it backward."
+              },
+              "moreDetails": {
+                "gentle": "Chronology after the fact is an enormous explanatory subsidy.",
+                "direct": "A storyteller with the ending in hand can make contingency look like destiny.",
+                "competitive": "Post-event explanation often sounds grander than it deserves because the ending is already known."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Narrative fallacy trains forecast arrogance.",
+                "direct": "Clean stories about the past make the future seem more legible than it is.",
+                "competitive": "Once memory gets polished, prediction starts swaggering."
+              },
+              "moreDetails": {
+                "gentle": "Later forecasting errors borrow confidence from earlier storytelling errors.",
+                "direct": "If the world keeps arriving as tidy explanation, the mind stops respecting opacity.",
+                "competitive": "Story-shaped memory becomes the rehearsal space for false prediction."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The practical discipline is counter-narrative pressure.",
+                "direct": "Ask what was excluded, what randomness remained active, and what rival arrangement the facts could support.",
+                "competitive": "Every beautiful story deserves an autopsy for omitted mess."
+              },
+              "moreDetails": {
+                "gentle": "Taleb is not asking for the abolition of explanation.",
+                "direct": "He is asking for explanation to carry its uncertainty honestly instead of editing it away.",
+                "competitive": "The best resistance to narrative fallacy is structured suspicion of completeness."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Take one elegant explanation you admire and list the uncertainties it erased to stay elegant.",
+            "direct": "Choose one story about a success or failure and ask what rival arrangement of the same facts is still possible.",
+            "competitive": "Where has a beautiful explanation seduced you into forgetting omitted mess?"
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why is narrative compression useful and dangerous at the same time?",
+              "direct": "How does emotional relief get mistaken for understanding in this chapter?",
+              "competitive": "Why can elegance be a warning sign rather than a credential?"
+            },
+            {
+              "gentle": "How does hindsight subsidize causal storytelling?",
+              "direct": "Why does knowing the ending give the narrator an unfair advantage?",
+              "competitive": "What uncertainty gets smuggled out of the room when chronology is polished?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "How does polished memory prepare the mind for polished forecasting?",
+            "direct": "What later Taleb attack becomes easier once narrative has been exposed as laundering opacity?",
+            "competitive": "Where will fake coherence reappear when prediction enters the book directly?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What does Taleb mean by epistemic compression?",
+              "direct": "Why is omission central to narrative fallacy?",
+              "competitive": "How does hindsight amplify a story's authority?"
+            },
+            "connect": {
+              "gentle": "The chapter connects story pleasure, omission, and overclaiming about causality into one account of false understanding.",
+              "direct": "Taleb shows that narrative can make opacity feel conquered when it has only been edited.",
+              "competitive": "A polished explanation may reveal style more than truth."
+            },
+            "preview": {
+              "gentle": "Later chapters will convert this suspicion of polished explanation into suspicion of polished prediction.",
+              "direct": "The book is preparing to attack forecasters who inherit confidence from tidy stories.",
+              "competitive": "After opacity is laundered through narrative, it is ready to be sold as forecast skill."
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "title": "A Documentary Makes a Startup Collapse Look Inevitable",
+          "format": "media_case",
+          "category": "business",
+          "endingType": "diagnose",
+          "scenario": {
+            "gentle": "A documentary strings together a founder's flaws until the collapse looks almost prewritten.",
+            "direct": "The story arranges selected details into inevitability after the outcome is already known.",
+            "competitive": "The ending is doing unpaid labor for the explanation."
+          },
+          "whatToDo": {
+            "gentle": "Ask what random or omitted factors disappeared when the story was tightened.",
+            "direct": "Separate chronology after the fact from what was legible before the collapse.",
+            "competitive": "Interrogate what got cut to make the script look prophetic."
+          },
+          "whyItMatters": {
+            "gentle": "Polished stories can counterfeit understanding.",
+            "direct": "Narrative often borrows certainty from the result and smuggles it backward.",
+            "competitive": "The cleaner the fall looks, the more suspicious you should become."
+          }
+        },
+        {
+          "title": "A Student Tells a Too-Clean Story About Exam Failure",
+          "format": "school_case",
+          "category": "school",
+          "endingType": "reframe",
+          "scenario": {
+            "gentle": "A student says one bad habit fully explains a poor exam result.",
+            "direct": "The student is compressing a messy event into one satisfying cause.",
+            "competitive": "A whole field of uncertainty just got mugged by one tidy sentence."
+          },
+          "whatToDo": {
+            "gentle": "List the omitted factors before trusting the explanation.",
+            "direct": "Keep multiple contributing conditions visible instead of letting one story dominate.",
+            "competitive": "Make the mess come back into the room."
+          },
+          "whyItMatters": {
+            "gentle": "Single-cause stories feel stronger than they usually are.",
+            "direct": "Omission can make explanation look cleaner than reality.",
+            "competitive": "The mind loves one handle even when the object had many edges."
+          }
+        },
+        {
+          "title": "An Investment Memo Turns a Winner Into a Plot",
+          "format": "finance_case",
+          "category": "finance",
+          "endingType": "diagnose",
+          "scenario": {
+            "gentle": "An investment memo explains a winning stock with a smooth chain of strategic reasons after the run-up already happened.",
+            "direct": "The memo is narrating hindsight as if it were foresight.",
+            "competitive": "The stock won first, and only then did the plot get hired."
+          },
+          "whatToDo": {
+            "gentle": "Ask which parts of the explanation were visible before the outcome and which were stitched later.",
+            "direct": "Separate pre-event evidence from post-event storytelling.",
+            "competitive": "Do not let the rally write its own prophecy."
+          },
+          "whyItMatters": {
+            "gentle": "Stories about winners often overstate causal clarity.",
+            "direct": "Narrative can make a realized outcome look more legible than it was.",
+            "competitive": "A profit can subsidize a fake explanation."
+          }
+        },
+        {
+          "title": "A Family Story Simplifies a Career Path",
+          "format": "personal_case",
+          "category": "personal",
+          "endingType": "reflect",
+          "scenario": {
+            "gentle": "A family retells a relative's career as if one brave decision fully explains everything that followed.",
+            "direct": "Memory is compressing years of chance, help, and hidden contingencies into one noble arc.",
+            "competitive": "The legend is sanding randomness off the life."
+          },
+          "whatToDo": {
+            "gentle": "Keep luck, timing, and omitted help visible in the retelling.",
+            "direct": "Resist turning a life into a single-cause morality play.",
+            "competitive": "Put the missing scaffolding back into the myth."
+          },
+          "whyItMatters": {
+            "gentle": "Narrative satisfaction can distort memory as easily as journalism.",
+            "direct": "A polished life story can overclaim control and causality.",
+            "competitive": "The legend feels earned partly because the mess was edited out."
+          }
+        },
+        {
+          "title": "A Board Wants One Story for a Product Failure",
+          "format": "work_case",
+          "category": "work",
+          "endingType": "reframe",
+          "scenario": {
+            "gentle": "A board wants one simple explanation for a failed launch before the postmortem is even finished.",
+            "direct": "The room is demanding narrative closure faster than the evidence deserves.",
+            "competitive": "Executives want a plot more than they want contact with uncertainty."
+          },
+          "whatToDo": {
+            "gentle": "Delay total explanation and keep multiple live factors visible.",
+            "direct": "Treat the urge for one clean story as a warning sign rather than as progress.",
+            "competitive": "Refuse the first elegant plot until the omitted mess has been inspected."
+          },
+          "whyItMatters": {
+            "gentle": "Narrative hunger can reduce learning quality.",
+            "direct": "A single satisfying story may hide the uncertainty that matters for the next decision.",
+            "competitive": "Closure is often the enemy of calibration."
+          }
+        },
+        {
+          "title": "A History Podcast Turns a Crisis Into Destiny",
+          "format": "history_case",
+          "category": "media",
+          "endingType": "diagnose",
+          "scenario": {
+            "gentle": "A podcast walks through a crisis so smoothly that the turning point feels unavoidable.",
+            "direct": "The episode is arranging contingencies into a retrospective chain of necessity.",
+            "competitive": "History just got ironed until the wrinkles looked like intention."
+          },
+          "whatToDo": {
+            "gentle": "Ask what rival paths were still possible before the turning point hardened.",
+            "direct": "Restore contingency and omitted alternatives to the explanation.",
+            "competitive": "Put the unrealized branches back into the tree."
+          },
+          "whyItMatters": {
+            "gentle": "Hindsight gives narrative unfair authority.",
+            "direct": "A polished chronology can make the past look more inevitable than it was.",
+            "competitive": "The neatest history is often the most suspicious."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "What is the narrative fallacy?",
+            "choices": [
+              "A ban on all storytelling.",
+              "The habit of compressing messy reality into a tidy explanatory story.",
+              "A refusal to discuss causes."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Taleb is targeting overclean explanation.",
+              "direct": "Narrative fallacy means stories claim more order than the evidence earned.",
+              "competitive": "It is polished coherence pretending to be full understanding."
+            },
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Why are stories so persuasive after events happen?",
+            "choices": [
+              "Because they keep all uncertainty visible.",
+              "Because they select details, assign causes, and remove mess.",
+              "Because stories are always false."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Stories become persuasive by compressing complexity.",
+              "direct": "Selection and omission help them feel complete.",
+              "competitive": "The plot wins because the mess lost screen time."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "What role does omission play here?",
+            "choices": [
+              "Omission is irrelevant.",
+              "Omission helps the explanation feel cleaner and more complete than reality was.",
+              "Omission only matters in fiction."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "What gets left out is central.",
+              "direct": "A story often persuades by trimming away uncertainty and rival paths.",
+              "competitive": "Cuts are doing half the explaining."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A postmortem gives one elegant cause for a failed launch. What correction fits Chapter 6?",
+            "choices": [
+              "Accept the clean story quickly.",
+              "Ask what uncertainty and omitted factors were cut away.",
+              "Reject all explanation forever."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter resists premature closure.",
+              "direct": "Elegant explanation should trigger questions about omission.",
+              "competitive": "Bring the missing mess back before trusting the plot."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "How does hindsight strengthen narrative fallacy?",
+            "choices": [
+              "It makes writers forget the ending.",
+              "It lets causes be arranged as if they had been obvious all along.",
+              "It removes chronology completely."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Knowing the ending gives narrative unfair power.",
+              "direct": "The result lends certainty backward to the explanation.",
+              "competitive": "The script steals confidence from the outcome."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Why is narrative pleasure epistemically risky?",
+            "choices": [
+              "Because pleasure itself is immoral.",
+              "Because emotional relief can be mistaken for genuine understanding.",
+              "Because stories contain no facts."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Feeling satisfied is not the same as knowing more.",
+              "direct": "The mind thanks the story for removing mess and mistakes that relief for truth.",
+              "competitive": "A calm feeling can be counterfeit understanding."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "What stronger question should follow a perfectly shaped explanation?",
+            "choices": [
+              "How can we make it even smoother?",
+              "What had to be cut away to make it look that clean?",
+              "Who told the story first?"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Taleb wants omission made visible.",
+              "direct": "A clean story should trigger suspicion about excluded uncertainty.",
+              "competitive": "Every beautiful plot deserves an autopsy for missing mess."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "How does Chapter 6 affect later thinking about prediction?",
+            "choices": [
+              "It makes the future look easier to forecast.",
+              "It shows that polished explanations can train forecast overconfidence.",
+              "It proves prediction is impossible in every case."
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Neat stories about the past flatter confidence about the future.",
+              "direct": "Narrative fallacy is rehearsal space for forecast vanity.",
+              "competitive": "Story-shaped memory becomes swaggering prediction."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A family story turns one career into a noble arc. Which idea is most relevant?",
+            "choices": [
+              "Narrative compression of luck and omitted factors.",
+              "Statistical sampling error only.",
+              "Linear payoff logic."
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The story is sanding off contingency.",
+              "direct": "Narrative fallacy often hides luck, help, and rival possibilities.",
+              "competitive": "The legend feels pure because randomness was edited out."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "q10",
+            "prompt": "Which statement best fits Taleb here?",
+            "choices": [
+              "A polished explanation may reveal style more than truth.",
+              "The best story is always the truest story.",
+              "Causality should never be discussed."
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Taleb is warning against smooth overclaiming.",
+              "direct": "Narrative can smuggle certainty past scrutiny.",
+              "competitive": "Elegance can be a danger signal."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deeper"
+          }
+        ]
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "Practice asking what a story left out.",
+          "direct": "Train yourself to separate explanatory pleasure from explanatory strength.",
+          "competitive": "Stop letting smooth plots delete uncertainty."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a postmortem sounds too clean, then ask what rival factors and uncertainties got trimmed away.",
+              "direct": "If the explanation feels satisfying immediately, then separate sequence from true causality.",
+              "competitive": "If the plot lands too perfectly, then inspect the cut footage."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If your history or essay explanation feels inevitable, then list two omitted alternatives before finalizing it.",
+              "direct": "If the narrative looks complete, then ask what the same facts might also support.",
+              "competitive": "If the paper sounds prophetic, then put contingency back in."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If you tell a life story too neatly, then name the luck, help, and randomness you dropped.",
+              "direct": "If a memory now sounds like destiny, then restore the uncertainty that existed at the time.",
+              "competitive": "If the legend glows too smoothly, then bring back the scars and side paths."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Pick one explanation you trust and write what it left out to stay so clean.",
+          "direct": "Review one polished story from work or media and separate what was known before the outcome from what was stitched later.",
+          "competitive": "Take one beautiful explanation and force the omitted mess back onto the page."
+        },
+        "weeklyPractice": {
+          "gentle": "For one week, ask of each major explanation: what was excluded, what randomness remained, and what rival story still fits?",
+          "direct": "Keep a short log of narratives that felt satisfying before they felt tested.",
+          "competitive": "Spend one week treating elegance as a prompt for suspicion rather than surrender."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch06-rc01",
+          "front": {
+            "gentle": "What is the narrative fallacy?",
+            "direct": "What habit is Taleb criticizing here?",
+            "competitive": "Finish the line: a story can feel cleaner than..."
+          },
+          "back": {
+            "gentle": "It is the compression of messy reality into a tidy explanatory story.",
+            "direct": "Taleb is criticizing polished coherence that overclaims understanding.",
+            "competitive": "...the reality it claims to explain."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch06-rc02",
+          "front": {
+            "gentle": "Why do stories persuade so strongly?",
+            "direct": "What gives narrative its force after the fact?",
+            "competitive": "Why does the plot feel smarter than the event?"
+          },
+          "back": {
+            "gentle": "Because stories select details, assign causes, and remove mess.",
+            "direct": "Narrative borrows power from sequence, omission, and hindsight.",
+            "competitive": "The plot feels smart because uncertainty was edited away."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch06-rc03",
+          "front": {
+            "gentle": "What should you ask when a story feels too complete?",
+            "direct": "How do you pressure-test a polished explanation?",
+            "competitive": "What autopsy question belongs to every beautiful plot?"
+          },
+          "back": {
+            "gentle": "Ask what was left out.",
+            "direct": "Look for omitted uncertainty, rival paths, and hidden randomness.",
+            "competitive": "What had to be cut away to make it look this clean?"
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-rc04",
+          "front": {
+            "gentle": "How does hindsight empower narrative fallacy?",
+            "direct": "Why does knowing the ending matter so much?",
+            "competitive": "What unfair advantage does the narrator have?"
+          },
+          "back": {
+            "gentle": "It lets causes be arranged as if they had always been obvious.",
+            "direct": "The ending lends confidence backward to the explanation.",
+            "competitive": "The narrator already knows where the line will land."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-rc05",
+          "front": {
+            "gentle": "Why does this chapter matter for prediction later in the book?",
+            "direct": "How do polished stories affect forecasting confidence?",
+            "competitive": "What future error is narrative training you for?"
+          },
+          "back": {
+            "gentle": "Polished stories about the past can make the future feel more legible than it is.",
+            "direct": "Narrative fallacy trains forecast overconfidence.",
+            "competitive": "Story-shaped memory becomes forecast swagger."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "A tidy story can feel like understanding while hiding the uncertainty that mattered most.",
+        "direct": "When an explanation sounds perfectly shaped, ask what was cut away to make it look that clean.",
+        "competitive": "Narrative fallacy launders opacity into causality and then sells the result as knowledge."
+      },
+      "book": {
+        "bookId": "the-black-swan",
+        "title": "The Black Swan",
+        "author": "Nassim N. Taleb",
+        "categories": [
+          "risk",
+          "probability",
+          "decision-making",
+          "epistemology"
+        ],
+        "tags": [
+          "uncertainty",
+          "black swan",
+          "narrative fallacy",
+          "silent evidence",
+          "extremistan"
+        ],
+        "edition": {
+          "name": "First Edition",
+          "translator": "",
+          "publishedYear": 2007,
+          "translationYear": null,
+          "sourceText": ".chapterflow/runs/the-black-swan/20260411-174728/source-freeze/book-source.md",
+          "sourceProvenance": "Random House hardcover, published April 17, 2007; chapter map cross-checked against Google Books limited preview"
+        },
+        "variantFamily": "EMH",
+        "chapterRange": "1-19"
+      }
+    }
+  ]
+}

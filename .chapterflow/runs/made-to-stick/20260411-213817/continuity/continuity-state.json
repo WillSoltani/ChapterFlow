@@ -1,0 +1,38 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "fb19883fa104de646e1de45aa388ab120400152c5807e536bc5689ca876bb78d",
+      "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch01.chapter.json",
+      "sealedAt": "2026-04-11"
+    },
+    "ch02": {
+      "sha256": "683ddcf72c485baca344187e823c52a31a03c946b451b56ae621a15145540624",
+      "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch02.chapter.json",
+      "sealedAt": "2026-04-11"
+    },
+    "ch03": {
+      "sha256": "6f42a3a5d99317a6ef8ad302e16287b752b41b9206285c6e9c9eff1c43a6bcbe",
+      "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch03.chapter.json",
+      "sealedAt": "2026-04-11"
+    },
+    "ch04": {
+      "sha256": "63ed048442a0d97689a3d4d129f04b78ceec513c2d29993ba29dc4e21a7a8fe0",
+      "validatedPath": ".chapterflow/runs/made-to-stick/20260411-213817/validated/ch04.chapter.json",
+      "sealedAt": "2026-04-11"
+    }
+  },
+  "baselineQuality": {}
+}

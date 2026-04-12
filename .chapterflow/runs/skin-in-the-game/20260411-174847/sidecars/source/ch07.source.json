@@ -1,0 +1,14 @@
+{
+  "chapterId": "ch07-inequality-and-skin-in-the-game",
+  "chapterNumber": 7,
+  "title": "Inequality and Skin in the Game",
+  "supportLevel": "narrow-frozen-basis",
+  "frozenSources": [
+    {"id":"toc-json","path":"source-freeze/toc.json","role":"chapter-map"},
+    {"id":"source-heading-index","path":"sidecars/source/source-heading-index.json","role":"chapter-identity"},
+    {"id":"book-source-md","path":"source-freeze/book-source.md","role":"freeze-boundary-and-theme"},
+    {"id":"book-skeleton","path":"skeleton/book-skeleton.md","role":"chapter-intent"}
+  ],
+  "allowedMoves": ["paraphrase-first","mechanism-first inequality framing","bridge from prestige critique to legitimacy critique"],
+  "disallowedMoves": ["exact quotes","unsupported chapter anecdotes","generic inequality discourse detached from skin in the game"]
+}

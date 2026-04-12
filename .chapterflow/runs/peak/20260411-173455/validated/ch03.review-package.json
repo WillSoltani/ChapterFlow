@@ -1,0 +1,702 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "cf-peak-ch03-20260411-173455",
+  "createdAt": "2026-04-11T21:48:00Z",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "peak",
+    "title": "Peak",
+    "author": "Anders Ericsson, Robert Pool",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Peak: Secrets from the New Science of Expertise",
+      "translator": "",
+      "publishedYear": 2016,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/peak/20260411-173455/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen from Google Books authorized preview metadata and contents, Open Library edition records, Community Library Network table-of-contents metadata, and the secondary chapter-summary bundle recorded in manifests/source-ledger.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-9"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch03-mental-representations",
+      "number": 3,
+      "title": "Mental Representations",
+      "readingTimeMinutes": 6,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Experts often seem fast because they notice structure that newer learners do not yet see. A chess position, a patient chart, or a paragraph draft can look crowded to a novice and organized to an expert. The chapter explains that the difference comes from mental representations, which are internal pictures of how a field fits together. Those representations help memory because they group details into meaningful patterns instead of loose fragments. They also help prediction because a person can sense what usually comes next. The chapter keeps one limit in view. These representations are built inside a specific domain through repeated work and feedback. They are not generic brilliance that floats from field to field without training.",
+            "direct": "Expert performance looks fast because expert perception is structured. This chapter names that hidden structure mental representations. Experts do not simply remember more pieces. They organize the field into meaningful patterns, which lets them notice important cues, anticipate likely changes, and correct errors sooner. A better internal model turns memory into chunking, attention into selection, and speed into something more accurate than guessing. The chapter then adds a necessary limit. These representations are domain-specific products of practice. A person cannot borrow them from confidence alone or carry them cleanly into unrelated fields without the same kind of build process.",
+            "competitive": "What looks like instinct in experts is usually stored structure. They walk into noise and spot the pattern before the novice has even decided what deserves attention. This chapter argues that the edge comes from mental representations: internal models that compress the field into something usable. That is why experts remember more without magic memory, predict sooner without wild guessing, and correct faster without panic. The attractive part of this idea is speed. The hard part is the limit. Those representations belong to the field that trained them. You do not get elite perception by wanting it harder, and you do not import it whole from some other arena just because you were good there first."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Mental representations help experts notice meaningful structure.",
+                "direct": "Experts see patterns because their internal models are richer.",
+                "competitive": "The edge is organized perception, not vague instinct."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Better memory often comes from grouping information into patterns.",
+                "direct": "Experts recall more by chunking meaning, not by holding random fragments.",
+                "competitive": "Strong recall is usually structure doing the storage work."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Representations are built inside specific domains through practice.",
+                "direct": "The model gets sharper through field-specific work and feedback.",
+                "competitive": "No domain builds your expert eye for free."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter explains that experts perform differently because they build internal representations that help them notice, remember, and predict more effectively inside a field.",
+            "direct": "Mental representations turn raw experience into organized perception, better recall, and earlier correction, but only in domains where they have actually been built.",
+            "competitive": "Expert speed is usually trained structure showing up early, not magic showing off."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "A beginner often looks at a skilled domain and sees a pile of separate pieces. An expert looks at the same material and sees a shape. That difference can feel mysterious from the outside, especially when the expert seems to move quickly without sounding rushed. The chapter explains that the speed is not empty instinct. It comes from mental representations, the inner patterns a person has built through repeated contact with the field.\n\nThose representations matter because they change what attention lands on first. A novice may scan every detail with equal uncertainty. An expert begins sorting almost immediately. Certain signals matter more. Certain combinations belong together. Certain changes suggest likely consequences. The person is not seeing more with the eyes alone. They are seeing more with a better organized mind.\n\nThis also clarifies why expert memory can look strange. The chapter does not need a magic-memory story. It offers a cleaner one. Information becomes easier to recall when it has been compressed into meaningful units. A chess player can hold a real position more easily than a random arrangement because the real position fits a known structure. A trained reader can remember an argument better when its logic is visible. Memory improves because the material has been arranged, not because the brain turned into a bigger bucket.\n\nPrediction rises from the same mechanism. Once the internal model grows richer, the person starts expecting what tends to come next. That expectation does not guarantee perfection, but it lowers surprise. The expert can prepare earlier because the field already has shape in the mind. This is one reason high performers often look calm. They are not solving each moment from scratch.\n\nSelf-correction also becomes sharper. A person can detect drift sooner when they hold a clearer picture of the target. Weak representation makes feedback feel late and muddy. Strong representation lets the person compare the current move against a more exact standard. The mistake becomes visible earlier, which means repair can start earlier too.\n\nThe chapter keeps an important boundary in place. Mental representations are not generic brilliance. They are built within domains. A person may develop excellent representations in writing and still remain ordinary in tennis or medicine. The structure belongs to the problems, cues, and corrections that built it.\n\nThat limit matters because it makes the chapter practical instead of mystical. Expert performance looks immediate only because a long history of pattern-building has become quiet. The next chapter can therefore ask a stricter question: what training methods build those representations reliably enough to produce elite performance?",
+            "direct": "What separates expert perception from novice perception is not simply effort under pressure. It is structure. This chapter uses mental representations to describe the internal model that lets a person see relevance quickly inside a domain. The expert is not staring harder at the same scene. The expert is organizing the scene differently.\n\nThat difference changes attention first. Novices often treat details as a flat list. Experts rank, group, and relate those details almost immediately. In a diagnostic setting, some symptom combinations start carrying more weight than others. In writing, some sentence movements begin warning of structural failure before the whole paragraph collapses. In chess, a familiar position family calls up likely continuations instead of isolated piece locations.\n\nMemory improves for the same reason. The chapter's claim is not that experts own larger storage tanks. It is that they store the field in usable chunks. Meaningful structure reduces clutter. A person recalls more because the information has been organized into patterns that belong together, which is very different from trying to memorize disconnected bits.\n\nPrediction then stops looking magical. A richer internal model makes the next move, next risk, or next weakness more legible. The expert is still fallible, but less of the field arrives as surprise. This is why speed at high levels often looks composed rather than frantic. Faster recognition comes from better preparation inside the representation.\n\nFeedback also lands differently when the target picture is sharp. Self-correction becomes earlier and more exact because the person can compare the present performance against a more developed standard. Weak representation notices error late. Strong representation notices mismatch before the mistake has fully hardened.\n\nThe chapter refuses one flattering mistake. These representations are not free-floating intelligence. They are field-specific constructions earned through contact with domain problems, repeated judgment, and correction. Transfer can happen in narrow ways, but the expert eye does not migrate wholesale into an unrelated field just because the person is generally smart.\n\nThat boundary gives the chapter its force. What seems like intuition is usually long-built structure. The next chapter has to explain the training conditions that build such structure deliberately rather than leaving it to time and accident.",
+                "competitive": "Experts look faster because they are not starting from zero. They enter the field carrying structure, and that structure changes the fight before the visible action even begins. This chapter names the advantage mental representations. The phrase sounds tame until you realize how much it explains: what gets noticed first, what gets remembered, what gets predicted, and what gets corrected before damage spreads.\n\nA novice sees fragments. An expert sees relations. The difference is not noble confidence. It is a better internal arrangement of the domain. Some cues pull harder. Some combinations matter more. Some developments are already half expected. That arrangement makes quick judgment possible without turning judgment into guesswork.\n\nMemory looks impressive for the same reason. The expert is rarely juggling a larger pile of loose facts. The expert is carrying compressed structure. Meaningful patterns travel better than random pieces. Real positions, real arguments, and real diagnostic constellations are therefore easier for trained people to hold than nonsense versions built from the same raw ingredients.\n\nPrediction is the next dividend. Once the field has internal order, the next likely move stops arriving like an ambush every time. The expert can prepare earlier because the model already contains pressure points and common paths. Calm speed comes from this hidden preparation, not from supernatural nerves.\n\nThe same structure also makes correction harsher and more useful. A strong representation gives the performer a sharper picture of what good should look like, so drift becomes visible sooner. Weak representation leaves a person reacting after the mistake has already colonized the performance. Strong representation catches the leak while the room can still be saved.\n\nThe chapter also blocks one lazy fantasy. This advantage is local. The representation belongs to the field that trained it. You do not become broadly expert because one domain made you dangerous. Without the right problems and corrections, the internal model does not exist.\n\nSo the chapter lowers the romance around intuition. The expert eye is mostly earned organization. If you want that kind of speed, the next question is not who feels gifted. The next question is what practice builds the model that lets speed stay right."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Mental representations explain why experts notice structure quickly.",
+                "direct": "Expert attention works differently because the field has been internally organized.",
+                "competitive": "Fast accurate perception rides on a better built model."
+              },
+              "moreDetails": {
+                "gentle": "The chapter asks the reader to treat expert seeing as organized pattern recognition rather than mystical instinct.",
+                "direct": "What looks intuitive from outside often reflects years of structured exposure that changed what cues feel salient.",
+                "competitive": "If the pattern is already loaded, speed is a consequence, not a miracle."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Expert memory often reflects grouping rather than raw storage.",
+                "direct": "Meaningful chunking lets more information be recalled without memorizing each fragment alone.",
+                "competitive": "The expert remembers by compression, not by carrying a bigger sack."
+              },
+              "moreDetails": {
+                "gentle": "This helps explain why real domain material is easier to remember than random material made from similar parts.",
+                "direct": "The field becomes easier to hold when relationships among pieces are recognized and stored as units.",
+                "competitive": "Structure cuts clutter. Randomness keeps forcing every piece to be paid for separately."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Prediction improves when the internal model includes likely next steps.",
+                "direct": "Richer representations make future developments more legible before they fully arrive.",
+                "competitive": "A good model reduces surprise before surprise can run the room."
+              },
+              "moreDetails": {
+                "gentle": "The chapter does not promise certainty. It promises a stronger basis for expectation.",
+                "direct": "Experts still make mistakes, but their anticipation is less reactive because they recognize familiar pressures earlier.",
+                "competitive": "The field stops ambushing you so often once its usual moves are already mapped."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Self-correction gets stronger when the target picture is clearer.",
+                "direct": "A sharper internal standard lets people detect mismatch sooner.",
+                "competitive": "You fix earlier when good form is specific instead of foggy."
+              },
+              "moreDetails": {
+                "gentle": "The chapter links correction to representation because feedback only helps if the performer can compare reality with a meaningful standard.",
+                "direct": "Weak models delay error detection, while stronger ones make drift visible earlier in the sequence.",
+                "competitive": "If the standard is blurry, mistakes rent space for free. Sharp structure starts charging them at the door."
+              }
+            },
+            {
+              "point": {
+                "gentle": "These representations are specific to the fields that build them.",
+                "direct": "The chapter rejects the idea that expert perception transfers wholesale into unrelated domains.",
+                "competitive": "Your edge stays local unless another field has built its own version from scratch."
+              },
+              "moreDetails": {
+                "gentle": "That keeps the chapter grounded because it ties the concept back to practice history instead of vague giftedness.",
+                "direct": "Domain specificity explains why high skill in one area does not automatically create expert judgment everywhere else.",
+                "competitive": "One arena may prove discipline. It does not automatically mint a second expert eye."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Pick one skill you respect. What patterns does an expert there probably notice that a beginner would still experience as scattered detail?",
+            "direct": "Choose one domain and ask what its experts group, predict, or correct earlier because of stronger internal representations.",
+            "competitive": "Name one field you admire and identify the hidden structure its top performers are seeing before slower people even know where to look."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Why does the chapter explain expert memory as better organization rather than simple mental storage?",
+            "direct": "How do richer representations change attention, recall, and correction at the same time?",
+            "competitive": "What makes expert speed earned structure instead of prettier guessing?"
+          },
+          "oneMinuteRecap": {
+            "gentle": "Experts do not only work harder in the moment. They carry better internal patterns that help them notice meaning, remember structure, and correct sooner within a field.",
+            "direct": "Mental representations organize the domain, which improves attention, memory, prediction, and self-correction without turning expertise into magic.",
+            "competitive": "The chapter strips intuition down to trained structure and keeps the edge tied to the field that built it."
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "An expert's advantage often looks emotional from the outside. The person seems calmer, quicker, and somehow less confused by complexity. This chapter asks the reader to look beneath that appearance. The deeper advantage is representational. Experts have built internal structures that make the domain more legible before deliberate reasoning has to grind through every piece.\n\nThat change begins with perception. A novice may scan a scene and experience many details at once without knowing what deserves weight. An expert starts with a more selective map. Some cues gather together. Some combinations carry diagnostic force. Some arrangements signal likely trouble. The person is not merely staring harder. The person is seeing through a model that has been shaped by long exposure.\n\nMemory follows the same pattern. The common fantasy is that experts own a giant storehouse. The chapter offers something stricter. People remember more when the material has meaningful internal organization. Real domain situations fit that organization better than random fragments do. This is why trained performers can often hold complex positions, arguments, or cases more effectively than untrained people handling the same raw quantity of information.\n\nPrediction then becomes less mysterious. Once a field has internal order, future movement grows easier to anticipate. The expert still lacks omniscience, but surprise loses some of its power because the representation already contains pressure points, common transitions, and meaningful constraints. Speed emerges from reduced confusion rather than from heroic reaction.\n\nSelf-correction depends on the same architecture. A performer can only adjust early if the target image is sharp enough to make mismatch visible. Weak representation means the error remains fuzzy until consequences become obvious. Strong representation means drift shows up sooner, sometimes as a faint discomfort before the failure is publicly visible. That is one reason advanced performers can look severe with themselves. They are detecting small departures that beginners cannot yet see.\n\nThe chapter's limit matters as much as its mechanism. Representations are local achievements. They belong to the domain that built them. High general intelligence may help a person learn, but it does not replace the long work of building field-specific structure. A strong writer does not automatically become a strong diagnostician. A gifted athlete does not automatically carry an expert musician's ear.\n\nThat boundary is what keeps the concept from becoming a worship song for intuition. Mental representations are not a halo. They are a record of what the person has repeatedly had to notice, compare, predict, and repair. The chapter therefore reframes expertise as accumulated internal order.\n\nThat reframing also raises the standard for practice. If elite performance depends on what the performer can internally represent, then training must do more than create effort. It has to sharpen the model itself. The next chapter turns there directly, because deliberate practice is valuable precisely when it builds the representations that let perception, prediction, and correction rise together instead of drifting apart.",
+            "direct": "Expert performance often looks immediate because the internal work has already been done. This chapter names that stored work mental representations. The idea matters because it explains several expert advantages at once without appealing to myth: better cue selection, stronger memory for real patterns, earlier prediction, and faster self-correction.\n\nThe representational difference starts by changing attention. Novices face a flat field of possible details. Experts face a structured field. Some cues move to the front quickly because their significance has been learned through repeated judgment. Some arrangements already suggest likely outcomes. The person is not merely confident. The person is reading the scene through a richer model.\n\nMemory then stops looking like raw storage capacity. The chapter pushes toward organization instead. Experts retain more useful information because the field has been chunked into meaningful units. A board position, a paragraph draft, or a patient presentation becomes easier to hold when relationships among the parts are already known. Random fragments remain expensive because they cannot be compressed by structure.\n\nPrediction is one of the model's clearest payoffs. Stronger internal representations make future developments easier to anticipate before they become undeniable. That does not remove uncertainty. It does make the field less surprising. Much of expert speed is the visible surface of earlier pattern recognition rather than a last-second burst of genius.\n\nSelf-correction draws on the same resource. A performer cannot refine toward a target that remains blurry. The better the internal representation of what good looks like, the earlier deviation becomes legible. Weak representation delays feedback because the standard itself is muddy. Strong representation makes mismatch easier to detect while repair is still cheap.\n\nThe chapter also narrows the claim where readers might prefer flattery. These representations are domain-specific. They emerge from long contact with the exact kinds of problems the field creates. Intelligence, motivation, and discipline may help build them, but those traits are not substitutes for them. Transfer between distant domains is therefore limited because the relevant internal structures have not been built.\n\nThat limit is not a disappointment. It is a clarifying constraint. What people call intuition is usually accumulated internal order tied to a field. Once the chapter makes that visible, the practical question changes. Training is no longer about effort alone. Training becomes the design problem of building better representations, which is exactly why the next chapter has to define deliberate practice so sharply.",
+                "competitive": "People romanticize expert intuition because the visible surface is flattering. The expert moves early, remembers more, predicts better, and corrects without obvious panic. This chapter removes the romance and keeps the advantage. What sits underneath is mental representation: hard-earned internal structure that makes the field readable before a novice has finished naming the pieces.\n\nThat structure changes attention first. A novice sees a crowd. An expert sees a hierarchy. Some cues pull immediate weight. Some combinations announce trouble. Some patterns already imply the next likely move. This is not about trying harder under the same fog. It is about having less fog because the domain has already been organized inside the mind.\n\nMemory improves because structure compresses. The expert is not hauling a larger heap of unrelated parts. The expert is carrying meaningful chunks. Real positions, real cases, and real arguments are easier for trained performers to hold than random versions built from the same ingredients. Structure buys economy. Randomness keeps charging full price.\n\nPrediction is where that economy becomes visible to everyone else. Once the model contains likely paths and pressure points, the next development stops feeling like an ambush every time. The expert still gets surprised, but surprise loses its monopoly. Fast judgment becomes possible because the scene was partly understood before the emergency arrived.\n\nCorrection sharpens for the same reason. A blurry standard makes every mistake expensive because the failure becomes obvious late. A sharp representation exposes mismatch earlier, while the damage is still small. That is why advanced performers often look unforgiving with themselves. They can hear or see the leak before the room fills with water.\n\nThe chapter also refuses a vanity story. This advantage does not float freely across life. Representations belong to the field that built them. One domain can teach discipline, patience, or tolerance for correction, but it does not automatically donate expert perception to another arena. Without the right problems, the right cues, and the right feedback, the model does not exist.\n\nThat boundary is the most useful part of the chapter because it kills a cheap shortcut. You cannot admire expert intuition into existence. You have to build the internal order that makes intuition look clean. The next chapter matters because deliberate practice is the strictest available answer to that build problem."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Expert perception depends on richer internal structure.",
+                "direct": "Mental representations change what the performer can notice quickly.",
+                "competitive": "Speed gets dangerous when the field is already organized inside the mind."
+              },
+              "moreDetails": {
+                "gentle": "The chapter explains apparent intuition by showing that experts are working from a better internal map of the domain.",
+                "direct": "Cue selection improves because repeated exposure has taught the performer what deserves attention and how signals relate.",
+                "competitive": "The expert is not braver in the fog. The expert is operating with less fog."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Memory improves when information becomes meaningful chunks.",
+                "direct": "Representations compress real domain material into usable units.",
+                "competitive": "Structure lowers the carrying cost of complexity."
+              },
+              "moreDetails": {
+                "gentle": "This keeps the chapter grounded because it explains why experts recall real patterns better than random fragments.",
+                "direct": "The gain comes from organization rather than from a fantasy of unlimited storage capacity.",
+                "competitive": "Randomness forces every piece to travel alone. Structure makes them move as a team."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Prediction grows out of the same internal model.",
+                "direct": "A richer representation makes likely next developments easier to anticipate.",
+                "competitive": "The field stops landing every punch clean once its usual patterns are mapped."
+              },
+              "moreDetails": {
+                "gentle": "The chapter links calm speed to expectation built through experience, not to magical certainty.",
+                "direct": "Experts remain fallible, but their model reduces surprise by making common pathways legible earlier.",
+                "competitive": "Preparation starts before the moment because the model has already seen cousins of the moment."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Self-correction depends on holding a sharper picture of the target.",
+                "direct": "Stronger representations make mismatch visible sooner and repair cheaper.",
+                "competitive": "You can punish drift early only if good form is already exact in your head."
+              },
+              "moreDetails": {
+                "gentle": "A person needs an internal standard before feedback can become precise enough to help quickly.",
+                "direct": "Weak representation delays detection because the standard itself is vague, while strong representation reveals small departures sooner.",
+                "competitive": "Blurry targets let mistakes rent the place. Sharp targets start evicting them on sight."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Representations stay local to the domains that build them.",
+                "direct": "The chapter rejects broad transfer fantasy and ties expertise back to field-specific practice history.",
+                "competitive": "The expert eye is earned locally, not imported wholesale from your last victory."
+              },
+              "moreDetails": {
+                "gentle": "This limit matters because it prevents the concept from turning into generic hero talk.",
+                "direct": "Traits such as intelligence or discipline may support learning, but they do not replace the specific internal model a domain requires.",
+                "competitive": "General strength may help you train, but it does not secretly install the missing model."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one expert you know or admire. What kind of hidden structure might they be carrying that makes the field look less confusing to them?",
+            "direct": "Choose one domain and identify how an expert there might sort cues, compress memory, or spot drift earlier than a novice.",
+            "competitive": "Pick one arena where you respect real skill and name the invisible structure its experts are carrying into the room before action starts."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter treat expert memory as organized meaning rather than sheer storage?",
+              "direct": "Explain how one concept, mental representation, accounts for attention, memory, prediction, and correction together.",
+              "competitive": "Why is \"they just know\" a weak explanation once structure is taken seriously?"
+            },
+            {
+              "gentle": "Why is domain specificity necessary for the chapter to stay honest?",
+              "direct": "What would go wrong if the chapter implied that expert representations transfer cleanly into unrelated fields?",
+              "competitive": "What cheap fantasy gets blocked when the expert eye is kept local to the field that built it?"
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter explains expertise as better internal organization: experts carry patterns that help them notice, remember, anticipate, and repair more effectively inside a domain.",
+            "direct": "Mental representations are the hidden structure behind expert attention, chunked memory, prediction, and early self-correction, with a firm limit on broad transfer.",
+            "competitive": "Expert intuition is mostly trained order made quick, and it only belongs where that order was actually built."
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01-priya-exam-room",
+          "title": "Priya Changes What Her Diagnostic Team Reviews",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "realization",
+          "contexts": [
+            "medicine",
+            "fluorescent exam room",
+            "pattern review"
+          ],
+          "scenario": {
+            "gentle": "Priya supervises a young diagnostic team in a clinic where fluorescent light hums over stacked patient charts. Her staff can recite isolated symptoms accurately, yet complex cases still slow them down. She starts to suspect that the team is memorizing details without learning how those details form patterns.",
+            "direct": "Priya sees a team that knows facts but lacks the internal structure needed to weigh combinations quickly under uncertainty.",
+            "competitive": "The team can list the clues and still miss the case because no one has built the pattern map that makes the clues work together."
+          },
+          "whatToDo": {
+            "gentle": "Have the team review full case patterns and compare why similar symptom groups point in different directions instead of drilling isolated facts alone.",
+            "direct": "Shift training toward pattern discrimination so clinicians learn what constellations of cues actually mean.",
+            "competitive": "Stop rewarding list memory by itself. Build the model that makes the list usable when the room gets complicated."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says expert judgment grows from representation, so Priya has to train the structure behind diagnosis rather than the fragments alone.",
+            "direct": "A richer internal model changes what the team notices first and what it can predict next.",
+            "competitive": "Without the pattern map, speed turns into noise no matter how many facts the team can recite."
+          }
+        },
+        {
+          "exampleId": "ch03-ex02-marcus-lecture-hall",
+          "title": "Marcus Shows Why Two Students Remember Different Lectures",
+          "category": "school",
+          "format": "dialogue",
+          "endingType": "consequence",
+          "contexts": [
+            "lecture hall",
+            "whiteboard marker squeak",
+            "memory"
+          ],
+          "scenario": {
+            "gentle": "In a lecture hall, Marcus asks two students what they retained from the same biology lesson. One lists scattered vocabulary. The other explains how signaling, transport, and feedback loops connect. The room hears the difference before Marcus names it.",
+            "direct": "Marcus uses the contrast to show that better recall often comes from a better organized model, not from raw storage alone.",
+            "competitive": "One student hoarded terms. The other built structure. Only one of those methods survives the next hard exam."
+          },
+          "whatToDo": {
+            "gentle": "Teach students to connect terms into systems, causes, and consequences so memory has a meaningful frame to sit inside.",
+            "direct": "Require relationship maps and causal explanations instead of vocabulary rehearsal by itself.",
+            "competitive": "Make the class earn structure, not just decorate flashcards with more isolated words."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter links memory to meaningful grouping, and Marcus is making that mechanism visible in public.",
+            "direct": "The student with the stronger representation can recall more because the material has shape.",
+            "competitive": "Structure keeps information alive when pressure arrives. Loose fragments usually fold."
+          }
+        },
+        {
+          "exampleId": "ch03-ex03-elena-chess-clock",
+          "title": "Elena Decides What Kind of Chess Study She Really Needs",
+          "category": "personal",
+          "format": "dilemma",
+          "endingType": "reversal",
+          "contexts": [
+            "chess study",
+            "wooden clock tap",
+            "position understanding"
+          ],
+          "scenario": {
+            "gentle": "Elena spends evenings memorizing opening lines while a wooden chess clock taps beside her notebook. She knows more moves than she did months ago, but once opponents leave book, her confidence leaks away. She wonders whether she has been collecting sequences without building position sense.",
+            "direct": "Elena can repeat lines, yet she still struggles when the board no longer matches the script. Her study may be feeding recall without representation.",
+            "competitive": "She has rented memory and skipped understanding. The moment the script ends, the board starts charging interest."
+          },
+          "whatToDo": {
+            "gentle": "Spend more time explaining pawn structures, weak squares, and plan choices so opening memory grows out of position understanding.",
+            "direct": "Shift study toward position families and decision patterns rather than line recall alone.",
+            "competitive": "Quit worshipping the script. Build the map that tells you why the script worked before it disappeared."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter argues that experts hold meaningful chunks, and Elena needs those chunks more than a longer script list.",
+            "direct": "Representation turns memory into usable judgment when the position changes shape.",
+            "competitive": "Without the model, memorized moves become expensive trivia the instant the board gets rude."
+          }
+        },
+        {
+          "exampleId": "ch03-ex04-priya-editor-desk",
+          "title": "Priya Hears a Paragraph Break Before It Fully Breaks",
+          "category": "work",
+          "format": "inner_monologue",
+          "endingType": "open_question",
+          "contexts": [
+            "editing",
+            "desk lamp",
+            "structural hearing"
+          ],
+          "scenario": {
+            "gentle": "At her desk late in the day, Priya reads a draft and feels a sentence sag before the whole paragraph collapses. Years ago she would have needed the failure to become obvious. Now the warning arrives early, almost as a small pressure in the line order.",
+            "direct": "Priya notices that her editorial judgment now catches structural drift before the draft has fully gone wrong.",
+            "competitive": "She can hear the leak while the room is still dry, which is exactly what stronger representation buys."
+          },
+          "whatToDo": {
+            "gentle": "Pause and name the exact structural cue you noticed so the early warning becomes more teachable and repeatable.",
+            "direct": "Translate the instinctive flag into a concrete pattern you can apply across future drafts.",
+            "competitive": "Do not settle for \"I just know.\" Force the signal into language so the model gets sharper instead of smug."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter links self-correction to a clearer internal target, and Priya is feeling that target at work.",
+            "direct": "Early detection means the representation is doing real predictive and corrective labor.",
+            "competitive": "If the signal arrives before the collapse, the model is finally paying for itself."
+          }
+        },
+        {
+          "exampleId": "ch03-ex05-noah-library-radiator",
+          "title": "Noah and Tessa Study the Same Chapter in Different Ways",
+          "category": "school",
+          "format": "contrast",
+          "endingType": "decision",
+          "contexts": [
+            "library study table",
+            "radiator hiss",
+            "biology systems"
+          ],
+          "scenario": {
+            "gentle": "At a library table beside a hissing radiator, Noah memorizes definitions one by one while Tessa sketches how the systems regulate one another. Both look serious. Only one is building a picture large enough to survive a transfer question.",
+            "direct": "The contrast is not effort versus laziness. It is fragment rehearsal versus structural organization.",
+            "competitive": "They are both working, but one student is buying pieces while the other is buying the machine."
+          },
+          "whatToDo": {
+            "gentle": "Turn isolated study notes into causal diagrams and ask how one change would affect the rest of the system.",
+            "direct": "Force the material into relationships so memory and reasoning share the same structure.",
+            "competitive": "Make the chapter operate like a system, not a graveyard of disconnected terms."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says recall rises when material gains shape, and this contrast shows that shape being built in real time.",
+            "direct": "A stronger representation prepares the student for questions that require explanation rather than recitation.",
+            "competitive": "Fragments can survive a quiz. Structure survives the exam that fights back."
+          }
+        },
+        {
+          "exampleId": "ch03-ex06-adrian-clay-court",
+          "title": "Adrian Starts Reading the Serve Earlier",
+          "category": "personal",
+          "format": "vignette",
+          "endingType": "bridge",
+          "contexts": [
+            "tennis",
+            "clay court dust",
+            "serve cues"
+          ],
+          "scenario": {
+            "gentle": "On a clay court, Adrian notices he is reacting to his partner's serve a little earlier than before. The toss height, shoulder turn, and contact angle are starting to mean something together instead of arriving as separate flashes.",
+            "direct": "Adrian is beginning to read linked cues rather than chasing the ball after the fact.",
+            "competitive": "The serve is no longer a surprise attack. The pattern is finally declaring itself before the ball is gone."
+          },
+          "whatToDo": {
+            "gentle": "After each point, name the cue combination you noticed so the representation behind the read grows clearer.",
+            "direct": "Review linked serve cues and match them to likely outcomes until anticipation becomes less accidental.",
+            "competitive": "Train the pre-contact pattern, not just the desperate late return."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter uses prediction as a sign of richer representation, and Adrian is beginning to feel that shift.",
+            "direct": "Earlier reading shows the field is being organized before full reaction is required.",
+            "competitive": "When the cue cluster starts paying off early, the model is moving from theory into weapon."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "What does the chapter mean by a mental representation?",
+            "choices": [
+              "An internal model that organizes meaningful patterns in a field",
+              "A motivational speech a learner gives to stay focused",
+              "A permanent talent level that practice cannot change"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter uses the term for the inner structure that helps experts notice and organize what matters.",
+              "direct": "A mental representation is the internal model that makes domain information more usable.",
+              "competitive": "It is stored structure, not pep talk and not destiny."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Why do experts often seem to notice relevant cues faster than novices?",
+            "choices": [
+              "Because they are always naturally calmer people",
+              "Because their internal models make some cues stand out sooner",
+              "Because they remember every detail equally well"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter says better representation changes attention, so important patterns become easier to spot.",
+              "direct": "Experts sort the field faster because their models rank and group cues.",
+              "competitive": "They are not staring harder at the same fog. They are operating with less fog."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "How does the chapter explain expert memory?",
+            "choices": [
+              "Experts have unlimited storage for all details",
+              "Experts mostly memorize by luck after enough years",
+              "Experts recall more because information is grouped into meaningful chunks"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "Memory improves when the material has shape and relationship, not only when more pieces are stored.",
+              "direct": "Chunking meaningful structure is the chapter's main answer to the memory question.",
+              "competitive": "Compression beats hauling a bigger pile of loose fragments."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "In Priya's clinic scenario, what training shift best fits the chapter?",
+            "choices": [
+              "Move from isolated symptom drill toward full pattern comparison",
+              "Have clinicians memorize longer vocabulary lists",
+              "Ignore patterns and trust first impressions"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter favors building the pattern map behind judgment, not adding disconnected facts.",
+              "direct": "Pattern discrimination fits the representational logic better than isolated fact rehearsal.",
+              "competitive": "If the team cannot read the constellation, more fragments will not save the case."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Why does Marcus compare two students after the same lecture?",
+            "choices": [
+              "To show that one student is simply more gifted in every domain",
+              "To show that better organized understanding changes what can be recalled",
+              "To prove lectures are useless unless they include lab work"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The contrast shows memory improving when the material is organized into systems and relations.",
+              "direct": "Marcus is demonstrating that representation shapes recall quality.",
+              "competitive": "One student stored fragments. The other built a system that could survive pressure."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Elena's chess dilemma mainly contrasts which two study approaches?",
+            "choices": [
+              "Opening-line memorization versus position understanding",
+              "Speed chess versus tournament chess",
+              "White-piece training versus black-piece training"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Her problem is that memorized lines are weak without the deeper position patterns behind them.",
+              "direct": "The scenario contrasts script recall with representational understanding.",
+              "competitive": "She can keep renting moves or start buying the board logic that makes them useful."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Why does stronger representation improve self-correction?",
+            "choices": [
+              "It removes the need for any outside feedback",
+              "It makes the target picture clearer, so mismatch shows up earlier",
+              "It guarantees that experts stop making mistakes"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "A clearer inner standard lets a person notice drift sooner.",
+              "direct": "Self-correction strengthens when the performer knows more precisely what good should look like.",
+              "competitive": "You catch the leak early only if the standard is sharp enough to expose it."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Which claim would the chapter reject?",
+            "choices": [
+              "Expert perception can be built through field-specific practice",
+              "A strong representation in one field automatically transfers wholesale to distant fields",
+              "Prediction often improves when the field has more internal structure"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter keeps saying these representations are specific to the fields that built them.",
+              "direct": "Wholesale transfer is exactly the flattering mistake the chapter blocks.",
+              "competitive": "One win does not secretly install an expert eye everywhere else."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "Why can expert speed remain accurate rather than becoming guesswork?",
+            "choices": [
+              "Because experts avoid uncertainty entirely",
+              "Because they know they are smarter than everyone else",
+              "Because their internal models make likely developments easier to anticipate"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "Prediction grows out of structure, which helps the person prepare before the next event fully arrives.",
+              "direct": "Accuracy under speed comes from better anticipation, not from blind reaction.",
+              "competitive": "The model has already mapped likely paths, so speed does not have to improvise every step."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q10",
+            "prompt": "What question does this chapter naturally hand to the next one?",
+            "choices": [
+              "Which practice conditions build strong representations most reliably?",
+              "Why should talent replace all structured training?",
+              "How can every skill transfer instantly into every other skill?"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Once representation matters, the next practical question is how training builds it.",
+              "direct": "The chapter points forward to deliberate practice as the method problem.",
+              "competitive": "If the model is the prize, the next fight is over what training actually forges it."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "complex"
+          }
+        ]
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "The core skill is learning to ask what hidden structure a performer is using instead of explaining expertise as generic confidence.",
+          "direct": "The core skill is diagnosing how attention, memory, prediction, and correction depend on the quality of the internal model.",
+          "competitive": "The edge is refusing to call trained structure magic when it can be named and built."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a work task depends on judgment under pressure, then ask what pattern map the team actually has and how it is being trained.",
+              "direct": "If work performance stalls, then inspect whether people know isolated facts but still lack the structure that links them.",
+              "competitive": "If the team keeps freezing in live complexity, then stop feeding fragments and start forging the model."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If school study feels crowded with details, then reorganize the material into systems, causes, and recurring patterns.",
+              "direct": "If recall is weak, then test whether the material has been chunked meaningfully rather than memorized as a list.",
+              "competitive": "If the notes keep dying under pressure, then turn the pile into a machine before the next exam."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If a personal skill still feels surprising at full speed, then slow down long enough to name the cue patterns experts rely on.",
+              "direct": "If you are always reacting late, then train the linked signals that come before the outcome you are chasing.",
+              "competitive": "If the moment keeps ambushing you, then build the pre-contact read instead of worshipping recovery."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Within the next day, watch one skilled person in any field and write down the pattern cues they may be noticing before you do.",
+          "direct": "In the next 24 hours, choose one domain and describe what an expert there probably groups, predicts, or corrects earlier because of stronger representation.",
+          "competitive": "Before tomorrow ends, identify one field where top performers are carrying hidden structure and name what that structure is buying them."
+        },
+        "weeklyPractice": {
+          "gentle": "Once this week, turn one pile of notes or repetitions into a map of relationships, causes, or likely next moves.",
+          "direct": "Weekly practice: reorganize one study or work routine around pattern recognition instead of fragment collection.",
+          "competitive": "Every week, force one routine to build the model behind the skill instead of polishing the fragments around it."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch03-rc01",
+          "front": {
+            "gentle": "What hidden structure does the chapter say experts rely on?",
+            "direct": "What concept explains why experts notice more than novices?",
+            "competitive": "What sits underneath the so-called expert instinct?"
+          },
+          "back": {
+            "gentle": "Experts rely on mental representations.",
+            "direct": "The chapter points to richer internal models.",
+            "competitive": "Stored structure is doing the work that people like to call instinct."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch03-rc02",
+          "front": {
+            "gentle": "Why can experts often remember more useful detail?",
+            "direct": "How does the chapter explain expert memory?",
+            "competitive": "Why does structure beat a pile of fragments?"
+          },
+          "back": {
+            "gentle": "Because meaningful patterns group the details together.",
+            "direct": "Expert memory improves through chunked organization rather than raw storage alone.",
+            "competitive": "Compression through structure carries more than random pieces ever can."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch03-rc03",
+          "front": {
+            "gentle": "How do stronger representations help prediction?",
+            "direct": "Why does a richer internal model reduce surprise?",
+            "competitive": "What lets speed stay accurate instead of turning into guesswork?"
+          },
+          "back": {
+            "gentle": "They make likely next developments easier to anticipate.",
+            "direct": "The internal model gives earlier expectation about what usually comes next.",
+            "competitive": "Mapped pressure points mean the next move lands with less surprise."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-rc04",
+          "front": {
+            "gentle": "Why does self-correction improve with better representation?",
+            "direct": "What changes when the target picture becomes sharper?",
+            "competitive": "Why do strong performers catch drift before the room floods?"
+          },
+          "back": {
+            "gentle": "A clearer inner standard makes mismatch easier to notice early.",
+            "direct": "Sharper representations expose deviation sooner and make repair cheaper.",
+            "competitive": "When good form is exact in your head, mistakes lose their hiding places."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-rc05",
+          "front": {
+            "gentle": "What limit keeps the chapter honest?",
+            "direct": "Why does the chapter insist that representations are domain-specific?",
+            "competitive": "What fantasy dies once the expert eye is kept local?"
+          },
+          "back": {
+            "gentle": "These representations are built within specific fields.",
+            "direct": "Expert perception does not migrate wholesale into unrelated domains.",
+            "competitive": "One arena may prove discipline, but it does not donate its expert eye everywhere else."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "Experts perform differently because they carry better organized internal patterns, not because they possess mysterious instinct.",
+        "direct": "Mental representations are the hidden structure behind expert attention, memory, prediction, and self-correction.",
+        "competitive": "What looks like intuition is usually trained order arriving early."
+      }
+    }
+  ]
+}

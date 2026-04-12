@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is the chapter's first job for unexpectedness?",
+      "choices": [
+        "Make the audience laugh before the real point begins.",
+        "Interrupt the pattern the audience expected to keep following.",
+        "Replace the core message with a memorable shock."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Unexpectedness starts by breaking prediction. The goal is to wake attention, not to substitute entertainment for the point.",
+        "direct": "A pattern break is the opener's first function. The other choices confuse reaction with purpose.",
+        "competitive": "The room looks up when the script fails, not when the message disappears behind a stunt."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does the chapter care so much about buried leads?",
+      "choices": [
+        "They make writing too emotional for serious readers.",
+        "They delay the fact that would have made the audience want the rest.",
+        "They prove background should never appear in a message."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A buried lead hides the very stake that should trigger interest. By the time it appears, attention may already be gone.",
+        "direct": "Sequence is the issue. The room needs the reason to care before the setup can do useful work.",
+        "competitive": "The point arrives late and the room leaves early. That is the buried-lead failure."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "A surprising opener gets a reaction but leaves the audience asking, 'Why did you start with that?' What does the chapter call this problem?",
+      "choices": [
+        "The surprise broke the pattern but failed to reconnect to the core.",
+        "The audience was too smart to need a curiosity gap.",
+        "The opener should have contained even more background detail."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The jolt worked, but the meaning did not arrive. That is the line between useful surprise and gimmickry.",
+        "direct": "A break without relevance produces confusion or novelty, not durable interest.",
+        "competitive": "The room reacted and got stranded. The path back to the core never appeared."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Elena is opening a quarterly update. Her slide hides the real implication beneath five bullets of setup. Which move best follows the chapter?",
+      "choices": [
+        "Start with the stake that creates a question, then use the bullets to answer it.",
+        "Keep the sequence as it is so nobody feels surprised too early.",
+        "Add a disconnected shocking statistic before the background."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Elena needs to surface the line that makes the room care, then let the setup earn its place by resolving that question.",
+        "direct": "The strongest fix is to move the stake first. Buried leads waste attention and unrelated shocks waste meaning.",
+        "competitive": "Put the point where the room can trip over it. Everything else should serve that break."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Which statement captures the chapter's view of curiosity?",
+      "choices": [
+        "Curiosity is any feeling of confusion that makes people want clarity.",
+        "Curiosity grows when people can feel a specific missing answer.",
+        "Curiosity appears only after all background has been delivered."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats curiosity as a shaped gap, not a blur. People lean forward when they can sense what is absent.",
+        "direct": "Gap theory depends on a recognizable missing piece. Confusion without shape does not do the same work.",
+        "competitive": "The mind chases a visible hole, not a fog bank."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "A teacher opens with a surprising claim and gets blank stares instead of interest. What is the most likely explanation from this chapter?",
+      "choices": [
+        "The claim was not surprising enough to create any reaction.",
+        "The students needed more unrelated facts before class began.",
+        "The students lacked enough context to recognize what was missing."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A gap works only when the audience has enough footing to notice the absence. Without that, the surprise feels random.",
+        "direct": "The chapter's boundary condition is context. Curiosity cannot form if the room cannot read the break.",
+        "competitive": "The opener hit too early. No foothold, no chase."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Priya wants her history review to feel less flat. Which change uses the chapter's logic best?",
+      "choices": [
+        "Open with the unresolved consequence, then use the timeline to close the gap.",
+        "List the dates first so the students know they are in good hands.",
+        "Start with a joke that has no connection to the material."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The strongest move is giving students a question the facts can answer. That makes the timeline feel necessary instead of inert.",
+        "direct": "Lead with the stake, then let the details close the curiosity gap.",
+        "competitive": "Make the class chase the answer before you hand over the notes."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Sofia needs to share difficult family news by text. Which sequencing choice matches the chapter?",
+      "choices": [
+        "Circle the point with soft setup so nobody feels the surprise too abruptly.",
+        "Lead with the real update, then provide the context that keeps it understandable.",
+        "Send a cryptic teaser and explain the actual news hours later."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People handle context better once they know what kind of context they are receiving. Leading with the stake gives the rest of the message shape.",
+        "direct": "The chapter favors early relevance over cushioning that hides the point.",
+        "competitive": "Put the important line first and control the gap after that."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does the chapter prefer a surprise that feels 'post-predictable'?",
+      "choices": [
+        "Because the best opener seems random at first and stays random later.",
+        "Because the audience should realize, after the point lands, that the break was the right doorway into the core.",
+        "Because surprise works only when the audience could have guessed it in advance."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The useful surprise looks justified in hindsight. Once the meaning arrives, the opener feels necessary rather than decorative.",
+        "direct": "Post-predictable means the break reconnects cleanly to the core after the jolt.",
+        "competitive": "The interruption earns itself when the room sees why that break had to happen."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "Suppose your message now gets attention and sustains curiosity. What challenge comes next in the book's sequence?",
+      "choices": [
+        "Making the idea concrete enough that people can picture and hold it.",
+        "Adding more surprises so the audience never relaxes.",
+        "Returning to the core chapter and rewriting it as a longer introduction."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Attention is not the end of the sequence. Once people lean forward, the idea still has to become visible and graspable.",
+        "direct": "The next move after unexpectedness is concreteness. Curiosity opens the door; pictureability helps the idea stay.",
+        "competitive": "The room is finally leaning in. Now the idea has to become visible enough to stick."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

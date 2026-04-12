@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does the chapter place at the center before any networking tactic appears?",
+      "choices": [
+        "Finding the fastest way to impress powerful strangers",
+        "Belonging in rooms that do not automatically feel open to you",
+        "Learning how to sound more confident in public"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter opens from outsider pressure, so belonging comes before technique.",
+        "direct": "Ferrazzi starts with access anxiety and exclusion, not with presentation polish.",
+        "competitive": "The first pressure is getting inside, not looking smooth."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do the childhood details about class difference matter so much in the opening chapter?",
+      "choices": [
+        "They prove that networking only works for wealthy families",
+        "They explain why status and access feel personal rather than abstract to Ferrazzi",
+        "They show that private school guarantees later success"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Those details show where the outsider feeling came from and why it stayed sharp.",
+        "direct": "The class memories make belonging pressure concrete and explain his sensitivity to how rooms work.",
+        "competitive": "The early status wound is what teaches him to read access seriously."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A new employee goes to an industry event planning to meet only the highest-status person in the room. Using this chapter's logic, what is the strongest first judgment?",
+      "choices": [
+        "The plan is weak because it treats the room as extraction instead of as relationship-building",
+        "The plan is ideal because ambition should always be obvious",
+        "The plan is harmless because first impressions never affect trust"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that hunt-mode behavior makes connection thinner from the start.",
+        "direct": "Targeting only the most useful person turns the interaction into timed extraction rather than durable contact.",
+        "competitive": "The second you hunt prestige too openly, people know what game you are playing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At an alumni mixer, Marcus feels behind and wants to sound impressive. What response best fits the chapter?",
+      "choices": [
+        "Pretend to be completely certain so nobody sees uncertainty",
+        "Name a real direction, ask a thoughtful question, and start an actual conversation",
+        "Stay silent until a more senior student introduces him to someone important"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors honest connection over polished performance.",
+        "direct": "A truthful direction plus curiosity creates a real exchange and gives the other person something concrete to respond to.",
+        "competitive": "You build more with a live conversation than with a fake-perfect self-pitch."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's most important distinction between networking and connecting?",
+      "choices": [
+        "Connecting is slower and more relational, while networking in the stereotype is extractive",
+        "Connecting avoids ambition entirely, while networking is career-focused",
+        "Connecting only belongs in personal life, while networking belongs at work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Connecting asks for memory, care, and continuity instead of a quick payoff.",
+        "direct": "The reframe is not anti-ambition. It is anti-extraction.",
+        "competitive": "The difference is whether the person matters before the favor does."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the Deloitte episode help correct?",
+      "choices": [
+        "That relationships make competence optional",
+        "That early-career jobs never reveal anything important",
+        "That all technical work is boring by definition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps effort and fit in view even while showing that support from other people still matters.",
+        "direct": "Ferrazzi does not claim relationships erase weakness. He shows that careers unfold inside human systems where help changes outcomes.",
+        "competitive": "Connection is not a cheat code for weakness. It is what keeps a hard season from becoming the whole story."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A friend is welcomed into a new family circle and starts trying too hard to impress everyone at once. What would this chapter most likely recommend?",
+      "choices": [
+        "Do less, notice more, and let trust build through steady care",
+        "Double the effort so the family sees maximum commitment immediately",
+        "Stay emotionally distant because belonging should never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors real attention over high-output performance.",
+        "direct": "Belonging grows through repeated credible signals, not through an anxious audition.",
+        "competitive": "If every gesture looks like campaigning, the room stops trusting the warmth."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Diego is struggling on a consulting project and wants to hide the gap by working alone all night. What is the stronger move under this chapter's logic?",
+      "choices": [
+        "Protect pride by keeping the struggle private until the project ends",
+        "Ask for specific help and build trust with people who can guide his next move",
+        "Quit immediately because poor fit means the job can teach nothing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter shows that support matters when a person is mismatched or exposed.",
+        "direct": "Human systems can redirect and help. Isolation usually delays that correction.",
+        "competitive": "Suffering alone protects ego for a moment and blocks better options for longer."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist on keeping the line between generosity and hidden transaction visible?",
+      "choices": [
+        "Because all ambition automatically corrupts relationships",
+        "Because strategic relationship-building stays defensible only while people remain more than future resources",
+        "Because people should never hope for help from anyone they know"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows ambition, but it does not want ambition to hollow out the bond.",
+        "direct": "The moral boundary is whether contribution is building a real relationship or merely front-loading a demand.",
+        "competitive": "The second the person turns into an asset line, the chapter's defense starts collapsing."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 reframes networking as connection and contribution, what is the next natural pressure point for the book to examine?",
+      "choices": [
+        "Whether generosity can survive once scorekeeping enters the relationship",
+        "Whether private schools create better connectors",
+        "Whether technical skill should matter less than charisma"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The opening chapter sets up the next question by hinting that hidden arithmetic can poison generosity.",
+        "direct": "Once connection is defended as care, the next test is what scorekeeping does to the bond.",
+        "competitive": "The ledger is the obvious threat. That is where the next chapter has to go."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

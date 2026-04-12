@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What most clearly defines deliberate practice in this chapter?",
+      "choices": [
+        "Any repetition that feels demanding",
+        "A focused correction loop around a specific weakness",
+        "A long session with strong motivation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter narrows deliberate practice to targeted correction under real standards.",
+        "direct": "A weakness, a standard, and the next corrected attempt are what make the method distinct.",
+        "competitive": "The right answer chooses diagnosis and repair over sweat alone."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter separate ordinary repetition from deliberate practice?",
+      "choices": [
+        "Because repetition never helps at all",
+        "Because deliberate practice demands clearer correction and standards",
+        "Because only coaches are allowed to call something practice"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ordinary repetition may build familiarity, but the chapter's method asks for something stricter.",
+        "direct": "The difference is the tight correction loop, not the existence of effort.",
+        "competitive": "Hard repetition gets demoted when it cannot answer for the flaw."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why are stable standards important in this chapter?",
+      "choices": [
+        "They keep judgment from collapsing into vague impressions",
+        "They make every field equally easy to master",
+        "They replace the need for feedback"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A clear bar helps the performer tell better from worse without guessing.",
+        "direct": "Standards make correction specific enough to guide the next rep.",
+        "competitive": "A real bar forces the miss to admit itself."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Naomi's dance scenario, what move fits deliberate practice best?",
+      "choices": [
+        "Run the full routine again until everyone is exhausted",
+        "Pause the routine and isolate the failing turn under feedback",
+        "Ignore the weak segment to protect confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors isolating the weak segment so correction can happen clearly.",
+        "direct": "Targeted repair beats another full performance when the same failure keeps returning.",
+        "competitive": "If the leak is local, the session has to stop hiding it in the whole routine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is Victor teaching in the tutoring-office example?",
+      "choices": [
+        "More volume automatically solves recurring mistakes",
+        "Immediate correction matters when the same error type keeps repeating",
+        "Full sets are always useless"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He shows that the recurring error needs fast correction, not only more pages.",
+        "direct": "The point is to tighten the loop around the flaw before it hardens again.",
+        "competitive": "More paper is weak medicine when the same busted move keeps surviving."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Claire's piano dilemma mainly contrasts which two activities?",
+      "choices": [
+        "Enjoyable full performance and targeted work on a weak transition",
+        "Sight-reading and improvisation",
+        "Morning practice and evening practice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses her choice to separate enjoyable repetition from targeted repair.",
+        "direct": "A weak transition is a better deliberate-practice target than another fluent full run.",
+        "competitive": "She can collect comfort or hunt the bar that keeps exposing her."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does deliberate practice often feel especially effortful?",
+      "choices": [
+        "Because pain itself guarantees skill",
+        "Because the method stays near what is still unstable",
+        "Because the sessions are always longer than ordinary practice"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The discomfort comes from working at the weak edge, not from pain being magical.",
+        "direct": "The method keeps returning to what still breaks rather than resting inside fluency.",
+        "competitive": "It hurts because the session camps beside the crack."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which statement would the chapter reject?",
+      "choices": [
+        "Some domains need adaptation because they lack clean feedback loops",
+        "Every difficult field automatically offers pure deliberate-practice conditions",
+        "Coaching or strong external correction can keep errors visible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps saying the gold-standard model fits some domains more cleanly than others.",
+        "direct": "Universalizing the method is the exact inflation the chapter resists.",
+        "competitive": "Messy fields do not become clean drill halls just because you want the label."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is hard work alone insufficient in this chapter?",
+      "choices": [
+        "Because effort never matters",
+        "Because effort must be joined to standards, diagnosis, and repair",
+        "Because only gifted people benefit from training"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values effort, but only when it happens inside a useful correction structure.",
+        "direct": "Hard labor inside a blurry loop can still produce weak returns.",
+        "competitive": "Sweat without a bar and a verdict can stay honorable and still stay wasteful."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does this chapter hand to the next one?",
+      "choices": [
+        "How can workplace learning borrow from deliberate practice when conditions are messy?",
+        "Why should all work be abandoned for music and sport?",
+        "How can discomfort alone replace standards and feedback?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks how the method changes when work settings lack the clean gold-standard conditions.",
+        "direct": "Translation into messier domains is the bridge this chapter sets up.",
+        "competitive": "Once the pure model is clear, the next fight is over what survives outside the clean lab."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "complex"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "chapterId": "ch03",
+  "title": "Where to Play",
+  "heading": "Where to Play",
+  "approxWords": 175,
+  "properNouns": [
+    "Bounty",
+    "P&G",
+    "Apple",
+    "Thomson Reuters"
+  ],
+  "repeatedTerms": [
+    "where to play",
+    "field",
+    "segment",
+    "geography",
+    "channel",
+    "customer",
+    "choice"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google_books_preview",
+      "kind": "authorized_metadata_preview",
+      "use": "table of contents confirmation"
+    },
+    {
+      "sourceId": "oreilly_contents",
+      "kind": "authorized_preview_contents",
+      "use": "chapter-order confirmation"
+    },
+    {
+      "sourceId": "casecentre_catalog",
+      "kind": "chapter_catalog_metadata",
+      "use": "chapter title cross-check"
+    },
+    {
+      "sourceId": "howtoes_summary",
+      "kind": "secondary_summary",
+      "use": "Bounty anchor, five where-to-play dimensions, and major chapter traps"
+    }
+  ]
+}

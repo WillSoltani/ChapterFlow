@@ -1087,12 +1087,17 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
 
 const TONE_AWARE_BOOK_IDS = new Set(Object.keys(TONE_BUNDLE_GETTERS));
 
+const TONE_BUNDLE_CACHE_MAX = 20;
 const toneBundleCache = new Map<string, BookChapterBundle>();
 
 function buildToneAwareBundle(bookId: string, tone: ToneKey): BookChapterBundle {
   const cacheKey = `${bookId}::${tone}`;
   const cached = toneBundleCache.get(cacheKey);
-  if (cached) return cached;
+  if (cached) {
+    toneBundleCache.delete(cacheKey);
+    toneBundleCache.set(cacheKey, cached);
+    return cached;
+  }
 
   const getter = TONE_BUNDLE_GETTERS[bookId];
   if (!getter) return EMPTY_BUNDLE;
@@ -1100,6 +1105,11 @@ function buildToneAwareBundle(bookId: string, tone: ToneKey): BookChapterBundle 
   const pkg = getter.getPackage(tone);
   const raw = getter.getRaw();
   const bundle = buildBundle(pkg, raw, tone);
+
+  if (toneBundleCache.size >= TONE_BUNDLE_CACHE_MAX) {
+    const oldestKey = toneBundleCache.keys().next().value;
+    if (oldestKey !== undefined) toneBundleCache.delete(oldestKey);
+  }
   toneBundleCache.set(cacheKey, bundle);
   return bundle;
 }

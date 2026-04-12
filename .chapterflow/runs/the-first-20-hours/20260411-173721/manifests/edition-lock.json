@@ -1,0 +1,48 @@
+{
+  "bookId": "the-first-20-hours",
+  "runId": "20260411-173721",
+  "title": "The First 20 Hours: How to Learn Anything... Fast!",
+  "author": "Josh Kaufman",
+  "language": "en",
+  "decision": "auto_locked",
+  "selectedEdition": {
+    "name": "Portfolio English original edition",
+    "publisher": "Portfolio",
+    "publishedYear": 2013,
+    "format": "hardcover / original release",
+    "isbn13Candidates": [
+      "9780670921911",
+      "9781591846949"
+    ]
+  },
+  "compatibleEditionFamily": [
+    {
+      "name": "Portfolio paperback",
+      "publishedYear": 2014,
+      "isbn13": "9781591846949",
+      "notes": "Product metadata indicates the same chapter-level structure for this run's purposes."
+    }
+  ],
+  "ambiguityAssessment": {
+    "materialAmbiguity": false,
+    "reason": "Available official and bibliographic sources point to one dominant English edition family with the same chapter order and named chapter set."
+  },
+  "chapterStructureBasis": [
+    {
+      "source": "https://first20hours.com/",
+      "role": "official_table_of_contents"
+    },
+    {
+      "source": "https://books.google.com/books/about/The_First_20_Hours.html?id=Zj99vgEACAAJ",
+      "role": "bibliographic_edition_family"
+    },
+    {
+      "source": "https://www.penguinrandomhouse.com/books/312040/the-first-20-hours-by-josh-kaufman/",
+      "role": "publisher_metadata_confirmation"
+    }
+  ],
+  "notes": [
+    "The source freeze is summary-first, not full-text-complete.",
+    "Exact quotation should be limited to text directly supported by the frozen official bundle."
+  ]
+}

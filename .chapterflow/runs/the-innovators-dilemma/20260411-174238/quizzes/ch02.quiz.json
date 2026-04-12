@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is a value network in Chapter 2?",
+      "choices": [
+        "A list of all the firm's competitors",
+        "The market context that defines which customers, margins, and improvements matter",
+        "A forecasting tool for predicting every disruptive entrant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A value network is the setting that gives product judgments their meaning by telling the firm what counts as worthwhile.",
+        "direct": "Christensen uses value network to describe the market context that defines legitimate customers, profits, and progress.",
+        "competitive": "It is the market's rulebook for what deserves respect."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why do incumbents usually keep funding certain kinds of innovation?",
+      "choices": [
+        "Because current profitable customers reward those projects inside the existing network",
+        "Because managers refuse to learn about new markets",
+        "Because all disruptive products are illegal to sell at first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The existing network tells the firm which projects look responsible and worth the money.",
+        "direct": "Current profitable demand pulls resources toward the improvements the present business recognizes as legitimate.",
+        "competitive": "Cash flow keeps pointing the budget toward the projects the old market already honors."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "What is the chapter's strongest claim about a product that looks weak in the incumbent's market?",
+      "choices": [
+        "It must be weak everywhere",
+        "It can still be attractive in another network with different priorities",
+        "It should be ignored until mainstream buyers demand it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A product can look poor by one set of standards and still fit another market well enough to matter.",
+        "direct": "Weakness in the core network does not settle the larger strategic question because another network may value different tradeoffs.",
+        "competitive": "The wrong scorecard can make a live product look dead."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Aaron's team keeps comparing a stripped-down product to what premium clients want. Which response best fits Chapter 2?",
+      "choices": [
+        "Drop the stripped-down product because weaker means inferior",
+        "Judge it under the standards of the market that is actually choosing it",
+        "Ignore current customers completely until the new market is bigger"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team needs to ask which network is applying the test before deciding the product is weak.",
+        "direct": "Chapter 2 says a local comparison can mislead if the product belongs to a different value network first.",
+        "competitive": "If the premium scorecard owns the verdict, the smaller market never gets heard."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Which statement best captures the strategic trap in this chapter?",
+      "choices": [
+        "Firms rarely allocate resources according to profit logic",
+        "Managers should always pick lower-margin projects first",
+        "A company can evaluate coherently inside one network and still miss the broader market shift"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The trap is not random confusion. It is coherent judgment inside a frame that is too narrow.",
+        "direct": "Christensen's point is that local rationality can coexist with strategic lateness when one network dominates interpretation.",
+        "competitive": "The firm reads the present cleanly and still loses the future."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "What is the chapter's limit on customer feedback?",
+      "choices": [
+        "Customers usually hide what they really want from firms",
+        "Customer feedback is useful but mostly describes the current network's priorities",
+        "Only new customers matter in disruptive settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Current buyers tell the truth about their own world, but that is not the whole market.",
+        "direct": "Customer feedback helps a firm execute in the present network without automatically revealing alternate ones.",
+        "competitive": "Buyer truth is still local truth."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A design studio prefers a polished model while beginners benefit more from a rougher version. What would Chapter 2 tell the team to examine?",
+      "choices": [
+        "Whether the rougher version serves a different network with different standards",
+        "Whether polished work should replace all beginner needs",
+        "Whether the rougher version should be hidden until it looks elite"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team should ask whether different users are rewarding different tradeoffs.",
+        "direct": "Chapter 2 turns this into a value-network question rather than a simple taste question.",
+        "competitive": "One room's prestige standard should not get to act like universal law."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Why does Sofia misjudge the notebook habit when she compares it to the advanced app?",
+      "choices": [
+        "Because simple tools are always better than advanced ones",
+        "Because she is applying the wrong network's standard to the job she actually has",
+        "Because personal habits should never be measured by usefulness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The notebook may fit her actual setting better even if it looks weaker on a feature-heavy scale.",
+        "direct": "She is confusing one type of capability with the kind of value her real context rewards.",
+        "competitive": "She is grading a local win by somebody else's scorecard."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why is Chapter 2 more demanding than a generic \"know your audience\" lesson?",
+      "choices": [
+        "Because it argues that value networks are fixed forever once they form",
+        "Because it shows how one network's legitimate standards can gain too much authority over strategy",
+        "Because it claims audiences do not matter when technology changes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter goes beyond audience awareness by showing how local standards can quietly become strategic blinders.",
+        "direct": "Christensen is explaining bounded judgment, not offering a softer version of segmentation advice.",
+        "competitive": "The issue is not just knowing the audience. It is stopping one audience from owning reality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If value networks are the mechanism, what should Chapter 3 help test?",
+      "choices": [
+        "Whether the same pattern appears in another industry outside disk drives",
+        "Whether incumbents can win by abandoning every current customer",
+        "Whether only digital products are vulnerable to disruption"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next useful step is to see whether the same market logic shows up in another industry.",
+        "direct": "A strong theory should travel beyond the original case, which is why the next chapter matters.",
+        "competitive": "If the engine is real, it should fire outside disk drives too."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

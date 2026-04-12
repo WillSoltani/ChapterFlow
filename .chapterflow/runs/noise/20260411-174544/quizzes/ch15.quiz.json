@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch15-q01",
+      "prompt": "What is the chapter's orienting claim about performance-rating scales?",
+      "choices": [
+        "Scales shape judgment rather than merely recording it",
+        "Scales are neutral containers for decisions already made",
+        "Scales matter only after evaluation is finished"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats the scale as part of the judgment process itself.",
+        "direct": "Correct. Scale definition matters because it helps shape the distinctions evaluators make.",
+        "competitive": "This chapter puts the score sheet inside the machinery."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q02",
+      "prompt": "Why do scales matter in performance ratings?",
+      "choices": [
+        "Because vague levels can make the same performance get split differently",
+        "Because ratings become exact once numbers are added",
+        "Because the evaluator no longer matters when a scale exists"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says weak level definitions allow more variation in judgment.",
+        "direct": "Scales matter because shared labels do not guarantee shared distinctions if the boundaries are loose.",
+        "competitive": "A fuzzy scale lets the same work get carved up different ways."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q03",
+      "prompt": "How does scale design affect performance distinctions?",
+      "choices": [
+        "It shapes where evaluators place the boundaries between levels",
+        "It removes the need to judge performance at all",
+        "It guarantees all evaluators will rate identically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter focuses on how the scale defines what separates one level from another.",
+        "direct": "Scale design matters because it influences the granularity and boundaries of the judgment before the score is entered.",
+        "competitive": "The form tells the room where one bucket is supposed to end."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q04",
+      "prompt": "Elena sees managers use the same labels while drawing different lines between levels. What lesson fits best?",
+      "choices": [
+        "The form may be contributing to the variation because the scale is underdefined",
+        "The labels prove the judgments are already aligned",
+        "The only solution is to remove all scales from reviews"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter says shared labels can still hide different distinctions.",
+        "direct": "The right move is to inspect the scale itself rather than assuming the spread comes only from the evaluators.",
+        "competitive": "If the boundaries are weak, the sheet is leaking noise."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q05",
+      "prompt": "Why does Priya's school rubric matter in this chapter?",
+      "choices": [
+        "Because clearer level descriptions can make distinctions less slippery across evaluators",
+        "Because school rubrics remove the need for judgment entirely",
+        "Because a rubric guarantees perfect precision"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The rubric helps because clearer boundaries can reduce some avoidable drift.",
+        "direct": "The school example matters because it shows how stronger scale definition can improve consistency without eliminating judgment.",
+        "competitive": "The rubric stops the room from freelancing the edges."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q06",
+      "prompt": "Which misreading does the chapter reject about scales?",
+      "choices": [
+        "That scales merely record judgments and do not shape them",
+        "That performance ratings show variation clearly",
+        "That clearer boundaries can sometimes help"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter rejects the idea that the form is neutral background.",
+        "direct": "It argues that scales influence how distinctions are made rather than simply storing finished judgments.",
+        "competitive": "The score sheet does not get to pose as innocent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q07",
+      "prompt": "Why does judgment still remain even with a clearer scale?",
+      "choices": [
+        "Because better definition improves the baseline without removing ambiguity entirely",
+        "Because scales matter only after the judgment is complete",
+        "Because performance ratings are random no matter what"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says clearer scales help without making evaluation automatic.",
+        "direct": "Judgment remains because stronger boundaries do not erase ambiguity or the need to interpret performance.",
+        "competitive": "A tighter scale still does not turn the room into a machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q08",
+      "prompt": "What false-precision risk does the chapter keep visible?",
+      "choices": [
+        "That a finer scale can suggest more exactness than the judgment really supports",
+        "That fewer levels always make ratings useless",
+        "That ratings stop mattering when comments are added"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits. The chapter warns that more detail can fake clarity.",
+        "direct": "False precision appears when extra levels imply distinctions the underlying judgment cannot truly sustain.",
+        "competitive": "Extra boxes can dress ambiguity up as exactness."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q09",
+      "prompt": "Which overclaim does the chapter reject?",
+      "choices": [
+        "That more scale detail always leads to better ratings",
+        "That performance ratings are a useful setting for this question",
+        "That scale definition can sometimes improve consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps the gain narrower than that.",
+        "direct": "It rejects the idea that adding more levels automatically improves judgment rather than sometimes creating false precision.",
+        "competitive": "A crowded grid is not automatically a smart grid."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q10",
+      "prompt": "What is the strongest bridge from this chapter into the next one?",
+      "choices": [
+        "If the rating form shapes judgment here, the next question is how broader process structure shapes hiring",
+        "The next chapter abandons structure and returns to free impressions",
+        "The next chapter proves ratings matter more than hiring"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The next move widens from the form of a rating to the design of the hiring process.",
+        "direct": "The bridge works because the book moves from scale structure in ratings to institutional structure in hiring.",
+        "competitive": "If the form matters here, the whole hiring room is next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

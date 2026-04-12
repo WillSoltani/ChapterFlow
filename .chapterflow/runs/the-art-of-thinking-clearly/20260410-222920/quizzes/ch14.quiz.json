@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch14-q01",
+      "prompt": "What is the core mistake in hindsight bias?",
+      "choices": [
+        "Treating a known outcome as if it had been obvious all along",
+        "Ignoring all warning signs before outcomes happen",
+        "Refusing to learn anything from results"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The ending is being treated like it had always been clear.",
+        "direct": "Correct. After-the-fact knowledge is being confused with earlier foresight.",
+        "competitive": "That is the trap. The ending starts forging foresight."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch14-q02",
+      "prompt": "Why do known outcomes feel more obvious afterward?",
+      "choices": [
+        "Because fixed results reorganize how earlier facts are remembered",
+        "Because all outcomes were already inevitable",
+        "Because uncertainty disappears from reality itself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Once the answer is known, the earlier scene looks cleaner.",
+        "direct": "Correct. Outcome knowledge changes how prior signals and alternatives are remembered.",
+        "competitive": "Exactly. The answer key cleans up the whole replay."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch14-q03",
+      "prompt": "Which example best fits hindsight bias?",
+      "choices": [
+        "A team says a failed project had always been obviously doomed",
+        "A team lists what was unclear before the project ended",
+        "A student notes multiple answers were plausible before the key"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The known result is making the earlier scene look too obvious.",
+        "direct": "Correct. Outcome knowledge is rewriting memory of prior uncertainty.",
+        "competitive": "That is it. The ending is repainting the tape."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch14-q04",
+      "prompt": "What makes hindsight bias dangerous in work and school?",
+      "choices": [
+        "It makes earlier decisions look easier to judge than they really were at the time",
+        "It prevents people from noticing any patterns at all",
+        "It makes all outcomes equally surprising"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The result flattens how open the earlier moment had been.",
+        "direct": "Correct. The bias creates unfair confidence about what should have been foreseeable.",
+        "competitive": "Right. The ending rigs the replay."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q05",
+      "prompt": "Why is knowing the result now not enough to judge the earlier choice fairly?",
+      "choices": [
+        "Because the earlier decision was made under uncertainty that later knowledge can erase",
+        "Because past choices should never be evaluated",
+        "Because outcomes never reveal anything useful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The earlier scene did not have the ending attached to it yet.",
+        "direct": "Correct. Fair evaluation requires remembering what was actually knowable before the outcome appeared.",
+        "competitive": "Exactly. The answer showing up late does not mean it was there early."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Reconstruct what was known before the outcome and what alternatives were still live",
+        "Ignore the result entirely",
+        "Trust your after-the-fact memory of what you expected"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The correction is to rebuild the earlier uncertainty.",
+        "direct": "Correct. Separate pre-outcome information from post-outcome knowledge.",
+        "competitive": "Exactly. Rebuild the call before the answer showed up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch14-q07",
+      "prompt": "What does hindsight bias confuse?",
+      "choices": [
+        "Known outcomes with earlier predictability",
+        "Memory with imagination",
+        "Forecasting with hope"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The ending starts looking like it had always been clear.",
+        "direct": "Correct. The bias mistakes after-the-fact certainty for before-the-fact knowledge.",
+        "competitive": "Yes. The answer key starts impersonating foresight."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch14-q08",
+      "prompt": "Why can a failed outcome make earlier warning signs look stronger than they were?",
+      "choices": [
+        "Because the known result promotes the facts that fit it and buries the alternatives that did not happen",
+        "Because all warning signs become more factual after failure",
+        "Because uncertainty never really existed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The ending makes matching signals look clearer than they had been.",
+        "direct": "Correct. Outcome knowledge changes how earlier evidence is weighted in memory.",
+        "competitive": "Exactly. The winner starts editing the film."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch14-q09",
+      "prompt": "What is the deepest practical correction in hindsight bias?",
+      "choices": [
+        "Force the evaluation back into the earlier decision environment before the answer was known",
+        "Never review results after they happen",
+        "Assume every outcome had one clear path"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to rebuild the before-state.",
+        "direct": "Correct. Better judgment separates what was knowable then from what became visible only later.",
+        "competitive": "Right. Drag the replay back before the answer key showed up."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch14-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "What information and alternatives were genuinely live before the outcome arrived?",
+        "Which ending now feels most obvious to me?",
+        "Should I stop judging past decisions?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question restores the earlier uncertainty.",
+        "direct": "Correct. It tests whether the past still looks so obvious once later knowledge is removed.",
+        "competitive": "That is the test. Does the replay stay clear after the answer key leaves the room?"
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

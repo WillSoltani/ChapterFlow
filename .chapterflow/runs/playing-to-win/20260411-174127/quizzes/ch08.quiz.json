@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does shorten your odds mean in this chapter?",
+      "choices": [
+        "Removing all uncertainty before choosing",
+        "Improving the chances of success under remaining uncertainty",
+        "Accepting that strategy is mostly luck"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the team to improve its chances, not wait for certainty.",
+        "direct": "Shortening the odds means making success more likely by working intelligently inside uncertainty.",
+        "competitive": "The right answer improves the game. The others either freeze it or abandon it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the first move in reverse engineering here?",
+      "choices": [
+        "Start with the desired result and work backward to the required conditions",
+        "List every possible risk in the market",
+        "Delay until the forecast becomes more stable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method starts with the outcome and then asks what would have to be true.",
+        "direct": "Reverse engineering begins at the target result, not at an endless inventory of vague uncertainty.",
+        "competitive": "Begin at the finish if you want the weak joints to show up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Serena's team keeps asking for more confidence before launching, but nobody names the conditions that matter. What is the chapter's best diagnosis?",
+      "choices": [
+        "The team is already doing strong barrier testing",
+        "The team should add more assumptions before acting",
+        "The team is treating uncertainty as a reason to wait instead of a set of conditions to examine"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "They are still waiting in general instead of identifying what must be true.",
+        "direct": "The chapter criticizes confidence-seeking when it substitutes for condition-setting and testing.",
+        "competitive": "They are hiding in fog because the load-bearing conditions are still unnamed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why does what-would-have-to-be-true logic help a team under uncertainty?",
+      "choices": [
+        "It turns broad uncertainty into explicit conditions that can be ranked and tested",
+        "It guarantees that the strategy will work if the team is confident enough",
+        "It replaces strategic choice with probability math"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The phrase helps because it makes the important conditions visible.",
+        "direct": "The method is useful because it converts uncertainty into concrete conditions with consequence.",
+        "competitive": "It forces the room to stop gesturing at fog and start naming targets."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the practical role of barriers in this chapter?",
+      "choices": [
+        "They reveal where the required conditions could break",
+        "They serve mainly as a complete record of every possible problem",
+        "They prove the strategy should not move until uncertainty disappears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Barriers matter because they show what could block the important conditions.",
+        "direct": "The chapter uses barriers to identify where the strategy's necessary conditions are most exposed.",
+        "competitive": "Barriers mark the places where reality can punch through the plan."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "April's team has a growing assumption list but no test planned. What is missing?",
+      "choices": [
+        "A larger list of possible assumptions",
+        "A decision about which consequential assumption should be pressured next",
+        "A promise to wait until the uncertainty becomes emotionally comfortable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next step should be to test the assumption that matters most.",
+        "direct": "The chapter rejects assumption work that never identifies which condition deserves real pressure.",
+        "competitive": "The list is still decoration until one heavy assumption faces contact."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter's strongest distinction between confidence and odds?",
+      "choices": [
+        "Confidence is enough if the team believes strongly",
+        "Odds concern improved chances through tested conditions, while confidence can remain a feeling",
+        "There is no useful difference between them in strategy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares more about better chances than better feelings.",
+        "direct": "Odds improvement depends on condition testing, while confidence can exist without strategic learning.",
+        "competitive": "One is contact with reality. The other can be mood."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Theo has a wall of barriers but no ranking by consequence. What should happen next?",
+      "choices": [
+        "Rank the barriers by which required conditions they threaten most and choose the first one to test",
+        "Add more sticky notes so the map looks complete",
+        "Treat every barrier as equally important forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team should connect each barrier to the condition it could break and then prioritize.",
+        "direct": "Barrier work becomes strategic when it selects the highest-consequence obstacle for testing rather than recording them all equally.",
+        "competitive": "Make the wall choose a fight instead of posing for one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's main warning about uncertainty work?",
+      "choices": [
+        "It fails when assumptions and barriers are named but never tested in consequential ways",
+        "It fails only when the room uses too few sticky notes",
+        "It fails because uncertainty should never be discussed during strategy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The warning is that naming assumptions is not enough by itself.",
+        "direct": "The method becomes decorative when uncertainty language never reaches tests that could strengthen, redirect, or kill the strategy.",
+        "competitive": "Paperwork without pressure is camouflage."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which question best shows that a team is handling uncertainty strategically?",
+      "choices": [
+        "How long can we wait before deciding?",
+        "Which single forecast would make us feel calmest?",
+        "Which condition or barrier should we test next because it most affects whether the strategy can work?"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The strategic question asks what should be tested next, not what would feel safest.",
+        "direct": "The chapter's closing discipline is to identify the next consequential condition or barrier that deserves pressure.",
+        "competitive": "The room gets serious when it stops chasing comfort and starts testing load-bearing assumptions."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

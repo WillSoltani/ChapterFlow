@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is being challenged in Chapter 12?",
+      "choices": [
+        "All forms of knowledge.",
+        "Unearned authority under opacity.",
+        "The existence of expertise."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Taleb is not abolishing learning.",
+        "direct": "He is challenging prestige that outruns evidence and accountability.",
+        "competitive": "The target is false legitimacy."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why should authority contract under opacity?",
+      "choices": [
+        "Because fog expands justified deference.",
+        "Because weak visibility limits how much certainty can be honestly claimed.",
+        "Because credentials become infallible."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Uncertainty changes the terms of trust.",
+        "direct": "The murkier the domain, the narrower honest authority becomes.",
+        "competitive": "Fog should humble the podium."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does accountability do in this chapter?",
+      "choices": [
+        "It makes bluff more expensive.",
+        "It guarantees truth.",
+        "It eliminates the need for expertise."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Consequences discipline speech.",
+        "direct": "Exposure can filter some empty confidence without creating infallibility.",
+        "competitive": "Skin raises the price of swagger."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "An institution rewards fluent experts who never absorb the fallout of bad advice. Which idea fits best?",
+      "choices": [
+        "Healthy epistemocracy.",
+        "Prestige outrunning accountability.",
+        "Proof that status tracks knowledge."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The institution is rewarding insulation and stagecraft.",
+        "direct": "Authority is detaching from consequence-bearing contact.",
+        "competitive": "The podium is too cheap."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is Chapter 12 not a generic anti-expert rant?",
+      "choices": [
+        "Because Taleb still values competence and real domain contact.",
+        "Because it rejects all judgment.",
+        "Because it ignores opacity."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter tightens standards instead of abolishing expertise.",
+        "direct": "Knowledge remains valuable when it survives stronger filters.",
+        "competitive": "The trial is for unearned authority."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How can prestige drift away from epistemic worth?",
+      "choices": [
+        "By rewarding credentials and fluency more than contact with the domain.",
+        "By forcing everyone to bear consequences.",
+        "By making authority impossible."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Status can be easier to stage than knowledge.",
+        "direct": "Institutions often reward what is visible and legible.",
+        "competitive": "Polish can travel farther than signal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student treats a famous expert as automatically right in a murky field. What is the chapter pushing back against?",
+      "choices": [
+        "Competence itself.",
+        "Automatic halo-based deference.",
+        "The use of evidence."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Reputation alone should not end inquiry under opacity.",
+        "direct": "Taleb wants calibrated trust, not blind kneeling to prestige.",
+        "competitive": "The halo is being audited."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 12 prepare Chapter 13?",
+      "choices": [
+        "It makes action unnecessary.",
+        "It clears false authority so robust action can take its place.",
+        "It restores blind trust in experts."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once podium worship weakens, sturdier design becomes more important.",
+        "direct": "The next chapter answers legitimacy problems with action structure.",
+        "competitive": "Deference gives way to robustness."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which phrase best captures Taleb here?",
+      "choices": [
+        "Prestige is proof.",
+        "Trust should lean toward contact and constraint under uncertainty.",
+        "Knowledge is impossible."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Authority should answer to reality contact.",
+        "direct": "Constraint and consequences matter under fog.",
+        "competitive": "Legitimacy needs friction."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the central dream in the chapter title?",
+      "choices": [
+        "That influence would track real knowledge rather than staged proxies.",
+        "That all uncertainty will disappear.",
+        "That credentials can predict everything."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Epistemocracy names an ideal of knowledge-based authority.",
+        "direct": "Taleb uses it to expose how far institutions can drift from that ideal.",
+        "competitive": "The dream measures the failure."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

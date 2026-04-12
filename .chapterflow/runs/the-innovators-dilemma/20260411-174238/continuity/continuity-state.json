@@ -1,0 +1,76 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": { "gentle": {}, "direct": {}, "competitive": {} },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "ed4395d775d5b8a10cb6f2be6b917d20b012394048e754534d2228e10781fb2a",
+      "sealedAt": "2026-04-11T21:59:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch01.chapter.json"
+    },
+    "ch02": {
+      "sha256": "36c99deb79a7042d83fd37dcb0ce5bd7767a49d1f9758e684951b24ff85d5e54",
+      "sealedAt": "2026-04-11T22:10:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch02.chapter.json"
+    },
+    "ch03": {
+      "sha256": "06398d1bb11bf50b2e5cbd0212e08ad478fb7137adf6878bbb31b7cb40453718",
+      "sealedAt": "2026-04-11T22:28:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch03.chapter.json"
+    },
+    "ch04": {
+      "sha256": "02dda04975e32fa8352242644fcb31f279340568fe38d3d4f1a69e5a17fd5fa9",
+      "sealedAt": "2026-04-11T22:36:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch04.chapter.json"
+    },
+    "ch05": {
+      "sha256": "8ce771d9be1d6f2b87e224cdf8ac06baee7c911f8b7b1c662d8272eedc050bbd",
+      "sealedAt": "2026-04-11T22:52:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch05.chapter.json"
+    },
+    "ch06": {
+      "sha256": "406ea381bd8874b1f88543da7227329237ea84089737c9eec596c33e8b8ba06c",
+      "sealedAt": "2026-04-11T23:12:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch06.chapter.json"
+    },
+    "ch07": {
+      "sha256": "2e45f08d1bc54ace4f8d7b41a0cfb4b96f2e94209333c690afc990ccef9d1f44",
+      "sealedAt": "2026-04-11T23:34:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch07.chapter.json"
+    },
+    "ch08": {
+      "sha256": "4cf3a71101a832aeae53537c914e2f16e72601541e2980d63ad3dbe589760038",
+      "sealedAt": "2026-04-11T23:46:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch08.chapter.json"
+    },
+    "ch09": {
+      "sha256": "42eb9075d743c3ae7eb6e03505f5baf12498d06750b0ca3b5795e3adbbc9a1a0",
+      "sealedAt": "2026-04-12T00:05:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch09.chapter.json"
+    },
+    "ch10": {
+      "sha256": "87d44868c9f3d28ab2f44dfd4c9d2bd207fd7fbd37b071d1f85ec2a02589048f",
+      "sealedAt": "2026-04-12T00:18:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch10.chapter.json"
+    },
+    "ch11": {
+      "sha256": "7d8a4faaa5dd788905b83d52d52ec82b6ca3c900ae56dcf55bfeae65cfd768c2",
+      "sealedAt": "2026-04-12T00:31:00Z",
+      "validatedPath": ".chapterflow/runs/the-innovators-dilemma/20260411-174238/validated/ch11.chapter.json"
+    }
+  },
+  "baselineQuality": {
+    "establishedAt": "2026-04-11T22:10:00Z",
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "notes": "Chapter 1 establishes the paradox of rational incumbent failure. Chapter 2 turns that paradox into market-logic through value networks. Later waves must preserve this level of chapter specificity, structural tension, and paraphrase discipline."
+  }
+}
