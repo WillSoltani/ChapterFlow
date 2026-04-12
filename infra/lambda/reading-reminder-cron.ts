@@ -1,7 +1,8 @@
-// Lambda handler for the hourly reading-reminder cron.
+// Lambda handler for the hourly reading-reminder + habit nudge cron.
 // Scans users with readingReminderEnabled, checks if the current UTC hour
 // matches their reminderTimeLocal + reminderTimezone, and sends email + in-app
-// notifications via the createNotification helper.
+// notifications. Also dispatches streak-at-risk, weekly digest, and
+// welcome-back nudge sub-handlers.
 //
 // Deployed via CDK EventBridge rule → Lambda.
 // Env vars: BOOK_TABLE_NAME, SES_SENDER_EMAIL
@@ -14,6 +15,9 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { processStreakAtRisk } from "./lib/streak-at-risk";
+import { processWeeklyDigest } from "./lib/weekly-digest";
+import { processWelcomeBackNudge } from "./lib/welcome-back-nudge";
 
 const tableName = process.env.BOOK_TABLE_NAME!;
 const senderEmail = process.env.SES_SENDER_EMAIL!;
@@ -173,6 +177,39 @@ export async function handler() {
     lastKey = scan.LastEvaluatedKey as Record<string, unknown> | undefined;
   } while (lastKey);
 
-  console.log(`[reading-reminder-cron] Done. Sent: ${sent}, Skipped: ${skipped}`);
+  console.log(`[reading-reminder-cron] Reminders done. Sent: ${sent}, Skipped: ${skipped}`);
+
+  // ── Dispatch habit nudge sub-handlers ──────────────────────────────────
+  // Re-scan all users (reuse pattern) for nudge handlers
+  const allUserItems: Array<{ PK: string; userId: string; settings: Record<string, unknown> }> = [];
+  let nudgeLastKey: Record<string, unknown> | undefined;
+  do {
+    const scan = await ddb.send(
+      new ScanCommand({
+        TableName: tableName,
+        FilterExpression: "entity = :entity",
+        ExpressionAttributeValues: { ":entity": "BOOK_USER_SETTINGS" },
+        ProjectionExpression: "PK, userId, settings",
+        ExclusiveStartKey: nudgeLastKey,
+      }),
+    );
+    for (const item of scan.Items ?? []) {
+      allUserItems.push(item as typeof allUserItems[number]);
+    }
+    nudgeLastKey = scan.LastEvaluatedKey as Record<string, unknown> | undefined;
+  } while (nudgeLastKey);
+
+  const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
+    processStreakAtRisk(ddb, ses, tableName, senderEmail, allUserItems as never),
+    processWeeklyDigest(ddb, ses, tableName, senderEmail, allUserItems as never),
+    processWelcomeBackNudge(ddb, ses, tableName, senderEmail, allUserItems as never),
+  ]);
+
+  console.log("[reading-reminder-cron] Nudge results:", {
+    streakAtRisk: streakResult.status === "fulfilled" ? streakResult.value : "failed",
+    weeklyDigest: digestResult.status === "fulfilled" ? digestResult.value : "failed",
+    welcomeBack: welcomeResult.status === "fulfilled" ? welcomeResult.value : "failed",
+  });
+
   return { sent, skipped };
 }
