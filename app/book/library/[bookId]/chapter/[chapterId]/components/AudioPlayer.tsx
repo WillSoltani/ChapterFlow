@@ -76,15 +76,45 @@ export function AudioPlayer({
         return;
       }
 
-      const blob = await res.blob();
-      const estimated = blob.size / 16000;
-      knownDurationRef.current = estimated;
-      setDuration(estimated);
+      const arrayBuffer = await res.arrayBuffer();
 
-      const url = URL.createObjectURL(blob);
       if (audioRef.current) {
-        audioRef.current.src = url;
-        audioRef.current.load();
+        // Use MediaSource Extensions for seekable playback
+        if (typeof MediaSource !== "undefined" && MediaSource.isTypeSupported("audio/mpeg")) {
+          const mediaSource = new MediaSource();
+          const msUrl = URL.createObjectURL(mediaSource);
+          audioRef.current.src = msUrl;
+
+          mediaSource.addEventListener("sourceopen", () => {
+            try {
+              const sourceBuffer = mediaSource.addSourceBuffer("audio/mpeg");
+              sourceBuffer.appendBuffer(arrayBuffer);
+              sourceBuffer.addEventListener("updateend", () => {
+                try {
+                  if (mediaSource.readyState === "open") {
+                    mediaSource.endOfStream();
+                  }
+                } catch {}
+              });
+            } catch (e) {
+              console.error("[audio] MSE error:", e);
+              // Fallback to blob URL if MSE fails
+              const blob = new Blob([arrayBuffer], { type: "audio/mpeg" });
+              const fallbackUrl = URL.createObjectURL(blob);
+              if (audioRef.current) {
+                audioRef.current.src = fallbackUrl;
+                audioRef.current.load();
+              }
+            }
+          });
+        } else {
+          // Fallback for browsers without MSE audio/mpeg support (e.g. Safari)
+          const blob = new Blob([arrayBuffer], { type: "audio/mpeg" });
+          const fallbackUrl = URL.createObjectURL(blob);
+          audioRef.current.src = fallbackUrl;
+          audioRef.current.load();
+        }
+
         loadedParamsRef.current = paramsKey;
       }
     } catch {
@@ -168,14 +198,12 @@ export function AudioPlayer({
   const seekTo = useCallback((time: number) => {
     const audio = audioRef.current;
     if (!audio || !audioReady) return;
-    const max = Number.isFinite(audio.duration) ? audio.duration : knownDurationRef.current;
+    const max = Number.isFinite(audio.duration) && audio.duration > 0
+      ? audio.duration
+      : knownDurationRef.current;
     if (max <= 0) return;
     const clamped = Math.max(0, Math.min(time, max));
-    try {
-      audio.currentTime = clamped;
-    } catch {
-      // Seeking may not be supported on blob URLs in some browsers
-    }
+    audio.currentTime = clamped;
     setCurrentTime(clamped);
   }, [audioReady]);
 

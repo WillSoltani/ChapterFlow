@@ -105,6 +105,13 @@ new ChapterFlowFrontendStack(app, "ChapterFlowFrontend", {
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
         process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
     }),
+    // AI providers
+    ...(process.env.ANTHROPIC_API_KEY && {
+      ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
+    }),
+    ...(process.env.ELEVENLABS_API_KEY && {
+      ELEVENLABS_API_KEY: process.env.ELEVENLABS_API_KEY,
+    }),
   },
 });
 }

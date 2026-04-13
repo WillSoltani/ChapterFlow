@@ -124,6 +124,9 @@ jobs:
           BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
           BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+          # AI providers
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
 
       - name: Get CloudFront distribution ID
         id: cf
