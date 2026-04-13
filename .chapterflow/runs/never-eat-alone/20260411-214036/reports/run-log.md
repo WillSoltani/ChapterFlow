@@ -170,3 +170,9 @@ Phase 0 complete.
 - Verified the wave bundle on disk after validation.
 - Verified source controls still exist and sealed chapter hashes remain intact.
 - Wave 13 is clean and ready for continuation.
+
+### Wave 14: Chapters 27 and 28
+
+- Wrote pre-writer artifacts for `ch27` and `ch28` before prose work.
+- Verified all five required pre-writer artifacts exist on disk for both chapters before prose work.
+- Wave 14 is open and ready for writer execution.

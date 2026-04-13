@@ -18,22 +18,26 @@
 
 import { S3Client, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY!;
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY!;
 const BUCKET = process.env.BOOK_CONTENT_BUCKET!;
-const VOICE = "nova";
-const MODEL = "tts-1-hd";
+const VOICE_ID = "UgBBYS2sOqTuMpoF3BR0";
 const PREFIX = "book-content/audio-segments";
 
 const s3 = new S3Client({});
 
 async function generateTTS(text: string): Promise<Buffer> {
-  const res = await fetch("https://api.openai.com/v1/audio/speech", {
+  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=mp3_44100_128`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
+      "xi-api-key": ELEVENLABS_API_KEY,
       "Content-Type": "application/json",
+      Accept: "audio/mpeg",
     },
-    body: JSON.stringify({ model: MODEL, input: text, voice: VOICE, response_format: "mp3" }),
+    body: JSON.stringify({
+      text,
+      model_id: "eleven_turbo_v2_5",
+      voice_settings: { stability: 0.5, similarity_boost: 0.75 },
+    }),
   });
 
   if (!res.ok) {
@@ -172,15 +176,41 @@ async function getBookCatalog(): Promise<Array<{ bookId: string; title: string; 
 async function main() {
   const force = process.argv.includes("--force");
 
-  console.log(`=== Generating audio narration segments (model: ${MODEL}, voice: ${VOICE}) ===\n`);
+  console.log(`=== Generating audio narration segments (ElevenLabs, voice: ${VOICE_ID}) ===\n`);
 
-  // Silence (1 clip)
+  // Silence (1 clip) — real silent MP3, not TTS-generated
   console.log("Silence lead-in (1):");
-  await generateAndUpload(
-    `${PREFIX}/silence/1500ms.mp3`,
-    "...",
-    force,
-  );
+  {
+    const silenceKey = `${PREFIX}/silence/1500ms.mp3`;
+    if (!force && await exists(silenceKey)) {
+      console.log(`  SKIP (cached): ${silenceKey}`);
+    } else {
+      console.log(`  GENERATING: ${silenceKey} (programmatic silence)`);
+      // Generate a valid silent MP3: 1.5 seconds of MPEG Audio Layer 3 silence
+      // Each MP3 frame at 128kbps/44100Hz is 417 bytes and covers ~26ms
+      // We need ~58 frames for 1.5 seconds
+      const frameHeader = Buffer.from([
+        0xff, 0xfb, 0x90, 0x00, // MPEG1 Layer3, 128kbps, 44100Hz, stereo
+      ]);
+      const frameBody = Buffer.alloc(417 - 4, 0); // rest of frame is silence (zeros)
+      const singleFrame = Buffer.concat([frameHeader, frameBody]);
+      const frames: Buffer[] = [];
+      for (let i = 0; i < 58; i++) {
+        frames.push(singleFrame);
+      }
+      const silenceBuffer = Buffer.concat(frames);
+      await s3.send(
+        new PutObjectCommand({
+          Bucket: BUCKET,
+          Key: silenceKey,
+          Body: silenceBuffer,
+          ContentType: "audio/mpeg",
+          CacheControl: "public, max-age=31536000",
+        }),
+      );
+      console.log(`  UPLOADED: ${silenceKey} (${silenceBuffer.length} bytes)`);
+    }
+  }
 
   // Greetings (15)
   console.log("\nGreetings (15):");

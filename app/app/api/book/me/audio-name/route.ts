@@ -34,8 +34,8 @@ export async function POST(req: Request) {
       return bookErr(req, 400, "invalid_name", "Name must be 1-50 characters");
     }
 
-    const openaiKey = await getServerEnv("OPENAI_API_KEY");
-    if (!openaiKey) {
+    const elevenLabsKey = await getServerEnv("ELEVENLABS_API_KEY");
+    if (!elevenLabsKey) {
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available");
     }
 
@@ -46,17 +46,17 @@ export async function POST(req: Request) {
       const script = getUserGreetingScript(name, tod);
       const key = userGreetingS3Key(user.sub, tod);
 
-      const ttsResponse = await fetch("https://api.openai.com/v1/audio/speech", {
+      const ttsResponse = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${openaiKey}`,
+          "xi-api-key": elevenLabsKey,
           "Content-Type": "application/json",
+          Accept: "audio/mpeg",
         },
         body: JSON.stringify({
-          model: "tts-1-hd",
-          input: script,
-          voice: "nova",
-          response_format: "mp3",
+          text: script,
+          model_id: "eleven_turbo_v2_5",
+          voice_settings: { stability: 0.5, similarity_boost: 0.75 },
         }),
       });
 

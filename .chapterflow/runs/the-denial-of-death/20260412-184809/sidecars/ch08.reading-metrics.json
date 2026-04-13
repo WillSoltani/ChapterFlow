@@ -1,0 +1,39 @@
+{
+  "chapterId": "ch08-otto-rank-and-the-closure-of-psychoanalysis-on-kierkegaard",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-12T18:51:02Z",
+  "chapterNumber": 8,
+  "editedDraftWordCount": 521,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 249,
+      "avgWordsPerTone": 83
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 816,
+      "avgWordsPerTone": 272
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 1017,
+      "avgWordsPerTone": 339
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "personal": 2,
+    "school": 2,
+    "work": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "8d25995b88b2101ae49cc125c18aa7129c713e0e8fe266109680850fb07dbf52",
+  "validationStatus": "PASS",
+  "patchesApplied": 1,
+  "patchNotes": [
+    "Embedded the full quiz payload and patched one reusable reinforcement stem plus duplicated or echoing recap and review-card surfaces before validation pass."
+  ]
+}

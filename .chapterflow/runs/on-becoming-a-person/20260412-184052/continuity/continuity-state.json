@@ -87,6 +87,24 @@
     ],
     "June": [
       "ch05"
+    ],
+    "Adrian": [
+      "ch06"
+    ],
+    "Malia": [
+      "ch06"
+    ],
+    "Jonah": [
+      "ch06"
+    ],
+    "Serena": [
+      "ch06"
+    ],
+    "Victor": [
+      "ch06"
+    ],
+    "Elise": [
+      "ch06"
     ]
   },
   "formatCategoryHistory": [],
@@ -140,6 +158,14 @@
       "Petra",
       "Caleb",
       "June"
+    ],
+    "ch06": [
+      "Adrian",
+      "Malia",
+      "Jonah",
+      "Serena",
+      "Victor",
+      "Elise"
     ]
   },
   "approvedChapterHashes": {
@@ -162,6 +188,10 @@
     "ch05": {
       "sha256": "ec8773b6f71f71be47377e62aef065a4a3c2333f3f3efd388054d7be3cea94e8",
       "validatedAt": "2026-04-12T22:31:28Z"
+    },
+    "ch06": {
+      "sha256": "8c03f97c94345d2b7b22a72f825a31f39022c7c11ae27c23f86617553984760e",
+      "validatedAt": "2026-04-12T22:42:31Z"
     }
   },
   "baselineQuality": {

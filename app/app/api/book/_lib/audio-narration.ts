@@ -188,10 +188,7 @@ export function getSegmentKeys(
 ): string[] {
   const keys: string[] = [];
 
-  // 1. Silence lead-in
-  keys.push(SILENCE_S3_KEY);
-
-  // 2. User greeting ("Good evening, Will.")
+  // 1. User greeting ("Good evening, Will.")
   if (ctx.userName) {
     keys.push(userGreetingS3Key(ctx.userId, plan.timeOfDay));
   }
@@ -229,16 +226,25 @@ export function getSegmentKeys(
 }
 
 // ── Takeaway connectors ──────────────────────────────────────────────
-// Used by the audio route to wrap each takeaway with natural transitions
-// before sending to TTS. {point} and {moreDetails} are replaced at runtime.
+// Used by the audio route to wrap each takeaway with natural transitions.
+// Two versions: with moreDetails and without (point-only).
 
-export const TAKEAWAY_CONNECTORS = {
+const CONNECTORS_WITH_DETAILS = {
   first: "The first key takeaway from this chapter — {point}. And what that means is — {moreDetails}.",
   second: "Second thing worth remembering — {point}. To break that down a bit — {moreDetails}.",
   third: "Here's another one — {point}. The reason this matters? {moreDetails}.",
   fourth: "This one's easy to miss, but it's important — {point}. Basically — {moreDetails}.",
   middle: "One more — {point}. {moreDetails}.",
   last: "And the last one, which kind of ties everything together — {point}. {moreDetails}.",
+};
+
+const CONNECTORS_POINT_ONLY = {
+  first: "The first key takeaway from this chapter — {point}.",
+  second: "Second thing worth remembering — {point}.",
+  third: "Here's another one — {point}.",
+  fourth: "This one's easy to miss, but it's important — {point}.",
+  middle: "One more — {point}.",
+  last: "And the last one, which kind of ties everything together — {point}.",
 };
 
 export function buildTakeawayText(
@@ -251,27 +257,31 @@ export function buildTakeawayText(
 
   for (let i = 0; i < total; i++) {
     const { point, moreDetails } = takeaways[i];
-    let template: string;
+    const hasDetails = moreDetails && moreDetails.trim().length > 0;
+    const connectors = hasDetails ? CONNECTORS_WITH_DETAILS : CONNECTORS_POINT_ONLY;
+
+    let key: keyof typeof connectors;
 
     if (total === 1) {
-      template = TAKEAWAY_CONNECTORS.first;
+      key = "first";
     } else if (i === total - 1 && total >= 3) {
-      template = TAKEAWAY_CONNECTORS.last;
+      key = "last";
     } else if (i === 0) {
-      template = TAKEAWAY_CONNECTORS.first;
+      key = "first";
     } else if (i === 1) {
-      template = TAKEAWAY_CONNECTORS.second;
+      key = "second";
     } else if (i === 2) {
-      template = TAKEAWAY_CONNECTORS.third;
+      key = "third";
     } else if (i === 3) {
-      template = TAKEAWAY_CONNECTORS.fourth;
+      key = "fourth";
     } else {
-      template = TAKEAWAY_CONNECTORS.middle;
+      key = "middle";
     }
 
-    const text = template
-      .replace("{point}", point)
-      .replace("{moreDetails}", moreDetails || point);
+    let text = connectors[key].replace("{point}", point);
+    if (hasDetails) {
+      text = text.replace("{moreDetails}", moreDetails);
+    }
     parts.push(text);
   }
 

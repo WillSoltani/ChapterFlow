@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the chapter say success should not cancel?",
+      "choices": [
+        "Studenthood and teachability",
+        "Confidence in your finished identity",
+        "The need to defend your reputation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says recognition does not end the need to stay teachable.",
+        "direct": "Success still requires correction and learning.",
+        "competitive": "The win does not end the apprenticeship."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can praise make correction harder to accept?",
+      "choices": [
+        "Because praise makes all criticism invalid",
+        "Because recognition can make the self feel finished",
+        "Because success eliminates the need for revision"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Praise can make a person feel more settled than they really are.",
+        "direct": "Recognition feeds certainty and makes feedback feel more threatening.",
+        "competitive": "Applause can stiffen the self."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is false finish in this chapter?",
+      "choices": [
+        "Pretending success never happened",
+        "Treating wins as proof that learning can close",
+        "Avoiding all public recognition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "False finish means acting complete too early.",
+        "direct": "It is when success becomes an excuse to stop revising.",
+        "competitive": "Proof starts sealing the room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "How does the chapter connect to the interstitial before it?",
+      "choices": [
+        "It replaces ego with a different enemy",
+        "It shows the first answer to ego in success is continued studenthood",
+        "It argues success is safe now that aspiration is over"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 10 said the same enemy enters success, and this chapter answers with teachability.",
+        "direct": "The bridge is exact: if ego crossed the threshold, studenthood must cross too.",
+        "competitive": "Same enemy in the room, so the classroom stays open."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What next danger does the chapter preview if studenthood is lost?",
+      "choices": [
+        "Physical exhaustion",
+        "A lack of ambition",
+        "A flattering self-story built around success"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Closed learning makes it easier for ego to build a comforting story about the self.",
+        "direct": "When correction drops, narrative distortion becomes easier to believe.",
+        "competitive": "Stop listening first, then watch the myth start."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

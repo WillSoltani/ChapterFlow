@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What trap does the chapter warn against after success?",
+      "choices": [
+        "Building a flattering private story out of events",
+        "Avoiding all reflection about results",
+        "Ignoring every form of praise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter targets ego-made self-story, not all reflection.",
+        "direct": "Its warning is against turning outcomes into identity-protecting narration.",
+        "competitive": "The danger is the script, not the score."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can that story feel appealing?",
+      "choices": [
+        "Because it removes every setback",
+        "Because it creates emotional order and reduces ambiguity",
+        "Because it guarantees future success"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A neat explanation can feel stabilizing after uncertainty.",
+        "direct": "Narrative comfort makes events feel cleaner and more controlled.",
+        "competitive": "A smooth script feels like control."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's main concern once self-story takes over?",
+      "choices": [
+        "The person becomes less interested in money",
+        "Facts and criticism get bent around identity",
+        "Success stops mattering at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The story filters reality through the self.",
+        "direct": "Evidence becomes subordinate to image maintenance.",
+        "competitive": "The plot starts bossing the facts around."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What remedy does the chapter recommend?",
+      "choices": [
+        "Turn every result into a bigger mission statement",
+        "Stop interpreting anything that happens",
+        "Keep explanations plain and factual"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter asks for smaller explanations, not for no interpretation at all.",
+        "direct": "Realism means letting outcomes stay narrower than ego wants.",
+        "competitive": "Cut the script back to evidence."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does this chapter come right after staying a student?",
+      "choices": [
+        "Because studenthood keeps correction alive and makes self-story harder to stabilize",
+        "Because studenthood guarantees all stories are accurate",
+        "Because the two chapters are unrelated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Teachability keeps meaning open so ego has a harder time finalizing the story.",
+        "direct": "Studenthood interrupts narrative closure by letting feedback still matter.",
+        "competitive": "An open learner is harder to mythologize."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

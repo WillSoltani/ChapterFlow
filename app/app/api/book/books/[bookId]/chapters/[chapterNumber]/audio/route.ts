@@ -92,31 +92,54 @@ function extractSegmentText(
       break;
     }
     case "takeaways": {
-      const keyTakeaways = v.keyTakeaways;
-      if (keyTakeaways && Array.isArray(keyTakeaways) && keyTakeaways.length > 0) {
-        // Extract structured takeaways with point + moreDetails
-        const structured: Array<{ point: string; moreDetails: string }> = [];
-        for (const t of keyTakeaways) {
-          if (typeof t === "string" && t.trim()) {
-            structured.push({ point: t, moreDetails: "" });
-          } else if (t && typeof t === "object") {
-            const point = resolveText((t as Record<string, unknown>).point, tone);
-            const details = resolveText((t as Record<string, unknown>).moreDetails, tone);
-            if (point) structured.push({ point, moreDetails: details });
-          }
-        }
-        // Build text with natural connectors baked in
-        const connectedText = buildTakeawayText(structured);
-        if (connectedText) parts.push(connectedText);
-      } else {
-        // Fallback to plain takeaways (no connectors — just read them)
-        const takeaways = v.takeaways;
-        if (Array.isArray(takeaways)) {
-          for (const t of takeaways) {
-            if (typeof t === "string" && t.trim()) parts.push(t);
+      const structured: Array<{ point: string; moreDetails: string }> = [];
+
+      // Primary source: summaryBlocks bullets with "Go Deeper" detail
+      const summaryBlocks = v.summaryBlocks;
+      if (summaryBlocks && Array.isArray(summaryBlocks)) {
+        for (const block of summaryBlocks) {
+          if (
+            block &&
+            typeof block === "object" &&
+            (block as Record<string, unknown>).type === "bullet"
+          ) {
+            const text = resolveText((block as Record<string, unknown>).text, tone);
+            const detail = resolveText((block as Record<string, unknown>).detail, tone);
+            if (text) structured.push({ point: text, moreDetails: detail });
           }
         }
       }
+
+      // Fallback: keyTakeaways (if no summaryBlocks bullets found)
+      if (structured.length === 0) {
+        const keyTakeaways = v.keyTakeaways;
+        if (keyTakeaways && Array.isArray(keyTakeaways)) {
+          for (const t of keyTakeaways) {
+            if (typeof t === "string" && t.trim()) {
+              structured.push({ point: t, moreDetails: "" });
+            } else if (t && typeof t === "object") {
+              const point = resolveText((t as Record<string, unknown>).point, tone);
+              const details = resolveText((t as Record<string, unknown>).moreDetails, tone);
+              if (point) structured.push({ point, moreDetails: details });
+            }
+          }
+        }
+      }
+
+      // Last fallback: plain takeaways array
+      if (structured.length === 0) {
+        const takeaways = v.takeaways;
+        if (Array.isArray(takeaways)) {
+          for (const t of takeaways) {
+            if (typeof t === "string" && t.trim()) {
+              structured.push({ point: t, moreDetails: "" });
+            }
+          }
+        }
+      }
+
+      const connectedText = buildTakeawayText(structured);
+      if (connectedText) parts.push(connectedText);
       break;
     }
     case "recap": {
@@ -148,7 +171,7 @@ async function generateAndCacheBodySegment(
   tone: ToneKey,
   variant: string,
   segment: BodySegmentType,
-  openaiKey: string,
+  elevenLabsKey: string,
 ): Promise<Buffer | null> {
   const v = resolveVariantContent(bookId, chapterNumber, tone, variant);
   if (!v) return null;
@@ -178,21 +201,23 @@ async function generateAndCacheBodySegment(
   // Generate TTS for each chunk
   const audioChunks: Buffer[] = [];
   for (const chunk of textChunks) {
-    const res = await fetch("https://api.openai.com/v1/audio/speech", {
+    const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${openaiKey}`,
+        "xi-api-key": elevenLabsKey,
         "Content-Type": "application/json",
+        Accept: "audio/mpeg",
       },
       body: JSON.stringify({
-        model: "tts-1-hd",
-        input: chunk,
-        voice: "nova",
-        response_format: "mp3",
+        text: chunk,
+        model_id: "eleven_turbo_v2_5",
+        voice_settings: { stability: 0.5, similarity_boost: 0.75 },
       }),
     });
     if (!res.ok) {
-      console.error(`[audio] TTS failed for ${segment}: ${res.status}`);
+      let errBody = "";
+      try { errBody = await res.text(); } catch {}
+      console.error(`[audio] TTS failed for ${segment}: ${res.status} ${errBody.slice(0, 300)}`);
       return null;
     }
     audioChunks.push(Buffer.from(await res.arrayBuffer()));
@@ -322,7 +347,7 @@ export async function GET(req: Request, ctx: Params) {
       );
     }
 
-    const openaiKey = await getServerEnv("OPENAI_API_KEY");
+    const elevenLabsKey = await getServerEnv("ELEVENLABS_API_KEY");
 
     // First pass: load all segments from S3, identify missing body segments
     const loadResults: Array<{ key: string; buffer: Buffer | null; bodyType: BodySegmentType | null }> = [];
@@ -331,26 +356,43 @@ export async function GET(req: Request, ctx: Params) {
       loadResults.push({ key, buffer, bodyType: bodySegmentKeyMap.get(key) ?? null });
     }
 
+    // Log what loaded and what's missing
+    for (const { key, buffer, bodyType } of loadResults) {
+      if (buffer) {
+        console.log(`[audio] Loaded: ${key} (${buffer.length} bytes)`);
+      } else if (bodyType) {
+        console.log(`[audio] Missing body segment: ${key} (${bodyType})`);
+      } else {
+        console.log(`[audio] Missing narration segment: ${key}`);
+      }
+    }
+
     // Generate missing body segments in parallel
     const missingBody = loadResults.filter((r) => !r.buffer && r.bodyType !== null);
-    if (missingBody.length > 0 && !openaiKey) {
-      // Body content not cached and no API key to generate it
+    if (missingBody.length > 0 && !elevenLabsKey) {
+      console.error("[audio] Body segments missing and no ELEVENLABS_API_KEY set");
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available — chapter audio has not been cached yet");
     }
-    if (missingBody.length > 0 && openaiKey) {
-      console.log(`[audio] Generating ${missingBody.length} missing body segments in parallel`);
-      const generated = await Promise.all(
+    if (missingBody.length > 0 && elevenLabsKey) {
+      console.log(`[audio] Generating ${missingBody.length} missing body segments in parallel...`);
+      const generated = await Promise.allSettled(
         missingBody.map((r) =>
           generateAndCacheBodySegment(
-            bucket, r.key, bookId, chapterNumber, tone, variant, r.bodyType!, openaiKey,
+            bucket, r.key, bookId, chapterNumber, tone, variant, r.bodyType!, elevenLabsKey,
           ),
         ),
       );
-      // Patch results
+      // Patch results — handle both fulfilled and rejected
       for (let i = 0; i < missingBody.length; i++) {
+        const result = generated[i];
         const idx = loadResults.indexOf(missingBody[i]);
-        if (idx >= 0 && generated[i]) {
-          loadResults[idx].buffer = generated[i];
+        if (idx >= 0 && result.status === "fulfilled" && result.value) {
+          loadResults[idx].buffer = result.value;
+          console.log(`[audio] Generated ${missingBody[i].bodyType}: ${missingBody[i].key} (${result.value.length} bytes)`);
+        } else if (result.status === "rejected") {
+          console.error(`[audio] Failed to generate ${missingBody[i].bodyType}:`, result.reason);
+        } else {
+          console.log(`[audio] No content for ${missingBody[i].bodyType} (empty chapter section)`);
         }
       }
     }
@@ -375,12 +417,31 @@ export async function GET(req: Request, ctx: Params) {
       `[audio] Stitched ${segmentBuffers.length}/${segmentKeys.length} segments, total=${finalAudio.length} bytes`,
     );
 
-    return new Response(finalAudio, {
-      status: 200,
-      headers: {
-        "Content-Type": "audio/mpeg",
-        "Cache-Control": "no-cache",
-      },
+    // Upload stitched audio to S3 and redirect browser to S3 URL.
+    // S3 supports HTTP range requests, enabling native seeking.
+    const stitchedKey = `book-content/audio-stitched/${bookId}/ch${String(chapterNumber).padStart(4, "0")}.${tone}.${variant}.${user.sub}.mp3`;
+    await s3.send(
+      new PutObjectCommand({
+        Bucket: bucket,
+        Key: stitchedKey,
+        Body: finalAudio,
+        ContentType: "audio/mpeg",
+        CacheControl: "public, max-age=3600",
+      }),
+    );
+
+    const { getSignedUrl } = await import("@aws-sdk/s3-request-presigner");
+    const signedUrl = await getSignedUrl(
+      s3,
+      new GetObjectCommand({ Bucket: bucket, Key: stitchedKey }),
+      { expiresIn: 3600 },
+    );
+
+    console.log(`[audio] Uploaded stitched audio to S3: ${stitchedKey}`);
+
+    return new Response(null, {
+      status: 302,
+      headers: { Location: signedUrl },
     });
   } catch (err) {
     console.error("[audio] Unexpected error:", err);

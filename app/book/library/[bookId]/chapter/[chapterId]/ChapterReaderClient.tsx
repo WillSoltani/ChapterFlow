@@ -873,17 +873,6 @@ export function ChapterReaderClient({
           );
         })()}
 
-        {/* Audio player — persists across tab switches */}
-        <div className="mt-6">
-          <AudioPlayer
-            bookId={bookId}
-            chapterNumber={chapter.order}
-            chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
-            tone={contentTone}
-            variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
-          />
-        </div>
-
         {/* Content area */}
         <div ref={contentRef} className="mt-4 space-y-5">
           {showSummary && (
@@ -918,6 +907,15 @@ export function ChapterReaderClient({
                 learningMode={learningMode}
                 activationPrompt={activeActivationPrompt}
                 selfCheckPrompts={activeSelfCheckPrompts}
+                headerAction={
+                  <AudioPlayer
+                    bookId={bookId}
+                    chapterNumber={chapter.order}
+                    chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
+                    tone={contentTone}
+                    variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
+                  />
+                }
               />
               <ContinueButton
                 ready={phaseCompletion.currentPhaseReady}

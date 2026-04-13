@@ -61,6 +61,8 @@ type SummaryCardProps = {
   learningMode?: LearningMode;
   activationPrompt?: string;
   selfCheckPrompts?: string[];
+  /** Optional slot rendered in the summary header next to the Save button */
+  headerAction?: React.ReactNode;
 };
 
 export function SummaryCard({
@@ -77,6 +79,7 @@ export function SummaryCard({
   learningMode = "standard",
   activationPrompt,
   selfCheckPrompts,
+  headerAction,
 }: SummaryCardProps) {
   // Track manually-expanded vs auto-expanded takeaways separately
   const [manuallyExpanded, setManuallyExpanded] = useState<Set<string>>(new Set());
@@ -169,14 +172,17 @@ export function SummaryCard({
               Chapter Breakdown
             </h2>
           </div>
-          <button
-            type="button"
-            onClick={onSaveTakeaways}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3 py-1.5 text-xs font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
-          >
-            <BookmarkPlus className="h-3.5 w-3.5" />
-            Save
-          </button>
+          <div className="flex items-center gap-2">
+            {headerAction}
+            <button
+              type="button"
+              onClick={onSaveTakeaways}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3 py-1.5 text-xs font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+            >
+              <BookmarkPlus className="h-3.5 w-3.5" />
+              Save
+            </button>
+          </div>
         </div>
 
         <div className="space-y-5">
