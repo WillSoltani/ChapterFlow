@@ -28,5 +28,11 @@
 - 2026-04-12T18:51:02Z Chapter 8 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
 - 2026-04-12T18:51:02Z Chapter 8 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
 - 2026-04-12T18:51:02Z Wave 4 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 5.
+- 2026-04-12T18:51:02Z Wave 5 pre-writer artifacts written for Chapters 9 and 10: briefs, outlines, quiz blueprints, and source sidecars.
+- 2026-04-12T18:51:02Z Chapter 9 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-12T18:51:02Z Chapter 9 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
 - 2026-04-12T18:51:02Z Chapter 4 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
 - 2026-04-12T18:51:02Z Wave 2 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 3.
+- 2026-04-13T01:33:53Z Chapter 10 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-13T01:33:53Z Chapter 10 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
+- 2026-04-13T01:33:53Z Wave 5 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 6.

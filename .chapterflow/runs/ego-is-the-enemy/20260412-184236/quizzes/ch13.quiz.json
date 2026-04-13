@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does the chapter say success can create?",
+      "choices": [
+        "It can blur what actually matters",
+        "It can remove every meaningful option",
+        "It can make all priorities equally correct"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says success can make false importance look convincing.",
+        "direct": "More options and rewards can confuse clean ranking.",
+        "competitive": "Noise can dress up as rank."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How does ego make that problem worse?",
+      "choices": [
+        "By offering praise and prestige as substitutes for real value",
+        "By forcing the person to reject all opportunities",
+        "By making importance impossible to think about at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ego offers signals that feel important even when they are not tied to real values.",
+        "direct": "Recognition and prestige can imitate importance.",
+        "competitive": "Shine fakes necessity."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the chapter mean by value clarity?",
+      "choices": [
+        "Choosing whatever feels strongest in the moment",
+        "Knowing what deserves durable weight in your choices",
+        "Avoiding every visible commitment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is about stable importance, not passing preference.",
+        "direct": "Value clarity means knowing what should govern choice.",
+        "competitive": "It is hierarchy, not hype."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is priority drift in this chapter?",
+      "choices": [
+        "Losing all ambition",
+        "Spending success on image rewards instead of substance",
+        "Working too little after a win"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Priority drift happens when ego rewards start choosing the order.",
+        "direct": "Success gets misallocated toward what flatters the self.",
+        "competitive": "The ranking starts lying."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter lead into entitlement, control, and paranoia next?",
+      "choices": [
+        "Because clear values always create defensive behavior",
+        "Because value clarity makes success impossible to enjoy",
+        "Because weakened importance leaves ego more room to harden defensively"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "When what matters is unclear, ego has less resistance against defensive distortions.",
+        "direct": "Priority drift makes entitlement and control easier to justify.",
+        "competitive": "Lose the ranking and the armor grows."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

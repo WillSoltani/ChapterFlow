@@ -35,6 +35,7 @@ export function AudioPlayer({
   const progressBarRef = useRef<HTMLDivElement>(null);
   const autoPlayedRef = useRef(false);
   const loadedParamsRef = useRef("");
+  const knownDurationRef = useRef(0);
 
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
@@ -48,11 +49,9 @@ export function AudioPlayer({
 
   const paramsKey = `${bookId}:${chapterNumber}:${tone}:${variant}`;
   const audioMatchesCurrent = !audioReady || loadedParamsRef.current === paramsKey;
-
   const audioUrl = `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/audio?tone=${encodeURIComponent(tone)}&variant=${encodeURIComponent(variant)}`;
 
-  // ── Load audio: fetch API (which redirects to S3), then set src to S3 URL ──
-  // S3 supports HTTP range requests, enabling native seeking.
+  // ── Load audio ─────────────────────────────────────────────────────
   const loadAudio = useCallback(async () => {
     if (loadedParamsRef.current === paramsKey && audioReady) return;
 
@@ -61,49 +60,40 @@ export function AudioPlayer({
     setAudioReady(false);
     setCurrentTime(0);
     setDuration(0);
+    knownDurationRef.current = 0;
     autoPlayedRef.current = false;
 
     try {
-      // Fetch with redirect: "manual" to capture the S3 signed URL
-      const res = await fetch(audioUrl, { redirect: "manual" });
-
-      if (res.status === 302) {
-        const s3Url = res.headers.get("Location");
-        if (s3Url && audioRef.current) {
-          audioRef.current.src = s3Url;
-          audioRef.current.load();
-          loadedParamsRef.current = paramsKey;
-          return;
-        }
-      }
-
-      // Fallback: if not a redirect, try following it normally
-      if (res.status === 200) {
-        // Direct response — use blob URL as fallback
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        if (audioRef.current) {
-          audioRef.current.src = url;
-          audioRef.current.load();
-          loadedParamsRef.current = paramsKey;
-        }
+      const res = await fetch(audioUrl);
+      if (!res.ok) {
+        let msg = "Failed to generate audio";
+        try {
+          const body = await res.json();
+          msg = (body as { error?: { message?: string } })?.error?.message ?? msg;
+        } catch {}
+        setError(msg);
+        setLoading(false);
         return;
       }
 
-      let msg = "Failed to generate audio";
-      try {
-        const body = await res.json();
-        msg = (body as { error?: { message?: string } })?.error?.message ?? msg;
-      } catch {}
-      setError(msg);
-      setLoading(false);
+      const blob = await res.blob();
+      const estimated = blob.size / 16000;
+      knownDurationRef.current = estimated;
+      setDuration(estimated);
+
+      const url = URL.createObjectURL(blob);
+      if (audioRef.current) {
+        audioRef.current.src = url;
+        audioRef.current.load();
+        loadedParamsRef.current = paramsKey;
+      }
     } catch {
       setError("Network error — check your connection and try again");
       setLoading(false);
     }
   }, [paramsKey, audioReady, audioUrl]);
 
-  // ── Audio event listeners ──────────────────────────────────────────
+  // ── Audio events ───────────────────────────────────────────────────
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -113,7 +103,9 @@ export function AudioPlayer({
     const onCanPlay = () => {
       setLoading(false);
       setAudioReady(true);
+      // Use browser-reported duration if valid
       if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        knownDurationRef.current = audio.duration;
         setDuration(audio.duration);
       }
       if (!autoPlayedRef.current) {
@@ -121,20 +113,32 @@ export function AudioPlayer({
         audio.play().catch(() => {});
       }
     };
+
     const onPlay = () => setPlaying(true);
     const onPause = () => setPlaying(false);
+
     const onTimeUpdate = () => {
       const now = performance.now();
       if (now - lastUpdate < 250) return;
       lastUpdate = now;
-      setCurrentTime(audio.currentTime);
+      const t = audio.currentTime;
+      setCurrentTime(t);
+      // Track max time reached — this becomes our reliable duration
+      if (t > knownDurationRef.current) {
+        knownDurationRef.current = t;
+        setDuration(t);
+      }
     };
+
     const onDurationChange = () => {
       if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        knownDurationRef.current = audio.duration;
         setDuration(audio.duration);
       }
     };
+
     const onEnded = () => setPlaying(false);
+
     const onError = () => {
       if (!audio.src || audio.src === window.location.href) return;
       setLoading(false);
@@ -160,23 +164,27 @@ export function AudioPlayer({
     };
   }, [open]);
 
-  // ── Controls ───────────────────────────────────────────────────────
+  // ── Seeking ────────────────────────────────────────────────────────
+  const seekTo = useCallback((time: number) => {
+    const audio = audioRef.current;
+    if (!audio || !audioReady) return;
+    const max = Number.isFinite(audio.duration) ? audio.duration : knownDurationRef.current;
+    if (max <= 0) return;
+    const clamped = Math.max(0, Math.min(time, max));
+    try {
+      audio.currentTime = clamped;
+    } catch {
+      // Seeking may not be supported on blob URLs in some browsers
+    }
+    setCurrentTime(clamped);
+  }, [audioReady]);
+
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
     if (!audio || !audioReady) return;
     if (playing) audio.pause();
     else audio.play().catch(() => {});
   }, [playing, audioReady]);
-
-  const seekTo = useCallback((time: number) => {
-    const audio = audioRef.current;
-    if (!audio || !audioReady) return;
-    const max = Number.isFinite(audio.duration) ? audio.duration : duration;
-    if (max <= 0) return;
-    const clamped = Math.max(0, Math.min(time, max));
-    audio.currentTime = clamped;
-    setCurrentTime(clamped);
-  }, [audioReady, duration]);
 
   const cycleSpeed = useCallback(() => {
     const idx = SPEED_OPTIONS.indexOf(speed as typeof SPEED_OPTIONS[number]);
@@ -203,8 +211,7 @@ export function AudioPlayer({
   }, [loadAudio]);
 
   const handleClose = useCallback(() => {
-    const audio = audioRef.current;
-    audio?.pause();
+    audioRef.current?.pause();
     setOpen(false);
     setMinimized(false);
     setPlaying(false);
@@ -228,6 +235,7 @@ export function AudioPlayer({
 
   const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0;
 
+  // ── Collapsed ──────────────────────────────────────────────────────
   if (!open) {
     return (
       <button type="button" onClick={handleOpen} className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-3.5 py-2 text-[13px] font-semibold text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-accent) hover:border-(--cr-accent)/30" title="Listen to this chapter">
@@ -237,6 +245,7 @@ export function AudioPlayer({
     );
   }
 
+  // ── Minimized bar ──────────────────────────────────────────────────
   if (minimized) {
     return (
       <>
@@ -264,6 +273,7 @@ export function AudioPlayer({
     );
   }
 
+  // ── Expanded ───────────────────────────────────────────────────────
   return (
     <>
       <audio ref={audioRef} preload="auto" />

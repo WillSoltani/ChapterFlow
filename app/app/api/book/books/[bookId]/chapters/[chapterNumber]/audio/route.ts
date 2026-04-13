@@ -412,15 +412,15 @@ export async function GET(req: Request, ctx: Params) {
     }
 
     const finalAudio = Buffer.concat(segmentBuffers);
+    const totalSize = finalAudio.length;
 
     console.log(
-      `[audio] Stitched ${segmentBuffers.length}/${segmentKeys.length} segments, total=${finalAudio.length} bytes`,
+      `[audio] Stitched ${segmentBuffers.length}/${segmentKeys.length} segments, total=${totalSize} bytes`,
     );
 
-    // Upload stitched audio to S3 and redirect browser to S3 URL.
-    // S3 supports HTTP range requests, enabling native seeking.
+    // Cache stitched audio to S3 for future range requests (fire-and-forget)
     const stitchedKey = `book-content/audio-stitched/${bookId}/ch${String(chapterNumber).padStart(4, "0")}.${tone}.${variant}.${user.sub}.mp3`;
-    await s3.send(
+    s3.send(
       new PutObjectCommand({
         Bucket: bucket,
         Key: stitchedKey,
@@ -428,20 +428,20 @@ export async function GET(req: Request, ctx: Params) {
         ContentType: "audio/mpeg",
         CacheControl: "public, max-age=3600",
       }),
-    );
+    ).then(() => {
+      console.log(`[audio] Cached stitched audio to S3: ${stitchedKey}`);
+    }).catch((err) => {
+      console.error("[audio] Failed to cache stitched audio:", err);
+    });
 
-    const { getSignedUrl } = await import("@aws-sdk/s3-request-presigner");
-    const signedUrl = await getSignedUrl(
-      s3,
-      new GetObjectCommand({ Bucket: bucket, Key: stitchedKey }),
-      { expiresIn: 3600 },
-    );
-
-    console.log(`[audio] Uploaded stitched audio to S3: ${stitchedKey}`);
-
-    return new Response(null, {
-      status: 302,
-      headers: { Location: signedUrl },
+    // Return the full MP3 directly
+    return new Response(finalAudio, {
+      status: 200,
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Content-Length": String(totalSize),
+        "Cache-Control": "no-cache",
+      },
     });
   } catch (err) {
     console.error("[audio] Unexpected error:", err);

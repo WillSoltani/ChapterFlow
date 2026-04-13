@@ -1,0 +1,39 @@
+{
+  "chapterId": "ch09-the-present-outcome-of-psychoanalysis",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-12T18:51:02Z",
+  "chapterNumber": 9,
+  "editedDraftWordCount": 523,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 251,
+      "avgWordsPerTone": 84
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 631,
+      "avgWordsPerTone": 210
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 970,
+      "avgWordsPerTone": 323
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "work": 2,
+    "personal": 2,
+    "school": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "35a1af4195f9584e41a588a0494c2017be4976c77d91ed6e6e00ac22856c6f0d",
+  "validationStatus": "PASS",
+  "patchesApplied": 1,
+  "patchNotes": [
+    "Embedded the full quiz payload and patched one repeated scaffold, three reusable reinforcement stems, and one duplicate competitive sentence before validation pass."
+  ]
+}

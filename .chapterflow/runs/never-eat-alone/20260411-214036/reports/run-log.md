@@ -175,4 +175,15 @@ Phase 0 complete.
 
 - Wrote pre-writer artifacts for `ch27` and `ch28` before prose work.
 - Verified all five required pre-writer artifacts exist on disk for both chapters before prose work.
-- Wave 14 is open and ready for writer execution.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch27`.
+- Completed writer, editor, critic, converter, quiz, validator, review-package, reading-metrics, and continuity seal for `ch28`.
+- Verified the validated review-package chapter payload matches the full validated chapter payload for both chapters.
+- Verified the wave bundle on disk after validation.
+- Verified source controls still exist and sealed chapter hashes remain intact.
+- Wave 14 is clean and ready for continuation.
+
+### Wave 15: Chapters 29 and 30
+
+- Wrote pre-writer artifacts for `ch29` and `ch30` before prose work.
+- Verified all five required pre-writer artifacts exist on disk for both chapters before prose work.
+- Wave 15 is open and ready for writer execution.

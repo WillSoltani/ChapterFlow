@@ -4,7 +4,7 @@
     "Marcus": 5,
     "Priya": 5,
     "Diego": 1,
-    "Naomi": 1,
+    "Naomi": 2,
     "Evan": 2,
     "Jordan": 2,
     "Professor Liu": 1,
@@ -22,7 +22,7 @@
     "Chris": 1,
     "Alia": 1,
     "Dev": 1,
-    "Serena": 3,
+    "Serena": 4,
     "Malik": 3,
     "June": 1,
     "Theo": 2,
@@ -76,13 +76,13 @@
     "Iris": 1,
     "Cameron": 1,
     "Professor Singh": 1,
-    "Leila": 2,
+    "Leila": 3,
     "Marisol": 1,
-    "Jonah": 2,
+    "Jonah": 3,
     "Vanessa": 1,
     "Paige": 1,
     "Natalie": 1,
-    "Dean Alvarez": 1,
+    "Dean Alvarez": 2,
     "Jada": 1,
     "Simone": 1,
     "Eli": 1,
@@ -102,13 +102,13 @@
     "Olivia": 1,
     "Jason": 1,
     "Professor Lewis": 1,
-    "Hannah": 1,
-    "Isaac": 1,
+    "Hannah": 2,
+    "Isaac": 2,
     "Professor Walsh": 1,
     "Devon": 1,
     "Nadia": 1,
     "Colin": 1,
-    "Meera": 1,
+    "Meera": 2,
     "Seth": 1,
     "Professor Ruiz": 1,
     "Bianca": 1,
@@ -119,10 +119,11 @@
     "Professor Kent": 1,
     "Tania": 1,
     "Professor Moore": 1,
-    "Camille": 1,
-    "Trevor": 2,
+    "Camille": 2,
+    "Trevor": 4,
     "Professor Flores": 1,
-    "Professor Diaz": 1
+    "Professor Diaz": 1,
+    "Professor Rowan": 1
   },
   "formatCategoryHistory": [
     {
@@ -410,6 +411,28 @@
         "reflection:school",
         "conflict:personal"
       ]
+    },
+    {
+      "chapter": "ch27",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch28",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
     }
   ],
   "schoolSettingUsage": {
@@ -451,7 +474,11 @@
     "interdisciplinary panel": 1,
     "alumni board meeting": 1,
     "alumni email chain": 1,
-    "advising office follow-up": 1
+    "advising office follow-up": 1,
+    "alumni newsletter profile": 1,
+    "student media office": 1,
+    "donor reception": 1,
+    "faculty advisory dinner": 1
   },
   "wordFrequency": {},
   "phraseFrequency": {},
@@ -615,6 +642,22 @@
       "reframing"
     ],
     "ch20": [
+      "warning",
+      "bridge",
+      "comparison",
+      "test",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch27": [
+      "bridge",
+      "comparison",
+      "warning",
+      "test",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch28": [
       "warning",
       "bridge",
       "comparison",
@@ -883,6 +926,22 @@
       "Aaron",
       "Professor Rowan",
       "Nina"
+    ],
+    "ch27": [
+      "Naomi",
+      "Trevor",
+      "Camille",
+      "Jonah",
+      "Professor Rowan",
+      "Meera"
+    ],
+    "ch28": [
+      "Serena",
+      "Isaac",
+      "Leila",
+      "Trevor",
+      "Dean Alvarez",
+      "Hannah"
     ]
   },
   "approvedChapterHashes": {
@@ -911,7 +970,9 @@
     "ch23": "0ad473461f6047fbec0a2035068c42adeb4c3f5a0f051f432f9778590dd47ce6",
     "ch24": "2b96958ec502930c30a9fddd83dd4ce2e3e08ae79088f35a1b5b870e51133a1d",
     "ch25": "6de348f02736cfea61c19bd38c08ddcb23ac0224015e01c2a8d12b9cd168ceea",
-    "ch26": "a4b1d3599b33a3ab5afabdeffcb433b671be6e5f0c0165639348d4830eeaa67a"
+    "ch26": "a4b1d3599b33a3ab5afabdeffcb433b671be6e5f0c0165639348d4830eeaa67a",
+    "ch27": "c5e67b2ad7de1dabe14c57bb49bd30459072e77a8c70ebcb521048ed5b447e33",
+    "ch28": "5f8c41a1ac7cb7dae21fd75e1137607a05362778fa8c81ed116974c21a977263"
   },
   "baselineQuality": {
     "ch01": {
@@ -1047,6 +1108,16 @@
       "validation": "pass"
     },
     "ch26": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch27": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch28": {
       "criticScore": 10,
       "status": "passed",
       "validation": "pass"

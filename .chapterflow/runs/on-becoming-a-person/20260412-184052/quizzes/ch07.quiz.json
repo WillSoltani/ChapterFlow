@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Rogers mainly trying to show in this chapter?",
+      "choices": [
+        "That psychotherapy is best understood as a disciplined process rather than a fixed technique",
+        "That psychotherapy should avoid all structure and method",
+        "That therapy works only when every session follows the same sequence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter frames psychotherapy as process, not as rigid procedure.",
+        "direct": "Rogers argues that therapy fits living persons better when conceived as unfolding process rather than fixed method.",
+        "competitive": "The target is disciplined process, not technique sovereignty."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is a fixed-technique picture too narrow here?",
+      "choices": [
+        "Because living experience and awareness cannot be fully captured by one mechanical procedure",
+        "Because therapy should stop caring about standards altogether",
+        "Because techniques are always useless in psychotherapy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter says a living person is more than a procedure can fully capture.",
+        "direct": "Rogers thinks the mechanical picture misses unfolding experience, awareness, and changing self-relation.",
+        "competitive": "A rigid method is too small for moving human reality."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does psychotherapy involve most directly in this chapter?",
+      "choices": [
+        "Unfolding experience and awareness with less distortion",
+        "Simple compliance with therapist instructions",
+        "Avoiding all emotional complexity until trust is perfect"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter centers on unfolding experience becoming more available to awareness.",
+        "direct": "Rogers is tracking movement in lived experience and self-relation rather than only technique use.",
+        "competitive": "The real action is reality entering contact with less distortion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lucas notices the session is moving somewhere real that is not on his checklist. Which response best fits the chapter?",
+      "choices": [
+        "Force the prepared sequence so the method stays intact",
+        "Follow the unfolding process while keeping enough form to stay disciplined",
+        "Abandon all structure and improvise without any standards"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors disciplined responsiveness over rigid script obedience.",
+        "direct": "Lucas should let form support the living process rather than let sequence control replace it.",
+        "competitive": "Serve the person, not the checklist."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the best correction to saying process means having no standards?",
+      "choices": [
+        "Process means any natural conversation counts as psychotherapy",
+        "Process can be disciplined and structured without becoming mechanical",
+        "Standards matter only in research, not in helping work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Rogers rejects mechanism, not seriousness or care.",
+        "direct": "The chapter holds together form, attention, and standards without collapsing into rigid procedural control.",
+        "competitive": "No formula does not mean no rigor."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does the chapter relate structure to mechanization?",
+      "choices": [
+        "They are identical, so any structure is a mistake",
+        "Structure can serve process without becoming mechanical procedure",
+        "Mechanization is better because it keeps therapy objective"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter separates useful form from rigid procedural control.",
+        "direct": "Rogers argues that therapy can have structure while still staying responsive to what is unfolding.",
+        "competitive": "Form is allowed; sovereignty for formula is not."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can formula distort psychotherapy itself?",
+      "choices": [
+        "Because method performance can replace real contact with the person's lived movement",
+        "Because clients should never know that techniques exist",
+        "Because therapy works only when the therapist has no plan at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that scripts can stay tidy while the real process gets thinner.",
+        "direct": "Once therapist and client begin serving the method, procedure can override living contact with experience.",
+        "competitive": "The cleaner the script, the easier it can be to edit out the person."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Theo can name every intervention but cannot say what changed in the person's experience. What is he missing?",
+      "choices": [
+        "The idea that psychotherapy is exhausted by method labels",
+        "The process dimension of therapy: unfolding awareness, experience, and self-relation",
+        "The importance of pretending the session had a cleaner sequence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He is missing the living process the methods were meant to support.",
+        "direct": "Rogers wants therapy described in terms of changing experience and awareness, not only intervention names.",
+        "competitive": "Theo has the tools catalog and no account of the movement."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which judgment best fits the chapter's deepest claim?",
+      "choices": [
+        "Psychotherapy should become purely procedural so results can be controlled",
+        "Psychotherapy must stay disciplined while remaining answerable to living process rather than to formula alone",
+        "Psychotherapy is mostly a free-flowing conversation with no need for form"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter defends disciplined process against both rigidity and drift.",
+        "direct": "Rogers argues for rigor that serves unfolding experience instead of replacing it with mechanical authority.",
+        "competitive": "Real help needs form without making formula king."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If psychotherapy is conceived this way, what question naturally comes next?",
+      "choices": [
+        "How to design one universal intervention sequence for every client",
+        "What personal goals such a process should actually serve",
+        "Why experience should be kept secondary to method"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter points forward to the personal goals served by this process conception.",
+        "direct": "Once therapy is framed as process, the next question is what human aims that process is ordered toward.",
+        "competitive": "If method steps down, the goal of personhood comes into view next."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

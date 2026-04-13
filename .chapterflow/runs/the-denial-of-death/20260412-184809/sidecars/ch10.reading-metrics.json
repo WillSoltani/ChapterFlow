@@ -1,0 +1,40 @@
+{
+  "chapterId": "ch10-a-general-view-of-mental-illness",
+  "bookId": "the-denial-of-death",
+  "runId": "20260412-184809",
+  "computedAt": "2026-04-13T01:33:53Z",
+  "chapterNumber": 10,
+  "editedDraftWordCount": 514,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 264,
+      "avgWordsPerTone": 88
+    },
+    "medium": {
+      "estimatedMinutes": 13,
+      "totalBreakdownWords": 719,
+      "avgWordsPerTone": 240
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 966,
+      "avgWordsPerTone": 322
+    }
+  },
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "school": 2,
+    "personal": 2,
+    "work": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "chapterHash": "767acc9acd2a2454c8bae4d400da3c165fb4e5ad51fd56200f2a80e578074a78",
+  "validationStatus": "PASS",
+  "patchesApplied": 2,
+  "patchNotes": [
+    "Repaired a malformed structured export by closing medium.chapterBreakdown and removing the compensating extra tail brace.",
+    "Resynced the embedded quiz payload and patched five reusable reinforcement stems, four duplicate package sentences, one recap duplication, and one review-card echo before validation pass."
+  ]
+}

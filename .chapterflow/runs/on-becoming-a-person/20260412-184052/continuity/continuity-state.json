@@ -105,6 +105,24 @@
     ],
     "Elise": [
       "ch06"
+    ],
+    "Lucas": [
+      "ch07"
+    ],
+    "Mina": [
+      "ch07"
+    ],
+    "Theo": [
+      "ch07"
+    ],
+    "Aisha": [
+      "ch07"
+    ],
+    "Grant": [
+      "ch07"
+    ],
+    "Noelle": [
+      "ch07"
     ]
   },
   "formatCategoryHistory": [],
@@ -166,6 +184,14 @@
       "Serena",
       "Victor",
       "Elise"
+    ],
+    "ch07": [
+      "Lucas",
+      "Mina",
+      "Theo",
+      "Aisha",
+      "Grant",
+      "Noelle"
     ]
   },
   "approvedChapterHashes": {
@@ -192,6 +218,10 @@
     "ch06": {
       "sha256": "8c03f97c94345d2b7b22a72f825a31f39022c7c11ae27c23f86617553984760e",
       "validatedAt": "2026-04-12T22:42:31Z"
+    },
+    "ch07": {
+      "sha256": "9e625ab3e3423bdd47d40ad1decce8ac87ff9f30409936ad5bafe98c09a1e75b",
+      "validatedAt": "2026-04-13T01:21:33Z"
     }
   },
   "baselineQuality": {
