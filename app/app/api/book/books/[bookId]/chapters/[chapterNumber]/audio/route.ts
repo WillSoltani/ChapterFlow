@@ -1,6 +1,7 @@
 import "server-only";
 
 import { requireUser } from "@/app/app/api/_lib/auth";
+import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
@@ -23,9 +24,12 @@ import {
   getSegmentKeys,
   getTimeOfDay,
   chapterBodySegmentS3Key,
+  userGreetingS3Key,
+  getUserGreetingScript,
   buildTakeawayText,
   BODY_SEGMENT_TYPES,
   type BodySegmentType,
+  type TimeOfDay,
   type NarrationContext,
 } from "@/app/app/api/book/_lib/audio-narration";
 
@@ -93,50 +97,52 @@ function extractSegmentText(
     }
     case "takeaways": {
       const structured: Array<{ point: string; moreDetails: string }> = [];
+      const seen = new Set<string>();
 
-      // Primary source: summaryBlocks bullets with "Go Deeper" detail
+      const addTakeaway = (point: string, moreDetails: string) => {
+        const key = point.slice(0, 80).toLowerCase();
+        if (!point || seen.has(key)) return;
+        seen.add(key);
+        structured.push({ point, moreDetails });
+      };
+
+      // Source 1: summaryBlocks bullets with "Go Deeper" detail
       const summaryBlocks = v.summaryBlocks;
       if (summaryBlocks && Array.isArray(summaryBlocks)) {
         for (const block of summaryBlocks) {
-          if (
-            block &&
-            typeof block === "object" &&
-            (block as Record<string, unknown>).type === "bullet"
-          ) {
+          if (block && typeof block === "object" && (block as Record<string, unknown>).type === "bullet") {
             const text = resolveText((block as Record<string, unknown>).text, tone);
             const detail = resolveText((block as Record<string, unknown>).detail, tone);
-            if (text) structured.push({ point: text, moreDetails: detail });
+            addTakeaway(text, detail);
           }
         }
       }
 
-      // Fallback: keyTakeaways (if no summaryBlocks bullets found)
-      if (structured.length === 0) {
-        const keyTakeaways = v.keyTakeaways;
-        if (keyTakeaways && Array.isArray(keyTakeaways)) {
-          for (const t of keyTakeaways) {
-            if (typeof t === "string" && t.trim()) {
-              structured.push({ point: t, moreDetails: "" });
-            } else if (t && typeof t === "object") {
-              const point = resolveText((t as Record<string, unknown>).point, tone);
-              const details = resolveText((t as Record<string, unknown>).moreDetails, tone);
-              if (point) structured.push({ point, moreDetails: details });
-            }
+      // Source 2: keyTakeaways (structured or plain strings)
+      const keyTakeaways = v.keyTakeaways;
+      if (keyTakeaways && Array.isArray(keyTakeaways)) {
+        for (const t of keyTakeaways) {
+          if (typeof t === "string" && t.trim()) {
+            addTakeaway(t, "");
+          } else if (t && typeof t === "object") {
+            const point = resolveText((t as Record<string, unknown>).point, tone);
+            const details = resolveText((t as Record<string, unknown>).moreDetails, tone);
+            addTakeaway(point, details);
           }
         }
       }
 
-      // Last fallback: plain takeaways array
-      if (structured.length === 0) {
-        const takeaways = v.takeaways;
-        if (Array.isArray(takeaways)) {
-          for (const t of takeaways) {
-            if (typeof t === "string" && t.trim()) {
-              structured.push({ point: t, moreDetails: "" });
-            }
+      // Source 3: plain takeaways array
+      const takeaways = v.takeaways;
+      if (Array.isArray(takeaways)) {
+        for (const t of takeaways) {
+          if (typeof t === "string" && t.trim()) {
+            addTakeaway(t, "");
           }
         }
       }
+
+      console.log(`[audio] Takeaways extracted: ${structured.length} (from summaryBlocks bullets + keyTakeaways + takeaways)`);
 
       const connectedText = buildTakeawayText(structured);
       if (connectedText) parts.push(connectedText);
@@ -286,8 +292,12 @@ export async function GET(req: Request, ctx: Params) {
           : Promise.resolve(null),
       ]);
 
-    const userName =
-      (profile?.profile as Record<string, unknown> | undefined)?.displayName as string | null ?? null;
+    // Resolve user name with fallbacks (profile → Cognito → email → null)
+    const identity = resolveBookIdentity(
+      user,
+      profile?.profile as Record<string, unknown> | undefined,
+    );
+    const userName = identity.displayName || null;
     const now = new Date();
     const dayOfWeek = now.getDay();
     const hour = now.getHours();
@@ -356,14 +366,52 @@ export async function GET(req: Request, ctx: Params) {
       loadResults.push({ key, buffer, bodyType: bodySegmentKeyMap.get(key) ?? null });
     }
 
+    // Auto-generate greeting clip if missing and we have a name + API key
+    const greetingKey = userName ? userGreetingS3Key(user.sub, narrationCtx.timeOfDay) : null;
+
     // Log what loaded and what's missing
     for (const { key, buffer, bodyType } of loadResults) {
       if (buffer) {
         console.log(`[audio] Loaded: ${key} (${buffer.length} bytes)`);
       } else if (bodyType) {
         console.log(`[audio] Missing body segment: ${key} (${bodyType})`);
+      } else if (key === greetingKey) {
+        console.log(`[audio] Missing greeting clip: ${key} (will auto-generate)`);
       } else {
         console.log(`[audio] Missing narration segment: ${key}`);
+      }
+    }
+
+    // Auto-generate missing greeting clip on-the-fly
+    if (greetingKey && elevenLabsKey && userName) {
+      const greetingResult = loadResults.find((r) => r.key === greetingKey);
+      if (greetingResult && !greetingResult.buffer) {
+        console.log(`[audio] Generating greeting clip for "${userName}"...`);
+        const allTods: TimeOfDay[] = ["morning", "afternoon", "evening"];
+        // Generate all 3 time-of-day greetings in parallel so they're cached for next time
+        const greetingResults = await Promise.allSettled(
+          allTods.map(async (tod) => {
+            const script = getUserGreetingScript(userName, tod);
+            const key = userGreetingS3Key(user.sub, tod);
+            const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`, {
+              method: "POST",
+              headers: { "xi-api-key": elevenLabsKey, "Content-Type": "application/json", Accept: "audio/mpeg" },
+              body: JSON.stringify({ text: script, model_id: "eleven_turbo_v2_5", voice_settings: { stability: 0.5, similarity_boost: 0.75 } }),
+            });
+            if (!res.ok) return null;
+            const buf = Buffer.from(await res.arrayBuffer());
+            // Cache to S3
+            s3.send(new PutObjectCommand({ Bucket: bucket, Key: key, Body: buf, ContentType: "audio/mpeg", CacheControl: "public, max-age=31536000" })).catch(() => {});
+            return { tod, buf };
+          }),
+        );
+        // Patch the current greeting into loadResults
+        for (const r of greetingResults) {
+          if (r.status === "fulfilled" && r.value && r.value.tod === narrationCtx.timeOfDay) {
+            greetingResult.buffer = r.value.buf;
+            console.log(`[audio] Generated greeting: ${greetingKey} (${r.value.buf.length} bytes)`);
+          }
+        }
       }
     }
 
