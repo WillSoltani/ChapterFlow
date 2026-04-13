@@ -15,3 +15,4 @@
 - 2026-04-12T18:45:34-03:00 Chapter 8 completed the full chain from pre-writer artifacts through validated package. Structured and validated artifacts passed clean on first validation. Hash sealed for `ch08`.
 - 2026-04-12T18:45:34-03:00 Chapter 9 completed the full chain from pre-writer artifacts through validated package. One repeated clause scaffold and one duplicated prompt were repaired before final validation. Hash sealed for `ch09`.
 - 2026-04-12T18:45:34-03:00 Chapter 10 completed the full chain from pre-writer artifacts through validated package. Two repeated clause scaffolds and one recap overlap were repaired before final validation. Hash sealed for `ch10`.
+- 2026-04-12T18:45:34-03:00 Chapter 11 completed the full chain from pre-writer artifacts through validated package. One duplicated recap preview prompt was repaired before final validation. Hash sealed for `ch11`.

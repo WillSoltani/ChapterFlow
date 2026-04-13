@@ -17,3 +17,5 @@
 - 2026-04-12T23:07:00Z Chapter 12 passed writer -> editor -> critic -> converter -> quiz -> validator. Lint and prose audit both returned `FAIL=0 WARN=0`; validation report repaired after wave guard and continuity hash sealed.
 - 2026-04-12T23:18:00Z Chapter 13 passed writer -> editor -> critic -> converter -> quiz -> validator. Lint and prose audit both returned `FAIL=0 WARN=0`; continuity hash sealed.
 - 2026-04-12T23:29:00Z Chapter 14 passed writer -> editor -> critic -> converter -> quiz -> validator. Lint and prose audit both returned `FAIL=0 WARN=0`; validation report repaired after wave guard and continuity hash sealed.
+- 2026-04-13T00:08:00Z Chapter 15 passed writer -> editor -> critic -> converter -> quiz -> validator. Lint and prose audit both returned `FAIL=0 WARN=0`; continuity hash sealed.
+- 2026-04-13T15:34:45Z Chapter 16 passed writer -> editor -> critic -> converter -> quiz -> validator. Lint and prose audit both returned FAIL=0 WARN=0; continuity hash sealed.

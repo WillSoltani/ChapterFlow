@@ -37,3 +37,8 @@
 - 2026-04-13T01:33:53Z Chapter 10 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Artifact guard passed.
 - 2026-04-13T01:33:53Z Wave 5 verification completed. Review wrapper parity checks passed and artifact guard returned clean state before wave 6.
 - 2026-04-13T01:33:53Z Wave 6 pre-writer artifacts written for Chapter 11: brief, outline, quiz blueprint, and source sidecars.
+- 2026-04-13T15:27:54Z Chapter 11 writer, editor, and critic passes completed. Critic reported local-only patch scope and no prose reroute.
+- 2026-04-13T15:27:54Z Chapter 11 structured conversion, quiz generation, validation, review wrapper, reading metrics, and continuity seal completed. Final wave verification pending.
+- 2026-04-13T15:29:37Z Continuity hash seals were repaired to canonical validated-chapter hashes after release guard exposed a mismatch between bytewise file hashes and release-guard canonical hashes.
+- 2026-04-13T15:29:37Z Wave 6 verification completed. Review wrapper parity checks passed, artifact guard returned clean state, and the final chapter chain is complete.
+- 2026-04-13T15:29:37Z Release assembly created from validated/*.chapter.json only at release/the-denial-of-death.release.json. Release guard returned clean state.

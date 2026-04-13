@@ -10,6 +10,7 @@
 import {
   DynamoDBDocumentClient,
   GetCommand,
+  PutCommand,
   ScanCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
@@ -18,6 +19,7 @@ import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { processStreakAtRisk } from "./lib/streak-at-risk";
 import { processWeeklyDigest } from "./lib/weekly-digest";
 import { processWelcomeBackNudge } from "./lib/welcome-back-nudge";
+import { readingReminderEmail } from "./lib/email-templates/reading-reminder";
 
 const tableName = process.env.BOOK_TABLE_NAME!;
 const senderEmail = process.env.SES_SENDER_EMAIL!;
@@ -46,6 +48,9 @@ export async function handler() {
   let sent = 0;
   let skipped = 0;
 
+  // Accumulate all user items during the scan for nudge sub-handlers (avoids a second scan).
+  const allUserItems: Array<{ PK: string; userId: string; settings: Record<string, unknown> }> = [];
+
   do {
     const scan = await ddb.send(
       new ScanCommand({
@@ -60,6 +65,10 @@ export async function handler() {
     for (const item of scan.Items ?? []) {
       const userId = item.userId as string;
       const settings = item.settings as Record<string, unknown> | undefined;
+
+      // Accumulate for nudge handlers
+      allUserItems.push({ PK: item.PK as string, userId, settings: settings ?? {} });
+
       const notifPrefs = (settings?.notifications ?? {}) as Record<string, unknown>;
 
       if (!notifPrefs.readingReminderEnabled) {
@@ -131,22 +140,17 @@ export async function handler() {
       // Send email if available.
       if (email && (notifPrefs.channels as Record<string, unknown>)?.email === true) {
         try {
+          const tpl = readingReminderEmail({ name });
           await ses.send(
             new SendEmailCommand({
               FromEmailAddress: senderEmail,
               Destination: { ToAddresses: [email] },
               Content: {
                 Simple: {
-                  Subject: { Data: "Time to read!", Charset: "UTF-8" },
+                  Subject: { Data: tpl.subject, Charset: "UTF-8" },
                   Body: {
-                    Text: {
-                      Data: `Hi ${name},\n\nThis is your daily reading reminder. A few minutes of focused reading can make a real difference.\n\n— ChapterFlow`,
-                      Charset: "UTF-8",
-                    },
-                    Html: {
-                      Data: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Time to Read</h2><p>Hi ${name},</p><p>This is your daily reading reminder.</p><p style="color:#888;font-size:12px">— ChapterFlow</p></div>`,
-                      Charset: "UTF-8",
-                    },
+                    Text: { Data: tpl.textBody, Charset: "UTF-8" },
+                    Html: { Data: tpl.htmlBody, Charset: "UTF-8" },
                   },
                 },
               },
@@ -159,14 +163,14 @@ export async function handler() {
 
       // Write dedup marker (TTL: 2 days).
       await ddb.send(
-        new UpdateCommand({
+        new PutCommand({
           TableName: tableName,
-          Key: { PK: pk, SK: dedupKey },
-          UpdateExpression: "SET createdAt = :now, #ttl = :ttl",
-          ExpressionAttributeNames: { "#ttl": "ttl" },
-          ExpressionAttributeValues: {
-            ":now": now,
-            ":ttl": Math.floor(Date.now() / 1000) + 2 * 24 * 60 * 60,
+          Item: {
+            PK: pk,
+            SK: dedupKey,
+            entity: "NUDGE_DEDUP",
+            createdAt: now,
+            ttl: Math.floor(Date.now() / 1000) + 2 * 24 * 60 * 60,
           },
         })
       );
@@ -180,25 +184,6 @@ export async function handler() {
   console.log(`[reading-reminder-cron] Reminders done. Sent: ${sent}, Skipped: ${skipped}`);
 
   // ── Dispatch habit nudge sub-handlers ──────────────────────────────────
-  // Re-scan all users (reuse pattern) for nudge handlers
-  const allUserItems: Array<{ PK: string; userId: string; settings: Record<string, unknown> }> = [];
-  let nudgeLastKey: Record<string, unknown> | undefined;
-  do {
-    const scan = await ddb.send(
-      new ScanCommand({
-        TableName: tableName,
-        FilterExpression: "entity = :entity",
-        ExpressionAttributeValues: { ":entity": "BOOK_USER_SETTINGS" },
-        ProjectionExpression: "PK, userId, settings",
-        ExclusiveStartKey: nudgeLastKey,
-      }),
-    );
-    for (const item of scan.Items ?? []) {
-      allUserItems.push(item as typeof allUserItems[number]);
-    }
-    nudgeLastKey = scan.LastEvaluatedKey as Record<string, unknown> | undefined;
-  } while (nudgeLastKey);
-
   const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
     processStreakAtRisk(ddb, ses, tableName, senderEmail, allUserItems as never),
     processWeeklyDigest(ddb, ses, tableName, senderEmail, allUserItems as never),

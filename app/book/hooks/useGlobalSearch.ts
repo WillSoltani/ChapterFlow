@@ -1,28 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-
-export type SearchDocument = {
-  id: string;
-  type: "book" | "chapter" | "takeaway" | "example";
-  bookId: string;
-  bookTitle: string;
-  author: string;
-  chapterNumber?: number;
-  chapterTitle?: string;
-  text: string;
-  tags: string[];
-  categories: string[];
-};
-
-export type SearchResult = SearchDocument & { score: number };
-
-type GroupedResults = {
-  books: SearchResult[];
-  chapters: SearchResult[];
-  takeaways: SearchResult[];
-  examples: SearchResult[];
-};
+import { useCallback, useRef, useState } from "react";
+import type { SearchDocument, GroupedResults } from "@/app/book/types/search";
 
 let cachedIndex: SearchDocument[] | null = null;
 let indexPromise: Promise<SearchDocument[]> | null = null;
@@ -40,9 +19,9 @@ async function loadIndex(): Promise<SearchDocument[]> {
       cachedIndex = docs;
       return docs;
     })
-    .catch(() => {
+    .catch((err) => {
       indexPromise = null;
-      return [];
+      throw err;
     });
 
   return indexPromise;
@@ -73,14 +52,23 @@ function scoreDocument(doc: SearchDocument, terms: string[]): number {
 export function useGlobalSearch() {
   const [index, setIndex] = useState<SearchDocument[]>([]);
   const [indexLoaded, setIndexLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const loadedRef = useRef(false);
 
   const ensureLoaded = useCallback(async () => {
     if (loadedRef.current) return;
     loadedRef.current = true;
-    const docs = await loadIndex();
-    setIndex(docs);
-    setIndexLoaded(true);
+    setIsLoading(true);
+    try {
+      const docs = await loadIndex();
+      setIndex(docs);
+      setIndexLoaded(docs.length > 0);
+    } catch {
+      setError("Failed to load search index");
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   const search = useCallback(
@@ -110,5 +98,5 @@ export function useGlobalSearch() {
     [index],
   );
 
-  return { search, ensureLoaded, indexLoaded };
+  return { search, ensureLoaded, indexLoaded, isLoading, error };
 }

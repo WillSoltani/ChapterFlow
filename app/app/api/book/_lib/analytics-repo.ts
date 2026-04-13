@@ -554,13 +554,14 @@ export async function analyticsTrackScenario(
     userId: string;
     bookId: string;
     chapterNumber: number;
-    stage: "submitted" | "approved";
+    stage: "submitted" | "approved" | "auto_approved" | "auto_rejected";
     pointsAwarded: number;
   }
 ): Promise<void> {
   const now = nowIso();
+  const isApproval = args.stage === "approved" || args.stage === "auto_approved";
   const updateExpression =
-    args.stage === "approved"
+    isApproval
       ? "SET #updatedAt = :now, #lastActiveAt = :now, #sv = :sv, #userId = :uid, " +
         "#plan = if_not_exists(#plan, :defPlan), " +
         "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
@@ -580,7 +581,7 @@ export async function analyticsTrackScenario(
     "#firstSeenAt": "firstSeenAt",
     "#createdAt": "createdAt",
     "#activeBookIds": "activeBookIds",
-    ...(args.stage === "approved"
+    ...(isApproval
       ? { "#approvedScenarios": "approvedScenarios" }
       : { "#totalScenarios": "totalScenarioSubmissions" }),
   };

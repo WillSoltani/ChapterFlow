@@ -4,6 +4,7 @@ import {
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { streakAtRiskEmail } from "./email-templates/streak-at-risk";
 
 type UserSettings = {
   PK: string;
@@ -21,6 +22,19 @@ type StreakItem = {
   lastActiveDate: string | null;
   lastActiveTimezone: string | null;
 };
+
+function getTodayInTimezone(tz: string): string {
+  try {
+    return new Intl.DateTimeFormat("en-CA", {
+      timeZone: tz,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date());
+  } catch {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
 
 export async function processStreakAtRisk(
   ddb: DynamoDBDocumentClient,
@@ -55,7 +69,9 @@ export async function processStreakAtRisk(
     }
 
     // Check if last active date is today (already active, no risk)
-    const today = new Date().toISOString().slice(0, 10);
+    // Use the user's timezone so the comparison matches how lastActiveDate was stored
+    const tz = streak.lastActiveTimezone || "UTC";
+    const today = getTodayInTimezone(tz);
     if (streak.lastActiveDate === today) {
       skipped++;
       continue;
@@ -72,7 +88,6 @@ export async function processStreakAtRisk(
     }
 
     // Calculate hours remaining (streak resets at midnight in user's timezone)
-    const tz = streak.lastActiveTimezone || "UTC";
     let hoursRemaining = 6; // default
     try {
       const nowInTz = new Date().toLocaleTimeString("en-US", { timeZone: tz, hour12: false });
@@ -86,29 +101,48 @@ export async function processStreakAtRisk(
       continue;
     }
 
-    // Send notification
+    // Write in-app notification
+    const notifId = crypto.randomUUID();
+    const now = new Date().toISOString();
+    await ddb.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: item.PK,
+          SK: `NOTIF#${now}#${notifId}`,
+          entity: "BOOK_USER_NOTIFICATION",
+          userId,
+          notificationId: notifId,
+          type: "streak_at_risk",
+          title: `Your ${streak.currentStreak}-day streak is at risk`,
+          body: `You have ${hoursRemaining} hours to complete a chapter and keep your streak alive.`,
+          channel: "in_app",
+          readAt: null,
+          createdAt: now,
+        },
+      }),
+    );
+
+    // Send email notification
     if (notifications?.channels?.email !== false) {
       try {
-        // Get user profile for email
         const profileResult = await ddb.send(
           new GetCommand({ TableName: tableName, Key: { PK: item.PK, SK: "PROFILE" } }),
         );
         const email = (profileResult.Item as { email?: string })?.email;
+        const name = (profileResult.Item as { displayName?: string })?.displayName ?? "Reader";
         if (email) {
+          const tpl = streakAtRiskEmail({ name, currentStreak: streak.currentStreak, hoursRemaining });
           await ses.send(
             new SendEmailCommand({
               FromEmailAddress: senderEmail,
               Destination: { ToAddresses: [email] },
               Content: {
                 Simple: {
-                  Subject: { Data: `Your ${streak.currentStreak}-day streak ends in ${hoursRemaining} hours` },
+                  Subject: { Data: tpl.subject },
                   Body: {
-                    Text: {
-                      Data: `Your ${streak.currentStreak}-day reading streak ends tonight. Open ChapterFlow and complete one chapter to keep it alive.`,
-                    },
-                    Html: {
-                      Data: `<p>Your <strong>${streak.currentStreak}-day</strong> reading streak ends in <strong>${hoursRemaining} hours</strong>.</p><p>Open ChapterFlow and complete one chapter to keep it alive.</p>`,
-                    },
+                    Text: { Data: tpl.textBody },
+                    Html: { Data: tpl.htmlBody },
                   },
                 },
               },

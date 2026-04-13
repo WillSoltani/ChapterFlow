@@ -16,7 +16,9 @@ export function useCommitments(enabled: boolean) {
     try {
       const data = await fetchBookJson<CommitmentsPayload>("/app/api/book/me/commitments");
       setCommitments(data.commitments);
-    } catch {}
+    } catch (e) {
+      console.error("Failed to fetch commitments:", e);
+    }
   }, []);
 
   useEffect(() => {

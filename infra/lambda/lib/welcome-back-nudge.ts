@@ -4,6 +4,7 @@ import {
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { welcomeBackEmail } from "./email-templates/welcome-back";
 
 type UserSettings = {
   PK: string;
@@ -25,11 +26,10 @@ export async function processWelcomeBackNudge(
 ): Promise<{ sent: number; skipped: number }> {
   let sent = 0;
   let skipped = 0;
-  const today = new Date().toISOString().slice(0, 10);
 
   for (const item of userItems) {
     const notifications = item.settings?.notifications;
-    if (notifications?.welcomeBackEnabled === false || notifications?.channels?.email === false) {
+    if (notifications?.welcomeBackEnabled === false) {
       skipped++;
       continue;
     }
@@ -56,8 +56,8 @@ export async function processWelcomeBackNudge(
       continue;
     }
 
-    // Check dedup — don't send more than once per 30 days
-    const dedupKey = `NUDGE_SENT#welcome_back#${today}`;
+    // Check dedup — don't send more than once per 30 days (non-rotating key + 30-day TTL)
+    const dedupKey = `NUDGE_SENT#welcome_back`;
     const dedupResult = await ddb.send(
       new GetCommand({ TableName: tableName, Key: { PK: item.PK, SK: dedupKey } }),
     );
@@ -73,31 +73,53 @@ export async function processWelcomeBackNudge(
     const email = (progressResult.Item as { email?: string })?.email;
     const name = (progressResult.Item as { displayName?: string })?.displayName ?? "Reader";
 
-    if (!email) {
-      skipped++;
+    // Write in-app notification
+    const notifId = crypto.randomUUID();
+    const now = new Date().toISOString();
+    await ddb.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: item.PK,
+          SK: `NOTIF#${now}#${notifId}`,
+          entity: "BOOK_USER_NOTIFICATION",
+          userId,
+          notificationId: notifId,
+          type: "welcome_back_nudge",
+          title: `We saved your spot, ${name}`,
+          body: `It's been ${daysSinceActive} days. Jump back in and earn 30 Insight Points.`,
+          channel: "in_app",
+          readAt: null,
+          createdAt: now,
+        },
+      }),
+    );
+
+    if (!email || notifications?.channels?.email === false) {
+      // In-app was written; skip email send, write dedup and continue
+      const ttl = Math.floor(Date.now() / 1000) + 30 * 86400;
+      await ddb.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
+        }),
+      );
+      sent++;
       continue;
     }
 
     try {
+      const tpl = welcomeBackEmail({ name, daysSinceActive });
       await ses.send(
         new SendEmailCommand({
           FromEmailAddress: senderEmail,
           Destination: { ToAddresses: [email] },
           Content: {
             Simple: {
-              Subject: { Data: `We saved your spot, ${name}` },
+              Subject: { Data: tpl.subject },
               Body: {
-                Html: {
-                  Data: `
-<h2>Welcome back, ${name}!</h2>
-<p>It's been ${daysSinceActive} days since your last reading session. Your progress is right where you left it.</p>
-<p>Jump back in and earn <strong>30 Insight Points</strong> just for returning.</p>
-<p><a href="https://chapterflow.siliconx.ca/dashboard">Pick up where you left off</a></p>
-                  `.trim(),
-                },
-                Text: {
-                  Data: `Hey ${name}, it's been ${daysSinceActive} days. Your ChapterFlow progress is waiting. Return now and earn 30 IP.`,
-                },
+                Text: { Data: tpl.textBody },
+                Html: { Data: tpl.htmlBody },
               },
             },
           },

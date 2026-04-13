@@ -9,9 +9,11 @@ import {
   Home,
   LayoutGrid,
   LogOut,
+  Map,
   Settings,
   Shield,
   TrendingUp,
+  Trophy,
   User,
 } from "lucide-react";
 import { SearchBox } from "@/app/book/home/components/SearchBox";
@@ -22,7 +24,7 @@ import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 import { NotificationBell } from "@/app/book/_components/NotificationBell";
 import { performLogout } from "@/lib/logout";
 
-export type BookNavTab = "home" | "library" | "saved" | "progress" | "badges" | "settings" | "profile";
+export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "settings" | "profile";
 
 type TopNavProps = {
   name: string;
@@ -38,16 +40,25 @@ type TopNavProps = {
   logoVariant?: "default" | "dashboard";
 };
 
-const navItems: Array<{
+type NavItem = {
   id: BookNavTab;
   label: string;
   href: string;
   icon: React.ComponentType<{ className?: string }>;
-}> = [
+};
+
+/** Shown in both desktop nav and mobile bottom bar */
+const navItems: NavItem[] = [
   { id: "home", label: "Home", href: "/dashboard", icon: Home },
   { id: "library", label: "Library", href: "/book/library", icon: LayoutGrid },
   { id: "progress", label: "Progress", href: "/book/progress", icon: TrendingUp },
   { id: "badges", label: "Badges", href: "/book/badges", icon: Shield },
+];
+
+/** Shown only in desktop top nav (too many items for mobile bottom bar) */
+const desktopOnlyNavItems: NavItem[] = [
+  { id: "journeys", label: "Journeys", href: "/book/journeys", icon: Map },
+  { id: "events", label: "Events", href: "/book/events", icon: Trophy },
 ];
 
 export function TopNav({
@@ -184,7 +195,7 @@ export function TopNav({
 
             {/* Desktop nav — hidden on mobile (use bottom tab bar instead) */}
             <nav className="ml-5 hidden items-center gap-0.5 md:flex">
-              {navItems.map((item) => {
+              {[...navItems, ...desktopOnlyNavItems].map((item) => {
                 const active = item.id === activeTab;
                 const Icon = item.icon;
                 return (

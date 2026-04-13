@@ -108,6 +108,7 @@ function buildReason(
 export function generateStarterPrescription(
   motivation: string,
   interests: string[],
+  starterShelf?: string[],
 ): StarterPrescription {
   const mot = (
     ["career", "academic", "personal", "curiosity"].includes(motivation)
@@ -115,7 +116,14 @@ export function generateStarterPrescription(
       : "curiosity"
   ) as Motivation;
 
-  const bookIds = Object.keys(BOOK_META);
+  const allBookIds = Object.keys(BOOK_META);
+  // If the user selected books during onboarding, only consider those that we have scoring data for
+  const candidateIds =
+    starterShelf && starterShelf.length > 0
+      ? allBookIds.filter((id) => starterShelf.includes(id))
+      : allBookIds;
+  // Fall back to full set if none of the shelf books have scoring data
+  const bookIds = candidateIds.length > 0 ? candidateIds : allBookIds;
   const scores: Record<string, number> = {};
 
   for (const bookId of bookIds) {

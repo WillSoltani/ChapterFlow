@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main distinction does Chapter 7 make about attention?",
+      "choices": [
+        "A) Between present-step attention and speculative future projection",
+        "B) Between calm emotion and strong emotion",
+        "C) Between planning for others and planning for yourself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates staying with the current move from mentally living inside imagined future burdens.",
+        "direct": "Correct. The key split is present-step attention versus speculative projection.",
+        "competitive": "Live move versus fake future load. That is the line."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does the chapter mean by future drag?",
+      "choices": [
+        "A) A scheduling problem caused by poor calendar management",
+        "B) The way imagined future burdens get pulled backward into the current obstacle",
+        "C) The emotional letdown that comes after long-term planning ends"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Future drag happens when tomorrow's feared burdens get added to today's real step.",
+        "direct": "Correct. Future drag enlarges the obstacle by attaching speculative burden to the present.",
+        "competitive": "The mind starts hauling tomorrow's weight into today's rep."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Lena keeps imagining next month's deadline disaster instead of finishing the checklist item open in front of her. Which response best fits the chapter's work scenario?",
+      "choices": [
+        "A) Return attention to the current task window and complete the next step before re-entering future planning",
+        "B) Keep forecasting the worst case so she feels fully responsible",
+        "C) Stop planning altogether so deadlines lose their power"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter moves Lena back to the step that can actually be done now.",
+        "direct": "Correct. Present attention keeps force on the executable task instead of on imagined collapse.",
+        "competitive": "The checklist is real. The theatrical disaster reel is not yet."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Marcus hears a difficult comment in a school conversation and immediately starts imagining the whole admissions process collapsing. What would Chapter 7 tell him to do first?",
+      "choices": [
+        "A) Stay with the sentence actually spoken and respond to the current exchange before forecasting the larger ending",
+        "B) Assume the worst now so the disappointment will hurt less later",
+        "C) Refuse to think about the future at all from this point on"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter narrows Marcus back to the present conversation instead of the imagined future verdict.",
+        "direct": "Correct. Answer the current exchange, not the catastrophe forecast growing behind it.",
+        "competitive": "One sentence got spoken. He does not need to answer the whole imagined rejection letter yet."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter most likely reject as a misreading of presence?",
+      "choices": [
+        "A) Presence means giving the current step full attention even when the future still matters",
+        "B) Presence means never planning ahead because planning belongs to fear",
+        "C) Presence means stopping future projection from swelling the present burden"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reject planning. It rejects living mentally inside speculative futures.",
+        "direct": "Correct. Anti-planning passivity is a distortion, not the chapter's message.",
+        "competitive": "If presence killed planning, the chapter would just be irresponsibility with cleaner branding."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does the chapter distinguish planning from projection?",
+      "choices": [
+        "A) Planning sharpens the next move and returns to the task, while projection keeps living inside imagined outcomes",
+        "B) Planning avoids emotion, while projection allows emotion to speak honestly",
+        "C) Planning belongs to calm people, while projection belongs to ambitious people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Useful planning visits the future briefly and comes back. Projection mentally moves in and drains the present step.",
+        "direct": "Correct. The difference is whether attention returns to execution.",
+        "competitive": "Plan, note, return. Projection camps out and taxes the task window."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Talia starts spiraling after one personal setback and keeps imagining a long chain of future losses. According to the chapter, what is the sharper move?",
+      "choices": [
+        "A) Force herself to believe the future will definitely turn out well",
+        "B) Bring attention back to the present step or present sentence that can actually be worked now",
+        "C) Ignore the setback completely so it cannot grow in meaning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter interrupts the spiral by shrinking attention back to what is live now.",
+        "direct": "Correct. Present-step attention breaks the chain of speculative burden.",
+        "competitive": "Cut the imagined sequence and work the live frame."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Everett keeps thinking about how his project might be judged months from now instead of working today's execution window. Which transfer best matches the chapter?",
+      "choices": [
+        "A) Replace future judgment fantasies with the current task window where useful work can happen",
+        "B) Spend more time gaming likely reactions so the future feels controlled",
+        "C) Treat long-term judgment as irrelevant to his work and stop caring about outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter redirects Everett from speculative burden to the part of time where action is still possible.",
+        "direct": "Correct. The execution window is where force belongs.",
+        "competitive": "Months-later judgment is a mirage if today's rep stays untouched."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's hardest claim about responsible planning?",
+      "choices": [
+        "A) Planning is usually a disguised form of fear and should be minimized whenever possible",
+        "B) The future should be ignored unless it becomes an immediate emergency",
+        "C) You can plan responsibly without letting imagined futures colonize the attention needed for the current task"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps planning alive but refuses to let future imagination occupy the whole present.",
+        "direct": "Correct. The hard boundary is visit the future, then return.",
+        "competitive": "Planning gets a passport, not permanent residency in your head."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the chapter point next toward thinking differently?",
+      "choices": [
+        "A) Because once attention returns to the live step, the mind has more room to break stale patterns instead of reacting automatically",
+        "B) Because different thinking matters only after future planning has been abandoned entirely",
+        "C) Because present-moment attention automatically generates original ideas without effort"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter clears attentional clutter so the next chapter can work on new ways of seeing and responding.",
+        "direct": "Correct. Presence stabilizes attention enough for unconventional thinking to become usable.",
+        "competitive": "When the fake future noise drops, the stuck pattern becomes easier to challenge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

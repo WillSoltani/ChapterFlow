@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-import { MessageSquare, Send, X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Send, Sparkles, Square, Trash2, X } from "lucide-react";
 
 type Message = {
   role: "user" | "assistant";
@@ -11,28 +11,168 @@ type Message = {
 type AskBookDrawerProps = {
   bookId: string;
   bookTitle: string;
+  chapterNumber?: number;
 };
 
-export function AskBookDrawer({ bookId, bookTitle }: AskBookDrawerProps) {
+function sessionKey(bookId: string) {
+  return `ask-book-chat:${bookId}`;
+}
+
+const STARTER_QUESTIONS = [
+  "What's the main idea of this chapter?",
+  "Give me the key takeaways",
+  "How can I apply this today?",
+];
+
+const FOLLOW_UP_QUESTIONS = [
+  "Can you give me an example?",
+  "Why does this matter?",
+  "What should I remember most?",
+  "How does this connect to earlier chapters?",
+];
+
+function pickFollowUps(messages: Message[]): string[] {
+  // Pick 2 follow-ups that haven't been asked yet
+  const asked = new Set(messages.filter((m) => m.role === "user").map((m) => m.content.toLowerCase()));
+  const available = FOLLOW_UP_QUESTIONS.filter((q) => !asked.has(q.toLowerCase()));
+  // Shuffle and take 2
+  const shuffled = available.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 2);
+}
+
+function SimpleMarkdown({ text }: { text: string }) {
+  const lines = text.split("\n");
+  return (
+    <div className="space-y-1">
+      {lines.map((line, i) => {
+        const isBullet = /^[-*]\s/.test(line);
+        const content = line.replace(/^[-*]\s/, "");
+        const parts = content.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\[Ch\.\s*\d+\])/g);
+        const rendered = parts.map((part, j) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={j}>{part.slice(2, -2)}</strong>;
+          }
+          if (part.startsWith("*") && part.endsWith("*")) {
+            return <em key={j}>{part.slice(1, -1)}</em>;
+          }
+          if (/^\[Ch\.\s*\d+\]$/.test(part)) {
+            return (
+              <span key={j} className="rounded bg-(--cf-accent)/15 px-1 text-xs font-medium text-(--cf-accent)">
+                {part}
+              </span>
+            );
+          }
+          return part;
+        });
+        if (isBullet) {
+          return (
+            <div key={i} className="flex gap-1.5">
+              <span className="mt-0.5 text-(--cf-text-3)">•</span>
+              <span>{rendered}</span>
+            </div>
+          );
+        }
+        return line ? <p key={i}>{rendered}</p> : <br key={i} />;
+      })}
+    </div>
+  );
+}
+
+function TypingIndicator() {
+  return (
+    <div className="flex items-center gap-1 px-1 py-0.5">
+      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60" style={{ animationDelay: "0ms" }} />
+      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60" style={{ animationDelay: "150ms" }} />
+      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60" style={{ animationDelay: "300ms" }} />
+    </div>
+  );
+}
+
+export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawerProps) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const messagesRef = useRef<Message[]>(messages);
+  messagesRef.current = messages;
+
+  // Hydrate messages from sessionStorage on mount
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem(sessionKey(bookId));
+      if (stored) {
+        const parsed = JSON.parse(stored) as Message[];
+        setMessages(parsed);
+        messagesRef.current = parsed;
+      }
+    } catch {}
+  }, [bookId]);
+
+  // Persist messages to sessionStorage on change
+  useEffect(() => {
+    try {
+      if (messages.length > 0) {
+        sessionStorage.setItem(sessionKey(bookId), JSON.stringify(messages));
+      }
+    } catch {}
+  }, [messages, bookId]);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  const handleSubmit = useCallback(async () => {
-    const question = input.trim();
+  const handleAbort = useCallback(() => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    setStreaming(false);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    handleAbort();
+    setOpen(false);
+  }, [handleAbort]);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, handleClose]);
+
+  // Auto-focus input when drawer opens
+  useEffect(() => {
+    if (open) {
+      const id = setTimeout(() => inputRef.current?.focus(), 100);
+      return () => clearTimeout(id);
+    }
+  }, [open]);
+
+  const handleClear = useCallback(() => {
+    setMessages([]);
+    setError(null);
+    try {
+      sessionStorage.removeItem(sessionKey(bookId));
+    } catch {}
+  }, [bookId]);
+
+  const handleSubmit = useCallback(async (overrideQuestion?: string) => {
+    const question = (overrideQuestion ?? input).trim();
     if (!question || streaming) return;
 
-    setInput("");
+    if (!overrideQuestion) setInput("");
     setError(null);
     setMessages((prev) => [...prev, { role: "user", content: question }]);
     setStreaming(true);
+
+    const controller = new AbortController();
+    abortRef.current = controller;
 
     let accumulated = "";
 
@@ -40,12 +180,14 @@ export function AskBookDrawer({ bookId, bookTitle }: AskBookDrawerProps) {
       const res = await fetch(`/app/api/book/books/${encodeURIComponent(bookId)}/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question, history: messagesRef.current, chapterNumber }),
+        signal: controller.signal,
       });
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
         setError((err as { error?: { message?: string } })?.error?.message ?? "Failed to get response");
+        abortRef.current = null;
         setStreaming(false);
         return;
       }
@@ -53,6 +195,7 @@ export function AskBookDrawer({ bookId, bookTitle }: AskBookDrawerProps) {
       const reader = res.body?.getReader();
       if (!reader) {
         setError("No response stream");
+        abortRef.current = null;
         setStreaming(false);
         return;
       }
@@ -90,109 +233,225 @@ export function AskBookDrawer({ bookId, bookTitle }: AskBookDrawerProps) {
             } else if (event.type === "error") {
               setError(event.message);
             }
-          } catch {}
+          } catch (e) {
+            if (process.env.NODE_ENV === "development") {
+              console.warn("[AskBookDrawer] SSE parse error:", e, line);
+            }
+          }
         }
       }
-    } catch {
-      setError("Network error");
+    } catch (e) {
+      if ((e as Error)?.name !== "AbortError") {
+        setError("Network error");
+      }
     }
 
+    abortRef.current = null;
     setStreaming(false);
     scrollToBottom();
-  }, [input, streaming, bookId, scrollToBottom]);
+  }, [input, streaming, bookId, chapterNumber, scrollToBottom]);
 
-  if (!open) {
-    return (
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="fixed bottom-24 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent) text-white shadow-lg transition hover:brightness-110 md:bottom-8"
-        title={`Ask about ${bookTitle}`}
-      >
-        <MessageSquare className="h-5 w-5" />
-      </button>
-    );
+  // Determine if we should show follow-up suggestions (memoized to avoid re-shuffle on every render)
+  const lastMessage = messages[messages.length - 1];
+  const showFollowUps = !streaming && messages.length > 0 && lastMessage?.role === "assistant" && lastMessage?.content;
+  const followUpsKey = messages.length;
+  const followUpsRef = useRef<{ key: number; items: string[] }>({ key: -1, items: [] });
+  if (showFollowUps && followUpsRef.current.key !== followUpsKey) {
+    followUpsRef.current = { key: followUpsKey, items: pickFollowUps(messages) };
   }
+  const followUps = showFollowUps ? followUpsRef.current.items : [];
 
   return (
-    <div className="fixed bottom-0 right-0 z-50 flex h-[70vh] w-full flex-col border-l border-(--cf-border) bg-(--cf-surface-strong) shadow-2xl md:bottom-4 md:right-4 md:h-[600px] md:w-[400px] md:rounded-2xl md:border">
-      {/* Header */}
-      <div className="flex items-center justify-between border-b border-(--cf-border) px-4 py-3">
-        <div>
-          <h3 className="text-sm font-semibold text-(--cf-text-1)">Ask the Book</h3>
-          <p className="text-xs text-(--cf-text-3)">{bookTitle}</p>
-        </div>
+    <>
+      {/* Floating chat bubble */}
+      {!open && (
         <button
           type="button"
-          onClick={() => setOpen(false)}
-          className="text-(--cf-text-3) hover:text-(--cf-text-1)"
+          onClick={() => setOpen(true)}
+          className="fixed bottom-24 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent) text-white shadow-(--cf-shadow-lg) transition hover:brightness-110 md:bottom-8"
+          title="Ask Raymond"
         >
-          <X className="h-4 w-4" />
+          <Sparkles className="h-5 w-5" />
         </button>
-      </div>
+      )}
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-        {messages.length === 0 && (
-          <div className="flex h-full items-center justify-center">
-            <p className="text-center text-sm text-(--cf-text-3)">
-              Ask any question about this book.
-              <br />
-              Answers are grounded in the chapter content.
-            </p>
-          </div>
-        )}
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-          >
-            <div
-              className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-                msg.role === "user"
-                  ? "bg-(--cf-accent) text-white"
-                  : "bg-(--cf-surface-muted) text-(--cf-text-1)"
-              }`}
-            >
-              {msg.content || (
-                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-              )}
+      {/* Backdrop overlay */}
+      {open ? (
+        <div
+          className="fixed inset-0 z-50 bg-(--cf-overlay) backdrop-blur-[2px]"
+          onClick={handleClose}
+          aria-hidden="true"
+        />
+      ) : null}
+
+      {/* Drawer */}
+      <aside
+        className={[
+          "fixed z-[60] flex flex-col border-(--cf-border) bg-(--cf-surface-strong) shadow-(--shadow-modal) transition-transform duration-200",
+          "inset-x-0 bottom-0 h-[70vh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:w-[400px] md:rounded-none md:border-l md:border-t-0",
+          open ? "translate-y-0 md:translate-x-0" : "translate-y-full md:translate-y-0 md:translate-x-full",
+        ].join(" ")}
+        role="dialog"
+        aria-modal={open}
+        aria-hidden={!open}
+        aria-label="Ask Raymond"
+        inert={!open}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-(--cf-divider) px-4 py-3">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-(--cf-accent)/15 text-(--cf-accent)">
+              <Sparkles className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-(--cf-text-1)">Raymond</p>
+              <p className="text-xs text-(--cf-text-3)">{bookTitle}</p>
             </div>
           </div>
-        ))}
-        {error && (
-          <p className="text-center text-xs text-(--cf-danger-text)">{error}</p>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
+          <div className="flex items-center gap-1.5">
+            {messages.length > 0 && !streaming && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition-colors hover:text-(--cf-danger-text)"
+                aria-label="Clear chat"
+                title="Clear chat"
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={handleClose}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition-colors hover:text-(--cf-text-1)"
+              aria-label="Close chat"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
 
-      {/* Input */}
-      <div className="border-t border-(--cf-border) px-4 py-3">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}
-          className="flex items-center gap-2"
-        >
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question..."
-            maxLength={500}
-            disabled={streaming}
-            className="flex-1 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-3) focus:border-(--cf-accent) focus:outline-none disabled:opacity-50"
-          />
-          <button
-            type="submit"
-            disabled={!input.trim() || streaming}
-            className="flex h-9 w-9 items-center justify-center rounded-xl bg-(--cf-accent) text-white transition hover:brightness-110 disabled:opacity-50"
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+          {messages.length === 0 && (
+            <div className="flex h-full flex-col items-center justify-center gap-5">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-(--cf-accent)/10 text-(--cf-accent)">
+                <Sparkles className="h-7 w-7" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-(--cf-text-1)">Hey, I&apos;m Raymond</p>
+                <p className="mt-1 text-xs text-(--cf-text-3)">
+                  Ask me anything about this chapter.
+                  <br />
+                  I know the book inside out.
+                </p>
+              </div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {STARTER_QUESTIONS.map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => handleSubmit(q)}
+                    className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-xs text-(--cf-text-2) transition-colors hover:border-(--cf-accent) hover:text-(--cf-accent)"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+            >
+              {msg.role === "assistant" && (
+                <div className="mr-2 mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-(--cf-accent)/15 text-(--cf-accent)">
+                  <Sparkles className="h-3 w-3" />
+                </div>
+              )}
+              <div
+                className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                  msg.role === "user"
+                    ? "bg-(--cf-accent) text-white"
+                    : "bg-(--cf-surface-muted) text-(--cf-text-1)"
+                }`}
+              >
+                {msg.content ? (
+                  msg.role === "assistant" ? (
+                    <SimpleMarkdown text={msg.content} />
+                  ) : (
+                    msg.content
+                  )
+                ) : (
+                  <TypingIndicator />
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* Follow-up suggestions */}
+          {followUps.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 pl-8">
+              {followUps.map((q) => (
+                <button
+                  key={q}
+                  type="button"
+                  onClick={() => handleSubmit(q)}
+                  className="rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-xs text-(--cf-text-3) transition-colors hover:border-(--cf-accent) hover:text-(--cf-accent)"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {error && (
+            <p className="text-center text-xs text-(--cf-danger-text)">{error}</p>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Input */}
+        <div className="border-t border-(--cf-divider) px-4 py-3">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+            className="flex items-center gap-2"
           >
-            <Send className="h-4 w-4" />
-          </button>
-        </form>
-      </div>
-    </div>
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask Raymond..."
+              maxLength={500}
+              disabled={streaming}
+              className="cf-input flex-1 rounded-xl px-3 py-2 text-sm disabled:opacity-50"
+            />
+            {streaming ? (
+              <button
+                type="button"
+                onClick={handleAbort}
+                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-danger-text) transition-colors hover:bg-(--cf-danger-bg)"
+                title="Stop generating"
+              >
+                <Square className="h-3.5 w-3.5" />
+              </button>
+            ) : (
+              <button
+                type="submit"
+                disabled={!input.trim()}
+                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-white transition hover:brightness-110 disabled:opacity-50"
+              >
+                <Send className="h-4 w-4" />
+              </button>
+            )}
+          </form>
+        </div>
+      </aside>
+    </>
   );
 }

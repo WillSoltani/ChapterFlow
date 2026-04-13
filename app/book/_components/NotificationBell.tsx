@@ -1,7 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Bell } from "lucide-react";
+import {
+  Award,
+  BarChart3,
+  Bell,
+  BookOpen,
+  Flame,
+  HandHeart,
+  TrendingUp,
+  Users,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 
 type Notification = {
@@ -12,6 +23,51 @@ type Notification = {
   readAt: string | null;
   createdAt: string;
 };
+
+function getNotificationMeta(type: string): { icon: LucideIcon; color: string } {
+  switch (type) {
+    case "streak_at_risk":
+      return { icon: Flame, color: "var(--cf-warning-text)" };
+    case "weekly_digest":
+      return { icon: BarChart3, color: "var(--cf-accent)" };
+    case "welcome_back_nudge":
+      return { icon: HandHeart, color: "var(--cf-success-text)" };
+    case "reading_reminder":
+      return { icon: BookOpen, color: "var(--cf-accent)" };
+    case "badge_earned":
+      return { icon: Award, color: "var(--cf-warning-text)" };
+    case "tier_up":
+      return { icon: TrendingUp, color: "var(--cf-accent)" };
+    case "streak_milestone":
+      return { icon: Flame, color: "var(--cf-accent)" };
+    case "insight_spark":
+      return { icon: Zap, color: "var(--cf-warning-text)" };
+    case "partner_nudge":
+      return { icon: Users, color: "var(--cf-accent)" };
+    case "scenario_approved":
+      return { icon: Award, color: "var(--cf-success-text)" };
+    case "scenario_rejected":
+      return { icon: Bell, color: "var(--cf-warning-text)" };
+    default:
+      return { icon: Bell, color: "var(--cf-text-3)" };
+  }
+}
+
+function formatRelativeTime(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  const diffMs = Date.now() - date.getTime();
+  const diffMin = Math.floor(diffMs / 60_000);
+  if (diffMin < 1) return "Just now";
+  if (diffMin < 60) return `${diffMin}m ago`;
+  const diffH = Math.floor(diffMin / 60);
+  if (diffH < 24) return `${diffH}h ago`;
+  const diffD = Math.floor(diffH / 24);
+  if (diffD === 1) return "Yesterday";
+  if (diffD < 7) return `${diffD}d ago`;
+  if (diffD < 30) return `${Math.floor(diffD / 7)}w ago`;
+  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
 
 export function NotificationBell() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -95,22 +151,34 @@ export function NotificationBell() {
             </div>
           ) : (
             <ul className="divide-y divide-(--cf-border)">
-              {notifications.slice(0, 20).map((n) => (
-                <li
-                  key={n.notificationId}
-                  className={`px-4 py-3 text-sm ${n.readAt ? "opacity-60" : ""}`}
-                >
-                  <p className="font-medium text-(--cf-text-1) text-xs">
-                    {n.title}
-                  </p>
-                  <p className="text-xs text-(--cf-text-3) mt-0.5 line-clamp-2">
-                    {n.body}
-                  </p>
-                  <p className="text-[10px] text-(--cf-text-3)/50 mt-1">
-                    {new Date(n.createdAt).toLocaleDateString()}
-                  </p>
-                </li>
-              ))}
+              {notifications.slice(0, 20).map((n) => {
+                const meta = getNotificationMeta(n.type);
+                const Icon = meta.icon;
+                return (
+                  <li
+                    key={n.notificationId}
+                    className={`flex gap-3 px-4 py-3 text-sm ${n.readAt ? "opacity-60" : ""}`}
+                  >
+                    <div
+                      className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+                      style={{ backgroundColor: `color-mix(in srgb, ${meta.color} 12%, transparent)` }}
+                    >
+                      <Icon className="h-3.5 w-3.5" style={{ color: meta.color }} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-(--cf-text-1) text-xs">
+                        {n.title}
+                      </p>
+                      <p className="text-xs text-(--cf-text-3) mt-0.5 line-clamp-2">
+                        {n.body}
+                      </p>
+                      <p className="text-[10px] text-(--cf-text-3)/50 mt-1">
+                        {formatRelativeTime(n.createdAt)}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>

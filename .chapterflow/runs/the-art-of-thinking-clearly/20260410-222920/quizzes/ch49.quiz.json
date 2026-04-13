@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch49-q01",
+      "prompt": "What is beginner's luck?",
+      "choices": [
+        "An early success gets overread as proof of durable skill",
+        "A person forgets how to do something simple",
+        "A result improves only after long training"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The first win gets treated like stronger evidence than it really is.",
+        "direct": "Correct. A favorable early outcome is being mistaken for stable competence too quickly.",
+        "competitive": "Right. One bounce is trying to write a whole r\u00e9sum\u00e9."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch49-q02",
+      "prompt": "Which case best fits this chapter?",
+      "choices": [
+        "A new investor makes money once and assumes they have lasting market skill",
+        "A veteran keeps improving after years of practice",
+        "A machine works exactly as expected"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. One early result is being promoted into a bigger skill story.",
+        "direct": "Correct. A single favorable outcome is being overread as durable insight.",
+        "competitive": "That is it. One trade is trying to become a Wall Street legend."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch49-q03",
+      "prompt": "What can make an early win misleading?",
+      "choices": [
+        "Luck, timing, or forgiving conditions",
+        "Too much repetition",
+        "A long track record"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The win can be helped by factors other than durable skill.",
+        "direct": "Correct. Variance and favorable conditions can flatter the beginner early.",
+        "competitive": "Exactly. Soft openings can forge fake credentials."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch49-q04",
+      "prompt": "Why is one strong early performance weak evidence for mastery?",
+      "choices": [
+        "Because repeatability under pressure and harder conditions has not been tested yet",
+        "Because first successes are always fake",
+        "Because talent never shows up early"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. One outcome cannot show how stable the ability really is.",
+        "direct": "Correct. Durable skill is a stronger claim than one flattering sample can usually support.",
+        "competitive": "Right. The first round has not yet had to survive bad weather."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch49-q05",
+      "prompt": "What is the right boundary for this chapter?",
+      "choices": [
+        "Early success can be encouraging without being full proof",
+        "Every first win is meaningless",
+        "Confidence should never rise after success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter allows signal without granting too much certainty.",
+        "direct": "Correct. The warning is against overclaiming, not against all early optimism.",
+        "competitive": "Exactly. Keep the spark, skip the fake coronation."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch49-q06",
+      "prompt": "What is the better judgment move after an early success?",
+      "choices": [
+        "Ask what would still hold under repetition and tougher conditions",
+        "Assume the skill is now proven",
+        "Ignore the result completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The question is whether the win can repeat under stress.",
+        "direct": "Correct. The evidence should be tested across broader and less favorable conditions.",
+        "competitive": "Right. Make the hot start survive rematches before you trust it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch49-q07",
+      "prompt": "What deeper risk follows when a first win becomes an identity story?",
+      "choices": [
+        "Confidence and risk-taking can rise faster than competence has been demonstrated",
+        "The original result disappears",
+        "Luck becomes impossible afterward"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Bigger decisions can start resting on thin evidence.",
+        "direct": "Correct. Behavioral escalation often follows when identity hardens faster than the proof.",
+        "competitive": "That is the danger. One lucky round starts financing bigger bets and louder swagger."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch49-q08",
+      "prompt": "What is the hard diagnostic question in this chapter?",
+      "choices": [
+        "What evidence shows this success can survive repetition, pressure, and less favorable conditions?",
+        "Did the early win feel exciting?",
+        "Was the first result better than average?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question raises the evidence standard to a fair level.",
+        "direct": "Correct. The chapter asks whether the result is stable across repetition and harsher conditions.",
+        "competitive": "That is the knife. It makes the win live outside its first lucky room."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch49-q09",
+      "prompt": "Why should early success not be dismissed completely?",
+      "choices": [
+        "Because it can still reveal promise or fit even if it is weak proof of mastery",
+        "Because one win guarantees future dominance",
+        "Because luck counts as skill over time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter allows that early success can still contain useful signal.",
+        "direct": "Correct. Early wins may justify continued effort without justifying a full durable-skill conclusion.",
+        "competitive": "Right. The spark can be real even if the crown is fake."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch49-q10",
+      "prompt": "Which conclusion best fits this chapter?",
+      "choices": [
+        "Treat the first win as data, not as a final r\u00e9sum\u00e9",
+        "Turn every early success into a durable identity claim",
+        "Distrust every encouraging start completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The result matters, but its meaning should stay provisional until tested.",
+        "direct": "Correct. Better judgment assigns the first success the smaller status it has actually earned.",
+        "competitive": "Exactly. The r\u00e9sum\u00e9 starts later, after the rematches."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

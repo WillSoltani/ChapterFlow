@@ -21,17 +21,24 @@ import {
   getUserEngagement,
   listApprovedScenariosForChapter,
   listUserScenarioSubmissions,
+  putApprovedScenario,
   putScenarioLookup,
   putScenarioModerationItem,
   putUserScenarioSubmission,
 } from "@/app/app/api/book/_lib/repo";
+import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import { validateScenario, type ScenarioValidationResult } from "@/app/app/api/book/_lib/ai-service";
+import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
+import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
 import type {
   BookScenarioLookupItem,
   BookScenarioModerationItem,
   BookUserScenarioSubmissionItem,
   ScenarioScope,
+  ScenarioSubmissionStatus,
 } from "@/app/app/api/book/_lib/types";
-import { analyticsTrackScenario } from "@/app/app/api/book/_lib/analytics-repo";
+import { analyticsTrackScenario, analyticsTrackFlowPointsTransaction } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
@@ -177,6 +184,32 @@ export async function POST(
       interactionChapterNumber: chapterNumberInt,
     });
 
+    // ── AI Validation ───────────────────────────────────────────────────────
+    const apiKey = await getServerEnv("ANTHROPIC_API_KEY");
+    let aiResult: ScenarioValidationResult = { decision: "queue_for_review", reason: "AI unavailable" };
+
+    if (apiKey) {
+      let chapterTitle = `Chapter ${chapterNumberInt}`;
+      let bookTitle = "";
+      try {
+        const { manifest } = await getPublishedBookManifest({ tableName, contentBucket, bookId });
+        bookTitle = manifest.title;
+        chapterTitle = manifest.chapters.find((c) => c.number === chapterNumberInt)?.title ?? chapterTitle;
+      } catch {
+        // Use fallback chapter title
+      }
+      aiResult = await validateScenario({
+        title, scenario, whatToDo, whyItMatters,
+        scope, chapterTitle, bookTitle, apiKey,
+      });
+    }
+
+    const initialStatus: ScenarioSubmissionStatus =
+      aiResult.decision === "auto_approve" ? "approved"
+      : aiResult.decision === "auto_reject" ? "rejected"
+      : "pending";
+
+    // ── Build records ────────────────────────────────────────────────────────
     const submissionItem: BookUserScenarioSubmissionItem = {
       userId: user.sub,
       submissionId,
@@ -188,44 +221,141 @@ export async function POST(
       whatToDo,
       whyItMatters,
       scope,
-      status: "pending",
+      status: initialStatus,
       pointsAwarded: SCENARIO_APPROVAL_POINTS,
       createdAt,
       updatedAt: createdAt,
+      userEmail: user.email,
+      userName: user.name ?? user.givenName,
+      aiValidation: {
+        decision: aiResult.decision,
+        reason: aiResult.reason,
+        model: "claude-haiku-4-5-20251001",
+        validatedAt: createdAt,
+      },
+      ...(initialStatus === "rejected" ? { reviewedAt: createdAt, reviewNotes: aiResult.reason } : {}),
     };
-    const moderationItem: BookScenarioModerationItem = {
-      ...submissionItem,
-      queuedAt: createdAt,
-    };
+
     const lookupItem: BookScenarioLookupItem = {
       submissionId,
       userId: user.sub,
       bookId,
       chapterNumber: chapterNumberInt,
       createdAt,
-      status: "pending",
+      status: initialStatus,
       pointsAwarded: SCENARIO_APPROVAL_POINTS,
-      queuedAt: createdAt,
+      ...(initialStatus === "pending" ? { queuedAt: createdAt } : {}),
+      ...(initialStatus === "approved" ? { approvedAt: createdAt } : {}),
       updatedAt: createdAt,
     };
 
-    await Promise.all([
-      putUserScenarioSubmission(tableName, submissionItem),
-      putScenarioModerationItem(tableName, moderationItem),
-      putScenarioLookup(tableName, lookupItem),
-    ]);
+    // ── Write to DB (3 paths) ────────────────────────────────────────────────
+    if (initialStatus === "approved") {
+      // Auto-approved: write submission + approved scenario + lookup (skip moderation queue)
+      await Promise.all([
+        putUserScenarioSubmission(tableName, submissionItem),
+        putApprovedScenario(tableName, {
+          submissionId,
+          userId: user.sub,
+          bookId,
+          chapterNumber: chapterNumberInt,
+          chapterId,
+          title,
+          scenario,
+          whatToDo,
+          whyItMatters,
+          scope,
+          approvedAt: createdAt,
+          createdAt,
+          updatedAt: createdAt,
+        }),
+        putScenarioLookup(tableName, lookupItem),
+      ]);
 
-    // Analytics — fire-and-forget
-    getBookAnalyticsTableName().then((analyticsTable) => {
-      if (!analyticsTable) return;
-      analyticsTrackScenario(analyticsTable, {
+      // Award flow points
+      const pointsResult = await awardFlowPoints(tableName, {
         userId: user.sub,
-        bookId,
-        chapterNumber: chapterNumberInt,
-        stage: "submitted",
-        pointsAwarded: 0,
+        amount: SCENARIO_APPROVAL_POINTS,
+        sourceType: "scenario_approved",
+        sourceId: submissionId,
+        metadata: { scope, bookId },
+      });
+
+      // Notification — fire-and-forget
+      createNotification(tableName, {
+        userId: user.sub,
+        type: "scenario_approved",
+        title: "Scenario Approved!",
+        body: `Your scenario "${title}" was approved! +${SCENARIO_APPROVAL_POINTS} Insight Points.`,
+        metadata: { submissionId, ip: SCENARIO_APPROVAL_POINTS },
+        userEmail: user.email,
+        userName: user.name ?? user.givenName,
       }).catch(() => {});
-    }).catch(() => {});
+
+      // Analytics — fire-and-forget
+      getBookAnalyticsTableName().then((analyticsTable) => {
+        if (!analyticsTable) return;
+        Promise.all([
+          analyticsTrackScenario(analyticsTable, {
+            userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+            stage: "auto_approved", pointsAwarded: SCENARIO_APPROVAL_POINTS,
+          }),
+          pointsResult.awarded ? analyticsTrackFlowPointsTransaction(analyticsTable, {
+            userId: user.sub, deltaPoints: SCENARIO_APPROVAL_POINTS,
+            direction: "earn", sourceType: "scenario_approved", sourceId: submissionId,
+            metadata: { scope, bookId },
+          }) : Promise.resolve(),
+        ]).catch(() => {});
+      }).catch(() => {});
+
+    } else if (initialStatus === "rejected") {
+      // Auto-rejected: write submission + lookup (skip moderation queue + approved scenario)
+      await Promise.all([
+        putUserScenarioSubmission(tableName, submissionItem),
+        putScenarioLookup(tableName, lookupItem),
+      ]);
+
+      // Notification — fire-and-forget
+      createNotification(tableName, {
+        userId: user.sub,
+        type: "scenario_rejected",
+        title: "Scenario Not Approved",
+        body: `Your scenario "${title}" wasn't approved: ${aiResult.reason}`,
+        metadata: { submissionId },
+        userEmail: user.email,
+        userName: user.name ?? user.givenName,
+      }).catch(() => {});
+
+      // Analytics — fire-and-forget
+      getBookAnalyticsTableName().then((analyticsTable) => {
+        if (!analyticsTable) return;
+        analyticsTrackScenario(analyticsTable, {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          stage: "auto_rejected", pointsAwarded: 0,
+        }).catch(() => {});
+      }).catch(() => {});
+
+    } else {
+      // Queued for review: existing flow
+      const moderationItem: BookScenarioModerationItem = {
+        ...submissionItem,
+        queuedAt: createdAt,
+      };
+      await Promise.all([
+        putUserScenarioSubmission(tableName, submissionItem),
+        putScenarioModerationItem(tableName, moderationItem),
+        putScenarioLookup(tableName, lookupItem),
+      ]);
+
+      // Analytics — fire-and-forget
+      getBookAnalyticsTableName().then((analyticsTable) => {
+        if (!analyticsTable) return;
+        analyticsTrackScenario(analyticsTable, {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          stage: "submitted", pointsAwarded: 0,
+        }).catch(() => {});
+      }).catch(() => {});
+    }
 
     const response = bookOk({
       submission: {
@@ -235,8 +365,9 @@ export async function POST(
         whatToDo,
         whyItMatters,
         scope,
-        status: "pending",
+        status: initialStatus,
         createdAt,
+        ...(initialStatus === "rejected" ? { reviewNotes: aiResult.reason } : {}),
       },
       points: (await getUserEngagement(tableName, user.sub))?.points ?? 0,
     });

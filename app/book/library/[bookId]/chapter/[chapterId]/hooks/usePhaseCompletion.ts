@@ -27,19 +27,21 @@ const MODE_CONFIG: Record<LearningMode, Record<ChapterTab, PhaseCompletionConfig
     summary: { scrollThreshold: 0.80, timeThreshold: 45 },
     examples: { scrollThreshold: 0.80, timeThreshold: 30 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
-    practice: { scrollThreshold: 0.80, timeThreshold: 30 },
+    // Practice phase is rendered inside ChapterCompleteModal, not as a
+    // navigable tab — these thresholds are not enforced at runtime.
+    practice: { scrollThreshold: 0, timeThreshold: 0 },
   },
   standard: {
     summary: { scrollThreshold: 0.90, timeThreshold: 60 },
     examples: { scrollThreshold: 0.90, timeThreshold: 30 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
-    practice: { scrollThreshold: 0.80, timeThreshold: 30 },
+    practice: { scrollThreshold: 0, timeThreshold: 0 },
   },
   challenge: {
     summary: { scrollThreshold: 0.90, timeThreshold: 60 },
     examples: { scrollThreshold: 0.90, timeThreshold: 30 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
-    practice: { scrollThreshold: 0.80, timeThreshold: 30 },
+    practice: { scrollThreshold: 0, timeThreshold: 0 },
   },
 };
 

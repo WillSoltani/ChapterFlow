@@ -33,8 +33,14 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 const VALID_NOTIFICATION_KEYS = new Set([
+  // Server-canonical keys (read by Lambda nudge handlers)
   "channels", "readingReminderEnabled", "reminderTimeLocal", "reminderTimezone",
   "streakReminderEnabled", "badgeCelebrationEnabled", "achievementAlertsEnabled",
+  "weeklyDigestEnabled", "welcomeBackEnabled",
+  // Client preference keys (not read by Lambda, but legitimate user prefs)
+  "notificationsEnabled", "reminderSchedule", "customReminderDays",
+  "quietHoursStart", "quietHoursEnd", "chapterUnlockedNotification",
+  "reminderToneStyle", "productUpdates", "promotionalEmail",
 ]);
 
 function validateNotificationPreferences(value: unknown): void {

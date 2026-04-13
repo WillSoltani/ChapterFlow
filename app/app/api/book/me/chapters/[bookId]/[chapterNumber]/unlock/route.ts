@@ -9,11 +9,16 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { getUserQuizState } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import {
+  listUserEvents,
+  recordEventChapter,
+} from "@/app/app/api/book/_lib/events-repo";
 import { bookUserPk, loopSk } from "@/app/app/api/book/_lib/keys";
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { LOOP_COMPLETE_IP } from "@/app/book/_lib/flow-points-economy";
 import type { LearningMode } from "@/app/book/settings/types/settings";
+import { listEventDefinitions } from "@/app/app/api/book/_lib/admin-events-repo";
 
 export const runtime = "nodejs";
 
@@ -97,6 +102,31 @@ export async function POST(
         isFirstAttempt,
       },
     });
+
+    // Record chapter completion against any active events the user joined.
+    // Pass the matching EventDefinition so completion + reward logic triggers.
+    // Fire-and-forget — event tracking should not block the main response.
+    const chapterId = `${bookId}:ch${chapterNumber}`;
+    const eventDefs = eventDefinitions as EventDefinition[];
+    const eventDefMap = new Map(eventDefs.map((d) => [d.eventId, d]));
+
+    listUserEvents(tableName, user.sub)
+      .then((participations) =>
+        Promise.all(
+          participations
+            .filter((p) => !p.completed)
+            .map((p) =>
+              recordEventChapter(
+                tableName,
+                user.sub,
+                p.eventId,
+                chapterId,
+                eventDefMap.get(p.eventId),
+              ),
+            ),
+        ),
+      )
+      .catch(() => {});
 
     return bookOk({
       awarded: result.awarded,

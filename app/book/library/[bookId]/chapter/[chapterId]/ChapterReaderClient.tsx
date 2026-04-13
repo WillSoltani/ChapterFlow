@@ -53,6 +53,8 @@ import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[book
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
 
 const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
@@ -112,6 +114,7 @@ export function ChapterReaderClient({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
+  const { identity: viewerIdentity } = useBookViewer();
   const [notesOpen, setNotesOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
@@ -513,12 +516,23 @@ export function ChapterReaderClient({
       : undefined,
   });
 
+  const [committedToChapter, setCommittedToChapter] = useState(false);
+
   const handleCommitment = useCallback(
     async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
-      await fetchBookJson("/app/api/book/me/commitments", {
-        method: "POST",
-        body: JSON.stringify(params),
-      });
+      try {
+        await fetchBookJson("/app/api/book/me/commitments", {
+          method: "POST",
+          body: JSON.stringify(params),
+        });
+        setCommittedToChapter(true);
+      } catch (err) {
+        if (err instanceof BookClientError && err.status === 409) {
+          setCommittedToChapter(true);
+          return;
+        }
+        throw err;
+      }
     },
     [],
   );
@@ -739,10 +753,16 @@ export function ChapterReaderClient({
         }
       );
       setUserSubmissions((prev) => [payload.submission, ...prev]);
-      setEngagementPoints((prev) => Math.max(prev, payload.points));
-      setToast(
-        `Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Insight Points.`
-      );
+      if (payload.submission.status === "approved") {
+        setEngagementPoints((prev) => Math.max(prev, payload.points));
+      }
+      const toastMsg =
+        payload.submission.status === "approved"
+          ? `Scenario approved! +${SCENARIO_SUBMISSION_POINTS} Insight Points earned.`
+          : payload.submission.status === "rejected"
+          ? `Scenario not approved: ${payload.submission.reviewNotes ?? "Did not meet quality criteria."}`
+          : `Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Insight Points.`;
+      setToast(toastMsg);
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : "Unable to submit scenario right now.";
@@ -948,6 +968,7 @@ export function ChapterReaderClient({
                 chapterId={chapterId}
                 bookId={bookId}
                 chapterNumber={chapter.order}
+                chapterTitle={chapter.title}
                 fetchFailed={scenariosFetchFailed}
                 onRetryFetch={() => setScenariosRefetchKey((k) => k + 1)}
               />
@@ -1072,6 +1093,17 @@ export function ChapterReaderClient({
           hasNextChapter={Boolean(nextChapter)}
           onNext={handleChapterCompleteNext}
           onLibrary={handleChapterCompleteLibrary}
+          onShare={async () => {
+            const isBookComplete = !nextChapter;
+            const params = isBookComplete
+              ? { type: "book" as const, bookTitle: entry?.title ?? bookId, author: entry?.author, userName: viewerIdentity.displayName }
+              : { type: "chapter" as const, bookTitle: entry?.title ?? bookId, author: entry?.author, chapter: String(chapter.order), takeaway: chapter.keyTakeawayCard ?? "", userName: viewerIdentity.displayName };
+            return performShare({
+              title: isBookComplete ? `Finished ${entry?.title ?? bookId}` : `Chapter ${chapter.order} Complete`,
+              text: buildShareText(params),
+              url: buildShareCardUrl(params),
+            });
+          }}
         >
           <PracticePhase
             keyTakeawayCard={chapter.keyTakeawayCard}
@@ -1094,6 +1126,7 @@ export function ChapterReaderClient({
               setToast("Step saved to notes.");
             }}
             onCommit={handleCommitment}
+            hasActiveCommitment={committedToChapter}
             hideContinueCta
           />
         </ChapterCompleteModal>
@@ -1183,7 +1216,7 @@ export function ChapterReaderClient({
       )}
 
       {/* Ask the Book — AI chat drawer */}
-      <AskBookDrawer bookId={bookId} bookTitle={entry?.title ?? bookId} />
+      <AskBookDrawer bookId={bookId} bookTitle={entry?.title ?? bookId} chapterNumber={chapter?.order} />
     </main>
   );
 }

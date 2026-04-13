@@ -14,8 +14,9 @@ export async function POST(req: Request, ctx: Params) {
     const user = await requireUser();
     const tableName = await getBookTableName();
     const { code } = await ctx.params;
+    const normalized = code.trim().toUpperCase();
 
-    const result = await acceptPairInvite(tableName, code, user.sub);
+    const result = await acceptPairInvite(tableName, normalized, user.sub);
     if (result.error) {
       return bookErr(req, 400, "pair_error", result.error);
     }

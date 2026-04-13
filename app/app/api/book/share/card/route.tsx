@@ -3,21 +3,43 @@ import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
+const VALID_TYPES = new Set(["chapter", "badge", "streak", "book"]);
+
+function clamp(value: string, max: number): string {
+  return value.length > max ? value.slice(0, max) + "…" : value;
+}
+
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-  const type = searchParams.get("type") ?? "chapter";
-  const bookTitle = searchParams.get("bookTitle") ?? "ChapterFlow";
-  const author = searchParams.get("author") ?? "";
+
+  const rawType = searchParams.get("type") ?? "chapter";
+  const type = VALID_TYPES.has(rawType) ? rawType : "chapter";
+
+  const bookTitle = clamp(searchParams.get("bookTitle") ?? "ChapterFlow", 120);
+  const author = clamp(searchParams.get("author") ?? "", 80);
   const chapter = searchParams.get("chapter") ?? "";
-  const takeaway = searchParams.get("takeaway") ?? "";
-  const userName = searchParams.get("userName") ?? "A ChapterFlow Reader";
-  const badgeName = searchParams.get("badgeName") ?? "";
-  const streakDays = searchParams.get("streakDays") ?? "";
+  const takeaway = clamp(searchParams.get("takeaway") ?? "", 300);
+  const userName = clamp(searchParams.get("userName") ?? "A ChapterFlow Reader", 60);
+  const badgeName = clamp(searchParams.get("badgeName") ?? "", 80);
+  const rawStreak = searchParams.get("streakDays") ?? "";
+  const streakDays = /^\d+$/.test(rawStreak) ? rawStreak : "";
   const referralCode = searchParams.get("ref") ?? "";
 
+  const siteHost = (() => {
+    try {
+      return new URL(
+        process.env.CHAPTERFLOW_SITE_BASE_URL ||
+          process.env.NEXT_PUBLIC_CHAPTERFLOW_SITE_URL ||
+          "https://chapterflow.ca",
+      ).host;
+    } catch {
+      return "chapterflow.ca";
+    }
+  })();
+
   const brandUrl = referralCode
-    ? `chapterflow.ca/ref/${referralCode}`
-    : "chapterflow.ca";
+    ? `${siteHost}/ref/${referralCode}`
+    : siteHost;
 
   return new ImageResponse(
     (
@@ -55,7 +77,7 @@ export async function GET(req: NextRequest) {
           </div>
 
           {/* Main content */}
-          {type === "chapter" && takeaway && (
+          {type === "chapter" && (
             <div
               style={{
                 display: "flex",
@@ -63,18 +85,30 @@ export async function GET(req: NextRequest) {
                 marginTop: "24px",
               }}
             >
-              <div
-                style={{
-                  fontSize: "32px",
-                  fontWeight: 600,
-                  color: "#ffffff",
-                  lineHeight: 1.4,
-                  maxHeight: "200px",
-                  overflow: "hidden",
-                }}
-              >
-                &ldquo;{takeaway.slice(0, 200)}{takeaway.length > 200 ? "..." : ""}&rdquo;
-              </div>
+              {takeaway ? (
+                <div
+                  style={{
+                    fontSize: "32px",
+                    fontWeight: 600,
+                    color: "#ffffff",
+                    lineHeight: 1.4,
+                    maxHeight: "200px",
+                    overflow: "hidden",
+                  }}
+                >
+                  &ldquo;{takeaway}&rdquo;
+                </div>
+              ) : (
+                <div
+                  style={{
+                    fontSize: "40px",
+                    fontWeight: 700,
+                    color: "#ffffff",
+                  }}
+                >
+                  {bookTitle}
+                </div>
+              )}
               <div
                 style={{
                   marginTop: "20px",
@@ -82,7 +116,7 @@ export async function GET(req: NextRequest) {
                   color: "#94a3b8",
                 }}
               >
-                {bookTitle} {chapter ? `· Ch. ${chapter}` : ""}
+                {takeaway ? bookTitle : ""} {chapter ? `${takeaway ? "· " : ""}Ch. ${chapter}` : ""}
               </div>
               {author && (
                 <div style={{ fontSize: "16px", color: "#64748b", marginTop: "4px" }}>
@@ -150,6 +184,12 @@ export async function GET(req: NextRequest) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 },
+    {
+      width: 1200,
+      height: 630,
+      headers: {
+        "Cache-Control": "public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400",
+      },
+    },
   );
 }

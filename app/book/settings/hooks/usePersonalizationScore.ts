@@ -29,7 +29,7 @@ export function usePersonalizationScore(
       [preferences.appearance.theme, defaultBookPreferencesState.appearance.theme],
       [preferences.appearance.reducedMotion, defaultBookPreferencesState.appearance.reducedMotion],
       [preferences.notifications.readingReminderEnabled, defaultBookPreferencesState.notifications.readingReminderEnabled],
-      [preferences.notifications.streakReminder, defaultBookPreferencesState.notifications.streakReminder],
+      [preferences.notifications.streakReminderEnabled, defaultBookPreferencesState.notifications.streakReminderEnabled],
       [preferences.accessibility.highContrastMode, defaultBookPreferencesState.accessibility.highContrastMode],
       [preferences.accessibility.dyslexiaFriendlyFont, defaultBookPreferencesState.accessibility.dyslexiaFriendlyFont],
       [preferences.goals.weeklyChapterGoal, defaultBookPreferencesState.goals.weeklyChapterGoal],

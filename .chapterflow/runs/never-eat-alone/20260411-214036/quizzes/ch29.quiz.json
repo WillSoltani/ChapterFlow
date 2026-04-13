@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about building the room?",
+      "choices": [
+        "Creating useful gatherings can compound network value more deeply than only attending other people's rooms",
+        "Hosting matters mainly because it increases visibility",
+        "A single event matters more than recurring connection"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats convening as multiplied usefulness.",
+        "direct": "Its core claim is that building useful rooms changes network position by creating repeated value for many people.",
+        "competitive": "Build the room, not just your access."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does recurrence matter so much here?",
+      "choices": [
+        "Because recurring gatherings deepen overlap, trust, and connection over time",
+        "Because frequent events are impressive on their own",
+        "Because repetition removes the need for shared value"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values repeated overlap that keeps helping people connect.",
+        "direct": "Recurrence matters because the room becomes a durable source of connection rather than a one-off display.",
+        "competitive": "Repeat the value, not just the event."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Olivia can keep chasing invitations or start hosting a useful recurring dinner for the right people. What best fits this chapter?",
+      "choices": [
+        "Build the useful recurring room so value can move between people repeatedly",
+        "Wait for better invitations because attending stronger rooms is always superior",
+        "Host a flashy one-time event to maximize attention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors creating useful architecture over relying only on access.",
+        "direct": "A recurring, valuable room fits this chapter better than waiting or staging spectacle.",
+        "competitive": "Stop waiting. Build the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "At a student dinner series, Daniel wants the gathering to matter beyond one night. What is his strongest move?",
+      "choices": [
+        "Design the dinner around recurring value and the right mix of people",
+        "Focus mainly on making the event feel exclusive",
+        "Keep the purpose vague so everyone can project their own meaning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values useful recurrence over prestige theater.",
+        "direct": "A strong gathering compounds when the people and purpose create repeatable value.",
+        "competitive": "Make the room worth returning to."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What hosting trap does this chapter criticize?",
+      "choices": [
+        "Treating gatherings as social spectacle rather than as useful architecture",
+        "Creating recurring overlap between the right people",
+        "Using a room to help others connect more easily"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects empty hosting and event theater.",
+        "direct": "Spectacle weakens the chapter because attention rises while shared value thins out.",
+        "competitive": "A flashy room can still be empty."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That useful convening can compound network strength",
+        "That gathering people matters even when little real value moves inside the room",
+        "That hosting can be stronger than attendance when it creates repeated overlap"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter refuses to separate the room from the value inside it.",
+        "direct": "Convening works here only when the gathering carries shared usefulness rather than empty visibility.",
+        "competitive": "The room must carry something real."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Priya feels tempted to host a gathering mostly because it would look impressive. What would this chapter tell her?",
+      "choices": [
+        "Lean into the spectacle because attention is the real payoff",
+        "Recenter the gathering on helping the right people connect in a useful way",
+        "Avoid hosting anything because convening is always performative"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants shared value, not social theater.",
+        "direct": "A useful room fits this chapter better than a visible but empty performance.",
+        "competitive": "Build value, not spectacle."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is building a recurring useful room stronger than only attending important events in this chapter?",
+      "choices": [
+        "Because room-building creates repeated overlap and value on your own terms",
+        "Because hosts automatically gain status even without substance",
+        "Because attendance never helps a network"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values architecture that keeps creating connection.",
+        "direct": "Building the room is stronger because it multiplies useful contact beyond a single appearance.",
+        "competitive": "Authorship beats dependency."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest link between convening and network strength?",
+      "choices": [
+        "A useful room compounds value by helping the right people connect repeatedly in a setting worth returning to",
+        "Network strength comes mostly from being seen as a host",
+        "The best room is the one that feels most exclusive regardless of value"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ties convening to recurring shared value.",
+        "direct": "Network strength grows when the room itself becomes a repeatable source of trust, overlap, and connection.",
+        "competitive": "A real room keeps producing value."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows this chapter?",
+      "choices": [
+        "How influence and success can curdle into ego or hubris if they are not kept under discipline",
+        "How to keep making gatherings larger and more visible every time",
+        "How to turn hosting into a permanent status display"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge moves from convening power to the ego risks that can follow it.",
+        "direct": "After building rooms comes the warning against hubris and relational decay.",
+        "competitive": "Next: protect success from ego."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

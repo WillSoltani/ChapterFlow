@@ -392,6 +392,14 @@ export type BookUserScenarioSubmissionItem = {
   reviewedAt?: string;
   reviewedBy?: string;
   reviewNotes?: string;
+  userEmail?: string;
+  userName?: string;
+  aiValidation?: {
+    decision: "auto_approve" | "auto_reject" | "queue_for_review";
+    reason: string;
+    model: string;
+    validatedAt: string;
+  };
 };
 
 export type BookScenarioModerationItem = BookUserScenarioSubmissionItem & {
@@ -528,7 +536,7 @@ export type NotificationPreferences = {
 export type BookUserNotificationItem = {
   userId: string;
   notificationId: string;
-  type: "badge_earned" | "tier_up" | "streak_milestone" | "insight_spark" | "reading_reminder" | "streak_at_risk" | "weekly_digest" | "welcome_back_nudge" | "partner_nudge" | "commitment_followup" | "event_reminder";
+  type: "badge_earned" | "tier_up" | "streak_milestone" | "insight_spark" | "reading_reminder" | "streak_at_risk" | "weekly_digest" | "welcome_back_nudge" | "partner_nudge" | "commitment_followup" | "event_reminder" | "scenario_approved" | "scenario_rejected";
   title: string;
   body: string;
   channel: NotificationChannel;
@@ -994,8 +1002,16 @@ export type EventDefinition = {
   endDate: string;
   books: string[];
   dailyChapterTarget: number;
+  targetChapters: number;
   badge: { badgeId: string; name: string; icon: string };
   bonusIP: number;
+};
+
+export type EventDefinitionItem = EventDefinition & {
+  active: boolean;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
 };
 
 export type EventParticipationItem = {

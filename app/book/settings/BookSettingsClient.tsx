@@ -383,8 +383,14 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     if (preferences.notifications.readingReminderEnabled) {
       parts.push(`Reminders at ${onboarding.reminderTime || "8:00 PM"}`);
     }
-    if (preferences.notifications.streakReminder && ext.streakMode !== "off") {
+    if (preferences.notifications.streakReminderEnabled && ext.streakMode !== "off") {
       parts.push("Streak alerts on");
+    }
+    if (preferences.notifications.weeklyDigestEnabled) {
+      parts.push("Weekly digest on");
+    }
+    if (preferences.notifications.welcomeBackEnabled) {
+      parts.push("Welcome-back on");
     }
     return parts.length > 0 ? parts.join(" · ") : "All off";
   }
@@ -1236,8 +1242,8 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     description="Get a heads-up when your reading streak is about to expire."
                   >
                     <ToggleSwitch
-                      checked={hydrated ? preferences.notifications.streakReminder : true}
-                      onChange={(v) => { patchSection("notifications", { streakReminder: v }); announce(`Streak alerts ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                      checked={hydrated ? preferences.notifications.streakReminderEnabled : true}
+                      onChange={(v) => { patchSection("notifications", { streakReminderEnabled: v }); announce(`Streak alerts ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                       label="Streak alerts"
                     />
                   </SettingRow>
@@ -1298,9 +1304,24 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="A brief digest of your reading progress, delivered every Monday."
             >
               <ToggleSwitch
-                checked={hydrated ? preferences.notifications.weeklyLearningSummaryEmail : true}
-                onChange={(v) => { patchSection("notifications", { weeklyLearningSummaryEmail: v }); announce(`Weekly summary email ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                checked={hydrated ? preferences.notifications.weeklyDigestEnabled : true}
+                onChange={(v) => { patchSection("notifications", { weeklyDigestEnabled: v }); announce(`Weekly summary email ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Weekly summary email"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 5F. Welcome-back Emails */}
+            <SettingRow
+              id="welcome-back"
+              label="Welcome-back emails"
+              description="A friendly email if you've been away for a while, with a bonus to welcome you back."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.notifications.welcomeBackEnabled : true}
+                onChange={(v) => { patchSection("notifications", { welcomeBackEnabled: v }); announce(`Welcome-back emails ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                label="Welcome-back emails"
               />
             </SettingRow>
           </SettingsSection>

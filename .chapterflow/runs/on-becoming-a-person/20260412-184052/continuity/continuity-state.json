@@ -123,6 +123,24 @@
     ],
     "Noelle": [
       "ch07"
+    ],
+    "Daria": [
+      "ch08"
+    ],
+    "Felix": [
+      "ch08"
+    ],
+    "Imani": [
+      "ch08"
+    ],
+    "Hugo": [
+      "ch08"
+    ],
+    "Celise": [
+      "ch08"
+    ],
+    "Parker": [
+      "ch08"
     ]
   },
   "formatCategoryHistory": [],
@@ -192,6 +210,14 @@
       "Aisha",
       "Grant",
       "Noelle"
+    ],
+    "ch08": [
+      "Daria",
+      "Felix",
+      "Imani",
+      "Hugo",
+      "Celise",
+      "Parker"
     ]
   },
   "approvedChapterHashes": {
@@ -222,6 +248,10 @@
     "ch07": {
       "sha256": "9e625ab3e3423bdd47d40ad1decce8ac87ff9f30409936ad5bafe98c09a1e75b",
       "validatedAt": "2026-04-13T01:21:33Z"
+    },
+    "ch08": {
+      "sha256": "fbabd5c33faac081f3eaf1bcf7b3073168445241a3e0f0809f5f989755f3f8fc",
+      "validatedAt": "2026-04-13T15:26:58Z"
     }
   },
   "baselineQuality": {

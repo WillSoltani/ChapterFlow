@@ -5,6 +5,7 @@ import {
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { weeklyDigestEmail } from "./email-templates/weekly-digest";
 
 type UserSettings = {
   PK: string;
@@ -37,7 +38,7 @@ export async function processWeeklyDigest(
 
   for (const item of userItems) {
     const notifications = item.settings?.notifications;
-    if (notifications?.weeklyDigestEnabled === false || notifications?.channels?.email === false) {
+    if (notifications?.weeklyDigestEnabled === false) {
       skipped++;
       continue;
     }
@@ -88,36 +89,54 @@ export async function processWeeklyDigest(
     const email = (profileResult.Item as { email?: string })?.email;
     const name = (profileResult.Item as { displayName?: string })?.displayName ?? "Reader";
 
-    if (!email) {
-      skipped++;
+    // Write in-app notification
+    const notifId = crypto.randomUUID();
+    const now = new Date().toISOString();
+    await ddb.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: item.PK,
+          SK: `NOTIF#${now}#${notifId}`,
+          entity: "BOOK_USER_NOTIFICATION",
+          userId,
+          notificationId: notifId,
+          type: "weekly_digest",
+          title: "Your week in review",
+          body: `${chaptersCompleted} chapters completed · ${currentStreak}-day streak · ${ipBalance} IP`,
+          channel: "in_app",
+          readAt: null,
+          createdAt: now,
+        },
+      }),
+    );
+
+    if (!email || notifications?.channels?.email === false) {
+      // In-app was written; skip email send, write dedup and continue
+      const ttl = Math.floor(Date.now() / 1000) + 8 * 86400;
+      await ddb.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
+        }),
+      );
+      sent++;
       continue;
     }
 
-    // Send digest
+    // Send email digest
     try {
+      const tpl = weeklyDigestEmail({ name, chaptersCompleted, currentStreak, ipBalance });
       await ses.send(
         new SendEmailCommand({
           FromEmailAddress: senderEmail,
           Destination: { ToAddresses: [email] },
           Content: {
             Simple: {
-              Subject: { Data: `Your ChapterFlow Week: ${chaptersCompleted} chapters completed` },
+              Subject: { Data: tpl.subject },
               Body: {
-                Html: {
-                  Data: `
-<h2>Hey ${name}, here's your week in review</h2>
-<ul>
-  <li><strong>${chaptersCompleted}</strong> chapters completed</li>
-  <li><strong>${currentStreak}</strong> day streak</li>
-  <li><strong>${ipBalance}</strong> Insight Points balance</li>
-</ul>
-<p>${chaptersCompleted > 0 ? "Great progress this week! Keep the momentum going." : "Take 15 minutes today to get back on track."}</p>
-<p><a href="https://chapterflow.siliconx.ca/dashboard">Open ChapterFlow</a></p>
-                  `.trim(),
-                },
-                Text: {
-                  Data: `Your ChapterFlow week: ${chaptersCompleted} chapters, ${currentStreak}-day streak, ${ipBalance} IP. ${chaptersCompleted > 0 ? "Keep it up!" : "Jump back in today."}`,
-                },
+                Text: { Data: tpl.textBody },
+                Html: { Data: tpl.htmlBody },
               },
             },
           },

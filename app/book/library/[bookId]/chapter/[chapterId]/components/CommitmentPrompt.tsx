@@ -31,15 +31,18 @@ export function CommitmentPrompt({
   const [followUpDays, setFollowUpDays] = useState<3 | 7>(3);
   const [submitting, setSubmitting] = useState(false);
   const [committed, setCommitted] = useState(hasActiveCommitment);
+  const [error, setError] = useState<string | null>(null);
 
   const handleCommit = useCallback(async () => {
     if (!selectedPlan || submitting) return;
     setSubmitting(true);
+    setError(null);
     try {
       await onCommit({ bookId, chapterNumber, ifThenPlan: selectedPlan, followUpDays });
       setCommitted(true);
-    } catch {
-      // silently fail — the user can retry
+    } catch (e) {
+      console.error("Failed to create commitment:", e);
+      setError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -55,7 +58,7 @@ export function CommitmentPrompt({
           </p>
         </div>
         <p className={`mt-2 text-(--cr-text-secondary) leading-relaxed ${fontScaleClass}`}>
-          You&rsquo;ll get a check-in in {followUpDays} days to reflect on how it went.
+          Check back on your home page in {followUpDays} days to reflect on how it went.
         </p>
       </section>
     );
@@ -72,7 +75,7 @@ export function CommitmentPrompt({
         </p>
       </div>
       <p className={`mb-4 text-(--cr-text-secondary) leading-relaxed ${fontScaleClass}`}>
-        Pick one action to try this week. We&rsquo;ll check in to see how it went.
+        Pick one action to try this week, then reflect on how it went.
       </p>
 
       <ul className="space-y-2.5">
@@ -131,6 +134,10 @@ export function CommitmentPrompt({
             {submitting ? "Saving..." : "Commit"}
           </button>
         </div>
+      )}
+
+      {error && (
+        <p className="mt-2 text-xs text-(--cr-error)">{error}</p>
       )}
     </section>
   );

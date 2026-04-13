@@ -30,6 +30,36 @@ var import_client_sesv24 = require("@aws-sdk/client-sesv2");
 // lambda/lib/streak-at-risk.ts
 var import_lib_dynamodb = require("@aws-sdk/lib-dynamodb");
 var import_client_sesv2 = require("@aws-sdk/client-sesv2");
+
+// lambda/lib/email-templates/streak-at-risk.ts
+var UNSUB_URL = "https://chapterflow.siliconx.ca/book/settings#notifications";
+function streakAtRiskEmail(params) {
+  return {
+    subject: `Your ${params.currentStreak}-day streak ends in ${params.hoursRemaining} hours`,
+    textBody: `Hi ${params.name},
+
+Your ${params.currentStreak}-day reading streak ends tonight. Open ChapterFlow and complete one chapter to keep it alive.
+
+\u2014 ChapterFlow
+
+Manage email preferences: ${UNSUB_URL}`,
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">${params.currentStreak}-Day Streak at Risk</h2><p>Hi ${params.name},</p><p>Your <strong>${params.currentStreak}-day</strong> reading streak ends in <strong>${params.hoursRemaining} hours</strong>.</p><p>Open ChapterFlow and complete one chapter to keep it alive.</p><p><a href="https://chapterflow.siliconx.ca/book/home" style="color:#6366f1">Keep your streak alive</a></p><p style="color:#999;font-size:11px;margin-top:24px">\u2014 ChapterFlow \xB7 <a href="${UNSUB_URL}" style="color:#999">Manage email preferences</a></p></div>`
+  };
+}
+
+// lambda/lib/streak-at-risk.ts
+function getTodayInTimezone(tz) {
+  try {
+    return new Intl.DateTimeFormat("en-CA", {
+      timeZone: tz,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(/* @__PURE__ */ new Date());
+  } catch {
+    return (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
+  }
+}
 async function processStreakAtRisk(ddb2, ses2, tableName2, senderEmail2, userItems) {
   let sent = 0;
   let skipped = 0;
@@ -51,7 +81,8 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, senderEmail2, userIte
       skipped++;
       continue;
     }
-    const today = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
+    const tz = streak.lastActiveTimezone || "UTC";
+    const today = getTodayInTimezone(tz);
     if (streak.lastActiveDate === today) {
       skipped++;
       continue;
@@ -64,7 +95,6 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, senderEmail2, userIte
       skipped++;
       continue;
     }
-    const tz = streak.lastActiveTimezone || "UTC";
     let hoursRemaining = 6;
     try {
       const nowInTz = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", { timeZone: tz, hour12: false });
@@ -76,27 +106,45 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, senderEmail2, userIte
       skipped++;
       continue;
     }
+    const notifId = crypto.randomUUID();
+    const now = (/* @__PURE__ */ new Date()).toISOString();
+    await ddb2.send(
+      new import_lib_dynamodb.PutCommand({
+        TableName: tableName2,
+        Item: {
+          PK: item.PK,
+          SK: `NOTIF#${now}#${notifId}`,
+          entity: "BOOK_USER_NOTIFICATION",
+          userId,
+          notificationId: notifId,
+          type: "streak_at_risk",
+          title: `Your ${streak.currentStreak}-day streak is at risk`,
+          body: `You have ${hoursRemaining} hours to complete a chapter and keep your streak alive.`,
+          channel: "in_app",
+          readAt: null,
+          createdAt: now
+        }
+      })
+    );
     if (notifications?.channels?.email !== false) {
       try {
         const profileResult = await ddb2.send(
           new import_lib_dynamodb.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
         );
         const email = profileResult.Item?.email;
+        const name = profileResult.Item?.displayName ?? "Reader";
         if (email) {
+          const tpl = streakAtRiskEmail({ name, currentStreak: streak.currentStreak, hoursRemaining });
           await ses2.send(
             new import_client_sesv2.SendEmailCommand({
               FromEmailAddress: senderEmail2,
               Destination: { ToAddresses: [email] },
               Content: {
                 Simple: {
-                  Subject: { Data: `Your ${streak.currentStreak}-day streak ends in ${hoursRemaining} hours` },
+                  Subject: { Data: tpl.subject },
                   Body: {
-                    Text: {
-                      Data: `Your ${streak.currentStreak}-day reading streak ends tonight. Open ChapterFlow and complete one chapter to keep it alive.`
-                    },
-                    Html: {
-                      Data: `<p>Your <strong>${streak.currentStreak}-day</strong> reading streak ends in <strong>${hoursRemaining} hours</strong>.</p><p>Open ChapterFlow and complete one chapter to keep it alive.</p>`
-                    }
+                    Text: { Data: tpl.textBody },
+                    Html: { Data: tpl.htmlBody }
                   }
                 }
               }
@@ -122,6 +170,25 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, senderEmail2, userIte
 // lambda/lib/weekly-digest.ts
 var import_lib_dynamodb2 = require("@aws-sdk/lib-dynamodb");
 var import_client_sesv22 = require("@aws-sdk/client-sesv2");
+
+// lambda/lib/email-templates/weekly-digest.ts
+var UNSUB_URL2 = "https://chapterflow.siliconx.ca/book/settings#notifications";
+function weeklyDigestEmail(params) {
+  const encouragement = params.chaptersCompleted > 0 ? "Great progress this week! Keep the momentum going." : "Take 15 minutes today to get back on track.";
+  return {
+    subject: `Your ChapterFlow Week: ${params.chaptersCompleted} chapters completed`,
+    textBody: `Hi ${params.name},
+
+Your ChapterFlow week: ${params.chaptersCompleted} chapters, ${params.currentStreak}-day streak, ${params.ipBalance} IP. ${encouragement}
+
+\u2014 ChapterFlow
+
+Manage email preferences: ${UNSUB_URL2}`,
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Your Week in Review</h2><p>Hi ${params.name},</p><ul><li><strong>${params.chaptersCompleted}</strong> chapters completed</li><li><strong>${params.currentStreak}</strong>-day streak</li><li><strong>${params.ipBalance}</strong> Insight Points</li></ul><p>${encouragement}</p><p><a href="https://chapterflow.siliconx.ca/book/home" style="color:#6366f1">Open ChapterFlow</a></p><p style="color:#999;font-size:11px;margin-top:24px">\u2014 ChapterFlow \xB7 <a href="${UNSUB_URL2}" style="color:#999">Manage email preferences</a></p></div>`
+  };
+}
+
+// lambda/lib/weekly-digest.ts
 async function processWeeklyDigest(ddb2, ses2, tableName2, senderEmail2, userItems) {
   if ((/* @__PURE__ */ new Date()).getUTCDay() !== 0) {
     return { sent: 0, skipped: 0 };
@@ -132,7 +199,7 @@ async function processWeeklyDigest(ddb2, ses2, tableName2, senderEmail2, userIte
   const weekKey = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
   for (const item of userItems) {
     const notifications = item.settings?.notifications;
-    if (notifications?.weeklyDigestEnabled === false || notifications?.channels?.email === false) {
+    if (notifications?.weeklyDigestEnabled === false) {
       skipped++;
       continue;
     }
@@ -171,34 +238,49 @@ async function processWeeklyDigest(ddb2, ses2, tableName2, senderEmail2, userIte
     );
     const email = profileResult.Item?.email;
     const name = profileResult.Item?.displayName ?? "Reader";
-    if (!email) {
-      skipped++;
+    const notifId = crypto.randomUUID();
+    const now = (/* @__PURE__ */ new Date()).toISOString();
+    await ddb2.send(
+      new import_lib_dynamodb2.PutCommand({
+        TableName: tableName2,
+        Item: {
+          PK: item.PK,
+          SK: `NOTIF#${now}#${notifId}`,
+          entity: "BOOK_USER_NOTIFICATION",
+          userId,
+          notificationId: notifId,
+          type: "weekly_digest",
+          title: "Your week in review",
+          body: `${chaptersCompleted} chapters completed \xB7 ${currentStreak}-day streak \xB7 ${ipBalance} IP`,
+          channel: "in_app",
+          readAt: null,
+          createdAt: now
+        }
+      })
+    );
+    if (!email || notifications?.channels?.email === false) {
+      const ttl2 = Math.floor(Date.now() / 1e3) + 8 * 86400;
+      await ddb2.send(
+        new import_lib_dynamodb2.PutCommand({
+          TableName: tableName2,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl: ttl2 }
+        })
+      );
+      sent++;
       continue;
     }
     try {
+      const tpl = weeklyDigestEmail({ name, chaptersCompleted, currentStreak, ipBalance });
       await ses2.send(
         new import_client_sesv22.SendEmailCommand({
           FromEmailAddress: senderEmail2,
           Destination: { ToAddresses: [email] },
           Content: {
             Simple: {
-              Subject: { Data: `Your ChapterFlow Week: ${chaptersCompleted} chapters completed` },
+              Subject: { Data: tpl.subject },
               Body: {
-                Html: {
-                  Data: `
-<h2>Hey ${name}, here's your week in review</h2>
-<ul>
-  <li><strong>${chaptersCompleted}</strong> chapters completed</li>
-  <li><strong>${currentStreak}</strong> day streak</li>
-  <li><strong>${ipBalance}</strong> Insight Points balance</li>
-</ul>
-<p>${chaptersCompleted > 0 ? "Great progress this week! Keep the momentum going." : "Take 15 minutes today to get back on track."}</p>
-<p><a href="https://chapterflow.siliconx.ca/dashboard">Open ChapterFlow</a></p>
-                  `.trim()
-                },
-                Text: {
-                  Data: `Your ChapterFlow week: ${chaptersCompleted} chapters, ${currentStreak}-day streak, ${ipBalance} IP. ${chaptersCompleted > 0 ? "Keep it up!" : "Jump back in today."}`
-                }
+                Text: { Data: tpl.textBody },
+                Html: { Data: tpl.htmlBody }
               }
             }
           }
@@ -223,13 +305,32 @@ async function processWeeklyDigest(ddb2, ses2, tableName2, senderEmail2, userIte
 // lambda/lib/welcome-back-nudge.ts
 var import_lib_dynamodb3 = require("@aws-sdk/lib-dynamodb");
 var import_client_sesv23 = require("@aws-sdk/client-sesv2");
+
+// lambda/lib/email-templates/welcome-back.ts
+var UNSUB_URL3 = "https://chapterflow.siliconx.ca/book/settings#notifications";
+function welcomeBackEmail(params) {
+  return {
+    subject: `We saved your spot, ${params.name}`,
+    textBody: `Hi ${params.name},
+
+It's been ${params.daysSinceActive} days since your last reading session. Your progress is right where you left it.
+
+Jump back in and earn 30 Insight Points just for returning.
+
+\u2014 ChapterFlow
+
+Manage email preferences: ${UNSUB_URL3}`,
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Welcome Back, ${params.name}</h2><p>It's been ${params.daysSinceActive} days since your last reading session. Your progress is right where you left it.</p><p>Jump back in and earn <strong>30 Insight Points</strong> just for returning.</p><p><a href="https://chapterflow.siliconx.ca/book/home" style="color:#6366f1">Pick up where you left off</a></p><p style="color:#999;font-size:11px;margin-top:24px">\u2014 ChapterFlow \xB7 <a href="${UNSUB_URL3}" style="color:#999">Manage email preferences</a></p></div>`
+  };
+}
+
+// lambda/lib/welcome-back-nudge.ts
 async function processWelcomeBackNudge(ddb2, ses2, tableName2, senderEmail2, userItems) {
   let sent = 0;
   let skipped = 0;
-  const today = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
   for (const item of userItems) {
     const notifications = item.settings?.notifications;
-    if (notifications?.welcomeBackEnabled === false || notifications?.channels?.email === false) {
+    if (notifications?.welcomeBackEnabled === false) {
       skipped++;
       continue;
     }
@@ -249,7 +350,7 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, senderEmail2, use
       skipped++;
       continue;
     }
-    const dedupKey = `NUDGE_SENT#welcome_back#${today}`;
+    const dedupKey = `NUDGE_SENT#welcome_back`;
     const dedupResult = await ddb2.send(
       new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
     );
@@ -262,30 +363,49 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, senderEmail2, use
     );
     const email = progressResult.Item?.email;
     const name = progressResult.Item?.displayName ?? "Reader";
-    if (!email) {
-      skipped++;
+    const notifId = crypto.randomUUID();
+    const now = (/* @__PURE__ */ new Date()).toISOString();
+    await ddb2.send(
+      new import_lib_dynamodb3.PutCommand({
+        TableName: tableName2,
+        Item: {
+          PK: item.PK,
+          SK: `NOTIF#${now}#${notifId}`,
+          entity: "BOOK_USER_NOTIFICATION",
+          userId,
+          notificationId: notifId,
+          type: "welcome_back_nudge",
+          title: `We saved your spot, ${name}`,
+          body: `It's been ${daysSinceActive} days. Jump back in and earn 30 Insight Points.`,
+          channel: "in_app",
+          readAt: null,
+          createdAt: now
+        }
+      })
+    );
+    if (!email || notifications?.channels?.email === false) {
+      const ttl2 = Math.floor(Date.now() / 1e3) + 30 * 86400;
+      await ddb2.send(
+        new import_lib_dynamodb3.PutCommand({
+          TableName: tableName2,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl: ttl2 }
+        })
+      );
+      sent++;
       continue;
     }
     try {
+      const tpl = welcomeBackEmail({ name, daysSinceActive });
       await ses2.send(
         new import_client_sesv23.SendEmailCommand({
           FromEmailAddress: senderEmail2,
           Destination: { ToAddresses: [email] },
           Content: {
             Simple: {
-              Subject: { Data: `We saved your spot, ${name}` },
+              Subject: { Data: tpl.subject },
               Body: {
-                Html: {
-                  Data: `
-<h2>Welcome back, ${name}!</h2>
-<p>It's been ${daysSinceActive} days since your last reading session. Your progress is right where you left it.</p>
-<p>Jump back in and earn <strong>30 Insight Points</strong> just for returning.</p>
-<p><a href="https://chapterflow.siliconx.ca/dashboard">Pick up where you left off</a></p>
-                  `.trim()
-                },
-                Text: {
-                  Data: `Hey ${name}, it's been ${daysSinceActive} days. Your ChapterFlow progress is waiting. Return now and earn 30 IP.`
-                }
+                Text: { Data: tpl.textBody },
+                Html: { Data: tpl.htmlBody }
               }
             }
           }
@@ -305,6 +425,22 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, senderEmail2, use
     );
   }
   return { sent, skipped };
+}
+
+// lambda/lib/email-templates/reading-reminder.ts
+var UNSUB_URL4 = "https://chapterflow.siliconx.ca/book/settings#notifications";
+function readingReminderEmail(params) {
+  return {
+    subject: "Time to read!",
+    textBody: `Hi ${params.name},
+
+This is your daily reading reminder. A few minutes of focused reading can make a real difference.
+
+\u2014 ChapterFlow
+
+Manage email preferences: ${UNSUB_URL4}`,
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Time to Read</h2><p>Hi ${params.name},</p><p>This is your daily reading reminder. A few minutes of focused reading can make a real difference.</p><p style="color:#999;font-size:11px;margin-top:24px">\u2014 ChapterFlow \xB7 <a href="${UNSUB_URL4}" style="color:#999">Manage email preferences</a></p></div>`
+  };
 }
 
 // lambda/reading-reminder-cron.ts
@@ -330,6 +466,7 @@ async function handler() {
   let lastKey;
   let sent = 0;
   let skipped = 0;
+  const allUserItems = [];
   do {
     const scan = await ddb.send(
       new import_lib_dynamodb4.ScanCommand({
@@ -343,6 +480,7 @@ async function handler() {
     for (const item of scan.Items ?? []) {
       const userId = item.userId;
       const settings = item.settings;
+      allUserItems.push({ PK: item.PK, userId, settings: settings ?? {} });
       const notifPrefs = settings?.notifications ?? {};
       if (!notifPrefs.readingReminderEnabled) {
         skipped++;
@@ -400,26 +538,17 @@ async function handler() {
       );
       if (email && notifPrefs.channels?.email === true) {
         try {
+          const tpl = readingReminderEmail({ name });
           await ses.send(
             new import_client_sesv24.SendEmailCommand({
               FromEmailAddress: senderEmail,
               Destination: { ToAddresses: [email] },
               Content: {
                 Simple: {
-                  Subject: { Data: "Time to read!", Charset: "UTF-8" },
+                  Subject: { Data: tpl.subject, Charset: "UTF-8" },
                   Body: {
-                    Text: {
-                      Data: `Hi ${name},
-
-This is your daily reading reminder. A few minutes of focused reading can make a real difference.
-
-\u2014 ChapterFlow`,
-                      Charset: "UTF-8"
-                    },
-                    Html: {
-                      Data: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Time to Read</h2><p>Hi ${name},</p><p>This is your daily reading reminder.</p><p style="color:#888;font-size:12px">\u2014 ChapterFlow</p></div>`,
-                      Charset: "UTF-8"
-                    }
+                    Text: { Data: tpl.textBody, Charset: "UTF-8" },
+                    Html: { Data: tpl.htmlBody, Charset: "UTF-8" }
                   }
                 }
               }
@@ -430,14 +559,14 @@ This is your daily reading reminder. A few minutes of focused reading can make a
         }
       }
       await ddb.send(
-        new import_lib_dynamodb4.UpdateCommand({
+        new import_lib_dynamodb4.PutCommand({
           TableName: tableName,
-          Key: { PK: pk, SK: dedupKey },
-          UpdateExpression: "SET createdAt = :now, #ttl = :ttl",
-          ExpressionAttributeNames: { "#ttl": "ttl" },
-          ExpressionAttributeValues: {
-            ":now": now,
-            ":ttl": Math.floor(Date.now() / 1e3) + 2 * 24 * 60 * 60
+          Item: {
+            PK: pk,
+            SK: dedupKey,
+            entity: "NUDGE_DEDUP",
+            createdAt: now,
+            ttl: Math.floor(Date.now() / 1e3) + 2 * 24 * 60 * 60
           }
         })
       );
@@ -446,23 +575,6 @@ This is your daily reading reminder. A few minutes of focused reading can make a
     lastKey = scan.LastEvaluatedKey;
   } while (lastKey);
   console.log(`[reading-reminder-cron] Reminders done. Sent: ${sent}, Skipped: ${skipped}`);
-  const allUserItems = [];
-  let nudgeLastKey;
-  do {
-    const scan = await ddb.send(
-      new import_lib_dynamodb4.ScanCommand({
-        TableName: tableName,
-        FilterExpression: "entity = :entity",
-        ExpressionAttributeValues: { ":entity": "BOOK_USER_SETTINGS" },
-        ProjectionExpression: "PK, userId, settings",
-        ExclusiveStartKey: nudgeLastKey
-      })
-    );
-    for (const item of scan.Items ?? []) {
-      allUserItems.push(item);
-    }
-    nudgeLastKey = scan.LastEvaluatedKey;
-  } while (nudgeLastKey);
   const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
     processStreakAtRisk(ddb, ses, tableName, senderEmail, allUserItems),
     processWeeklyDigest(ddb, ses, tableName, senderEmail, allUserItems),

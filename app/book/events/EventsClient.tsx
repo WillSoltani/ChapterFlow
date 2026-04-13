@@ -1,34 +1,100 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Calendar, Users, ArrowRight, Trophy } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { Calendar, ArrowRight, Trophy, Check, Loader2 } from "lucide-react";
+import { TopNav } from "@/app/book/home/components/TopNav";
+import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
-import type { EventDefinition } from "@/app/app/api/book/_lib/types";
+import type { EventDefinition, EventParticipationItem } from "@/app/app/api/book/_lib/types";
 
-type EventsResponse = { events: EventDefinition[] };
+type ActiveEventWithParticipation = EventDefinition & {
+  participation?: EventParticipationItem;
+};
+
+type EventsResponse = { events: ActiveEventWithParticipation[] };
+type JoinResponse = { participation: EventParticipationItem; isNew: boolean };
 
 export function EventsClient() {
-  const [events, setEvents] = useState<EventDefinition[]>([]);
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
+  const viewerName = viewerIdentity.displayName || "Reader";
+
+  const [events, setEvents] = useState<ActiveEventWithParticipation[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [joiningId, setJoiningId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchBookJson<EventsResponse>("/app/api/book/events/active")
       .then((data) => setEvents(data.events))
-      .catch(() => {})
+      .catch(() => setError("Something went wrong loading events. Please try again later."))
       .finally(() => setLoading(false));
   }, []);
 
-  const handleJoin = async (eventId: string) => {
+  const handleJoin = useCallback(async (eventId: string) => {
+    setJoiningId(eventId);
+    setError(null);
     try {
-      await fetchBookJson(`/app/api/book/me/events/${eventId}/join`, {
-        method: "POST",
-      });
-    } catch {}
-  };
+      const res = await fetchBookJson<JoinResponse>(
+        `/app/api/book/me/events/${encodeURIComponent(eventId)}/join`,
+        { method: "POST" },
+      );
+      setEvents((prev) =>
+        prev.map((e) =>
+          e.eventId === eventId
+            ? { ...e, participation: res.participation }
+            : e,
+        ),
+      );
+    } catch {
+      setError("Failed to join event. Please try again.");
+    } finally {
+      setJoiningId(null);
+    }
+  }, []);
+
+  if (!onboardingHydrated || !onboarding.setupComplete) {
+    return (
+      <main className="cf-app-shell">
+        <TopNav
+          name={viewerName}
+          avatarUrl={viewerIdentity.avatarDataUrl}
+          activeTab="events"
+          searchQuery=""
+          onSearchChange={() => {}}
+          searchInputRef={searchRef}
+          showSearch={false}
+          logoVariant="dashboard"
+        />
+        <section className="mx-auto w-full max-w-450 animate-pulse px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+          <div className="h-9 w-48 rounded-xl bg-(--cf-surface-muted)" />
+          <div className="mt-2 h-5 w-72 rounded-xl bg-(--cf-surface)" />
+          <div className="mt-6 space-y-4">
+            <div className="h-48 rounded-3xl bg-(--cf-surface-muted)" />
+            <div className="h-48 rounded-3xl bg-(--cf-surface-muted)" />
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="cf-app-shell">
-      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
+      <TopNav
+        name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
+        activeTab="events"
+        searchQuery=""
+        onSearchChange={() => {}}
+        searchInputRef={searchRef}
+        showSearch={false}
+        logoVariant="dashboard"
+      />
+
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
         <h1 className="text-3xl font-semibold tracking-tight text-(--cf-text-1)">
           Reading Events
         </h1>
@@ -36,11 +102,20 @@ export function EventsClient() {
           Time-limited reading challenges with exclusive rewards
         </p>
 
+        {error && (
+          <div className="mt-4 rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-4 py-3 text-sm text-(--cf-danger-text)">
+            {error}
+          </div>
+        )}
+
         <div className="mt-6 space-y-4">
           {loading ? (
             <div className="animate-pulse space-y-4">
               {[1, 2].map((i) => (
-                <div key={i} className="h-48 rounded-3xl bg-(--cf-surface-muted)" />
+                <div
+                  key={i}
+                  className="h-48 rounded-3xl bg-(--cf-surface-muted)"
+                />
               ))}
             </div>
           ) : events.length === 0 ? (
@@ -54,18 +129,25 @@ export function EventsClient() {
             events.map((event) => {
               const now = new Date();
               const end = new Date(event.endDate);
-              const daysLeft = Math.max(0, Math.ceil((end.getTime() - now.getTime()) / 86400000));
+              const daysLeft = Math.max(
+                0,
+                Math.ceil((end.getTime() - now.getTime()) / 86400000),
+              );
+              const joined = !!event.participation;
+              const completed = event.participation?.completed ?? false;
+              const progress = event.participation?.totalChaptersCompleted ?? 0;
+              const progressPercent = event.targetChapters > 0
+                ? Math.min(100, Math.round((progress / event.targetChapters) * 100))
+                : 0;
+              const isJoining = joiningId === event.eventId;
 
-              return (
-                <div
-                  key={event.eventId}
-                  className="cf-panel overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface))]"
-                >
+              const card = (
+                <div className="cf-panel overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface))] transition hover:shadow-lg">
                   <div className="p-6">
                     <div className="flex items-center gap-2">
                       <Trophy className="h-4 w-4 text-(--cf-accent)" />
                       <span className="text-xs font-semibold uppercase tracking-wider text-(--cf-accent)">
-                        {daysLeft} days left
+                        {completed ? "Completed" : `${daysLeft} days left`}
                       </span>
                     </div>
                     <h2 className="mt-2 text-xl font-semibold text-(--cf-text-1)">
@@ -76,20 +158,67 @@ export function EventsClient() {
                     </p>
                     <div className="mt-3 flex items-center gap-4 text-xs text-(--cf-text-3)">
                       <span>{event.books.length} books</span>
-                      <span>{event.dailyChapterTarget} chapter{event.dailyChapterTarget !== 1 ? "s" : ""}/day</span>
+                      <span>
+                        {event.dailyChapterTarget} chapter
+                        {event.dailyChapterTarget !== 1 ? "s" : ""}/day
+                      </span>
                       <span>{event.bonusIP} IP reward</span>
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => handleJoin(event.eventId)}
-                      className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
-                    >
-                      Join Event <ArrowRight className="h-4 w-4" />
-                    </button>
+                    {joined && (
+                      <div className="mt-3">
+                        <div className="flex items-center justify-between text-xs text-(--cf-text-3)">
+                          <span>{progress} / {event.targetChapters} chapters</span>
+                          <span>{progressPercent}%</span>
+                        </div>
+                        <div className="mt-1 h-2 overflow-hidden rounded-full bg-(--cf-surface-strong)">
+                          <div
+                            className="h-full rounded-full bg-(--cf-accent) transition-[width] duration-500"
+                            style={{ width: `${Math.max(4, progressPercent)}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="mt-4">
+                      {completed ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-success-soft) px-4 py-2 text-sm font-semibold text-(--cf-success-text)">
+                          <Check className="h-4 w-4" /> Completed
+                        </span>
+                      ) : joined ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent-soft) px-4 py-2 text-sm font-semibold text-(--cf-accent)">
+                          <Check className="h-4 w-4" /> Joined
+                        </span>
+                      ) : (
+                        <button
+                          type="button"
+                          disabled={isJoining}
+                          onClick={() => handleJoin(event.eventId)}
+                          className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+                        >
+                          {isJoining ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <ArrowRight className="h-4 w-4" />
+                          )}
+                          {isJoining ? "Joining..." : "Join Event"}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
+
+              // Only wrap with Link when user has joined (avoids nested interactive elements)
+              if (joined) {
+                return (
+                  <Link key={event.eventId} href={`/book/events/${event.eventId}`}>
+                    {card}
+                  </Link>
+                );
+              }
+
+              return <div key={event.eventId}>{card}</div>;
             })
           )}
         </div>

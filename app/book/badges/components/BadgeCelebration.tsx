@@ -6,6 +6,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress, BadgeTier } from "../lib/badge-types";
 import { getBadgeRarity } from "../lib/badge-utils";
+import { Share2, Check } from "lucide-react";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 
 type BadgeCelebrationProps = {
   newlyEarned: BadgeWithProgress[];
@@ -269,17 +272,19 @@ export function BadgeCelebration({
 }
 
 function ShareButton({ badge }: { badge: BadgeWithProgress }) {
-  const [copied, setCopied] = useState(false);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const { identity } = useBookViewer();
 
   async function handleShare() {
-    const text = `I just earned the "${badge.name}" badge on ChapterFlow! \u{1F3C6} ${badge.narrative || badge.description}`;
-    if (typeof navigator !== "undefined" && navigator.share) {
-      try { await navigator.share({ title: `ChapterFlow: ${badge.name}`, text }); return; } catch { /* cancelled */ }
-    }
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+    const params = { type: "badge" as const, badgeName: badge.name, userName: identity.displayName };
+    const result = await performShare({
+      title: `ChapterFlow: ${badge.name}`,
+      text: buildShareText(params),
+      url: buildShareCardUrl(params),
+    });
+    if (result === "copied" || result === "shared") {
+      setFeedback(result === "copied" ? "Copied!" : "Shared!");
+      setTimeout(() => setFeedback(null), 2000);
     }
   }
 
@@ -287,9 +292,10 @@ function ShareButton({ badge }: { badge: BadgeWithProgress }) {
     <button
       type="button"
       onClick={handleShare}
-      className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+      className="inline-flex items-center gap-1.5 rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
     >
-      {copied ? "Copied!" : "Share Achievement"}
+      {feedback ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
+      {feedback ?? "Share Achievement"}
     </button>
   );
 }

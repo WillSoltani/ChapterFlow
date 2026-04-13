@@ -392,4 +392,11 @@ export type LoopPipelineResult = {
     triggered: boolean;
     amount: number;
   };
+  journeys?: {
+    journeyId: string;
+    advanced: boolean;
+    completed: boolean;
+    bonusIPAwarded: number;
+    badgeAwarded: string | null;
+  }[];
 };

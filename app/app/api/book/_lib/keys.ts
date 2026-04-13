@@ -386,6 +386,14 @@ export function eventParticipationSk(eventId: string): string {
   return `EVENT#${eventId}`;
 }
 
+export function eventDefinitionPk(): string {
+  return "BOOKEVENT#DEFS";
+}
+
+export function eventDefinitionSk(eventId: string): string {
+  return `EVENT#${eventId}`;
+}
+
 export function eventStatsPk(eventId: string): string {
   return `BOOKEVENT#STATS#${eventId}`;
 }

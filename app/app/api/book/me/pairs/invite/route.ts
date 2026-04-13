@@ -4,6 +4,7 @@ import { requireUser } from "@/app/app/api/_lib/auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { createPairInvite, getUserActivePair } from "@/app/app/api/book/_lib/pair-repo";
+import { getServerOrigin } from "@/app/app/_lib/server-origin";
 
 export const runtime = "nodejs";
 
@@ -18,9 +19,10 @@ export async function POST(req: Request) {
     }
 
     const invite = await createPairInvite(tableName, user.sub);
+    const origin = await getServerOrigin();
     return bookOk({
       inviteCode: invite.inviteCode,
-      inviteUrl: `https://chapterflow.siliconx.ca/pair/${invite.inviteCode}`,
+      inviteUrl: `${origin}/pair/${invite.inviteCode}`,
       expiresAt: invite.expiresAt,
     });
   });

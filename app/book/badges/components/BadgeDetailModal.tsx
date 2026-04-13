@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Share2, Check } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { TIER_PILL_STYLES, TIER_BORDER_COLORS, getBadgeRarity } from "../lib/badge-utils";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 
 type BadgeDetailModalProps = {
   badge: BadgeWithProgress | null;
@@ -44,25 +46,17 @@ export function BadgeDetailModal({
   // Clear share confirmation when badge changes
   useEffect(() => setShareText(null), [badge?.id]);
 
+  const { identity } = useBookViewer();
+
   async function handleShare(b: BadgeWithProgress) {
-    const text = `I just earned the "${b.name}" badge on ChapterFlow! \u{1F3C6} ${b.narrative || b.description}`;
-
-    if (typeof navigator !== "undefined" && navigator.share) {
-      try {
-        await navigator.share({
-          title: `ChapterFlow Achievement: ${b.name}`,
-          text,
-          url: typeof window !== "undefined" ? window.location.href : "",
-        });
-        return;
-      } catch {
-        // User cancelled or share failed — fall through to clipboard
-      }
-    }
-
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      await navigator.clipboard.writeText(text);
-      setShareText("Copied!");
+    const params = { type: "badge" as const, badgeName: b.name, userName: identity.displayName };
+    const result = await performShare({
+      title: `ChapterFlow Achievement: ${b.name}`,
+      text: buildShareText(params),
+      url: buildShareCardUrl(params),
+    });
+    if (result === "copied" || result === "shared") {
+      setShareText(result === "copied" ? "Copied!" : "Shared!");
       setTimeout(() => setShareText(null), 2000);
     }
   }
@@ -244,8 +238,9 @@ function EarnedModalContent({
         <button
           type="button"
           onClick={onShare}
-          className="flex-1 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+          className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
         >
+          {shareText ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
           {shareText ?? "Share Achievement"}
         </button>
       </div>

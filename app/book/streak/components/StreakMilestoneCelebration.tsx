@@ -5,7 +5,10 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Share2, Check } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 
 // ── Milestone copy from §2.4 (exact strings from spec) ─────────────────────
 
@@ -256,20 +259,56 @@ export function StreakMilestoneCelebration({
             +{current.ip} Insight Points
           </motion.p>
 
-          {/* Dismiss button */}
-          <motion.button
-            type="button"
-            onClick={handleNext}
-            className="mt-8 rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-6 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+          {/* Action buttons */}
+          <motion.div
+            className="mt-8 flex items-center gap-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            {currentIdx < milestones.length - 1 ? "Next" : "Continue"}
-          </motion.button>
+            {hasConfetti && <StreakShareButton days={current.days} />}
+            <button
+              type="button"
+              onClick={handleNext}
+              className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-6 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+            >
+              {currentIdx < milestones.length - 1 ? "Next" : "Continue"}
+            </button>
+          </motion.div>
         </div>
       </motion.div>
     </AnimatePresence>
+  );
+}
+
+// ── Streak Share Button ─────────────────────────────────────────────────
+
+function StreakShareButton({ days }: { days: number }) {
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const { identity } = useBookViewer();
+
+  async function handleShare() {
+    const params = { type: "streak" as const, streakDays: days, userName: identity.displayName };
+    const result = await performShare({
+      title: `${days}-Day Reading Streak`,
+      text: buildShareText(params),
+      url: buildShareCardUrl(params),
+    });
+    if (result === "copied" || result === "shared") {
+      setFeedback(result === "copied" ? "Copied!" : "Shared!");
+      setTimeout(() => setFeedback(null), 2000);
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleShare}
+      className="inline-flex items-center gap-1.5 rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+    >
+      {feedback ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
+      {feedback ?? "Share Milestone"}
+    </button>
   );
 }
 

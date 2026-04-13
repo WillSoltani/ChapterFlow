@@ -83,9 +83,10 @@ export type BookPreferencesState = {
     quietHoursStart: string;
     quietHoursEnd: string;
     chapterUnlockedNotification: boolean;
-    streakReminder: boolean;
-    badgeEarnedNotification: boolean;
-    weeklyLearningSummaryEmail: boolean;
+    streakReminderEnabled: boolean;
+    badgeCelebrationEnabled: boolean;
+    weeklyDigestEnabled: boolean;
+    welcomeBackEnabled: boolean;
     productUpdates: boolean;
     promotionalEmail: boolean;
     reminderToneStyle: ReminderToneStyle;
@@ -190,9 +191,10 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     quietHoursStart: "22:00",
     quietHoursEnd: "07:00",
     chapterUnlockedNotification: true,
-    streakReminder: true,
-    badgeEarnedNotification: true,
-    weeklyLearningSummaryEmail: true,
+    streakReminderEnabled: true,
+    badgeCelebrationEnabled: true,
+    weeklyDigestEnabled: true,
+    welcomeBackEnabled: true,
     productUpdates: true,
     promotionalEmail: false,
     reminderToneStyle: "subtle",
@@ -293,9 +295,9 @@ function parseLegacyState(raw: string | null): BookPreferencesState | null {
           parsed.dailyReminderEnabled,
           defaultBookPreferencesState.notifications.readingReminderEnabled
         ),
-        streakReminder: parseBoolean(
+        streakReminderEnabled: parseBoolean(
           parsed.streakReminderEnabled,
-          defaultBookPreferencesState.notifications.streakReminder
+          defaultBookPreferencesState.notifications.streakReminderEnabled
         ),
       },
       appearance: {
@@ -546,17 +548,21 @@ function parseStored(raw: string | null): BookPreferencesState | null {
           notifications.chapterUnlockedNotification,
           defaultBookPreferencesState.notifications.chapterUnlockedNotification
         ),
-        streakReminder: parseBoolean(
-          notifications.streakReminder,
-          defaultBookPreferencesState.notifications.streakReminder
+        streakReminderEnabled: parseBoolean(
+          notifications.streakReminderEnabled ?? (notifications as Record<string, unknown>).streakReminder,
+          defaultBookPreferencesState.notifications.streakReminderEnabled
         ),
-        badgeEarnedNotification: parseBoolean(
-          notifications.badgeEarnedNotification,
-          defaultBookPreferencesState.notifications.badgeEarnedNotification
+        badgeCelebrationEnabled: parseBoolean(
+          notifications.badgeCelebrationEnabled ?? (notifications as Record<string, unknown>).badgeEarnedNotification,
+          defaultBookPreferencesState.notifications.badgeCelebrationEnabled
         ),
-        weeklyLearningSummaryEmail: parseBoolean(
-          notifications.weeklyLearningSummaryEmail,
-          defaultBookPreferencesState.notifications.weeklyLearningSummaryEmail
+        weeklyDigestEnabled: parseBoolean(
+          notifications.weeklyDigestEnabled ?? (notifications as Record<string, unknown>).weeklyLearningSummaryEmail,
+          defaultBookPreferencesState.notifications.weeklyDigestEnabled
+        ),
+        welcomeBackEnabled: parseBoolean(
+          notifications.welcomeBackEnabled,
+          defaultBookPreferencesState.notifications.welcomeBackEnabled
         ),
         productUpdates: parseBoolean(
           notifications.productUpdates,
@@ -927,7 +933,7 @@ export function useBookPreferences() {
       fetchBookJson("/app/api/book/me/settings", {
         method: "PATCH",
         body: JSON.stringify({ settings: state }),
-      }).catch(() => {});
+      }).catch((err) => console.error("[settings] server save failed:", err));
     }, 500);
     return () => window.clearTimeout(timeout);
   }, [hydrated, state]);

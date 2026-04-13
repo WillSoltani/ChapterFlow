@@ -86,7 +86,8 @@ export async function POST(req: Request) {
     const scenarioFocus = MOTIVATION_TO_SCENARIO_FOCUS[motivation] || "mixed";
 
     const cleanInterests = interests.filter((i: unknown): i is string => typeof i === "string");
-    const starterPrescription = generateStarterPrescription(motivation, cleanInterests);
+    const cleanShelf = starterShelf.filter((id: unknown): id is string => typeof id === "string");
+    const starterPrescription = generateStarterPrescription(motivation, cleanInterests, cleanShelf);
 
     const onboardingProfile = {
       motivation,
@@ -95,7 +96,7 @@ export async function POST(req: Request) {
       dailyGoal,
       chapterOrder,
       scenarioFocus,
-      starterShelf: starterShelf.filter((id: unknown): id is string => typeof id === "string"),
+      starterShelf: cleanShelf,
       firstQuizScore,
       firstChapterCompleted: true,
       onboardingCompleted: true,

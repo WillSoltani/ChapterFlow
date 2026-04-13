@@ -1,6 +1,6 @@
 import "server-only";
 
-import { GetCommand, PutCommand, QueryCommand, DeleteCommand } from "@aws-sdk/lib-dynamodb";
+import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, nowIso } from "./keys";
 import type { BookUserPairItem, BookPairInviteItem } from "./types";
@@ -18,33 +18,43 @@ export async function createPairInvite(
   tableName: string,
   userId: string,
 ): Promise<BookPairInviteItem> {
-  const inviteCode = generateInviteCode();
   const now = nowIso();
   const expiresAt = new Date(Date.now() + 7 * 86400000).toISOString();
   const ttl = Math.floor(Date.now() / 1000) + 7 * 86400;
 
-  const item: BookPairInviteItem = {
-    inviteCode,
-    inviterUserId: userId,
-    status: "pending",
-    expiresAt,
-    createdAt: now,
-  };
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const inviteCode = generateInviteCode();
+    const item: BookPairInviteItem = {
+      inviteCode,
+      inviterUserId: userId,
+      status: "pending",
+      expiresAt,
+      createdAt: now,
+    };
 
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: pairInvitePk(inviteCode),
-        SK: pairInviteSk(),
-        entity: "BOOK_PAIR_INVITE",
-        ...item,
-        ttl,
-      },
-    }),
-  );
+    try {
+      await ddbDoc.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: {
+            PK: pairInvitePk(inviteCode),
+            SK: pairInviteSk(),
+            entity: "BOOK_PAIR_INVITE",
+            ...item,
+            ttl,
+          },
+          ConditionExpression: "attribute_not_exists(PK)",
+        }),
+      );
+      return item;
+    } catch (err: unknown) {
+      const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
+      if (name === "ConditionalCheckFailedException") continue;
+      throw err;
+    }
+  }
 
-  return item;
+  throw new Error("Failed to generate unique invite code after retries");
 }
 
 export async function acceptPairInvite(
@@ -155,18 +165,24 @@ export async function deletePair(
   partnerId: string,
 ): Promise<void> {
   const now = nowIso();
-  // Delete both sides
+  // Soft-delete both sides
   await Promise.all([
     ddbDoc.send(
-      new DeleteCommand({
+      new UpdateCommand({
         TableName: tableName,
         Key: { PK: bookUserPk(userId), SK: pairSk(partnerId) },
+        UpdateExpression: "SET #s = :ended, endedAt = :now, updatedAt = :now",
+        ExpressionAttributeNames: { "#s": "status" },
+        ExpressionAttributeValues: { ":ended": "ended", ":now": now },
       }),
     ),
     ddbDoc.send(
-      new DeleteCommand({
+      new UpdateCommand({
         TableName: tableName,
         Key: { PK: bookUserPk(partnerId), SK: pairSk(userId) },
+        UpdateExpression: "SET #s = :ended, endedAt = :now, updatedAt = :now",
+        ExpressionAttributeNames: { "#s": "status" },
+        ExpressionAttributeValues: { ":ended": "ended", ":now": now },
       }),
     ),
   ]);

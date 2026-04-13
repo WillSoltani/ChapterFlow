@@ -48,6 +48,9 @@ import { scoreQuizResponsesByQuestionId } from "@/app/app/api/book/_lib/quiz-ser
 import { updateStreakOnLoopComplete } from "@/app/app/api/book/_lib/streak-repo";
 import { updateTierOnLoopComplete } from "@/app/app/api/book/_lib/tier-repo";
 import { checkAchievementsAfterLoopComplete } from "@/app/app/api/book/_lib/achievement-repo";
+import { checkAndAdvanceJourneys, type JourneyAdvancementResult } from "@/app/app/api/book/_lib/journey-repo";
+import { listUserEvents, recordEventChapter } from "@/app/app/api/book/_lib/events-repo";
+import { listEventDefinitions } from "@/app/app/api/book/_lib/admin-events-repo";
 import { maybeAwardInsightSpark } from "@/app/app/api/book/_lib/insight-spark";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
@@ -715,6 +718,74 @@ export async function POST(
         }).catch(() => {});
       }
 
+      // ── Step 6: Event chapter tracking ──────────────────────────────
+      try {
+        const now = new Date();
+        const allEventDefs = await listEventDefinitions(tableName);
+        const activeEventDefs = allEventDefs.filter(
+          (e) =>
+            e.active !== false &&
+            new Date(e.startDate) <= now &&
+            new Date(e.endDate) >= now &&
+            e.books.includes(bookId),
+        );
+        if (activeEventDefs.length > 0) {
+          const userEvents = await listUserEvents(tableName, user.sub);
+          const joinedEventIds = new Set(userEvents.map((e) => e.eventId));
+          const chapterId = `${bookId}:ch${chapterNumberInt}`;
+          for (const eventDef of activeEventDefs) {
+            if (joinedEventIds.has(eventDef.eventId)) {
+              await recordEventChapter(
+                tableName,
+                user.sub,
+                eventDef.eventId,
+                chapterId,
+                eventDef,
+              );
+            }
+          }
+        }
+        await markLoopStep("eventTrackingCheckedAt");
+      } catch (e) {
+        pipelineErrors.push("event_tracking");
+        console.error("[loop-pipeline-partial-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          failedStep: "event_tracking", error: String(e),
+        });
+      }
+
+      // ── Step 7: Journey advancement ──────────────────────────────────
+      let journeyResults: JourneyAdvancementResult[] = [];
+      if (completedBookNow) {
+        try {
+          journeyResults = await checkAndAdvanceJourneys(
+            tableName,
+            user.sub,
+            bookId,
+          );
+          await markLoopStep("journeyAdvancedAt");
+
+          // Fire-and-forget notifications for journey completions
+          for (const jr of journeyResults) {
+            if (jr.completed) {
+              createNotification(tableName, {
+                userId: user.sub,
+                type: "badge_earned",
+                title: "Journey Complete!",
+                body: `You completed a learning journey${jr.bonusIPAwarded > 0 ? ` and earned ${jr.bonusIPAwarded} IP` : ""}!`,
+                metadata: { journeyId: jr.journeyId, ip: jr.bonusIPAwarded },
+              }).catch(() => {});
+            }
+          }
+        } catch (e) {
+          pipelineErrors.push("journey_advancement");
+          console.error("[loop-pipeline-partial-failure]", {
+            userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+            failedStep: "journey_advancement", error: String(e),
+          });
+        }
+      }
+
       // Always build a pipeline result with whatever fields succeeded.
       loopPipeline = {
         quizPassIP: quizPassAward.awarded ? totalQuizPoints - perfectBonus : 0,
@@ -769,6 +840,7 @@ export async function POST(
         insightSpark: sparkResult.triggered
           ? { triggered: true, amount: sparkResult.amount }
           : { triggered: false, amount: 0 },
+        ...(journeyResults.length > 0 ? { journeys: journeyResults } : {}),
       };
 
       // Mark the pipeline as fully completed only if every step succeeded.

@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "What final question drives Chapter 11?",
+      "choices": [
+        "Which social institution best protects people from anxiety?",
+        "What kind of heroic individual could remain after easier illusions fail?",
+        "How can psychology replace religion entirely?"
+      ],
+      "correctIndex": 1,
+      "explanations": {
+        "gentle": "Chapter 11 closes the book by asking what sort of courage or heroism can survive after false rescue systems are exposed.",
+        "direct": "The ending focuses on the heroic individual as the remaining question after the critique of inflated hero systems.",
+        "competitive": "The book's last move is to ask what real heroism survives the demolition."
+      }
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "In this chapter, what makes an answer to death anxiety \"cheap\"?",
+      "choices": [
+        "It reduces fear by inflating or flattering the self",
+        "It comes from an old cultural tradition",
+        "It asks people to accept limitation"
+      ],
+      "correctIndex": 0,
+      "explanations": {
+        "gentle": "Cheap illusion works by making the self feel safer, purer, or more important than reality allows.",
+        "direct": "The chapter calls an answer cheap when it buys courage through denial and self-enlargement.",
+        "competitive": "A bargain answer is paid for with distortion."
+      }
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "Why is psychology alone not enough in Becker's ending?",
+      "choices": [
+        "Because psychology cannot describe defenses accurately",
+        "Because exposure by itself can leave life flat or despairing",
+        "Because psychology only applies to illness, not ordinary life"
+      ],
+      "correctIndex": 1,
+      "explanations": {
+        "gentle": "Psychology is valuable for exposing self-deception, but the chapter warns that exposure alone may leave a person with no larger meaning.",
+        "direct": "Becker needs psychological realism, yet pure unmasking can turn into disillusion rather than livable courage.",
+        "competitive": "The scanner clears the fraud but does not automatically build a life."
+      }
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "Elias stops pretending he has full control in front of his team. Which Chapter 11 idea does this best show?",
+      "choices": [
+        "Mature courage acts without requiring invulnerability",
+        "Heroism depends on looking certain under pressure",
+        "Leadership should avoid discussing limits"
+      ],
+      "correctIndex": 0,
+      "explanations": {
+        "gentle": "His honesty under pressure shows the humbler courage Chapter 11 prefers.",
+        "direct": "The example demonstrates action without grandiose certainty.",
+        "competitive": "Dropping the armor while staying responsible is the point."
+      }
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "How does the chapter treat religion at the end of the book?",
+      "choices": [
+        "As automatic comfort that solves the problem neatly",
+        "As irrelevant once psychology has explained defense",
+        "As a possible larger horizon that must still resist vanity and denial"
+      ],
+      "correctIndex": 2,
+      "explanations": {
+        "gentle": "The chapter does not dismiss religion, but it only matters if it supports truthful courage rather than ego comfort.",
+        "direct": "Religion reenters as openness to transcendence, not as a license for easy reassurance or spiritual grandiosity.",
+        "competitive": "It gets back in only if it refuses to become ego makeup."
+      }
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "Which statement would be a misreading of Chapter 11?",
+      "choices": [
+        "Becker thinks mature courage should be humbler than inflated hero systems",
+        "Becker rejects heroism entirely and wants only detached realism",
+        "Becker keeps tension between psychological realism and larger meaning"
+      ],
+      "correctIndex": 1,
+      "explanations": {
+        "gentle": "The chapter does not abandon heroism. It asks for a harder, more truthful version of it.",
+        "direct": "Detached realism alone is not Becker's answer; he is searching for courage after false heroism, not after all heroism.",
+        "competitive": "He trashes the fakes, not the need for courage itself."
+      }
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "If your sense of worth depends on always feeling exceptional, what would Chapter 11 most likely ask?",
+      "choices": [
+        "Whether your meaning can survive without constant self-enlargement",
+        "Whether other people recognize your talent enough",
+        "Whether you should hide your ambition more carefully"
+      ],
+      "correctIndex": 0,
+      "explanations": {
+        "gentle": "The chapter pushes people to test whether worth remains when inflation is removed.",
+        "direct": "A major theme is whether courage and meaning can stand without exceptionalist guarantees.",
+        "competitive": "Take away the superiority fuel and see what still runs."
+      }
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "Jordan wonders whether belief is comfort or truthful orientation. What distinction is Chapter 11 testing?",
+      "choices": [
+        "Ritual versus doctrine",
+        "Transcendence versus spiritual vanity",
+        "Private prayer versus public worship"
+      ],
+      "correctIndex": 1,
+      "explanations": {
+        "gentle": "The chapter tests whether belief deepens humility before reality or merely makes the self feel safer.",
+        "direct": "Religion matters only if it points beyond the ego's flattering inventions.",
+        "competitive": "The issue is whether belief serves reality or flatters panic."
+      }
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "What is the best summary of how psychology and religion work together in the ending?",
+      "choices": [
+        "Psychology exposes self-deception while religion may keep meaning open beyond the self",
+        "Psychology explains the mind and religion explains society",
+        "Psychology supplies certainty and religion supplies emotion"
+      ],
+      "correctIndex": 0,
+      "explanations": {
+        "gentle": "One side unmasks defensive illusion, and the other side may keep life from collapsing into self-made meaning alone.",
+        "direct": "The final synthesis pairs suspicion of ego defenses with openness to a larger horizon.",
+        "competitive": "Exposure disciplines the self; transcendence keeps the world from shrinking to it."
+      }
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "Which closing stance best fits Becker's heroic individual?",
+      "choices": [
+        "Total certainty that fear has been conquered",
+        "Costly courage that accepts finitude without surrendering to despair",
+        "Withdrawal from meaning to avoid illusion entirely"
+      ],
+      "correctIndex": 1,
+      "explanations": {
+        "gentle": "The chapter ends with a demanding courage that does not erase death or dependence but still refuses hopelessness.",
+        "direct": "Mature heroism accepts limitation more honestly without collapsing into nihilism.",
+        "competitive": "The final standard is life after the armor, not life after fear."
+      }
+    }
+  ]
+}

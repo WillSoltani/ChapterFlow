@@ -1,6 +1,7 @@
 import "server-only";
 
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
+import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 import {
   bookOk,
   requireBodyObject,
@@ -172,6 +173,20 @@ export async function PATCH(
         })
         .catch(() => {});
     }
+
+    // Notify user — fire-and-forget
+    const notifType = status === "approved" ? "scenario_approved" as const : "scenario_rejected" as const;
+    createNotification(tableName, {
+      userId: existing.userId,
+      type: notifType,
+      title: status === "approved" ? "Scenario Approved!" : "Scenario Not Approved",
+      body: status === "approved"
+        ? `Your scenario "${existing.title}" was approved! +${existing.pointsAwarded} Insight Points.`
+        : `Your scenario "${existing.title}" wasn't approved.${reviewNotes ? ` Reason: ${reviewNotes}` : ""}`,
+      metadata: { submissionId },
+      userEmail: existing.userEmail,
+      userName: existing.userName,
+    }).catch(() => {});
 
     return bookOk({
       submission: {

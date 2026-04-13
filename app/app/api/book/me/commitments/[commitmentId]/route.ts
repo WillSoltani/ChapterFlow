@@ -1,5 +1,6 @@
 import "server-only";
 
+import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import {
   bookOk,
@@ -43,36 +44,54 @@ export async function PATCH(req: Request, ctx: Params) {
         return bookErr(req, 400, "invalid_reflection", "Reflection must be 10-1000 characters");
       }
 
-      const updated = await updateCommitmentStatus(
-        tableName,
-        user.sub,
-        commitmentId,
-        "completed",
-        reflection,
-      );
+      const ipAmount = INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough;
+
+      let updated;
+      try {
+        updated = await updateCommitmentStatus(
+          tableName,
+          user.sub,
+          commitmentId,
+          "completed",
+          reflection,
+          ipAmount,
+        );
+      } catch (err) {
+        if (err instanceof ConditionalCheckFailedException) {
+          return bookErr(req, 409, "already_updated", "Commitment was already updated");
+        }
+        throw err;
+      }
 
       const ipResult = await awardFlowPoints(tableName, {
         userId: user.sub,
-        amount: INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough,
+        amount: ipAmount,
         sourceType: "commitment_follow_through",
         sourceId: commitmentId,
       });
 
       return bookOk({
         commitment: updated,
-        ipAwarded: INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough,
+        ipAwarded: ipAmount,
         balance: ipResult.state.points,
       });
     }
 
     if (action === "skip") {
-      const updated = await updateCommitmentStatus(
-        tableName,
-        user.sub,
-        commitmentId,
-        "skipped",
-      );
-      return bookOk({ commitment: updated, ipAwarded: 0 });
+      try {
+        const updated = await updateCommitmentStatus(
+          tableName,
+          user.sub,
+          commitmentId,
+          "skipped",
+        );
+        return bookOk({ commitment: updated, ipAwarded: 0 });
+      } catch (err) {
+        if (err instanceof ConditionalCheckFailedException) {
+          return bookErr(req, 409, "already_updated", "Commitment was already updated");
+        }
+        throw err;
+      }
     }
 
     return bookErr(req, 400, "invalid_action", "Action must be 'complete' or 'skip'");

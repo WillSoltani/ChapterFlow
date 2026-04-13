@@ -3,7 +3,9 @@ import "server-only";
 import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, eventParticipationSk, nowIso } from "./keys";
-import type { EventParticipationItem } from "./types";
+import { awardFlowPoints } from "./flow-points-repo";
+import { createNotification } from "./notifications-repo";
+import type { EventDefinition, EventParticipationItem } from "./types";
 
 export async function joinEvent(
   tableName: string,
@@ -77,6 +79,7 @@ export async function recordEventChapter(
   userId: string,
   eventId: string,
   chapterId: string,
+  eventDef?: EventDefinition,
 ): Promise<EventParticipationItem | null> {
   const today = new Date().toISOString().slice(0, 10);
   const now = nowIso();
@@ -93,20 +96,61 @@ export async function recordEventChapter(
 
   const totalChaptersCompleted = current.totalChaptersCompleted + 1;
 
+  // Check if event is now complete
+  const justCompleted =
+    eventDef != null &&
+    eventDef.targetChapters > 0 &&
+    totalChaptersCompleted >= eventDef.targetChapters;
+
+  const updateParts = [
+    "dailyProgress = :dp",
+    "totalChaptersCompleted = :total",
+    "updatedAt = :now",
+  ];
+  const exprValues: Record<string, unknown> = {
+    ":dp": dailyProgress,
+    ":total": totalChaptersCompleted,
+    ":now": now,
+  };
+
+  if (justCompleted) {
+    updateParts.push("completed = :t", "completedAt = :now");
+    updateParts.push("badgeAwarded = :t", "ipBonusAwarded = :t");
+    exprValues[":t"] = true;
+  }
+
   const result = await ddbDoc.send(
     new UpdateCommand({
       TableName: tableName,
       Key: { PK: bookUserPk(userId), SK: eventParticipationSk(eventId) },
-      UpdateExpression:
-        "SET dailyProgress = :dp, totalChaptersCompleted = :total, updatedAt = :now",
-      ExpressionAttributeValues: {
-        ":dp": dailyProgress,
-        ":total": totalChaptersCompleted,
-        ":now": now,
-      },
+      UpdateExpression: `SET ${updateParts.join(", ")}`,
+      ExpressionAttributeValues: exprValues,
       ReturnValues: "ALL_NEW",
     }),
   );
+
+  // Award IP and send notification on completion (fire-and-forget)
+  if (justCompleted && eventDef) {
+    awardFlowPoints(tableName, {
+      userId,
+      amount: eventDef.bonusIP,
+      sourceType: "event_complete",
+      sourceId: eventId,
+      metadata: { eventTitle: eventDef.title },
+    }).catch(() => {});
+
+    createNotification(tableName, {
+      userId,
+      type: "badge_earned",
+      title: `Event Complete: ${eventDef.title}`,
+      body: `You completed "${eventDef.title}" and earned ${eventDef.bonusIP} IP!`,
+      metadata: {
+        eventId,
+        badgeId: eventDef.badge.badgeId,
+        ip: eventDef.bonusIP,
+      },
+    }).catch(() => {});
+  }
 
   return (result.Attributes as EventParticipationItem) ?? null;
 }

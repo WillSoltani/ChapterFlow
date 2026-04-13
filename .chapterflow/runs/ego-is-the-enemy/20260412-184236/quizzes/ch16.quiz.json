@@ -1,0 +1,90 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main warning in 'Beware the disease of me'?",
+      "choices": [
+        "That success can turn the self into the center of everything",
+        "That success always removes concern for others",
+        "That ambition should be abandoned once a person succeeds"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns against self-centered success.",
+        "direct": "Ego makes the self the reference point for interpretation, relationship, and scale.",
+        "competitive": "Success gets dangerous when everything starts orbiting you."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How does self-centrality distort interpretation?",
+      "choices": [
+        "It makes every event feel personally significant",
+        "It removes all emotion from judgment",
+        "It prevents a person from noticing any success at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says ego starts reading events through personal importance.",
+        "direct": "Neutral facts begin to look privately loaded when the self becomes the measure.",
+        "competitive": "You stop reading the room and start reading your reflection."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter distinguish the disease of me from ordinary self-concern?",
+      "choices": [
+        "Ordinary self-concern means ignoring limits, while the disease of me means healthy care",
+        "Ordinary self-concern respects needs and limits, while the disease of me recenters everything on personal importance",
+        "There is no distinction because any attention to self is the problem"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not against having needs or boundaries.",
+        "direct": "The warning is about self-importance swallowing proportion, not about basic care for oneself.",
+        "competitive": "Having a center is normal. Making yourself the universe is the problem."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What does proportion loss look like in this chapter?",
+      "choices": [
+        "Small setbacks feel huge because they strike the self-image",
+        "Every problem becomes easy to solve",
+        "The person stops caring about outcomes entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The scale of events gets distorted.",
+        "direct": "When ego magnifies the self, ordinary friction gets inflated beyond its real size.",
+        "competitive": "Tiny hits feel massive when your image fills the screen."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What correction does the chapter recommend before the next bridge?",
+      "choices": [
+        "Withdraw from all relationships",
+        "Try to win more attention from others",
+        "Practice decentering so relation and scale return"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter asks the reader to stop measuring everything by the self.",
+        "direct": "Decentering restores perspective without requiring self-neglect.",
+        "competitive": "Get yourself out of the middle so you can see the field again."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

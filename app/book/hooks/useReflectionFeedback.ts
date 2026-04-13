@@ -109,15 +109,16 @@ export function useReflectionFeedback() {
           }
         }
 
-        // If stream ended without a "done" event
-        if (accumulated && state.loading) {
-          setState({
+        // If stream ended without a "done" event (e.g. connection dropped)
+        setState((prev) => {
+          if (!prev.loading) return prev;
+          return {
             loading: false,
-            feedbackText: accumulated,
-            error: null,
+            feedbackText: accumulated || prev.feedbackText,
+            error: accumulated ? null : "Stream ended unexpectedly",
             cached: false,
-          });
-        }
+          };
+        });
       } catch {
         setState((prev) => ({ ...prev, loading: false, error: "Network error" }));
       }

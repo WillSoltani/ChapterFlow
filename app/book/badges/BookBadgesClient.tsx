@@ -7,6 +7,8 @@ import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
+import type { EventDefinition, EventParticipationItem } from "@/app/app/api/book/_lib/types";
 import type { BadgeFilter, BadgeWithProgress, SeasonalChallenge as SeasonalChallengeType } from "./lib/badge-types";
 import {
   evaluateBadges,
@@ -32,25 +34,38 @@ import { BadgeDetailModal } from "./components/BadgeDetailModal";
 import { BadgeTimeline } from "./components/BadgeTimeline";
 import { BadgeCelebration } from "./components/BadgeCelebration";
 
-// Compute the active seasonal challenge (if any)
-function getActiveSeasonalChallenge(
-  completedChaptersThisMonth: number
-): SeasonalChallengeType | null {
+type ActiveEventWithParticipation = EventDefinition & {
+  participation?: EventParticipationItem;
+};
+
+function eventToSeasonalChallenge(
+  event: ActiveEventWithParticipation,
+): SeasonalChallengeType {
+  return {
+    id: event.eventId,
+    title: event.title,
+    description: event.description,
+    badgeIcon: event.badge.icon.length <= 2 ? event.badge.icon : "🏆",
+    startDate: event.startDate,
+    endDate: event.endDate,
+    criteria: { description: "chapters", target: event.targetChapters },
+    progress: event.participation?.totalChaptersCompleted ?? 0,
+  };
+}
+
+function buildFallbackChallenge(
+  completedChaptersThisMonth: number,
+): SeasonalChallengeType {
   const now = new Date();
   const monthName = now.toLocaleString(undefined, { month: "long" });
   const year = now.getFullYear();
-  const startDate = new Date(year, now.getMonth(), 1).toISOString();
-  const endDate = new Date(year, now.getMonth() + 1, 0, 23, 59, 59).toISOString();
-  const end = new Date(endDate);
-  if (now > end) return null;
-
   return {
     id: `${monthName.toLowerCase()}-${year}`,
     title: `${monthName} ${year} Reading Challenge`,
     description: "Complete 5 chapters this month",
     badgeIcon: "📅",
-    startDate,
-    endDate,
+    startDate: new Date(year, now.getMonth(), 1).toISOString(),
+    endDate: new Date(year, now.getMonth() + 1, 0, 23, 59, 59).toISOString(),
     criteria: { description: "chapters", target: 5 },
     progress: Math.min(completedChaptersThisMonth, 5),
   };
@@ -167,10 +182,30 @@ export function BookBadgesClient() {
   // Earned badges for timeline
   const earnedBadges = useMemo(() => badges.filter((b) => b.isEarned), [badges]);
 
-  // Seasonal challenge
-  const seasonalChallenge = useMemo<SeasonalChallengeType | null>(() => {
-    const chaptersThisMonth = badgeSystem.badgeStats?.totalCompletedChapters ?? 0;
-    return getActiveSeasonalChallenge(chaptersThisMonth);
+  // Seasonal challenge — prefer real event, fall back to monthly challenge
+  const [seasonalChallenge, setSeasonalChallenge] =
+    useState<SeasonalChallengeType | null>(null);
+  useEffect(() => {
+    fetchBookJson<{ events: ActiveEventWithParticipation[] }>(
+      "/app/api/book/events/active",
+    )
+      .then((data) => {
+        // Prefer a joined event, otherwise show most urgent active event
+        const joinedEvent = data.events.find((e) => e.participation && !e.participation.completed);
+        const activeEvent = joinedEvent ?? data.events[0] ?? null;
+        if (activeEvent) {
+          setSeasonalChallenge(eventToSeasonalChallenge(activeEvent));
+        } else {
+          const chaptersThisMonth =
+            badgeSystem.badgeStats?.totalCompletedChapters ?? 0;
+          setSeasonalChallenge(buildFallbackChallenge(chaptersThisMonth));
+        }
+      })
+      .catch(() => {
+        const chaptersThisMonth =
+          badgeSystem.badgeStats?.totalCompletedChapters ?? 0;
+        setSeasonalChallenge(buildFallbackChallenge(chaptersThisMonth));
+      });
   }, [badgeSystem.badgeStats?.totalCompletedChapters]);
 
   // Handlers

@@ -2,21 +2,9 @@ import "server-only";
 
 import { S3Client, PutObjectCommand, ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getBookContentBucket } from "@/app/app/api/book/_lib/env";
+import type { SearchDocument } from "@/app/book/types/search";
 
 const s3 = new S3Client({});
-
-export type SearchDocument = {
-  id: string;
-  type: "book" | "chapter" | "takeaway" | "example";
-  bookId: string;
-  bookTitle: string;
-  author: string;
-  chapterNumber?: number;
-  chapterTitle?: string;
-  text: string;
-  tags: string[];
-  categories: string[];
-};
 
 export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
   const bucket = await getBookContentBucket();
@@ -143,7 +131,7 @@ export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
         }
       } catch {
         // Chapter doesn't exist or isn't readable — skip
-        break;
+        continue;
       }
     }
   }

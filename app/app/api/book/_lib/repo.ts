@@ -51,6 +51,7 @@ import {
   licenseIndexPk,
   licenseIndexSk,
   accountStatusSk,
+  shareEventSk,
 } from "./keys";
 import type {
   BookCatalogItem,
@@ -75,6 +76,7 @@ import type {
   LicenseKeyItem,
   QuizAttemptItem,
   AccountStatusItem,
+  BookUserShareEventItem,
 } from "./types";
 
 function readNum(value: unknown): number | undefined {
@@ -2897,5 +2899,25 @@ export async function revokeLicenseKey(
         },
       ],
     })
+  );
+}
+
+// ── Share Events ─────────────────────────────────────────────────────────────
+
+export async function putShareEvent(
+  tableName: string,
+  userId: string,
+  event: BookUserShareEventItem,
+): Promise<void> {
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: bookUserPk(userId),
+        SK: shareEventSk(event.createdAt, event.shareId),
+        entity: "BOOK_USER_SHARE_EVENT",
+        ...event,
+      },
+    }),
   );
 }

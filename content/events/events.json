@@ -1,0 +1,56 @@
+[
+  {
+    "eventId": "spring-clarity-2026",
+    "title": "Spring Clarity Challenge",
+    "description": "Sharpen your thinking this spring — read across psychology and decision-making",
+    "startDate": "2026-04-01T00:00:00.000Z",
+    "endDate": "2026-05-15T23:59:59.999Z",
+    "books": [
+      "thinking-fast-and-slow",
+      "thinking-in-bets",
+      "predictably-irrational",
+      "super-thinking",
+      "the-great-mental-models-vol-1"
+    ],
+    "dailyChapterTarget": 1,
+    "targetChapters": 15,
+    "badge": { "badgeId": "event-spring-clarity-2026", "name": "Spring Clarity", "icon": "sun" },
+    "bonusIP": 400
+  },
+  {
+    "eventId": "habit-sprint-2026",
+    "title": "Habit Sprint",
+    "description": "21 days to build an unbreakable reading habit — one chapter a day",
+    "startDate": "2026-05-01T00:00:00.000Z",
+    "endDate": "2026-05-21T23:59:59.999Z",
+    "books": [
+      "atomic-habits",
+      "the-power-of-habit",
+      "tiny-habits",
+      "deep-work",
+      "the-one-thing"
+    ],
+    "dailyChapterTarget": 1,
+    "targetChapters": 21,
+    "badge": { "badgeId": "event-habit-sprint-2026", "name": "Habit Sprinter", "icon": "zap" },
+    "bonusIP": 500
+  },
+  {
+    "eventId": "leadership-month-2026",
+    "title": "Leadership Month",
+    "description": "Level up your leadership skills in June — tackle the toughest reads together",
+    "startDate": "2026-06-01T00:00:00.000Z",
+    "endDate": "2026-06-30T23:59:59.999Z",
+    "books": [
+      "leaders-eat-last",
+      "extreme-ownership",
+      "the-hard-thing-about-hard-things",
+      "good-to-great",
+      "execution"
+    ],
+    "dailyChapterTarget": 1,
+    "targetChapters": 20,
+    "badge": { "badgeId": "event-leadership-month-2026", "name": "Lead the Way", "icon": "flag" },
+    "bonusIP": 450
+  }
+]

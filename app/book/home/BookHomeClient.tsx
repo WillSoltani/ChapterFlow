@@ -38,6 +38,7 @@ import { CommitmentFollowUpCard } from "@/app/book/home/components/CommitmentFol
 import { ReviewDueWidget } from "@/app/book/home/components/ReviewDueWidget";
 import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
 import { EventBanner } from "@/app/book/home/components/EventBanner";
+import { JourneyBanner } from "@/app/book/home/components/JourneyBanner";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { useStarterPrescription } from "@/app/book/hooks/useStarterPrescription";
 import { useCommitments } from "@/app/book/hooks/useCommitments";
@@ -278,6 +279,9 @@ export function BookHomeClient() {
         {/* ── Active event banner ── */}
         <EventBanner enabled={onboarding.setupComplete} />
 
+        {/* ── Active journey banner ── */}
+        <JourneyBanner enabled={onboarding.setupComplete} />
+
         {/* ── Greeting ── */}
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl">
@@ -319,7 +323,7 @@ export function BookHomeClient() {
         </div>
 
         {/* ── Starter prescription for new users ── */}
-        {starterPrescription.prescription && !currentProgress ? (
+        {starterPrescription.prescription && (!currentProgress || currentProgress.status === "not_started") ? (
           <div className="mt-5">
             <StarterRecommendationCard
               prescription={starterPrescription.prescription}

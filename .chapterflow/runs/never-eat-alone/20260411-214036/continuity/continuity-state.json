@@ -2,7 +2,7 @@
   "nameUsage": {
     "Elena": 3,
     "Marcus": 5,
-    "Priya": 5,
+    "Priya": 6,
     "Diego": 1,
     "Naomi": 2,
     "Evan": 2,
@@ -21,8 +21,8 @@
     "Helen": 1,
     "Chris": 1,
     "Alia": 1,
-    "Dev": 1,
-    "Serena": 4,
+    "Dev": 2,
+    "Serena": 5,
     "Malik": 3,
     "June": 1,
     "Theo": 2,
@@ -31,7 +31,7 @@
     "Marnie": 1,
     "Ross": 1,
     "Alicia": 2,
-    "Grant": 2,
+    "Grant": 3,
     "Carla": 1,
     "Jin": 1,
     "Brooke": 1,
@@ -41,7 +41,7 @@
     "Dana": 2,
     "Professor Shah": 1,
     "Lila": 3,
-    "Victor": 2,
+    "Victor": 3,
     "Rosa": 1,
     "Ethan": 1,
     "Lena": 1,
@@ -54,7 +54,7 @@
     "Ruby": 1,
     "Aaron": 1,
     "Sonia": 4,
-    "Maya": 3,
+    "Maya": 4,
     "Vincent": 1,
     "Leon": 1,
     "Professor Ahmed": 1,
@@ -95,16 +95,16 @@
     "Hina": 1,
     "Carmen": 1,
     "Zoe": 1,
-    "Daniel": 1,
+    "Daniel": 2,
     "Greg": 1,
-    "Professor Chen": 1,
+    "Professor Chen": 2,
     "Tara": 1,
-    "Olivia": 1,
+    "Olivia": 2,
     "Jason": 1,
     "Professor Lewis": 1,
     "Hannah": 2,
     "Isaac": 2,
-    "Professor Walsh": 1,
+    "Professor Walsh": 2,
     "Devon": 1,
     "Nadia": 1,
     "Colin": 1,
@@ -123,7 +123,9 @@
     "Trevor": 4,
     "Professor Flores": 1,
     "Professor Diaz": 1,
-    "Professor Rowan": 1
+    "Professor Rowan": 1,
+    "Felix": 1,
+    "Rina": 1
   },
   "formatCategoryHistory": [
     {
@@ -433,6 +435,28 @@
         "reflection:school",
         "conflict:personal"
       ]
+    },
+    {
+      "chapter": "ch29",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
+    },
+    {
+      "chapter": "ch30",
+      "pairs": [
+        "decision_point:work",
+        "dialogue:school",
+        "dilemma:personal",
+        "strategy:work",
+        "reflection:school",
+        "conflict:personal"
+      ]
     }
   ],
   "schoolSettingUsage": {
@@ -472,13 +496,16 @@
     "parent weekend": 1,
     "faculty fundraiser": 1,
     "interdisciplinary panel": 1,
-    "alumni board meeting": 1,
+    "alumni board meeting": 2,
     "alumni email chain": 1,
     "advising office follow-up": 1,
     "alumni newsletter profile": 1,
     "student media office": 1,
     "donor reception": 1,
-    "faculty advisory dinner": 1
+    "faculty advisory dinner": 1,
+    "alumni roundtable": 1,
+    "student dinner series": 1,
+    "faculty award dinner": 1
   },
   "wordFrequency": {},
   "phraseFrequency": {},
@@ -661,6 +688,22 @@
       "warning",
       "bridge",
       "comparison",
+      "test",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch29": [
+      "comparison",
+      "bridge",
+      "warning",
+      "test",
+      "tradeoff",
+      "reframing"
+    ],
+    "ch30": [
+      "warning",
+      "comparison",
+      "bridge",
       "test",
       "tradeoff",
       "reframing"
@@ -942,6 +985,22 @@
       "Trevor",
       "Dean Alvarez",
       "Hannah"
+    ],
+    "ch29": [
+      "Olivia",
+      "Daniel",
+      "Priya",
+      "Felix",
+      "Professor Walsh",
+      "Rina"
+    ],
+    "ch30": [
+      "Maya",
+      "Grant",
+      "Dev",
+      "Serena",
+      "Professor Chen",
+      "Victor"
     ]
   },
   "approvedChapterHashes": {
@@ -972,7 +1031,9 @@
     "ch25": "6de348f02736cfea61c19bd38c08ddcb23ac0224015e01c2a8d12b9cd168ceea",
     "ch26": "a4b1d3599b33a3ab5afabdeffcb433b671be6e5f0c0165639348d4830eeaa67a",
     "ch27": "c5e67b2ad7de1dabe14c57bb49bd30459072e77a8c70ebcb521048ed5b447e33",
-    "ch28": "5f8c41a1ac7cb7dae21fd75e1137607a05362778fa8c81ed116974c21a977263"
+    "ch28": "5f8c41a1ac7cb7dae21fd75e1137607a05362778fa8c81ed116974c21a977263",
+    "ch29": "c8c7f068653c028090b15c5a088efd97d4dbe8963cc7ff8e1466ae35b5d83818",
+    "ch30": "62a511f940907f0cfd41896ea80f88cf110729cf4eeab9eb03b2dff1eb81116a"
   },
   "baselineQuality": {
     "ch01": {
@@ -1118,6 +1179,16 @@
       "validation": "pass"
     },
     "ch28": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch29": {
+      "criticScore": 10,
+      "status": "passed",
+      "validation": "pass"
+    },
+    "ch30": {
       "criticScore": 10,
       "status": "passed",
       "validation": "pass"

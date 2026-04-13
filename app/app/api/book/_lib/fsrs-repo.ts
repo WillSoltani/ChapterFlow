@@ -75,21 +75,28 @@ export async function getDueCards(
   limit: number = 20,
   bookIds?: string[]
 ): Promise<FSRSCardState[]> {
-  const result = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "FSRS#CARD#",
-      },
-    })
-  );
+  const allItems: FSRSCardState[] = [];
+  let lastEvaluatedKey: Record<string, unknown> | undefined;
+
+  do {
+    const result = await ddbDoc.send(
+      new QueryCommand({
+        TableName: tableName,
+        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+        ExpressionAttributeValues: {
+          ":pk": bookUserPk(userId),
+          ":prefix": "FSRS#CARD#",
+        },
+        ExclusiveStartKey: lastEvaluatedKey,
+      })
+    );
+    allItems.push(...((result.Items ?? []) as FSRSCardState[]));
+    lastEvaluatedKey = result.LastEvaluatedKey as Record<string, unknown> | undefined;
+  } while (lastEvaluatedKey);
 
   const now = new Date();
-  const items = (result.Items ?? []) as FSRSCardState[];
 
-  return items
+  return allItems
     .filter((card) => {
       if (bookIds && bookIds.length > 0 && !bookIds.includes(card.bookId)) {
         return false;
@@ -105,20 +112,27 @@ export async function getAllCards(
   userId: string,
   bookId?: string
 ): Promise<FSRSCardState[]> {
-  const result = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "FSRS#CARD#",
-      },
-    })
-  );
+  const allItems: FSRSCardState[] = [];
+  let lastEvaluatedKey: Record<string, unknown> | undefined;
 
-  const items = (result.Items ?? []) as FSRSCardState[];
-  if (bookId) return items.filter((card) => card.bookId === bookId);
-  return items;
+  do {
+    const result = await ddbDoc.send(
+      new QueryCommand({
+        TableName: tableName,
+        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+        ExpressionAttributeValues: {
+          ":pk": bookUserPk(userId),
+          ":prefix": "FSRS#CARD#",
+        },
+        ExclusiveStartKey: lastEvaluatedKey,
+      })
+    );
+    allItems.push(...((result.Items ?? []) as FSRSCardState[]));
+    lastEvaluatedKey = result.LastEvaluatedKey as Record<string, unknown> | undefined;
+  } while (lastEvaluatedKey);
+
+  if (bookId) return allItems.filter((card) => card.bookId === bookId);
+  return allItems;
 }
 
 export async function recordReview(

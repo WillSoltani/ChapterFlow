@@ -12,25 +12,42 @@ type Props = {
 
 export function CommitmentFollowUpCard({ commitments, onComplete, onSkip }: Props) {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [reflection, setReflection] = useState("");
+  const [reflections, setReflections] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [skippingId, setSkippingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const activeReflection = activeId ? (reflections[activeId] ?? "") : "";
 
   const handleComplete = useCallback(async () => {
-    if (!activeId || reflection.trim().length < 10 || submitting) return;
+    if (!activeId || activeReflection.trim().length < 10 || submitting) return;
     setSubmitting(true);
+    setError(null);
     try {
-      await onComplete(activeId, reflection.trim());
+      await onComplete(activeId, activeReflection.trim());
+      setReflections((prev) => { const next = { ...prev }; delete next[activeId]; return next; });
       setActiveId(null);
-      setReflection("");
-    } catch {}
+    } catch (e) {
+      console.error("Failed to complete commitment:", e);
+      setError("Failed to submit reflection. Please try again.");
+    }
     setSubmitting(false);
-  }, [activeId, reflection, submitting, onComplete]);
+  }, [activeId, activeReflection, submitting, onComplete]);
 
   const handleSkip = useCallback(
     async (id: string) => {
-      await onSkip(id);
+      if (skippingId) return;
+      setSkippingId(id);
+      setError(null);
+      try {
+        await onSkip(id);
+      } catch (e) {
+        console.error("Failed to skip commitment:", e);
+        setError("Failed to skip. Please try again.");
+      }
+      setSkippingId(null);
     },
-    [onSkip],
+    [onSkip, skippingId],
   );
 
   if (commitments.length === 0) return null;
@@ -43,6 +60,10 @@ export function CommitmentFollowUpCard({ commitments, onComplete, onSkip }: Prop
           Time to Check In
         </p>
       </div>
+
+      {error && (
+        <p className="mb-2 text-xs text-(--cf-error)">{error}</p>
+      )}
 
       <div className="space-y-3">
         {commitments.map((c) => (
@@ -60,8 +81,8 @@ export function CommitmentFollowUpCard({ commitments, onComplete, onSkip }: Prop
             {activeId === c.commitmentId ? (
               <div className="mt-3">
                 <textarea
-                  value={reflection}
-                  onChange={(e) => setReflection(e.target.value)}
+                  value={reflections[c.commitmentId] ?? ""}
+                  onChange={(e) => setReflections((prev) => ({ ...prev, [c.commitmentId]: e.target.value }))}
                   placeholder="How did it go? What happened when you tried it?"
                   rows={3}
                   className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-3) focus:border-(--cf-accent) focus:outline-none"
@@ -70,7 +91,7 @@ export function CommitmentFollowUpCard({ commitments, onComplete, onSkip }: Prop
                   <button
                     type="button"
                     onClick={handleComplete}
-                    disabled={reflection.trim().length < 10 || submitting}
+                    disabled={activeReflection.trim().length < 10 || submitting}
                     className="inline-flex items-center gap-1.5 rounded-lg bg-(--cf-accent) px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
                   >
                     <CheckCircle className="h-3.5 w-3.5" />
@@ -78,7 +99,7 @@ export function CommitmentFollowUpCard({ commitments, onComplete, onSkip }: Prop
                   </button>
                   <button
                     type="button"
-                    onClick={() => { setActiveId(null); setReflection(""); }}
+                    onClick={() => setActiveId(null)}
                     className="text-xs text-(--cf-text-3) hover:text-(--cf-text-2)"
                   >
                     Cancel
@@ -97,10 +118,11 @@ export function CommitmentFollowUpCard({ commitments, onComplete, onSkip }: Prop
                 <button
                   type="button"
                   onClick={() => handleSkip(c.commitmentId)}
-                  className="inline-flex items-center gap-1 text-xs text-(--cf-text-3) hover:text-(--cf-text-2)"
+                  disabled={skippingId === c.commitmentId}
+                  className="inline-flex items-center gap-1 text-xs text-(--cf-text-3) hover:text-(--cf-text-2) disabled:opacity-50"
                 >
                   <SkipForward className="h-3 w-3" />
-                  Skip
+                  {skippingId === c.commitmentId ? "Skipping..." : "Skip"}
                 </button>
               </div>
             )}

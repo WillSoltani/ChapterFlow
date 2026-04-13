@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Share2, Check } from "lucide-react";
 
 interface Props {
   chapterTitle: string;
@@ -11,6 +13,7 @@ interface Props {
   hasNextChapter: boolean;
   onNext: () => void;
   onLibrary: () => void;
+  onShare?: () => Promise<"shared" | "copied" | "unsupported"> | void;
   children?: React.ReactNode;
 }
 
@@ -23,9 +26,11 @@ export function ChapterCompleteModal({
   hasNextChapter,
   onNext,
   onLibrary,
+  onShare,
   children,
 }: Props) {
   const prefersReducedMotion = useReducedMotion();
+  const [shareFeedback, setShareFeedback] = useState(false);
 
   const phases: Array<{ label: string; done: boolean; score?: number }> = [
     { label: "Summary", done: true },
@@ -125,6 +130,27 @@ export function ChapterCompleteModal({
               className="w-full py-3.5 rounded-full font-semibold text-[15px] bg-(--cr-accent) text-(--cr-text-inverse) transition-transform hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2"
             >
               Open Next Chapter &rarr;
+            </button>
+          )}
+          {onShare && (
+            <button
+              type="button"
+              onClick={async () => {
+                const result = await onShare();
+                if (result === "shared" || result === "copied") {
+                  setShareFeedback(true);
+                  setTimeout(() => setShareFeedback(false), 2000);
+                }
+              }}
+              className="inline-flex w-full items-center justify-center gap-2 py-3 rounded-full font-medium text-[14px] border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
+              style={{
+                borderColor: "color-mix(in srgb, var(--cr-accent) 25%, transparent)",
+                background: "var(--cr-accent-muted)",
+                color: "var(--cr-accent)",
+              }}
+            >
+              {shareFeedback ? <Check className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
+              {shareFeedback ? "Copied!" : `Share ${hasNextChapter ? "Chapter" : "Book"} Completion`}
             </button>
           )}
           <button
