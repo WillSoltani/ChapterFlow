@@ -341,6 +341,210 @@ export async function batchGetUserSnapshots(
 }
 
 /**
+ * Scan all user snapshots from the analytics table.
+ * Used for cross-cutting aggregations (device mix, geo, retention cohorts).
+ * At solo-founder scale this is ~tens of KB. For larger scale, replace
+ * with precomputed daily snapshots.
+ */
+export async function scanAllUserSnapshots(
+  analyticsTable: string,
+  projection?: string,
+): Promise<Record<string, unknown>[]> {
+  const out: Record<string, unknown>[] = [];
+  let lastKey: Record<string, unknown> | undefined;
+
+  do {
+    const res = await ddbDoc.send(
+      new ScanCommand({
+        TableName: analyticsTable,
+        FilterExpression: "SK = :sk",
+        ExpressionAttributeValues: { ":sk": "SNAPSHOT" },
+        ProjectionExpression: projection,
+        ExclusiveStartKey: lastKey,
+      }),
+    );
+    for (const item of res.Items ?? []) out.push(item);
+    lastKey = res.LastEvaluatedKey;
+  } while (lastKey);
+
+  return out;
+}
+
+/**
+ * Bucket reading-day Sets across users into a weekly cohort retention matrix.
+ * Returns: cohort week (YYYY-Www) -> { size, weeks: number[] }
+ * where weeks[N] = % of cohort that read in week N after signup.
+ */
+export type CohortRetentionRow = {
+  cohort: string; // YYYY-Www
+  size: number;
+  weeks: number[]; // index 0 = signup week itself
+};
+
+export function buildCohortRetention(
+  snapshots: Array<{ firstSeenAt?: string; readingDays?: Set<string> | string[] }>,
+  weeksToShow = 8,
+): CohortRetentionRow[] {
+  const cohorts = new Map<string, { size: number; activeByWeek: number[] }>();
+
+  for (const s of snapshots) {
+    if (typeof s.firstSeenAt !== "string") continue;
+    const firstDate = new Date(s.firstSeenAt);
+    if (Number.isNaN(firstDate.getTime())) continue;
+
+    const cohortKey = isoWeekKey(firstDate);
+    const cohort =
+      cohorts.get(cohortKey) ??
+      { size: 0, activeByWeek: Array(weeksToShow).fill(0) };
+
+    cohort.size += 1;
+
+    const days =
+      s.readingDays instanceof Set
+        ? Array.from(s.readingDays as Set<string>)
+        : Array.isArray(s.readingDays)
+        ? (s.readingDays as string[])
+        : [];
+
+    // Mark weeks where the user was active relative to signup
+    const seenWeeks = new Set<number>();
+    for (const dayStr of days) {
+      const d = new Date(dayStr);
+      if (Number.isNaN(d.getTime())) continue;
+      const diffDays = Math.floor((d.getTime() - firstDate.getTime()) / 86_400_000);
+      if (diffDays < 0) continue;
+      const weekIdx = Math.floor(diffDays / 7);
+      if (weekIdx < weeksToShow) seenWeeks.add(weekIdx);
+    }
+    for (const w of seenWeeks) cohort.activeByWeek[w] += 1;
+
+    cohorts.set(cohortKey, cohort);
+  }
+
+  return Array.from(cohorts.entries())
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([cohort, c]) => ({
+      cohort,
+      size: c.size,
+      weeks: c.activeByWeek.map((n) => (c.size > 0 ? Math.round((n / c.size) * 100) : 0)),
+    }));
+}
+
+function isoWeekKey(date: Date): string {
+  // ISO week key YYYY-Www
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil(((d.getTime() - yearStart.getTime()) / 86_400_000 + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+}
+
+/**
+ * Bucket a list of users by reading frequency (last 30 days).
+ * - dormant: 0 days
+ * - monthly: 1-2 days
+ * - weekly: 3-15 days
+ * - daily: 16-30 days
+ */
+export function bucketReadingFrequency(
+  snapshots: Array<{ readingDays?: Set<string> | string[] }>,
+): { daily: number; weekly: number; monthly: number; dormant: number } {
+  const now = new Date();
+  const cutoff = new Date(now.getTime() - 30 * 86_400_000);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  const buckets = { daily: 0, weekly: 0, monthly: 0, dormant: 0 };
+
+  for (const s of snapshots) {
+    const days =
+      s.readingDays instanceof Set
+        ? Array.from(s.readingDays as Set<string>)
+        : Array.isArray(s.readingDays)
+        ? (s.readingDays as string[])
+        : [];
+    const recent = days.filter((d) => d >= cutoffStr).length;
+    if (recent === 0) buckets.dormant += 1;
+    else if (recent <= 2) buckets.monthly += 1;
+    else if (recent <= 15) buckets.weekly += 1;
+    else buckets.daily += 1;
+  }
+
+  return buckets;
+}
+
+/**
+ * Bucket beacon session_context events into device/browser/OS/timezone/lang
+ * counts. Pulls from snapshot-side fields (deviceType, browserName, osName)
+ * which are denormalized on every reading_session event write.
+ */
+export function bucketDeviceFields(
+  snapshots: Array<{
+    deviceType?: string;
+    browserName?: string;
+    osName?: string;
+  }>,
+): {
+  deviceType: Array<{ key: string; count: number }>;
+  browser: Array<{ key: string; count: number }>;
+  os: Array<{ key: string; count: number }>;
+} {
+  const dt = new Map<string, number>();
+  const br = new Map<string, number>();
+  const os = new Map<string, number>();
+
+  for (const s of snapshots) {
+    inc(dt, s.deviceType ?? "unknown");
+    inc(br, s.browserName ?? "unknown");
+    inc(os, s.osName ?? "unknown");
+  }
+
+  return {
+    deviceType: toSortedList(dt, 10),
+    browser: toSortedList(br, 12),
+    os: toSortedList(os, 8),
+  };
+}
+
+function inc(m: Map<string, number>, key: string) {
+  m.set(key, (m.get(key) ?? 0) + 1);
+}
+function toSortedList(m: Map<string, number>, limit: number) {
+  return Array.from(m.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([key, count]) => ({ key, count }));
+}
+
+/**
+ * Quantile helper for performance percentiles.
+ */
+export function percentile(sortedValues: number[], p: number): number {
+  if (sortedValues.length === 0) return 0;
+  const idx = Math.min(
+    sortedValues.length - 1,
+    Math.max(0, Math.floor((p / 100) * sortedValues.length)),
+  );
+  return sortedValues[idx];
+}
+
+/**
+ * For each user, count distinct active dates using a rolling window.
+ * Used for activity-frequency computation.
+ */
+export function countActiveDays(
+  readingDays: Set<string> | string[] | undefined,
+  withinDays: number,
+): number {
+  if (!readingDays) return 0;
+  const days = readingDays instanceof Set ? Array.from(readingDays) : readingDays;
+  const cutoff = new Date(Date.now() - withinDays * 86_400_000)
+    .toISOString()
+    .slice(0, 10);
+  return days.filter((d) => d >= cutoff).length;
+}
+
+/**
  * List most recently active users by plan, capped to `limit`.
  */
 export async function listRecentUsersByPlan(

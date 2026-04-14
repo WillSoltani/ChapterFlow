@@ -4,46 +4,69 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   Activity,
+  Bell,
   BookOpen,
   Coins,
   FileCheck2,
-  Flag,
+  Filter,
   Gauge,
+  Globe,
   LayoutDashboard,
   LineChart,
+  Monitor,
   Radio,
+  Repeat,
   Settings2,
   ShieldAlert,
   Sparkles,
+  TrendingUp,
   Users,
   Wallet,
+  Zap,
 } from "lucide-react";
+
+type NavGroup = "today" | "acquisition" | "engagement" | "revenue" | "content" | "ops";
 
 type NavItem = {
   href: string;
   label: string;
   icon: typeof LayoutDashboard;
-  group: "core" | "analytics" | "ops";
+  group: NavGroup;
 };
 
 const NAV: NavItem[] = [
-  { href: "/book/admin", label: "Overview", icon: LayoutDashboard, group: "core" },
-  { href: "/book/admin/live", label: "Live activity", icon: Radio, group: "core" },
-  { href: "/book/admin/users", label: "Users", icon: Users, group: "core" },
-  { href: "/book/admin/growth", label: "Growth", icon: LineChart, group: "analytics" },
-  { href: "/book/admin/engagement", label: "Engagement", icon: Activity, group: "analytics" },
-  { href: "/book/admin/revenue", label: "Revenue", icon: Wallet, group: "analytics" },
-  { href: "/book/admin/economy", label: "Economy", icon: Coins, group: "analytics" },
-  { href: "/book/admin/content", label: "Content", icon: BookOpen, group: "analytics" },
-  { href: "/book/admin/scenarios", label: "Scenario queue", icon: FileCheck2, group: "ops" },
-  { href: "/book/admin/moderation", label: "Moderation", icon: ShieldAlert, group: "ops" },
+  { href: "/book/admin", label: "Overview", icon: LayoutDashboard, group: "today" },
+  { href: "/book/admin/live", label: "Live activity", icon: Radio, group: "today" },
+  { href: "/book/admin/users", label: "Users", icon: Users, group: "today" },
+
+  { href: "/book/admin/growth", label: "Growth", icon: LineChart, group: "acquisition" },
+  { href: "/book/admin/acquisition", label: "Acquisition", icon: Filter, group: "acquisition" },
+  { href: "/book/admin/geography", label: "Geography", icon: Globe, group: "acquisition" },
+  { href: "/book/admin/funnels", label: "Funnels", icon: TrendingUp, group: "acquisition" },
+  { href: "/book/admin/retention", label: "Retention", icon: Repeat, group: "acquisition" },
+
+  { href: "/book/admin/engagement", label: "Engagement", icon: Activity, group: "engagement" },
+  { href: "/book/admin/notifications", label: "Notifications", icon: Bell, group: "engagement" },
+  { href: "/book/admin/devices", label: "Devices", icon: Monitor, group: "engagement" },
+  { href: "/book/admin/performance", label: "Performance", icon: Zap, group: "engagement" },
+
+  { href: "/book/admin/revenue", label: "Revenue", icon: Wallet, group: "revenue" },
+  { href: "/book/admin/economy", label: "Economy", icon: Coins, group: "revenue" },
+
+  { href: "/book/admin/content", label: "Content", icon: BookOpen, group: "content" },
+  { href: "/book/admin/scenarios", label: "Scenario queue", icon: FileCheck2, group: "content" },
+  { href: "/book/admin/moderation", label: "Moderation", icon: ShieldAlert, group: "content" },
+
   { href: "/book/admin/events", label: "Events", icon: Sparkles, group: "ops" },
   { href: "/book/admin/ops", label: "Ops & health", icon: Gauge, group: "ops" },
 ];
 
-const GROUP_LABELS: Record<NavItem["group"], string> = {
-  core: "Today",
-  analytics: "Analytics",
+const GROUP_LABELS: Record<NavGroup, string> = {
+  today: "Today",
+  acquisition: "Acquisition",
+  engagement: "Engagement",
+  revenue: "Revenue",
+  content: "Content",
   ops: "Operations",
 };
 
@@ -56,7 +79,9 @@ export function AdminShell({
 }) {
   const pathname = usePathname();
 
-  const groups = (["core", "analytics", "ops"] as const).map((g) => ({
+  const groups = (
+    ["today", "acquisition", "engagement", "revenue", "content", "ops"] as const
+  ).map((g) => ({
     group: g,
     items: NAV.filter((n) => n.group === g),
   }));
@@ -145,7 +170,7 @@ function MobileNav({
 }: {
   pathname: string;
   userEmail?: string;
-  groups: Array<{ group: "core" | "analytics" | "ops"; items: NavItem[] }>;
+  groups: Array<{ group: NavGroup; items: NavItem[] }>;
 }) {
   const current = NAV.find((n) =>
     n.href === "/book/admin" ? pathname === "/book/admin" : pathname.startsWith(n.href),

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronRight, Search, Users as UsersIcon, X } from "lucide-react";
+import { ChevronRight, Download, Search, Users as UsersIcon, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
+import { downloadCSV } from "@/app/book/admin/_components/csv";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/app/book/admin/_components/EmptyState";
@@ -126,24 +127,41 @@ export function UsersClient() {
         title="Users"
         description={users.length > 0 ? `${users.length} users loaded` : "Search and inspect any user"}
         action={
-          <form onSubmit={onSearch} className="flex items-center gap-2">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-(--cf-text-soft)" />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by email"
-                className="w-72 rounded-lg border border-(--cf-border) bg-(--cf-surface) py-1.5 pl-8 pr-3 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
-              />
-            </div>
+          <div className="flex items-center gap-2">
+            <form onSubmit={onSearch} className="flex items-center gap-2">
+              <div className="relative">
+                <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-(--cf-text-soft)" />
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search by email"
+                  className="w-72 rounded-lg border border-(--cf-border) bg-(--cf-surface) py-1.5 pl-8 pr-3 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
+                />
+              </div>
+              <button
+                type="submit"
+                className="rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
+              >
+                Search
+              </button>
+            </form>
             <button
-              type="submit"
-              className="rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
+              type="button"
+              onClick={() =>
+                downloadCSV(
+                  users as unknown as Record<string, unknown>[],
+                  `users-${new Date().toISOString().slice(0, 10)}.csv`,
+                )
+              }
+              disabled={users.length === 0}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
+              title="Export visible rows as CSV"
             >
-              Search
+              <Download className="h-3.5 w-3.5" />
+              CSV
             </button>
-          </form>
+          </div>
         }
       />
 
