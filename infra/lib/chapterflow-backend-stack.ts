@@ -356,7 +356,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       timeout: cdk.Duration.minutes(5),
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
-        SES_SENDER_EMAIL: "noreply@chapterflow.siliconx.ca",
+        SES_SENDER_EMAIL: "info@chapterflow.ca",
       },
     });
 
@@ -365,6 +365,15 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       new iam.PolicyStatement({
         actions: ["ses:SendEmail", "sesv2:SendEmail"],
         resources: ["*"],
+      })
+    );
+    // Allow Lambda to read SSM params (so it could also resolve SES_SENDER_EMAIL from SSM if needed)
+    reminderFn.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["ssm:GetParameter", "ssm:GetParameters"],
+        resources: [
+          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter/chapterflow/prod/*`,
+        ],
       })
     );
 
