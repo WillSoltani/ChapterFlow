@@ -126,12 +126,31 @@ export function AdminEventsClient() {
 
   const handleSave = async () => {
     setError(null);
+
+    if (!form.title.trim()) {
+      setError("Title is required.");
+      return;
+    }
+    if (!form.startDate || !form.endDate) {
+      setError("Start and end dates are required.");
+      return;
+    }
+    if (!editingEvent && !form.eventId.trim()) {
+      setError("Event ID is required.");
+      return;
+    }
+
     const books = booksInput
       .split(",")
       .map((b) => b.trim())
       .filter(Boolean);
     if (books.length === 0) {
       setError("At least one book ID is required.");
+      return;
+    }
+
+    if (!form.badge.badgeId.trim() || !form.badge.name.trim() || !form.badge.icon.trim()) {
+      setError("Badge ID, name, and icon are all required.");
       return;
     }
 

@@ -709,6 +709,11 @@ export function ExamplesList({
                 <p className="mt-1 text-xs text-(--cr-text-disabled)">
                   Submitted {new Date(submission.createdAt).toLocaleString()}
                 </p>
+                {submission.status === "rejected" && submission.reviewNotes && (
+                  <p className="mt-1.5 text-xs text-(--cr-error) leading-relaxed">
+                    {submission.reviewNotes}
+                  </p>
+                )}
               </article>
             ))}
           </div>
@@ -965,8 +970,21 @@ function AddScenarioModal({
                   : "cursor-not-allowed bg-(--cr-bg-surface-3) text-(--cr-text-disabled)",
               ].join(" ")}
             >
-              <Sparkles className="h-4 w-4" />
-              {submitting ? "Submitting..." : `Submit for review — +${SCENARIO_REWARD} on approval`}
+              {submitting ? (
+                <>
+                  <span className="flex items-center gap-1" aria-hidden="true">
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current" style={{ animationDelay: "0ms" }} />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current" style={{ animationDelay: "150ms" }} />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current" style={{ animationDelay: "300ms" }} />
+                  </span>
+                  Reviewing your scenario...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-4 w-4" />
+                  {`Submit scenario — +${SCENARIO_REWARD} if approved`}
+                </>
+              )}
             </button>
           </div>
         </div>

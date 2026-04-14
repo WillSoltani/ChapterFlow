@@ -107,25 +107,26 @@ export async function POST(
     // Pass the matching EventDefinition so completion + reward logic triggers.
     // Fire-and-forget — event tracking should not block the main response.
     const chapterId = `${bookId}:ch${chapterNumber}`;
-    const eventDefs = eventDefinitions as EventDefinition[];
-    const eventDefMap = new Map(eventDefs.map((d) => [d.eventId, d]));
 
-    listUserEvents(tableName, user.sub)
-      .then((participations) =>
-        Promise.all(
-          participations
-            .filter((p) => !p.completed)
-            .map((p) =>
-              recordEventChapter(
-                tableName,
-                user.sub,
-                p.eventId,
-                chapterId,
-                eventDefMap.get(p.eventId),
+    listEventDefinitions(tableName)
+      .then((allDefs) => {
+        const eventDefMap = new Map(allDefs.filter((d) => d.active !== false).map((d) => [d.eventId, d]));
+        return listUserEvents(tableName, user.sub).then((participations) =>
+          Promise.all(
+            participations
+              .filter((p) => !p.completed)
+              .map((p) =>
+                recordEventChapter(
+                  tableName,
+                  user.sub,
+                  p.eventId,
+                  chapterId,
+                  eventDefMap.get(p.eventId),
+                ),
               ),
-            ),
-        ),
-      )
+          ),
+        );
+      })
       .catch(() => {});
 
     return bookOk({

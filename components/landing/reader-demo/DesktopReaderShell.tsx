@@ -241,6 +241,7 @@ export function DesktopReaderShell() {
                   onScenarioInteraction={markInteracted}
                   bookId="demo"
                   chapterNumber={1}
+                  chapterTitle="Demo chapter"
                 />
                 <ContinueButton
                   ready

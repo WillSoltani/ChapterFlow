@@ -10,6 +10,7 @@ import {
   HandHeart,
   TrendingUp,
   Users,
+  XCircle,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -47,7 +48,7 @@ function getNotificationMeta(type: string): { icon: LucideIcon; color: string } 
     case "scenario_approved":
       return { icon: Award, color: "var(--cf-success-text)" };
     case "scenario_rejected":
-      return { icon: Bell, color: "var(--cf-warning-text)" };
+      return { icon: XCircle, color: "var(--cf-danger-text)" };
     default:
       return { icon: Bell, color: "var(--cf-text-3)" };
   }

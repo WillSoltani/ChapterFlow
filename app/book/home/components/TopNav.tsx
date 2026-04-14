@@ -11,11 +11,13 @@ import {
   LogOut,
   Map,
   Settings,
+  Settings2,
   Shield,
   TrendingUp,
   Trophy,
   User,
 } from "lucide-react";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { SearchBox } from "@/app/book/home/components/SearchBox";
 import { GlobalSearchPanel } from "@/app/book/home/components/GlobalSearchPanel";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
@@ -77,6 +79,21 @@ export function TopNav({
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchBookJson<{ isAdmin: boolean }>("/app/api/book/me/is-admin")
+      .then((res) => {
+        if (!cancelled) setIsAdmin(Boolean(res.isAdmin));
+      })
+      .catch(() => {
+        // not admin or unauthenticated — silently ignore
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const headerRef = useRef<HTMLDivElement | null>(null);
   const desktopSearchRef = useRef<HTMLInputElement | null>(null);
@@ -341,6 +358,15 @@ export function TopNav({
                       <Settings className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Settings
                     </Link>
+                    {isAdmin && (
+                      <Link
+                        href="/book/admin"
+                        className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-accent) transition hover:bg-(--cf-accent-muted)"
+                      >
+                        <Settings2 className="h-3.5 w-3.5" />
+                        Admin dashboard
+                      </Link>
+                    )}
                   </div>
                   <div className="border-t border-(--cf-divider) mt-1 pt-1">
                     <button

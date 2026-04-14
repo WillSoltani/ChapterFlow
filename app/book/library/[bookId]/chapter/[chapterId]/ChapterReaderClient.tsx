@@ -741,33 +741,27 @@ export function ChapterReaderClient({
   };
 
   const handleSubmitScenario = async (draft: ScenarioSubmissionDraft) => {
-    try {
-      const payload = await fetchBookJson<{
-        submission: UserScenarioSubmission;
-        points: number;
-      }>(
-        `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapter.order}/scenarios`,
-        {
-          method: "POST",
-          body: JSON.stringify(draft),
-        }
-      );
-      setUserSubmissions((prev) => [payload.submission, ...prev]);
-      if (payload.submission.status === "approved") {
-        setEngagementPoints((prev) => Math.max(prev, payload.points));
+    const payload = await fetchBookJson<{
+      submission: UserScenarioSubmission;
+      points: number;
+    }>(
+      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapter.order}/scenarios`,
+      {
+        method: "POST",
+        body: JSON.stringify(draft),
       }
-      const toastMsg =
-        payload.submission.status === "approved"
-          ? `Scenario approved! +${SCENARIO_SUBMISSION_POINTS} Insight Points earned.`
-          : payload.submission.status === "rejected"
-          ? `Scenario not approved: ${payload.submission.reviewNotes ?? "Did not meet quality criteria."}`
-          : `Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Insight Points.`;
-      setToast(toastMsg);
-    } catch (error: unknown) {
-      const message =
-        error instanceof Error ? error.message : "Unable to submit scenario right now.";
-      setToast(message);
-      throw error;
+    );
+    setUserSubmissions((prev) => [payload.submission, ...prev]);
+
+    if (payload.submission.status === "rejected") {
+      throw new Error(payload.submission.reviewNotes ?? "Did not meet quality criteria.");
+    }
+
+    if (payload.submission.status === "approved") {
+      setEngagementPoints((prev) => Math.max(prev, payload.points));
+      setToast(`Scenario approved! +${SCENARIO_SUBMISSION_POINTS} Insight Points earned.`);
+    } else {
+      setToast(`Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Insight Points.`);
     }
   };
 

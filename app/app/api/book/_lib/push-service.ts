@@ -12,7 +12,7 @@ async function ensureConfigured() {
   if (!publicKey || !privateKey) {
     throw new Error("VAPID keys not configured. Set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY.");
   }
-  webpush.setVapidDetails("mailto:noreply@chapterflow.siliconx.ca", publicKey, privateKey);
+  webpush.setVapidDetails("mailto:info@chapterflow.ca", publicKey, privateKey);
   configured = true;
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Users, CheckCircle, AlertCircle } from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
@@ -11,7 +11,7 @@ type AcceptResult = {
   accepted: boolean;
 };
 
-export default function PairAcceptPage() {
+function PairAcceptInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
@@ -72,7 +72,7 @@ export default function PairAcceptPage() {
               <CheckCircle className="h-5 w-5 text-emerald-400" />
             </div>
             <p className="text-lg font-semibold text-(--cf-accent)">
-              You're now reading partners!
+              You&apos;re now reading partners!
             </p>
             <p className="text-sm text-(--cf-text-3)">
               Head to your dashboard to see your partner and stay accountable.
@@ -102,5 +102,29 @@ export default function PairAcceptPage() {
         )}
       </div>
     </div>
+  );
+}
+
+function PairAcceptFallback() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center px-4">
+      <div className="w-full max-w-sm rounded-2xl bg-(--cf-card) p-8 text-center shadow-xl">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent-soft)">
+          <Users className="h-6 w-6 text-(--cf-accent)" />
+        </div>
+        <h1 className="text-2xl font-bold text-(--cf-text-1) mb-2">
+          Reading Partner Invite
+        </h1>
+        <p className="text-sm text-(--cf-text-3)">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function PairAcceptPage() {
+  return (
+    <Suspense fallback={<PairAcceptFallback />}>
+      <PairAcceptInner />
+    </Suspense>
   );
 }

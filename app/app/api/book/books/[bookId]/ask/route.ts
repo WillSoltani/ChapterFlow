@@ -124,7 +124,7 @@ export async function POST(req: Request, ctx: Params) {
         let recap = resolveText(v.oneMinuteRecap);
         // Handle structured recap format: { retrieve, connect, preview }
         if (!recap && v.oneMinuteRecap && typeof v.oneMinuteRecap === "object") {
-          const r = v.oneMinuteRecap as Record<string, unknown>;
+          const r = v.oneMinuteRecap as unknown as Record<string, unknown>;
           const parts = [resolveText(r.retrieve), resolveText(r.connect), resolveText(r.preview)].filter(Boolean);
           recap = parts.join(" ");
         }
