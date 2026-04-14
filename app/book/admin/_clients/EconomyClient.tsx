@@ -49,6 +49,7 @@ type EconomyResponse = {
   range: number;
   metrics: Metrics;
   alerts: Alert[];
+  warnings?: string[];
   dailyFlow: { date: string; earned: number; spent: number }[];
   earnedBySource: { source: string; amount: number }[];
   spentByReward: { rewardId: string; amount: number }[];
@@ -86,6 +87,21 @@ export function EconomyClient() {
       />
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
+
+      {data?.warnings?.length ? (
+        <div className="mb-4 space-y-2">
+          {data.warnings.map((w, i) => (
+            <div
+              key={`w-${i}`}
+              role="status"
+              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)"
+            >
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
+              <span>{w}</span>
+            </div>
+          ))}
+        </div>
+      ) : null}
 
       {data?.alerts.length ? (
         <div className="mb-4 space-y-2">

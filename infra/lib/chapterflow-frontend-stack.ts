@@ -158,6 +158,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           "dynamodb:GetItem",
           "dynamodb:PutItem",
           "dynamodb:Query",
+          "dynamodb:Scan",
           "dynamodb:TransactWriteItems",
           "dynamodb:UpdateItem",
         ],

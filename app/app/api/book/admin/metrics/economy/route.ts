@@ -6,6 +6,8 @@ import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/
 import {
   computeEconomyHealth,
   generateAlerts,
+  type EconomyHealthMetrics,
+  type EconomyHealthAlert,
 } from "@/app/app/api/book/_lib/economy-health";
 import {
   dailySeries,
@@ -14,6 +16,18 @@ import {
 } from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
+
+const FALLBACK_METRICS: EconomyHealthMetrics = {
+  computedAt: new Date().toISOString(),
+  averageBalance: 0,
+  medianBalance: 0,
+  spendRate: 0,
+  balanceGini: 0,
+  grossFaucet: 0,
+  grossSink: 0,
+  totalUsers: 0,
+  activeUsers: 0,
+};
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -28,21 +42,44 @@ export async function GET(req: Request) {
     const range = Number(url.searchParams.get("range") ?? "30");
     const days = lastNDays(Math.max(7, Math.min(90, range)));
 
-    // Compute economy health (this scans the main table - moderately expensive)
-    // For solo founder scale this is fine; for larger scale, this should be cached.
-    const metrics = await computeEconomyHealth(tableName, range);
-    const alerts = generateAlerts(metrics);
+    const warnings: string[] = [];
 
-    // Daily faucet/sink from analytics events
-    const [earned, spent] = await Promise.all([
-      dailySeries(analyticsTable, days, "flow_points_earned"),
-      dailySeries(analyticsTable, days, "flow_points_spent"),
+    // Compute economy health (scans the main table — wrap in try/catch in case
+    // the Lambda role lacks dynamodb:Scan or it times out)
+    let metrics: EconomyHealthMetrics = FALLBACK_METRICS;
+    let alerts: EconomyHealthAlert[] = [];
+    try {
+      metrics = await computeEconomyHealth(tableName, range);
+      alerts = generateAlerts(metrics);
+    } catch (err) {
+      console.error("[admin-economy] computeEconomyHealth failed:", err);
+      warnings.push("Balance metrics unavailable (database scan failed).");
+    }
+
+    // Daily faucet/sink + per-source aggregates — run all in parallel.
+    // Each daily query is independent; use Promise.allSettled so a single
+    // failure doesn't kill the whole response.
+    const earnedQueries = days.map((d) =>
+      queryEventsForDay(analyticsTable, d, "flow_points_earned").catch((err) => {
+        console.warn(`[admin-economy] flow_points_earned query failed for ${d}:`, err);
+        return { events: [], uniqueUsers: new Set<string>() };
+      }),
+    );
+    const spentQueries = days.map((d) =>
+      queryEventsForDay(analyticsTable, d, "flow_points_spent").catch((err) => {
+        console.warn(`[admin-economy] flow_points_spent query failed for ${d}:`, err);
+        return { events: [], uniqueUsers: new Set<string>() };
+      }),
+    );
+
+    const [earnedResults, spentResults] = await Promise.all([
+      Promise.all(earnedQueries),
+      Promise.all(spentQueries),
     ]);
 
-    // Aggregate IP earned by source over the period
+    // Aggregate IP earned by source
     const earnedBySource: Record<string, number> = {};
-    for (const d of days) {
-      const { events } = await queryEventsForDay(analyticsTable, d, "flow_points_earned");
+    for (const { events } of earnedResults) {
       for (const e of events) {
         const source = typeof e.sourceType === "string" ? e.sourceType : "unknown";
         const delta = typeof e.deltaPoints === "number" ? e.deltaPoints : 0;
@@ -50,10 +87,9 @@ export async function GET(req: Request) {
       }
     }
 
-    // Aggregate IP spent by reward type
+    // Aggregate IP spent by reward
     const spentByReward: Record<string, number> = {};
-    for (const d of days) {
-      const { events } = await queryEventsForDay(analyticsTable, d, "flow_points_spent");
+    for (const { events } of spentResults) {
       for (const e of events) {
         const rewardId = typeof e.rewardId === "string" ? e.rewardId : "other";
         const delta = typeof e.deltaPoints === "number" ? Math.abs(e.deltaPoints) : 0;
@@ -61,17 +97,23 @@ export async function GET(req: Request) {
       }
     }
 
+    // Daily flow chart data — count events per day
     const dailyFlow = days.map((d, i) => ({
       date: d,
-      earned: earned[i]?.events ?? 0,
-      spent: spent[i]?.events ?? 0,
+      earned: earnedResults[i]?.events.length ?? 0,
+      spent: spentResults[i]?.events.length ?? 0,
     }));
+
+    // Optional: build the daily series shape for backward compat (unused
+    // by the client but kept in case external consumers depend on it).
+    void dailySeries;
 
     return bookOk({
       generatedAt: new Date().toISOString(),
       range: days.length,
       metrics,
       alerts,
+      warnings,
       dailyFlow,
       earnedBySource: Object.entries(earnedBySource)
         .sort((a, b) => b[1] - a[1])

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle2, AlertCircle, Loader2, Gauge } from "lucide-react";
+import { CheckCircle2, AlertCircle, AlertTriangle, Loader2, Gauge } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
@@ -25,6 +25,7 @@ type OpsResponse = {
   ingestionJobs: IngestionJob[];
   accountChanges: { deactivated: number; deleted: number; reactivated: number };
   beaconErrors: { date: string; value: number }[];
+  warnings?: string[];
 };
 
 export function OpsClient() {
@@ -53,6 +54,21 @@ export function OpsClient() {
       />
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
+
+      {data?.warnings?.length ? (
+        <div className="mb-4 space-y-2">
+          {data.warnings.map((w, i) => (
+            <div
+              key={i}
+              role="status"
+              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)"
+            >
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
+              <span>{w}</span>
+            </div>
+          ))}
+        </div>
+      ) : null}
 
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {loading && !data ? (
