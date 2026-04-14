@@ -23,6 +23,7 @@ async function resolveAuthState(
   verifier: string | null;
   returnTo: string;
   nonce: string | null;
+  acquisition?: { referer?: string; utmSource?: string; utmMedium?: string; utmCampaign?: string };
 }> {
   // Primary path: decrypt from URL state parameter
   const decrypted = await decryptState(stateParam);
@@ -31,6 +32,12 @@ async function resolveAuthState(
       verifier: decrypted.v,
       returnTo: sanitizeReturnTo(decrypted.r, "/book"),
       nonce: decrypted.n,
+      acquisition: {
+        referer: decrypted.ref,
+        utmSource: decrypted.us,
+        utmMedium: decrypted.um,
+        utmCampaign: decrypted.uc,
+      },
     };
   }
 
@@ -68,7 +75,7 @@ export async function GET(req: NextRequest) {
 
     // Recover PKCE verifier + returnTo from encrypted state (primary)
     // or cookies (fallback).
-    const { verifier, returnTo, nonce } = await resolveAuthState(
+    const { verifier, returnTo, nonce, acquisition } = await resolveAuthState(
       stateParam,
       req,
     );
@@ -139,6 +146,24 @@ export async function GET(req: NextRequest) {
     const { deviceId, issued } = getOrCreateDeviceId(req);
     if (issued) {
       applyDeviceIdCookie(res, deviceId, true);
+    }
+
+    // Surface acquisition signals via short-lived cookies so the first
+    // profile save (onboarding) can persist them on the user record.
+    if (acquisition?.referer || acquisition?.utmSource) {
+      const acqMaxAge = 30 * 60; // 30 minutes
+      if (acquisition.referer) {
+        res.cookies.set("cf_acq_ref", acquisition.referer, { ...cookieBase, maxAge: acqMaxAge });
+      }
+      if (acquisition.utmSource) {
+        res.cookies.set("cf_acq_us", acquisition.utmSource, { ...cookieBase, maxAge: acqMaxAge });
+      }
+      if (acquisition.utmMedium) {
+        res.cookies.set("cf_acq_um", acquisition.utmMedium, { ...cookieBase, maxAge: acqMaxAge });
+      }
+      if (acquisition.utmCampaign) {
+        res.cookies.set("cf_acq_uc", acquisition.utmCampaign, { ...cookieBase, maxAge: acqMaxAge });
+      }
     }
 
     return res;

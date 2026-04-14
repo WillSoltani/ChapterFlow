@@ -37,13 +37,23 @@ export async function GET(req: NextRequest) {
   const codeVerifier = randomBase64Url(32);
   const codeChallenge = await sha256Base64Url(codeVerifier);
 
-  // Encrypt the PKCE verifier, return URL, and a nonce into the state
-  // parameter. Cognito echoes this back via URL, so the callback can
-  // recover these values without depending on cookies.
-  // If AUTH_STATE_SECRET isn't configured, fall back to a plain UUID as
-  // state — the callback will use cookies instead (original behavior).
+  // Capture acquisition signals (referer + UTM) for first-touch attribution.
+  // Truncate to keep state payload small.
+  const referer = (req.headers.get("referer") ?? "").slice(0, 512);
+  const utmSource = (req.nextUrl.searchParams.get("utm_source") ?? "").slice(0, 64);
+  const utmMedium = (req.nextUrl.searchParams.get("utm_medium") ?? "").slice(0, 64);
+  const utmCampaign = (req.nextUrl.searchParams.get("utm_campaign") ?? "").slice(0, 64);
+
   const nonce = crypto.randomUUID();
-  const encrypted = await encryptState({ v: codeVerifier, r: returnTo, n: nonce });
+  const encrypted = await encryptState({
+    v: codeVerifier,
+    r: returnTo,
+    n: nonce,
+    ref: referer || undefined,
+    us: utmSource || undefined,
+    um: utmMedium || undefined,
+    uc: utmCampaign || undefined,
+  });
   const state = encrypted ?? nonce;
 
   const url =

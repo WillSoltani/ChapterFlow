@@ -71,6 +71,7 @@ function sendPerformanceMetrics() {
       domContentLoadedMs: Math.round(nav.domContentLoadedEventEnd - nav.startTime),
       ttfbMs: Math.round(nav.responseStart - nav.startTime),
       transferSizeBytes: nav.transferSize,
+      path: window.location.pathname,
     };
 
     // First Contentful Paint via PerformanceObserver
@@ -89,6 +90,34 @@ function sendPerformanceMetrics() {
   } else {
     window.addEventListener("load", () => setTimeout(report, 100), { once: true });
   }
+
+  // Capture Core Web Vitals (LCP, INP, CLS) via the web-vitals library.
+  // Each fires once when the metric stabilizes; we send each one as a
+  // separate beacon so they're correctly attributed.
+  reportWebVitals();
+}
+
+function reportWebVitals() {
+  // Lazy-import web-vitals so it only loads in the browser.
+  import("web-vitals")
+    .then(({ onLCP, onINP, onCLS, onFCP, onTTFB }) => {
+      const send = (key: string) => (metric: { value: number; id: string; navigationType?: string }) => {
+        sendBeacon("performance", {
+          [key]: key === "clsScore" ? Number(metric.value.toFixed(4)) : Math.round(metric.value),
+          path: window.location.pathname,
+          metricId: metric.id,
+          navigationType: metric.navigationType,
+        });
+      };
+      onLCP(send("lcpMs"));
+      onINP(send("inpMs"));
+      onCLS(send("clsScore"));
+      onFCP(send("firstContentfulPaintMs"));
+      onTTFB(send("ttfbMs"));
+    })
+    .catch(() => {
+      // web-vitals may fail to load on some browsers — silently ignore
+    });
 }
 
 // ─── Hook ────────────────────────────────────────────────────────────────────

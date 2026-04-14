@@ -15,6 +15,14 @@ export type StatePayload = {
   r: string;
   /** Random nonce (CSRF replacement) */
   n: string;
+  /** Acquisition: HTTP referer at login start */
+  ref?: string;
+  /** Acquisition: utm_source */
+  us?: string;
+  /** Acquisition: utm_medium */
+  um?: string;
+  /** Acquisition: utm_campaign */
+  uc?: string;
 };
 
 // ── Key derivation ──────────────────────────────────────────────────
@@ -133,7 +141,7 @@ export async function decryptState(
 
     const parsed = JSON.parse(new TextDecoder().decode(plaintext));
 
-    // Validate shape
+    // Validate shape (only required fields)
     if (
       typeof parsed.v !== "string" ||
       typeof parsed.r !== "string" ||
@@ -142,6 +150,7 @@ export async function decryptState(
       return null;
     }
 
+    // Optional acquisition fields — pass through if present
     return parsed as StatePayload;
   } catch {
     return null;
