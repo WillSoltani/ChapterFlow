@@ -206,6 +206,64 @@ export async function analyticsTrackQuizInteraction(
 }
 
 /**
+ * Set / refresh user-level location and locale fields on the analytics
+ * snapshot. Cheap UpdateItem with merge semantics — only writes fields
+ * that have non-empty values. Idempotent.
+ */
+export async function analyticsSetUserLocale(
+  table: string,
+  args: {
+    userId: string;
+    countryCode?: string;
+    countryName?: string;
+    regionCode?: string;
+    regionName?: string;
+    city?: string;
+    viewerTimezone?: string;
+    latitude?: string;
+    longitude?: string;
+    acceptLanguage?: string;
+  }
+): Promise<void> {
+  const now = nowIso();
+  const fields: Array<[string, string, unknown]> = [];
+  if (args.countryCode) fields.push(["#countryCode", "countryCode", args.countryCode]);
+  if (args.countryName) fields.push(["#countryName", "countryName", args.countryName]);
+  if (args.regionCode) fields.push(["#regionCode", "regionCode", args.regionCode]);
+  if (args.regionName) fields.push(["#regionName", "regionName", args.regionName]);
+  if (args.city) fields.push(["#city", "city", args.city]);
+  if (args.viewerTimezone) fields.push(["#tz", "viewerTimezone", args.viewerTimezone]);
+  if (args.latitude) fields.push(["#lat", "latitude", args.latitude]);
+  if (args.longitude) fields.push(["#lng", "longitude", args.longitude]);
+  if (args.acceptLanguage) fields.push(["#al", "acceptLanguage", args.acceptLanguage]);
+
+  if (fields.length === 0) return;
+
+  const sets = fields.map(([nm]) => `${nm} = :${nm.slice(1)}`).join(", ");
+  const names: Record<string, string> = { "#updatedAt": "updatedAt" };
+  const values: Record<string, unknown> = { ":now": now };
+  for (const [nm, attr, val] of fields) {
+    names[nm] = attr;
+    values[`:${nm.slice(1)}`] = val;
+  }
+
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: table,
+        Key: { PK: pk(args.userId), SK: SNAPSHOT_SK },
+        UpdateExpression: `SET #updatedAt = :now, ${sets}`,
+        ExpressionAttributeNames: names,
+        ExpressionAttributeValues: values,
+      })
+    );
+  } catch (err) {
+    // Don't break the request flow on analytics failure
+    console.warn("[analytics] setUserLocale failed:", err);
+  }
+}
+
+/**
  * Track a reading session heartbeat.
  * Atomically accumulates reading time and records the day (for unique-day counting).
  */

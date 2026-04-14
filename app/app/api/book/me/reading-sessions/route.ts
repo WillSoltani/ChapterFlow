@@ -15,8 +15,12 @@ import {
   getUserSettingsItem,
   upsertUserProgress,
 } from "@/app/app/api/book/_lib/repo";
-import { analyticsTrackReadingSession } from "@/app/app/api/book/_lib/analytics-repo";
+import {
+  analyticsTrackReadingSession,
+  analyticsSetUserLocale,
+} from "@/app/app/api/book/_lib/analytics-repo";
 import { getUserAgentFromRequest } from "@/app/app/api/book/_lib/user-agent";
+import { inferLocationFromHeaders } from "@/app/app/api/book/_lib/location";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
@@ -87,6 +91,8 @@ export async function POST(req: Request) {
 
     // Analytics — fire-and-forget, includes device context from User-Agent
     const ua = getUserAgentFromRequest(req);
+    const loc = inferLocationFromHeaders(req.headers);
+    const acceptLanguage = req.headers.get("accept-language") ?? undefined;
     getBookAnalyticsTableName().then((analyticsTable) => {
       if (!analyticsTable) return;
       analyticsTrackReadingSession(analyticsTable, {
@@ -97,6 +103,18 @@ export async function POST(req: Request) {
         deviceType: ua.deviceType,
         browserName: ua.browserName,
         osName: ua.osName,
+      }).catch(() => {});
+      analyticsSetUserLocale(analyticsTable, {
+        userId: user.sub,
+        countryCode: loc?.countryCode ?? undefined,
+        countryName: loc?.countryName ?? undefined,
+        regionCode: loc?.regionCode ?? undefined,
+        regionName: loc?.regionName ?? undefined,
+        city: loc?.city ?? undefined,
+        viewerTimezone: req.headers.get("cloudfront-viewer-time-zone") ?? undefined,
+        latitude: req.headers.get("cloudfront-viewer-latitude") ?? undefined,
+        longitude: req.headers.get("cloudfront-viewer-longitude") ?? undefined,
+        acceptLanguage,
       }).catch(() => {});
     }).catch(() => {});
 

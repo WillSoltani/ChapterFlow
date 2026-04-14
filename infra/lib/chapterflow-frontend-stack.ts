@@ -549,6 +549,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
             "next-router-prefetch",
             "next-router-state-tree",
             "next-url",
+            // Geo headers — added by the managed AllViewerAndCloudFrontHeaders
+            // policy normally, but we forward explicitly so location.ts can
+            // read them and we can persist country/city to user snapshots.
+            "cloudfront-viewer-country",
+            "cloudfront-viewer-country-name",
+            "cloudfront-viewer-country-region",
+            "cloudfront-viewer-country-region-name",
+            "cloudfront-viewer-city",
+            "cloudfront-viewer-time-zone",
+            "cloudfront-viewer-latitude",
+            "cloudfront-viewer-longitude",
+            "cloudfront-viewer-postal-code",
+            "cloudfront-viewer-metro-code",
+            // Referer — useful for acquisition channel attribution
+            "referer",
           ),
         queryStringBehavior:
           cloudfront.OriginRequestQueryStringBehavior.all(),
