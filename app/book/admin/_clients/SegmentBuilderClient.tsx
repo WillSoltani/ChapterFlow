@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Filter, Plus, Save, Send, Trash2, Users, Download, X } from "lucide-react";
 import { adminGet, adminPost } from "@/app/book/admin/_components/admin-api";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
@@ -561,6 +561,3 @@ function filterPlaceholder(field: FilterField): string {
   }
 }
 
-// Use fetchBookJson for DELETE (since adminPost doesn't support method override)
-// Already imported at top
-void useMemo; // unused import cleanup stub

@@ -15,7 +15,6 @@ import {
   estimateMonthlyCost,
   getDdbHealth,
   getLambdaHealth,
-  getS3BucketSize,
   type DdbHealth,
   type LambdaHealth,
 } from "@/app/app/api/book/_lib/cloudwatch-metrics";
@@ -96,7 +95,6 @@ export async function GET(req: Request) {
 
     // Cost projection — assume server Lambda dominates
     const serverLambda = lambdaHealth.find((l) => l.functionName === "ChapterFlowServer");
-    const mainTable = ddbHealth[0];
     const costEstimate = estimateMonthlyCost({
       dynamoTableSizeBytes:
         (ddbHealth[0]?.tableSizeBytes ?? 0) + (ddbHealth[1]?.tableSizeBytes ?? 0),
@@ -113,8 +111,6 @@ export async function GET(req: Request) {
         "Lambda metrics unavailable — CloudWatch IAM may not yet be deployed, or the functions had no activity in the last 24h.",
       );
     }
-
-    void mainTable;
 
     return bookOk({
       generatedAt: new Date().toISOString(),
@@ -157,6 +153,5 @@ function dayKey(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
-// Silence "declared but unused" warnings — these types are exported for clients
+// Re-export types for the Ops client's response typing
 export type { LambdaHealth, DdbHealth };
-void getS3BucketSize;

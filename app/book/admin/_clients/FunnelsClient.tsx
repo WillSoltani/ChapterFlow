@@ -89,9 +89,9 @@ export function FunnelsClient() {
       </AdminCard>
 
       <p className="mt-4 text-[11px] text-(--cf-text-soft)">
-        Note: "First commitment" and "First AI feedback" are estimated from a sample of the 100 most
-        recent users due to event-log scan cost. Full coverage requires a precomputed snapshot
-        (Phase 5+).
+        Note: &ldquo;First commitment&rdquo; and &ldquo;First AI feedback&rdquo; are estimated from a
+        sample of the 100 most recent users due to event-log scan cost. Full coverage requires a
+        precomputed snapshot (Phase 5+).
       </p>
     </div>
   );

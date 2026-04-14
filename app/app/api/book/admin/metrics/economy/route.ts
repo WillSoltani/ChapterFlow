@@ -10,7 +10,6 @@ import {
   type EconomyHealthAlert,
 } from "@/app/app/api/book/_lib/economy-health";
 import {
-  dailySeries,
   lastNDays,
   queryEventsForDay,
 } from "@/app/app/api/book/_lib/admin-metrics";
@@ -103,10 +102,6 @@ export async function GET(req: Request) {
       earned: earnedResults[i]?.events.length ?? 0,
       spent: spentResults[i]?.events.length ?? 0,
     }));
-
-    // Optional: build the daily series shape for backward compat (unused
-    // by the client but kept in case external consumers depend on it).
-    void dailySeries;
 
     return bookOk({
       generatedAt: new Date().toISOString(),

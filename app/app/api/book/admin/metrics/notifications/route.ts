@@ -5,7 +5,7 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
-import { lastNDays, queryEventsForDay } from "@/app/app/api/book/_lib/admin-metrics";
+import { lastNDays } from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
 
@@ -120,7 +120,6 @@ export async function GET(req: Request) {
       console.warn("[admin-notifications] settings scan failed:", err);
     }
 
-    void queryEventsForDay; // reserved for future event-log driven volume
 
     return bookOk({
       generatedAt: new Date().toISOString(),
