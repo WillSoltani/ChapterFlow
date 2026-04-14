@@ -532,44 +532,18 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // IMPORTANT: Do NOT forward the Host header — Lambda Function URLs
     // reject requests where Host doesn't match their own domain, returning
     // {"Message":null}. Instead, we pass the real host via x-forwarded-host
-    // (set as a custom header on the origin).
-    const serverOriginRequestPolicy = new cloudfront.OriginRequestPolicy(
-      this,
-      "ServerOriginRequestPolicy",
-      {
-        originRequestPolicyName: "ChapterFlowServerOriginRequest",
-        headerBehavior:
-          cloudfront.OriginRequestHeaderBehavior.allowList(
-            "x-forwarded-host",
-            "accept",
-            "accept-language",
-            "content-type",
-            "x-open-next-cache-key",
-            "rsc",
-            "next-router-prefetch",
-            "next-router-state-tree",
-            "next-url",
-            // Geo headers — added by the managed AllViewerAndCloudFrontHeaders
-            // policy normally, but we forward explicitly so location.ts can
-            // read them and we can persist country/city to user snapshots.
-            "cloudfront-viewer-country",
-            "cloudfront-viewer-country-name",
-            "cloudfront-viewer-country-region",
-            "cloudfront-viewer-country-region-name",
-            "cloudfront-viewer-city",
-            "cloudfront-viewer-time-zone",
-            "cloudfront-viewer-latitude",
-            "cloudfront-viewer-longitude",
-            "cloudfront-viewer-postal-code",
-            "cloudfront-viewer-metro-code",
-            // Referer — useful for acquisition channel attribution
-            "referer",
-          ),
-        queryStringBehavior:
-          cloudfront.OriginRequestQueryStringBehavior.all(),
-        cookieBehavior: cloudfront.OriginRequestCookieBehavior.all(),
-      },
-    );
+    // (set as a custom header on the origin — see HttpOrigin customHeaders).
+    //
+    // We use the AWS-managed AllViewerAndCloudFrontHeaders-2022-06 policy
+    // which forwards all viewer request data (headers, cookies, query
+    // strings) PLUS auto-adds CloudFront-managed headers like
+    // cloudfront-viewer-country / -city / -time-zone / -latitude / -longitude
+    // for geographic intelligence. Our previous custom 10-header allowList
+    // hit the CloudFront limit (max 10 headers per policy) when geo headers
+    // were added. The Host header remains the CloudFront edge host, but
+    // OpenNext reads x-forwarded-host (set via origin customHeaders) instead.
+    const serverOriginRequestPolicy =
+      cloudfront.OriginRequestPolicy.ALL_VIEWER_AND_CLOUDFRONT_2022;
 
     this.distribution = new cloudfront.Distribution(this, "Distribution", {
       comment: "ChapterFlow OpenNext",
