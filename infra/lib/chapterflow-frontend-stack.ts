@@ -534,16 +534,20 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // {"Message":null}. Instead, we pass the real host via x-forwarded-host
     // (set as a custom header on the origin — see HttpOrigin customHeaders).
     //
-    // We use the AWS-managed AllViewerAndCloudFrontHeaders-2022-06 policy
-    // which forwards all viewer request data (headers, cookies, query
-    // strings) PLUS auto-adds CloudFront-managed headers like
-    // cloudfront-viewer-country / -city / -time-zone / -latitude / -longitude
-    // for geographic intelligence. Our previous custom 10-header allowList
-    // hit the CloudFront limit (max 10 headers per policy) when geo headers
-    // were added. The Host header remains the CloudFront edge host, but
-    // OpenNext reads x-forwarded-host (set via origin customHeaders) instead.
+    // Use the AWS-managed AllViewerExceptHostHeader policy which forwards
+    // all viewer headers, cookies, and query strings BUT excludes the Host
+    // header so the Lambda Function URL receives its own hostname (and
+    // OpenNext reads x-forwarded-host for the public-facing host).
+    //
+    // Note: the AllViewerAndCloudFrontHeaders-2022-06 policy DOES forward
+    // the viewer Host header, which broke Lambda Function URL with
+    // {"Message":null}. Without that policy, CloudFront does NOT auto-add
+    // the cloudfront-viewer-* geo headers to origin requests. Geographic
+    // intelligence will be picked up from other headers if available
+    // (x-forwarded-for, etc.) or deferred until we add Lambda@Edge / a
+    // CloudFront Function for geo header injection.
     const serverOriginRequestPolicy =
-      cloudfront.OriginRequestPolicy.ALL_VIEWER_AND_CLOUDFRONT_2022;
+      cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER;
 
     this.distribution = new cloudfront.Distribution(this, "Distribution", {
       comment: "ChapterFlow OpenNext",
