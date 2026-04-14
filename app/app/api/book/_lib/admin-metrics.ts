@@ -265,6 +265,90 @@ export async function searchUsersByEmail(
 }
 
 /**
+ * Build a unified SegmentUser array by merging entitlements and analytics
+ * snapshots. Used by the segment builder to run predicates against.
+ */
+export async function buildSegmentUsers(
+  mainTableName: string,
+  analyticsTable: string,
+): Promise<
+  Array<{
+    userId: string;
+    email: string | null;
+    plan: "FREE" | "PRO";
+    proSource: string | null;
+    countryCode: string | null;
+    lastActiveAt: string | null;
+    firstSeenAt: string | null;
+    booksCompleted: number;
+    flowPoints: number;
+    tier: string | null;
+    badgeCount: number;
+    onboardingCompletedAt: string | null;
+  }>
+> {
+  const [ents, snaps] = await Promise.all([
+    scanAllEntitlements(mainTableName).catch(() => []),
+    scanAllUserSnapshots(
+      analyticsTable,
+      "userId, email, plan, countryCode, lastActiveAt, firstSeenAt, booksCompleted, flowPoints, badgeCount, onboardingCompletedAt",
+    ).catch(() => []),
+  ]);
+
+  const snapMap = new Map<string, Record<string, unknown>>();
+  for (const s of snaps) {
+    const userId = typeof s.userId === "string" ? s.userId : null;
+    if (userId) snapMap.set(userId, s);
+  }
+
+  // Start with entitlements (source of truth for plan)
+  const byUser = new Map<string, ReturnType<typeof toSegUser>>();
+  for (const e of ents) {
+    const snap = snapMap.get(e.userId) ?? {};
+    byUser.set(e.userId, toSegUser(e.userId, e, snap));
+  }
+
+  // Include snapshot-only users (no entitlement yet)
+  for (const [userId, snap] of snapMap.entries()) {
+    if (byUser.has(userId)) continue;
+    byUser.set(
+      userId,
+      toSegUser(
+        userId,
+        { plan: "FREE", proSource: undefined } as EntitlementSnapshot,
+        snap,
+      ),
+    );
+  }
+
+  return Array.from(byUser.values());
+}
+
+function toSegUser(
+  userId: string,
+  ent: EntitlementSnapshot,
+  snap: Record<string, unknown>,
+) {
+  return {
+    userId,
+    email: typeof snap.email === "string" ? snap.email : null,
+    plan: (ent.plan === "PRO" ? "PRO" : "FREE") as "FREE" | "PRO",
+    proSource: ent.proSource ?? null,
+    countryCode: typeof snap.countryCode === "string" ? snap.countryCode : null,
+    lastActiveAt: typeof snap.lastActiveAt === "string" ? snap.lastActiveAt : null,
+    firstSeenAt: typeof snap.firstSeenAt === "string" ? snap.firstSeenAt : null,
+    booksCompleted: typeof snap.booksCompleted === "number" ? snap.booksCompleted : 0,
+    flowPoints: typeof snap.flowPoints === "number" ? snap.flowPoints : 0,
+    tier: null,
+    badgeCount: typeof snap.badgeCount === "number" ? snap.badgeCount : 0,
+    onboardingCompletedAt:
+      typeof snap.onboardingCompletedAt === "string"
+        ? snap.onboardingCompletedAt
+        : null,
+  };
+}
+
+/**
  * Scan the main DynamoDB table for all entitlement records.
  * Entitlements are the source of truth for plan / proSource — the
  * analytics snapshot's `plan` field is only updated on Stripe

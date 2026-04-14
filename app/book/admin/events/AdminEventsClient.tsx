@@ -1,8 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Sparkles, Plus, Database } from "lucide-react";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import type { EventDefinitionItem } from "@/app/app/api/book/_lib/types";
+import { PageHeader } from "@/app/book/admin/_components/AdminCard";
+import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 
 type EventsResponse = { events: EventDefinitionItem[] };
 type EventResponse = { event: EventDefinitionItem };
@@ -212,6 +216,23 @@ export function AdminEventsClient() {
     }
   };
 
+  const handleSeed = async () => {
+    setSavingId("seed");
+    setError(null);
+    try {
+      const res = await fetchBookJson<{ seeded: number; skipped: number }>(
+        "/app/api/book/admin/events/seed",
+        { method: "POST" },
+      );
+      setToast(`Seeded ${res.seeded} event${res.seeded === 1 ? "" : "s"} (${res.skipped} skipped).`);
+      reload();
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Unable to seed events.");
+    } finally {
+      setSavingId(null);
+    }
+  };
+
   const handleDelete = async (eventId: string) => {
     setSavingId(eventId);
     try {
@@ -231,49 +252,45 @@ export function AdminEventsClient() {
     }
   };
 
-  if (loading) {
-    return (
-      <main className="relative min-h-screen bg-(--cf-page-bg) px-4 py-10 text-(--cf-text-1) sm:px-6">
-        <div className="mx-auto max-w-5xl rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-6 text-(--cf-text-2)">
-          Loading events...
-        </div>
-      </main>
-    );
-  }
-
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-(--cf-page-bg) px-4 py-10 text-(--cf-text-1) sm:px-6">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(960px_circle_at_10%_-10%,var(--cf-accent-muted),transparent_58%),radial-gradient(780px_circle_at_100%_0%,var(--cf-warm-soft),transparent_60%)]" />
-
-      <section className="mx-auto max-w-5xl space-y-4">
-        {/* Header */}
-        <header className="cf-panel flex items-center justify-between rounded-3xl p-5">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-              Admin
-            </p>
-            <h1 className="mt-1 text-2xl font-semibold text-(--cf-text-1)">
-              Seasonal Events
-            </h1>
-            <p className="mt-2 text-sm text-(--cf-text-2)">
-              Create and manage time-limited reading challenges.
-            </p>
+    <div>
+      <PageHeader
+        title="Seasonal Events"
+        description="Create and manage time-limited reading challenges."
+        action={
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleSeed}
+              disabled={savingId === "seed"}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
+              title="Import starter events from content/events/events.json"
+            >
+              <Database className="h-3.5 w-3.5" />
+              {savingId === "seed" ? "Seeding..." : "Seed"}
+            </button>
+            <button
+              type="button"
+              onClick={openCreate}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              New event
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={openCreate}
-            className="rounded-xl bg-(--cf-accent) px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
-          >
-            + New Event
-          </button>
-        </header>
+        }
+      />
 
-        {/* Error */}
-        {error && (
-          <div className="rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-soft) px-4 py-3 text-sm text-(--cf-danger-text)">
-            {error}
-          </div>
-        )}
+      {error && <ErrorAlert error={error} onRetry={reload} />}
+
+      {loading && events.length === 0 && (
+        <div className="cf-panel-muted rounded-2xl p-5 text-[13px] text-(--cf-text-2)">
+          Loading events…
+        </div>
+      )}
+
+      <section className="space-y-4">
+        {/* (Form + list rendered below) */}
 
         {/* Create / Edit form */}
         {showForm && (
@@ -506,11 +523,24 @@ export function AdminEventsClient() {
         )}
 
         {/* Events list */}
-        {ordered.length === 0 ? (
-          <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-6 text-sm text-(--cf-text-2)">
-            No events defined yet. Click &quot;+ New Event&quot; to create one.
-          </div>
-        ) : (
+        {!loading && ordered.length === 0 ? (
+          <EmptyState
+            icon={Sparkles}
+            title="No events defined yet"
+            description="Seed the starter events from content/events/events.json or click 'New event' to create your own."
+            action={
+              <button
+                type="button"
+                onClick={handleSeed}
+                disabled={savingId === "seed"}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+              >
+                <Database className="h-3.5 w-3.5" />
+                {savingId === "seed" ? "Seeding..." : "Seed starter events"}
+              </button>
+            }
+          />
+        ) : ordered.length > 0 ? (
           <div className="space-y-3">
             {ordered.map((event) => {
               const status = statusLabel(event);
@@ -601,7 +631,7 @@ export function AdminEventsClient() {
               );
             })}
           </div>
-        )}
+        ) : null}
       </section>
 
       {toast && (
@@ -609,6 +639,6 @@ export function AdminEventsClient() {
           {toast}
         </div>
       )}
-    </main>
+    </div>
   );
 }

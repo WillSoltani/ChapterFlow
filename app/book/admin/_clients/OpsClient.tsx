@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle2, AlertCircle, AlertTriangle, Loader2, Gauge } from "lucide-react";
+import { CheckCircle2, AlertCircle, AlertTriangle, Loader2, Gauge, Database, Zap, DollarSign } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/app/book/admin/_components/EmptyState";
 import { KPITileSkeleton, TableSkeleton } from "@/app/book/admin/_components/Skeleton";
+import { StatBox } from "@/app/book/admin/_components/StatBox";
 
 type IngestionJob = {
   jobId: string;
@@ -18,6 +19,31 @@ type IngestionJob = {
   errorReportKey: string | null;
 };
 
+type LambdaHealth = {
+  functionName: string;
+  invocations: number;
+  errors: number;
+  throttles: number;
+  durationP50Ms: number;
+  durationP95Ms: number;
+  durationP99Ms: number;
+  coldStarts: number;
+};
+
+type DdbHealth = {
+  tableName: string;
+  itemCount: number;
+  tableSizeBytes: number;
+  throttlesLast24h: number;
+};
+
+type CostEstimate = {
+  dynamoDBMonthlyUsd: number;
+  lambdaMonthlyUsd: number;
+  s3MonthlyUsd: number;
+  totalMonthlyUsd: number;
+};
+
 type OpsResponse = {
   generatedAt: string;
   eventsToday: number;
@@ -25,6 +51,9 @@ type OpsResponse = {
   ingestionJobs: IngestionJob[];
   accountChanges: { deactivated: number; deleted: number; reactivated: number };
   beaconErrors: { date: string; value: number }[];
+  lambdaHealth: LambdaHealth[];
+  ddbHealth: DdbHealth[];
+  costEstimate: CostEstimate;
   warnings?: string[];
 };
 
@@ -50,7 +79,7 @@ export function OpsClient() {
     <div>
       <PageHeader
         title="Ops & health"
-        description="System status, ingestion, and account changes"
+        description="System status, Lambda metrics, DynamoDB health, and cost projections"
       />
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
@@ -98,6 +127,119 @@ export function OpsClient() {
             />
           </>
         )}
+      </div>
+
+      {/* Lambda health cards */}
+      <div className="mb-6">
+        <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-(--cf-text-soft)">
+          Lambda functions (last 24h)
+        </h2>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {loading && !data ? (
+            Array.from({ length: 4 }).map((_, i) => <KPITileSkeleton key={i} />)
+          ) : (
+            data?.lambdaHealth.map((fn) => <LambdaCard key={fn.functionName} fn={fn} />)
+          )}
+        </div>
+      </div>
+
+      {/* DDB health + cost */}
+      <div className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <AdminCard title="DynamoDB tables" description="Item count, size, throttles" className="lg:col-span-2">
+          {loading && !data ? (
+            <div className="space-y-2">
+              <div className="h-10 animate-pulse rounded-lg bg-(--cf-surface-muted)" />
+              <div className="h-10 animate-pulse rounded-lg bg-(--cf-surface-muted)" />
+            </div>
+          ) : (data?.ddbHealth.length ?? 0) === 0 ? (
+            <EmptyState icon={Database} title="No table data" compact />
+          ) : (
+            <div className="space-y-2">
+              {data?.ddbHealth.map((t) => (
+                <div
+                  key={t.tableName}
+                  className="cf-panel-muted rounded-xl p-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[12px] text-(--cf-text-1)">{t.tableName}</span>
+                    {t.throttlesLast24h > 0 && (
+                      <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-[11px] text-(--cf-danger-text)">
+                        {t.throttlesLast24h} throttles
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 grid grid-cols-3 gap-2 text-[12px]">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.08em] text-(--cf-text-soft)">Items</p>
+                      <p className="mt-0.5 tabular-nums font-semibold text-(--cf-text-1)">
+                        {t.itemCount.toLocaleString()}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.08em] text-(--cf-text-soft)">Size</p>
+                      <p className="mt-0.5 tabular-nums font-semibold text-(--cf-text-1)">
+                        {fmtBytes(t.tableSizeBytes)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.08em] text-(--cf-text-soft)">Throttles 24h</p>
+                      <p className="mt-0.5 tabular-nums font-semibold text-(--cf-text-1)">
+                        {t.throttlesLast24h}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </AdminCard>
+
+        <AdminCard title="Cost projection" description="Monthly estimate at current rates">
+          {loading && !data ? (
+            <div className="space-y-2">
+              <div className="h-12 animate-pulse rounded-lg bg-(--cf-surface-muted)" />
+              <div className="h-8 animate-pulse rounded-lg bg-(--cf-surface-muted)" />
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <StatBox
+                large
+                label="Est. monthly total"
+                value={`$${data?.costEstimate.totalMonthlyUsd.toFixed(2) ?? "0.00"}`}
+                hint="USD at on-demand rates"
+              />
+              <div className="mt-2 space-y-1.5 text-[12px]">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-(--cf-text-3)">
+                    <Database className="h-3 w-3" /> DynamoDB
+                  </span>
+                  <span className="tabular-nums text-(--cf-text-2)">
+                    ${data?.costEstimate.dynamoDBMonthlyUsd.toFixed(2) ?? "0.00"}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-(--cf-text-3)">
+                    <Zap className="h-3 w-3" /> Lambda
+                  </span>
+                  <span className="tabular-nums text-(--cf-text-2)">
+                    ${data?.costEstimate.lambdaMonthlyUsd.toFixed(2) ?? "0.00"}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-(--cf-text-3)">
+                    <DollarSign className="h-3 w-3" /> S3
+                  </span>
+                  <span className="tabular-nums text-(--cf-text-2)">
+                    ${data?.costEstimate.s3MonthlyUsd.toFixed(2) ?? "0.00"}
+                  </span>
+                </div>
+              </div>
+              <p className="mt-2 text-[10px] text-(--cf-text-soft) leading-snug">
+                Rough estimate based on last-24h usage × 30 days. Doesn&apos;t include CloudFront, SES, Cognito.
+              </p>
+            </div>
+          )}
+        </AdminCard>
       </div>
 
       <AdminCard
@@ -162,6 +304,40 @@ export function OpsClient() {
   );
 }
 
+function LambdaCard({ fn }: { fn: LambdaHealth }) {
+  const errorRate =
+    fn.invocations > 0 ? (fn.errors / fn.invocations) * 100 : 0;
+  const hasErrors = fn.errors > 0;
+  return (
+    <div className="cf-panel rounded-2xl p-4">
+      <div className="flex items-start justify-between gap-2">
+        <p className="truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-(--cf-text-soft)">
+          {fn.functionName}
+        </p>
+        {hasErrors && (
+          <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-[10px] font-medium text-(--cf-danger-text)">
+            {errorRate.toFixed(1)}% err
+          </span>
+        )}
+      </div>
+      <p className="mt-2 text-2xl font-semibold tabular-nums text-(--cf-text-1)">
+        {fn.invocations.toLocaleString()}
+      </p>
+      <p className="text-[11px] text-(--cf-text-3)">invocations / 24h</p>
+      <div className="mt-2 grid grid-cols-2 gap-1 text-[11px]">
+        <div>
+          <span className="text-(--cf-text-soft)">p50 </span>
+          <span className="tabular-nums text-(--cf-text-2)">{fn.durationP50Ms}ms</span>
+        </div>
+        <div>
+          <span className="text-(--cf-text-soft)">p95 </span>
+          <span className="tabular-nums text-(--cf-text-2)">{fn.durationP95Ms}ms</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StatusBadge({ status }: { status: string }) {
   const lower = status.toLowerCase();
   const ok = lower === "completed" || lower === "succeeded" || lower === "published";
@@ -203,4 +379,11 @@ function fmt(iso: string): string {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+function fmtBytes(bytes: number): string {
+  if (bytes === 0) return "0 B";
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${units[i]}`;
 }

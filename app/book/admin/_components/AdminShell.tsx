@@ -51,6 +51,7 @@ const NAV: NavItem[] = [
   { href: "/book/admin/performance", label: "Performance", icon: Zap, group: "engagement" },
 
   { href: "/book/admin/revenue", label: "Revenue", icon: Wallet, group: "revenue" },
+  { href: "/book/admin/billing", label: "Billing (Stripe)", icon: Wallet, group: "revenue" },
   { href: "/book/admin/economy", label: "Economy", icon: Coins, group: "revenue" },
 
   { href: "/book/admin/content", label: "Content", icon: BookOpen, group: "content" },
@@ -58,6 +59,7 @@ const NAV: NavItem[] = [
   { href: "/book/admin/moderation", label: "Moderation", icon: ShieldAlert, group: "content" },
 
   { href: "/book/admin/events", label: "Events", icon: Sparkles, group: "ops" },
+  { href: "/book/admin/segments", label: "Segments", icon: Filter, group: "ops" },
   { href: "/book/admin/ops", label: "Ops & health", icon: Gauge, group: "ops" },
 ];
 

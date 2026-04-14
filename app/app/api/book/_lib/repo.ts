@@ -1629,6 +1629,16 @@ export async function updateUserEntitlementFromStripe(
     stripeSubscriptionId?: string;
     currentPeriodEnd?: string;
     cancelAtPeriodEnd?: boolean;
+    // Billing intelligence (optional)
+    billingCountry?: string;
+    billingCurrency?: string;
+    subscriptionAmountCents?: number;
+    cardBrand?: string;
+    cardCountry?: string;
+    lastInvoiceAmountCents?: number;
+    lastInvoiceCurrency?: string;
+    lastInvoicePaidAt?: string;
+    failedPaymentLastReason?: string;
   }
 ): Promise<void> {
   // When entering a Pro state via Stripe, we must persist proSource so that
@@ -1676,6 +1686,44 @@ export async function updateUserEntitlementFromStripe(
   if (params.plan === "FREE" && params.cancelAtPeriodEnd === undefined) {
     setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
     eav[":cancelAtPeriodEnd"] = false;
+  }
+
+  // Billing intelligence — merge only when source event provided the field
+  if (params.billingCountry !== undefined) {
+    setParts.push("billingCountry = :bc");
+    eav[":bc"] = params.billingCountry;
+  }
+  if (params.billingCurrency !== undefined) {
+    setParts.push("billingCurrency = :bcur");
+    eav[":bcur"] = params.billingCurrency;
+  }
+  if (params.subscriptionAmountCents !== undefined) {
+    setParts.push("subscriptionAmountCents = :sac");
+    eav[":sac"] = params.subscriptionAmountCents;
+  }
+  if (params.cardBrand !== undefined) {
+    setParts.push("cardBrand = :cbrand");
+    eav[":cbrand"] = params.cardBrand;
+  }
+  if (params.cardCountry !== undefined) {
+    setParts.push("cardCountry = :ccountry");
+    eav[":ccountry"] = params.cardCountry;
+  }
+  if (params.lastInvoiceAmountCents !== undefined) {
+    setParts.push("lastInvoiceAmountCents = :liac");
+    eav[":liac"] = params.lastInvoiceAmountCents;
+  }
+  if (params.lastInvoiceCurrency !== undefined) {
+    setParts.push("lastInvoiceCurrency = :licur");
+    eav[":licur"] = params.lastInvoiceCurrency;
+  }
+  if (params.lastInvoicePaidAt !== undefined) {
+    setParts.push("lastInvoicePaidAt = :lipa");
+    eav[":lipa"] = params.lastInvoicePaidAt;
+  }
+  if (params.failedPaymentLastReason !== undefined) {
+    setParts.push("failedPaymentLastReason = :fplr");
+    eav[":fplr"] = params.failedPaymentLastReason;
   }
 
   try {

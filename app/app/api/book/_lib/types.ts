@@ -280,6 +280,17 @@ export type BookUserEntitlement = {
   licenseKey?: string;
   /** ISO date when the license-based PRO expires (if proSource === "license") */
   licenseExpiresAt?: string;
+  /** Billing intelligence — populated from Stripe webhooks (null for license/flow_points sources) */
+  billingCountry?: string;
+  billingCurrency?: string;
+  subscriptionAmountCents?: number;
+  cardBrand?: string;
+  cardCountry?: string;
+  lastInvoiceAmountCents?: number;
+  lastInvoiceCurrency?: string;
+  lastInvoicePaidAt?: string;
+  discountCouponId?: string;
+  failedPaymentLastReason?: string;
   updatedAt: string;
 };
 

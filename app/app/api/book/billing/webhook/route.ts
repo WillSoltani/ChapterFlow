@@ -182,6 +182,11 @@ export async function POST(req: Request) {
         status: string;
         current_period_end?: number;
         cancel_at_period_end?: boolean;
+        currency?: string;
+        items?: {
+          data?: Array<{ price?: { unit_amount?: number; currency?: string } }>;
+        };
+        discount?: { coupon?: { id?: string } };
         metadata?: { userId?: string };
       };
       const userId = await resolveUserIdForEvent(
@@ -198,6 +203,11 @@ export async function POST(req: Request) {
       }
       {
         const mapped = mapSubscriptionStatus(subscription.status);
+        const firstItem = subscription.items?.data?.[0]?.price;
+        const subCurrency =
+          subscription.currency?.toUpperCase() ?? firstItem?.currency?.toUpperCase();
+        const subAmountCents = firstItem?.unit_amount;
+
         await mapStripeCustomerToUser(tableName, subscription.customer, userId);
         await updateUserEntitlementFromStripe(tableName, {
           userId,
@@ -208,6 +218,8 @@ export async function POST(req: Request) {
           stripeSubscriptionId: subscription.id,
           currentPeriodEnd: isoFromUnix(subscription.current_period_end),
           cancelAtPeriodEnd: subscription.cancel_at_period_end ?? false,
+          billingCurrency: subCurrency,
+          subscriptionAmountCents: subAmountCents,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -232,6 +244,7 @@ export async function POST(req: Request) {
       const invoice = event.data.object as {
         customer: string | null;
         subscription?: string | null;
+        last_finalization_error?: { code?: string; message?: string };
       };
       if (invoice.customer) {
         const userId = await getUserIdByStripeCustomer(tableName, invoice.customer);
@@ -249,6 +262,8 @@ export async function POST(req: Request) {
           proSource: "stripe",
           stripeCustomerId: invoice.customer,
           stripeSubscriptionId: invoice.subscription ?? undefined,
+          failedPaymentLastReason:
+            invoice.last_finalization_error?.code ?? "payment_failed",
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -265,6 +280,9 @@ export async function POST(req: Request) {
       const invoice = event.data.object as {
         customer: string | null;
         subscription?: string | null;
+        amount_paid?: number;
+        currency?: string;
+        status_transitions?: { paid_at?: number };
       };
       if (invoice.customer) {
         const userId = await getUserIdByStripeCustomer(tableName, invoice.customer);
@@ -282,6 +300,9 @@ export async function POST(req: Request) {
           proSource: "stripe",
           stripeCustomerId: invoice.customer,
           stripeSubscriptionId: invoice.subscription ?? undefined,
+          lastInvoiceAmountCents: invoice.amount_paid,
+          lastInvoiceCurrency: invoice.currency?.toUpperCase(),
+          lastInvoicePaidAt: isoFromUnix(invoice.status_transitions?.paid_at),
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {

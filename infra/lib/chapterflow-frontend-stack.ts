@@ -166,6 +166,22 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
     );
 
+    // CloudWatch metrics read access — used by the admin Ops page to surface
+    // Lambda invocation counts, latency p50/p95, error rates, DynamoDB
+    // throttle counters, and S3 bucket sizes. CloudWatch metric reads are
+    // not resource-scoped so we use "*".
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "CloudWatchMetricsRead",
+        actions: [
+          "cloudwatch:GetMetricStatistics",
+          "cloudwatch:ListMetrics",
+          "cloudwatch:GetMetricData",
+        ],
+        resources: ["*"],
+      }),
+    );
+
     // DynamoDB access — ISR cache table
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({

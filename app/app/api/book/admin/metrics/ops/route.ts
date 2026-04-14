@@ -11,6 +11,14 @@ import {
   shiftDays,
   queryEventsForDay,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import {
+  estimateMonthlyCost,
+  getDdbHealth,
+  getLambdaHealth,
+  getS3BucketSize,
+  type DdbHealth,
+  type LambdaHealth,
+} from "@/app/app/api/book/_lib/cloudwatch-metrics";
 
 export const runtime = "nodejs";
 
@@ -22,6 +30,9 @@ type IngestionJob = {
   bookId: string | null;
   errorReportKey: string | null;
 };
+
+// Lambdas to monitor — names from the CDK stack
+const LAMBDAS = ["ChapterFlowServer", "ImageFn", "RevalidationFn", "DynamoProviderFn"];
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -35,59 +46,75 @@ export async function GET(req: Request) {
     const days = lastNDays(7);
     const warnings: string[] = [];
 
-    // Run all the independent queries in parallel
     const [
       beaconErrors,
       ingestionJobs,
       subscriptionEventsByDay,
       eventsTodayResult,
       eventsYesterdayResult,
+      lambdaHealth,
+      ddbHealth,
     ] = await Promise.all([
-      // Beacon performance events to detect issues
-      dailySeries(analyticsTable, days, "beacon_performance").catch((err) => {
-        console.warn("[admin-ops] beacon_performance query failed:", err);
-        return [] as Array<{ date: string; events: number; uniqueUsers: number }>;
-      }),
-
-      // Ingestion jobs (Scan with FilterExpression — could fail without scan permission)
+      dailySeries(analyticsTable, days, "beacon_performance").catch(() => []),
       fetchIngestionJobs(tableName).catch((err) => {
         console.warn("[admin-ops] ingestion jobs scan failed:", err);
         warnings.push("Ingestion jobs unavailable (database scan failed).");
         return [] as IngestionJob[];
       }),
-
-      // Targeted query: only subscription_change events (avoid scanning all events)
       Promise.all(
         days.map((d) =>
-          queryEventsForDay(analyticsTable, d, "subscription_change").catch((err) => {
-            console.warn(`[admin-ops] subscription_change query failed for ${d}:`, err);
-            return { events: [], uniqueUsers: new Set<string>() };
-          }),
+          queryEventsForDay(analyticsTable, d, "subscription_change").catch(() => ({
+            events: [] as Record<string, unknown>[],
+            uniqueUsers: new Set<string>(),
+          })),
         ),
       ),
-
-      // Today's event count
-      queryEventsForDay(analyticsTable, dayKey(new Date())).catch((err) => {
-        console.warn("[admin-ops] events today query failed:", err);
-        return { events: [], uniqueUsers: new Set<string>() };
-      }),
-
-      // Yesterday's event count
-      queryEventsForDay(analyticsTable, dayKey(shiftDays(new Date(), -1))).catch((err) => {
-        console.warn("[admin-ops] events yesterday query failed:", err);
-        return { events: [], uniqueUsers: new Set<string>() };
-      }),
+      queryEventsForDay(analyticsTable, dayKey(new Date())).catch(() => ({
+        events: [] as Record<string, unknown>[],
+        uniqueUsers: new Set<string>(),
+      })),
+      queryEventsForDay(analyticsTable, dayKey(shiftDays(new Date(), -1))).catch(() => ({
+        events: [] as Record<string, unknown>[],
+        uniqueUsers: new Set<string>(),
+      })),
+      // CloudWatch metrics — run all Lambda health queries in parallel
+      Promise.all(LAMBDAS.map((name) => getLambdaHealth(name))),
+      // DDB table health — both tables
+      Promise.all([
+        getDdbHealth(tableName),
+        getDdbHealth(analyticsTable),
+      ]),
     ]);
 
-    // Tally subscription cancellations from the targeted query
+    // Tally subscription cancellations
     const accountChanges = { deactivated: 0, deleted: 0, reactivated: 0 };
     for (const { events } of subscriptionEventsByDay) {
       for (const e of events) {
-        if (e.proStatus === "canceled") {
-          accountChanges.deactivated += 1;
-        }
+        if (e.proStatus === "canceled") accountChanges.deactivated += 1;
       }
     }
+
+    // Cost projection — assume server Lambda dominates
+    const serverLambda = lambdaHealth.find((l) => l.functionName === "ChapterFlowServer");
+    const mainTable = ddbHealth[0];
+    const costEstimate = estimateMonthlyCost({
+      dynamoTableSizeBytes:
+        (ddbHealth[0]?.tableSizeBytes ?? 0) + (ddbHealth[1]?.tableSizeBytes ?? 0),
+      lambdaInvocationsLast24h: serverLambda?.invocations ?? 0,
+      lambdaAvgDurationMs: serverLambda?.durationP50Ms ?? 100,
+      lambdaMemoryMB: 1024,
+      s3TotalBytes: 0, // populate separately if we have bucket names
+    });
+
+    // If any Lambda returned no data, add a warning (likely IAM not granted)
+    const anyLambdaData = lambdaHealth.some((l) => l.invocations > 0);
+    if (!anyLambdaData) {
+      warnings.push(
+        "Lambda metrics unavailable — CloudWatch IAM may not yet be deployed, or the functions had no activity in the last 24h.",
+      );
+    }
+
+    void mainTable;
 
     return bookOk({
       generatedAt: new Date().toISOString(),
@@ -96,6 +123,9 @@ export async function GET(req: Request) {
       ingestionJobs,
       accountChanges,
       beaconErrors: beaconErrors.map((d) => ({ date: d.date, value: d.events })),
+      lambdaHealth,
+      ddbHealth,
+      costEstimate,
       warnings,
     });
   });
@@ -126,3 +156,7 @@ async function fetchIngestionJobs(tableName: string): Promise<IngestionJob[]> {
 function dayKey(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
+
+// Silence "declared but unused" warnings — these types are exported for clients
+export type { LambdaHealth, DdbHealth };
+void getS3BucketSize;

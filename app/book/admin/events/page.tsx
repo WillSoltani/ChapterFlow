@@ -1,7 +1,7 @@
-import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
+// The admin layout (app/book/admin/layout.tsx) already gates access via
+// requireAdminUser() + requireDashboardAccess(), so this page just renders.
 import { AdminEventsClient } from "./AdminEventsClient";
 
-export default async function AdminEventsPage() {
-  await requireDashboardAccess();
+export default function AdminEventsPage() {
   return <AdminEventsClient />;
 }
