@@ -3,6 +3,20 @@ import "server-only";
 import { QueryCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 
+export type EntitlementSnapshot = {
+  userId: string;
+  plan: "FREE" | "PRO";
+  proStatus?: string;
+  proSource?: string;
+  stripeCustomerId?: string;
+  stripeSubscriptionId?: string;
+  currentPeriodEnd?: string;
+  cancelAtPeriodEnd?: boolean;
+  licenseKey?: string;
+  licenseExpiresAt?: string;
+  updatedAt?: string;
+};
+
 /**
  * Helpers for the admin dashboard. All queries target the analytics table
  * (BOOK_ANALYTICS_TABLE_NAME). The schema is documented in analytics-repo.ts.
@@ -248,6 +262,82 @@ export async function searchUsersByEmail(
   } while (lastKey);
 
   return results;
+}
+
+/**
+ * Scan the main DynamoDB table for all entitlement records.
+ * Entitlements are the source of truth for plan / proSource — the
+ * analytics snapshot's `plan` field is only updated on Stripe
+ * webhook events, so it can be stale for license-granted PRO users.
+ */
+export async function scanAllEntitlements(
+  bookTableName: string,
+): Promise<EntitlementSnapshot[]> {
+  const out: EntitlementSnapshot[] = [];
+  let lastKey: Record<string, unknown> | undefined;
+
+  do {
+    const res = await ddbDoc.send(
+      new ScanCommand({
+        TableName: bookTableName,
+        FilterExpression: "entity = :e",
+        ExpressionAttributeValues: { ":e": "BOOK_USER_ENTITLEMENT" },
+        ProjectionExpression:
+          "userId, #p, proStatus, proSource, stripeCustomerId, stripeSubscriptionId, currentPeriodEnd, cancelAtPeriodEnd, licenseKey, licenseExpiresAt, updatedAt",
+        ExpressionAttributeNames: { "#p": "plan" },
+        ExclusiveStartKey: lastKey,
+      }),
+    );
+    for (const item of res.Items ?? []) {
+      const userId = typeof item.userId === "string" ? item.userId : null;
+      if (!userId) continue;
+      const plan = item.plan === "PRO" ? "PRO" : "FREE";
+      out.push({
+        userId,
+        plan,
+        proStatus: typeof item.proStatus === "string" ? item.proStatus : undefined,
+        proSource: typeof item.proSource === "string" ? item.proSource : undefined,
+        stripeCustomerId:
+          typeof item.stripeCustomerId === "string" ? item.stripeCustomerId : undefined,
+        stripeSubscriptionId:
+          typeof item.stripeSubscriptionId === "string"
+            ? item.stripeSubscriptionId
+            : undefined,
+        currentPeriodEnd:
+          typeof item.currentPeriodEnd === "string" ? item.currentPeriodEnd : undefined,
+        cancelAtPeriodEnd:
+          typeof item.cancelAtPeriodEnd === "boolean" ? item.cancelAtPeriodEnd : undefined,
+        licenseKey: typeof item.licenseKey === "string" ? item.licenseKey : undefined,
+        licenseExpiresAt:
+          typeof item.licenseExpiresAt === "string" ? item.licenseExpiresAt : undefined,
+        updatedAt: typeof item.updatedAt === "string" ? item.updatedAt : undefined,
+      });
+    }
+    lastKey = res.LastEvaluatedKey;
+  } while (lastKey);
+
+  return out;
+}
+
+/**
+ * Get analytics snapshots for a list of userIds in batches.
+ * Used to enrich entitlement data with lastActiveAt etc.
+ */
+export async function batchGetUserSnapshots(
+  analyticsTable: string,
+  userIds: string[],
+): Promise<Map<string, Record<string, unknown>>> {
+  const result = new Map<string, Record<string, unknown>>();
+  // Fetch sequentially to keep things simple at solo-founder scale.
+  // For larger user counts, switch to BatchGetItem (max 100/call) or
+  // a precomputed snapshot.
+  await Promise.all(
+    userIds.map(async (userId) => {
+      const snap = await getUserSnapshot(analyticsTable, userId).catch(() => null);
+      if (snap) result.set(userId, snap);
+    }),
+  );
+  return result;
 }
 
 /**

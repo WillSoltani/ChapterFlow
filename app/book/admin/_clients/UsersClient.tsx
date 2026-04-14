@@ -15,6 +15,7 @@ type UserRow = {
   email: string | null;
   plan: string;
   proStatus: string | null;
+  proSource: string | null;
   firstSeenAt: string | null;
   lastActiveAt: string | null;
   totalReadingMs: number;
@@ -198,16 +199,23 @@ export function UsersClient() {
                       )}
                     </td>
                     <td className="py-2 pr-3">
-                      <span
-                        className={[
-                          "inline-block rounded-md px-1.5 py-0.5 text-[11px] font-medium",
-                          u.plan === "PRO"
-                            ? "border border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
-                            : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)",
-                        ].join(" ")}
-                      >
-                        {u.plan}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={[
+                            "inline-block rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+                            u.plan === "PRO"
+                              ? "border border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
+                              : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)",
+                          ].join(" ")}
+                        >
+                          {u.plan}
+                        </span>
+                        {u.plan === "PRO" && u.proSource && (
+                          <span className="text-[10px] font-medium uppercase tracking-[0.06em] text-(--cf-text-soft)">
+                            {u.proSource}
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-2)">
                       {u.flowPoints.toLocaleString()}
@@ -321,7 +329,14 @@ function UserDetailDrawer({
             <>
               <Section title="Snapshot">
                 <div className="grid grid-cols-2 gap-2">
-                  <StatBox label="Plan" value={user.plan} />
+                  <StatBox
+                    label="Plan"
+                    value={
+                      user.plan === "PRO" && user.proSource
+                        ? `PRO · ${user.proSource}`
+                        : user.plan
+                    }
+                  />
                   <StatBox label="PRO status" value={user.proStatus ?? "—"} />
                   <StatBox label="Insight Points" value={user.flowPoints.toLocaleString()} />
                   <StatBox label="Books completed" value={user.booksCompleted} />

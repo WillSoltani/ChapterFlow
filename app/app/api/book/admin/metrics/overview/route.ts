@@ -4,14 +4,14 @@ import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, withBookApiErrors, bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
-  activeUsersByPlan,
   dauForDay,
   dailySeries,
   dayKey,
   lastNDays,
+  scanAllEntitlements,
+  batchGetUserSnapshots,
   shiftDays,
   sumFieldOnDay,
-  totalUsersByPlan,
 } from "@/app/app/api/book/_lib/admin-metrics";
 import { listPendingScenarioModerationItems } from "@/app/app/api/book/_lib/repo";
 
@@ -30,10 +30,10 @@ export async function GET(req: Request) {
     const today = dayKey();
     const yesterday = dayKey(shiftDays(new Date(), -1));
     const days14 = lastNDays(14);
-    const days30 = lastNDays(30);
 
-    const sinceIso30d = shiftDays(new Date(), -30).toISOString();
-    const sinceIso7d = shiftDays(new Date(), -7).toISOString();
+    const now = Date.now();
+    const ms7d = 7 * 86_400_000;
+    const ms30d = 30 * 86_400_000;
 
     const [
       dauToday,
@@ -45,10 +45,7 @@ export async function GET(req: Request) {
       readingMsToday,
       readingMsYesterday,
       pendingScenarios,
-      proTotal,
-      freeTotal,
-      proActive30d,
-      proActive7d,
+      entitlements,
       dauSpark,
       signupSpark,
       readingSpark,
@@ -63,17 +60,41 @@ export async function GET(req: Request) {
       sumFieldOnDay(analyticsTable, today, "reading_session", "deltaMs"),
       sumFieldOnDay(analyticsTable, yesterday, "reading_session", "deltaMs"),
       listPendingScenarioModerationItems(tableName, 50).catch(() => []),
-      totalUsersByPlan(analyticsTable, "PRO"),
-      totalUsersByPlan(analyticsTable, "FREE"),
-      activeUsersByPlan(analyticsTable, "PRO", sinceIso30d),
-      activeUsersByPlan(analyticsTable, "PRO", sinceIso7d),
+      scanAllEntitlements(tableName).catch((err) => {
+        console.warn("[admin-overview] entitlement scan failed:", err);
+        return [];
+      }),
       dailyDAU(analyticsTable, days14),
       dailySeries(analyticsTable, days14, "onboarding_completed"),
       dailyReading(analyticsTable, days14),
       dailySeries(analyticsTable, days14, "quiz_passed"),
     ]);
 
-    void days30;
+    // Count plans from entitlements (source of truth for plan)
+    const proEntitlements = entitlements.filter(
+      (e) => e.plan === "PRO" && e.proStatus !== "canceled" && e.proStatus !== "inactive",
+    );
+    const freeEntitlements = entitlements.filter((e) => e.plan === "FREE");
+    const proTotal = proEntitlements.length;
+    const freeTotal = freeEntitlements.length;
+
+    // For activity counts on PRO users, look up their analytics snapshot
+    // to read lastActiveAt, then bucket.
+    let proActive7d = 0;
+    let proActive30d = 0;
+    if (proEntitlements.length > 0) {
+      const proUserIds = proEntitlements.map((e) => e.userId);
+      const snapshots = await batchGetUserSnapshots(analyticsTable, proUserIds);
+      for (const userId of proUserIds) {
+        const snap = snapshots.get(userId);
+        const lastActiveAt = snap?.lastActiveAt;
+        if (typeof lastActiveAt !== "string") continue;
+        const ts = new Date(lastActiveAt).getTime();
+        if (Number.isNaN(ts)) continue;
+        if (now - ts <= ms7d) proActive7d += 1;
+        if (now - ts <= ms30d) proActive30d += 1;
+      }
+    }
 
     const readingMinutesToday = Math.round(readingMsToday / 60000);
     const readingMinutesYesterday = Math.round(readingMsYesterday / 60000);

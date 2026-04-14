@@ -2,14 +2,13 @@ import "server-only";
 
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
+import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
+  batchGetUserSnapshots,
   dailySeries,
   lastNDays,
-  listRecentUsersByPlan,
   queryEventsForDay,
-  shiftDays,
-  totalUsersByPlan,
+  scanAllEntitlements,
 } from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
@@ -20,6 +19,7 @@ const DEFAULT_PRO_PRICE = 7.99;
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     await requireAdminUser();
+    const tableName = await getBookTableName();
     const analyticsTable = await getBookAnalyticsTableName();
     if (!analyticsTable) {
       return bookErr(req, 503, "analytics_unavailable", "Analytics table not configured.");
@@ -28,68 +28,107 @@ export async function GET(req: Request) {
     const url = new URL(req.url);
     const range = Number(url.searchParams.get("range") ?? "30");
     const days = lastNDays(Math.max(7, Math.min(180, range)));
+    const warnings: string[] = [];
 
-    // Subscription change events
-    const subSeries = await dailySeries(analyticsTable, days, "subscription_change");
-
-    // Active PRO recently
-    const sinceIso30d = shiftDays(new Date(), -30).toISOString();
-    const sinceIso7d = shiftDays(new Date(), -7).toISOString();
-    const [proTotal, freeTotal, proRecent] = await Promise.all([
-      totalUsersByPlan(analyticsTable, "PRO"),
-      totalUsersByPlan(analyticsTable, "FREE"),
-      listRecentUsersByPlan(analyticsTable, "PRO", 100),
+    const [subSeries, licenseSeries, entitlements] = await Promise.all([
+      dailySeries(analyticsTable, days, "subscription_change").catch((err) => {
+        console.warn("[admin-revenue] subscription_change query failed:", err);
+        return [];
+      }),
+      dailySeries(analyticsTable, days, "license_redemption_attempt").catch((err) => {
+        console.warn("[admin-revenue] license_redemption_attempt query failed:", err);
+        return [];
+      }),
+      scanAllEntitlements(tableName).catch((err) => {
+        console.warn("[admin-revenue] entitlement scan failed:", err);
+        warnings.push("Entitlement data unavailable (database scan failed).");
+        return [];
+      }),
     ]);
 
-    // Compute new PROs and churned PROs by inspecting subscription_change events
+    // Active PRO entitlements (source of truth for plan)
+    const proEntitlements = entitlements.filter(
+      (e) => e.plan === "PRO" && e.proStatus !== "canceled" && e.proStatus !== "inactive",
+    );
+    const freeEntitlements = entitlements.filter((e) => e.plan === "FREE");
+    const proTotal = proEntitlements.length;
+    const freeTotal = freeEntitlements.length;
+
+    // PRO source breakdown from current entitlements (not from event log)
+    const proSourceBreakdown: Record<string, number> = {};
+    for (const e of proEntitlements) {
+      const source = e.proSource ?? "unknown";
+      proSourceBreakdown[source] = (proSourceBreakdown[source] ?? 0) + 1;
+    }
+
+    // For new/churned counts in range, scan subscription_change events
     let newPros = 0;
     let churnedPros = 0;
-    let proSourceBreakdown: Record<string, number> = {};
     for (const d of days) {
-      const { events } = await queryEventsForDay(analyticsTable, d, "subscription_change");
+      const { events } = await queryEventsForDay(analyticsTable, d, "subscription_change").catch(
+        () => ({ events: [], uniqueUsers: new Set<string>() }),
+      );
       for (const e of events) {
         const newPlan = typeof e.plan === "string" ? e.plan : null;
         const proStatus = typeof e.proStatus === "string" ? e.proStatus : null;
-        const proSource = typeof e.proSource === "string" ? e.proSource : "unknown";
-        if (newPlan === "PRO" && (proStatus === "active" || !proStatus)) {
-          newPros += 1;
-          proSourceBreakdown[proSource] = (proSourceBreakdown[proSource] ?? 0) + 1;
-        }
-        if (newPlan === "FREE" || proStatus === "canceled") {
-          churnedPros += 1;
-        }
+        if (newPlan === "PRO" && (proStatus === "active" || !proStatus)) newPros += 1;
+        if (newPlan === "FREE" || proStatus === "canceled") churnedPros += 1;
       }
     }
 
-    // PRO active counts by recency
+    // Activity counts for PRO users — overlay with snapshot lastActiveAt
     const now = Date.now();
-    const proActive7d = proRecent.filter(
-      (u) => typeof u.lastActiveAt === "string" && new Date(u.lastActiveAt).getTime() >= now - 7 * 86400_000,
-    ).length;
-    const proActive30d = proRecent.filter(
-      (u) => typeof u.lastActiveAt === "string" && new Date(u.lastActiveAt).getTime() >= now - 30 * 86400_000,
-    ).length;
-    void sinceIso30d;
-    void sinceIso7d;
+    const ms7d = 7 * 86_400_000;
+    const ms30d = 30 * 86_400_000;
+    let proActive7d = 0;
+    let proActive30d = 0;
+    let snapshots = new Map<string, Record<string, unknown>>();
+    if (proEntitlements.length > 0) {
+      snapshots = await batchGetUserSnapshots(
+        analyticsTable,
+        proEntitlements.map((e) => e.userId),
+      );
+      for (const e of proEntitlements) {
+        const snap = snapshots.get(e.userId);
+        const lastActiveAt = snap?.lastActiveAt;
+        if (typeof lastActiveAt !== "string") continue;
+        const ts = new Date(lastActiveAt).getTime();
+        if (Number.isNaN(ts)) continue;
+        if (now - ts <= ms7d) proActive7d += 1;
+        if (now - ts <= ms30d) proActive30d += 1;
+      }
+    }
 
-    // MRR estimate: active PRO subscribers × monthly price
-    const mrrEstimate = proTotal * DEFAULT_PRO_PRICE;
+    // MRR estimate: only count stripe-source PRO (license/flow_points are free)
+    const mrrCount = proEntitlements.filter((e) => e.proSource === "stripe").length;
+    const mrrEstimate = mrrCount * DEFAULT_PRO_PRICE;
     const arrEstimate = mrrEstimate * 12;
 
-    // License redemptions
-    const licenseSeries = await dailySeries(analyticsTable, days, "license_redemption_attempt");
-
-    // Recent PRO list for table
-    const recentProList = proRecent.slice(0, 50).map((u) => ({
-      userId: String(u.userId ?? ""),
-      email: typeof u.email === "string" ? u.email : null,
-      proStatus: typeof u.proStatus === "string" ? u.proStatus : null,
-      proSource: typeof u.proSource === "string" ? u.proSource : null,
-      subscriptionStartedAt:
-        typeof u.subscriptionStartedAt === "string" ? u.subscriptionStartedAt : null,
-      currentPeriodEnd: typeof u.currentPeriodEnd === "string" ? u.currentPeriodEnd : null,
-      lastActiveAt: typeof u.lastActiveAt === "string" ? u.lastActiveAt : null,
-    }));
+    // Recent PRO list (sorted by subscriptionStartedAt or updatedAt desc)
+    const recentProList = proEntitlements
+      .map((e) => {
+        const snap = snapshots.get(e.userId);
+        return {
+          userId: e.userId,
+          email: typeof snap?.email === "string" ? snap.email : null,
+          proStatus: e.proStatus ?? null,
+          proSource: e.proSource ?? null,
+          subscriptionStartedAt:
+            typeof snap?.subscriptionStartedAt === "string"
+              ? snap.subscriptionStartedAt
+              : null,
+          currentPeriodEnd: e.currentPeriodEnd ?? null,
+          licenseExpiresAt: e.licenseExpiresAt ?? null,
+          lastActiveAt: typeof snap?.lastActiveAt === "string" ? snap.lastActiveAt : null,
+          cancelAtPeriodEnd: e.cancelAtPeriodEnd ?? false,
+        };
+      })
+      .sort((a, b) => {
+        const tA = a.lastActiveAt ? new Date(a.lastActiveAt).getTime() : 0;
+        const tB = b.lastActiveAt ? new Date(b.lastActiveAt).getTime() : 0;
+        return tB - tA;
+      })
+      .slice(0, 50);
 
     return bookOk({
       generatedAt: new Date().toISOString(),
@@ -106,6 +145,7 @@ export async function GET(req: Request) {
       subscriptionEvents: subSeries.map((d) => ({ date: d.date, value: d.events })),
       licenseRedemptions: licenseSeries.map((d) => ({ date: d.date, value: d.events })),
       recentProList,
+      warnings,
     });
   });
 }
