@@ -13,10 +13,12 @@ import {
   putUserProfileItem,
 } from "@/app/app/api/book/_lib/repo";
 import {
+  analyticsSetUserLocale,
   analyticsTrackFlowPointsTransaction,
   analyticsTrackOnboarding,
   analyticsTrackReferral,
 } from "@/app/app/api/book/_lib/analytics-repo";
+import { resolveLocation } from "@/app/app/api/book/_lib/location";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { inferLocationFromHeaders } from "@/app/app/api/book/_lib/location";
 import { applyDeviceIdCookie, getOrCreateDeviceId, recordRiskSignals } from "@/app/app/api/book/_lib/abuse";
@@ -395,9 +397,13 @@ export async function PATCH(req: Request) {
             .catch(() => {});
         }
       }
-      getBookAnalyticsTableName().then((analyticsTable) => {
+      // Snapshot headers for use after response (req.headers gets consumed)
+      const headersSnapshot = new Headers(req.headers);
+      const acceptLanguage = headersSnapshot.get("accept-language") ?? undefined;
+
+      getBookAnalyticsTableName().then(async (analyticsTable) => {
         if (!analyticsTable) return;
-        Promise.allSettled([
+        await Promise.allSettled([
           analyticsTrackOnboarding(analyticsTable, {
             userId: user.sub,
             email: user.email,
@@ -434,6 +440,23 @@ export async function PATCH(req: Request) {
               })
             : Promise.resolve(),
         ]).catch(() => {});
+
+        // Geo capture on first profile save — tries headers first, then IP lookup
+        const loc = await resolveLocation(headersSnapshot).catch(() => null);
+        if (loc) {
+          await analyticsSetUserLocale(analyticsTable, {
+            userId: user.sub,
+            countryCode: loc.countryCode ?? undefined,
+            countryName: loc.countryName ?? undefined,
+            regionCode: loc.regionCode ?? undefined,
+            regionName: loc.regionName ?? undefined,
+            city: loc.city ?? undefined,
+            viewerTimezone: loc.timezone ?? undefined,
+            latitude: loc.latitude ?? undefined,
+            longitude: loc.longitude ?? undefined,
+            acceptLanguage,
+          }).catch(() => {});
+        }
       }).catch(() => {});
     }
 
