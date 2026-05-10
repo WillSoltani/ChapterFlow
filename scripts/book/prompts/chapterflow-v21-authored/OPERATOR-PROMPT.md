@@ -22,7 +22,11 @@ For each chapter:
 - Implementation plan with if-then trigger plans, 24-hour challenge, weekly practice
 - 3 memorable lines marked for downstream highlighting
 
-A chapter cannot ship unless it passes the **ship gate** (24+ blocker categories from `FAILURE-MODES.md`). A book cannot promote to `book-packages/` unless every chapter ship-gates AND the book passes the **book gate** (cumulative answer-position balance, no within-book name duplication, voice consistency).
+A chapter cannot ship unless it passes the **ship gate** (24+ blocker categories from `FAILURE-MODES.md`). A book cannot promote to `book-packages/` unless every chapter ship-gates AND the book passes the **book gate**:
+- Cumulative answer-position balance (≤45% in any single position across the whole book)
+- **Within-book name duplication** (BLOCKER): no recurring protagonist name (named character mentioned 2+ times in one chapter's scenes) appears in more than one chapter
+- **Schema completeness** (BLOCKER, A10): every chapter must carry the same set of fields (memorableLines, counterintuition, etc.). Catches cache-skip regressions where a later pipeline version added a field but earlier-cached chapters silently shipped without it
+- Voice consistency: per-chapter sentence-length means within ±7 of the book mean
 
 ## Inputs you need from the user
 
@@ -66,10 +70,10 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book <
 
 This invokes:
 - Editor-in-chief (one call, cached) → `state/briefs/<bookId>.brief.json`
-- Per chapter: planner → hook + breakdown (parallel) → voice-pass (iterative, max 3) → line-editor → examples (3 candidates × N slots, curator picks) → quiz/cards/plan/reflections (parallel) → memorable-lines → ship gate → library ingest
-- After all chapters: book gate → promotion to `book-packages/<bookId>.v21.json`
+- Per chapter: planner → hook + breakdown (parallel) → voice-pass (iterative, max 3) → line-editor → examples (3 candidates × N slots, curator picks) → quiz/cards/plan/try-this-now (parallel) → memorable-lines → ship gate → library ingest (atomic — concurrent book runs are safe; the ledger uses `withLibraryState`)
+- After all chapters: book gate (cumulative answer-positions, name dup blocker, schema completeness, voice) → categorizer (assigns 2–4 canonical categories + 4–8 tags from `config/categories.json`, cached at `state/books/<bookId>.categories.json`) → promotion to `book-packages/<bookId>.v21.json`
 
-Per-chapter wall time: ~13–15 minutes on the Anthropic CLI provider. A 38-chapter book takes 8–10 hours sequential, ~3 hours with chapter-level parallelism (which is not yet implemented; just run multiple books in parallel for now).
+Per-chapter wall time: ~10–13 minutes on the Anthropic CLI provider after the cards-writer reverse-priming fix landed. A 25-chapter book runs in ~4–5 hours sequential. Multiple books can run in parallel safely.
 
 ### 5. Verify success
 
@@ -80,9 +84,11 @@ The CLI exits 0 if promotion succeeded. Check that:
 - The output prints `✓ PROMOTED: <bookId>`.
 
 If you see `✗ BLOCKED`, look at `state/books/_blocked/<bookId>.<timestamp>.report.json` for the failure reasons. Common blockers:
-- Meta-references in prose ("the chapter", "the author") → writer drift; re-run the affected chapter
-- Non-canonical Bloom's level → quiz writer issue; re-run
-- Ship gate found em dashes → defense-in-depth caught it; re-run
+- **Meta-references in prose** ("the chapter", "the author") → writer drift; re-run the affected chapter. The cards-writer was the dominant offender pre-hardening (36% of HWF chapters); after the brief-sanitizer + structural-only system prompt landed, it's near-zero.
+- **Non-canonical Bloom's level** → quiz writer issue; re-run.
+- **Em dashes** → defense-in-depth caught it; re-run.
+- **F1 within-book name dup**: two chapters use the same recurring protagonist name. Delete the affected `state/chapters/<bookId>-chNN.v21-native.chapter.json` files and re-run those chapters, or hand-rename in-place via [src/scratch/swap-recurring-names.ts](src/scratch/swap-recurring-names.ts).
+- **A10 schema inconsistency**: most chapters have a field (e.g. `memorableLines`) but some don't — usually because they were generated before that agent existed and auto-resumed from cache. Run [src/scratch/backfill-memorable-lines.ts](src/scratch/backfill-memorable-lines.ts) `<book-package.json>` to fill the gap.
 
 ### 6. If a chapter fails ship-gate during generation
 
@@ -106,7 +112,7 @@ This re-runs every gate and writes to `book-packages/` only if all blockers clea
 
 - Do not edit chapter files directly — the ship gate is the only path to promotion. Manual edits skip the catalog and will produce drift.
 - Do not bypass the ship gate. If it blocks, fix the cause; don't disable the check.
-- Do not run more than one `generate-book` for the same book at the same time. The library ledger uses a file-lock, but cached briefs/plans can race.
+- Do not run more than one `generate-book` for the **same** book at the same time — cached briefs/plans can race. Different books in parallel are safe (the library ledger now uses an atomic-create lock + `withLibraryState` for the entire load-modify-write cycle).
 
 ## Reporting
 

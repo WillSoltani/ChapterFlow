@@ -36,13 +36,17 @@ Curriculum planner → ChapterDesignDoc (per-chapter shape, examples mix, Bloom'
             Ship gate (every BLOCKER from FAILURE-MODES.md catalog)
             ↓ pass            ↓ fail
        Library ledger    Quarantine to _blocked/
-        (name + phrase + answer-position state)
+       (atomic withLibraryState; concurrent book runs serialize correctly)
                      ↓
                 Persist v21-native chapter JSON
 ```
 
-Once every chapter ships, a separate **book gate** runs across the assembled book:
-cumulative answer-position balance, within-book name uniqueness, voice consistency.
+Once every chapter ships, the **book gate** runs across the assembled book
+(cumulative answer-position balance, within-book recurring-name uniqueness as a
+BLOCKER, schema-completeness check that catches cache-skip regressions, voice
+consistency). If it passes, the **categorizer** assigns 2–4 canonical categories
++ 4–8 tags from `config/categories.json`, then `promoteBook` writes the final
+package to `book-packages/<bookId>.v21.json`.
 
 **Critics are deterministic code** (not model calls). They operate identically across providers. Only writer/researcher/critic-tier-model calls flow through the provider abstraction.
 

@@ -106,14 +106,25 @@ export async function generateBook(
       log(`\n=== Skipping promotion: book gate has blockers ===`);
     } else {
       log(`\n=== Categorizer ===`);
-      const categorized = await runCategorizer({
-        bookId: book.bookId,
-        title: book.title,
-        author: book.author,
-        chapterTitles: chapters.map((c) => c.chapterTitle),
-      });
-      log(`categories: ${categorized.categories.join(", ")}`);
-      log(`tags: ${categorized.tags.join(", ")}`);
+      let categories: string[] | undefined;
+      let tags: string[] | undefined;
+      try {
+        const categorized = await runCategorizer({
+          bookId: book.bookId,
+          title: book.title,
+          author: book.author,
+          chapterTitles: chapters.map((c) => c.chapterTitle),
+        });
+        categories = categorized.categories;
+        tags = categorized.tags;
+        log(`categories: ${categories.join(", ")}`);
+        log(`tags: ${tags.join(", ")}`);
+      } catch (err) {
+        // Categorizer failure shouldn't block promotion. Categories are
+        // optional metadata; the book is still shippable. Operator can rerun
+        // the categorizer later (it caches once it succeeds).
+        log(`categorizer failed (${(err as Error).message}); promoting without categories — rerun the categorizer separately to backfill`);
+      }
 
       log(`\n=== Library promotion ===`);
       promotion = promoteBook({
@@ -121,8 +132,8 @@ export async function generateBook(
         title: book.title,
         author: book.author,
         chapters: range,
-        categories: categorized.categories,
-        tags: categorized.tags,
+        categories,
+        tags,
       });
       log(formatPromotionResult(promotion));
     }

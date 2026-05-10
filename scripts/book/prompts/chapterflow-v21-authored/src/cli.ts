@@ -355,8 +355,29 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   }
   const { promoteBook, formatPromotionResult } = await import("./promoteBook.js");
   const { loadChapterIndex } = await import("./generateBook.js");
+  const { runCategorizer } = await import("./agents/categorizer.js");
   const chapters = loadChapterIndex(bookId);
-  const result = promoteBook({ bookId, title, author, chapters });
+
+  // Categorizer caches per-book at state/books/<bookId>.categories.json,
+  // so this is cheap on re-promotion: if the prior run already categorized,
+  // we read the cache; otherwise we make one Haiku-tier call. Failure here
+  // doesn't block promotion (categories are optional metadata).
+  let categories: string[] | undefined;
+  let tags: string[] | undefined;
+  try {
+    const categorized = await runCategorizer({
+      bookId,
+      title,
+      author,
+      chapterTitles: chapters.map((c) => c.chapterTitle),
+    });
+    categories = categorized.categories;
+    tags = categorized.tags;
+  } catch (err) {
+    console.warn(`categorizer failed (${(err as Error).message}); promoting without categories`);
+  }
+
+  const result = promoteBook({ bookId, title, author, chapters, categories, tags });
   console.log(formatPromotionResult(result));
   return result.promoted ? 0 : 1;
 }
