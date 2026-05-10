@@ -12,6 +12,7 @@ import { fileURLToPath } from "url";
 import { callClaude } from "../claudeClient.js";
 import { BookBrief, ChapterDesignDoc } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
+import { sanitizeUserPromptForWriter } from "../lib/brief-sanitizer.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -38,7 +39,11 @@ export async function runWriterCards(input: CardsInput): Promise<CardsOutput> {
     resolve(PROMPTS_DIR, "writer-cards.system.md"),
     "utf8",
   );
-  const userPrompt = buildUserPrompt(input);
+  // Defense-in-depth against B9 reverse-priming: the system prompt is
+  // structural-only (no named prohibitions), the brief is sanitized upstream,
+  // and we additionally drop any line in the rendered user prompt that
+  // contains a meta-tell (could leak from the plan or breakdown).
+  const userPrompt = sanitizeUserPromptForWriter(buildUserPrompt(input));
 
   let lastError: Error | null = null;
   for (let attempt = 0; attempt <= MAX_CARDS_RETRIES; attempt += 1) {

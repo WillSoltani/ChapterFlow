@@ -77,3 +77,17 @@ export function sanitizeBriefForWriter(brief: BookBrief): BookBrief {
     },
   };
 }
+
+/**
+ * Final-line defense for any writer whose user prompt is built by stringifying
+ * upstream JSON (brief, plan, breakdown). Even after the brief is sanitized,
+ * the plan or other dumps can leak meta-tells into the writer's attention. This
+ * runs over the assembled user-prompt string and drops entire lines that
+ * contain any of the reverse-priming phrases — analogous to source-loader's
+ * meta-stripping. Used by the cards writer (B9 / B10 hardening).
+ */
+export function sanitizeUserPromptForWriter(text: string): string {
+  const lines = text.split(/\r?\n/);
+  const kept = lines.filter((line) => !containsReversePrimingPhrase(line));
+  return kept.join("\n").replace(/\n{3,}/g, "\n\n");
+}
