@@ -88,15 +88,25 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
   }
 
   // ── Within-book name duplication (F1 escalated to book level) ────────────
+  // A "real protagonist" appears at least twice in the same chapter's examples
+  // (a vet named "Anika" introduced once and referred to again in the same
+  // scenario). One-off capitalized words like "Nobody", "Third", "Street" only
+  // appear once and get filtered out as places / function words. This keeps
+  // the duplication check from drowning in false positives — which is what
+  // let real recurrences slip past the operator on the HWF run.
   const nameToChapters = new Map<string, Set<number>>();
   for (const ch of chapters) {
-    const chapterNames = new Set<string>();
+    const recurring = new Set<string>();
     for (const ex of ch.examples) {
+      const counts = new Map<string, number>();
       for (const n of extractNamesFromText(ex.scenario)) {
-        chapterNames.add(n);
+        counts.set(n, (counts.get(n) ?? 0) + 1);
+      }
+      for (const [name, c] of counts) {
+        if (c >= 2) recurring.add(name);
       }
     }
-    for (const n of chapterNames) {
+    for (const n of recurring) {
       if (!nameToChapters.has(n)) nameToChapters.set(n, new Set());
       nameToChapters.get(n)!.add(ch.number);
     }
@@ -110,8 +120,8 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
   if (duplicatedNames.length > 0) {
     findings.push({
       catalogId: "F1",
-      severity: "major",
-      message: `${duplicatedNames.length} protagonist name(s) appear in multiple chapters: ${duplicatedNames.slice(0, 5).map((d) => `${d.name}(ch${d.chapters.join(",")})`).join(", ")}${duplicatedNames.length > 5 ? ", …" : ""}`,
+      severity: "blocker",
+      message: `${duplicatedNames.length} protagonist name(s) appear as named characters in multiple chapters: ${duplicatedNames.slice(0, 5).map((d) => `${d.name}(ch${d.chapters.join(",")})`).join(", ")}${duplicatedNames.length > 5 ? ", …" : ""}. Regenerate affected examples with distinct names.`,
     });
   }
 

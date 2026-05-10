@@ -76,7 +76,7 @@ Anything not in this catalog is not a known v13 failure mode. If a new failure m
 
 | ID | v13 failure | v21 enforcement | Severity | Code |
 |----|-------------|-----------------|----------|------|
-| F1 | Same protagonist names recurred across 50+ books | Library state ledger tracks names per book; writers receive forbidden list of last-10-books names | MAJOR | [librarian/libraryState.ts](src/librarian/libraryState.ts) |
+| F1 | Same protagonist names recurred across 50+ books | Library state ledger tracks names per book; writers receive forbidden list of last-10-books names. Within-book duplication is now also a BLOCKER in the book gate, restricted to **recurring** names (a token that appears 2+ times in a single chapter's examples) so one-off capitalized words like "Nobody", "Third", or "Street" don't false-flag. | BLOCKER (within-book) / MAJOR (cross-book) | [librarian/libraryState.ts](src/librarian/libraryState.ts), [src/critics/bookGate.ts](src/critics/bookGate.ts) |
 | F2 | Stock phrases recurred across books with no library-wide accounting | Library state ledger tracks signature phrases | MINOR | [librarian/libraryState.ts](src/librarian/libraryState.ts) |
 | F3 | Library-wide answer-position drift | Library state ledger tracks cumulative position counts | MINOR (advisory; book-level gate could enforce) | [librarian/libraryState.ts](src/librarian/libraryState.ts) |
 
