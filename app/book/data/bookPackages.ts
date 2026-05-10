@@ -7,6 +7,7 @@ import difficultConversationsPackageJson from "@/book-packages/difficult-convers
 import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.modern.json";
 import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
 import tinyHabitsPackageJson from "@/book-packages/tiny-habits.v21.json";
+import howToWinFriendsAndInfluencePeoplePackageJson from "@/book-packages/how-to-win-friends-and-influence-people.v21.json";
 import essentialismPackageJson from "@/book-packages/essentialism.modern.json";
 import deepWorkPackageJson from "@/book-packages/deep-work.modern.json";
 import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.modern.json";
@@ -569,6 +570,20 @@ export function getTinyHabitsPackageForTone(tone: ToneKey): BookPackage {
   return normalizeAnyPackage(tinyHabitsPackageJson, tone);
 }
 
+export const HOW_TO_WIN_FRIENDS_AND_INFLUENCE_PEOPLE_PACKAGE = normalizeAnyPackage(
+  howToWinFriendsAndInfluencePeoplePackageJson,
+  "direct",
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const HOW_TO_WIN_FRIENDS_AND_INFLUENCE_PEOPLE_RAW_CHAPTERS = getRawChapters(
+  howToWinFriendsAndInfluencePeoplePackageJson,
+);
+
+export function getHowToWinFriendsAndInfluencePeoplePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(howToWinFriendsAndInfluencePeoplePackageJson, tone);
+}
+
 export const ESSENTIALISM_PACKAGE = normalizeNstdPackage(essentialismPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1068,6 +1083,7 @@ export const BOOK_PACKAGES: BookPackage[] = [
   WHAT_EVERY_BODY_IS_SAYING_PACKAGE,
   THE_PRINCE_PACKAGE,
   TINY_HABITS_PACKAGE,
+  HOW_TO_WIN_FRIENDS_AND_INFLUENCE_PEOPLE_PACKAGE,
   DEEP_WORK_PACKAGE,
   SO_GOOD_THEY_CANT_IGNORE_YOU_PACKAGE,
   PREDICTABLY_IRRATIONAL_PACKAGE,
@@ -1126,6 +1142,7 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "what-every-body-is-saying": getWhatEveryBodyIsSayingPackageForTone,
   "the-prince": getThePrincePackageForTone,
   "tiny-habits": getTinyHabitsPackageForTone,
+  "how-to-win-friends-and-influence-people": getHowToWinFriendsAndInfluencePeoplePackageForTone,
   "deep-work": getDeepWorkPackageForTone,
   "so-good-they-cant-ignore-you": getSoGoodTheyCantIgnoreYouPackageForTone,
   "predictably-irrational": getPredictablyIrrationalPackageForTone,
@@ -1243,6 +1260,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     difficulty: "Medium",
     synopsis:
       "A modern reading of BJ Fogg's behavior design method: matching motivation, making habits tiny, anchoring prompts, using celebration, untangling bad loops, and growing change through shared support.",
+  },
+  "how-to-win-friends-and-influence-people": {
+    icon: "🤝",
+    coverImage: getBookCoverPath("how-to-win-friends-and-influence-people"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Dale Carnegie's twenty-five chapters on handling people, making others feel valued, winning people to your way of thinking, and leading without arousing resentment.",
+    pages: 304,
   },
   essentialism: {
     icon: "🎯",
