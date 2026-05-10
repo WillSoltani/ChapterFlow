@@ -79,9 +79,20 @@ function buildVariantFromTier(
   takeaways?: string[],
 ): PackageVariantContent | undefined {
   if (!prose) return undefined;
+  // Append memorable lines as bullet-typed summary blocks. The reader's
+  // SummaryCard renders bullet blocks as the "Key Takeaways" numbered list
+  // (separate section, not inline with prose). Without this, paragraphs-only
+  // summaryBlocks meant the visible takeaways list was empty for v21 books
+  // even though the takeaways[] field was populated.
+  const summaryBlocks: PackageSummaryBlock[] = [...summaryBlocksFromProse(prose)];
+  if (takeaways && takeaways.length > 0) {
+    for (const text of takeaways) {
+      summaryBlocks.push({ type: "bullet", text });
+    }
+  }
   const variant: PackageVariantContent = {
     chapterBreakdown: prose,
-    summaryBlocks: summaryBlocksFromProse(prose),
+    summaryBlocks,
   };
   if (takeaways && takeaways.length > 0) variant.takeaways = takeaways;
   return variant;
