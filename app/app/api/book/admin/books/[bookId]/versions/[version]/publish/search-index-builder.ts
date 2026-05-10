@@ -1,43 +1,36 @@
 import "server-only";
 
-import { S3Client, PutObjectCommand, ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
-import { getBookContentBucket } from "@/app/app/api/book/_lib/env";
+import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { listPublishedCatalogItems } from "@/app/app/api/book/_lib/repo";
+import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
 import type { SearchDocument } from "@/app/book/types/search";
 
 const s3 = new S3Client({});
 
 export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
-  const bucket = await getBookContentBucket();
+  const [bucket, tableName] = await Promise.all([
+    getBookContentBucket(),
+    getBookTableName(),
+  ]);
   const documents: SearchDocument[] = [];
 
-  // List all book directories under book-content/books/
-  const listResult = await s3.send(
-    new ListObjectsV2Command({
-      Bucket: bucket,
-      Prefix: "book-content/library/catalog.json",
-      MaxKeys: 1,
-    }),
-  );
-
-  if (!listResult.Contents?.length) {
-    return { documentCount: 0 };
-  }
-
-  // Load the catalog
-  const catalogObj = await s3.send(
-    new GetObjectCommand({ Bucket: bucket, Key: "book-content/library/catalog.json" }),
-  );
-  const catalogText = await catalogObj.Body?.transformToString("utf-8");
-  if (!catalogText) return { documentCount: 0 };
-
-  const catalog = JSON.parse(catalogText) as Array<{
-    id: string;
-    title: string;
-    author: string;
-    categories?: string[];
-    tags?: string[];
-    chapterCount?: number;
-  }>;
+  // Source-of-truth catalog: DynamoDB. Filter to PUBLISHED entries with a
+  // currentPublishedVersion set. The previous implementation read a stale
+  // catalog.json snapshot AND hardcoded v000001 in chapter paths — both of
+  // which broke for any book that's been republished (Tiny Habits at v4,
+  // HWF at v2 after the v21 cutover).
+  const catalogItems = await listPublishedCatalogItems(tableName);
+  const catalog = catalogItems
+    .filter((item) => item.status === "PUBLISHED" && !!item.currentPublishedVersion)
+    .map((item) => ({
+      id: item.bookId,
+      title: item.title,
+      author: item.author,
+      categories: item.categories,
+      tags: item.tags,
+      version: item.currentPublishedVersion as number,
+    }));
 
   for (const book of catalog) {
     // Add book-level document
@@ -52,10 +45,24 @@ export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
       categories: book.categories ?? [],
     });
 
-    // Try to load chapter manifests
-    const chapterCount = book.chapterCount ?? 20;
-    for (let ch = 1; ch <= chapterCount; ch++) {
-      const chKey = `book-content/books/${book.id}/v000001/chapters/${String(ch).padStart(4, "0")}.json`;
+    // Resolve the published manifest for this book (gives us the real
+    // chapter list + chapter content keys for the currently-published
+    // version, not a hardcoded v000001).
+    let manifestPayload: Awaited<ReturnType<typeof getPublishedBookManifest>>;
+    try {
+      manifestPayload = await getPublishedBookManifest({
+        tableName,
+        contentBucket: bucket,
+        bookId: book.id,
+      });
+    } catch {
+      continue;
+    }
+    const manifestChapters = manifestPayload.manifest.chapters ?? [];
+
+    for (const manifestChapter of manifestChapters) {
+      const ch = manifestChapter.number;
+      const chKey = manifestChapter.chapterKey;
       try {
         const chObj = await s3.send(
           new GetObjectCommand({ Bucket: bucket, Key: chKey }),

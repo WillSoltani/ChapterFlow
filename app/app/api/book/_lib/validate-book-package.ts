@@ -1,4 +1,5 @@
 import { BookApiError } from "./errors";
+import { adaptV21ToV13, isV21Raw } from "./v21-adapter";
 import type {
   BookPackage,
   BookPackageBook,
@@ -1174,6 +1175,16 @@ export function validateBookPackage(raw: unknown): BookPackage {
 
   if (!isRecord(raw)) {
     throw new BookApiError(422, "invalid_package", "Book package must be a JSON object.");
+  }
+
+  // v21 dispatch: chapterflow-v21-authored has a different shape (single
+  // canonical voice, three breakdown tiers, hook + memorable lines). Convert
+  // to v13 shape via the adapter before running the v13 validator. The catalog
+  // and downstream pipeline continue to operate on v13 shape; the v21 client
+  // adapter (app/book/lib/v21-adapter.ts) keeps v21-only fields accessible to
+  // the reader at runtime.
+  if (isV21Raw(raw)) {
+    return adaptV21ToV13(raw);
   }
 
   hasOnlyKeys(raw, ROOT_KEYS, "$", issues);
