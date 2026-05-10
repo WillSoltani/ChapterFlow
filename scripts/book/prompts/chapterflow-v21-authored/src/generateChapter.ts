@@ -38,7 +38,7 @@ import {
   getForbiddenNames,
   ingestChapter as ingestIntoLibrary,
   loadLibraryState,
-  saveLibraryState,
+  withLibraryState,
   extractNamesFromText,
 } from "./librarian/libraryState.js";
 import { callClaude } from "./claudeClient.js";
@@ -127,19 +127,21 @@ export async function generateChapter(
   // library ledger, skip regeneration and return the cached chapter.
   const chapterOutPath = resolve(STATE, "chapters", `${chapter.chapterId}.v21-native.chapter.json`);
   if (existsSync(chapterOutPath)) {
-    const existingLedger = loadLibraryState();
-    const existingBook = existingLedger.books[book.bookId];
-    const alreadyIngested = existingBook?.chaptersIngested.includes(chapter.chapterNumber);
+    const cached = JSON.parse(readFileSync(chapterOutPath, "utf8")) as ChapterV21;
+    let alreadyIngested = false;
+    await withLibraryState((state) => {
+      const existingBook = state.books[book.bookId];
+      alreadyIngested = !!existingBook?.chaptersIngested.includes(chapter.chapterNumber);
+      if (!alreadyIngested) {
+        ingestIntoLibrary(state, book.bookId, book.title, book.author, cached);
+      }
+    });
     if (alreadyIngested) {
       log(`resume: ${chapter.chapterId} already generated AND ingested — skipping`);
-      return JSON.parse(readFileSync(chapterOutPath, "utf8")) as ChapterV21;
     } else {
       log(`resume: ${chapter.chapterId} output exists but not ingested — ingesting and skipping regen`);
-      const cached = JSON.parse(readFileSync(chapterOutPath, "utf8")) as ChapterV21;
-      const updated = ingestIntoLibrary(existingLedger, book.bookId, book.title, book.author, cached);
-      await saveLibraryState(updated);
-      return cached;
     }
+    return cached;
   }
 
   const briefRaw = await loadOrBuild<BookBrief>(
@@ -224,9 +226,11 @@ export async function generateChapter(
     log(`line editor: failed (${(err as Error).message}), keeping voice-passed draft`);
   }
 
-  // Library ledger: forbidden names from recent books
-  const libraryState = loadLibraryState();
-  const libraryForbidden = getForbiddenNames(libraryState, book.bookId, 10);
+  // Library ledger: forbidden names from recent books. This is a read-only
+  // snapshot; the actual ingest later uses withLibraryState so the load-modify-
+  // write sequence stays atomic under concurrent generateBook runs.
+  const librarySnapshot = loadLibraryState();
+  const libraryForbidden = getForbiddenNames(librarySnapshot, book.bookId, 10);
   log(`librarian: ${libraryForbidden.length} forbidden names from recent books`);
 
   // Examples — over-generate 3× per slot, curator picks. If the first batch
@@ -355,9 +359,12 @@ export async function generateChapter(
   mkdirSync(outDir, { recursive: true });
   writeFileSync(resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`), JSON.stringify(assembled, null, 2), "utf8");
 
-  // Ingest into library ledger
-  const updated = ingestIntoLibrary(libraryState, book.bookId, book.title, book.author, assembled);
-  await saveLibraryState(updated);
+  // Ingest into library ledger atomically — re-loads under lock so concurrent
+  // generateBook runs don't lose updates. (The earlier librarySnapshot was
+  // a stale read used only for the forbidden-names list above.)
+  const updated = await withLibraryState((state) => {
+    ingestIntoLibrary(state, book.bookId, book.title, book.author, assembled);
+  });
   log(`librarian: ingested. Book now has ${updated.books[book.bookId].namesUsed.length} unique names across ${updated.books[book.bookId].chaptersIngested.length} chapters.`);
 
   log(`chapter done: ${((Date.now() - overall) / 1000).toFixed(1)}s wall`);

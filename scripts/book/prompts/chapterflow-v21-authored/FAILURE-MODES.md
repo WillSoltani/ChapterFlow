@@ -88,6 +88,7 @@ Anything not in this catalog is not a known v13 failure mode. If a new failure m
 | G2 | Per-book repair scripts proliferated as one-offs | All repairs go through the same critic suite; no per-book tooling | RESOLVED-BY-DESIGN | (architecture) |
 | G3 | No structured failure logging when an example failed | Writer-example errors logged with reason; orchestrator surfaces batch-1 failures before retry | RESOLVED | [generateChapter.ts](src/generateChapter.ts) |
 | G4 | Pronoun false-positives cascaded into validation rejections | Validator filters pronouns from usedNames before enforcing | RESOLVED | [agents/writer-example.ts](src/agents/writer-example.ts) |
+| G5 | Library-state ledger lost updates under concurrent generateBook runs (load-modify-write race plus a TOCTOU in the file lock) | Lock now uses atomic create-or-fail (`{ flag: "wx" }`); new `withLibraryState(fn)` helper holds the lock for the entire load-modify-write sequence so concurrent ingestions serialize without lost writes. Orchestrator's two ingest sites (resume-cache and post-ship-gate) call through the helper. Stress test at [src/scratch/stress-test-librarian.ts](src/scratch/stress-test-librarian.ts) runs 12-way concurrent ingestion and verifies every write persists. | RESOLVED | [librarian/libraryState.ts](src/librarian/libraryState.ts), [generateChapter.ts](src/generateChapter.ts) |
 
 ## Final gate
 

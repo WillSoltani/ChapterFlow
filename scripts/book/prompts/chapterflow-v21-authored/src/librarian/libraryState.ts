@@ -105,26 +105,37 @@ const LOCK_TIMEOUT_MS = 10_000;
 const LOCK_POLL_MS = 50;
 
 /** Acquire a simple advisory file-lock. Used to serialize library state
- *  writes when multiple book runs execute concurrently. The lock is best-
- *  effort (NFS / case-insensitive FS edge cases not handled). */
+ *  writes when multiple book runs execute concurrently. Atomic create-or-fail
+ *  (open with O_EXCL) — the previous check-then-act version had a TOCTOU race
+ *  where two callers could both pass an existsSync check and both write the
+ *  lock, silently losing one of the two saves under real contention. The
+ *  stress test in src/scratch/stress-test-librarian.ts exercised this. */
 async function acquireLock(): Promise<void> {
-  const { writeFileSync, existsSync } = await import("fs");
+  const fs = await import("fs");
   const start = Date.now();
-  while (existsSync(LOCK_PATH)) {
-    if (Date.now() - start > LOCK_TIMEOUT_MS) {
-      // If the lock is older than the timeout, assume the holder crashed
-      // and steal it. This is the only race we accept.
-      try {
-        const { unlinkSync } = await import("fs");
-        unlinkSync(LOCK_PATH);
-        break;
-      } catch {
-        throw new Error(`library state lock at ${LOCK_PATH} timed out and could not be cleared`);
+  const payload = `${process.pid}\n${new Date().toISOString()}`;
+  while (true) {
+    try {
+      // wx flag: create exclusive — fails atomically if the file already exists.
+      fs.writeFileSync(LOCK_PATH, payload, { flag: "wx" });
+      return; // we own the lock
+    } catch (err: any) {
+      if (err?.code !== "EEXIST") throw err;
+      // Lock is held by someone else. If it has been held longer than the
+      // timeout, assume the holder crashed and steal it.
+      if (Date.now() - start > LOCK_TIMEOUT_MS) {
+        try {
+          fs.unlinkSync(LOCK_PATH);
+          // Loop around and try the exclusive create again. If we lose the
+          // race to another caller after stealing, we'll just wait again.
+        } catch {
+          throw new Error(`library state lock at ${LOCK_PATH} timed out and could not be cleared`);
+        }
+      } else {
+        await new Promise((r) => setTimeout(r, LOCK_POLL_MS));
       }
     }
-    await new Promise((r) => setTimeout(r, LOCK_POLL_MS));
   }
-  writeFileSync(LOCK_PATH, `${process.pid}\n${new Date().toISOString()}`, "utf8");
 }
 
 function releaseLock(): void {
@@ -140,10 +151,44 @@ export async function saveLibraryState(state: LibraryState): Promise<void> {
   mkdirSync(STATE_DIR, { recursive: true });
   await acquireLock();
   try {
-    state.lastUpdatedAt = new Date().toISOString();
-    const tmp = `${LEDGER_PATH}.tmp`;
-    writeFileSync(tmp, JSON.stringify(state, null, 2), "utf8");
-    renameSync(tmp, LEDGER_PATH);
+    saveLibraryStateUnlocked(state);
+  } finally {
+    releaseLock();
+  }
+}
+
+/** Internal helper: write the ledger without acquiring the lock. Caller must
+ *  already hold the lock. Used by the atomic withLibraryState wrapper so the
+ *  load-modify-write sequence stays under one lock. */
+function saveLibraryStateUnlocked(state: LibraryState): void {
+  state.lastUpdatedAt = new Date().toISOString();
+  const tmp = `${LEDGER_PATH}.tmp`;
+  writeFileSync(tmp, JSON.stringify(state, null, 2), "utf8");
+  renameSync(tmp, LEDGER_PATH);
+}
+
+/**
+ * Atomic load-modify-write of the library state. The mutator runs while the
+ * lock is held, so concurrent callers serialize correctly: each one sees the
+ * latest persisted state, applies its mutation, and persists. Without this
+ * wrapper, two generateBook runs both load the same pre-state, both mutate
+ * their copies, and both save — silently losing one of the two updates.
+ *
+ * The mutator may mutate the passed state in place or return a replacement.
+ * If it returns void, the input state is persisted (after mutation).
+ */
+export async function withLibraryState(
+  mutate: (state: LibraryState) => LibraryState | void | Promise<LibraryState | void>,
+): Promise<LibraryState> {
+  mkdirSync(STATE_DIR, { recursive: true });
+  await acquireLock();
+  try {
+    const before = existsSync(LEDGER_PATH)
+      ? (JSON.parse(readFileSync(LEDGER_PATH, "utf8")) as LibraryState)
+      : emptyState();
+    const after = (await mutate(before)) ?? before;
+    saveLibraryStateUnlocked(after);
+    return after;
   } finally {
     releaseLock();
   }
