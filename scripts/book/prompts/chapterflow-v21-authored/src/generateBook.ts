@@ -16,6 +16,7 @@ import { generateChapter, BookMeta, ChapterSpec } from "./generateChapter.js";
 import { ChapterV21 } from "./types.js";
 import { runBookGate, formatBookGateReport, BookGateReport } from "./critics/bookGate.js";
 import { promoteBook, formatPromotionResult, PromotionResult } from "./promoteBook.js";
+import { runCategorizer } from "./agents/categorizer.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -104,12 +105,24 @@ export async function generateBook(
     } else if (!bookGate.passed) {
       log(`\n=== Skipping promotion: book gate has blockers ===`);
     } else {
+      log(`\n=== Categorizer ===`);
+      const categorized = await runCategorizer({
+        bookId: book.bookId,
+        title: book.title,
+        author: book.author,
+        chapterTitles: chapters.map((c) => c.chapterTitle),
+      });
+      log(`categories: ${categorized.categories.join(", ")}`);
+      log(`tags: ${categorized.tags.join(", ")}`);
+
       log(`\n=== Library promotion ===`);
       promotion = promoteBook({
         bookId: book.bookId,
         title: book.title,
         author: book.author,
         chapters: range,
+        categories: categorized.categories,
+        tags: categorized.tags,
       });
       log(formatPromotionResult(promotion));
     }
