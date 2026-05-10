@@ -1,18 +1,18 @@
 /**
  * Backfill memorable-lines for chapters that pre-date the marker agent.
  *
- * How-to-Win-Friends Ch1–3 were generated in an early 4-chapter pipeline run
- * before the memorable-lines agent existed. Subsequent runs auto-resumed from
- * the chapter-cache and never re-touched them, so they shipped without the
- * `memorableLines` field. The other 22 chapters all have it.
- *
- * This script:
+ * Some chapters were generated in early pipeline runs before the
+ * memorable-lines agent existed. Subsequent runs auto-resume from chapter
+ * cache and never re-touch them, so they ship without the `memorableLines`
+ * field. This script:
  *   1. Loads the v21 book package
  *   2. For each chapter missing `memorableLines`, calls runMemorableLines
  *   3. Writes the field back into the package
  *   4. Patches the corresponding state/chapters/*.json so the cache is consistent
  *
- *   npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/backfill-memorable-lines.ts
+ * Usage:
+ *   npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/backfill-memorable-lines.ts \
+ *     book-packages/<bookId>.v21.json
  */
 
 import { readFileSync, writeFileSync, existsSync } from "fs";
@@ -25,11 +25,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "../../../../../..");
 const STATE_CHAPTERS = resolve(__dirname, "../../state/chapters");
 
-const PACKAGE_PATH = resolve(
-  REPO_ROOT,
-  "book-packages/how-to-win-friends-and-influence-people.v21.json",
-);
-const BOOK_ID = "how-to-win-friends-and-influence-people";
+const argPath = process.argv[2];
+if (!argPath) {
+  console.error("usage: backfill-memorable-lines.ts <book-package.json>");
+  process.exit(1);
+}
+const PACKAGE_PATH = resolve(REPO_ROOT, argPath);
+if (!existsSync(PACKAGE_PATH)) {
+  console.error(`Package not found: ${PACKAGE_PATH}`);
+  process.exit(1);
+}
+const BOOK_ID = JSON.parse(readFileSync(PACKAGE_PATH, "utf8")).book?.bookId;
+if (!BOOK_ID) {
+  console.error(`Could not read book.bookId from ${PACKAGE_PATH}`);
+  process.exit(1);
+}
 
 async function main() {
   const pkg = JSON.parse(readFileSync(PACKAGE_PATH, "utf8"));
