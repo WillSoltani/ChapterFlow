@@ -30,10 +30,38 @@ export type BookGateReport = {
     totalQuizQuestions: number;
     duplicatedNames: Array<{ name: string; chapters: number[] }>;
     duplicatedHookOpeners: Array<{ opener: string; chapters: number[] }>;
+    schemaInconsistencies: Array<{ field: string; presentInChapters: number[]; missingInChapters: number[] }>;
   };
 };
 
 const ANSWER_POSITION_MAX_FRAC = 0.45;  // book-wide ceiling for any one position
+
+/**
+ * Top-level fields whose presence should be consistent across every chapter
+ * in a book. If ≥80% of chapters have one but some don't, it's almost
+ * always a cache-skip regression: the field was added by a later pipeline
+ * version (a new agent, a schema bump) and chapters generated before that
+ * change auto-resumed from cache without ever getting re-touched. The gate
+ * blocks promotion until the missing chapters are backfilled.
+ */
+const SCHEMA_CONSISTENCY_FIELDS = [
+  "hook",
+  "counterintuition",
+  "keyTakeaway",
+  "memorableLines",
+  "tryThisNow",
+  "reflectionBefore",
+  "reflectionAfter",
+] as const;
+const SCHEMA_CONSISTENCY_THRESHOLD = 0.8;
+
+function isFieldPresent(chapter: any, field: string): boolean {
+  const value = chapter[field];
+  if (value === undefined || value === null) return false;
+  if (typeof value === "string") return value.trim().length > 0;
+  if (Array.isArray(value)) return value.length > 0;
+  return true;
+}
 
 export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateReport {
   const findings: BookGateFinding[] = [];
@@ -131,6 +159,31 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
     }
   }
 
+  // ── Schema completeness (A10): catch cache-skip regressions ─────────────
+  // If a field is present on ≥80% of chapters but absent on others, the
+  // missing ones are almost certainly stale cache artifacts from a pipeline
+  // version that pre-dates the field's introduction. Block promotion so the
+  // operator backfills before shipping a structurally inconsistent book.
+  const schemaInconsistencies: Array<{ field: string; presentInChapters: number[]; missingInChapters: number[] }> = [];
+  for (const field of SCHEMA_CONSISTENCY_FIELDS) {
+    const present: number[] = [];
+    const missing: number[] = [];
+    for (const ch of chapters) {
+      if (isFieldPresent(ch as any, field)) present.push(ch.number);
+      else missing.push(ch.number);
+    }
+    if (chapters.length === 0 || missing.length === 0) continue;
+    const frac = present.length / chapters.length;
+    if (frac >= SCHEMA_CONSISTENCY_THRESHOLD) {
+      schemaInconsistencies.push({ field, presentInChapters: present, missingInChapters: missing });
+      findings.push({
+        catalogId: "A10",
+        severity: "blocker",
+        message: `Schema inconsistency: "${field}" present on ${present.length}/${chapters.length} chapters but missing on ${missing.length} (chapters ${missing.join(", ")}). Likely cache-skip regression. Backfill before shipping.`,
+      });
+    }
+  }
+
   const blockers = findings.filter((f) => f.severity === "blocker");
   return {
     bookId,
@@ -143,6 +196,7 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
       totalQuizQuestions: totalQ,
       duplicatedNames,
       duplicatedHookOpeners,
+      schemaInconsistencies,
     },
   };
 }

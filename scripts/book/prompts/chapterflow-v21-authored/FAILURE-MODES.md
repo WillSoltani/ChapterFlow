@@ -24,6 +24,7 @@ Anything not in this catalog is not a known v13 failure mode. If a new failure m
 | A7 | `keyTakeaways[]` arrays were always empty in v13 | v21 schema drops the field; replaced with single `keyTakeaway` string | RESOLVED-BY-DESIGN | [src/types.ts](src/types.ts) |
 | A8 | `oneMinuteRecap` duplicated `keyTakeawayCard` | v21 schema drops `oneMinuteRecap` | RESOLVED-BY-DESIGN | [src/types.ts](src/types.ts) |
 | A9 | `contexts` field overloaded (sometimes 3 short tags, sometimes 150-char planner specs) | v21 splits: `tags` for short display strings, `planSpec` for full planner data | RESOLVED-BY-DESIGN | [src/assembler.ts](src/assembler.ts) |
+| A10 | Cache-skip regressions silently ship books with structurally inconsistent chapters (memorable-lines added later but Ch1–3 from earlier run never got re-touched, etc.) | Book gate `schemaInconsistencies` check: if a field is present on ≥80% of chapters but absent on others, fails as a BLOCKER. Forces operator to backfill the stale chapters before promotion. | BLOCKER | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
 
 ## B. Voice and register
 
