@@ -98,7 +98,6 @@ import {
   THE_OUTSIDERS_RAW_CHAPTERS,
   getUltralearningPackageForTone,
   ULTRALEARNING_RAW_CHAPTERS,
-  isV12BookPackage,
   isStrictReaderSchema,
   resolveTone,
   type BookPackage,

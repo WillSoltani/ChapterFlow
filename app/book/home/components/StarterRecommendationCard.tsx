@@ -10,7 +10,11 @@ type Props = {
 };
 
 export function StarterRecommendationCard({ prescription, onDismiss }: Props) {
-  const chapterRoute = `/book/library/${encodeURIComponent(prescription.bookId)}/chapter/ch01?session=1`;
+  // Use the chapter NUMBER instead of a hardcoded "ch01" slug — chapter ID
+  // formats vary across schema versions (v13 uses "ch01-<title-slug>", v21
+  // uses "<bookId>-ch01"). The chapter route resolves a numeric path param
+  // by chapter number, so "1" works regardless of schema.
+  const chapterRoute = `/book/library/${encodeURIComponent(prescription.bookId)}/chapter/1?session=1`;
 
   return (
     <article className="cf-panel relative overflow-hidden rounded-[26px] border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface))] p-5 sm:p-6">

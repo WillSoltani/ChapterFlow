@@ -12,7 +12,7 @@ import { buildChapterKey, buildQuizKey } from "./keys";
 import {
   getBookPackageById,
   getBookPackageByIdForTone,
-  isV12BookPackage,
+  isStrictReaderSchema,
   type ToneKey,
 } from "@/app/book/data/bookPackages";
 
@@ -165,8 +165,16 @@ export function getLocalQuizQuestions(
   }));
 }
 
+/**
+ * Returns true when the book uses a "strict reader" schema — exact prose,
+ * three breakdown tiers, no fabricated content. Both v12 (`schemaVersion:
+ * "1.1.0"`) and v21 (`chapterflow-v21-authored`) qualify. Quiz routes use
+ * this to decide between the strict question-count table and the legacy
+ * one. Name kept (isLocalV12Package) for call-site compatibility; the
+ * predicate now matches v21 too.
+ */
 export function isLocalV12Package(bookId: string): boolean {
-  return isV12BookPackage(getBookPackageById(bookId));
+  return isStrictReaderSchema(getBookPackageById(bookId));
 }
 
 export function selectVariantFromQuery(value: string | null): VariantKey | undefined {
