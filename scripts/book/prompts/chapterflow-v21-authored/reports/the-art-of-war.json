@@ -1,0 +1,5951 @@
+{
+  "bookId": "the-art-of-war",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/the-art-of-war.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.718Z",
+  "chapterCount": 13,
+  "unitCount": 326,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01-lena-product-premortem"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02-ravi-seminar-dialogue"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03-aisha-relocation-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Aisha is thirty-one and has been offered three jobs in three different cities. Her mother has already decided Aisha should take the job in Boston, where her cousins live. Her sister is pushing for Ch…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04-marcus-vendor-postmortem"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05-tomas-debate-predict-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Tomás is the captain of a community college debate team heading into regionals in three weeks. His team has two prep approaches on the table. The first, championed by his co-captain Jess, is a deep c…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06-devin-sibling-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Devin has been avoiding the conversation with his older sister, Sana, for four months. Their mother's dementia has progressed far enough that the informal arrangement, where Sana handles the weekday …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q01"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Sun Tzu's opening audit is built on five connected factors. Which of these is the complete set, in his own terms?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best captures why Sun Tzu refuses to present the five factors as a ranked priority list?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Given that Sun Tzu's opening treats the five factors as static variables to be audited before the decision to move, what is he most likely to emphasize in the chapter that immediately follows, and wh…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Chapter 1 relocates strategy from the battlefield to the audit room. The five factors (Moral Law, Heaven, Earth, Commander, Method and discipline) work as an interlocking system, and the audit is ope…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"chapter opens\" (pattern chapter_verb) — teach the idea, don't narrate the chapter",
+          "evidence": "Sun Tzu's second chapter opens on a specific image: a treasurer counting out a thousand ounces of silver for one day of military operations. The number is less important than the rhythm. The treasure…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"chapter opens\" (pattern chapter_verb) — teach the idea, don't narrate the chapter",
+          "evidence": "Sun Tzu opens with a treasurer counting out a thousand ounces of silver to fund one day of military operations. He does it again tomorrow. The army has not yet won anything. It is simply continuing t…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01-naomi-runway-dialogue"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02-mei-study-schedule"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03-theo-family-lawsuit"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Theo is sitting in his kitchen with a manila folder three inches thick. The top page is a lawyer's bill dated 2023. The bill below it is dated 2020. The folder is the paper record of a family lawsuit…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04-hector-plant-line-dilemma"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05-nia-group-project-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nia is the designated coordinator for a middle school social studies group project on local history. The project has been running for three weeks, and it is not producing anything. The shared Google …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06-rosa-renovation-predict-reveal"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q01"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "In the compounding-cost chain Sun Tzu describes, what happens after weapons dull?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Sun Tzu value one cartload of captured enemy provisions at the equivalent of twenty cartloads from home?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement most accurately captures the difference between stupid haste and decisive finishing?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Sun Tzu argues that prolonged campaigns destroy the resources the campaign was supposed to protect. Given this argument, what is he most likely to argue in the chapter that follows about what the opt…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01-yusuf-competitive-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Yusuf is the product strategy lead at a mid-sized project management software company. His CEO Omar has asked the team to respond to a larger rival who just launched a feature set that directly overl…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02-amara-moot-court-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Amara is the captain of her law school's moot court team, and they have three weeks before the regional competition. She has been watching recordings of the opposing team's last three rounds. In one …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03-nadia-family-decision-point"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Nadia's last conversation with her cousin Fatima about the family property ended badly three weeks ago. The document on the kitchen table, the one their late aunt never formalized, is the surface of …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04-petra-sales-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before: Petra is a VP of Sales at a mid-sized SaaS company. Six months ago, her team was losing deals to a competitor at the final stage of the sales cycle, usually after two or three rounds of featu…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05-leon-student-council-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leon won his student council presidency at a small community college by a margin of 53 to 47 percent. He is doing a postmortem two months later, at the end of his first semester in office. The votes …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06-kwame-partnership-predict-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Kwame has been in a business partnership with Sol for four years, and the partnership is no longer working. Kwame has been preparing a formal exit letter for two weeks. His prediction, before meeting…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Sun Tzu's hierarchy, what constitutes supreme excellence in strategic contests?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which claim best explains why the formula 'know the enemy and know yourself' is the closing argument of the chapter rather than an opening premise?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Chapter 2 argued that prolonged campaigns erode the five factors that produced the favorable forecast at the start. Which statement best explains how Chapter 3's no-fight ideal connects to that argum…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A general whose court cannot understand what to celebrate is the image Sun Tzu opens from. The fight looked too clean, the outcome too obvious, the opposition too small. What the court cannot see is …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01-tariq-startup-defense-first"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tariq is a startup founder who has been losing sleep over a rival's aggressive expansion. The rival is spending heavily on PR and acquiring customers at a pace that makes Tariq's growth numbers look …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02-oluwaseun-robotics-reliability"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Oluwaseun's prep-school robotics team spent the first phase of their build season focused on a single goal: a stable base mechanism before anything else was added. While the rival team across town wa…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Oluwaseun's prep-school robotics team spent the first phase of their build season focused on a single goal: a stable base mechanism before anything else was added. While the rival team across town wa…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03-mira-fence-dispute-reversal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "For three months, Mira has been in a slow-burning dispute with her neighbor over a shared fence. The neighbor has been escalating steadily: letters, a complaint to the homeowners association, and rec…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04-rosa-feature-launch-decision"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05-emeka-debate-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Emeka captains his school's debate team. His best debater, Kofi, wants to enter the individual competition running alongside the team competition at the regional tournament. Kofi is talented enough t…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06-sasha-ines-job-offer-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Sasha has received a job offer from a company she finds genuinely exciting. The role is a step up in responsibility and a meaningful increase in compensation, but the company is early-stage and the r…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does Sun Tzu identify as the structural difference between defense and offense in Ch4?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does 'no reputation for wisdom, no credit for courage' signal in Sun Tzu's model of excellent generalship?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Chapter 3 argued that the preserve-intact principle ranks methods by outcome quality. Chapter 4 argues that the victorious strategist seeks battle after the victory has been won. How do these two arg…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "A crossbow drawn back and held is not doing nothing. It is storing potential. When Sun Tzu describes energy, shi, he means exactly this: force is not just what you apply but what you have accumulated…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A soldier holds a crossbow with the bolt locked and the string drawn back. He has been holding this position for some time. Nobody watching from outside can see the tension in the bow. When the bolt …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01-chiara-marketing-contrast"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Chiara runs a marketing team at a mid-sized software company. For two years, every time a competitor launched a feature or dropped a price, her team responded within a week: a matching announcement, …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Chiara runs a marketing team at a mid-sized software company. For two years, every time a competitor launched a feature or dropped a price, her team responded within a week: a matching announcement, …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02-tobias-orchestra-dilemma"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03-remi-family-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Remi has been navigating a difficult situation with a family member who has been making decisions that affect the whole family without consulting anyone. A close friend thinks Remi should confront th…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Remi has been navigating a difficult situation with a family member who has been making decisions that affect the whole family without consulting anyone. A close friend thinks Remi should confront th…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04-adaeze-legal-vignette"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Adaeze manages a legal team at a mid-sized firm. Eight months ago, she noticed that regulatory questions in a specific area of healthcare compliance were appearing more frequently in client calls, bu…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Adaeze manages a legal team at a mid-sized firm. Eight months ago, she noticed that regulatory questions in a specific area of healthcare compliance were appearing more frequently in client calls, bu…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05-phoebe-violin-inner-monologue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Phoebe is a first-chair violinist at the same state-school orchestra Tobias conducts. She has been preparing for a solo audition for six weeks. Every practice session has followed the same pattern: s…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Phoebe is a first-chair violinist at the same state-school orchestra Tobias conducts. She has been preparing for a solo audition for six weeks. Every practice session has followed the same pattern: s…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06-luca-promotion-decision-point"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "In Sun Tzu's framework, what is the role of the direct method vs. the indirect method?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the crossbow metaphor describe in Sun Tzu's argument?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Chapter 4 argued that making defeat impossible must precede seeking to defeat the opponent. Chapter 5 argues that energy must be accumulated before the trigger is released. How do these two arguments…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Picture an exhausted messenger who has been running for three hours through mud and rain, finally arriving at the ridge where he was told the meeting would happen. But a commander is already there, r…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Imagine a position on a hillside above a narrow valley, occupied by the time the sun rises. Down in the valley, troops arrive hours later, winded, not knowing the terrain, with no time to prepare. Th…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "An exhausted messenger arrives at a ridge after three hours in the rain, and a commander is already there, rested, with tents pitched and water boiling. The messenger is not less skilled. He arrived …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex01-zahara-rural-telehealth"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Zahara is building a telehealth company focused on rural clinics when every major player is competing for urban hospital contracts. The large competitors are well-funded and moving fast, but they are…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Zahara is building a telehealth company focused on rural clinics when every major player is competing for urban hospital contracts. The large competitors are well-funded and moving fast, but they are…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex02-anika-nclex-prep"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Anika is six weeks from the NCLEX and has been studying every content area equally. Pharmacology, maternity, pediatrics, mental health, med-surg: every subject gets the same number of hours, the same…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Anika is six weeks from the NCLEX and has been studying every content area equally. Pharmacology, maternity, pediatrics, mental health, med-surg: every subject gets the same number of hours, the same…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex03-saoirse-family-conversation"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Saoirse and her sister Elena both have an unresolved conflict with the same family member over a property decision from years ago. Saoirse has been thinking about addressing it for months and decides…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Saoirse and her sister Elena both have an unresolved conflict with the same family member over a property decision from years ago. Saoirse has been thinking about addressing it for months and decides…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex04-marcus-dan-competitor-response"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A competitor has launched a new feature set that partially overlaps with Marcus and Dan's product roadmap. Marcus argues for an immediate matching response: prioritize the overlapping features, annou…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Marcus and Dan are sitting with a printout of a competitor's new product announcement. The competitor has added a feature their users have been asking for. Marcus wants to match it within six weeks. …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex05-beatriz-academic-bowl"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Beatriz captains the nursing school's academic bowl team heading into a regional competition. The dominant school wins the pharmacology round every year by a margin that no other team has closed. The…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex06-yemi-kenji-two-fronts"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Yemi and his partner Kenji are dealing with two family conflicts at the same time. One is a disagreement with Yemi's mother about a financial decision. The other is a boundary issue with Kenji's brot…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "According to Sun Tzu's opening principle in Chapter 6, what advantage does the army that arrives first at the battlefield gain?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Sun Tzu describes two mechanisms for moving an opponent to ground of your choosing. What are they?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Sun Tzu states that reinforcing any one direction inevitably weakens the opposite. Analyze how this principle connects to the defensive-first rule Sun Tzu establishes in Chapter 4."
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Evaluate this claim: 'Sun Tzu's formlessness principle makes Chapter 6 the most practically useful chapter in The Art of War because it tells commanders they are never bound by rules.' Is this an acc…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Sun Tzu connects the preserve-intact principle (Chapter 3) with the knowledge-asymmetry and concentration principles of Chapter 6. Evaluate which of the following best describes the relationship betw…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A commander starts after his opponent. He takes the road the opponent is not watching. He arrives at the objective first. The opponent, who took the obvious route, spends the whole journey trying to …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A commander who starts after his opponent and arrives first has done something the opponent cannot fully explain. The obvious explanation, that the commander moved faster, is usually wrong. The actua…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex01-hendrik-deviation-route"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Hendrik is preparing to launch a new analytics product. Every major competitor in the category uses the same distribution route: enterprise sales teams reaching large company buyers through establish…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex02-zara-jomo-morale-contrast"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Zara and Jomo are both enrolled in the same culinary school competition program. The competition runs three rounds over two days. Both teams have roughly equal technical skills. Zara's team pushes ha…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex03-naomi-father-morning-timing"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Naomi has been trying to have a serious conversation with her father for months. The topic is a financial decision he made without consulting the family, and it has created real tension. Every time s…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Naomi has been trying to have a serious conversation with her father for months. The topic is a financial decision he made without consulting the family, and it has created real tension. Every time s…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex04-tomas-celia-launch-dilemma"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex05-felix-repeated-menu-trap"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Felix is the most technically skilled student in his culinary school cohort. In his first regional competition, he presents a menu built around a beef short rib dish with a specific sauce technique a…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex06-vera-neighbor-inner-monologue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Vera has been in a low-grade dispute with a neighbor for months over a shared fence that needs repair. Neither of them has initiated the direct conversation. Vera has been waiting for the right momen…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Vera has been in a low-grade dispute with a neighbor for months over a shared fence that needs repair. Neither of them has initiated the direct conversation. Vera has been waiting for the right momen…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "In Chapter 7 of The Art of War, what term does Sun Tzu use to describe the core strategic principle of turning a longer, indirect route into the faster, decisive path?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Sun Tzu's morale timing principle, when is the ideal moment to attack an enemy force?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "Diego is a sales director at a B2B manufacturing firm. His team is behind on quota and he considers having every rep sprint to close as many deals as possible before month-end, accepting any terms to…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "Yuki is a department head at a regional hospital. A competing hospital has just announced a new specialist service and patients are shifting over. Yuki's administrator pressures her to immediately la…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A critic argues that Sun Tzu's seven prohibitions are too rigid: 'Real battles are chaotic — sometimes you must pursue retreating troops to prevent regrouping, even if it looks like simulated flight.…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "Across Chapter 7, Sun Tzu argues that maneuvering — not direct confrontation — is the decisive advantage. Evaluate which of the following best captures the chapter's integrated claim about why maneuv…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Across Chapter 7, Sun Tzu argues that maneuvering — not direct confrontation — is the decisive advantage. Evaluate which of the following best captures the chapter's integrated claim about why maneuv…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Deviation is the art of taking the unexpected route and arriving at the goal before the opponent who took the obvious one. But speed has a precise cost: the forced-march schedule is a diminishing-ret…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A general receives orders to march to a specific position and hold it. The sovereign has thought carefully about the strategic objective and issued the command with confidence. But the road to that p…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A general is given a specific objective and a set of standing orders. The sovereign has issued the commands from a position of strategic vision but without direct knowledge of the ground conditions t…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A general is given orders that made complete sense when they were written. The strategic picture the sovereign sees from the capital is accurate at that level of resolution. But the ground conditions…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"is not decorative\" — 68 hits across 31 books — same rhetorical move.",
+          "evidence": "A general is given orders that made complete sense when they were written. The strategic picture the sovereign sees from the capital is accurate at that level of resolution. But the ground conditions…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex01-callum-protocol-override"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Callum's team has a four-week QA protocol that exists because of a production failure eighteen months ago. The protocol is not abstract policy; it reflects real cost paid by real people. When the sal…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex02-dayo-ifunanya-group-project"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Dayo and Ifunanya are co-leads on a graduate seminar project due in three weeks. They face the same facts: one team member has dropped out, the scope has not changed, and the professor has not offere…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex03-reuben-negotiation-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Reuben is a senior operations manager reviewing what went wrong in a contract negotiation last quarter. His counterpart at the vendor had spent the first twenty minutes dismissing his team's implemen…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex04-simone-job-offer-dual-consideration"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Simone has been offered a position that is better on every stated dimension: more seniority, higher compensation, a well-regarded organization. She has been thinking about it for three days, and her …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Simone has been offered a position that is better on every stated dimension: more seniority, higher compensation, a well-regarded organization. She has been thinking about it for three days, and her …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex05-tobenna-chess-pattern-dilemma"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex06-adrien-override-own-rule"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Adrien has a standing rule with himself about how he handles disagreements with his brother: he does not respond to a heated message in the first hour. The rule exists because he reliably sends regre…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Adrien has a standing rule with himself about how he handles disagreements with his brother: he does not respond to a heated message in the first hour. The rule exists because he reliably sends regre…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "According to Chapter 8, what are the five dangerous faults that may afflict a general?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Chapter 8, what are the five dangerous faults that may afflict a general?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "A field commander receives a sovereign's order to attack a fortified city. The commander judges the city impregnable and the attack ruinous. Applying Sun Tzu's principle in Chapter 8, what should the…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "Chapter 8 teaches that exceptional competence lies in recognizing when standard rules are suspended, not in following rules more precisely. Evaluate this claim: does it imply that rules are generally…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A soldier on the march watches a flock of birds rise suddenly from the tree line ahead. There is no wind, no sound, no obvious cause. He marks it and keeps watching. Three minutes later, two more bir…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The column halts at a fork where two valleys converge near a wide, slow river. The commander does not pull out a general rule about rivers and apply it mechanically. He looks at this river: which ban…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "The army pauses at a broad flat valley where a slow river curves along the eastern edge and marshland spreads to the west. The commander cannot apply a single terrain rule. He is looking at two terra…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The army pauses at a broad flat valley where a slow river curves along the eastern edge and marshland spreads to the west. The commander cannot apply a single terrain rule. He is looking at two terra…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"boundary condition\" — Grad-school-philosophy register. Appeared 201 times across 46 books in v13 — a generator tell.",
+          "evidence": "The army pauses at a broad flat valley where a slow river curves along the eastern edge and marshland spreads to the west. The commander cannot apply a single terrain rule. He is looking at two terra…"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex01-mireille"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mireille's client sends a message confirming that the project timeline is on track and no changes are expected. She notes the message, then opens the project tracker: the internal review task has bee…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex02-ezra"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Two days before the history exam, Ezra sits down at the library table where four classmates are already spread out. Notes are open. There is comfortable noise. He settles in, pulls out his own notes,…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Two days before the history exam, Ezra sits down at the library table where four classmates are already spread out. Notes are open. There is comfortable noise. He settles in, pulls out his own notes,…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex03-camille"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "After the argument, the friend's message is generous: ready to move past it, no need to keep revisiting, looking forward to reconnecting. Camille notes the message. Then she notes the week that follo…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Camille's friend sends a warm message after a difficult argument: all is forgiven, she wants to move forward, she misses how things were. Camille reads it twice, feels relieved, and responds warmly i…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex04-bastian"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Bastian became team lead in the first week of the quarter and immediately set expectations: meeting times, update formats, quality standards for submitted work. The standards were clear and reasonabl…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex05-orla"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Orla's project group had a shared chat that stayed busy all week. Messages arrived constantly: ideas shared, articles dropped, questions posed to the whole group. She read the activity as preparation…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Orla's project group had a shared chat that stayed busy all week. Messages arrived constantly: ideas shared, articles dropped, questions posed to the whole group. She read the activity as preparation…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex06-teodora"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Sun Tzu in 'The Army on the March,' what general rule governs encampment near rivers?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Kwame is a senior engineer at a logistics company who has just been promoted to lead a team of ten people he has never managed before. He wants to establish high performance standards immediately. Ap…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Ingrid is a high school principal who has built strong relationships with her teaching staff over two years. A senior teacher recently violated a clear professional boundary that Ingrid had communica…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Analyze the signal-forgery failure mode in Chapter 9's signal-reading doctrine. Under what condition does the system become least reliable, and why?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "ch09-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "A modern intelligence analyst argues: 'Sun Tzu's signal-reading method is obsolete because adversaries today are trained to manage their observable behaviors.' Evaluate this critique using Chapter 9'…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "What structural tension does Chapter 9 create with the principle-based frameworks of Chapters 1 through 8, and how is that tension resolved?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 9,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Chapter 9 is an empirical field guide. Sun Tzu specifies positioning rules for four terrain types, each rule contingent on that terrain's specific physical conditions, and none transferable to a diff…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 9 is an empirical field guide. Sun Tzu specifies positioning rules for four terrain types, each rule contingent on that terrain's specific physical conditions, and none transferable to a diff…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Before any battle begins, a general walks the ground. He is not verifying the map. He is learning what the terrain will and will not allow — which positions his army can occupy, which ones will trap …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "Before any engagement, the ground is already speaking. It is saying: from this position, you can move freely in any direction. From that one, you can advance but cannot return. From this narrow passa…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Before any engagement, the ground is already speaking. It is saying: from this position, you can move freely in any direction. From that one, you can advance but cannot return. From this narrow passa…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "A general stands at a position that seems straightforward. The terrain can be freely entered from both directions — it looks like accessible ground, and the rule for accessible ground is clear: move …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A general stands at a position that seems straightforward. The terrain can be freely entered from both directions — it looks like accessible ground, and the rule for accessible ground is clear: move …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ch10-ex01-hiroshi-entangling"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ch10-ex02-adaeze-field-knowledge"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Adaeze is a third-year medical resident managing a patient overnight. The attending's written orders specify a medication dose that was appropriate when written. In reviewing the patient's most recen…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Adaeze is a third-year medical resident managing a patient overnight. The attending's written orders specify a medication dose that was appropriate when written. In reviewing the patient's most recen…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ch10-ex03-petra-lionel-paired-requirement"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Petra and Lionel are adult siblings whose parent recently moved into assisted living. Petra's approach is strict consistency: she holds her parent to the facility's schedule, maintains limits on late…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ch10-ex04-priya-disorganization"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ch10-ex05-tomasz-narrow-pass"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tomasz runs weekend tennis clinics at a public park facility. For two years, he and a competing coach have managed court availability informally — arriving early, working around each other, occasiona…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ch10-ex06-zephyr-three-part-check"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "According to Sun Tzu in Chapter 10, which of the six terrain types should a general occupy first because it allows free passage in both directions?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Sun Tzu identifies six calamities that destroy an army and traces them all to a single source. What is that source?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "A commander studies the terrain carefully and concludes that the ground gives her army a positional advantage. She advances and suffers a costly defeat. According to Sun Tzu's framework in Chapter 10…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "Olu is a middle school vice principal. He genuinely cares about his students and has built strong personal relationships with them over two years, but has been reluctant to enforce consistent consequ…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "Two generals both study Chapter 10 carefully. General A uses the six terrain types as a checklist — she categorizes the ground before every engagement and applies the corresponding rule. General B tr…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "ch10-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "Sun Tzu closes Chapter 10 by saying that a general who 'knows the enemy and knows himself' will not be imperiled in a hundred battles, but adds that terrain knowledge must accompany this self-and-ene…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the difference between knowing the terrain and being able to use it, according to the chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 10,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 10\" — breaks reading experience",
+          "evidence": "Chapter 10 runs two taxonomies in parallel. The first classifies six terrain types by what each one permits: accessible terrain rewards the first mover; entangling terrain makes exit impossible after…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 10 runs two taxonomies in parallel. The first classifies six terrain types by what each one permits: accessible terrain rewards the first mover; entangling terrain makes exit impossible after…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 11\" — breaks reading experience",
+          "evidence": "Somewhere in hostile territory, a commander pauses. His army crossed the border two days ago and has not yet established a position. Some soldiers are still thinking about home. He knows he cannot le…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 11\" — breaks reading experience",
+          "evidence": "Three weeks into a campaign, the army's situation has changed in ways the initial plan did not account for. The commander does not reach for the same decisions he made at the border. He reads which t…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "Three weeks into a campaign, the army's situation has changed in ways the initial plan did not account for. The commander does not reach for the same decisions he made at the border. He reads which t…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 11\" — breaks reading experience",
+          "evidence": "Three weeks into a campaign, the ground classification has changed and the general has not yet noticed. When the army crossed the border, it was on facile ground - just inside enemy territory, solida…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Three weeks into a campaign, the ground classification has changed and the general has not yet noticed. When the army crossed the border, it was on facile ground - just inside enemy territory, solida…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ch11-ex01-miriam-dilemma"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ch11-ex02-remy-vignette"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Rémy is two years into a graduate program in strategic communication, building a research project that requires one specific institutional grant to be viable. No other funding source fits the project…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ch11-ex03-obiageli-hassan-contrast"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Obiageli and Hassan are close friends, both managing difficult relationship ruptures at the same time. Obiageli's situation: the other person is willing to talk, the conflict is bounded, and movement…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Obiageli and Hassan are close friends, both managing difficult relationship ruptures at the same time. Obiageli's situation: the other person is willing to talk, the conflict is bounded, and movement…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ch11-ex04-valentina-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Valentina leads a nonprofit that has recently added an advocacy function alongside its existing program delivery work. The organization assumes the two functions will coordinate naturally because eve…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ch11-ex05-lars-inner-monologue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Lars is one week from his dissertation defense when his committee offers a three-month deferral. A methodology chapter could be stronger. A committee member is willing. The department is accommodatin…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Lars is one week from his dissertation defense when his committee offers a three-month deferral. A methodology chapter could be stronger. A committee member is willing. The department is accommodatin…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ch11-ex06-beatrix-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Beatrix's postmortem analysis: the classification error was a failure of position-verification, not of negotiation technique. She had the framework for the negotiation - understanding her alternative…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Sun Tzu's Nine Situations, what is the term for ground where a chieftain is fighting in his own territory?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Sun Tzu prescribe fighting immediately on desperate ground, even though it seems counterintuitive?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "ch11-q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 12\" — breaks reading experience",
+          "evidence": "Somewhere in the hills above an enemy camp, someone has already placed the materials needed to start a fire. They placed them weeks ago, when the general saw the season turning dry. Now the general i…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The fire agent has been in place for days. The general chose the dry season deliberately, knowing the conditions needed to converge before the attack was viable. Now he watches the constellations, ch…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 12\" — breaks reading experience",
+          "evidence": "A general waiting for the season to turn dry is practicing something the chapter treats as an operational competency, not as patience. The fire agent is in place. The target has been identified. The …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A general waiting for the season to turn dry is practicing something the chapter treats as an operational competency, not as patience. The fire agent is in place. The target has been identified. The …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ch12-ex01-odette-stellan-contrast"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Two project leads at the same technology company, Odette and Stellan, are each tasked with responding to a competitor's new product that is eating into their company's market share. Odette's approach…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ch12-ex02-wren-vignette"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Wren is a senior at a liberal arts college writing a thesis on undergraduate mental health attitudes. Her IRB-approved survey — the one with the stratified random sample she spent a semester designin…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Wren is a senior at a liberal arts college writing a thesis on undergraduate mental health attitudes. Her IRB-approved survey — the one with the stratified random sample she spent a semester designin…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ch12-ex03-nneka-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nneka is a parent dealing with a familiar situation: her teenage daughter has failed a major exam, and the result is visible on a grade portal Nneka checks routinely. When she sees the grade, her fir…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ch12-ex04-cyprian-decision-point"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ch12-ex05-nikolai-inner-monologue"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ch12-ex06-casimir-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Casimir's postmortem analysis: the eviction was the right response to the surface problem (non-paying tenant). The surface problem was generated by a substrate problem (tenant's financial situation m…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Casimir is a landlord sitting with the aftermath of a difficult tenant dispute that ended six months ago in an eviction. The eviction was legally sound. He had documentation, a legitimate grievance, …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Sun Tzu, which of the following is one of the five targets for attack by fire?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Sun Tzu ranks stores and arsenals as higher-leverage fire targets than soldiers in camp. Analyze why this ranking makes strategic sense within the chapter's logic."
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Sun Tzu closes the chapter by stating that a kingdom destroyed cannot be rebuilt and the dead cannot return to life. Evaluate the implication of this claim for his three conditions of action (advanta…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "ch12-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A critic argues that Sun Tzu's fire attack chapter is merely a collection of tactical tips and does not contain a coherent strategic philosophy. Evaluate this claim against the chapter's content."
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "State the self-certification problem in the three-condition rule and explain what the chapter relies on to close the gap that structure cannot close."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 12,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Five fire targets define a hierarchy from surface disruption (soldiers in camp) to substrate destruction (stores, arsenals). Four preconditions must all be met before acting; improvising around any o…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The ledger opens the chapter. A hundred thousand men marching across long distances. A thousand ounces of silver spent every day the campaign runs. Seven hundred thousand families unable to tend thei…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The ledger is the first image of the chapter: a hundred thousand men on the march, a thousand ounces of silver spent every day, seven hundred thousand families unable to work their land, armies holdi…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter of The Art of War begins not with a doctrine about intelligence but with a count. A hundred thousand men marching great distances. A thousand ounces of silver spent every day the ca…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "example",
+        "unitId": "ch13-ex01-adaeze-slack-channel"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Adaeze manages operations at a mid-sized consulting firm. Late one Thursday, her phone shows a Slack message forwarded from the wrong channel — a junior analyst named Soren had accidentally sent a pr…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "example",
+        "unitId": "ch13-ex02-petra-seminar-handout"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Petra is an MFA candidate in her second year. During a workshop critique session, a fellow student named Alinta distributes a printed handout analyzing the seminar's core theoretical text. Petra read…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "example",
+        "unitId": "ch13-ex03-xiomara-mediation-table"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Xiomara is working through a divorce mediation. The mediator sits between her and her soon-to-be ex-partner at a glass conference table, with documents arranged in two facing piles. Xiomara notices t…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "example",
+        "unitId": "ch13-ex04-roman-roadmap-leak"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Roman is chief product officer at a SaaS startup. For three quarters running, his competitor has announced features two to four weeks after Roman's internal planning meetings — not full products, but…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Roman is chief product officer at a SaaS startup. For three quarters running, his competitor has announced features two to four weeks after Roman's internal planning meetings — not full products, but…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "example",
+        "unitId": "ch13-ex05-study-group-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A doctoral student named Wren organized a study group for a qualifying exam in her program. The group met weekly for two months, sharing preparation strategies, question predictions, and annotated re…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "example",
+        "unitId": "ch13-ex06-kweku-parked-car"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Kweku is sitting in his parked car outside the family attorney's office, the attorney's summary letter on the passenger seat. He and his brother Esi are trying to settle their late parents' estate. T…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 13\" — breaks reading experience",
+          "evidence": "According to Sun Tzu, what are the five types of spies named in Chapter 13?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Sun Tzu, what are the five types of spies named in Chapter 13?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Sun Tzu consider the converted spy the most valuable of all five types?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 13\" — breaks reading experience",
+          "evidence": "A general is planning a night assault on a fortified pass. He has received reports from three sources: a celestial omen interpreted by his diviners, a historical account of a similar assault fifty ye…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 13\" — breaks reading experience",
+          "evidence": "Sun Tzu opens Chapter 13 by arguing that maintaining an army in the field for years, then failing to secure victory because one grudges the expenditure of intelligence, is a failure of humanity. Eval…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "quiz_question",
+        "unitId": "ch13-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 13\" — breaks reading experience",
+          "evidence": "Chapter 13 closes Sun Tzu's entire treatise. Its placement last implies that intelligence is not one principle among twelve but the precondition for all of them. Evaluate whether this structural clai…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "review_card",
+        "unitId": "ch13-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "review_card",
+        "unitId": "ch13-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "review_card",
+        "unitId": "ch13-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "review_card",
+        "unitId": "ch13-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "review_card",
+        "unitId": "ch13-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 13\" — breaks reading experience",
+          "evidence": "State the relationship between Chapter 13's intelligence infrastructure and the strategic principles described in Chapters 1 through 12. Then identify the regress problem this relationship creates."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 13,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 13\" — breaks reading experience",
+          "evidence": "Chapter 13 makes the book's sharpest epistemological claim: foreknowledge of the enemy's actual situation cannot come from spiritual consultation, inductive reasoning from past events, or deductive c…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 13 makes the book's sharpest epistemological claim: foreknowledge of the enemy's actual situation cannot come from spiritual consultation, inductive reasoning from past events, or deductive c…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-art-of-war",
+        "chapterNumber": 11,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 90% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 285,
+    "failedUnits": 41,
+    "passRate": 0.8742331288343558,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 283,
+        "fail": 42
+      },
+      "register.no_meta_reference": {
+        "pass": 207,
+        "fail": 40
+      },
+      "register.no_banned_phrase": {
+        "pass": 323,
+        "fail": 2
+      },
+      "narrative.named_protagonist": {
+        "pass": 78,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 47,
+        "fail": 31
+      },
+      "narrative.decision_point": {
+        "pass": 28,
+        "fail": 50
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 110,
+        "fail": 20
+      },
+      "schema.enum_validity": {
+        "pass": 0,
+        "fail": 130
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 130,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 65,
+        "fail": 0
+      },
+      "schema.answer_position_balance": {
+        "pass": 12,
+        "fail": 1
+      }
+    }
+  }
+}

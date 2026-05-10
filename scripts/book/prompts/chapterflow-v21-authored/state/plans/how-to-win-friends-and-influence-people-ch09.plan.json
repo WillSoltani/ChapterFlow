@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch09",
+  "number": 9,
+  "title": "The Secret of Socrates",
+  "coreMove": "Open a hard conversation by asking questions the other person must say yes to, and only after several yeses raise the point you actually disagree on.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a county librarian persuading a skeptical board member to approve a Sunday opening pilot",
+      "audience": "a public-sector worker who has to win over a fiscal hawk without antagonizing him",
+      "stakes": "whether the pilot gets funded for six months or dies in committee for another year",
+      "format": "dialogue",
+      "requiredBeat": "the librarian asks three plain questions the board member can only agree with about who uses the library before she ever mentions Sundays, and the agreement is shown landing in his posture, not narrated"
+    },
+    {
+      "domain": "a veterinary technician walking a grieving farmer through whether to put down an aging border collie",
+      "audience": "someone who has to deliver a hard recommendation to a person who came in already braced to refuse",
+      "stakes": "the dog's last week of comfort and whether the farmer trusts this clinic again",
+      "format": "scene",
+      "requiredBeat": "the tech asks the farmer to describe what a good day looks like for the dog now, and gets him saying yes to small concrete observations until the farmer reaches the conclusion himself without being told"
+    },
+    {
+      "domain": "a homeowner pushing back on a contractor who wants to skip a permit on a deck rebuild",
+      "audience": "a first-time renovator who is afraid of being seen as difficult",
+      "stakes": "a five-figure repair bill and a possible insurance denial three years from now",
+      "format": "decision_point",
+      "requiredBeat": "the homeowner catches himself starting with the disagreement, stops, and instead asks the contractor questions about resale and inspections that the contractor has to nod along to before the permit comes up"
+    },
+    {
+      "domain": "a high school band director negotiating practice times with a parent who wants her son pulled from Saturday rehearsal",
+      "audience": "a teacher who has lost this exact fight twice already this year with other parents",
+      "stakes": "the section's readiness for state finals and the parent's willingness to keep the kid enrolled at all",
+      "format": "before_after",
+      "requiredBeat": "the first version opens with the director defending the schedule and the parent hardening, the second version opens with three questions about what the parent values about the program, and the contrast in where the conversation ends is shown without being moralized"
+    },
+    {
+      "domain": "a retired bricklayer in 1953 Brooklyn convincing his grown daughter not to sign a predatory installment contract for a new washer",
+      "audience": "a reader who has tried and failed to talk a relative out of a bad decision",
+      "stakes": "two years of garnished pay and a fight that could keep them from speaking",
+      "format": "vignette",
+      "requiredBeat": "the father resists the urge to say no outright, asks her instead what she expected the monthly cost to be and what she would do if the machine broke in month thirteen, and lets her arrive at her own pause"
+    },
+    {
+      "domain": "a transit planner walking a hostile neighborhood meeting through a proposed bus lane on their main street",
+      "audience": "a public servant who has been booed at the last two of these",
+      "stakes": "a three-million-dollar grant that expires if the lane is not approved this quarter, and her standing in a community she has to keep working with",
+      "format": "postmortem",
+      "requiredBeat": "after a meeting that went badly, she walks back through the transcript and identifies the exact sentence where she asked residents to disagree before she had asked them to agree on anything, and rewrites the opening as four questions she could have led with"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.85
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

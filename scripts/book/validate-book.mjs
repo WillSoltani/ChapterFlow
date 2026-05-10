@@ -31,7 +31,11 @@ const SEVERITY_ORDER = {
 };
 
 const FAILURE_SEVERITIES = new Set(["CRITICAL", "HIGH", "MEDIUM", "LOW"]);
-const SUPPORTED_SCHEMA_VERSIONS = new Set(["1.1.0", "chapterflow-v13-release"]);
+const SUPPORTED_SCHEMA_VERSIONS = new Set([
+  "1.1.0",
+  "chapterflow-v13-release",
+  "chapterflow-v21-authored",
+]);
 const TONE_KEYS = ["gentle", "direct", "competitive"];
 const SO_GOOD_GUIDED_CHAPTERS = new Set([2, 6, 10, 12, 14]);
 const DEPTHS = ["easy", "medium", "hard"];
@@ -1990,9 +1994,46 @@ if (!SUPPORTED_SCHEMA_VERSIONS.has(pkg?.schemaVersion)) {
   process.exit(1);
 }
 
+// v21-authored packages are gated by the v21 ship gate during generation.
+// Here we just confirm shape and required fields. For deeper validation, run:
+//   npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/run-ship-gate.ts <chapter.json>
+function validateV21AuthoredPackage(pkg) {
+  const issues = [];
+  const requiredBookFields = ["bookId", "title", "author"];
+  for (const f of requiredBookFields) {
+    if (!pkg.book?.[f]) {
+      pushIssue(issues, "HIGH", "A", `book.${f}`, `Missing required field for v21 schema.`);
+    }
+  }
+  if (!Array.isArray(pkg.chapters) || pkg.chapters.length === 0) {
+    pushIssue(issues, "CRITICAL", "A", "chapters", `v21 package has no chapters.`);
+    return { issues, summaries: { wordCounts: [], exampleSummaries: [] } };
+  }
+  const requiredChapterFields = ["chapterId", "number", "title", "hook", "keyTakeaway", "breakdown", "examples", "quiz", "reviewCards", "implementationPlan"];
+  for (const ch of pkg.chapters) {
+    for (const f of requiredChapterFields) {
+      if (ch[f] === undefined || ch[f] === null) {
+        pushIssue(issues, "HIGH", "A", `chapters[${ch.number ?? "?"}].${f}`, `Missing required v21 field.`);
+      }
+    }
+    const tiers = ["fastRead", "deepRead", "fullRead"];
+    for (const t of tiers) {
+      if (typeof ch.breakdown?.[t] !== "string" || ch.breakdown[t].length < 200) {
+        pushIssue(issues, "HIGH", "A", `chapters[${ch.number}].breakdown.${t}`, `v21 breakdown.${t} missing or too short.`);
+      }
+    }
+    if (!Array.isArray(ch.examples) || ch.examples.length < 3) {
+      pushIssue(issues, "HIGH", "A", `chapters[${ch.number}].examples`, `v21 expects ≥3 examples per chapter.`);
+    }
+  }
+  return { issues, summaries: { wordCounts: [], exampleSummaries: [] } };
+}
+
 const { issues, summaries } =
-  pkg.schemaVersion === "chapterflow-v13-release"
-    ? validateModernReleasePackage(pkg)
-    : validatePackage(pkg, inputPath);
+  pkg.schemaVersion === "chapterflow-v21-authored"
+    ? validateV21AuthoredPackage(pkg)
+    : pkg.schemaVersion === "chapterflow-v13-release"
+      ? validateModernReleasePackage(pkg)
+      : validatePackage(pkg, inputPath);
 printReport(inputPath, pkg, issues, summaries);
 process.exit(issues.some((entry) => FAILURE_SEVERITIES.has(entry.severity)) ? 1 : 0);

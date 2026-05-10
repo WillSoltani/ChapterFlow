@@ -1,0 +1,67 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch05",
+  "number": 5,
+  "title": "Cognitive Ease",
+  "coreMove": "Separate the feeling that a claim reads smoothly from the evidence that it is true, and treat fluency itself as a cue worth investigating rather than trusting.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a cardiac nurse reviewing a handoff note printed in a crisp sans-serif versus a smudged carbon copy on the next patient",
+      "audience": "a bedside nurse working the back half of a twelve-hour shift",
+      "stakes": "whether a medication reconciliation error gets caught before the next dose or silently carried forward",
+      "format": "decision_point",
+      "requiredBeat": "the nurse catches herself weighting the legible note as more credible and forces herself to cross-check the smudged one against the chart rather than against her feeling about it"
+    },
+    {
+      "domain": "a municipal zoning board hearing where one developer's proposal rhymes in its bullet points and the other's does not",
+      "audience": "a small-town zoning commissioner with no planning background",
+      "stakes": "a twenty-year land-use decision that will shape a neighborhood the commissioner's grandchildren will live in",
+      "format": "scene",
+      "requiredBeat": "the commissioner notices that the rhyming proposal is landing as more trustworthy and asks what specifically about its content, not its sound, would survive paraphrase"
+    },
+    {
+      "domain": "a line cook tasting a new supplier's stock against the restaurant's house stock during a Tuesday prep shift",
+      "audience": "a sous chef deciding whether to switch vendors",
+      "stakes": "food cost, consistency across a twelve-table dinner service, and the chef's credibility with the owner",
+      "format": "before_after",
+      "requiredBeat": "the cook registers that the familiar stock feels right on the tongue in a way the new one does not, and isolates whether that is fluency of familiarity or actual flavor superiority before recommending"
+    },
+    {
+      "domain": "a district court judge reading sentencing memos at the end of an afternoon docket",
+      "audience": "a trial judge with twenty-six years on the bench",
+      "stakes": "whether two defendants with similar facts receive similar sentences or are split by the mood the memos put the judge in",
+      "format": "postmortem",
+      "requiredBeat": "the judge reconstructs, after the fact, how the easier-to-read memo produced a warmer impression of the defendant and asks what procedural countermeasure would have blocked that leakage"
+    },
+    {
+      "domain": "a high-school orchestra director auditioning two clarinetists for first chair in a narrow practice room",
+      "audience": "a public-school music teacher with a hundred-student program",
+      "stakes": "the morale of a section that will notice any chair placement that tracks social comfort rather than playing",
+      "format": "dilemma",
+      "requiredBeat": "the director recognizes that the student who plays the familiar warm-up excerpt sounds 'more musical' partly because the excerpt is familiar to the director's ear, and redesigns the audition so repertoire novelty is equalized"
+    },
+    {
+      "domain": "a grant reviewer working through the last four proposals of the evening against a submission deadline",
+      "audience": "a tenured researcher serving on an NIH study section",
+      "stakes": "whether a first-time applicant's genuinely strong science is scored below a veteran's polished prose",
+      "format": "predict_reveal",
+      "requiredBeat": "the reviewer predicts her own scores before reading carefully, then reads and notices which proposals her prediction overrated on fluency alone, and adjusts her written critique to separate clarity of writing from quality of design"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

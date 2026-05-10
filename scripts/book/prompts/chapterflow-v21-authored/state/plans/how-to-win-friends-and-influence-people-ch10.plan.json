@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch10",
+  "number": 10,
+  "title": "The Safety Valve in Handling Complaints",
+  "coreMove": "Let an upset person talk themselves empty before you say a word, then ask one question that invites more rather than less",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a veterinary receptionist taking a call from a man whose dog died after surgery",
+      "audience": "a frontline service worker who keeps trying to explain policy over a grieving customer",
+      "stakes": "whether the clinic loses a twenty-year client and a public review, or keeps a relationship the vet built across two generations of dogs",
+      "format": "dialogue",
+      "requiredBeat": "the receptionist resists every urge to say 'but' or 'actually' and instead says 'tell me more about Buster' until the man is the one who eventually pauses"
+    },
+    {
+      "domain": "a high school assistant principal sitting across from a parent who is convinced his daughter was unfairly suspended",
+      "audience": "a school administrator who is technically correct and losing the room",
+      "stakes": "a board complaint, a daughter who watches her father be dismissed, and a precedent for how the school handles future disputes",
+      "format": "scene",
+      "requiredBeat": "the administrator closes her laptop, pushes the discipline file to the side of the desk, and asks the father to start from the morning of the incident in his own words"
+    },
+    {
+      "domain": "a union shop steward fielding a machinist's furious accusation that the new shift schedule is rigged against older workers",
+      "audience": "a steward who privately agrees the machinist is wrong about the cause but right about the feeling",
+      "stakes": "a wildcat walkout on Monday if the machinist leaves the meeting still hot",
+      "format": "vignette",
+      "requiredBeat": "the steward keeps a notepad face down and only asks one prompt every several minutes, letting silence carry more weight than counter-argument"
+    },
+    {
+      "domain": "a daughter calling her recently widowed father to complain about how her brother is handling their mother's estate",
+      "audience": "an adult child caught between two siblings who both feel unseen",
+      "stakes": "a Thanksgiving table that may not have everyone at it again",
+      "format": "reflection",
+      "requiredBeat": "the daughter, who came to argue, notices her father simply asking 'and what else' three times until she names the actual grief underneath the money"
+    },
+    {
+      "domain": "a hotel night manager confronted at 1am by a guest whose room reeked of smoke and whose anniversary dinner reservation was lost",
+      "audience": "a manager whose first instinct is to offer compensation in the first thirty seconds",
+      "stakes": "a couple's tenth anniversary, the hotel's reputation on a review site read by every traveler in the city",
+      "format": "decision_point",
+      "requiredBeat": "the manager catches herself reaching for the comp voucher, puts the pen down, and instead says nothing for a full ten seconds while the guest finishes her sentence and starts a new one"
+    },
+    {
+      "domain": "a city council member at a town hall after a beloved oak on Maple Street was cut down by the public works department",
+      "audience": "an elected official who could read out the legal justification and end the meeting in fifteen minutes",
+      "stakes": "reelection, neighborhood trust, and whether the next removal will be met with a lawsuit",
+      "format": "postmortem",
+      "requiredBeat": "after the meeting the council member writes down what she would have said if she had spoken first, and notices that nothing on the list would have changed a single resident's mind"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

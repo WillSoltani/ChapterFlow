@@ -1,0 +1,4767 @@
+{
+  "bookId": "make-it-stick",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/make-it-stick.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.442Z",
+  "chapterCount": 8,
+  "unitCount": 207,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A study session can feel calm, familiar, and strangely convincing even when very little will still be there tomorrow. A learner rereads the chapter, highlights the important lines, and watches the pa…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can leave a study session feeling calm, organized, and completely misled. The chapter opens by naming a pattern almost everyone recognizes: rereading the pages, marking the important lines,…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "A learner can leave a study session feeling calm, organized, and completely misled. The chapter opens by naming a pattern almost everyone recognizes: rereading the pages, marking the important lines,…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter begins with a quiet but important humiliation. A learner leaves the desk feeling prepared because the notes looked easier each time they were reread. The highlighted page seems familiar. …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"boundary condition\" — Grad-school-philosophy register. Appeared 201 times across 46 books in v13 — a generator tell.",
+          "evidence": "The chapter begins with a quiet but important humiliation. A learner leaves the desk feeling prepared because the notes looked easier each time they were reread. The highlighted page seems familiar. …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter honest\" — 111 hits across 36 books. Impossible to appear organically at that rate.",
+          "evidence": "The chapter begins with a quiet but important humiliation. A learner leaves the desk feeling prepared because the notes looked easier each time they were reread. The highlighted page seems familiar. …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "The chapter begins with a quiet but important humiliation. A learner leaves the desk feeling prepared because the notes looked easier each time they were reread. The highlighted page seems familiar. …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Maya sits in a chemistry review room with a yellow highlighter, a page of marked-up definitions, and twenty minutes left before a quiz. Rereading feels calm and familiar. A blank sheet of paper feels…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maya sits in a chemistry review room with a yellow highlighter, a page of marked-up definitions, and twenty minutes left before a quiz. Rereading feels calm and familiar. A blank sheet of paper feels…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Devin runs onboarding for new technicians. During training, everyone nods along with the slide deck and completes the practice run smoothly. A week later, several key steps are missing when the techn…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Devin runs onboarding for new technicians. During training, everyone nods along with the slide deck and completes the practice run smoothly. A week later, several key steps are missing when the techn…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Leah: I moved through the whole set without much strain, so I think the chapter is locked in.\nOmar: Locked in, or temporarily supported by seeing the same cards in the same sequence again?\nLeah: The …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leah: That review felt easy. I think I finally know the chapter.\nOmar: Easy because you know it, or easy because the cards stayed in the same order?\nLeah: I could almost say the next answer before I …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "On Friday, Priya feels strongest after rereading her notes twice. She predicts that this method will carry her through Monday. After the weekend, the recall test is far weaker than she expected."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (177 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elena used to decide she had learned new vocabulary when the words looked familiar in her notebook. Now she judges progress by whether she can retrieve and use them after a gap."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena used to decide she had learned new vocabulary when the words looked familiar in her notebook. Now she judges progress by whether she can retrieve and use them after a gap."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What mistake does the chapter say many learners make?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What mistake does the chapter say many learners make?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can rereading make a learner feel more prepared than they really are?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A student must choose between one more reread and a blank-page recall drill. Which choice best fits the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why did Devin's onboarding session look stronger than it really was?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What do spacing and interleaving add to learning in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What do spacing and interleaving add to learning in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Priya feels most confident on Friday after rereading. What should matter more by the chapter's standard?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Priya feels most confident on Friday after rereading. What should matter more by the chapter's standard?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is retrieval the natural next focus after this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is retrieval the natural next focus after this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is subjective ease a weak signal of learning?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "ch01-q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What turns a hard-feeling study method into a productive difficulty?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which signal does the chapter tell readers not to trust as proof of mastery?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner often chooses another reread because it feels calmer than testing memory. The notes stay open, the answer remains visible, and confidence gets to stay warm. This chapter explains why the ro…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "A learner who has just finished Chapter 1 can still slip back into the same comfortable habit. The notes remain open. Another reread feels calm. A self-quiz feels exposed because it might reveal forg…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner who has just finished Chapter 1 can still slip back into the same comfortable habit. The notes remain open. Another reread feels calm. A self-quiz feels exposed because it might reveal forg…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Many learners understand that passive review can mislead and still avoid self-quizzing because it feels harsher than another reread. The notes stay open, familiarity remains available, and confidence…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Many learners understand that passive review can mislead and still avoid self-quizzing because it feels harsher than another reread. The notes stay open, familiarity remains available, and confidence…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter honest\" — 111 hits across 36 books. Impossible to appear organically at that rate.",
+          "evidence": "Many learners understand that passive review can mislead and still avoid self-quizzing because it feels harsher than another reread. The notes stay open, familiarity remains available, and confidence…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Many learners understand that passive review can mislead and still avoid self-quizzing because it feels harsher than another reread. The notes stay open, familiarity remains available, and confidence…"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Nina has ten minutes before biology class. She can reread the chapter headings one more time, or she can close the binder and write what she remembers about the cell cycle from memory."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Victor led a smooth onboarding session for new warehouse staff. Everyone followed the checklist when it was projected on the wall, but key steps went missing once the workers had to act without the v…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor led a smooth onboarding session for new warehouse staff. Everyone followed the checklist when it was projected on the wall, but key steps went missing once the workers had to act without the v…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leah: I missed that card again. Maybe I should stop quizzing and go back to rereading.\nOmar: Or the miss is showing you exactly what the reread kept hidden.\nLeah: It still feels like proof the testin…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Priya expects that reviewing notes quietly at the start of class will help more than answering a short quiz slip from memory. After several weeks, the recall routine holds up better than she predicte…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya expects that reviewing notes quietly at the start of class will help more than answering a short quiz slip from memory. After several weeks, the recall routine holds up better than she predicte…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (178 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elena wants her new sales hires to remember the opening call sequence. She can either keep modeling it for them or ask them to retrieve it with quick feedback after each attempt."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena wants her new sales hires to remember the opening call sequence. She can either keep modeling it for them or ask them to retrieve it with quick feedback after each attempt."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Omar used to review history notes until the page looked familiar. Now he closes the notebook, explains the main causes out loud, checks what he missed, and tries again the next day."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar used to review history notes until the page looked familiar. Now he closes the notebook, explains the main causes out loud, checks what he missed, and tries again the next day."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main claim about retrieval?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main claim about retrieval?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can a self-quiz help more than another reread?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What makes a low-stakes classroom quiz useful in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes a low-stakes classroom quiz useful in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why did Victor's training fail to stick?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can struggle during retrieval still help learning?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Leah misses a flashcard answer. What response best fits the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Leah misses a flashcard answer. What response best fits the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the next chapter need to move beyond retrieval itself?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is retrieval more than measurement in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is retrieval more than measurement in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "ch02-q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What keeps retrieval from turning into empty frustration?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter redefine quizzes and self-testing?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter redefine quizzes and self-testing?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter keep failed recall productive?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter keep failed recall productive?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter insist on support and follow-up?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's main move is to turn retrieval from a score into a mechanism. Another reread refreshes familiarity, but low-stakes recall plus correction strengthens later access more directly."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A page full of the same kind of problem can make practice feel strong because the next move keeps looking familiar. The learner gets faster, confidence rises, and the session feels tidy. This chapter…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A tidy block of practice can be strangely persuasive. The learner solves one type of algebra problem for ten straight minutes, repeats the same response in training, or runs the same musical pattern …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "A learner can do everything Chapter 2 recommends and still practice in a way that flatters the present more than it prepares the future. One kind of problem repeats in a tidy run. One drill is rehear…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can do everything Chapter 2 recommends and still practice in a way that flatters the present more than it prepares the future. One kind of problem repeats in a tidy run. One drill is rehear…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "A learner can do everything Chapter 2 recommends and still practice in a way that flatters the present more than it prepares the future. One kind of problem repeats in a tidy run. One drill is rehear…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "A learner can do everything Chapter 2 recommends and still practice in a way that flatters the present more than it prepares the future. One kind of problem repeats in a tidy run. One drill is rehear…"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Maya can finish one page of the same algebra problem type or use a mixed packet where the categories are shuffled. The mixed page looks slower because she has to stop and decide what each problem is …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maya can finish one page of the same algebra problem type or use a mixed packet where the categories are shuffled. The mixed page looks slower because she has to stop and decide what each problem is …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Victor's team looked fluent during blocked script practice. The postmortem shows they were weaker at recognizing which script fit which call once the categories stopped arriving in order."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor trained new support staff by running one script type at a time. The drills looked clean, but the first mixed wave of customer calls exposed hesitation and wrong script choices."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Leah: I like the confidence that comes from drilling one passage until it sounds polished.\nOmar: The polish may belong to the block more than to your ability to recognize the right choice in a new pa…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leah: If I keep repeating this one passage, it finally starts to feel easy.\nOmar: Easy on one passage is different from knowing which passage needs which move.\nLeah: Rotating three passages feels mes…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Priya expects the grouped review set to prepare her better because it feels smoother. The mixed exam later favors the practice routine that made her identify the category before solving."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya expects the grouped review set to prepare her better because it feels smoother. The mixed exam later favors the practice routine that made her identify the category before solving."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (144 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elena wants tougher choice reps, not a fog machine. The question is how to make the category harder to earn without making it impossible to see."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (149 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Omar used to group similar language drills into long blocks. Now he mixes nearby prompt types so he has to decide which structure fits each sentence."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does interleaving mainly strengthen in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does interleaving mainly strengthen in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can blocked practice mislead the learner?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why might a mixed algebra packet help more than grouped problem types?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What did Victor's postmortem reveal about blocked script training?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can mixed practice feel worse while still teaching more?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why might rotating three similar musical passages help Leah more than repeating one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the next chapter need to broaden the discussion after interleaving?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does mixed practice support transfer?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What keeps variation productive rather than chaotic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's main mechanism is discrimination. Interleaving trains recognition and selection under changing conditions, while blocked practice can make the session look smoother than later performan…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A hard-feeling study method is not automatically better, but it is not automatically worse either. This chapter explains that some difficulties help because they make the learner retrieve, generate, …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "A hard-feeling study method is not automatically better, but it is not automatically worse either. This chapter explains that some difficulties help because they make the learner retrieve, generate, …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "By this point in the book, learners may be ready to make a new mistake. They have heard that retrieval can feel harder than rereading and that mixed practice can feel messier than blocked drills. It …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "By this point in the book, learners may be ready to make a new mistake. They have heard that retrieval can feel harder than rereading and that mixed practice can feel messier than blocked drills. It …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter honest\" — 111 hits across 36 books. Impossible to appear organically at that rate.",
+          "evidence": "By this point in the book, learners may be ready to make a new mistake. They have heard that retrieval can feel harder than rereading and that mixed practice can feel messier than blocked drills. It …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "By this point in the book, learners may be ready to make a new mistake. They have heard that retrieval can feel harder than rereading and that mixed practice can feel messier than blocked drills. It …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
+          "evidence": "By this point in the book, learners may be ready to make a new mistake. They have heard that retrieval can feel harder than rereading and that mixed practice can feel messier than blocked drills. It …"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "A learner can accept every lesson from the earlier chapters and still take the wrong conclusion from them. Retrieval can help. Mixed practice can help. Then the learner starts to believe that difficu…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can accept every lesson from the earlier chapters and still take the wrong conclusion from them. Retrieval can help. Mixed practice can help. Then the learner starts to believe that difficu…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (141 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Nina can reread the history notes one more time or close the notebook and answer short questions from memory before checking what she missed."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (156 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Devin designed a calm onboarding flow with almost no visible mistakes during practice. A week later, workers forgot key steps once the guidance disappeared."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Devin designed a calm onboarding flow with almost no visible mistakes during practice. A week later, workers forgot key steps once the guidance disappeared."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Leah: Every miss makes me want to go back to easier review.\nOmar: Easier review can hide the exact weakness that the miss just exposed.\nLeah: Then what makes the miss useful instead of discouraging?\n…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (170 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya expects the smoother review session to help more than a delayed retrieval round after the weekend gap. The later check shows the rougher recovery round taught more."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya expects the smoother review session to help more than a delayed retrieval round after the weekend gap. The later check shows the rougher recovery round taught more."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (128 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elena knows her team needs harder reps, but she worries that removing too much guidance will turn challenge into discouragement."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena knows her team needs harder reps, but she worries that removing too much guidance will turn challenge into discouragement."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (149 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Victor used to judge study by how calm the session felt. Now he looks for whether the challenge made him generate, retrieve, and repair successfully."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor used to judge study by how calm the session felt. Now he looks for whether the challenge made him generate, retrieve, and repair successfully."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What makes a difficulty desirable in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes a difficulty desirable in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can smooth, errorless practice be weaker than it looks?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why might a generated short-answer round help Nina more than another reread?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What did Devin's training postmortem show?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "When can a wrong answer still help learning?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What should Leah do after a flashcard miss if she wants the error to help?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the next chapter follow this one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What keeps challenge from turning into overload?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main filter for judging hard-feeling practice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main filter for judging hard-feeling practice?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter defines desirable difficulty as challenge with a mechanism. Retrieval, generation, and corrected errors can help learning; overload and unsupported frustration cannot."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A page can feel known because the learner has seen it several times. The words look familiar, the marks on the page seem reassuring, and another reread moves easily. This chapter explains why that ea…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "A learner can leave a study session feeling sure and still be badly mistaken. The notes looked familiar. The key lines were highlighted. Another pass through the chapter felt smooth and quick. Confid…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can leave a study session feeling sure and still be badly mistaken. The notes looked familiar. The key lines were highlighted. Another pass through the chapter felt smooth and quick. Confid…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "A learner can do many things that look studious and still misjudge what has actually been learned. The chapter has been reread. Important lines are marked. The phrasing feels familiar enough that the…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can do many things that look studious and still misjudge what has actually been learned. The chapter has been reread. Important lines are marked. The phrasing feels familiar enough that the…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (142 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya's notes feel very familiar, but she has to choose whether to trust that familiarity or test whether she can explain the process unaided."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (144 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "The team looked fluent while the deck was visible. The postmortem showed that recognition during review did not become usable recall on the job."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena's new hires recognized every onboarding slide during review, but later they could not recall the workflow steps once the deck was gone."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Marcus: The page feels completely familiar now, so I think I have it.\nLeah: Familiar to read, maybe. Can you retrieve the argument and explain it cleanly without the cues?\nMarcus: I might be leaning …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Marcus: Look how much I highlighted. I definitely know this chapter now.\nLeah: Then close the book and explain the argument without looking.\nMarcus: I can recognize every line when I see it.\nLeah: Re…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (170 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Nina predicts that the notes she reviewed right away will hold better than a delayed self-quiz after the weekend. The later check shows the quiz gave the clearer reading."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nina predicts that the notes she reviewed right away will hold better than a delayed self-quiz after the weekend. The later check shows the quiz gave the clearer reading."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (134 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Devin's training review feels polished and calm, but he is unsure whether that polish means the team will remember the material later."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (131 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elena used to judge study by whether the material felt familiar. Now she asks whether she can retrieve and explain it without help."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena used to judge study by whether the material felt familiar. Now she asks whether she can retrieve and explain it without help."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is an illusion of knowing in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is an illusion of knowing in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can rereading inflate confidence?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is Priya's closed-book biology explanation useful?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What did Elena's onboarding postmortem reveal?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter treat highlighting?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does the chapter treat highlighting?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why are delayed self-checks especially informative?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What should Marcus do before trusting his highlighted page as learned?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the next chapter follow this one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What should confidence answer to according to the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What should confidence answer to according to the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes a learning check honest here?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What gap does the chapter call an illusion of knowing?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter tell the learner to judge certainty?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter tell the learner to judge certainty?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter separates recognition from recall and asks confidence to answer to evidence. Passive review can support exposure, but it is a poor final judge of mastery."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "It is easy to think that a learner's style explains what teaching should look like. One person says they are visual, another says auditory, and a third says hands-on. This chapter questions that shor…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Style labels are attractive because they sound like explanations. A learner says they are visual. Another says they need to hear it. Someone else says they learn only by doing. These claims can feel …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Style labels are attractive because they sound like explanations. A learner says they are visual. Another says they need to hear it. Someone else says they learn only by doing. These claims can feel …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "A learner difference can be real without being the main explanation for what improves learning. That is the tension this chapter has to manage. Style labels feel persuasive because they sound respect…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner difference can be real without being the main explanation for what improves learning. That is the tension this chapter has to manage. Style labels feel persuasive because they sound respect…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex01"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (155 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Victor used style language to explain weak performance, but the review showed the real issue was missing prior knowledge and too little retrieval practice."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor thought new hires were struggling because the training was in the wrong style. The postmortem showed they were missing a key background concept."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Elena: Podcasts are my preferred format, so that is probably the best way for me to learn this material.\nOmar: Preferred by comfort or best by evidence? Those are not automatically the same.\nElena: Y…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena: I always learn best from audio, so I should use podcasts for every topic.\nOmar: Maybe for some topics, but not every one. What if the material needs a diagram or a worked example?\nElena: I sti…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Priya predicts that a review built around her preferred style will help more than a geometry session built around diagrams, worked examples, and retrieval. The later result favors the task-fit review."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya predicts that a review built around her preferred style will help more than a geometry session built around diagrams, worked examples, and retrieval. The later result favors the task-fit review."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (140 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Nina has to redesign training without hiding behind style categories, while still accounting for different starting points and task demands."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nina wants to respect differences on her team but worries that leaning on style labels will oversimplify what the training needs."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (124 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Maya used to begin by asking what style she was. Now she asks what the material requires and how she will retrieve it later."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maya used to begin by asking what style she was. Now she asks what the material requires and how she will retrieve it later."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter reject about learning styles?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter reject about learning styles?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is preference weaker than evidence here?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How should a teacher choose representation for a science or geometry lesson according to this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How should a teacher choose representation for a science or geometry lesson according to this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What did Victor's postmortem show?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does prior knowledge matter so much here?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which misreading would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which misreading would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What should Elena do if she loves podcasts but wants to learn a topic well?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the next chapter follow this one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What matters more than style matching according to the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What matters more than style matching according to the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What should guide instruction if not a simple style label?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What claim about style matching does the chapter push back on?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter stay nuanced about differences?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter stay nuanced about differences?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter rejects style matching as the main answer and replaces it with content fit, prior knowledge, and active retrieval or explanation."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Early struggle can feel like proof that ability is fixed. This chapter pushes back on that feeling. The book argues that strategy, feedback, repetition, and response to mistakes can change performanc…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
+          "evidence": "Early struggle can feel like proof that ability is fixed. This chapter pushes back on that feeling. The book argues that strategy, feedback, repetition, and response to mistakes can change performanc…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "A learner can fail once and decide too quickly what kind of person they are. A hard math set, a weak language drill, or a poor first performance starts to feel like proof of a fixed limit. This chapt…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can fail once and decide too quickly what kind of person they are. A hard math set, a weak language drill, or a poor first performance starts to feel like proof of a fixed limit. This chapt…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "A learner can turn one bad result into a whole identity. The math set goes badly, the language drill feels slow, the skill still looks clumsy, and a story forms immediately: this is what I am capable…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A learner can turn one bad result into a whole identity. The math set goes badly, the language drill feels slow, the skill still looks clumsy, and a story forms immediately: this is what I am capable…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (79 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya's first instinct is to turn the weak quiz into a fixed identity judgment."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya gets a poor quiz result and starts saying she is just bad at math."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (119 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Marcus thought one employee lacked ability, but the postmortem showed the practice plan was thin and feedback was weak."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Elena: I missed half that language drill. I am just bad at languages.\nMaya: Or the drill just told you what the next round needs.\nElena: It still feels like proof of a limit.\nMaya: A limit does not t…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena: I missed half that language drill. I am just bad at languages.\nMaya: Or the drill just told you what the next round needs.\nElena: It still feels like proof of a limit.\nMaya: A limit does not t…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (125 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Nina predicts that a weak first result means the retest will go badly too. A redesigned plan and feedback change the outcome."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nina predicts that a weak first result means the retest will go badly too. A redesigned plan and feedback change the outcome."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (105 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Victor wants to encourage someone after a setback without pretending that effort alone solves everything."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor wants to encourage someone after a setback without pretending that effort alone solves everything."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (95 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya used to treat weak results as fixed identity. Now she asks what strategy needs to change."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya used to treat weak results as fixed identity. Now she asks what strategy needs to change."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter reject about early struggle?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter reject about early struggle?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What factors does the chapter say can move performance?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What factors does the chapter say can move performance?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is Priya's poor math quiz not a final verdict according to this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is Priya's poor math quiz not a final verdict according to this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What did Marcus's postmortem show?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How can a setback become useful?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is effort alone not enough in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is effort alone not enough in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the next chapter follow this one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What better question replaces 'I am bad at this'?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's overall stance on ability?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's overall stance on ability?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter reject current performance as a permanent ceiling?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean by treating failure as diagnostic?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter mean by treating failure as diagnostic?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter reject about empty encouragement?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter reject about empty encouragement?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter tell the learner to rethink ability after a miss?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter tell the learner to rethink ability after a miss?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter pushes back on both fatalism and empty optimism. Current performance is not a final ceiling; it is a result that can move when method improves."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The book ends by turning ideas into a routine. Retrieval, spacing, interleaving, honest checks, and response to mistakes work best together. A learner returns after delay, mixes practice instead of l…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "The final chapter gathers the book's separate lessons and turns them into one practice routine. Retrieval, spacing, interleaving, desirable difficulty, calibration, and response to setbacks are not i…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter gathers the book's separate lessons and turns them into one practice routine. Retrieval, spacing, interleaving, desirable difficulty, calibration, and response to setbacks are not i…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "The final chapter has to do more than recap. The book has built several tools: retrieval, spacing, interleaving, desirable difficulty, calibration, and a better response to setbacks. Chapter 8 turns …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter has to do more than recap. The book has built several tools: retrieval, spacing, interleaving, desirable difficulty, calibration, and a better response to setbacks. Chapter 8 turns …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (146 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya has to choose between a familiar cram plan and a routine that revisits material after delay, mixes cases, and checks understanding honestly."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (142 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "The postmortem showed that isolated improvements faded. Victor's redesigned system added spaced recall, mixed cases, and follow-up correction."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor noticed that one-off training tips were forgotten quickly, so he rebuilt the week around return, retrieval, and repair."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Elena: I am going to lean on self-testing and leave the rest for later.\nMarcus: Self-testing is strong, but it cannot replace the rest of the architecture by itself.\nElena: You mean spacing, interlea…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena: I already picked my favorite tactic from the book. I can just keep using that one.\nMarcus: One tactic helps, but what happens when you never space, mix, or check for blind spots?\nElena: I thou…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (130 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Nina predicts that one intense final review will be enough. The later test favors the weekly system of return, recall, and mixing."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nina predicts that one intense final review will be enough. The later test favors the weekly system of return, recall, and mixing."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (117 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Maya wants a team learning routine that does not just expose mistakes but also helps the team return and repair them."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maya wants a team learning routine that does not just expose mistakes but also helps the team return and repair them."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (108 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya used to collect study tips. Now she builds a weekly cycle that returns, mixes, retrieves, and repairs."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya used to collect study tips. Now she builds a weekly cycle that returns, mixes, retrieves, and repairs."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the final chapter treat the book as a system?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the final chapter treat the book as a system?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does retrieval contribute inside the final routine?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is Priya's weekly exam plan stronger than a cram block?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What did Victor's training redesign add?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why are calibration checks necessary in the final system?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which idea would the chapter reject?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does repair belong inside the routine?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean by saying learning is a design problem?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter mean by saying learning is a design problem?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes the full routine stronger than one tactic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "ch08-q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does it mean to make learning stick according to the final chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean by turning the book into a system?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter mean by turning the book into a system?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter define durable learning in practice?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter define durable learning in practice?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 1,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 2,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 80% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 3,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 4,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 5,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 6,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "make-it-stick",
+        "chapterNumber": 7,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 124,
+    "failedUnits": 83,
+    "passRate": 0.5990338164251208,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 187,
+        "fail": 13
+      },
+      "register.no_meta_reference": {
+        "pass": 76,
+        "fail": 76
+      },
+      "register.no_banned_phrase": {
+        "pass": 193,
+        "fail": 7
+      },
+      "narrative.named_protagonist": {
+        "pass": 48,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 4,
+        "fail": 44
+      },
+      "narrative.decision_point": {
+        "pass": 11,
+        "fail": 37
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 1,
+        "fail": 79
+      },
+      "schema.enum_validity": {
+        "pass": 0,
+        "fail": 80
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 80,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 31,
+        "fail": 9
+      },
+      "schema.answer_position_balance": {
+        "pass": 1,
+        "fail": 7
+      }
+    }
+  }
+}

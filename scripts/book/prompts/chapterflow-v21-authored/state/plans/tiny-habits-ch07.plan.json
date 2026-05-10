@@ -1,0 +1,66 @@
+{
+  "chapterId": "tiny-habits-ch07",
+  "number": 7,
+  "title": "Untangling Bad Habits: A Systematic Solution",
+  "coreMove": "Diagnose a stubborn habit by mapping which prompt, ability, or motivation lever is feeding it, then disrupt the smallest, easiest link in that chain first",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a hospice nurse who scrolls Instagram for forty minutes the moment she sits in her parked car after a hard shift",
+      "audience": "a healthcare worker decompressing between work and home",
+      "stakes": "arriving home depleted to two kids who get the leftover version of her",
+      "format": "vignette",
+      "requiredBeat": "she traces the prompt back to the click of the seatbelt unlatching, not to the phone itself, and realizes the lever to pull is the prompt, not her resolve"
+    },
+    {
+      "domain": "a high school band director who pours a second glass of wine while grading marching show footage on weeknights",
+      "audience": "a mid-career educator with a long evening workload",
+      "stakes": "showing up foggy to 7:15am rehearsals and snapping at the drumline",
+      "format": "postmortem",
+      "requiredBeat": "he reconstructs the chain — laptop opens, footage loads, hand reaches for the bottle — and decides the cheapest cut is moving the bottle out of the kitchen, not gritting through the craving"
+    },
+    {
+      "domain": "a city bus mechanic who eats a full sleeve of vending-machine cookies during his 2am break",
+      "audience": "an overnight-shift worker fighting fatigue",
+      "stakes": "a creeping prediabetes diagnosis his doctor flagged last month",
+      "format": "decision_point",
+      "requiredBeat": "he picks one tiny disruption — bringing a banana and parking three steps farther from the vending machine — and accepts that the craving is a prompt problem, not a willpower problem"
+    },
+    {
+      "domain": "a reference librarian who refreshes her ex's LinkedIn profile every time she opens a new browser tab",
+      "audience": "a recently divorced woman in her late forties",
+      "stakes": "reopening grief every workday and losing focus on patron requests",
+      "format": "dialogue",
+      "requiredBeat": "in conversation with a friend she lists every link in the chain — new tab, muscle-memory keystrokes, autocomplete — and chooses to change her browser homepage rather than promise herself she'll stop looking"
+    },
+    {
+      "domain": "a ceramics studio owner who checks her sales dashboard fourteen times an evening",
+      "audience": "a small-business owner whose income depends on the numbers",
+      "stakes": "ruining dinner with her partner and sleeping badly because of a number she cannot change at 9pm",
+      "format": "thought_experiment",
+      "requiredBeat": "she imagines three alternative versions of the same evening, each disrupting a different lever (prompt, ability, motivation), and notices the prompt-level fix is the only one she'd actually do tomorrow"
+    },
+    {
+      "domain": "a long-haul trucker who lights a cigarette every time he pulls into a rest stop",
+      "audience": "a driver who has quit and relapsed four times",
+      "stakes": "a chronic cough his wife is starting to flinch at",
+      "format": "reflection",
+      "requiredBeat": "he separates the three habits braided together — the stop, the stretch, the smoke — and picks the easiest braid to untangle first instead of trying to quit smoking head-on"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

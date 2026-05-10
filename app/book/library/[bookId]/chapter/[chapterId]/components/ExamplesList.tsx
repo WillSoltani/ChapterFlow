@@ -10,7 +10,6 @@ import {
   useState,
 } from "react";
 import { MessageCircle, Plus, Sparkles, X } from "lucide-react";
-import { useReflectionFeedback } from "@/app/book/hooks/useReflectionFeedback";
 import type { ChapterExample, ReadingDepth } from "@/app/book/data/mockChapters";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
@@ -90,12 +89,11 @@ function ScenarioCard({
   fontScaleClass,
   readingDepth,
   onInteraction,
-  chapterId,
+  chapterId: _chapterId,
   onVisible,
-  onSubmitReflection,
-  bookId,
-  chapterNumber,
-  chapterTitle,
+  bookId: _bookId,
+  chapterNumber: _chapterNumber,
+  chapterTitle: _chapterTitle,
 }: {
   example: ChapterExample;
   index: number;
@@ -104,6 +102,8 @@ function ScenarioCard({
   onInteraction?: () => void;
   chapterId?: string;
   onVisible?: (index: number) => void;
+  // Deprecated: textarea-based reflection was removed. Prop kept on the type
+  // briefly so callers don't need to be updated in lockstep.
   onSubmitReflection?: (exampleId: string, length: number) => void;
   bookId: string;
   chapterNumber: number;
@@ -114,16 +114,6 @@ function ScenarioCard({
   const [revealed, setRevealed] = useState(!analysisGateEnabled);
   const interactionTracked = useRef(false);
   const articleRef = useRef<HTMLElement>(null);
-  const [reflectionText, setReflectionText] = useState("");
-  const reflectionSubmitted = useRef(false);
-  const {
-    loading: feedbackLoading,
-    feedbackText,
-    error: feedbackError,
-    cached: feedbackCached,
-    requestFeedback,
-    reset: resetFeedback,
-  } = useReflectionFeedback();
 
   useEffect(() => {
     if (analysisGateEnabled || interactionTracked.current || !onInteraction) return;
@@ -158,11 +148,7 @@ function ScenarioCard({
       onInteraction();
       interactionTracked.current = true;
     }
-    if (!reflectionSubmitted.current && onSubmitReflection && reflectionText.trim().length > 0) {
-      reflectionSubmitted.current = true;
-      onSubmitReflection(example.id, reflectionText.trim().length);
-    }
-  }, [onInteraction, onSubmitReflection, reflectionText, example.id]);
+  }, [onInteraction]);
 
   return (
     <article
@@ -186,52 +172,41 @@ function ScenarioCard({
           <p className="text-xs font-bold uppercase tracking-[0.15em] text-(--cr-text-secondary) mb-2">
             Scenario
           </p>
-          <p
-            className={[
-              "text-(--cr-text-primary) leading-[1.75] tracking-[0.012em]",
-              fontScaleClass,
-            ].join(" ")}
-            style={{ fontWeight: 450 }}
-          >
+          <p className={`text-(--cr-text-primary) ${fontScaleClass}`}>
             {example.scenario}
           </p>
         </div>
 
-        {/* Think First gate (Medium / Hard) */}
+        {/* Pause-and-predict gate (Deep / Full).
+         *
+         * Earlier versions had a textarea here ("Write your thoughts before
+         * seeing the analysis...") which readers reliably ignored. We now keep
+         * only the predict-then-reveal pacing: a short prompt that asks the
+         * reader to pause internally, then a single button to reveal.
+         *
+         * Zero typing, zero character counters, zero "20 characters to earn
+         * IP" gating. The reveal button itself counts as the engagement. */}
         {analysisGateEnabled && !revealed && (
           <div className="rounded-xl border border-(--cr-accent)/25 bg-(--cr-accent-muted) p-4">
             <div className="flex items-center gap-2 mb-2">
               <MessageCircle className="h-4 w-4 text-(--cr-accent)" aria-hidden="true" />
-              <p className="text-sm font-semibold text-(--cr-accent)">Think First</p>
+              <p className="text-sm font-semibold text-(--cr-accent)">Pause and predict</p>
             </div>
 
-            {hasReflectionPrompt && (
+            {hasReflectionPrompt ? (
               <p
                 className={[
-                  "text-[14px] text-(--cr-text-secondary) leading-[1.6] mb-3",
+                  "text-[14px] text-(--cr-text-secondary) leading-[1.6] mb-4",
                   fontScaleClass,
                 ].join(" ")}
               >
                 {example.reflectionPrompt}
               </p>
+            ) : (
+              <p className="text-[14px] text-(--cr-text-secondary) leading-[1.6] mb-4">
+                Decide in your head what you would do here. No need to type, just settle on an answer before continuing.
+              </p>
             )}
-
-            <textarea
-              value={reflectionText}
-              onChange={(e) => setReflectionText(e.target.value)}
-              placeholder="Write your thoughts before seeing the analysis..."
-              rows={3}
-              maxLength={2000}
-              aria-label="Your reflection on this scenario"
-              aria-describedby={`char-hint-${example.id}`}
-              className="w-full rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-3 py-2.5 text-sm text-(--cr-text-primary) placeholder:text-(--cr-text-disabled) focus:border-(--cr-accent) focus:outline-none focus:ring-2 focus:ring-(--cr-accent-glow) resize-y mb-2"
-            />
-            <p id={`char-hint-${example.id}`} className="text-[12px] text-(--cr-text-secondary) text-right mb-3">
-              {reflectionText.length}/2000
-              {reflectionText.trim().length > 0 && reflectionText.trim().length < 20 && (
-                <span className="ml-2">20+ characters to earn IP and unlock AI feedback</span>
-              )}
-            </p>
 
             <div className="flex items-center justify-center">
               <button
@@ -239,7 +214,7 @@ function ScenarioCard({
                 onClick={handleReveal}
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-(--cr-accent) px-4 py-2 text-[13px] font-semibold text-(--cr-text-inverse) transition hover:opacity-90"
               >
-                Show me the analysis
+                Reveal the analysis
               </button>
             </div>
           </div>
@@ -257,13 +232,7 @@ function ScenarioCard({
             <p className="text-xs font-bold uppercase tracking-[0.15em] text-(--cr-accent) mb-2">
               What To Do
             </p>
-            <p
-              className={[
-                "text-(--cr-text-heading) leading-[1.75] tracking-[0.012em]",
-                fontScaleClass,
-              ].join(" ")}
-              style={{ fontWeight: 450 }}
-            >
+            <p className={`text-(--cr-text-heading) ${fontScaleClass}`}>
               {example.whatToDo}
             </p>
           </div>
@@ -272,192 +241,26 @@ function ScenarioCard({
             <p className="text-xs font-bold uppercase tracking-[0.15em] text-(--cr-accent) mb-2">
               Why It Matters
             </p>
-            <p
-              className={[
-                "text-(--cr-text-primary) leading-[1.75] tracking-[0.012em]",
-                fontScaleClass,
-              ].join(" ")}
-              style={{ fontWeight: 450 }}
-            >
+            <p className={`text-(--cr-text-primary) ${fontScaleClass}`}>
               {example.whyItMatters}
             </p>
           </div>
 
-          {/* User's reflection (shown after reveal for standard/deeper depth) */}
-          {analysisGateEnabled && revealed && reflectionText.trim().length > 0 && (
-            <div className="mt-5 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-4">
-              <p className="text-xs font-bold uppercase tracking-[0.15em] text-(--cr-text-secondary) mb-2">
-                Your Reflection
-              </p>
-              <p
-                className={[
-                  "text-[14px] text-(--cr-text-primary) leading-[1.6] italic",
-                  fontScaleClass,
-                ].join(" ")}
-              >
-                {reflectionText}
-              </p>
-            </div>
-          )}
-
-          {/* Simple depth: optional reflection (analysis was auto-revealed) */}
-          {!analysisGateEnabled && (
-            <div className="mt-5 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-4">
-              <div className="flex items-center gap-2 mb-1">
-                <MessageCircle className="h-4 w-4 text-(--cr-accent)" aria-hidden="true" />
-                <p className="text-sm font-semibold text-(--cr-accent)">Share your thoughts</p>
-              </div>
-              <p className="text-[12px] text-(--cr-text-secondary) mb-3">
-                Reflect on this scenario to earn Insight Points
-              </p>
-              {hasReflectionPrompt && (
-                <p
-                  className={[
-                    "text-[14px] text-(--cr-text-secondary) leading-[1.6] mb-3",
-                    fontScaleClass,
-                  ].join(" ")}
-                >
-                  {example.reflectionPrompt}
-                </p>
-              )}
-              <textarea
-                value={reflectionText}
-                onChange={(e) => setReflectionText(e.target.value)}
-                placeholder="What would you do in this situation?"
-                rows={3}
-                maxLength={2000}
-                aria-label="Your reflection on this scenario"
-                aria-describedby={`char-hint-simple-${example.id}`}
-                className="w-full rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-3 py-2.5 text-sm text-(--cr-text-primary) placeholder:text-(--cr-text-disabled) focus:border-(--cr-accent) focus:outline-none focus:ring-2 focus:ring-(--cr-accent-glow) resize-y"
-              />
-              <p id={`char-hint-simple-${example.id}`} className="text-[12px] text-(--cr-text-secondary) text-right mt-1">
-                {reflectionText.length}/2000
-                {reflectionText.trim().length > 0 && reflectionText.trim().length < 20 && (
-                  <span className="ml-2">At least 20 characters for AI feedback</span>
-                )}
-              </p>
-            </div>
-          )}
-
-          {/* AI Feedback Section */}
-          {(reflectionText.trim().length >= 20 || feedbackText || feedbackLoading || feedbackError) && (
-            <div className="mt-5 pt-5 border-t border-(--cr-glass-border)" aria-live="polite">
-              <AnimatePresence mode="wait">
-                {!feedbackText && !feedbackLoading && !feedbackError && reflectionText.trim().length >= 20 && (
-                  <motion.div
-                    key="feedback-btn"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (!reflectionSubmitted.current && onSubmitReflection) {
-                          reflectionSubmitted.current = true;
-                          onSubmitReflection(example.id, reflectionText.trim().length);
-                        }
-                        requestFeedback({
-                          bookId,
-                          chapterNumber,
-                          exampleId: example.id,
-                          reflectionText: reflectionText.trim(),
-                          scenario: example.scenario,
-                          whatToDo: example.whatToDo,
-                          whyItMatters: example.whyItMatters,
-                          chapterTitle,
-                        });
-                      }}
-                      className="inline-flex items-center gap-2 rounded-xl bg-(--cr-accent) px-5 py-2.5 text-[13px] font-semibold text-(--cr-text-inverse) transition hover:brightness-110"
-                    >
-                      <Sparkles className="h-4 w-4" aria-hidden="true" />
-                      Get AI Feedback
-                    </button>
-                  </motion.div>
-                )}
-
-                {feedbackLoading && (
-                  <motion.div
-                    key="feedback-loading"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="space-y-2"
-                  >
-                    <div className="flex items-center gap-2 text-[13px] text-(--cr-accent)">
-                      <span className="flex items-center gap-1" aria-hidden="true">
-                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60" style={{ animationDelay: "0ms" }} />
-                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60" style={{ animationDelay: "150ms" }} />
-                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60" style={{ animationDelay: "300ms" }} />
-                      </span>
-                      <span className="font-medium">Analyzing your reflection...</span>
-                    </div>
-                    {feedbackText && (
-                      <div
-                        className="rounded-xl bg-(--cr-bg-surface-2) p-4 text-sm text-(--cr-text-primary) leading-[1.75] whitespace-pre-wrap"
-                        style={{ borderLeft: "3px solid var(--cr-accent)" }}
-                      >
-                        {feedbackText}
-                        <span className="inline-block w-1 h-4 ml-0.5 bg-(--cr-accent) animate-pulse" />
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-
-                {feedbackText && !feedbackLoading && (
-                  <motion.div
-                    key="feedback-done"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="space-y-2"
-                  >
-                    <div className="flex items-center gap-2 text-[13px]">
-                      <Sparkles className="h-4 w-4 text-(--cr-accent)" aria-hidden="true" />
-                      <span className="font-medium text-(--cr-accent)">AI Feedback</span>
-                      {feedbackCached && (
-                        <span className="text-[12px] text-(--cr-text-secondary)">(cached)</span>
-                      )}
-                    </div>
-                    <div
-                      className="rounded-xl bg-(--cr-bg-surface-2) p-4 text-sm text-(--cr-text-primary) leading-[1.75] whitespace-pre-wrap"
-                      style={{ borderLeft: "3px solid var(--cr-accent)" }}
-                    >
-                      {feedbackText}
-                    </div>
-                  </motion.div>
-                )}
-
-                {feedbackError && (
-                  <motion.div
-                    key="feedback-error"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  >
-                    <div className="rounded-xl border border-(--cr-error)/30 bg-(--cr-error-bg) p-3 text-sm text-(--cr-error)" role="alert">
-                      {feedbackError}
-                      {feedbackError.includes("already requested") && (
-                        <p className="mt-1 text-[12px] opacity-80">
-                          You can request new feedback for this example tomorrow.
-                        </p>
-                      )}
-                      <button
-                        type="button"
-                        onClick={resetFeedback}
-                        className="mt-2 text-[12px] font-semibold underline hover:no-underline"
-                      >
-                        Dismiss
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          )}
+          {/*
+           * Removed: post-reveal "Your Reflection" display, simple-depth
+           * optional reflection textarea ("Share your thoughts"), and the
+           * "Get AI Feedback" panel.
+           *
+           * All three depended on the reader typing into a textarea, which
+           * the chapter UX redesign explicitly rejected. The "predict-then-
+           * reveal" pacing above (Pause and predict) preserves the only piece
+           * of the old flow that worked: a brief mental pause before the
+           * analysis is shown. No typing required.
+           *
+           * If you want to bring AI feedback back, do it as a deliberate opt-
+           * in surface (e.g., a small "ask the book" button that pulls the
+           * shared AskBookDrawer), not as friction inside every example.
+           */}
         </div>
       </div>
     </article>
@@ -625,8 +428,11 @@ export function ExamplesList({
         >
           <Plus className="h-3.5 w-3.5" />
           Add a Scenario
-          <span className="rounded-full bg-(--cr-warning)/20 px-2 py-0.5 text-[11px] font-bold text-(--cr-warning)">
-            +{SCENARIO_REWARD}
+          {/* IP reward indicator — kept but visually quieter. The transactional
+           * yellow pill read as gamification chrome ahead of content. Now it
+           * reads as a small inline note that this action awards points. */}
+          <span className="ml-0.5 text-[11px] font-medium text-(--cr-text-secondary)">
+            +{SCENARIO_REWARD} IP
           </span>
         </button>
       </div>

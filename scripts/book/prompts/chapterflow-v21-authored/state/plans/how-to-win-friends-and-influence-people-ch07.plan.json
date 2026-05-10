@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch07",
+  "number": 7,
+  "title": "If You're Wrong, Admit It",
+  "coreMove": "Beat the other person to the criticism by naming your own error first, plainly and without softening, before they have a chance to swing",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a veterinarian who gave a dog the wrong dosage and has to call the owner that evening",
+      "audience": "a young professional who fears that admitting a mistake will end their career",
+      "stakes": "whether the owner files a complaint that could cost the clinic its accreditation, and whether the dog needs to be brought back in tonight",
+      "format": "dialogue",
+      "requiredBeat": "the vet says the words 'I made a mistake and I want to tell you exactly what it was' before the owner has finished her first sentence, and the owner's tone shifts mid-call"
+    },
+    {
+      "domain": "a high school orchestra conductor who publicly blamed a cellist for a botched performance and learns the next morning the wrong sheet music was his own fault",
+      "audience": "a person who has just realized they punished someone unfairly in front of a group",
+      "stakes": "the cellist's willingness to keep playing, and the trust of the rest of the section who watched it happen",
+      "format": "scene",
+      "requiredBeat": "the conductor walks into the next rehearsal and names his error to the whole room before he names hers, using harsher words about himself than he had used about her"
+    },
+    {
+      "domain": "a contractor who installed kitchen cabinets a quarter inch off and is standing in the homeowner's kitchen looking at them",
+      "audience": "a tradesperson tempted to argue the spec was ambiguous",
+      "stakes": "a five-thousand-dollar redo and a referral pipeline in a small town",
+      "format": "decision_point",
+      "requiredBeat": "the contractor cuts off his own justification mid-sentence, says the cabinets are wrong and he will redo them at his cost, and watches the homeowner soften from prosecution to collaboration"
+    },
+    {
+      "domain": "a parent who grounded a thirteen-year-old for stealing money that turned out to have been borrowed by the other parent",
+      "audience": "a parent who is about to walk into their kid's bedroom",
+      "stakes": "the teenager's belief that their parent can be trusted to be fair",
+      "format": "vignette",
+      "requiredBeat": "the parent does not lead with explanation or context; the first sentence out of their mouth is that they were wrong and the punishment was unjust, and they sit with the silence afterward"
+    },
+    {
+      "domain": "a city planner who pushed through a bike lane design that ended up creating a dangerous merge, now facing the neighborhood association",
+      "audience": "a public-facing professional whose mistake is already in the local paper",
+      "stakes": "a council vote next week and the planner's standing with residents who feel unheard",
+      "format": "postmortem",
+      "requiredBeat": "the planner stands up at the meeting and lists the design errors more thoroughly and harshly than the angriest resident was preparing to, and the room's energy collapses from attack into problem-solving"
+    },
+    {
+      "domain": "a sister-in-law who told a family group chat the wrong date for a funeral and several relatives missed the burial",
+      "audience": "someone who has caused real harm to people they love and is tempted to bury the apology in logistics",
+      "stakes": "whether the family ever fully forgives her, and whether she forgives herself",
+      "format": "reflection",
+      "requiredBeat": "she resists every instinct to explain the airline reschedule that confused her, and instead writes one short message that names what she did and what it cost the people who missed it"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch14",
+  "number": 14,
+  "title": "An Appeal That Everybody Likes",
+  "coreMove": "Frame your request around the better self the other person already believes themselves to be, then trust them to live up to that picture.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a small-town landlord on the phone with a tenant who is two months behind on rent",
+      "audience": "a property owner who has been burned before and is tempted to lead with threats",
+      "stakes": "whether the tenant pays this week or the landlord begins an eviction that will cost both of them more than the back rent",
+      "format": "decision_point",
+      "requiredBeat": "the landlord drops the line about lawyers and instead says aloud that he has always known this tenant as a man who keeps his word, and waits"
+    },
+    {
+      "domain": "a charge nurse on a Sunday night trying to get the most senior nurse on the floor to swap into a brutal Christmas Eve shift",
+      "audience": "a charge nurse who has watched bribery and rota-pulling fail with this same colleague",
+      "stakes": "whether the unit goes into the holiday short-staffed and unsafe, or covered by the one nurse the new hires actually learn from",
+      "format": "dialogue",
+      "requiredBeat": "the charge nurse names, in plain words, that the senior nurse is the one the floor steadies around on the worst nights, and asks her to be that person again, without flattery and without bargaining"
+    },
+    {
+      "domain": "a high-school debate coach asking his strongest senior to give up Saturday mornings to mentor a stammering freshman",
+      "audience": "a coach who would normally just assign the pairing and lose the senior to resentment",
+      "stakes": "whether the senior shows up willingly and the freshman finds his voice, or whether the coach gets compliance and loses the program's culture",
+      "format": "vignette",
+      "requiredBeat": "the coach tells the senior that real champions in this room have always been the ones who taught the next kid in, and lets the silence do the rest"
+    },
+    {
+      "domain": "a mother at the kitchen table with her nine-year-old son who has been hiding three weeks of failed spelling tests in his desk",
+      "audience": "a parent who knows that yelling will produce tears and another round of hiding",
+      "stakes": "whether her son tells the truth tonight and learns he can, or learns that hiding is the safer move",
+      "format": "scene",
+      "requiredBeat": "the mother says, calmly, that she has always been able to count on him to tell her hard things, and then she stops talking and lets him decide what kind of son he wants to be at this table"
+    },
+    {
+      "domain": "the editor of a tiny independent press writing to a famous novelist asking for a free foreword to a debut collection",
+      "audience": "an editor who has already had three flat declines from bigger names and is about to send a fourth pleading email",
+      "stakes": "whether the novelist signs on and gives the debut author a real shot, or whether the book ships into silence",
+      "format": "before_after",
+      "requiredBeat": "the rewrite stops bargaining about exposure or favors and instead places the novelist in the role she already plays in public, the writer who lifts up new voices, and asks her to do here what she has done elsewhere"
+    },
+    {
+      "domain": "a parish pastor visiting the home of a wealthy parishioner who has stopped funding the youth program after a dispute",
+      "audience": "a pastor tempted to remind the man of his Christian duty",
+      "stakes": "whether the youth program survives the next budget year, and whether the pastor still has a relationship with one of his oldest congregants",
+      "format": "predict_reveal",
+      "requiredBeat": "the reader is asked to predict which line works, the reproachful one or the one that names the man as the kind of person who has always quietly carried this church, before the conversation reveals which line restores both the gift and the friendship"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch22",
+  "number": 22,
+  "title": "How to Spur People On to Success",
+  "coreMove": "Praise the smallest real improvement out loud and by name, before the person decides whether to keep trying",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a piano teacher working with a nine-year-old who botched the left hand of a Clementi sonatina but landed two measures cleanly",
+      "audience": "a private music teacher dreading the parent's question about progress",
+      "stakes": "whether the child quits lessons by spring or stays with the instrument long enough to love it",
+      "format": "scene",
+      "requiredBeat": "the teacher pauses on the two clean measures, names them specifically by bar number, and watches the child's posture change before saying anything about the rest"
+    },
+    {
+      "domain": "a line cook on his third week being told his knife cuts are still uneven, except for the brunoise he turned out at family meal",
+      "audience": "a sous chef who was trained by yelling and is trying not to repeat it",
+      "stakes": "whether the cook quits before his fourth shift or stays and becomes the station's most reliable prep",
+      "format": "dialogue",
+      "requiredBeat": "the sous chef opens with the brunoise by name, in the kitchen where other cooks can hear, before mentioning anything about the chiffonade"
+    },
+    {
+      "domain": "a hospice nurse coaching a new aide who froze the first two times a patient's family cried, then sat through it the third time without leaving the room",
+      "audience": "a charge nurse responsible for retaining aides in a job most people quit within ninety days",
+      "stakes": "whether a naturally gentle person believes she belongs in this work or transfers to billing by Friday",
+      "format": "vignette",
+      "requiredBeat": "the charge nurse names the third visit specifically and tells the aide what she did right, with no qualifier and no but-clause attached"
+    },
+    {
+      "domain": "a father reading his teenage son's college application essay, the fourth draft, which is still uneven but has one paragraph about his grandfather that lands",
+      "audience": "a father who tends to fix things sentence by sentence and has watched his son stop showing him drafts",
+      "stakes": "whether the son ever asks for his father's help on the next essay or goes silent through senior year",
+      "format": "decision_point",
+      "requiredBeat": "the father reads the grandfather paragraph aloud back to his son and says exactly what worked in it before turning a page"
+    },
+    {
+      "domain": "a regional sales manager reviewing a struggling rep's call recordings and finding one call where the rep finally stopped pitching and asked a question",
+      "audience": "a regional sales manager about to put the rep on a performance plan",
+      "stakes": "whether the rep walks into next week believing he can sell or rehearses his resignation in the parking lot",
+      "format": "before_after",
+      "requiredBeat": "the manager plays the one good question back to the rep and tells him that is the move, not the close, and watches the rep write it down"
+    },
+    {
+      "domain": "a swim coach working with a forty-year-old beginner who has been afraid of the deep end for thirty years and yesterday let go of the wall for two seconds",
+      "audience": "a recreation-center swim coach with eight adults in the lane",
+      "stakes": "whether the woman comes back next Tuesday or quietly cancels the rest of her sessions",
+      "format": "reflection",
+      "requiredBeat": "the coach singles out the two seconds at the end of class, in front of the other adults, and says she saw it and what it meant"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.85
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

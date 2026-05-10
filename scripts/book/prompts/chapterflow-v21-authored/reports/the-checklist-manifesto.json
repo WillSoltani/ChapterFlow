@@ -1,0 +1,5091 @@
+{
+  "bookId": "the-checklist-manifesto",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/the-checklist-manifesto.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.754Z",
+  "chapterCount": 9,
+  "unitCount": 232,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A rescue in Austria makes the book's opening pressure easy to feel. One drowning victim survives only because many skilled people carry out many precise steps without losing the thread. That scene le…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The first chapter does not begin by praising checklists. It begins with a rescue that makes the book's deeper problem visible. A drowning victim in Austria survives only because many trained people p…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The first chapter earns its argument by refusing an easy villain. It would be simple to say that failures in medicine happen because people are sloppy or undertrained. Gawande begins with a more unse…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01-mira-handoff-pause"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mira is ending a chaotic hospital shift. The monitor alarm is still chirping when the incoming clinician asks for a quick verbal handoff and starts reaching for the chart. Mira can either rush throug…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Mira is ending a chaotic hospital shift. The monitor alarm is still chirping when the incoming clinician asks for a quick verbal handoff and starts reaching for the chart. Mira can either rush throug…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02-daniel-sim-debrief"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In a medical simulation lab, Daniel listens while his group explains why the manikin case went badly. The marker squeaks on the whiteboard as classmates list dosage choices and technical errors. Thei…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In a medical simulation lab, Daniel listens while his group explains why the manikin case went badly. The marker squeaks on the whiteboard as classmates list dosage choices and technical errors. Thei…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03-sofia-discharge-meds"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Sofia gets home after a relative's procedure and spreads discharge papers, medication bottles, and appointment cards across the kitchen counter. Every instruction seems important. She starts by tackl…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Sofia gets home after a relative's procedure and spreads discharge papers, medication bottles, and appointment cards across the kitchen counter. Every instruction seems important. She starts by tackl…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04-omar-prep-loop"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Omar moves through pre-procedure prep while two pagers buzz and another team member asks a question from the doorway. He knows the routine well enough that he feels the seductive comfort of speed. Th…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar moves through pre-procedure prep while two pagers buzz and another team member asks a question from the doorway. He knows the routine well enough that he feels the seductive comfort of speed. Th…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05-priya-capstone-contrast"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya compares two capstone teams. One team has a standout student who solves every hard technical issue but keeps the project in their head. The other team uses simple checkpoints and handoffs so ev…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06-lucas-home-bridge"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Lucas is caring for his father after discharge while still trying to get two children out the door for school. The mornings feel small, domestic, and chaotic rather than dramatic. After one near miss…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Lucas is caring for his father after discharge while still trying to get two children out the door for school. The mornings feel small, domestic, and chaotic rather than dramatic. After one near miss…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter name as the central opening problem?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter name as the central opening problem?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the Austrian drowning rescue matter in the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the Austrian drowning rescue matter in the chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter treat superspecialization?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does the chapter treat superspecialization?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "During a simulation, Ana's team can explain the procedure correctly, but they fail to confirm one role change and the case goes sideways. Which reading best fits Chapter 1?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Marcus says, \"If professionals really cared, they would not miss basic steps.\" What is the strongest reply from the chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Priya argues that the answer to Chapter 1 is to replace expert judgment with strict scripts for every situation. Why is that too simple?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A student engineering team has one brilliant designer who keeps the whole plan in their head. Which concern from the chapter best transfers here?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "In a busy clinic, Ben hears two people say, \"I thought someone else already checked that.\" What lesson from Chapter 1 fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "What is the deepest design test Chapter 1 sets for any later safeguard?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the deepest design test Chapter 1 sets for any later safeguard?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Given Chapter 1 alone, which next move would best follow its logic into the rest of the book?"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "Given Chapter 1 alone, which next move would best follow its logic into the rest of the book?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Given Chapter 1 alone, which next move would best follow its logic into the rest of the book?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Which pressure sits at the center of Chapter 1?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter add to the usual laziness-or-ignorance story?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter add to the usual laziness-or-ignorance story?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A sophisticated B-17 crashed because one basic step had been missed. That story gives the chapter its shape. Gawande argues that experts do not usually fail because they know nothing. They fail becau…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "The B-17 story matters because it is embarrassing in the right way. A sophisticated airplane, an experienced pilot, and a culture full of training still produced a crash because one basic step was mi…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The B-17 story matters because it is embarrassing in the right way. A sophisticated airplane, an experienced pilot, and a culture full of training still produced a crash because one basic step was mi…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "The B-17 story works because it is humiliating in a useful way. The aircraft represented expertise, technology, and procedural seriousness. Yet it still crashed because one basic control step was mis…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The B-17 story works because it is humiliating in a useful way. The aircraft represented expertise, technology, and procedural seriousness. Yet it still crashed because one basic control step was mis…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01-elena-open-tray"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Elena is preparing for a line insertion when a colleague says they have done this a hundred times and there is no need to slow down over a basic sterile check. The tray is already open, gloves are on…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elena is preparing for a line insertion when a colleague says they have done this a hundred times and there is no need to slow down over a basic sterile check. The tray is already open, gloves are on…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02-marcus-cockpit-card"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In an aviation-safety class, Marcus can either run a familiar preflight sequence from memory or use the laminated checklist card clipped beside the model cockpit panel. He worries the card will make …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03-riya-home-routine"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Riya is managing medication and a follow-up call for a tired parent after a long day. The routine feels simple enough to keep in her head until she realizes she cannot remember whether one routine do…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04-theo-short-vs-bloated"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Theo compares two teams. One carries a five-item card for a recurring high-risk task. The other scrolls through a long digital form full of every possible reminder. The short card gets used in the ro…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Theo compares two teams. One carries a five-item card for a recurring high-risk task. The other scrolls through a long digital form full of every possible reminder. The short card gets used in the ro…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05-nadia-visible-verify"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In a nursing simulation lab, Nadia watches one team state each basic check aloud while another team moves silently from memory. The first group feels slower for a moment, but the instructor points ou…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In a nursing simulation lab, Nadia watches one team state each basic check aloud while another team moves silently from memory. The first group feels slower for a moment, but the instructor points ou…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06-isaac-this-time"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Isaac is rushing through a recurring errand for a family member and hears himself think that one basic follow-up call can wait because today is unusually packed. Nothing about the skipped move feels …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Isaac is rushing through a recurring errand for a family member and hears himself think that one basic follow-up call can wait because today is unusually packed. Nothing about the skipped move feels …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "What tool sits at the center of Chapter 2?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What tool sits at the center of Chapter 2?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the B-17 story matter so much in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the B-17 story matter so much in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which two pressures does the chapter identify behind many preventable misses?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which two pressures does the chapter identify behind many preventable misses?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Elena hears a colleague say, \"We know this already,\" just before a basic sterile check. Which Chapter 2 response fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the strongest reason the chapter gives for keeping a checklist short?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest reason the chapter gives for keeping a checklist short?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Marcus says, \"If the checklist helps, maybe experts should just follow lists instead of thinking.\" Why is that wrong by the chapter's logic?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "A student team has a long form with every possible reminder, but nobody uses it during the live exercise. Which Chapter 2 lesson best applies?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "What is the deepest reason the Keystone Initiative matters in Chapter 2?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the deepest reason the Keystone Initiative matters in Chapter 2?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "If checklists now matter in elite work, what larger implication does the chapter point toward next?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "If checklists now matter in elite work, what larger implication does the chapter point toward next?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter open with the B-17?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is narrow and forceful: forgetting and skipping keep hurting sophisticated systems, so a short list of minimum vital checks can materially improve execution."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Simple tasks can often be learned and repeated. Some harder jobs still yield to high skill and planning. Complex work is different because many specialists, many handoffs, and changing conditions all…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "Simple tasks can often be learned and repeated. Some harder jobs still yield to high skill and planning. Complex work is different because many specialists, many handoffs, and changing conditions all…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Simple tasks can often be mastered by learning the steps and repeating them. A complicated task may require high skill, training, and planning, yet still remain governable if enough expertise is appl…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Simple tasks can often be mastered by learning the steps and repeating them. A complicated task may require high skill, training, and planning, yet still remain governable if enough expertise is appl…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Simple, complicated, and complex problems may all demand seriousness, but they do not demand the same kind of control. Gawande begins there because the chapter depends on more than a list of harder t…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Simple, complicated, and complex problems may all demand seriousness, but they do not demand the same kind of control. Gawande begins there because the chapter depends on more than a list of harder t…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01-maya-trailer-bottleneck"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maya is running a project meeting where every question keeps coming back to one senior manager's desk. The steel team, safety lead, and site engineer are all waiting because everyone assumes one pers…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02-elias-whiteboard-columns"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In a workshop, Elias sees three columns on the whiteboard: simple, complicated, and complex. His group first wants to talk about leadership style, but the instructor makes them sort the problem type …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03-priya-family-calendar"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Priya has always kept the whole family schedule in her head. Now appointments, pickup changes, and medication reminders keep colliding, and everyone still assumes she is carrying the whole map."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya has always kept the whole family schedule in her head. Now appointments, pickup changes, and medication reminders keep colliding, and everyone still assumes she is carrying the whole map."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04-nolan-two-projects"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Nolan compares two projects. One can be handled by a single expert following a clear sequence. The other has many specialists, shared deadlines, and decisions that keep crossing role boundaries."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nolan compares two projects. One can be handled by a single expert following a clear sequence. The other has many specialists, shared deadlines, and decisions that keep crossing role boundaries."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05-serena-studio-critique"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In a studio critique, Serena notices that the design, structural, and safety comments are landing in separate piles. Everyone sounds smart, but the comments are not connecting to one another."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In a studio critique, Serena notices that the design, structural, and safety comments are landing in separate piles. Everyone sounds smart, but the comments are not connecting to one another."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06-omar-control-voice"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (160 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Omar keeps telling himself that it would be easier if he just handled every moving part alone. The more crowded the plan gets, the stronger that thought sounds."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar keeps telling himself that it would be easier if he just handled every moving part alone. The more crowded the plan gets, the stronger that thought sounds."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Which three problem types organize Chapter 3?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which three problem types organize Chapter 3?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter reject the old master-builder picture?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter reject the old master-builder picture?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does Russia Wharf mainly show in the chapter's argument?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does Russia Wharf mainly show in the chapter's argument?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "A team keeps sending every cross-role question to one senior lead even though the work depends on many specialties. Which Chapter 3 lesson fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Why does communication rise in importance in Chapter 3?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does communication rise in importance in Chapter 3?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Leila says, \"If one person cannot control everything, then leadership must not matter anymore.\" Why is that wrong by the chapter's logic?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "A family schedule has grown so crowded that one person can no longer track every change alone. Which Chapter 3 transfer fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the sharpest difference between complicated and complex work in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the sharpest difference between complicated and complex work in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "What deeper organizational move does Chapter 3 make with the checklist argument?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What deeper organizational move does Chapter 3 make with the checklist argument?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What live question does the chapter hand forward into the next part of the book?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What live question does the chapter hand forward into the next part of the book?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which categories structure the chapter's first argument?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the construction example sharpen the chapter's case?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is structural: once work becomes truly complex, communication, handoffs, and aligned execution become operating requirements because no single expert can honestly command the …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Large systems often want every important decision to move through the center. That can feel organized, but it can also make the people closest to the problem wait while reality keeps changing. Gawand…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "When a system gets large, one obvious instinct is to keep control at the center. That can look safe because a central command seems like the place where the whole picture should live. Gawande uses Ch…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When a system gets large, one obvious instinct is to keep control at the center. That can look safe because a central command seems like the place where the whole picture should live. Gawande uses Ch…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Two shallow answers to complex coordination are sitting in the chapter's crosshairs. One answer says every serious decision should be pulled back toward the center, where one command structure can su…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Two shallow answers to complex coordination are sitting in the chapter's crosshairs. One answer says every serious decision should be pulled back toward the center, where one command structure can su…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01-ava-radio-delay"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Ava is waiting for approval to move supplies while calls keep stacking up on the radio. The facts in the field are changing, but every decision still has to travel back to one central desk."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Ava is waiting for approval to move supplies while calls keep stacking up on the radio. The facts in the field are changing, but every decision still has to travel back to one central desk."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02-malik-two-columns"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03-jenna-storm-plan"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04-ruben-status-board"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (159 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ruben can either write a long control script for every team or add a short shared status check that each local crew must update before moving to the next step."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05-lila-seminar-drift"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In a simulation, Lila's team gives every subgroup freedom to respond on its own. Soon the groups start making fast choices that conflict because nobody is using the same update rhythm."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In a simulation, Lila's team gives every subgroup freedom to respond on its own. Soon the groups start making fast choices that conflict because nobody is using the same update rhythm."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06-hector-doorway-list"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (157 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Hector tapes a short storm checklist by the doorway so each person can grab a role, mark the update, and move without waiting for him to direct every detail."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Hector tapes a short storm checklist by the doorway so each person can grab a role, mark the update, and move without waiting for him to direct every detail."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main design idea?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main design idea?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Why does Katrina matter in Chapter 4?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Katrina matter in Chapter 4?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is Wal-Mart doing in the chapter's argument?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is Wal-Mart doing in the chapter's argument?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "A field team keeps waiting for central approval even though conditions are changing minute by minute. Which Chapter 4 lesson applies best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Why is it wrong to read Chapter 4 as simple praise of decentralization?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is it wrong to read Chapter 4 as simple praise of decentralization?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What kind of checklist is the chapter defending?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What kind of checklist is the chapter defending?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "A family emergency plan gives everyone freedom to act but no shared update rule. What Chapter 4 problem does that show?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A family emergency plan gives everyone freedom to act but no shared update rule. What Chapter 4 problem does that show?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter care so much about shared pause points and common language?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter care so much about shared pause points and common language?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "What is the deepest organizational move Chapter 4 makes with the checklist idea?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the deepest organizational move Chapter 4 makes with the checklist idea?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What live question does the chapter hand to the next chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What live question does the chapter hand to the next chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How can a checklist fail this chapter's design logic?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is structural: complex systems work better when action decentralizes and communication becomes more disciplined, and the checklist serves as a short visible device for keeping…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A good checklist idea still has to survive its first real use. Gawande turns to an early WHO surgical-checklist pilot to show that the first version of a tool is rarely the final one. People may resi…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The shift here is from design logic into first implementation. Gawande follows an early WHO surgical-checklist pilot to show that a good idea does not become a good tool the moment someone writes it …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The checklist idea reaches its first real test here. Up to this point, the book has shown why complex work needs visible coordination and why a checklist can help support it. Now Gawande follows an e…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01-lena-pilot-board"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (128 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Lena loved the checklist when the team reviewed it on paper, but the first live use feels slower and more awkward than expected."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Lena loved the checklist when the team reviewed it on paper, but the first live use feels slower and more awkward than expected."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02-curtis-seminar-timer"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (166 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Curtis runs a simulation where the checklist pause lands right in the middle of the fastest part of the exercise. Everyone starts complaining that it breaks the flow."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Curtis runs a simulation where the checklist pause lands right in the middle of the fastest part of the exercise. Everyone starts complaining that it breaks the flow."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03-amina-road-trip-list"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (138 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Amina and her brother made a packing checklist that looked thorough, but on the first trip it felt too long and people skipped half of it."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Amina and her brother made a packing checklist that looked thorough, but on the first trip it felt too long and people skipped half of it."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04-paul-whiteboard-cuts"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (141 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Paul watches the team stumble through a draft checklist, then starts crossing out repeated wording and moving one check to an earlier moment."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Paul watches the team stumble through a draft checklist, then starts crossing out repeated wording and moving one check to an earlier moment."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05-shreya-skeptic-note"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (144 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Shreya initially thinks the skeptical students are just resisting a new routine, but their comments keep circling back to the same awkward step."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Shreya initially thinks the skeptical students are just resisting a new routine, but their comments keep circling back to the same awkward step."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06-mateo-doorway-check"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (154 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mateo can either keep a long household departure list nobody uses or shrink it to one short pause with the three checks his family actually keeps missing."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main implementation claim?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main implementation claim?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the early WHO pilot matter in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the early WHO pilot matter in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What can first-version resistance reveal?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "A team says a new checklist interrupts the work at the wrong moment. What Chapter 5 response fits best?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A team says a new checklist interrupts the work at the wrong moment. What Chapter 5 response fits best?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is it wrong to treat the first awkward version as proof that the checklist idea failed?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What makes a checklist gain credibility in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes a checklist gain credibility in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "A family packing checklist feels clumsy on the first trip. What Chapter 5 lesson applies?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A family packing checklist feels clumsy on the first trip. What Chapter 5 lesson applies?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the danger if a team trims every uncomfortable step just to reduce resistance?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's deepest implementation lesson?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's deepest implementation lesson?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What question does the chapter hand to the next chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What question does the chapter hand to the next chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is implementation realism: first-version friction, useful resistance, and disciplined revision are how a checklist becomes credible enough to use without surrendering its purp…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "A checklist is not good just because someone writes down many helpful things. Chapter 6 says strong checklists are designed carefully for real use. Gawande turns to Dan Boorman, Boeing manuals, and s…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A checklist is not good just because someone writes down many helpful things. Chapter 6 says strong checklists are designed carefully for real use. Gawande turns to Dan Boorman, Boeing manuals, and s…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "A usable checklist has to be separated from a bad one by design, not by good intentions alone. Gawande turns to aviation, Dan Boorman, Boeing manuals, and simulator learning to show that checklist qu…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A usable checklist has to be separated from a bad one by design, not by good intentions alone. Gawande turns to aviation, Dan Boorman, Boeing manuals, and simulator learning to show that checklist qu…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Checklist making becomes a question of craft here. Earlier chapters showed why complex work needs visible support and why first versions can fail in practice. Now Gawande asks what experienced builde…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex01-talia-laminated-clutter"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (137 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Talia watches her team hesitate over a laminated checklist that grew longer every week. Nobody is sure which items really matter anymore."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Talia watches her team hesitate over a laminated checklist that grew longer every week. Nobody is sure which items really matter anymore."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex02-marcus-timing-slide"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (123 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Marcus compares two otherwise similar lists in class and notices that one fails simply because it appears too late to help."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Marcus compares two otherwise similar lists in class and notices that one fails simply because it appears too late to help."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex03-noor-home-list"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (152 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Noor keeps one family checklist with every tiny reminder and another with only the few steps people repeatedly miss. The shorter one actually gets used."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Noor keeps one family checklist with every tiny reminder and another with only the few steps people repeatedly miss. The shorter one actually gets used."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex04-evan-whiteboard-debate"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (127 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Evan's team debates one checklist item that sounds wise but almost never changes action. Keeping it would make the list longer."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Evan's team debates one checklist item that sounds wise but almost never changes action. Keeping it would make the list longer."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex05-selene-cut-choice"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (107 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Selene has to remove one item from a student checklist, but she worries about cutting the wrong protection."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Selene has to remove one item from a student checklist, but she worries about cutting the wrong protection."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex06-javier-packed-page"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (147 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Javier keeps every reminder on a family procedure list because each one seems useful, but the page has become so packed that nobody reads it fully."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Javier keeps every reminder on a family procedure list because each one seems useful, but the page has become so packed that nobody reads it fully."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main design claim?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main design claim?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Why does Dan Boorman matter in Chapter 6?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Dan Boorman matter in Chapter 6?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is simulator learning doing in the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is simulator learning doing in the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "A team keeps adding items to a checklist until nobody wants to use it. Which Chapter 6 lesson applies best?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A team keeps adding items to a checklist until nobody wants to use it. Which Chapter 6 lesson applies best?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is it wrong to think that any short checklist is automatically a good checklist?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What makes a checklist badly timed in the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes a checklist badly timed in the chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "A home departure list includes every tiny reminder and becomes ignored. What Chapter 6 lesson fits?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A home departure list includes every tiny reminder and becomes ignored. What Chapter 6 lesson fits?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What question does a skilled checklist builder keep asking?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's deepest design lesson?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's deepest design lesson?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What question does the chapter hand to the next chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What question does the chapter hand to the next chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What makes a checklist good in this chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is turning checklist quality into design craft: timing, testing, and selecting the right failure points matter more than trying to include everything."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "A well-designed checklist still has to prove itself in the real world. Chapter 7 shows what happens when the WHO checklist is tested across different hospitals. Gawande explains that the important qu…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A well-designed checklist still has to prove itself in the real world. Chapter 7 shows what happens when the WHO checklist is tested across different hospitals. Gawande explains that the important qu…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "A good checklist still has one more hurdle after design. It has to work outside the room that shaped it. Chapter 7 turns to the WHO checklist and asks whether it can survive real variation across hos…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A good checklist still has one more hurdle after design. It has to work outside the room that shaped it. Chapter 7 turns to the WHO checklist and asks whether it can survive real variation across hos…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "A checklist can be carefully designed and still fail the book's deeper standard. It has to prove that it works beyond the room that refined it. Chapter 7 therefore turns from craft to validation. Gaw…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A checklist can be carefully designed and still fail the book's deeper standard. It has to prove that it works beyond the room that refined it. Chapter 7 therefore turns from craft to validation. Gaw…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "A checklist can be carefully designed and still fail the book's deeper standard. It has to prove that it works beyond the room that refined it. Chapter 7 therefore turns from craft to validation. Gaw…"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex01-naomi-pause-choice"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (131 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Naomi's team has to decide whether to run a brief confirmation check together or read every step aloud like a script before moving."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex02-caleb-pilot-proof"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (120 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Caleb compares one classroom success story with a trial across several schools and realizes the broader test means more."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Caleb compares one classroom success story with a trial across several schools and realizes the broader test means more."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex03-imani-home-spread"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (146 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Imani tells a friend that her home checklist works well, then realizes that another household with different habits might need more than her word."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Imani tells a friend that her home checklist works well, then realizes that another household with different habits might need more than her word."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex04-theo-single-site-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (106 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Theo sees one team use a checklist smoothly and wonders whether that is enough to recommend it everywhere."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Theo sees one team use a checklist smoothly and wonders whether that is enough to recommend it everywhere."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex05-maren-map-test"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (138 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Maren studies a map of hospitals using the same checklist and sees that the list is being asked to survive many different local realities."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maren studies a map of hospitals using the same checklist and sees that the list is being asked to survive many different local realities."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex06-luis-proof-shift"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (116 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Luis realizes that he trusted a routine too early just because it made sense and worked once in familiar conditions."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Luis realizes that he trusted a routine too early just because it made sense and worked once in familiar conditions."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "What new question drives Chapter 7?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What new question drives Chapter 7?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter distinguish Do-Confirm from Read-Do?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter distinguish Do-Confirm from Read-Do?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the WHO 19-item checklist doing in the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the WHO 19-item checklist doing in the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is one successful pilot not enough in the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is one successful pilot not enough in the chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the eight-hospital frame add to the argument?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "A process worked beautifully in one department but has never been tried elsewhere. What Chapter 7 lesson fits best?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A process worked beautifully in one department but has never been tried elsewhere. What Chapter 7 lesson fits best?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter refuse to claim even after the checklist is validated?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter refuse to claim even after the checklist is validated?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What two risks does field validation pressure at the same time?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's deepest empirical lesson?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's deepest empirical lesson?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "What question does Chapter 7 hand to the next chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What question does Chapter 7 hand to the next chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter trying to prove?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is empirical validation: Do-Confirm, the WHO 19-item checklist, and cross-hospital testing show that a disciplined pause can survive real variation without replacing judgment."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "A checklist can work and still make people resist it. Chapter 8 asks why. Gawande says the problem is not only inconvenience. The checklist also challenges the way professionals often think about exc…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A checklist can work and still make people resist it. Chapter 8 asks why. Gawande says the problem is not only inconvenience. The checklist also challenges the way professionals often think about exc…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "A checklist can prove itself and still meet resistance. Chapter 8 asks why that happens. Gawande says the answer is not only about time, awkwardness, or workflow fit. The checklist also challenges a …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A checklist can prove itself and still meet resistance. Chapter 8 asks why that happens. Gawande says the answer is not only about time, awkwardness, or workflow fit. The checklist also challenges a …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "A checklist can survive empirical testing and still fail to win easy acceptance. Chapter 8 asks why. Gawande says the remaining obstacle is not simply workflow friction. The checklist also threatens …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A checklist can survive empirical testing and still fail to win easy acceptance. Chapter 8 asks why. Gawande says the remaining obstacle is not simply workflow friction. The checklist also threatens …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex01-rina-insult"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (135 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Rina snaps that she should not have to say obvious things out loud during a team check because everyone already knows she is competent."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Rina snaps that she should not have to say obvious things out loud during a team check because everyone already knows she is competent."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex02-omar-ethics-board"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (138 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Omar notices that every admired trait his class lists for great professionals sounds like someone who needs less visible help than others."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar notices that every admired trait his class lists for great professionals sounds like someone who needs less visible help than others."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex03-elise-private-flinch"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (123 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elise realizes she dislikes a shared family check not because it wastes time but because it makes her feel less in control."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elise realizes she dislikes a shared family check not because it wastes time but because it makes her feel less in control."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex04-mateo-side-by-side"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (145 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mateo watches one coworker rely on memory alone and another use a short team check, then notices the calmer result comes from the shared routine."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Mateo watches one coworker rely on memory alone and another use a short team check, then notices the calmer result comes from the shared routine."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex05-hana-leadership-choice"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (126 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Hana leads a group where the strongest student hates visible checking, and she has to decide whether to keep the pause anyway."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex06-julian-verification-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (134 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Julian wants to trust the most capable person in a family task without checking, but he also knows they still miss things when rushed."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "What new problem drives Chapter 8?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What new problem drives Chapter 8?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why can a checklist feel insulting in the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can a checklist feel insulting in the chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "What is the hero story in Chapter 8?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the hero story in Chapter 8?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter say about expertise?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter say about expertise?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is disciplined teamwork the chapter's answer?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is disciplined teamwork the chapter's answer?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "A respected expert hates a shared pause because it feels beneath them. What Chapter 8 lesson fits best?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A respected expert hates a shared pause because it feels beneath them. What Chapter 8 lesson fits best?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the checklist do symbolically as well as practically?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter reject about the hero myth?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter reject about the hero myth?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's deepest adoption lesson?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's deepest adoption lesson?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "What question does Chapter 8 hand to the final chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What question does Chapter 8 hand to the final chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter say about judgment and skill?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter say about judgment and skill?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter revise the idea of mastery?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter revise the idea of mastery?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is shifting the obstacle from evidence to identity: once the checklist is proven, the real question becomes whether professionals will accept disciplined teamwork as part of e…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The last chapter asks where checklist logic goes after medicine. Gawande turns to investing and Mohnish Pabrai to show that checklists are not only for surgery. They can help anywhere strong judgment…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The last chapter widens the book's lesson beyond surgery. Gawande asks what becomes visible once checklist logic has survived complexity, proof, and resistance inside medicine. He turns to investing …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"is not decorative\" — 68 hits across 31 books — same rhetorical move.",
+          "evidence": "The last chapter widens the book's lesson beyond surgery. Gawande asks what becomes visible once checklist logic has survived complexity, proof, and resistance inside medicine. He turns to investing …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter widens the argument beyond medicine without letting it dissolve into a slogan. After showing why checklists matter in surgery and why professionals resist them, Gawande asks where t…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "The final chapter widens the argument beyond medicine without letting it dissolve into a slogan. After showing why checklists matter in surgery and why professionals resist them, Gawande asks where t…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex01-soren-review-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (126 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Soren wants to trust his instincts during a high-stakes review, but a short checklist keeps catching things he nearly skipped."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex02-maya-crossover-class"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (151 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Maya notices that the examples from surgery and investing look different on the surface but both still struggle with avoidable mistakes under pressure."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Maya notices that the examples from surgery and investing look different on the surface but both still struggle with avoidable mistakes under pressure."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex03-elena-home-check"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (121 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Elena hesitates to add a short routine to an important family decision because she does not want life to feel mechanical."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex04-victor-team-adapt"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (154 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Victor's team borrows the idea of a checklist but changes the wording and timing so it matches their own work instead of sounding like hospital procedure."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor's team borrows the idea of a checklist but changes the wording and timing so it matches their own work instead of sounding like hospital procedure."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex05-priya-compare-routines"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (138 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Priya compares one routine that catches repeat errors with another that dictates every move and notices only the first one actually helps."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya compares one routine that catches repeat errors with another that dictates every move and notices only the first one actually helps."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex06-leon-family-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (132 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Leon argues that a small routine before a family choice feels unnecessary until someone points out the same mistake keeps happening."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leon argues that a small routine before a family choice feels unnecessary until someone points out the same mistake keeps happening."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "What final move does Chapter 9 make?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What final move does Chapter 9 make?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does investing appear in the closing chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does Mohnish Pabrai contribute to the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does Mohnish Pabrai contribute to the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter reject about broader adoption?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter reject about broader adoption?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter describe routine discipline?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "How does the chapter describe routine discipline?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "A non-medical team wants to copy a hospital checklist word for word. What Chapter 9 lesson fits best?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A non-medical team wants to copy a hospital checklist word for word. What Chapter 9 lesson fits best?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say serious judgment still needs safeguards?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say serious judgment still needs safeguards?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's hardest transfer idea?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's hardest transfer idea?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's deepest closing lesson?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's deepest closing lesson?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "What final standard of professionalism does the book leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What final standard of professionalism does the book leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the book widen its lesson at the end?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What non-medical anchor does the chapter use?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's final claim about expertise and safeguards?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean by The Save?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter mean by The Save?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is broader transfer with restraint: investing and Mohnish Pabrai show that routine safeguards can strengthen serious judgment outside surgery when the form fits the domain."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 1,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 2,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 5,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 6,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 90% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 7,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 90% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 8,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-checklist-manifesto",
+        "chapterNumber": 9,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 129,
+    "failedUnits": 103,
+    "passRate": 0.5560344827586207,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 177,
+        "fail": 48
+      },
+      "register.no_meta_reference": {
+        "pass": 75,
+        "fail": 96
+      },
+      "register.no_banned_phrase": {
+        "pass": 221,
+        "fail": 4
+      },
+      "narrative.named_protagonist": {
+        "pass": 54,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 6,
+        "fail": 48
+      },
+      "narrative.decision_point": {
+        "pass": 10,
+        "fail": 44
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 13,
+        "fail": 77
+      },
+      "schema.enum_validity": {
+        "pass": 69,
+        "fail": 21
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 90,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 41,
+        "fail": 4
+      },
+      "schema.answer_position_balance": {
+        "pass": 2,
+        "fail": 7
+      }
+    }
+  }
+}

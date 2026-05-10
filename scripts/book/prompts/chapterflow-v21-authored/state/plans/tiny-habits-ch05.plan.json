@@ -1,0 +1,74 @@
+{
+  "chapterId": "tiny-habits-ch05",
+  "number": 5,
+  "title": "Emotions Create Habits",
+  "coreMove": "Engineer a genuine feeling of success in the seconds after a tiny behavior ends, so the brain wires repetition by feeling rather than willpower",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "a hospice nurse trying to build a thirty-second decompression habit between patient rooms",
+      "audience": "a night-shift hospice nurse running on empty",
+      "stakes": "whether she can keep showing up emotionally for dying patients without burning out by month's end",
+      "format": "scene",
+      "requiredBeat": "she finishes one slow exhale in the hallway and quietly says 'good' to herself, and notices the moment land in her chest before she opens the next door"
+    },
+    {
+      "domain": "a high school orchestra teacher learning to praise himself the way he praises his students",
+      "audience": "a mid-career music teacher who feels silly celebrating his own actions",
+      "stakes": "whether his new habit of writing one sentence of his overdue dissertation each morning survives past the second week",
+      "format": "dialogue",
+      "requiredBeat": "his coach pushes back when he says 'celebration feels cheesy,' and he tries a quiet 'nailed it' after closing his laptop and feels something he wasn't expecting"
+    },
+    {
+      "domain": "a long-haul trucker designing a stretch he can do at fuel stops without feeling ridiculous in front of other drivers",
+      "audience": "a fifty-three-year-old trucker with chronic lower back pain",
+      "stakes": "whether he keeps his commercial license through his next physical exam",
+      "format": "vignette",
+      "requiredBeat": "after one shoulder roll at the pump, he taps the side of the truck twice and grins to himself, and the small private grin is the entire wiring"
+    },
+    {
+      "domain": "a recently widowed retiree teaching herself to celebrate making the bed each morning",
+      "audience": "a sixty-eight-year-old woman whose mornings have lost their shape",
+      "stakes": "whether the day starts with one small win or with the weight of the empty house",
+      "format": "before_after",
+      "requiredBeat": "before the celebration she finishes the bed and feels nothing; after she adds a hand placed on the smoothed quilt and a soft 'there,' she notices the day has a foothold"
+    },
+    {
+      "domain": "a junior pastry cook practicing celebration during an unrelenting Saturday brunch service",
+      "audience": "a twenty-three-year-old line cook who thinks any visible joy at work looks unprofessional",
+      "stakes": "whether she can build a habit of plating one dessert with full attention before the shift swallows her",
+      "format": "thought_experiment",
+      "requiredBeat": "she imagines two parallel versions of the same plated tart, one finished with a flat exhale and one finished with a private internal 'yes,' and traces which version of her shows up to plate the next ticket"
+    },
+    {
+      "domain": "a software contractor whose celebration of writing one test felt fake until he stopped performing it",
+      "audience": "a remote contractor who tried celebration for a week and quit",
+      "stakes": "whether he resurrects a habit-building method he's already publicly written off",
+      "format": "postmortem",
+      "requiredBeat": "looking back at his abandoned attempt, he realizes he was performing a celebration he didn't feel, and identifies the exact moment a real micro-flicker of pride would have been available if he'd stayed honest"
+    },
+    {
+      "domain": "a parent of a colicky four-month-old learning to celebrate finishing one diaper change without checking her phone",
+      "audience": "a sleep-deprived new parent at 3 a.m.",
+      "stakes": "whether one anchor of presence survives a season she'll barely remember",
+      "format": "reflection",
+      "requiredBeat": "she catches the small warm feeling of having been fully there for sixty seconds, names it as the glue, and lets it count without scaling it up into anything more"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

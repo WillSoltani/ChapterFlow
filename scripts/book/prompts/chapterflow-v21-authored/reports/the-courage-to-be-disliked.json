@@ -1,0 +1,2759 @@
+{
+  "bookId": "the-courage-to-be-disliked",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/the-courage-to-be-disliked.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.760Z",
+  "chapterCount": 5,
+  "unitCount": 128,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Nia apologized after snapping at her team, but she kept saying the outburst was automatic because of how she grew up. That kind of explanation feels kind and familiar. The chapter does not deny that …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "It is easy to feel compassionate when someone explains a present outburst through an old wound. Nia says she snapped because she grew up around shouting, and the room instinctively relaxes around tha…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "It is easy to feel compassionate when someone explains a present outburst through an old wound. Nia says she snapped because she grew up around shouting, and the room instinctively relaxes around tha…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Nia's explanation sounds compassionate because it arrives wearing history. She snaps in a meeting, apologizes, and says this is what happens when you grow up around shouting. Most people stop there b…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Nia's explanation sounds compassionate because it arrives wearing history. She snaps in a meeting, apologizes, and says this is what happens when you grow up around shouting. Most people stop there b…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "Nia's explanation sounds compassionate because it arrives wearing history. She snaps in a meeting, apologizes, and says this is what happens when you grow up around shouting. Most people stop there b…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01-nia-meeting-choice"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nia closes her laptop after a tense product meeting and keeps replaying the moment she raised her voice. Her first explanation is familiar and partly true: she grew up in a house where shouting won s…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02-elias-seminar-argument"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In a seminar circle, Elias tells a classmate that fear of speaking in public proves some people never really change. His classmate pauses with a pencil over the margin of her notebook and asks a hard…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In a seminar circle, Elias tells a classmate that fear of speaking in public proves some people never really change. His classmate pauses with a pencil over the margin of her notebook and asks a hard…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03-hana-relationship-distance"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Hana tells herself that an old betrayal is the reason she keeps every new relationship half a step away. The story is not false. But when she puts her phone face down after ignoring another kind mess…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Hana tells herself that an old betrayal is the reason she keeps every new relationship half a step away. The story is not false. But when she puts her phone face down after ignoring another kind mess…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04-owen-review-monologue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Waiting outside his review, Owen feels his shoulders lock and hears the old line in his head: criticism always crushes me because of how I was raised. He does not deny the truth in that sentence. He …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Waiting outside his review, Owen feels his shoulders lock and hears the old line in his head: criticism always crushes me because of how I was raised. He does not deny the truth in that sentence. He …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05-tessa-two-readings"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At a campus club intake night, Tessa freezes when a senior member challenges her idea. On the walk home, she compares two readings. The first says the moment proved she is the kind of person who shut…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06-ravi-self-dislike-predict"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Ravi has a habit of shrugging off invitations by joking that people only ask out of politeness. One night, after deleting a reply and setting the phone down on the kitchen counter, he sees the patter…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Ravi has a habit of shrugging off invitations by joking that people only ask out of politeness. One night, after deleting a reply and setting the phone down on the kitchen counter, he sees the patter…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which sentence captures the first night's main correction most accurately?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the heading \"Why People Can Change\" matter so much in the opening night?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the cleanest reading of \"People Fabricate Anger\" in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the cleanest reading of \"People Fabricate Anger\" in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Nia says her blowup in a team meeting was inevitable because of how she grew up. What response fits the chapter best?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Nia says her blowup in a team meeting was inevitable because of how she grew up. What response fits the chapter best?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "During seminar, Elias insists his fear of speaking proves he can never change. Which reply best uses the chapter's logic without becoming cruel?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which interpretation would the chapter treat as a misuse of its freedom claim?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which interpretation would the chapter treat as a misuse of its freedom claim?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes self-dislike important in the first night's argument?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A coach tells a struggling client, Your past has no meaning, so stop mentioning it. Why is that weaker than the chapter's actual position?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What claim about the past does the chapter reject?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What second lens does the chapter add beside cause?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean by fabricated anger?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter mean by fabricated anger?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's core move is history without total authority. Once present purpose enters the picture, change becomes thinkable."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Mira heard about a coworker's promotion and felt smaller before a single fact about her own work had changed. The chapter uses that kind of moment to argue that inferiority is often built inside comp…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Mira learns about a coworker's promotion and feels the drop in her stomach before she has formed a clear thought. Nothing about her own abilities has changed in that second. What changes is the relat…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The second night begins with a wound that feels private and immediate, but it refuses to leave that wound inside the individual. Mira hears about a coworker's promotion and feels her own value drop b…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "The second night begins with a wound that feels private and immediate, but it refuses to leave that wound inside the individual. Mira hears about a coworker's promotion and feels her own value drop b…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01-mira-promotion-choice"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mira hears that a teammate got promoted and feels her chest tighten before the applause has ended. On the walk back to her desk, she can either treat the news as proof that she is falling behind or a…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Mira hears that a teammate got promoted and feels her chest tighten before the applause has ended. On the walk back to her desk, she can either treat the news as proof that she is falling behind or a…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02-caleb-study-group"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "During a study group, Caleb keeps asking who scored highest on the practice quiz and treats every answer like a placement signal. A classmate finally asks whether the group is here to understand the …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "During a study group, Caleb keeps asking who scored highest on the practice quiz and treats every answer like a placement signal. A classmate finally asks whether the group is here to understand the …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03-noor-friendship-revenge"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Noor watches a close friend celebrate a new circle of people and tells herself she is happy for them. But over the next week she starts replying late, withholding warmth, and hoping the new plans go …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Noor watches a close friend celebrate a new circle of people and tells herself she is happy for them. But over the next week she starts replying late, withholding warmth, and hoping the new plans go …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04-simon-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "After a tense project meeting, Simon realizes the argument stopped being about the proposal halfway through and became about not backing down in front of the room. By the time he left, winning matter…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After a tense project meeting, Simon realizes the argument stopped being about the proposal halfway through and became about not backing down in front of the room. By the time he left, winning matter…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05-ivy-capstone-shift"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before her capstone critique, Ivy reads every comment as proof of where she stands against the rest of the cohort. After a mentor asks what would change if she treated the critique as help with the w…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06-leo-bragging-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Leo keeps talking at a friend's dinner about how far ahead he is at work and assumes he is simply being confident. Later, when the conversation shifts to someone else's strong year and his energy goe…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the second night mean by saying feelings of inferiority are subjective assumptions?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter link bragging with inferiority instead of treating them as opposites?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter link bragging with inferiority instead of treating them as opposites?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the cleanest reading of the line \"Life Is Not a Competition\" in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the cleanest reading of the line \"Life Is Not a Competition\" in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Mira hears that her coworker was promoted and instantly feels smaller. According to the chapter, what should she examine first?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "In study group, Caleb keeps ranking classmates instead of working the material. What response best fits the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "In study group, Caleb keeps ranking classmates instead of working the material. What response best fits the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Noor starts replying coldly after feeling replaced by a friend. Why is that important in the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Noor starts replying coldly after feeling replaced by a friend. Why is that important in the chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement best preserves the chapter's distinction between growth and competition?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best preserves the chapter's distinction between growth and competition?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When does disagreement become power struggle in the chapter's terms?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "When does disagreement become power struggle in the chapter's terms?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response would the chapter treat as a misuse of its anti-competition claim?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response would the chapter treat as a misuse of its anti-competition claim?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the second night naturally lead into a chapter about separating tasks?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter redefine inferiority?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter redefine inferiority?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter rejecting when it attacks competition?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Ava keeps rewriting a work email because she wants to control not only what she says but how her manager will feel about it. The chapter uses that pressure to make a boundary argument. Other people's…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Ava rewrites a simple work email again and again because she is trying to control more than her own words. She wants to secure the manager's reaction before the message even leaves her screen. The ch…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The third night begins with a familiar strain that looks responsible from the outside. Ava keeps revising an email because she wants to manage not only what she says but also how her manager will rec…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01-ava-manager-email"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Ava keeps rewriting a project email because she wants the manager to feel reassured, impressed, and pleased before the message is even sent. She eventually notices that her real work is to communicat…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02-julian-priya-capstone"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "During capstone planning, Julian keeps pressuring Priya to present in a way that will guarantee the professor's approval and protect both of their grades. Priya asks whether their job is to prepare w…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "During capstone planning, Julian keeps pressuring Priya to present in a way that will guarantee the professor's approval and protect both of their grades. Priya asks whether their job is to prepare w…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03-priya-parent-career"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya's parent keeps saying a safer career would prove gratitude and maturity. Priya feels the pull of love and fear at the same time. The chapter's dilemma is whether honoring the parent means livin…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04-marcus-approval-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Looking back over the week, Marcus sees that he spent more time anticipating reactions than improving the work itself. Each extra revision was supposed to buy safety, but it mostly pulled him away fr…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Looking back over the week, Marcus sees that he spent more time anticipating reactions than improving the work itself. Each extra revision was supposed to buy safety, but it mostly pulled him away fr…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05-elena-lab-partnership"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Before the shift, Elena keeps checking whether her lab partner feels supported, calm, and pleased with every step. After a tense meeting, she sees that her real job is to complete her portion clearly…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before the shift, Elena keeps checking whether her lab partner feels supported, calm, and pleased with every step. After a tense meeting, she sees that her real job is to complete her portion clearly…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06-theo-recognition-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Theo says he just wants everyone to get along and keeps smoothing over every disagreement in his friend group. Later he notices what really shakes him: the fear that someone might stop seeing him as …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Theo says he just wants everyone to get along and keeps smoothing over every disagreement in his friend group. Later he notices what really shakes him: the fear that someone might stop seeing him as …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main correction about other people's expectations?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main correction about other people's expectations?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter define task separation most clearly?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does the chapter define task separation most clearly?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say desire for recognition makes you unfree?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say desire for recognition makes you unfree?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Ava keeps redrafting an email to guarantee her manager's approval. According to the chapter, what should she recognize?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Ava keeps redrafting an email to guarantee her manager's approval. According to the chapter, what should she recognize?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "During capstone planning, Julian wants to guarantee the professor's reaction by shaping every presentation choice around approval. What response best fits the chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Priya's parent insists a safer career would prove gratitude. According to the chapter, what is Priya's cleaner move?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Priya's parent insists a safer career would prove gratitude. According to the chapter, what is Priya's cleaner move?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement best preserves the chapter's difference between care and control?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best preserves the chapter's difference between care and control?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which situation best illustrates a stolen task in the chapter's terms?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which situation best illustrates a stolen task in the chapter's terms?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response would the chapter treat as a misuse of boundary language?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response would the chapter treat as a misuse of boundary language?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the third night naturally lead into a chapter about community feeling and horizontal relationships?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter reject living to satisfy other people's expectations?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What question organizes the chapter's boundary tool?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter preserve care even while refusing control?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Lena thinks she is helping her team, but she notices that every compliment still leaves her a little higher than the people hearing it. The chapter begins there because healthier relationships requir…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Lena leaves a team meeting with a strange discomfort. She had praised two people, corrected one person, and kept the project moving. On paper, that sounds like good leadership. The chapter asks her t…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Lena leaves a team meeting with a strange discomfort. She had praised two people, corrected one person, and kept the project moving. On paper, that sounds like good leadership. The chapter asks her t…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The fourth night begins with an uncomfortable refinement. Lena is no longer obviously competing with her team, and she is not stealing their tasks in the crude way the earlier chapters warn against. …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01-lena-team-encouragement"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02-omar-sora-club-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "During club planning, Omar says leaders need praise and rebuke so people know where they stand. Sora asks whether good collaboration can exist without keeping someone permanently above the rest."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03-sora-family-contribution"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Sora wants to contribute at home, but each time she helps she also feels the urge to become the reliable center who quietly carries everything. The dilemma is whether contribution means usefulness wi…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Sora wants to contribute at home, but each time she helps she also feels the urge to become the reliable center who quietly carries everything. The dilemma is whether contribution means usefulness wi…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04-felix-mentor-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Felix thinks back over several mentoring conversations and realizes he was enjoying being the one who knew, corrected, and approved. He was helping, but he was also preserving a higher position."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Felix thinks back over several mentoring conversations and realizes he was enjoying being the one who knew, corrected, and approved. He was helping, but he was also preserving a higher position."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05-mina-studio-shift"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before the shift, Mina quietly becomes the center of every studio-project decision and feels valuable because the work keeps circling back to her. After a conflict, she experiments with contributing …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06-gabe-help-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Gabe tells himself he only wants to help his friends, but he feels unusually unsettled whenever they solve something without him. The reveal is that part of his helpfulness was also feeding the wish …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Gabe tells himself he only wants to help his friends, but he feels unusually unsettled whenever they solve something without him. The reveal is that part of his helpfulness was also feeding the wish …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What goal does the fourth night assign to interpersonal relationships?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the line \"You Are Not the Center of the World\" mean most accurately in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the line \"You Are Not the Center of the World\" mean most accurately in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter treat praise and rebuke as related problems?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter treat praise and rebuke as related problems?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Felix notices that mentoring has started to make him enjoy being the one who approves and corrects. According to the chapter, what should he examine?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "In club planning, Omar says leaders need praise and rebuke so people know where they stand. What response best fits the chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Sora wants to contribute at home but notices the pull to become the reliable center who carries everything. What is the chapter's cleaner direction?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement best captures the chapter's difference between horizontal and vertical relationship?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best captures the chapter's difference between horizontal and vertical relationship?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which situation best shows centrality hunger in the chapter's terms?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which situation best shows centrality hunger in the chapter's terms?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response would the chapter treat as a misuse of its anti-praise idea?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response would the chapter treat as a misuse of its anti-praise idea?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the fourth night naturally lead into a final chapter about trust, work, and the here and now?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's answer to the goal of interpersonal relationships?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter distinguish anti-centrality from self-erasure?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter distinguish anti-centrality from self-erasure?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Iris keeps freezing over a simple work handoff because she is watching herself too closely. The chapter begins there to show that a person can misuse the self by becoming overly self-conscious. When …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Iris is about to send an important work handoff, but she keeps adjusting every sentence because she is no longer only doing the work. She is watching herself do it. The chapter starts there because t…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The fifth night begins with a subtle paralysis. Iris is capable of doing the work in front of her, yet she keeps revising a simple handoff because she is no longer only participating in the act. She …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"is not decorative\" — 68 hits across 31 books — same rhetorical move.",
+          "evidence": "The fifth night begins with a subtle paralysis. Iris is capable of doing the work in front of her, yet she keeps revising a simple handoff because she is no longer only participating in the act. She …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01-iris-handoff-freeze"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Iris keeps editing a simple handoff note because she is watching how she sounds instead of simply completing the work. She now has to decide whether to keep managing her image or enter the task more …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02-malik-june-trust-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "During an exam prep workshop, Malik says trust is irrational unless you are almost sure the other person will come through. June asks whether that would leave any room for trust at all."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03-june-uncertainty-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "June is waiting for a medical update in her family and feels unable to live normally until the future becomes clear. The dilemma is whether meaning can exist before uncertainty is resolved."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04-rowan-workaholism-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Rowan looks back on a stretch of constant overtime and realizes the schedule was not only about contribution. It also protected him from grief, quiet, and conversation. \n Rowan's postmortem exposes t…"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (168 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Rowan looks back on a stretch of constant overtime and realizes the schedule was not only about contribution. It also protected him from grief, quiet, and conversation."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Rowan looks back on a stretch of constant overtime and realizes the schedule was not only about contribution. It also protected him from grief, quiet, and conversation."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05-keiko-thesis-studio-shift"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before the shift, Keiko keeps imagining the final thesis defense and becomes paralyzed by what it will say about her. After the shift, she starts treating each studio session as the place where the w…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before the shift, Keiko keeps imagining the final thesis defense and becomes paralyzed by what it will say about her. After the shift, she starts treating each studio session as the place where the w…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06-ben-meaning-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Ben tells himself he will start living seriously once he knows his larger purpose. The reveal is that the waiting itself has become a way of refusing the life already in front of him."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Ben tells himself he will start living seriously once he knows his larger purpose. The reveal is that the waiting itself has become a way of refusing the life already in front of him."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What problem is the chapter pointing to when it says people cannot make proper use of self?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What problem is the chapter pointing to when it says people cannot make proper use of self?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter distinguish trust from confidence?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does the chapter distinguish trust from confidence?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter say is the essence of work?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter say is the essence of work?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter call workaholism a life-lie?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter call workaholism a life-lie?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Keiko becomes paralyzed by imagining what her final thesis defense will say about her. What is the chapter's cleaner move?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "June says life cannot feel meaningful until a painful future uncertainty is resolved. What does the chapter challenge in that claim?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which situation best shows the life-lie of busyness in the chapter's terms?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which situation best shows the life-lie of busyness in the chapter's terms?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter saying when it calls life a series of moments?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter saying when it calls life a series of moments?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response would the chapter treat as a misuse of its present-focus idea?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response would the chapter treat as a misuse of its present-focus idea?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the fifth night close the book's larger argument?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does the fifth night close the book's larger argument?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter describe misuse of self?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter describe misuse of self?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter call contribution the essence of work?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter end by making meaning a present-tense practice?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 2,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 4,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-courage-to-be-disliked",
+        "chapterNumber": 5,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 56,
+    "failedUnits": 72,
+    "passRate": 0.4375,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 125,
+        "fail": 0
+      },
+      "register.no_meta_reference": {
+        "pass": 26,
+        "fail": 69
+      },
+      "register.no_banned_phrase": {
+        "pass": 118,
+        "fail": 7
+      },
+      "narrative.named_protagonist": {
+        "pass": 30,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 8,
+        "fail": 22
+      },
+      "narrative.decision_point": {
+        "pass": 6,
+        "fail": 24
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 11,
+        "fail": 39
+      },
+      "schema.enum_validity": {
+        "pass": 40,
+        "fail": 10
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 50,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 21,
+        "fail": 4
+      },
+      "schema.answer_position_balance": {
+        "pass": 2,
+        "fail": 3
+      }
+    }
+  }
+}

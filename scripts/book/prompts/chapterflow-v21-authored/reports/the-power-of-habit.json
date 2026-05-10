@@ -1,0 +1,5383 @@
+{
+  "bookId": "the-power-of-habit",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/the-power-of-habit.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.903Z",
+  "chapterCount": 9,
+  "unitCount": 232,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Chapter 1 opens with Eugene Pauly, a man who lost much of his recent memory but could still follow routines. That case lets Duhigg make the chapter's main point: habits are built from a loop of cue, …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 1 opens with Eugene Pauly, a man who lost much of his recent memory but could still follow routines. That case lets Duhigg make the chapter's main point: habits are built from a loop of cue, …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Chapter 1 begins with Eugene Pauly, a man whose brain illness destroyed much of his ability to form normal new memories. He could not reliably remember what had just happened, yet he could still walk…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 1 begins with Eugene Pauly, a man whose brain illness destroyed much of his ability to form normal new memories. He could not reliably remember what had just happened, yet he could still walk…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Chapter 1 begins with Eugene Pauly, whose illness left him unable to form normal recent memories while leaving certain repeated routines strangely intact. He could not consistently remember what had …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 1 begins with Eugene Pauly, whose illness left him unable to form normal recent memories while leaving certain repeated routines strangely intact. He could not consistently remember what had …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01-dashboard-routine"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Nina runs operations at a small software company. Every Monday she opens the same dashboard, sees a backlog number that makes her uneasy, and immediately starts answering tickets herself for two stra…"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Nina runs operations at a small software company. Every Monday she opens the same dashboard, sees a backlog number that makes her uneasy, and immediately starts answering tickets herself for two stra…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nina runs operations at a small software company. Every Monday she opens the same dashboard, sees a backlog number that makes her uneasy, and immediately starts answering tickets herself for two stra…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02-study-snack-loop"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "After finals week, Caleb notices something odd. Each night while studying chemistry, he stopped around the same point, walked to the kitchen, and came back ten minutes later scrolling on his phone. H…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After finals week, Caleb notices something odd. Each night while studying chemistry, he stopped around the same point, walked to the kitchen, and came back ten minutes later scrolling on his phone. H…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03-evening-drive"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Maya tells her brother she does not understand why she keeps buying pastries after work. She insists she is not even hungry most evenings. He asks what happens right before she turns into the parking…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04-support-timer"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A support team notices its handoff meeting keeps drifting fifteen minutes late. The manager changes only one thing: as soon as the shared timer appears on the screen, each person must name one blocke…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05-club-rewrite"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Every semester, the debate club promises a better officer handoff and then repeats the same confused first month. New leaders inherit scattered notes, old leaders send last-minute texts, and everyone…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06-shoes-at-door"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "Before, Jordan kept saying he wanted evening walks but rarely left the couch. After he moved his shoes and headphones next to the front door, he noticed that stepping inside after work now triggered …"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Jordan kept saying he wanted evening walks but rarely left the couch. After he moved his shoes and headphones next to the front door, he noticed that stepping inside after work now triggered …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Jordan kept saying he wanted evening walks but rarely left the couch. After he moved his shoes and headphones next to the front door, he noticed that stepping inside after work now triggered …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "What three-part model does Chapter 1 use to explain how habits operate?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What three-part model does Chapter 1 use to explain how habits operate?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Eugene Pauly matter in the opening chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What job does the reward play in the habit loop?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "According to Chapter 1, why does the brain automate repeated routines?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Chapter 1, why does the brain automate repeated routines?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "A routine keeps happening every afternoon at the same time. Chapter 1 says the first useful step is to do what?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A routine keeps happening every afternoon at the same time. Chapter 1 says the first useful step is to do what?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is one danger of the brain's efficiency strategy?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement best matches the chapter's limit?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best matches the chapter's limit?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "What does Chapter 1 replace when it asks readers to study habits as loops?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does Chapter 1 replace when it asks readers to study habits as loops?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "If you want leverage over a routine, what does Chapter 1 say you need before anything else?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "What comes before intervention in Chapter 1?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "What does Chapter 1 explain better than it solves?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does Chapter 1 explain better than it solves?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"chapter argues\" (pattern chapter_verb) — teach the idea, don't narrate the chapter",
+          "evidence": "The opening chapter argues that habits persist because the brain learns a loop of cue, routine, and reward, then automates it to save effort. Eugene Pauly provides the proof that habit can operate ou…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Chapter 2 asks a new question. If Chapter 1 explained the loop, what makes a loop powerful enough to stick? Duhigg's answer is craving. People do not only respond to cues and rewards after the fact. …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 2 asks a new question. If Chapter 1 explained the loop, what makes a loop powerful enough to stick? Duhigg's answer is craving. People do not only respond to cues and rewards after the fact. …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Chapter 2 answers the question Chapter 1 leaves hanging. If cue, routine, and reward explain the loop, what makes some loops strong enough to become real habits while others never fully catch? Duhigg…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 2 answers the question Chapter 1 leaves hanging. If cue, routine, and reward explain the loop, what makes some loops strong enough to become real habits while others never fully catch? Duhigg…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Chapter 2 answers the formation question Chapter 1 leaves open. A loop can be described as cue, routine, and reward, but that structure alone does not explain why some routines become vivid habits wh…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 2 answers the formation question Chapter 1 leaves open. A loop can be described as cue, routine, and reward, but that structure alone does not explain why some routines become vivid habits wh…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01-afternoon-coffee"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Rosa notices that every afternoon she walks to the office kitchen before opening her hardest task. It is not only about caffeine. The cup itself has started feeling like the moment the day turns seri…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02-highlighter-ritual"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "After midterms, Lila realizes she revised more consistently on the subjects where she used a bright final highlighter pass. The color did not add knowledge, but it made the session feel finished."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After midterms, Lila realizes she revised more consistently on the subjects where she used a bright final highlighter pass. The color did not add knowledge, but it made the session feel finished."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03-running-playlist"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Dev tells a friend he has finally started running consistently. He thought the secret was discipline, but when they talk it through he realizes the real shift happened when he built a playlist he gen…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Dev tells a friend he has finally started running consistently. He thought the secret was discipline, but when they talk it through he realizes the real shift happened when he built a playlist he gen…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04-launch-day-bell"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A startup team adds a short bell sound at the end of each workday before everyone logs final updates. Predict what happens after a week if the sound becomes associated with the relief of being truly …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A startup team adds a short bell sound at the end of each workday before everyone logs final updates. Predict what happens after a week if the sound becomes associated with the relief of being truly …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05-lab-cleanup"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "A biology lab group keeps leaving cleanup half done. The instructor can either lecture them again or redesign the ending of the lab so the cleanup cue points toward a more satisfying sense of complet…"
+        },
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A biology lab group keeps leaving cleanup half done. The instructor can either lecture them again or redesign the ending of the lab so the cleanup cue points toward a more satisfying sense of complet…"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A biology lab group keeps leaving cleanup half done. The instructor can either lecture them again or redesign the ending of the lab so the cleanup cue points toward a more satisfying sense of complet…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A biology lab group keeps leaving cleanup half done. The instructor can either lecture them again or redesign the ending of the lab so the cleanup cue points toward a more satisfying sense of complet…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06-bedtime-novel"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Sam kept doomscrolling late at night even though he wanted more sleep. After he placed a favorite novel on the pillow each morning, bedtime started carrying a different promise. He began look…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "What new concept does Chapter 2 add to the habit loop?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What new concept does Chapter 2 add to the habit loop?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "According to Chapter 2, why is anticipated reward so important?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "According to Chapter 2, why is anticipated reward so important?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the Pepsodent case illustrate?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why did Febreze become more successful once it was tied to cleaning routines?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Which statement best captures craving in Chapter 2?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best captures craving in Chapter 2?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "What ethical tension does Chapter 2 introduce?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What ethical tension does Chapter 2 introduce?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "What is the relationship between Chapter 1 and Chapter 2?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the relationship between Chapter 1 and Chapter 2?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Why does Chapter 2 say some new habits fail to take hold?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Chapter 2 say some new habits fail to take hold?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "What subtle warning does Chapter 2 include about craving?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What subtle warning does Chapter 2 include about craving?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main addition to cue-routine-reward?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Why is Chapter 2 not only a self-help chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Chapter 3 turns from habit formation to habit change. Duhigg's central claim is sharp: habits are rarely erased outright. They are more often replaced. The cue and the reward can stay largely the sam…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 3 turns from habit formation to habit change. Duhigg's central claim is sharp: habits are rarely erased outright. They are more often replaced. The cue and the reward can stay largely the sam…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Chapter 3 asks the hardest question so far: once a habit has real pull, how does change actually happen? Duhigg's answer is practical rather than romantic. Most habits are not erased cleanly. They ar…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 3 asks the hardest question so far: once a habit has real pull, how does change actually happen? Duhigg's answer is practical rather than romantic. Most habits are not erased cleanly. They ar…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "Chapter 3 asks the hardest question so far: once a habit has real pull, how does change actually happen? Duhigg's answer is practical rather than romantic. Most habits are not erased cleanly. They ar…"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Chapter 3 addresses the issue readers usually care about most: real change. After Chapter 1 made the loop visible and Chapter 2 explained craving, the next question is how an entrenched habit can be …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 3 addresses the issue readers usually care about most: real change. After Chapter 1 made the loop visible and Chapter 2 explained craving, the next question is how an entrenched habit can be …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01-after-work-scroll"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "After difficult client calls, Omar always leaves the office and scrolls his phone for twenty minutes on the bus home. He wants relief and distance, not necessarily social media. He now has to decide …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02-pretest-panic"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (177 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Before every quiz, Anya used to panic-scroll notes and make herself more scattered. Looking back, she sees the cue was the same each time: the moment the paper reached her desk."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before every quiz, Anya used to panic-scroll notes and make herself more scattered. Looking back, she sees the cue was the same each time: the moment the paper reached her desk."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03-late-night-snack"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Lena tells her partner she wants to stop late-night snacking. In talking it through, she realizes the cue is not hunger alone. It is the quiet moment after the apartment is finally clean. What she wa…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04-onboarding-script"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A manager notices that every time senior leadership questions a plan, her team becomes defensive. She gives them one new routine: first say, 'Tell me what risk you see,' before answering. Predict wha…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05-lab-freeze"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06-evening-drink"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter honest\" — 111 hits across 36 books. Impossible to appear organically at that rate.",
+          "evidence": "Before, Jules came home tense and poured a drink immediately. After several weeks of practice, the first move became filling a tall glass of water, stepping onto the balcony, and calling one friend. …"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Jules came home tense and poured a drink immediately. After several weeks of practice, the first move became filling a tall glass of water, stepping onto the balcony, and calling one friend. …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Jules came home tense and poured a drink immediately. After several weeks of practice, the first move became filling a tall glass of water, stepping onto the balcony, and calling one friend. …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is Duhigg's \"golden rule\" of habit change?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does suppression alone often fail?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Which part of the loop does Chapter 3 treat as the main leverage point for change?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which part of the loop does Chapter 3 treat as the main leverage point for change?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What do Alcoholics Anonymous and Tony Dungy's coaching have in common in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What do Alcoholics Anonymous and Tony Dungy's coaching have in common in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "Why does Chapter 3 give belief an important role?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Chapter 3 give belief an important role?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "What mistaken standard does Chapter 3 correct?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What mistaken standard does Chapter 3 correct?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is one reason a substitute routine might fail?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is community useful in this chapter's model of change?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is community useful in this chapter's model of change?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What question best fits the chapter's practical logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What question best fits the chapter's practical logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "State the chapter's main rule."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "The golden rule of habit change is substitution rather than deletion. Chapter 3 shows that durable change usually comes from preserving cue and reward while inserting a new routine between them. AA a…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Chapter 4 asks why some habits change far more than the small routine itself. Duhigg's answer is the idea of keystone habits. These are routines that create ripple effects because they change attenti…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 4 asks why some habits change far more than the small routine itself. Duhigg's answer is the idea of keystone habits. These are routines that create ripple effects because they change attenti…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Chapter 4 asks a strategic question. If not all habits carry equal weight, which ones are worth fighting for first? Duhigg's answer is keystone habits, routines that produce wider change because they…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 4 asks a strategic question. If not all habits carry equal weight, which ones are worth fighting for first? Duhigg's answer is keystone habits, routines that produce wider change because they…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "Chapter 4 shifts the book from habit mechanics to leverage. By this point the reader knows what a loop is and how routines are replaced. The next strategic question is where effort should go first. D…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 4 shifts the book from habit mechanics to leverage. By this point the reader knows what a loop is and how routines are replaced. The next strategic question is where effort should go first. D…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01-incident-review"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02-homeroom-start"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A teacher looks back on a chaotic semester and notices something surprising. The classes that settled fastest were not the ones with harder punishments. They were the ones where the first three minut…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03-family-dinner"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In conversation, Mira tells a friend she thought family dinner was only about eating together. Over time she noticed it also changed bedtime chaos, homework check-ins, and how often everyone shared p…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In conversation, Mira tells a friend she thought family dinner was only about eating together. Over time she noticed it also changed bedtime chaos, homework check-ins, and how often everyone shared p…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04-practice-checkin"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (174 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "A team captain starts every shift with the same two-minute check-in on safety, blockers, and next steps. Predict what changes after a month if this routine really is central."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05-project-folder"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A student team keeps losing time because documents live in five places. One member suggests that the real keystone habit might be a single shared-folder rule. Others think that sounds too small to ma…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06-morning-bed"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Evan's mornings felt loose and reactive. After he started making the bed first thing, he noticed that packing lunch, leaving on time, and tidying the counter happened more reliably too."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Evan's mornings felt loose and reactive. After he started making the bed first thing, he noticed that packing lunch, leaving on time, and tidying the counter happened more reliably too."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "What is a keystone habit in Chapter 4?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is a keystone habit in Chapter 4?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Paul O'Neill's safety focus at Alcoa count as a keystone habit example?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What role do small wins play in the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What role do small wins play in the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is one important limit of the keystone-habit idea?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "What practical question does Chapter 4 encourage readers to ask?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical question does Chapter 4 encourage readers to ask?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter strategic rather than simply inspirational?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter strategic rather than simply inspirational?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "What mistaken move does Chapter 4 warn against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What mistaken move does Chapter 4 warn against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the Alcoa example suggest about reporting and communication?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement best fits the chapter's leverage logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best fits the chapter's leverage logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"chapter reframes\" (pattern chapter_verb) — teach the idea, don't narrate the chapter",
+          "evidence": "The keystone-habit chapter reframes change as target selection under limited resources. A keystone habit has disproportionate spillover into adjacent routines, which is why Alcoa's safety focus matte…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "Chapter 5 takes a trait that people often treat as pure character and makes it more practical. Duhigg argues that willpower can itself become habitual. The chapter uses Starbucks training to show tha…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 5 takes a trait that people often treat as pure character and makes it more practical. Duhigg argues that willpower can itself become habitual. The chapter uses Starbucks training to show tha…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "Chapter 5 takes the idea of willpower out of the realm of pure character judgment and puts it into habit design. Duhigg's claim is that self-control becomes more reliable when it is trained as a rout…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 5 takes the idea of willpower out of the realm of pure character judgment and puts it into habit design. Duhigg's claim is that self-control becomes more reliable when it is trained as a rout…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "Chapter 5 takes a trait people usually praise from a distance and brings it down to mechanism. Duhigg argues that willpower can become more reliable when it is trained as habit rather than admired as…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 5 takes a trait people usually praise from a distance and brings it down to mechanism. Duhigg argues that willpower can become more reliable when it is trained as habit rather than admired as…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01-escalation-script"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02-quiz-breath"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (145 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "After several quizzes went badly, Hana realizes the first minute is when she loses control. She always rushes the first problem and then spirals."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After several quizzes went badly, Hana realizes the first minute is when she loses control. She always rushes the first problem and then spirals."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03-family-pause"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A couple keeps fighting the same way during dinner. In conversation, they realize the turning point comes when one person feels criticized and interrupts immediately. They agree to practice one pause…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A couple keeps fighting the same way during dinner. In conversation, they realize the turning point comes when one person feels criticized and interrupts immediately. They agree to practice one pause…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04-shift-reset"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (159 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "A warehouse team adds a ninety-second reset at the midpoint of a long shift. Predict what happens if that reset becomes a trained default before fatigue peaks."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A warehouse team adds a ninety-second reset at the midpoint of a long shift. Predict what happens if that reset becomes a trained default before fatigue peaks."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05-group-project"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A student team always falls apart when one member criticizes another's draft. They can either keep hoping everyone will react maturely or create a simple response rule for the first tense comment."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A student team always falls apart when one member criticizes another's draft. They can either keep hoping everyone will react maturely or create a simple response rule for the first tense comment."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06-morning-shoes"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Priya woke up and negotiated with herself about walking. After she laid out shoes and headphones each night, the first move of the morning changed. There was less space for debate."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Priya woke up and negotiated with herself about walking. After she laid out shoes and headphones each night, the first move of the morning changed. There was less space for debate."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main claim about willpower?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main claim about willpower?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is Starbucks the key case in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is Starbucks the key case in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean when it says pressure reveals defaults?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter mean when it says pressure reveals defaults?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why are scripts useful in the chapter's model?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why are scripts useful in the chapter's model?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "What mistaken belief does Chapter 5 correct?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What mistaken belief does Chapter 5 correct?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is one limit the chapter keeps in view?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is one limit the chapter keeps in view?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter prefer rehearsal to raw resolve?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter prefer rehearsal to raw resolve?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "What practical question best follows from Chapter 5?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical question best follows from Chapter 5?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the phrase \"the habit of success\" mean in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the phrase \"the habit of success\" mean in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter reframe self-control?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter reframe self-control?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter avoid overpromising about routine?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter reframes self-control as something strengthened by rehearsal rather than left to raw resolve. Starbucks shows how scripts, scenarios, and expectations build a better default for difficult…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Chapter 6 shows that organizations often protect bad routines until a crisis makes those routines impossible to ignore. Duhigg's point is not that crises are good in themselves. It is that shock can …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 6 shows that organizations often protect bad routines until a crisis makes those routines impossible to ignore. Duhigg's point is not that crises are good in themselves. It is that shock can …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Chapter 6 shifts from stable training to shock. Duhigg argues that organizations often preserve weak routines for years because those routines are familiar and politically convenient. A crisis can br…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 6 shifts from stable training to shock. Duhigg argues that organizations often preserve weak routines for years because those routines are familiar and politically convenient. A crisis can br…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "Chapter 6 shifts from stable training to shock. Duhigg argues that organizations often preserve weak routines for years because those routines are familiar and politically convenient. A crisis can br…"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Chapter 6 explains why organizations often need a rupture before they will truly change. Earlier chapters showed how individuals build, replace, and leverage habits. Here Duhigg moves to institutions…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 6 explains why organizations often need a rupture before they will truly change. Earlier chapters showed how individuals build, replace, and leverage habits. Here Duhigg moves to institutions…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex01-handoff-failure"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex02-club-budget"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "After a student government event goes over budget, everyone blames the final week. In postmortem, the group realizes the real issue was a standing habit of vague approvals and no mid-cycle review."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After a student government event goes over budget, everyone blames the final week. In postmortem, the group realizes the real issue was a standing habit of vague approvals and no mid-cycle review."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex03-family-breakdown"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A family misses an important school pickup because everyone assumed someone else had it covered. In the conversation afterward, they realize the failure was not one person's forgetfulness but a house…"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A family misses an important school pickup because everyone assumed someone else had it covered. In the conversation afterward, they realize the failure was not one person's forgetfulness but a house…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A family misses an important school pickup because everyone assumed someone else had it covered. In the conversation afterward, they realize the failure was not one person's forgetfulness but a house…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex04-fire-drill"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A research lab runs a badly managed drill that reveals confusion about exits, chemicals, and reporting. Predict what happens if leadership turns that embarrassment into a redesigned weekly protocol i…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex05-council-chaos"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A campus event nearly collapses because no one knows who owns stage timing, vendor calls, or student volunteers. The council must choose between finding one person to blame or redesigning the role-cl…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex06-finance-scare"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "Before, a couple avoided talking about money until there was a scare. After an overdraft forced the issue, they built a short weekly finance check-in that prevented the same confusion from repeating."
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, a couple avoided talking about money until there was a scare. After an overdraft forced the issue, they built a short weekly finance check-in that prevented the same confusion from repeating."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, a couple avoided talking about money until there was a scare. After an overdraft forced the issue, they built a short weekly finance check-in that prevented the same confusion from repeating."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main claim about crisis?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main claim about crisis?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say institutions often change late?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say institutions often change late?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does a crisis change first in the chapter's model?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does a crisis change first in the chapter's model?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is crisis only an opportunity and not automatically a solution?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What ethical warning does the chapter include?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What ethical warning does the chapter include?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What happens if leaders fail to install a new routine before the crisis window closes?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say crisis can weaken resistance to change?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say crisis can weaken resistance to change?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the difference between panic and reform in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the difference between panic and reform in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "Which statement best fits Chapter 6?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement best fits Chapter 6?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter argues that crisis weakens resistance to institutional habit change by making the cost of old routines visible. That opening matters only if it leads to durable reporting, communication, …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "Chapter 7 shows what happens when companies study the traces habits leave behind. Duhigg uses Target's customer-prediction work to argue that routines are not only internal experiences. They create p…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 7 shows what happens when companies study the traces habits leave behind. Duhigg uses Target's customer-prediction work to argue that routines are not only internal experiences. They create p…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "Chapter 7 asks what happens when habit science leaves the self-help world and enters large-scale commerce. Duhigg's answer is that routines create patterns other people can read. The chapter's most f…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 7 asks what happens when habit science leaves the self-help world and enters large-scale commerce. Duhigg's answer is that routines create patterns other people can read. The chapter's most f…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "Chapter 7 changes the emotional texture of the book because it takes habit knowledge into markets, data, and asymmetry. Duhigg argues that repeated behavior leaves enough patterned evidence that comp…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 7 changes the emotional texture of the book because it takes habit knowledge into markets, data, and asymmetry. Duhigg argues that repeated behavior leaves enough patterned evidence that comp…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex01-grocery-app"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A product manager notices that users who suddenly buy energy drinks, frozen meals, and printer paper within the same week often become heavy late-night app users. The team can either treat that as a …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex02-campus-store"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "After finals week, students notice that a new snack brand seemed to appear everywhere they already bought coffee and notebooks. In postmortem, the store manager explains that new products sell better…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After finals week, students notice that a new snack brand seemed to appear everywhere they already bought coffee and notebooks. In postmortem, the store manager explains that new products sell better…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex03-ads-after-move"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "After signing a new lease, Jordan suddenly starts seeing ads for furniture, cleaning products, and storage bins. In conversation, a friend points out that the systems did not need a direct announceme…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After signing a new lease, Jordan suddenly starts seeing ads for furniture, cleaning products, and storage bins. In conversation, a friend points out that the systems did not need a direct announceme…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex04-recommendation-bar"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (159 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "An online store tests whether placing a new supplement next to a customer's usual monthly staples will outperform a standalone launch page. Predict the result."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "An online store tests whether placing a new supplement next to a customer's usual monthly staples will outperform a standalone launch page. Predict the result."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex05-club-merch"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A student club realizes merch sells best right after recurring meeting nights when excitement and belonging are already high. The leaders must decide whether to lean into that timing aggressively."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex06-weekend-cart"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (175 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Before, Mei thought her weekend shopping was mostly spontaneous. After looking back over receipts, she saw the same clusters repeating in the same order almost every Saturday."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Mei thought her weekend shopping was mostly spontaneous. After looking back over receipts, she saw the same clusters repeating in the same order almost every Saturday."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's main claim about habits and companies?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's main claim about habits and companies?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the Target case central to the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the Target case central to the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why do marketers place new products inside familiar contexts?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "What moral tension does Chapter 7 keep visible?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What moral tension does Chapter 7 keep visible?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter say habits create besides internal experience?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter say habits create besides internal experience?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A store places a new drink next to customers' usual morning purchases. Which chapter strategy is this?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is partial prediction still powerful according to the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is partial prediction still powerful according to the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What changes once habits become readable at scale?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter feel more unsettling than a normal retail story?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter feel more unsettling than a normal retail story?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "What is the best summary of Chapter 7?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the best summary of Chapter 7?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does Target prove in the chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter extends habit science into data and marketing. Repeated routines create readable trails, which companies can use for prediction, targeting, and influence. The Target case demonstrates pre…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "Chapter 8 asks how habits work when the unit is not one person or one company but a whole community. Duhigg argues that social movements often grow through shared habits of belonging, expectation, an…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 8 asks how habits work when the unit is not one person or one company but a whole community. Duhigg argues that social movements often grow through shared habits of belonging, expectation, an…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "Chapter 8 asks how habits operate when the actor is a community instead of an individual. Duhigg's answer is that social movements run on habits of belonging, obligation, and repeated participation. …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 8 asks how habits operate when the actor is a community instead of an individual. Duhigg's answer is that social movements run on habits of belonging, obligation, and repeated participation. …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "Chapter 8 expands habit logic to the level of social movements. Duhigg argues that communities do not act together only because people share beliefs. They act together because networks and routines m…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 8 expands habit logic to the level of social movements. Duhigg argues that communities do not act together only because people share beliefs. They act together because networks and routines m…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex01-parent-group"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A few parents start in one group chat about a dangerous crosswalk near the school. They now have to decide whether to keep it local or connect the issue to other classes and clubs."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex02-study-petition"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "A student petition goes nowhere the first time. In postmortem, the organizers realize they asked for support without creating any repeated meetings, visible rituals, or social expectation around show…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A student petition goes nowhere the first time. In postmortem, the organizers realize they asked for support without creating any repeated meetings, visible rituals, or social expectation around show…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex03-neighborhood-cleanup"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In talking after a successful cleanup, two neighbors realize the first event worked because families who trusted one another showed up together. The second and third events only happened because thos…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In talking after a successful cleanup, two neighbors realize the first event worked because families who trusted one another showed up together. The second and third events only happened because thos…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex04-donation-table"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (179 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "A nonprofit asks volunteers to staff a campaign table. Predict what happens if volunteers receive no social script versus a clear routine for greeting, inviting, and following up."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A nonprofit asks volunteers to staff a campaign table. Predict what happens if volunteers receive no social script versus a clear routine for greeting, inviting, and following up."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex05-team-captains"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Two club captains keep asking for volunteer turnout and get almost nothing. They can either repeat broader appeals or build stronger tie-based invitations and a visible attendance routine."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Two club captains keep asking for volunteer turnout and get almost nothing. They can either repeat broader appeals or build stronger tie-based invitations and a visible attendance routine."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex06-weekend-run"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "Before, people joined the neighborhood run once and vanished. After the organizer added coffee afterward and a standing welcome circle, attendance became steadier because the group felt more like bel…"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, people joined the neighborhood run once and vanished. After the organizer added coffee afterward and a standing welcome circle, attendance became steadier because the group felt more like bel…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, people joined the neighborhood run once and vanished. After the organizer added coffee afterward and a standing welcome circle, attendance became steadier because the group felt more like bel…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's central claim about movements?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's central claim about movements?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What job do strong ties perform in the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What job do strong ties perform in the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What job do weak ties perform?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why are shared routines so important in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why are shared routines so important in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say inspiration alone is not enough?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say inspiration alone is not enough?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A group has close friendships but never expands beyond one cluster. Which chapter concept explains the problem?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter mean by saying communities install scripts?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter mean by saying communities install scripts?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What caution does the chapter include about social habits?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What caution does the chapter include about social habits?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does belonging lower the cost of participation?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "What is the best summary of Chapter 8?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the best summary of Chapter 8?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does the chapter divide labor between strong and weak ties?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "How does the chapter divide labor between strong and weak ties?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter resist romanticizing social habits?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter reframes movements as networked habit systems. Montgomery and Saddleback show that strong ties initiate costly participation, weak ties spread it, and repeated social scripts sustain it o…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Chapter 9 closes the book by asking the hardest moral question it has postponed until now. If habits are powerful, when are people still responsible for what they do? Duhigg's answer is careful. Habi…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 9 closes the book by asking the hardest moral question it has postponed until now. If habits are powerful, when are people still responsible for what they do? Duhigg's answer is careful. Habi…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Chapter 9 finally asks the question the rest of the book keeps raising. If habits are powerful enough to shape memory, craving, organizations, and movements, what happens to responsibility? Duhigg's …"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 9 finally asks the question the rest of the book keeps raising. If habits are powerful enough to shape memory, craving, organizations, and movements, what happens to responsibility? Duhigg's …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "Chapter 9 closes the book by confronting the hardest unresolved issue. If habits are powerful enough to shape memory, craving, organizations, and communities, what happens to responsibility? Duhigg's…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 9 closes the book by confronting the hardest unresolved issue. If habits are powerful enough to shape memory, craving, organizations, and communities, what happens to responsibility? Duhigg's…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex01-late-night-driving"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex02-copy-paste-cheat"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.named_protagonist",
+          "severity": "blocker",
+          "message": "scenario has no named protagonist — reads as thesis-paraphrase, not a scene",
+          "evidence": "After getting caught reusing old work, a student says it had become automatic whenever deadlines piled up. In postmortem, the harder question becomes when he first recognized the pattern and what he …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After getting caught reusing old work, a student says it had become automatic whenever deadlines piled up. In postmortem, the harder question becomes when he first recognized the pattern and what he …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex03-family-anger"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Two siblings realize that one of them always explodes after a certain style of criticism and then apologizes later by saying it happened automatically. In conversation, the other sibling asks a harde…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Two siblings realize that one of them always explodes after a certain style of criticism and then apologizes later by saying it happened automatically. In conversation, the other sibling asks a harde…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex04-compliance-flag"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A team receives the same low-priority compliance alert every Friday and has grown used to clicking past it. Predict what changes in the moral picture once the team knows the alert has already signale…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A team receives the same low-priority compliance alert every Friday and has grown used to clicking past it. Predict what changes in the moral picture once the team knows the alert has already signale…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex05-plagiarism-chat"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A study group has developed a quiet habit of sharing old answer banks in ways that cross the line. One member feels uneasy because the behavior has become normal in the chat. The dilemma is whether g…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A study group has developed a quiet habit of sharing old answer banks in ways that cross the line. One member feels uneasy because the behavior has become normal in the chat. The dilemma is whether g…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex06-sunday-checklist"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Elena kept forgetting medication on weekends and telling herself it was accidental. After two dangerous slips, she built a Sunday checklist and shared it with her partner. The pattern was sti…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "What central distinction does Chapter 9 insist on?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What central distinction does Chapter 9 insist on?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What two variables matter heavily for responsibility in the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What two variables matter heavily for responsibility in the chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter reject pure determinism?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter reject pure determinism?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter also reject simple blame?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter also reject simple blame?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "What does Chapter 9 make self-knowledge become?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does Chapter 9 make self-knowledge become?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is one reason the chapter has a legal feel?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is one reason the chapter has a legal feel?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What happens to responsibility once a dangerous pattern becomes clearly known?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the best summary of the chapter's final balance?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the best summary of the chapter's final balance?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 9\" — breaks reading experience",
+          "evidence": "What practical question does Chapter 9 leave the reader with?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical question does Chapter 9 leave the reader with?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter separate?"
+        },
+        {
+          "checkId": "pedagogy.card_tests_retrieval",
+          "severity": "minor",
+          "message": "card front is a comprehension check, not retrieval practice",
+          "evidence": "What does the chapter separate?"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter argues that habit science complicates responsibility without erasing it. Explanation and exculpation remain distinct. Once a person knows a destructive pattern is active, stewardshi…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 2,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 3,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 5,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 6,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 7,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 90% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 8,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 80% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "the-power-of-habit",
+        "chapterNumber": 9,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 81,
+    "failedUnits": 151,
+    "passRate": 0.34913793103448276,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 163,
+        "fail": 62
+      },
+      "register.no_meta_reference": {
+        "pass": 93,
+        "fail": 78
+      },
+      "register.no_banned_phrase": {
+        "pass": 222,
+        "fail": 3
+      },
+      "narrative.named_protagonist": {
+        "pass": 42,
+        "fail": 12
+      },
+      "narrative.specific_scene": {
+        "pass": 22,
+        "fail": 32
+      },
+      "narrative.decision_point": {
+        "pass": 14,
+        "fail": 40
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 8,
+        "fail": 82
+      },
+      "schema.enum_validity": {
+        "pass": 0,
+        "fail": 90
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 90,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 41,
+        "fail": 4
+      },
+      "schema.answer_position_balance": {
+        "pass": 2,
+        "fail": 7
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch21",
+  "number": 21,
+  "title": "Let the Other Person Save Face",
+  "coreMove": "When someone is wrong or losing, hand them a dignified exit before you press your point",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a head chef telling a line cook he has been plating the special wrong all week in front of the Saturday-night crew",
+      "audience": "a head chef who runs a busy kitchen and has to keep the cook coming back Monday",
+      "stakes": "whether a competent young cook quits over public embarrassment instead of fixing his plating",
+      "format": "scene",
+      "requiredBeat": "the chef pulls the cook into the walk-in and reframes the error as a recipe-card problem so the cook can correct without confessing"
+    },
+    {
+      "domain": "a regional pharmacy manager who has to remove a long-tenured pharmacist from a store leadership role after a dispensing audit",
+      "audience": "a regional manager who has known the pharmacist for fifteen years",
+      "stakes": "whether the pharmacist stays with the company in a role that uses her real strengths or walks out humiliated",
+      "format": "dialogue",
+      "requiredBeat": "the manager opens by naming, in the pharmacist's own words, what she has been best at, then offers the new role as a use of that strength rather than a demotion"
+    },
+    {
+      "domain": "a piano teacher correcting an adult beginner who has been practicing a passage with the wrong fingering for a month",
+      "audience": "a piano teacher whose student is a sixty-year-old retiree paying out of pocket",
+      "stakes": "whether the student keeps coming to lessons or quietly cancels because he feels foolish",
+      "format": "vignette",
+      "requiredBeat": "the teacher praises the steadiness the student already built before naming the fingering change, so the change feels like an upgrade rather than a verdict"
+    },
+    {
+      "domain": "a county prosecutor offering a plea to a first-time defendant in front of his mother in the courtroom hallway",
+      "audience": "a county prosecutor who knows the kid will see his neighbors at church on Sunday",
+      "stakes": "whether the young man takes the deal or fights a losing case to protect his pride",
+      "format": "decision_point",
+      "requiredBeat": "the prosecutor frames the plea in language that lets the defendant accept responsibility without being branded in front of his mother"
+    },
+    {
+      "domain": "a hospice nurse correcting a grown daughter who has been giving her dying father the wrong dose because she misread the chart",
+      "audience": "a hospice nurse on a home visit",
+      "stakes": "whether the daughter keeps caring for her father at home or collapses into guilt and hands him over to a facility",
+      "format": "reflection",
+      "requiredBeat": "the nurse praises the daughter's vigilance, locates the error in the chart's handwriting rather than the daughter's care, and corrects the dose without ever making her say she was wrong"
+    },
+    {
+      "domain": "a high school principal handling a teacher who sent a sharply worded email to a parent that has now reached the superintendent",
+      "audience": "a principal who needs the teacher to write an apology that does not read as forced",
+      "stakes": "whether the teacher learns to write a different email next time or hardens into resentment and a union grievance",
+      "format": "postmortem",
+      "requiredBeat": "the principal walks through what the parent likely felt reading the email, lets the teacher arrive at the rewrite herself, and never makes her recant the original in writing"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

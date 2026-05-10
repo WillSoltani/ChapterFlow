@@ -1,0 +1,4312 @@
+{
+  "bookId": "good-to-great",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/good-to-great.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.302Z",
+  "chapterCount": 9,
+  "unitCount": 228,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "A company can look healthy and still be stuck. The bills are paid, the team is busy, and nobody is panicking. That sounds safe, but it can become a trap. When results are good enough, people stop ask…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A company that is doing fine rarely feels desperate. The numbers are acceptable, the culture is manageable, and the problems are not yet embarrassing. That is why the opening idea lands so hard. Bein…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The opening problem sounds almost unfair. A company can be strong enough to survive and still too comfortable to become great. That is what makes the phrase land. Good can be the enemy of great not b…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "The opening problem sounds almost unfair. A company can be strong enough to survive and still too comfortable to become great. That is what makes the phrase land. Good can be the enemy of great not b…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01-lena-work-quarter"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02-priya-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Priya spreads tournament sheets across a seminar table after practice. Her debate club won more rounds than last semester, yet the strongest teams still outclass them when the pressure rises. Everyon…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Priya spreads tournament sheets across a seminar table after practice. Her debate club won more rounds than last semester, yet the strongest teams still outclass them when the pressure rises. Everyon…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03-marcus-personal-store"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Marcus closes the register at his family's hardware store while his sister counts the till. 'We had a good year,' she says. Marcus nods, then asks, 'Good compared with what? Are we stronger, or just …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04-omar-work-rebrand"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Omar stands in front of a glossy new slide deck with a fresh logo, a new slogan, and an internal launch party booked for Friday. The company needed energy, and the rebrand will create it. He predicts…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar stands in front of a glossy new slide deck with a fresh logo, a new slogan, and an internal launch party booked for Friday. The company needed energy, and the rebrand will create it. He predicts…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05-lena-school-startuplab"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In the student venture lab, Lena's team has a product that works well enough for a small group of users. A visiting judge urges them to announce a dramatic pivot before demo day so the project will l…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06-marcus-personal-coaching"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Marcus ran his small coaching business by declaring a new focus every month. New offer, new script, new promise. It felt energetic, but clients kept encountering a business that was always re…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the opening danger Collins is trying to make readers see?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the comparison-company design matter so much in the opening argument?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Lena's team just had a respectable quarter and wants to celebrate it as proof they are finally becoming great. What is the strongest move from the chapter's logic?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement is the clearest misreading of the opening chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "During a board retreat, Marcus wants to challenge the phrase 'We had a good year.' Which question best matches the chapter's filter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can good be more dangerous than bad in the opening chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When people want a turnaround, they often look for a loud hero. Collins found something less flashy and more powerful. The leaders behind the leap combined personal humility with fierce professional …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 1\" — breaks reading experience",
+          "evidence": "When a company wants change, people often reach for a dramatic picture of leadership. They imagine the bold outsider, the magnetic talker, the person who can dominate a room and make uncertainty feel…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When a company wants change, people often reach for a dramatic picture of leadership. They imagine the bold outsider, the magnetic talker, the person who can dominate a room and make uncertainty feel…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter begins by challenging a deep instinct about power. When an institution is under pressure, people want reassurance in a visible form. They look for the commanding personality, the person w…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01-naomi-work-credit"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Naomi's division just shipped the most successful release in the company's last three years. The board packet highlights her name in bold. At the meeting, she can lean into that spotlight, or she can…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02-tessa-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "After a rain-soaked campus festival, Tessa sits in a fluorescent student-senate room with damp posters still rolled under one arm. She can blame volunteers for the confusion, or she can take responsi…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03-victor-personal-restaurant"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Victor is closing the family restaurant with his sister when she says their father is irreplaceable. Victor pauses by the humming dishwasher and asks whether that is a compliment or a warning. If the…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Victor is closing the family restaurant with his sister when she says their father is irreplaceable. Victor pauses by the humming dishwasher and asks whether that is a compliment or a warning. If the…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04-elias-work-outsidehire"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Elias sits through a board presentation about a famous outside executive who will 'change the culture overnight.' The room relaxes because the story is exciting. Six months later, the new leader has …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05-naomi-school-casecaptain"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Naomi is captain of a case-competition team. She knows she can dominate the final presentation herself and probably lift the score. She also knows two teammates are still shaky and need real reps bef…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Naomi is captain of a case-competition team. She knows she can dominate the final presentation herself and probably lift the score. She also knows two teammates are still shaky and need real reps bef…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06-victor-personal-coach"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Victor ran his coaching practice so every client breakthrough had to be traced back to his brilliance. He was exhausted and secretly afraid to let others lead sessions. After, he built a shar…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What defines Level 5 leadership in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What defines Level 5 leadership in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is humility alone not enough in Collins's framework?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A CEO insists on being seen as the hero of every success. Which part of the chapter's test is failing first?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A CEO insists on being seen as the hero of every success. Which part of the chapter's test is failing first?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Naomi's division wins big and the board wants to praise her alone. What response best matches Level 5 leadership?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "After a failed campus event, Tessa can either blame volunteers or own the planning gap first. Why does the second option fit the chapter better?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement is the strongest misreading of the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement is the strongest misreading of the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter care so much about succession even though it is talking about leadership style?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter care so much about succession even though it is talking about leadership style?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A highly magnetic outside hire transforms morale but keeps every key call dependent on personal force. What is the best reading from this chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter leave open the question of whether leaders can grow into Level 5 behavior?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter leave open the question of whether leaders can grow into Level 5 behavior?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What paradox sits at the center of this chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What pressure makes the chapter's leadership audit real?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When people face uncertainty, they usually want the plan first. Collins reverses that instinct. Great companies started by getting the right people on the bus and the wrong people off before fixing t…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Most leaders think uncertainty makes vision more urgent. Collins says uncertainty makes the right people more urgent. If the environment is shifting, the plan will need adjustment anyway. What matter…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter begins by resisting a comforting leadership instinct. When the future feels uncertain, people want clarity in the form of direction. They want the map first. Collins argues that uncertain…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01-aria-work-hiring"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Aria is building a new product group, and the executive team keeps pressing for a final roadmap before she fills two key roles. She has strong candidates in front of her and a strategy that is still …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02-janelle-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Janelle is reviewing a rough semester at the student paper. The staff was full of smart writers, but deadlines slipped and editing bottlenecked because the best reporter had been forced into operatio…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03-mateo-personal-family-role"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mateo and his brother are closing up the family print shop when Mateo says the obvious thing neither has wanted to name. Their cousin is loyal, hardworking, and still wrong for managing production. T…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04-hugo-work-genius"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Hugo believes one brilliant strategist can carry a whole unit, so he builds the team around a single star and a set of helpers. At first everything moves quickly because the center is so strong. Then…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Hugo believes one brilliant strategist can carry a whole unit, so he builds the team around a single star and a set of helpers. At first everything moves quickly because the center is so strong. Then…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05-aria-school-opportunity"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Aria runs a student conference team. Her strongest organizer keeps getting assigned to fix missed details because everyone trusts her under pressure. A new sponsorship opportunity is sitting open, bu…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06-mateo-personal-coach"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Mateo responded to every losing streak by rewriting the playbook for his amateur soccer team. After, he looked harder at role fit, commitment, and who actually belonged in the starting group.…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Mateo responded to every losing streak by rewriting the playbook for his amateur soccer team. After, he looked harder at role fit, commitment, and who actually belonged in the starting group.…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's core reversal?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's core reversal?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter get stronger when the future is uncertain?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter get stronger when the future is uncertain?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A very capable analyst is slowing the team because she is in the wrong role. What idea from the chapter is most relevant?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Aria has good candidates now but an unfinished roadmap. What choice best fits the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Aria has good candidates now but an unfinished roadmap. What choice best fits the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A school club has talented members but weak results because roles are mismatched. What is the strongest diagnosis?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement is the clearest misreading of the chapter's rigor standard?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement is the clearest misreading of the chapter's rigor standard?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter want the best people working on opportunities instead of constant cleanup?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter want the best people working on opportunities instead of constant cleanup?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A team depends on one brilliant operator and a set of helpers. What warning fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is people-first not the same thing as being anti-strategy?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "If the bus is finally right, what challenge naturally comes next in the sequence of the book?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "If the bus is finally right, what challenge naturally comes next in the sequence of the book?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does seat fit add to the chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How can a hard people decision still fail the chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter care where the best people are assigned?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Bad news usually gets softened before it reaches the people who could act on it. Collins treats that as dangerous because polite facts are weaker than real facts. Great companies learned to confront …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Bad news usually gets softened before it reaches the people who could act on it. Collins treats that as dangerous because polite facts are weaker than real facts. Great companies learned to confront …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Bad news almost never travels upward at full strength. It gets softened, renamed, or delayed to protect comfort. Collins treats that habit as deeply dangerous because decisions built on edited truth …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Bad news almost never travels upward at full strength. It gets softened, renamed, or delayed to protect comfort. Collins treats that habit as deeply dangerous because decisions built on edited truth …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter begins with an uncomfortable truth about information. Problems rarely travel upward in their original shape. People rename them, soften them, or delay them to keep the room calm. Collins …"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "The chapter begins with an uncomfortable truth about information. Problems rarely travel upward in their original shape. People rename them, soften them, or delay them to keep the room calm. Collins …"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01-sonia-work-metric"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Sonia is staring at the dashboard before the weekly executive call. One service metric has worsened for four straight weeks, but the rest of the report looks stable. She can smooth the language and b…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Sonia is staring at the dashboard before the weekly executive call. One service metric has worsened for four straight weeks, but the rest of the report looks stable. She can smooth the language and b…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02-claire-school-autopsy"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Claire's student lab team just lost two weeks of work because a sample chain was mishandled. Everyone knows who touched the sample last. Claire can let the room collapse onto that one person, or she …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03-malik-personal-finance"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Malik is at the kitchen table with a pile of unpaid bills and a parent who keeps calling the situation temporary. He knows the family needs more than reassurance. The conversation has to move from so…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04-devin-work-suppressed"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Devin keeps delaying a candid report on churn because the quarter already feels tense. He predicts a calmer room if he waits for more data. Two months later, the churn trend is undeniable, the execut…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Devin keeps delaying a candid report on churn because the quarter already feels tense. He predicts a calmer room if he waits for more data. Two months later, the churn trend is undeniable, the execut…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05-sonia-school-debate"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Sonia is leading a student senate budget meeting that is running late. She can force a tidy consensus and get everyone out of the room, or she can let the disagreement stay alive long enough for the …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06-malik-personal-redflag"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Malik waited for problems in his weekend coaching group to become obvious. After, he added one simple red-flag check at the end of every session: one thing the group is not naming clearly eno…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the chapter's first demand?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the chapter's first demand?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the Stockdale paradox hold together?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A leader starts every meeting with strong answers and no real questions. What chapter risk appears first?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Sonia sees a worsening service metric and considers smoothing it in the weekly report. What move best fits the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Sonia sees a worsening service metric and considers smoothing it in the weekly report. What move best fits the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter prefer autopsies without blame after a failure?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter prefer autopsies without blame after a failure?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement is the strongest misreading of this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement is the strongest misreading of this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the main purpose of a red-flag mechanism in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main purpose of a red-flag mechanism in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is cynicism a failure rather than a success in this chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is cynicism a failure rather than a success in this chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "If the room can finally hear the facts clearly and still keep faith, what kind of question naturally follows next in the book?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Many organizations stay busy by keeping too many promising directions alive. Each option can be explained as adjacent, valuable, or too interesting to drop. The problem is not motion by itself. The p…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+          "evidence": "Many organizations stay busy by keeping too many promising directions alive. Each option can be explained as adjacent, valuable, or too interesting to drop. The problem is not motion by itself. The p…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"operating logic\" — 60 hits across 15 books — fine occasionally, overused.",
+          "evidence": "Many organizations stay busy by keeping too many promising directions alive. Each option can be explained as adjacent, valuable, or too interesting to drop. The problem is not motion by itself. The p…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The hedgehog concept begins by exposing how easy it is to confuse breadth with strength. A company can keep many attractive paths alive and feel intelligent because each one has a story behind it. Ye…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"operating logic\" — 60 hits across 15 books — fine occasionally, overused.",
+          "evidence": "The hedgehog concept begins by exposing how easy it is to confuse breadth with strength. A company can keep many attractive paths alive and feel intelligent because each one has a story behind it. Ye…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01-leila-work-engine"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Leila stands in front of a whiteboard filled with three growth options for her division. Each one has some support, and the room keeps calling them all too promising to drop. She notices that only on…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02-noor-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Noor and her student team review why their venture incubator project burned through enthusiasm and still stalled. Everyone cared deeply about the idea, but the revenue model never worked and the team…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03-dominic-personal-family-bestat"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the storefront counter after closing, Dominic and his sister debate whether their family shop should add a broad online catalog. The idea sounds exciting, but Dominic keeps returning to one uncomf…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the storefront counter after closing, Dominic and his sister debate whether their family shop should add a broad online catalog. The idea sounds exciting, but Dominic keeps returning to one uncomf…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04-caleb-work-sprawl"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Caleb tells his managers they can pursue four adjacent initiatives at once because each one could help the company grow. The production board looks full, the meetings sound energetic, and nobody has …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05-noor-school-expansion"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06-dominic-personal-coach"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Dominic kept adding new drills so every athlete would feel fully developed. After studying the training logs, he noticed one strength the team could build into a true edge, one metric that be…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Dominic kept adding new drills so every athlete would feel fully developed. After studying the training logs, he noticed one strength the team could build into a true edge, one metric that be…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the hedgehog concept mainly trying to produce?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which three circles have to meet before the concept is real?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A team loves its project but cannot name a durable economic driver. What is the strongest diagnosis?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement most clearly misreads the best-at circle?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is saying no such a central discipline here?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest sign that a strategy is still a flattering story rather than a real hedgehog?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Once the hedgehog is clear, what challenge naturally comes next?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Many people assume organizations must choose between lively freedom and heavy control. Collins rejects that false choice. In a strong company, discipline is not the enemy of freedom. It is the thing …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A culture of discipline starts by refusing a false choice. Many leaders imagine that freedom and discipline pull against each other, so the organization must lean toward one or suffer the other. Coll…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex01-farah-work-framework"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Farah's team missed two deadlines, and the fastest response would be another page of rules. Instead, she studies the shared checklist and realizes people are improvising because the team has never de…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex02-mina-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "During a postmortem at the student-run clinic, Mina looks through new forms, extra approvals, and a scheduling binder that grew thicker every month. The team added all of it after repeated errors, ye…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex03-owen-personal-rules-trust"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the back office desk of their family business, Owen argues for more rules after two employees handled the same issue differently. His sister points to the whiteboard priorities and asks whether th…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the back office desk of their family business, Owen argues for more rules after two employees handled the same issue differently. His sister points to the whiteboard priorities and asks whether th…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex04-seth-work-controls"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Seth responds to scattered execution by adding more approvals, more policy language, and a larger production board with tighter reporting. At first the team looks calmer because fewer people act with…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Seth responds to scattered execution by adding more approvals, more policy language, and a larger production board with tighter reporting. At first the team looks calmer because fewer people act with…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex05-mina-school-stopdoing"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the editorial board room, Mina sees that the journal keeps carrying side projects that once felt exciting but now pull force from its strongest work. The shared calendar is crowded, and nobody wan…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the editorial board room, Mina sees that the journal keeps carrying side projects that once felt exciting but now pull force from its strongest work. The shared calendar is crowded, and nobody wan…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex06-owen-personal-coach"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Owen reacted to every weak practice with a new instruction. After, he put the team's three core priorities on the wall, removed drills that no longer supported them, and asked players to make…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Owen reacted to every weak practice with a new instruction. After, he put the team's three core priorities on the wall, removed drills that no longer supported them, and asked players to make…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does a culture of discipline mean here?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can freedom be safe inside this model?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A team keeps adding rules because leaders do not trust decisions at the edges. What is the strongest diagnosis?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Farah's team missed deadlines. What move best fits the idea?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement most clearly misreads freedom within a framework?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is a stop-doing list so important in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is a stop-doing list so important in this chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest sign that a control system is producing false discipline rather than real discipline?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Once disciplined people and disciplined culture are in place, what question naturally follows?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "New tools often get treated like rescue plans. Collins argues that technology can help greatly, but only when it strengthens a concept that is already clear. A company does not become great because i…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Organizations often talk about technology as if one tool, platform, or system could create the breakthrough they have been missing. Collins pushes against that hope. Technology matters, but not as th…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Technology Accelerators starts by attacking a comforting fantasy. When a company feels pressure, it is easier to imagine that the right system, platform, or tool will create the leap than to admit th…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter honest\" — 111 hits across 36 books. Impossible to appear organically at that rate.",
+          "evidence": "Technology Accelerators starts by attacking a comforting fantasy. When a company feels pressure, it is easier to imagine that the right system, platform, or tool will create the leap than to admit th…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"keeps the chapter from\" — Meta-reference + stock construction. 167 hits across 50 books.",
+          "evidence": "Technology Accelerators starts by attacking a comforting fantasy. When a company feels pressure, it is easier to imagine that the right system, platform, or tool will create the leap than to admit th…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex01-iris-work-fit"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex02-amina-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the robotics lab, Amina reviews a season where the team spent heavily on a flashy kit but kept changing its direction. The hardware worked well, but the team still lacked a settled design concept …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the robotics lab, Amina reviews a season where the team spent heavily on a flashy kit but kept changing its direction. The hardware worked well, but the team still lacked a settled design concept …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex03-nolan-personal-platform"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the checkout counter after closing, Nolan's family debates joining a new digital platform that everyone in town keeps praising. Nolan asks the harder question: does the platform strengthen the spe…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex04-theo-work-rollout"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Theo leads a major system rollout that creates new dashboards, new reporting lines, and a visible sense of urgency. For several weeks the organization feels modern and busy. Months later, the same st…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex05-amina-school-media"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex06-nolan-personal-tracker"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Nolan kept trying new apps because he thought better measurement would make the team improve faster. After clarifying the one kind of performance he most needed to strengthen, he picked a sim…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Nolan kept trying new apps because he thought better measurement would make the team improve faster. After clarifying the one kind of performance he most needed to strengthen, he picked a sim…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is technology mainly doing in this chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is technology mainly doing in this chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What can technology not do by itself?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest test for whether a technology deserves force?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Iris faces pressure to buy a trendy platform, but a quieter tool would strengthen the team's real edge. What fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A robotics team buys an impressive kit but still lacks a settled design concept. What is the best diagnosis?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement most clearly misreads the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement most clearly misreads the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is saying no to a prestigious tool sometimes the most disciplined move?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest sign of technology frenzy rather than disciplined adoption?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "If technology only accelerates what already exists, what question naturally comes next?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "People love stories about one dramatic breakthrough. Collins argues that real breakthrough usually looks different. It comes from many steady pushes in the same direction until momentum becomes stron…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Breakthrough stories are attractive because they make success look dramatic and controllable. A leader arrives, a bold move gets announced, and the company suddenly changes. Collins argues that this …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter begins by exposing why breakthrough myths are so attractive. One dramatic move is easier to admire than a long chain of ordinary-looking discipline. A bold strategy announcement, a major …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex01-zara-work-reset"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex02-keisha-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the debate office, Keisha reviews a season full of motivational resets: new prep system, new meeting structure, new speaking priorities, then another new plan when results stayed uneven. The team …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the debate office, Keisha reviews a season full of motivational resets: new prep system, new meeting structure, new speaking priorities, then another new plan when results stayed uneven. The team …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex03-miles-personal-reinvention"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the back counter of the family business, Miles hears a relative argue for a dramatic reinvention because growth still feels too slow. Miles points to the storefront logs showing that the last year…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the back counter of the family business, Miles hears a relative argue for a dramatic reinvention because growth still feels too slow. Miles points to the storefront logs showing that the last year…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex04-leon-work-restructure"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Leon launches another restructuring after deciding the last quarter's gains were not visible enough. The new layout makes the organization feel urgent again, and the meetings sound freshly serious. A…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leon launches another restructuring after deciding the last quarter's gains were not visible enough. The new layout makes the organization feel urgent again, and the meetings sound freshly serious. A…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex05-keisha-school-publication"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex06-miles-personal-chart"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Miles kept changing drills whenever progress looked too slow. After, he committed to one coherent training emphasis and tracked it on the same chart for weeks. The early sessions felt repetit…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Miles kept changing drills whenever progress looked too slow. After, he committed to one coherent training emphasis and tracked it on the same chart for weeks. The early sessions felt repetit…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the flywheel mainly describe?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "How does breakthrough usually look in this chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does breakthrough usually look in this chapter's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why do the earlier chapters matter so much to the flywheel idea?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Zara sees modest but reinforcing gains, while others want a dramatic reset for visibility. What move fits best?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "A debate team keeps changing prep systems and meeting structures before any of them settle. What is the best diagnosis?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which statement most clearly misreads the chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement most clearly misreads the chapter?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What most often turns urgency into doom-loop behavior?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest sign that a leader is strengthening the doom loop rather than the flywheel?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "If the flywheel explains how greatness becomes visible, what question naturally follows next?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A leap to greatness can look like the end of the story. Collins closes by treating it as a harder beginning. Strong results matter, but they do not guarantee that the institution will keep deserving …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter begins by refusing a flattering ending. It would be easy to treat a leap to greatness as proof that the hard part is over. Collins does not let the book end there. He treats good to…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"operating logic\" — 60 hits across 15 books — fine occasionally, overused.",
+          "evidence": "The final chapter begins by refusing a flattering ending. It would be easy to treat a leap to greatness as proof that the hard part is over. Collins does not let the book end there. He treats good to…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The final chapter begins by exposing a dangerous temptation in success. Once a company makes the leap, it becomes easy to tell a story in which the difficult part is finished. The evidence is visible…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"operating logic\" — 60 hits across 15 books — fine occasionally, overused.",
+          "evidence": "The final chapter begins by exposing a dangerous temptation in success. Once a company makes the leap, it becomes easy to tell a story in which the difficult part is finished. The evidence is visible…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex01-elise-work-discipline"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Elise's division has just had its strongest year, and the room wants to celebrate by loosening a few routines that once felt necessary. The annual report looks strong enough to make the idea sound ha…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex02-rina-school-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At an alumni leadership retreat, Rina reviews a team that had a breakout year and then quietly lost sharpness. Meetings became less rigorous because everyone kept referring to last year's achievement…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex03-damon-personal-strongyear"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"operating logic\" — 60 hits across 15 books — fine occasionally, overused.",
+          "evidence": "At the family business ledger table, Damon hears relatives argue that a strong year means they can relax some of the disciplines that once felt non-negotiable. Damon points to the storefront logs and…"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "At the family business ledger table, Damon hears relatives argue that a strong year means they can relax some of the disciplines that once felt non-negotiable. Damon points to the storefront logs and…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "At the family business ledger table, Damon hears relatives argue that a strong year means they can relax some of the disciplines that once felt non-negotiable. Damon points to the storefront logs and…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex04-joel-work-entitlement"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Joel's team reaches a visible breakthrough and begins acting as if the hard part is finished. Standards soften slightly, truth gets handled more gently, and side bets start creeping back in because t…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Joel's team reaches a visible breakthrough and begins acting as if the hard part is finished. Standards soften slightly, truth gets handled more gently, and side bets start creeping back in because t…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex05-rina-school-standards"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In the year-end editorial room, Rina's publication has just had a breakout cycle and the board wants to relax some of the old standards to make next year easier. The editorial wall and issue logs tel…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In the year-end editorial room, Rina's publication has just had a breakout cycle and the board wants to relax some of the old standards to make next year easier. The editorial wall and issue logs tel…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex06-damon-personal-routine"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Damon treated a winning season as proof that the team had finally arrived. After, he used the practice logs to identify which routines had made the season strong and made those routines more …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Damon treated a winning season as proof that the team had finally arrived. After, he used the practice logs to identify which routines had made the season strong and made those routines more …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the closing chapter mainly trying to do?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does a leap to greatness not guarantee?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What still has to stay alive after the breakthrough if strength is supposed to last?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which statement most clearly misreads the final chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the flywheel still matter in the final chapter?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest sign that greatness is turning into a vulnerable story rather than durable strength?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the strongest closing integration across the whole book?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 7,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 8,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 90% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "good-to-great",
+        "chapterNumber": 9,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 70% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 167,
+    "failedUnits": 61,
+    "passRate": 0.7324561403508771,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 224,
+        "fail": 1
+      },
+      "register.no_meta_reference": {
+        "pass": 113,
+        "fail": 58
+      },
+      "register.no_banned_phrase": {
+        "pass": 215,
+        "fail": 10
+      },
+      "narrative.named_protagonist": {
+        "pass": 54,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 23,
+        "fail": 31
+      },
+      "narrative.decision_point": {
+        "pass": 13,
+        "fail": 41
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 22,
+        "fail": 68
+      },
+      "schema.enum_validity": {
+        "pass": 72,
+        "fail": 18
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 90,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 45,
+        "fail": 0
+      },
+      "schema.answer_position_balance": {
+        "pass": 6,
+        "fail": 3
+      }
+    }
+  }
+}

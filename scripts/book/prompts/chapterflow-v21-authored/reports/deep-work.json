@@ -1,0 +1,4843 @@
+{
+  "bookId": "deep-work",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/deep-work.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.205Z",
+  "chapterCount": 9,
+  "unitCount": 234,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "Most people know the feeling of ending a busy day with very little that feels finished. Messages were answered, tabs were shuffled, meetings happened, and yet the work that would have changed somethi…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A lot of people reach the end of the day with the strange fatigue that comes from constant motion and weak completion. The calendar was full, the inbox moved, and the chat threads stayed active, yet …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The introduction to Deep Work begins with a problem many people feel before they can describe it. A day can be crowded, exhausting, and socially validated while still failing to make room for the wor…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex01-elaine-inbox-block"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Elaine opens her laptop planning to revise a client proposal, then sees twelve unread messages and feels the old pull toward quick replies. She knows the replies will make her feel responsible. She a…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex02-omar-study-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (177 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Omar leaves the library feeling busy but not settled. He spent most of the evening bouncing between the course thread, the assignment portal, and half-started practice problems."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar leaves the library feeling busy but not settled. He spent most of the evening bouncing between the course thread, the assignment portal, and half-started practice problems."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex03-rina-piano-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Rina tells her brother she spent an hour on piano, then admits most of it went to reorganizing sheet music and checking tutorial comments. He asks the uncomfortable question: did she practice, or did…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Rina tells her brother she spent an hour on piano, then admits most of it went to reorganizing sheet music and checking tutorial comments. He asks the uncomfortable question: did she practice, or did…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex04-devon-predict-reveal"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Devon spends a day in meetings about a forecasting model and leaves with pages of notes but no model improvement. The reveal is simple and slightly painful: the day was full of coordination about the…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Devon spends a day in meetings about a forecasting model and leaves with pages of notes but no model improvement. The reveal is simple and slightly painful: the day was full of coordination about the…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex05-tessa-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Tessa keeps her laptop open for seminar reading but also keeps every message alert live because she feels responsible. By the end of the block, she has skimmed a lot and absorbed little."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tessa keeps her laptop open for seminar reading but also keeps every message alert live because she feels responsible. By the end of the block, she has skimmed a lot and absorbed little."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-ex06-marta-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Marta called any evening with open tabs and idea collecting a writing night. After, she counts the evening as successful only if she protects forty minutes of actual drafting."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Marta called any evening with open tabs and idea collecting a writing night. After, she counts the evening as successful only if she protects forty minutes of actual drafting."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is deep work in the introduction's terms?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the introduction call shallow work?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the introduction say deep work matters?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What tension does the introduction set up?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does the introduction want the reader to judge a day?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is shallow work described as dangerous when it dominates the schedule?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best fits the introduction's idea of deep work?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does the introduction say about shallow work itself?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is naming deep and shallow work already useful before any rule appears?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "If someone feels busy all day but finishes no demanding work, how would the introduction interpret that day?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "After the introduction names deep work, Chapter 2 explains why it is worth defending so aggressively. Newport's claim is practical: deep work helps people learn hard things quickly and produce better…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "After the introduction names deep work, Chapter 2 explains why it is worth defending so aggressively. Newport's claim is practical: deep work helps people learn hard things quickly and produce better…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Chapter 2 takes the deep-work idea out of the realm of preference and places it inside the logic of economic value. Newport argues that deep work matters because it strengthens two abilities that mod…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Chapter 2 takes the deep-work idea out of the realm of preference and places it inside the logic of economic value. Newport argues that deep work matters because it strengthens two abilities that mod…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "A practical claim finally takes center stage in Chapter 2. Newport is not asking the reader to admire concentration because it feels clean or old-fashioned. He is arguing that deep work matters becau…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A practical claim finally takes center stage in Chapter 2. Newport is not asking the reader to admire concentration because it feels clean or old-fashioned. He is arguing that deep work matters becau…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex01-samira-decision"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (153 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Samira has to learn a new forecasting model for her team. She can either keep the training scattered between messages or give it one uninterrupted block."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Samira has to learn a new forecasting model for her team. She can either keep the training scattered between messages or give it one uninterrupted block."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex02-levi-postmortem"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Levi worked on his essay for hours, but the draft still feels shallow. His postmortem shows that the session was mostly broken into short bursts and constant checking. \n He spent time near the essay …"
+        },
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (167 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Levi worked on his essay for hours, but the draft still feels shallow. His postmortem shows that the session was mostly broken into short bursts and constant checking."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Levi worked on his essay for hours, but the draft still feels shallow. His postmortem shows that the session was mostly broken into short bursts and constant checking."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex03-ana-dialogue"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (173 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ana tells her friend she studies Spanish every night, then admits most sessions happen with half her attention on the phone. The conversation turns from duration to quality."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex04-jalen-predict"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (169 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Jalen's design reviews improve after he starts protecting quiet preparation time before the meeting. The reveal is that better output was built before the public moment."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Jalen's design reviews improve after he starts protecting quiet preparation time before the meeting. The reveal is that better output was built before the public moment."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex05-mira-dilemma"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (117 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mira keeps rewriting neat notes for calculus because it feels productive, but her problem-set performance stays flat."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-ex06-noah-before-after"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (178 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Before, Noah counted tutorial browsing and gear comparison as art practice. After, he counts only the block where he wrestles with the drawing itself as the core productive part."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Noah counted tutorial browsing and gear comparison as art practice. After, he counts only the block where he wrestles with the drawing itself as the core productive part."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Which two abilities does Chapter 2 say deep work strengthens most?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which two abilities does Chapter 2 say deep work strengthens most?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does deep work help with difficult learning?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Why does Chapter 2 connect deep work to output quality?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does Chapter 2 connect deep work to output quality?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes the value argument stronger than a generic focus appeal?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "How does distraction hurt in Chapter 2's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "How does distraction hurt in Chapter 2's logic?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say deep work functions like leverage?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say deep work functions like leverage?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "What loop does Chapter 2 expose?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What loop does Chapter 2 expose?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Why is a busy distracted worker still at risk according to Chapter 2?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is a busy distracted worker still at risk according to Chapter 2?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best fits the chapter's production claim?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best fits the chapter's production claim?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "If someone wants to become more valuable in a knowledge economy, what does Chapter 2 imply they should protect?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "If someone wants to become more valuable in a knowledge economy, what does Chapter 2 imply they should protect?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What makes distraction a double cost in this chapter?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "This chapter asks why deep work stays scarce even after its value has been established. Constant connectivity and visible responsiveness make shallow work look safer than concentration. Visible respo…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter asks why deep work stays scarce even after its value has been established. Constant connectivity and visible responsiveness make shallow work look safer than concentration. Visible respo…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "This chapter asks why deep work stays scarce even after its value has been established. Constant connectivity and visible responsiveness make shallow work look safer than concentration. Visible respo…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter asks why deep work stays scarce even after its value has been established. Constant connectivity and visible responsiveness make shallow work look safer than concentration. Visible respo…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "This chapter asks why deep work stays scarce even after its value has been established. Constant connectivity and visible responsiveness make shallow work look safer than concentration. Visible respo…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter asks why deep work stays scarce even after its value has been established. Constant connectivity and visible responsiveness make shallow work look safer than concentration. Visible respo…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (175 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Samira runs into workplace norms that reward visibility faster than depth and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (173 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Levi runs into workplace norms that reward visibility faster than depth and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (172 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ana runs into workplace norms that reward visibility faster than depth and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (174 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Jalen runs into workplace norms that reward visibility faster than depth and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (173 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mira runs into workplace norms that reward visibility faster than depth and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (173 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Noah runs into workplace norms that reward visibility faster than depth and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Deep Work Is Rare?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Deep Work Is Rare challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "This chapter asks what deep work does to the quality of a life, not only to the quality of output. Attention shapes experience, so a fragmented day often feels thinner than a concentrated one. Deep w…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter asks what deep work does to the quality of a life, not only to the quality of output. Attention shapes experience, so a fragmented day often feels thinner than a concentrated one. Deep w…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "This chapter asks what deep work does to the quality of a life, not only to the quality of output. Attention shapes experience, so a fragmented day often feels thinner than a concentrated one. Deep w…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter asks what deep work does to the quality of a life, not only to the quality of output. Attention shapes experience, so a fragmented day often feels thinner than a concentrated one. Deep w…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 4\" — breaks reading experience",
+          "evidence": "This chapter asks what deep work does to the quality of a life, not only to the quality of output. Attention shapes experience, so a fragmented day often feels thinner than a concentrated one. Deep w…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter asks what deep work does to the quality of a life, not only to the quality of output. Attention shapes experience, so a fragmented day often feels thinner than a concentrated one. Deep w…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Samira runs into the difference between fragmented effort and fully engaged work and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Levi runs into the difference between fragmented effort and fully engaged work and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (179 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ana runs into the difference between fragmented effort and fully engaged work and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Jalen runs into the difference between fragmented effort and fully engaged work and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mira runs into the difference between fragmented effort and fully engaged work and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Noah runs into the difference between fragmented effort and fully engaged work and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Deep Work Is Meaningful?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Deep Work Is Meaningful challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "This chapter turns from argument to method: serious depth almost never appears reliably by accident. Without a schedule and clear boundaries, shallow obligations usually claim the day first. Deep wor…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter turns from argument to method: serious depth almost never appears reliably by accident. Without a schedule and clear boundaries, shallow obligations usually claim the day first. Deep wor…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "This chapter turns from argument to method: serious depth almost never appears reliably by accident. Without a schedule and clear boundaries, shallow obligations usually claim the day first. Deep wor…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter turns from argument to method: serious depth almost never appears reliably by accident. Without a schedule and clear boundaries, shallow obligations usually claim the day first. Deep wor…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "This chapter turns from argument to method: serious depth almost never appears reliably by accident. Without a schedule and clear boundaries, shallow obligations usually claim the day first. Deep wor…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter turns from argument to method: serious depth almost never appears reliably by accident. Without a schedule and clear boundaries, shallow obligations usually claim the day first. Deep wor…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (165 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Samira runs into leaving deep work to mood instead of structure and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (163 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Levi runs into leaving deep work to mood instead of structure and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (162 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ana runs into leaving deep work to mood instead of structure and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (164 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Jalen runs into leaving deep work to mood instead of structure and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (163 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mira runs into leaving deep work to mood instead of structure and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (163 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Noah runs into leaving deep work to mood instead of structure and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Work Deeply?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Work Deeply challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter turns depth into operations: put it on the calendar, reduce startup friction, and shut work down cleanly enough to repeat the process."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "This chapter argues that concentration must be strengthened, not merely requested. Constant checking teaches the mind to expect interruption, which makes sustained focus harder to hold. Concentration…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter argues that concentration must be strengthened, not merely requested. Constant checking teaches the mind to expect interruption, which makes sustained focus harder to hold. Concentration…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 6\" — breaks reading experience",
+          "evidence": "This chapter argues that concentration must be strengthened, not merely requested. Constant checking teaches the mind to expect interruption, which makes sustained focus harder to hold. Concentration…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter argues that concentration must be strengthened, not merely requested. Constant checking teaches the mind to expect interruption, which makes sustained focus harder to hold. Concentration…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 5\" — breaks reading experience",
+          "evidence": "This chapter argues that concentration must be strengthened, not merely requested. Constant checking teaches the mind to expect interruption, which makes sustained focus harder to hold. Concentration…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter argues that concentration must be strengthened, not merely requested. Constant checking teaches the mind to expect interruption, which makes sustained focus harder to hold. Concentration…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (170 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Samira runs into the reflex to escape boredom with quick stimulation and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (168 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Levi runs into the reflex to escape boredom with quick stimulation and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (167 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ana runs into the reflex to escape boredom with quick stimulation and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (169 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Jalen runs into the reflex to escape boredom with quick stimulation and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (168 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mira runs into the reflex to escape boredom with quick stimulation and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (168 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Noah runs into the reflex to escape boredom with quick stimulation and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Embrace Boredom?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Embrace Boredom challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter treats distraction as a training problem: constant checking conditions a shallower mind, while pre-decided limits and recovery strengthen focus."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "This chapter argues that not every digital tool deserves a place in a life that values depth. Optional tools often arrive with hidden costs in time, fragmentation, and mental pull that people fail to…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter argues that not every digital tool deserves a place in a life that values depth. Optional tools often arrive with hidden costs in time, fragmentation, and mental pull that people fail to…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "This chapter argues that not every digital tool deserves a place in a life that values depth. Optional tools often arrive with hidden costs in time, fragmentation, and mental pull that people fail to…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter argues that not every digital tool deserves a place in a life that values depth. Optional tools often arrive with hidden costs in time, fragmentation, and mental pull that people fail to…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 7\" — breaks reading experience",
+          "evidence": "This chapter argues that not every digital tool deserves a place in a life that values depth. Optional tools often arrive with hidden costs in time, fragmentation, and mental pull that people fail to…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter argues that not every digital tool deserves a place in a life that values depth. Optional tools often arrive with hidden costs in time, fragmentation, and mental pull that people fail to…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Samira runs into digital tools that keep their place by default rather than by contribution and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Levi runs into digital tools that keep their place by default rather than by contribution and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Ana runs into digital tools that keep their place by default rather than by contribution and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Jalen runs into digital tools that keep their place by default rather than by contribution and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mira runs into digital tools that keep their place by default rather than by contribution and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Noah runs into digital tools that keep their place by default rather than by contribution and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Quit Social Media?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Quit Social Media challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter applies a craftsman standard to digital tools: judge them by priorities, count their hidden costs, and subtract where the contribution is weak."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "This chapter accepts that shallow work cannot be eliminated, but it argues that it must be constrained. Shallow obligations expand easily because they arrive in small pieces and often look harmless o…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter accepts that shallow work cannot be eliminated, but it argues that it must be constrained. Shallow obligations expand easily because they arrive in small pieces and often look harmless o…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "This chapter accepts that shallow work cannot be eliminated, but it argues that it must be constrained. Shallow obligations expand easily because they arrive in small pieces and often look harmless o…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter accepts that shallow work cannot be eliminated, but it argues that it must be constrained. Shallow obligations expand easily because they arrive in small pieces and often look harmless o…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 8\" — breaks reading experience",
+          "evidence": "This chapter accepts that shallow work cannot be eliminated, but it argues that it must be constrained. Shallow obligations expand easily because they arrive in small pieces and often look harmless o…"
+        },
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter accepts that shallow work cannot be eliminated, but it argues that it must be constrained. Shallow obligations expand easily because they arrive in small pieces and often look harmless o…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Samira runs into shallow obligations that keep spreading because they are left vague and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Levi runs into shallow obligations that keep spreading because they are left vague and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Ana runs into shallow obligations that keep spreading because they are left vague and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Jalen runs into shallow obligations that keep spreading because they are left vague and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mira runs into shallow obligations that keep spreading because they are left vague and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Noah runs into shallow obligations that keep spreading because they are left vague and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Drain the Shallows?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Drain the Shallows challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter treats shallow work like a budget problem: measure it, bound it, and make its tradeoffs explicit so depth can survive."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The conclusion gathers the book into a broader invitation: choose a deep life, not only isolated deep sessions. Value, rarity, meaning, and the rules now point toward the same question: will the read…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The conclusion gathers the book into a broader invitation: choose a deep life, not only isolated deep sessions. Value, rarity, meaning, and the rules now point toward the same question: will the read…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The conclusion gathers the book into a broader invitation: choose a deep life, not only isolated deep sessions. Value, rarity, meaning, and the rules now point toward the same question: will the read…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Samira runs into treating depth as a life standard instead of a temporary trick and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (179 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Levi runs into treating depth as a life standard instead of a temporary trick and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (178 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Ana runs into treating depth as a life standard instead of a temporary trick and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Jalen runs into treating depth as a life standard instead of a temporary trick and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (179 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Mira runs into treating depth as a life standard instead of a temporary trick and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (179 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Noah runs into treating depth as a life standard instead of a temporary trick and has to decide whether to stay with the easy pattern or protect the deeper one the chapter favors."
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main claim of Conclusion?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What condition keeps the chapter's problem alive?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What false substitute does Conclusion challenge?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the chapter's problem more expensive than it first appears?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What practical move does the chapter finally recommend?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What practical move does the chapter finally recommend?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What larger pattern does the chapter want the reader to notice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which response best fits the chapter's advice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best fits the chapter's advice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What misunderstanding does the chapter push against?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which example best matches the chapter's logic?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What implication does the chapter leave behind?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"deeper\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "key_takeaway"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "The book closes by tying value, rarity, meaning, and the rules into one orientation. Depth becomes a life standard, not merely a technique."
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 1,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 1 wins 60% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 2,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 3,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 4,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 5,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 6,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 7,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 8,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "deep-work",
+        "chapterNumber": 9,
+        "unitType": "quiz_question"
+      },
+      "findings": [
+        {
+          "checkId": "schema.answer_position_balance",
+          "severity": "major",
+          "message": "quiz answer-position skew: idx 0 wins 100% (max 50%)"
+        }
+      ],
+      "passedCount": 0,
+      "totalCount": 1,
+      "passed": false
+    }
+  ],
+  "summary": {
+    "passedUnits": 134,
+    "failedUnits": 100,
+    "passRate": 0.5726495726495726,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 197,
+        "fail": 28
+      },
+      "register.no_meta_reference": {
+        "pass": 80,
+        "fail": 91
+      },
+      "register.no_banned_phrase": {
+        "pass": 225,
+        "fail": 0
+      },
+      "narrative.named_protagonist": {
+        "pass": 54,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 0,
+        "fail": 54
+      },
+      "narrative.decision_point": {
+        "pass": 45,
+        "fail": 9
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 0,
+        "fail": 90
+      },
+      "schema.enum_validity": {
+        "pass": 64,
+        "fail": 26
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 90,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 45,
+        "fail": 0
+      },
+      "schema.answer_position_balance": {
+        "pass": 0,
+        "fail": 9
+      }
+    }
+  }
+}

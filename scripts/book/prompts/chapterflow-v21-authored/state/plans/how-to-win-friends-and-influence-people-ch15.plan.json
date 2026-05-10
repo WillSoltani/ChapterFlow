@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch15",
+  "number": 15,
+  "title": "The Movies Do It. TV Does It. Why Don't You Do It?",
+  "coreMove": "Stage your point so the other person sees it happen in front of them, instead of explaining it in words.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a regional grocery manager trying to convince store owners to rotate produce more aggressively",
+      "audience": "a regional manager addressing five tired store owners at a Monday meeting",
+      "stakes": "whether a chain known for limp lettuce can win back weekend shoppers before the new competitor opens",
+      "format": "vignette",
+      "requiredBeat": "the manager sets a wilted head of romaine and a fresh one side by side on the conference table without speaking, lets the silence do the work, then asks which one shoppers picked up first this morning"
+    },
+    {
+      "domain": "a pediatric dentist coaxing a seven-year-old who refuses to brush her back teeth",
+      "audience": "a dentist who has already lost the lecture-the-parent approach twice this month",
+      "stakes": "a child heading toward her first filling and a mother who feels lectured every visit",
+      "format": "scene",
+      "requiredBeat": "the dentist hands the girl a disclosing tablet, lets her chew it, then walks her to the mirror so the pink stains on her own teeth do the persuading instead of any sentence the dentist could say"
+    },
+    {
+      "domain": "a small-town city council member fighting for a water-main replacement vote that has stalled for two budgets",
+      "audience": "a councilwoman with three minutes of floor time and a skeptical finance chair",
+      "stakes": "a $4 million bond and the chance that the next break floods the elementary school basement",
+      "format": "decision_point",
+      "requiredBeat": "she sets a sealed mason jar of brown tap water from the school custodian's sink on the dais before her first sentence, and decides in real time not to point at it — letting the chair see it on his own"
+    },
+    {
+      "domain": "a driving instructor with a tailgating sixteen-year-old who keeps insisting he has plenty of stopping distance",
+      "audience": "an instructor on lesson four with a boy who argues with every correction",
+      "stakes": "the kid's road test in two weeks and the very real chance he rear-ends someone before then",
+      "format": "predict_reveal",
+      "requiredBeat": "the instructor fills two paper cups of coffee, wedges them in the cupholders, asks the student to predict whether they will spill at his usual following distance, then has him brake hard so the answer pours into the boy's lap"
+    },
+    {
+      "domain": "a fourth-grade teacher introducing a unit on saving and spending to a class that has tuned out three worksheets in a row",
+      "audience": "a public-school teacher with twenty-six nine-year-olds and a budget of zero",
+      "stakes": "a class falling behind on a state financial-literacy benchmark and a teacher who has been told to make it stick",
+      "format": "before_after",
+      "requiredBeat": "contrast the dead worksheet morning with the afternoon she handed each child a stack of toy bills, opened a pretend snack shop at her desk, and let them watch their own piles shrink — show the moment a boy who hadn't spoken all week asks if he can put some back"
+    },
+    {
+      "domain": "a union steward on a parts-stamping floor whose foreman keeps brushing off reports of a faulty press guard",
+      "audience": "a steward who has filed three written safety complaints and gotten three shrugs",
+      "stakes": "a near-miss last Thursday that almost cost a millwright his thumb, and a foreman who reads memos but not faces",
+      "format": "dialogue",
+      "requiredBeat": "the steward walks into the foreman's office and stacks the week's defective guards on his desk one by one as he talks, so by the third sentence the foreman is staring at a pile he can no longer file away"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12
+}

@@ -1,0 +1,105 @@
+{
+  "bookId": "tiny-habits",
+  "title": "Tiny Habits",
+  "author": "BJ Fogg",
+  "thesisParagraph": "Behavior happens when motivation, ability, and a prompt converge at the same moment, and of those three the only reliable lever is ability. Make the behavior tiny enough that motivation barely matters and ability is never the bottleneck. Anchor that tiny behavior to something you already do, then celebrate the instant you finish so the brain wires the habit by feeling, not willpower. Most people fail at change because they aim for the version of themselves they want to be, instead of starting with the smallest version that fits inside the life they already have. Fogg's claim is that habits are a design problem, not a character problem, and that good design begins with shrinking, anchoring, and celebrating. Get those three right and the behavior repeats itself. Get them wrong and no amount of discipline will save you.",
+  "coreIdeas": [
+    {
+      "name": "Behavior Model (B=MAP)",
+      "oneSentence": "A behavior occurs only when motivation, ability, and a prompt arrive together.",
+      "mentalMove": "Diagnose a failed behavior by asking which of the three was missing, then fix that one.",
+      "sourceAnchors": [
+        "Ch 1 'How My Tiny Habits Method Began'",
+        "Fogg Behavior Model diagram",
+        "B=MAP definition"
+      ]
+    },
+    {
+      "name": "Make It Tiny",
+      "oneSentence": "Shrink a desired behavior until it takes thirty seconds and requires almost no motivation.",
+      "mentalMove": "Cut the behavior to its smallest meaningful version, the 'starter step' or 'scaling back' move.",
+      "sourceAnchors": [
+        "Ch 3 'Ability'",
+        "'Starter Step' and 'Scaling Back' technique",
+        "floss one tooth example"
+      ]
+    },
+    {
+      "name": "Anchor with the ABC Recipe",
+      "oneSentence": "After an existing routine (Anchor), do the new tiny Behavior, then Celebrate.",
+      "mentalMove": "Write a Tiny Habit Recipe in the form 'After I ___, I will ___' and place it inside an existing routine.",
+      "sourceAnchors": [
+        "Ch 4 'Prompts'",
+        "Tiny Habit Recipe template",
+        "Pearl Habit concept"
+      ]
+    },
+    {
+      "name": "Celebration and Shine",
+      "oneSentence": "A genuine feeling of success right after the behavior is what wires the habit.",
+      "mentalMove": "Invent a personal celebration (a fist pump, a 'yes', a smile in the mirror) and use it the instant the behavior ends.",
+      "sourceAnchors": [
+        "Ch 6 'Emotions Create Habits'",
+        "'Shine' concept",
+        "celebration menu exercise"
+      ]
+    },
+    {
+      "name": "Aspiration to Behavior Mapping",
+      "oneSentence": "Big aspirations only become real when broken into specific behaviors you can design for.",
+      "mentalMove": "List ten plausible behaviors for an aspiration ('Swarm of Behaviors'), then pick the ones that are high impact and easy.",
+      "sourceAnchors": [
+        "Ch 2 'Aspirations'",
+        "Behavior Swarm exercise",
+        "Focus Mapping"
+      ]
+    }
+  ],
+  "targetReader": "Adults who have tried and abandoned several self-improvement systems and now suspect the problem is not their willpower but their method. They want a calm, engineer-minded approach that respects how little energy they actually have on a Tuesday night.",
+  "voiceCharter": {
+    "register": "warm",
+    "person": "second",
+    "cadence": "short",
+    "signatureMoves": [
+      "Open a section with one tiny concrete behavior (flossing one tooth, two pushups after the toilet flushes), then pull back to the principle",
+      "Use 'you' directly and often, addressing the reader like a coach across a kitchen table",
+      "State a behavior design rule in a single declarative line, then unpack it in the next two sentences",
+      "Name the feeling, not just the action: 'You feel a small flicker of pride. That is the wiring happening.'",
+      "Use second-person imperative for the mental move, so the reader leaves each section with one thing to try"
+    ],
+    "avoidMoves": [
+      "Never write 'the chapter', 'this chapter', 'the author', 'the book', 'the law', 'in this chapter', or any phrasing that narrates the book as an object",
+      "Never print 'Chapter 1', 'Chapter 12', etc. inside prose",
+      "Never use the house-ruled phrases: 'boundary condition', 'keeps the chapter honest', 'strips away', 'is not decorative', 'is not magic', 'operating logic', 'diagnostic discipline', 'durable practice', 'turns out to be', 'That matters because'",
+      "Avoid moralizing about discipline or character; Fogg refuses to shame the reader",
+      "Do not lapse into neuroscience jargon (dopamine loops, basal ganglia) when a plain behavioral description works"
+    ]
+  },
+  "voiceSpecimens": [
+    "Start by flossing one tooth. One. If you find yourself flossing the rest, that is a bonus, not the assignment.",
+    "Motivation is a tide. It comes in, it goes out, and you cannot build a house on it.",
+    "After you pour your morning coffee, do two pushups. That is the whole recipe. Write it down exactly like that.",
+    "When you finish, say 'I did it' out loud and mean it. The feeling is the glue.",
+    "If a behavior feels hard, it is not too small yet. Make it smaller.",
+    "You are not lazy. You are under-designed. There is a difference, and the difference is the entire point.",
+    "Change is easier when you feel good while doing it. That is not a slogan, it is a design instruction."
+  ],
+  "voiceAntiSpecimens": [
+    "Recent neuroscience research has illuminated the dopaminergic substrates underlying habituation processes.",
+    "Perhaps it could be argued that smaller behaviors might, in some contexts, prove more sustainable.",
+    "If you just believe in yourself and grind every single day, your dreams will manifest.",
+    "Habits, fundamentally, represent the operationalization of intention through repeated behavioral instantiation.",
+    "One must first cultivate the inner discipline necessary to undertake meaningful transformation.",
+    "Let us now turn our attention to the matter of behavioral prompts and their classification."
+  ],
+  "teachingArc": "Begin with the Fogg Behavior Model so the reader has a diagnostic lens for every failed habit they have ever tried. Then teach the three design moves in order: shrink the behavior (ability), anchor it to an existing routine (prompt), and celebrate immediately (emotion as wiring). Once the recipe is solid, widen out to aspirations, behavior swarms, and untangling bad habits, so the reader sees the same three levers working at larger scale. End on identity, but only after the reader has stacked real wins, because Fogg earns identity change through behavior, not affirmation.",
+  "forbiddenMoves": [
+    "Never write 'the chapter', 'this chapter', 'the author', 'the book', 'the law', 'in this chapter', or narrate the book as an object",
+    "Never print 'Chapter 1', 'Chapter 12', etc. inside prose",
+    "Never use the house-ruled phrases: 'boundary condition', 'keeps the chapter honest', 'strips away', 'is not decorative', 'is not magic', 'operating logic', 'diagnostic discipline', 'durable practice', 'turns out to be', 'That matters because'",
+    "Never reuse protagonist names Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi",
+    "No willpower-as-virtue framing; Fogg explicitly rejects shaming the reader for low motivation",
+    "No 'hack your brain' or dopamine-hacking language; the book is about design, not neurochemistry tricks",
+    "No grand transformation promises; the whole pitch is that change is small, specific, and felt"
+  ]
+}

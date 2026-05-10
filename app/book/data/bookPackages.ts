@@ -6,7 +6,7 @@ import crucialConversationsPackageJson from "@/book-packages/crucial-conversatio
 import difficultConversationsPackageJson from "@/book-packages/difficult-conversations.modern.json";
 import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.modern.json";
 import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
-import tinyHabitsPackageJson from "@/book-packages/tiny-habits.modern.json";
+import tinyHabitsPackageJson from "@/book-packages/tiny-habits.v21.json";
 import essentialismPackageJson from "@/book-packages/essentialism.modern.json";
 import deepWorkPackageJson from "@/book-packages/deep-work.modern.json";
 import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.modern.json";
@@ -54,6 +54,7 @@ import theFirst20HoursPackageJson from "@/book-packages/the-first-20-hours.moder
 import theOutsidersPackageJson from "@/book-packages/the-outsiders.modern.json";
 import ultralearningPackageJson from "@/book-packages/ultralearning.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
 export type VariantFamily = "EMH" | "PBC";
 export type VariantKey =
@@ -87,6 +88,8 @@ export type PackageVariantContent = {
   activationPrompt?: string;
   selfCheckPrompt?: string;
   selfCheckPrompts?: string[];
+  reflectionPrompts?: string[];
+  closingPrompt?: string;
   predictionPrompt?: string;
 };
 
@@ -222,6 +225,21 @@ export function isV12BookPackage(bookPackage: Pick<BookPackage, "schemaVersion">
   return bookPackage?.schemaVersion === "1.1.0";
 }
 
+/**
+ * Books on the v21-authored schema render the same way as strict-v12 books in
+ * the reader: exact prose, three breakdown tiers, no fabricated content. The
+ * only difference is the additional v21 surfaces (hook, reflections,
+ * memorable lines) which are attached separately on the BookChapter object.
+ */
+export function isStrictReaderSchema(
+  bookPackage: Pick<BookPackage, "schemaVersion"> | undefined,
+): boolean {
+  return (
+    bookPackage?.schemaVersion === "1.1.0" ||
+    bookPackage?.schemaVersion === "chapterflow-v21-authored"
+  );
+}
+
 function normalizeNstdVariant(v: Record<string, unknown> | null | undefined, tone: ToneKey = "direct"): PackageVariantContent {
   const summaryBlocks: PackageSummaryBlock[] = [];
 
@@ -281,6 +299,12 @@ function normalizeNstdVariant(v: Record<string, unknown> | null | undefined, ton
         .map((p: unknown) => resolveTone(p, tone))
         .filter(Boolean)
     : undefined;
+  const reflectionPrompts = Array.isArray(v?.reflectionPrompts)
+    ? v.reflectionPrompts
+        .map((p: unknown) => resolveTone(p, tone))
+        .filter(Boolean)
+    : undefined;
+  const closingPrompt = v?.closingPrompt ? resolveTone(v.closingPrompt, tone) : undefined;
   const predictionPrompt = v?.predictionPrompt ? resolveTone(v.predictionPrompt, tone) : undefined;
 
   if (selfCheckPrompt) practice.push(selfCheckPrompt);
@@ -291,8 +315,8 @@ function normalizeNstdVariant(v: Record<string, unknown> | null | undefined, ton
 
   return {
     chapterBreakdown: chapterBreakdown || undefined,
-    importantSummary: chapterBreakdown ? chapterBreakdown.split(/\n\n+/)[0]?.trim() : undefined,
-    summaryBullets: keyTakeaways.length > 0 ? keyTakeaways : undefined,
+    importantSummary: undefined,
+    summaryBullets: undefined,
     summaryBlocks,
     keyTakeaways: keyTakeaways.length > 0 ? keyTakeaways : undefined,
     practice: practice.length > 0 ? practice : undefined,
@@ -300,6 +324,8 @@ function normalizeNstdVariant(v: Record<string, unknown> | null | undefined, ton
     activationPrompt,
     selfCheckPrompt,
     selfCheckPrompts: selfCheckPrompts && selfCheckPrompts.length > 0 ? selfCheckPrompts : undefined,
+    reflectionPrompts: reflectionPrompts && reflectionPrompts.length > 0 ? reflectionPrompts : undefined,
+    closingPrompt,
     predictionPrompt,
   };
 }
@@ -310,6 +336,20 @@ function titleCase(value: string): string {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+/**
+ * Normalizes ANY raw book package (v13 modern.json or v21 .v21.json) into the
+ * reader's `BookPackage` shape. Detects the v21 schema and routes through the
+ * v21 adapter; otherwise falls back to the legacy v13 normalizer.
+ * v21 books are tone-invariant (single canonical voice) — the `tone` argument
+ * is ignored for them.
+ */
+export function normalizeAnyPackage(raw: unknown, tone: ToneKey = "direct"): BookPackage {
+  if (isV21RawPackage(raw)) {
+    return normalizeV21Package(raw);
+  }
+  return normalizeNstdPackage((raw ?? {}) as Record<string, unknown>, tone);
 }
 
 function normalizeNstdPackage(raw: Record<string, unknown>, tone: ToneKey = "direct"): BookPackage {
@@ -520,13 +560,13 @@ export function getThePrincePackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(thePrincePackageJson, tone);
 }
 
-export const TINY_HABITS_PACKAGE = normalizeNstdPackage(tinyHabitsPackageJson, "direct");
+export const TINY_HABITS_PACKAGE = normalizeAnyPackage(tinyHabitsPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TINY_HABITS_RAW_CHAPTERS = getRawChapters(tinyHabitsPackageJson);
 
 export function getTinyHabitsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(tinyHabitsPackageJson, tone);
+  return normalizeAnyPackage(tinyHabitsPackageJson, tone);
 }
 
 export const ESSENTIALISM_PACKAGE = normalizeNstdPackage(essentialismPackageJson, "direct");

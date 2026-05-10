@@ -1,0 +1,166 @@
+{
+  "bookId": "how-to-win-friends-and-influence-people",
+  "chapterCount": 25,
+  "passed": true,
+  "findings": [
+    {
+      "catalogId": "F1",
+      "severity": "major",
+      "message": "19 protagonist name(s) appear in multiple chapters: Bernadette(ch1,10), Rosalind(ch1,3,11), Third(ch1,4), Bram(ch1,11), Nobody(ch2,5,17,25), …"
+    }
+  ],
+  "stats": {
+    "answerPositionCounts": [
+      74,
+      75,
+      77
+    ],
+    "answerPositionPctMax": 0.3407079646017699,
+    "totalQuizQuestions": 226,
+    "duplicatedNames": [
+      {
+        "name": "Bernadette",
+        "chapters": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "Rosalind",
+        "chapters": [
+          1,
+          3,
+          11
+        ]
+      },
+      {
+        "name": "Third",
+        "chapters": [
+          1,
+          4
+        ]
+      },
+      {
+        "name": "Bram",
+        "chapters": [
+          1,
+          11
+        ]
+      },
+      {
+        "name": "Nobody",
+        "chapters": [
+          2,
+          5,
+          17,
+          25
+        ]
+      },
+      {
+        "name": "Street",
+        "chapters": [
+          2,
+          10
+        ]
+      },
+      {
+        "name": "First",
+        "chapters": [
+          2,
+          6,
+          8,
+          18
+        ]
+      },
+      {
+        "name": "Not",
+        "chapters": [
+          3,
+          11,
+          12,
+          22
+        ]
+      },
+      {
+        "name": "Instead",
+        "chapters": [
+          3,
+          11
+        ]
+      },
+      {
+        "name": "Hollis",
+        "chapters": [
+          3,
+          8,
+          9
+        ]
+      },
+      {
+        "name": "Saoirse",
+        "chapters": [
+          4,
+          18
+        ]
+      },
+      {
+        "name": "Ileana",
+        "chapters": [
+          4,
+          13
+        ]
+      },
+      {
+        "name": "March",
+        "chapters": [
+          5,
+          8
+        ]
+      },
+      {
+        "name": "Elementary",
+        "chapters": [
+          6,
+          20
+        ]
+      },
+      {
+        "name": "Last",
+        "chapters": [
+          7,
+          8,
+          25
+        ]
+      },
+      {
+        "name": "Ingrid",
+        "chapters": [
+          9,
+          20
+        ]
+      },
+      {
+        "name": "Frank",
+        "chapters": [
+          13,
+          18
+        ]
+      },
+      {
+        "name": "Walk",
+        "chapters": [
+          17,
+          18
+        ]
+      },
+      {
+        "name": "Solveig",
+        "chapters": [
+          20,
+          21
+        ]
+      }
+    ],
+    "duplicatedHookOpeners": []
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "$schema": "./critic-rubric.schema.json",
+  "version": "1.0.0",
+  "description": "Declarative rubric used by src/critics/*.ts. Each check is a binary pass/fail the critic can compute either deterministically (regex/structure) or via a small model call. Thresholds control book-level ship gates.",
+  "shipGate": {
+    "phase2_minPassingChecksPerUnit": 8,
+    "phase4_minPassingChecksPerUnit": 9,
+    "minBookPassRate": 0.9,
+    "maxBannedPhraseHitsPerBook": 5,
+    "maxMetaReferencePctInBreakdowns": 0.1,
+    "maxMetaReferencePctInQuiz": 0.05,
+    "minNamedProtagonistRateInExamples": 0.9,
+    "maxAnswerPositionSkew": 0.15
+  },
+  "checks": [
+    {
+      "id": "narrative.named_protagonist",
+      "appliesTo": ["example"],
+      "severity": "blocker",
+      "kind": "regex",
+      "description": "Scenarios must contain at least one proper-noun protagonist. A scenario without a named person is thesis-paraphrase, not a scene.",
+      "regex": {
+        "mustMatch": "\\b[A-Z][a-z]{2,}\\b",
+        "stopwords": ["The", "A", "An", "If", "When", "That", "But", "Chapter", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "She", "He", "They", "It", "This", "And", "Or", "So", "Her", "His", "Then", "Because", "Before", "After", "While", "Once", "During", "Without", "Within", "Yet", "Still", "Such", "Here", "There", "Because", "Whenever"]
+      },
+      "field": "scenario"
+    },
+    {
+      "id": "narrative.specific_scene",
+      "appliesTo": ["example"],
+      "severity": "major",
+      "kind": "heuristic",
+      "description": "Scenario should anchor to a specific setting (time, place, object, role). Measured by presence of concrete nouns and min length.",
+      "rules": {
+        "minCharLength": 180,
+        "requireAnyOf": ["on Monday", "this morning", "at the meeting", "on the call", "in the draft", "in the email", "on the dashboard", "in the doc", "on the board", "on the court", "at her desk", "at his desk", "across the table"],
+        "requireAnyKeyword": true,
+        "relaxIfRoleMentioned": ["manager", "teacher", "student", "founder", "parent", "coach", "director", "VP", "PM", "engineer", "designer"]
+      },
+      "field": "scenario"
+    },
+    {
+      "id": "narrative.decision_point",
+      "appliesTo": ["example"],
+      "severity": "major",
+      "kind": "heuristic",
+      "description": "A learning example needs a decision the protagonist is about to make.",
+      "rules": {
+        "requireAnyOf": ["has to decide", "must choose", "is about to", "before she", "before he", "is deciding", "faces a choice", "the question is", "decide whether", "must pick", "has to pick"]
+      },
+      "field": "scenario"
+    },
+    {
+      "id": "register.no_meta_reference",
+      "appliesTo": ["breakdown", "quiz_question", "review_card", "key_takeaway"],
+      "severity": "blocker",
+      "kind": "regex",
+      "description": "Content must teach the idea, not narrate the chapter. Forbids 'this chapter', 'the chapter', 'the author', 'the book', 'Clear argues', etc., inside teaching text.",
+      "regex": {
+        "forbidden": [
+          "(?i)\\bthis chapter\\b",
+          "(?i)\\bthe chapter\\b",
+          "(?i)\\bthe author\\b",
+          "(?i)\\bthe book\\b",
+          "(?i)\\bin this (chapter|book)\\b",
+          "(?i)\\bchapter\\s+(opens|argues|says|notes|introduces|reframes|shows|treats|warns|installs|closes|reminds|concludes|emphasizes|adds|explains|continues)\\b",
+          "(?i)\\bthis (law|rule|section)\\b"
+        ]
+      }
+    },
+    {
+      "id": "register.no_chapter_number_literal",
+      "appliesTo": ["breakdown", "quiz_question", "review_card", "key_takeaway", "example"],
+      "severity": "major",
+      "kind": "regex",
+      "description": "Literal 'Chapter N' breaks the reading experience and signals template generation.",
+      "regex": {
+        "forbidden": [
+          "\\bChapter\\s+\\d+\\b",
+          "\\bChapter\\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\\b"
+        ]
+      }
+    },
+    {
+      "id": "register.no_banned_phrase",
+      "appliesTo": ["breakdown", "example", "quiz_question", "review_card", "key_takeaway"],
+      "severity": "major",
+      "kind": "budget",
+      "description": "Signature model-voice tics that appear across unrelated books. Tracked against per-book and library-wide budgets in config/banned-phrases.json.",
+      "configRef": "banned-phrases.json"
+    },
+    {
+      "id": "pedagogy.quiz_tests_application",
+      "appliesTo": ["quiz_question"],
+      "severity": "major",
+      "kind": "heuristic",
+      "description": "Quiz questions must test whether a reader can apply the idea to a new scenario, not recall what the chapter said.",
+      "rules": {
+        "forbiddenOpeners": [
+          "What does the (chapter|author|book)",
+          "According to the (chapter|author|book)",
+          "What is the main point of the (chapter|section)",
+          "How does the (chapter|author|book) describe"
+        ],
+        "preferredOpeners": [
+          "A (manager|teacher|student|founder|parent|coach)",
+          "When a reader",
+          "If you",
+          "A team is",
+          "A person who",
+          "In which scenario",
+          "Which action",
+          "Which move",
+          "Which plan best"
+        ]
+      }
+    },
+    {
+      "id": "pedagogy.card_tests_retrieval",
+      "appliesTo": ["review_card"],
+      "severity": "minor",
+      "kind": "heuristic",
+      "description": "Review-card fronts should pose a question that a reader answers using the idea, not a comprehension check of the text.",
+      "rules": {
+        "forbiddenOpeners": [
+          "What does (the )?(Chapter|chapter|book|author)",
+          "According to (the )?(Chapter|chapter|book|author)",
+          "How does (the )?(Chapter|chapter)"
+        ]
+      }
+    },
+    {
+      "id": "pedagogy.example_exercises_core_move",
+      "appliesTo": ["example"],
+      "severity": "minor",
+      "kind": "model",
+      "description": "The example must actually exercise the chapter's declared core mental move, not just restate the idea. Requires a small model call against ChapterDesignDoc.coreMove."
+    },
+    {
+      "id": "schema.enum_validity",
+      "appliesTo": ["quiz_question"],
+      "severity": "blocker",
+      "kind": "enum",
+      "description": "bloomsLevel and depthLevel must use canonical enum values. Rejects 'apply-analyze', 'apply_analyze', 'standard', etc.",
+      "enums": {
+        "bloomsLevel": ["remember", "understand", "apply", "analyze", "evaluate", "create"],
+        "depthLevel": ["simple", "standard", "deep"]
+      }
+    },
+    {
+      "id": "schema.answer_position_balance",
+      "appliesTo": ["quiz"],
+      "severity": "major",
+      "kind": "distribution",
+      "description": "correctIndex distribution across a quiz must be reasonably uniform. Across a book, deviation from uniform must be <15%.",
+      "rules": {
+        "maxPerPositionFraction": 0.5,
+        "minPerPositionFraction": 0.15
+      }
+    },
+    {
+      "id": "schema.bloom_vocabulary",
+      "appliesTo": ["quiz_question"],
+      "severity": "blocker",
+      "kind": "enum",
+      "description": "bloomsLevel must be a single canonical token. Rejects hyphenated/underscored compound tokens.",
+      "rules": {
+        "allowedValues": ["remember", "understand", "apply", "analyze", "evaluate", "create"],
+        "requirePresent": true
+      }
+    }
+  ]
+}

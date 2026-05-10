@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch05",
+  "number": 5,
+  "title": "You Can't Win an Argument",
+  "coreMove": "Notice the moment you are about to prove someone wrong, and step out of the argument before the win costs you the person.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a line cook on a Friday dinner rush correcting a new dishwasher who keeps stacking sauté pans wrong",
+      "audience": "a 34-year-old sous chef who came up under shouters and is trying not to become one",
+      "stakes": "whether the dishwasher quits before Saturday brunch and leaves the line short-handed for the weekend",
+      "format": "vignette",
+      "requiredBeat": "the cook wins the point about pan stacking, watches the dishwasher's face go flat, and realizes he has just traded a competent worker for being right about steel"
+    },
+    {
+      "domain": "a pediatric night-shift nurse and a sleep-deprived father disagreeing over whether his eighteen-month-old's fever needs the ER",
+      "audience": "a nurse with twelve years on the floor talking to a first-time parent at 2 a.m.",
+      "stakes": "the father's trust in the hospital for the rest of a long admission, and whether he listens to the discharge instructions in the morning",
+      "format": "dialogue",
+      "requiredBeat": "the nurse drops her clinically correct rebuttal mid-sentence, asks the father what he is most afraid of, and lets his answer reshape what she says next"
+    },
+    {
+      "domain": "a high school debate coach watching her best student demolish an opponent at a regional tournament",
+      "audience": "a teacher in her late forties who used to compete herself",
+      "stakes": "whether her star learns to persuade adults outside the gym or only to crush peers inside it",
+      "format": "reflection",
+      "requiredBeat": "the coach hears applause for a clean rhetorical kill and quietly admits she has been training a winner who nobody at home wants to talk to anymore"
+    },
+    {
+      "domain": "a regional sales manager defending a soft quarterly forecast to a CFO who is already drafting a layoff memo",
+      "audience": "a manager who is technically right about the numbers and politically about to lose",
+      "stakes": "his territory's headcount and his own credibility for the next two quarters",
+      "format": "decision_point",
+      "requiredBeat": "he chooses to concede the CFO's framing out loud first, in plain English, before laying out his own figures, and feels the room change temperature"
+    },
+    {
+      "domain": "a divorced father arguing with his fifteen-year-old daughter about a curfew her mother already approved",
+      "audience": "a dad who gets her every other weekend and is afraid of becoming the strict house",
+      "stakes": "whether she tells him anything real about her life for the next year",
+      "format": "postmortem",
+      "requiredBeat": "replaying the kitchen scene, he sees the exact sentence where he won the curfew and lost the conversation, and writes down what he wishes he had said instead"
+    },
+    {
+      "domain": "a condo board treasurer who spots a retired neighbor's arithmetic error on the reserve fund during the annual meeting",
+      "audience": "a treasurer who is correct, in public, in front of fifty neighbors",
+      "stakes": "the retiree's standing on the board and whether anyone speaks up at the next meeting",
+      "format": "scene",
+      "requiredBeat": "the treasurer catches the error, pauses, and chooses a private hallway correction over the satisfying public one, then watches the retiree volunteer the fix himself a week later"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

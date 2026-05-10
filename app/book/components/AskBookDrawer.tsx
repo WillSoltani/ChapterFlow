@@ -268,7 +268,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-24 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent) text-white shadow-(--cf-shadow-lg) transition hover:brightness-110 md:bottom-8"
+          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent) text-white shadow-(--cf-shadow-lg) transition hover:brightness-110 md:bottom-8"
           title="Ask Raymond"
         >
           <Sparkles className="h-5 w-5" />

@@ -1,0 +1,59 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch17",
+  "number": 17,
+  "title": "If You Must Find Fault, This Is the Way to Begin",
+  "coreMove": "Lead any correction with one specific, true piece of praise that earns the harder sentence coming behind it.",
+  "exampleCount": 5,
+  "exampleSpecs": [
+    {
+      "domain": "a line cook walking a new dishwasher through a Saturday rush after he stacked sauté pans wrong and slowed the pass",
+      "audience": "a line cook who has been promoted to running the dish pit and now has to coach the kid replacing him",
+      "stakes": "whether the dishwasher quits before the dinner shift or learns the rack order in time to keep tickets moving",
+      "format": "dialogue",
+      "requiredBeat": "the cook names one real thing the kid did right tonight, in the kid's own words back to him, before he ever mentions the pans"
+    },
+    {
+      "domain": "a piano teacher giving notes to a fourteen-year-old after a recital run-through of Chopin where the left hand rushed every cadence",
+      "audience": "a private piano teacher who has watched this student practice for three years and knows she cries when corrected cold",
+      "stakes": "whether the girl walks into Saturday's recital believing she can play the piece or believing she cannot",
+      "format": "scene",
+      "requiredBeat": "the teacher sits at the bench, plays back the one phrase the girl shaped beautifully, says exactly why it worked, and only then asks about the left hand"
+    },
+    {
+      "domain": "a regional grocery manager arriving at a store where the stockroom is a mess but the front-end checkout times are the best in the district",
+      "audience": "a regional manager who has thirty minutes with a store director before the next site visit",
+      "stakes": "whether the store director hears the stockroom note as a threat to her job or as a small ask from someone who clearly noticed her wins",
+      "format": "decision_point",
+      "requiredBeat": "the manager has to choose between opening with the stockroom and opening with the checkout numbers, and the reader sees what each opening sets up next"
+    },
+    {
+      "domain": "a father reading the third draft of his daughter's college application essay at the kitchen table on a Sunday night",
+      "audience": "a father whose daughter has already torn up two drafts and is watching his face from across the table",
+      "stakes": "whether she sits back down to revise tonight or shuts the laptop and submits whatever she has",
+      "format": "vignette",
+      "requiredBeat": "the father reads aloud the one sentence in the draft that genuinely moved him, tells her plainly why it landed, and only after she has heard that asks about the opening paragraph"
+    },
+    {
+      "domain": "an attending surgeon debriefing a second-year resident after a gallbladder case where the resident's knot work was excellent but he closed the fascia in a layer he should not have",
+      "audience": "an attending who has six more cases this week with the same resident",
+      "stakes": "whether the resident takes the closure note and improves, or pulls back and stops volunteering for the harder steps",
+      "format": "postmortem",
+      "requiredBeat": "the attending names the specific moment the resident's hands moved well, says what that tells him about the resident's future, then asks one question about the closure rather than issuing a verdict"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12
+}

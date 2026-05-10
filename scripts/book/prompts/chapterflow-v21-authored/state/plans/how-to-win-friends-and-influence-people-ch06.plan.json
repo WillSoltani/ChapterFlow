@@ -1,0 +1,67 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch06",
+  "number": 6,
+  "title": "A Sure Way of Making Enemies and How to Avoid It",
+  "coreMove": "When you catch yourself about to tell someone they are wrong, swap the verdict for a frank admission that you yourself might be mistaken, then invite them to look at the facts with you.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a pediatric nurse in a walk-in clinic on a Sunday afternoon disagreeing with a first-time father about whether his eight-month-old's temperature is actually high",
+      "audience": "a pediatric nurse on her fourth year at the clinic who has watched new parents flinch and never come back",
+      "stakes": "whether this anxious father trusts the practice enough to bring the baby in next time, or quietly switches clinics and waits too long",
+      "format": "decision_point",
+      "requiredBeat": "the nurse swallows the words 'you're reading it wrong' mid-breath and instead says she may have misread the chart and asks if they can check the thermometer together"
+    },
+    {
+      "domain": "a community choir director rehearsing a stubborn adult tenor who insists he is hitting the right note in a Brahms passage",
+      "audience": "a choir director who has lost two volunteer singers this season already and cannot afford to lose a third before the spring concert",
+      "stakes": "whether the tenor finishes the rehearsal at all or walks out and quits the choir over a single bar of music",
+      "format": "dialogue",
+      "requiredBeat": "the director says, on the record, that her ear may be tired tonight, and asks him to sing the phrase once more so they can both hear it side by side with the piano"
+    },
+    {
+      "domain": "a long-haul trucker hearing a younger driver on the CB radio describe a route through Wyoming that will dump him onto a closed pass",
+      "audience": "a trucker with twenty-six years on the same corridor who remembers being talked down to as a rookie",
+      "stakes": "the younger driver loses four hours and a load deadline if he takes the wrong road, and shuts down to advice forever if he is told he is wrong on an open channel",
+      "format": "vignette",
+      "requiredBeat": "the older driver bites back the flat correction and instead floats the alternative route as something he himself just heard about, leaving the younger man free to pick it up as his own idea"
+    },
+    {
+      "domain": "a real-estate agent the morning after a couple walked away from a townhouse she had spent six weeks finding for them",
+      "audience": "a real-estate agent five years into solo practice, replaying the showing in her head",
+      "stakes": "a commission already gone, and the realization that her instinct to correct buyers is costing her every difficult sale, not only this one",
+      "format": "postmortem",
+      "requiredBeat": "the agent traces the exact moment she said the words 'no, that school district is actually overrated' and watches, in memory, the wife's face close for the rest of the tour"
+    },
+    {
+      "domain": "a grandfather and his fifteen-year-old grandson arguing across a kitchen table about which year a Stevie Wonder song came out",
+      "audience": "a grandfather who only sees this grandson at Sunday dinners and is starting to feel the boy pull away",
+      "stakes": "whether the rest of the meal is warm or silent, and whether the grandson volunteers to come back next week",
+      "format": "before_after",
+      "requiredBeat": "the same disagreement runs twice in the same evening: first the grandfather says 'you're wrong' and the boy stops talking, then he says 'I might be remembering it crooked, want to look it up?' and the boy laughs and pulls out his phone"
+    },
+    {
+      "domain": "a small-town deacon writing in a leather journal three months after correcting a parishioner's interpretation of a Bible passage during fellowship hour, in front of four other people",
+      "audience": "a deacon in his late sixties who has known the parishioner since her wedding and has not seen her in church since that morning",
+      "stakes": "a friendship of nineteen years he believes he can no longer repair, and a small congregation that noticed the exchange",
+      "format": "reflection",
+      "requiredBeat": "he writes out, word for word, the sentence he used ('that's just not what the passage says') and underneath it the sentence he wishes he had used, naming exactly what he was protecting when he chose the first one"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

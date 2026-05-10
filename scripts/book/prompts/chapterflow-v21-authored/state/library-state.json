@@ -1,0 +1,3988 @@
+{
+  "version": "1.0.0",
+  "lastUpdatedAt": "2026-05-09T20:03:42.223Z",
+  "books": {
+    "thinking-fast-and-slow": {
+      "bookId": "thinking-fast-and-slow",
+      "title": "Thinking, Fast and Slow",
+      "author": "Daniel Kahneman",
+      "generatedAt": "2026-04-24T02:14:41.337Z",
+      "chapterCount": 5,
+      "chaptersIngested": [
+        5
+      ],
+      "namesUsed": [
+        "Ingrid",
+        "Hollis",
+        "Westbrook",
+        "Soren",
+        "Yusra",
+        "Saskia",
+        "Jiya",
+        "Corrin",
+        "Anwen"
+      ],
+      "phrasesFlagged": {
+        "I fall for it": 1,
+        "the effect is real and the effect is modest": 1,
+        "knowing is not the same as": 1
+      },
+      "answerPositionCounts": [
+        3,
+        4,
+        3
+      ]
+    },
+    "how-to-win-friends-and-influence-people": {
+      "bookId": "how-to-win-friends-and-influence-people",
+      "title": "How to Win Friends and Influence People",
+      "author": "Dale Carnegie",
+      "generatedAt": "2026-04-24T02:32:25.856Z",
+      "chapterCount": 25,
+      "chaptersIngested": [
+        1,
+        3,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "namesUsed": [
+        "Again",
+        "Bernadette",
+        "Bernard",
+        "Bram",
+        "Calloway",
+        "Celestine",
+        "Chromebooks",
+        "Cormac",
+        "Cornell",
+        "Dermot",
+        "Desmond",
+        "Draft",
+        "Earl",
+        "February",
+        "Formica",
+        "Halloran",
+        "Harriet",
+        "Hocks",
+        "Hollis",
+        "Imagine",
+        "Ines",
+        "Inez",
+        "Instead",
+        "June",
+        "Marisol",
+        "Milwaukee",
+        "Nowhere",
+        "Orla",
+        "Otieno",
+        "Providence",
+        "Rafe",
+        "Rafferty",
+        "Refurbished",
+        "Rosalind",
+        "Siobhan",
+        "Slow",
+        "Sousa",
+        "Third",
+        "Tuesdays",
+        "Venmo",
+        "Which",
+        "Wren",
+        "Althea",
+        "Reggie",
+        "Was",
+        "Nobody",
+        "Holst",
+        "Holcomb",
+        "Boone",
+        "Eulalie",
+        "Linden",
+        "Street",
+        "Hadley",
+        "Wendell",
+        "Roselle",
+        "Let",
+        "First",
+        "Tom",
+        "Bao",
+        "Garrick",
+        "Cal",
+        "Right",
+        "Saoirse",
+        "Halverson",
+        "Idris",
+        "Coach",
+        "Thaddeus",
+        "Beaumont",
+        "Loud",
+        "Old",
+        "Lamar",
+        "Ephraim",
+        "Across",
+        "Halberg",
+        "Walter",
+        "Twenty",
+        "Rashid",
+        "Servers",
+        "Returns",
+        "Yolanda",
+        "Drew",
+        "Pieter",
+        "Concepci",
+        "Ileana",
+        "Weather",
+        "Weekend",
+        "Mireille",
+        "Bertrand",
+        "Replaying",
+        "Noor",
+        "Grade",
+        "Favorite",
+        "Vesper",
+        "Hideo",
+        "March",
+        "Davit",
+        "Rhona",
+        "Ari",
+        "From",
+        "Magdalena",
+        "Esperanza",
+        "October",
+        "Tobias",
+        "Rourke",
+        "Adaline",
+        "Well",
+        "Leocadia",
+        "Halvor",
+        "Junessa",
+        "Fenella",
+        "Roderick",
+        "Sing",
+        "Rawlins",
+        "Ozzie",
+        "Cheyenne",
+        "Hey",
+        "Flying",
+        "Might",
+        "Saraphina",
+        "Goldbergs",
+        "Lincoln",
+        "Elementary",
+        "Silas",
+        "Duke",
+        "Jaxon",
+        "Buick",
+        "Same",
+        "Want",
+        "Ansel",
+        "Lorraine",
+        "Anika",
+        "Biscuit",
+        "Halsey",
+        "Last",
+        "Junella",
+        "Dvo",
+        "Arvid",
+        "Joan",
+        "Peterson",
+        "Rosamund",
+        "Forty",
+        "Hattie",
+        "Ingmar",
+        "Leona",
+        "Eamon",
+        "Through",
+        "Devorah",
+        "Yael",
+        "Ramona",
+        "Dwight",
+        "Pereira",
+        "Sheila",
+        "Ottilie",
+        "Corabelle",
+        "Bertel",
+        "Aurelio",
+        "August",
+        "Mavis",
+        "Delphine",
+        "Whittaker",
+        "Sure",
+        "Mostly",
+        "Ingrid",
+        "Bramley",
+        "Pepper",
+        "Rusty",
+        "Version",
+        "Dagmar",
+        "Greta",
+        "Different",
+        "Eli",
+        "Saturdays",
+        "Stelios",
+        "Frieda",
+        "Bay",
+        "Ridge",
+        "Rosario",
+        "Underneath",
+        "Buster",
+        "Imelda",
+        "Zofia",
+        "Brookline",
+        "North",
+        "Hana",
+        "Stepan",
+        "Karol",
+        "Ingeborg",
+        "Leoda",
+        "Past",
+        "Councilor",
+        "Rasmussen",
+        "Maple",
+        "Sigrid",
+        "Hartford",
+        "Rena",
+        "Tamsin",
+        "Declan",
+        "For",
+        "Beatrix",
+        "Dvorak",
+        "April",
+        "Lucinda",
+        "Emmett",
+        "Jude",
+        "Ondine",
+        "Larkspur",
+        "Avenue",
+        "Tonight",
+        "Tell",
+        "Not",
+        "Clemence",
+        "Bills",
+        "Security",
+        "Philippa",
+        "Cordelia",
+        "Leofric",
+        "Isolde",
+        "Riverbend",
+        "Suppose",
+        "Haskell",
+        "Try",
+        "Write",
+        "Orsolya",
+        "Halpern",
+        "Quentin",
+        "Bridget",
+        "Fionnuala",
+        "Cosima",
+        "Vivaldi",
+        "Bartek",
+        "Inside",
+        "Halloway",
+        "Frank",
+        "Stellan",
+        "Posy",
+        "Late",
+        "Cordova",
+        "Mercy",
+        "Thora",
+        "Halvarsen",
+        "Sandberg",
+        "Hugh",
+        "Millerton",
+        "Dwayne",
+        "Sycamore",
+        "Erie",
+        "Brigida",
+        "Hjordis",
+        "Christmas",
+        "Eve",
+        "Linnea",
+        "Broderick",
+        "Rosa",
+        "Trapper",
+        "Keeper",
+        "Eduardo",
+        "Bronwen",
+        "Galena",
+        "Solenne",
+        "Vidor",
+        "Idabelle",
+        "Crouse",
+        "Pastor",
+        "Amundsen",
+        "Cyprian",
+        "Halsted",
+        "Christian",
+        "Predict",
+        "Glenmoor",
+        "Saffi",
+        "Westbridge",
+        "Pemma",
+        "Yelena",
+        "Pink",
+        "Hesper",
+        "Hadrian",
+        "Costco",
+        "Trent",
+        "Loretta",
+        "Smart",
+        "Money",
+        "Choices",
+        "Cedric",
+        "Miss",
+        "Ulises",
+        "Got",
+        "Hank",
+        "Roy",
+        "Bohdan",
+        "Magnus",
+        "Iskander",
+        "Tova",
+        "Birchwood",
+        "Bakery",
+        "Praise",
+        "Retraining",
+        "Sharpie",
+        "Stig",
+        "Kieran",
+        "Lavinia",
+        "Cyril",
+        "Holloway",
+        "Captain",
+        "Ardwick",
+        "Rashan",
+        "Toby",
+        "Listen",
+        "Margit",
+        "Chopin",
+        "Marguerite",
+        "Checkout",
+        "Tariq",
+        "Amani",
+        "Can",
+        "Hisham",
+        "Wajih",
+        "Calot",
+        "Walk",
+        "Imani",
+        "Devon",
+        "Honest",
+        "Air",
+        "Like",
+        "Lighter",
+        "Pretend",
+        "Wesley",
+        "Huxley",
+        "Pickerel",
+        "Pond",
+        "Florencia",
+        "Henrik",
+        "Boulanger",
+        "Ezra",
+        "Beech",
+        "Lane",
+        "Wells",
+        "Sanaa",
+        "Fenna",
+        "Joska",
+        "Lukas",
+        "Margaux",
+        "Whole",
+        "Anders",
+        "Petra",
+        "Eau",
+        "Claire",
+        "Thessaly",
+        "Caspar",
+        "Rune",
+        "Beecher",
+        "Aldermere",
+        "Thirty",
+        "Runa",
+        "Pilar",
+        "Cedar",
+        "Hollow",
+        "Halversen",
+        "Knute",
+        "Fossil",
+        "How",
+        "Vesna",
+        "Twelve",
+        "Effective",
+        "Where",
+        "Solveig",
+        "Bjorn",
+        "Picture",
+        "Niamh",
+        "Day",
+        "Take",
+        "Hen",
+        "Hatchet",
+        "Finbar",
+        "Krister",
+        "Belmont",
+        "Plaza",
+        "Bettina",
+        "Dorotea",
+        "Schumann",
+        "Alaric",
+        "Mahalia",
+        "Asheville",
+        "Joelle",
+        "Romilly",
+        "Leontyne",
+        "Wystan",
+        "Clementi",
+        "Dario",
+        "Jin",
+        "Yeah",
+        "Sevda",
+        "Marsha",
+        "Brennan",
+        "Just",
+        "Yannick",
+        "Roan",
+        "Ferenc",
+        "Anselmo",
+        "Moira",
+        "Edith",
+        "Ingvar",
+        "Brigitta",
+        "Watch",
+        "Pendergast",
+        "Beltran",
+        "Constanza",
+        "Maestro",
+        "Atticus",
+        "Down",
+        "Jasper",
+        "Folded",
+        "Wilbur",
+        "Doreen",
+        "Final",
+        "Coyle",
+        "Isadora",
+        "Genevieve",
+        "Marek",
+        "Lotte",
+        "Sabine",
+        "Yusuf",
+        "Look",
+        "Put",
+        "Yashar",
+        "Devontae",
+        "Lyle",
+        "Beyond",
+        "Ennio",
+        "Edvard",
+        "Doruk",
+        "Head",
+        "Pascal",
+        "Imogen",
+        "Pernilla",
+        "Margery",
+        "Smaller",
+        "Lourdes",
+        "Stanley",
+        "Garth",
+        "Black",
+        "Levi",
+        "Mathias",
+        "Annika",
+        "Sibelius",
+        "Rutger",
+        "Linwood",
+        "Halton",
+        "Route",
+        "Sims",
+        "Etta",
+        "Jovita",
+        "Hollander"
+      ],
+      "phrasesFlagged": {},
+      "answerPositionCounts": [
+        77,
+        79,
+        80
+      ]
+    },
+    "tiny-habits": {
+      "bookId": "tiny-habits",
+      "title": "Tiny Habits",
+      "author": "BJ Fogg",
+      "generatedAt": "2026-05-09T04:30:43.531Z",
+      "chapterCount": 7,
+      "chaptersIngested": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "namesUsed": [
+        "Ingegerd",
+        "Still",
+        "Stanislas",
+        "Fern",
+        "Osman",
+        "Lior",
+        "Rosaline",
+        "Instagram",
+        "Renzo",
+        "Kafka",
+        "Marisela",
+        "Desmond",
+        "Tonight",
+        "Trumpets",
+        "Rohan",
+        "Sigrun",
+        "Babe",
+        "Not",
+        "Soraya",
+        "Oakland",
+        "Sketch",
+        "Draw",
+        "Edmund",
+        "Oaxaca",
+        "Duolingo",
+        "Reuben",
+        "None",
+        "Sunita",
+        "Csilla",
+        "Hindemith",
+        "Florian",
+        "Greenpoint",
+        "Esha",
+        "Mochi",
+        "Again",
+        "Niko",
+        "Hector",
+        "Shoes",
+        "Step",
+        "Anything",
+        "Picture",
+        "Ngozi",
+        "Most",
+        "Ravi",
+        "Chop",
+        "Mehri",
+        "Casimir",
+        "September",
+        "Thanksgiving",
+        "Bryony",
+        "Done",
+        "Tamir",
+        "Roshan",
+        "Zero",
+        "Sometime",
+        "Yara",
+        "Anneliese",
+        "Kerensa",
+        "Hold",
+        "Clocking",
+        "Ingvild",
+        "Caspian",
+        "Honestly",
+        "Why",
+        "Quietly",
+        "Something",
+        "Diesel",
+        "Pinedale",
+        "Tovin",
+        "For",
+        "Harold",
+        "Rosalind",
+        "Linden",
+        "Street",
+        "Xiomara",
+        "Celebrating",
+        "Bastien",
+        "Silicon",
+        "Valley",
+        "Beside",
+        "Saira",
+        "Tindra",
+        "Outside",
+        "Crispin",
+        "Imogen",
+        "Dashiell",
+        "Grin",
+        "Tamiko",
+        "Otis",
+        "Wim",
+        "Halina",
+        "Anouk",
+        "Leopold",
+        "Tomek",
+        "Vivienne",
+        "Renata",
+        "Help",
+        "Zinaida",
+        "Harlan",
+        "Laramie"
+      ],
+      "phrasesFlagged": {},
+      "answerPositionCounts": [
+        21,
+        24,
+        22
+      ]
+    }
+  },
+  "globalNameUsage": {
+    "Ingrid": {
+      "books": [
+        "thinking-fast-and-slow",
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 3
+    },
+    "Hollis": {
+      "books": [
+        "thinking-fast-and-slow",
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 4
+    },
+    "Westbrook": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Soren": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Yusra": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Saskia": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Jiya": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Corrin": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Anwen": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "Again": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 2
+    },
+    "Bernadette": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Bernard": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bram": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Calloway": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Celestine": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Chromebooks": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cormac": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cornell": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dermot": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Desmond": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 2
+    },
+    "Draft": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Earl": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "February": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Formica": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halloran": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Harriet": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hocks": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Imagine": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ines": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Inez": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Instead": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "June": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Marisol": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Milwaukee": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Nowhere": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Orla": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Otieno": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Providence": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rafe": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rafferty": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Refurbished": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rosalind": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 3
+    },
+    "Siobhan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Slow": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sousa": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Third": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Tuesdays": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Venmo": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Which": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wren": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Althea": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Reggie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Was": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Nobody": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 4
+    },
+    "Holst": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Holcomb": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Boone": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Eulalie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Linden": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 2
+    },
+    "Street": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 3
+    },
+    "Hadley": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wendell": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Roselle": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Let": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "First": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 4
+    },
+    "Tom": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bao": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Garrick": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cal": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Right": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Saoirse": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Halverson": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Idris": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Coach": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Thaddeus": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Beaumont": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Loud": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Old": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lamar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ephraim": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Across": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halberg": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Walter": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Twenty": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rashid": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Servers": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Returns": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yolanda": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Drew": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pieter": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Concepci": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ileana": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Weather": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Weekend": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mireille": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bertrand": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Replaying": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Noor": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Grade": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Favorite": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Vesper": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hideo": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "March": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Davit": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rhona": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ari": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "From": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Magdalena": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Esperanza": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "October": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Tobias": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rourke": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Adaline": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Well": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Leocadia": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halvor": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Junessa": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Fenella": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Roderick": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sing": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rawlins": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ozzie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cheyenne": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hey": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Flying": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Might": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Saraphina": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Goldbergs": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lincoln": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Elementary": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Silas": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Duke": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Jaxon": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Buick": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Same": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Want": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ansel": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lorraine": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Anika": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Biscuit": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halsey": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Last": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 3
+    },
+    "Junella": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dvo": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Arvid": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Joan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Peterson": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rosamund": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Forty": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hattie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ingmar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Leona": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Eamon": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Through": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Devorah": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yael": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ramona": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dwight": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pereira": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sheila": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ottilie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Corabelle": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bertel": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Aurelio": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "August": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mavis": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Delphine": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Whittaker": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sure": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mostly": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bramley": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pepper": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rusty": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Version": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dagmar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Greta": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Different": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Eli": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Saturdays": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Stelios": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Frieda": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bay": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ridge": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rosario": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Underneath": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Buster": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Imelda": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Zofia": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Brookline": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "North": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hana": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Stepan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Karol": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ingeborg": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Leoda": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Past": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Councilor": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rasmussen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Maple": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sigrid": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hartford": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rena": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Tamsin": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Declan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "For": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 2
+    },
+    "Beatrix": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dvorak": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "April": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lucinda": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Emmett": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Jude": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ondine": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Larkspur": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Avenue": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Tonight": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 2
+    },
+    "Tell": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Not": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 5
+    },
+    "Clemence": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bills": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Security": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Philippa": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cordelia": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Leofric": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Isolde": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Riverbend": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Suppose": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Haskell": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Try": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Write": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Orsolya": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halpern": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Quentin": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bridget": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Fionnuala": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cosima": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Vivaldi": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bartek": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Inside": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halloway": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Frank": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Stellan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Posy": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Late": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cordova": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mercy": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Thora": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halvarsen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sandberg": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ingegerd": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Still": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Stanislas": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Fern": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Osman": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Lior": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Rosaline": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Instagram": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Renzo": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Kafka": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Hugh": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Millerton": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dwayne": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sycamore": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Erie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Brigida": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hjordis": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Christmas": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Eve": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Linnea": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Broderick": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rosa": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Trapper": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Keeper": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Eduardo": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bronwen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Galena": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Solenne": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Vidor": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Idabelle": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Crouse": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pastor": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Amundsen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cyprian": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halsted": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Christian": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Predict": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Glenmoor": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Saffi": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Westbridge": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pemma": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yelena": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pink": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hesper": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hadrian": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Costco": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Trent": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Loretta": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Smart": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Money": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Choices": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cedric": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Miss": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ulises": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Got": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hank": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Roy": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bohdan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Magnus": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Iskander": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Tova": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Birchwood": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bakery": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Praise": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Retraining": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sharpie": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Stig": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Kieran": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lavinia": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cyril": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Holloway": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Captain": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ardwick": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rashan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Toby": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Listen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Margit": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Chopin": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Marguerite": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Checkout": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Tariq": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Amani": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Can": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hisham": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wajih": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Calot": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Walk": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Imani": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Devon": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Honest": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Air": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Like": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lighter": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pretend": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wesley": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Huxley": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pickerel": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pond": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Florencia": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Henrik": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Boulanger": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ezra": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Beech": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lane": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wells": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sanaa": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Fenna": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Joska": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lukas": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Margaux": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Whole": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Anders": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Petra": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Eau": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Claire": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Thessaly": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Caspar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rune": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Beecher": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Aldermere": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Marisela": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Trumpets": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Rohan": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Sigrun": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Babe": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Soraya": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Oakland": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Sketch": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Draw": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Edmund": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Oaxaca": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Duolingo": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Reuben": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "None": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Sunita": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Csilla": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Hindemith": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Florian": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Greenpoint": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Esha": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Mochi": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Niko": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Hector": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Shoes": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Step": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Anything": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Picture": {
+      "books": [
+        "tiny-habits",
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Ngozi": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Most": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Ravi": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Chop": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Thirty": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Runa": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pilar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Cedar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hollow": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halversen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Knute": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Fossil": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "How": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Vesna": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Twelve": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Effective": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Where": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Solveig": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 2
+    },
+    "Bjorn": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Niamh": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Day": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Take": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hatchet": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Finbar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Krister": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Belmont": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Plaza": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Bettina": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dorotea": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Schumann": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Alaric": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mahalia": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Asheville": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Joelle": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Romilly": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Leontyne": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wystan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Clementi": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Dario": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Jin": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yeah": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sevda": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Marsha": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Brennan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Just": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yannick": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Roan": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ferenc": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Anselmo": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Moira": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Edith": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mehri": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Casimir": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "September": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Thanksgiving": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Bryony": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Done": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Tamir": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Roshan": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Zero": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Sometime": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Yara": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Anneliese": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Kerensa": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Hold": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Clocking": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Ingvild": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Caspian": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Honestly": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Why": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Quietly": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Something": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Diesel": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Pinedale": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Tovin": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Harold": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Xiomara": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Celebrating": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Bastien": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Silicon": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Valley": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Beside": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Saira": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Ingvar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Brigitta": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Watch": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pendergast": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Beltran": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Constanza": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Maestro": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Atticus": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Down": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Jasper": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Folded": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Wilbur": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Doreen": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Final": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Coyle": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Isadora": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Genevieve": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Marek": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lotte": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sabine": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yusuf": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Look": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Put": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Yashar": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Devontae": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lyle": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Beyond": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Ennio": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Edvard": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Doruk": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Head": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Pascal": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Imogen": {
+      "books": [
+        "how-to-win-friends-and-influence-people",
+        "tiny-habits"
+      ],
+      "total": 2
+    },
+    "Tindra": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Outside": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Crispin": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Dashiell": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Grin": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Tamiko": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Otis": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Wim": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Halina": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Anouk": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Leopold": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Tomek": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Vivienne": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Renata": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Help": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Zinaida": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Harlan": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Laramie": {
+      "books": [
+        "tiny-habits"
+      ],
+      "total": 1
+    },
+    "Pernilla": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Margery": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Smaller": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Lourdes": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Stanley": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Garth": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Black": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Levi": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Mathias": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Annika": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sibelius": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Rutger": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Linwood": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Halton": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Route": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Sims": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Etta": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Jovita": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    },
+    "Hollander": {
+      "books": [
+        "how-to-win-friends-and-influence-people"
+      ],
+      "total": 1
+    }
+  },
+  "globalPhraseUsage": {
+    "I fall for it": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "the effect is real and the effect is modest": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    },
+    "knowing is not the same as": {
+      "books": [
+        "thinking-fast-and-slow"
+      ],
+      "total": 1
+    }
+  },
+  "globalAnswerPositionCounts": [
+    101,
+    107,
+    105
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "bookId": "tiny-habits",
+  "chapterCount": 8,
+  "passed": true,
+  "findings": [
+    {
+      "catalogId": "F1",
+      "severity": "major",
+      "message": "1 protagonist name(s) appear in multiple chapters: Not(ch2,3)"
+    }
+  ],
+  "stats": {
+    "answerPositionCounts": [
+      24,
+      27,
+      25
+    ],
+    "answerPositionPctMax": 0.35526315789473684,
+    "totalQuizQuestions": 76,
+    "duplicatedNames": [
+      {
+        "name": "Not",
+        "chapters": [
+          2,
+          3
+        ]
+      }
+    ],
+    "duplicatedHookOpeners": []
+  }
+}

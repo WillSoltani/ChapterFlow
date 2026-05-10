@@ -1,0 +1,307 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch01",
+  "number": 1,
+  "title": "If You Want to Gather Honey, Don't Kick Over the Beehive",
+  "readingTimeMinutes": 14,
+  "hook": "Criticize a man before breakfast and you have taught him, by lunchtime, that you are the problem.",
+  "counterintuition": "Most readers believe a clear, fair correction lands as information. It does not. It lands as an attack on the one story the other person cannot afford to lose, the story in which they were, at the time, doing their reasonable best.",
+  "keyTakeaway": "Before correcting someone, picture the story they tell themselves about what happened, find the reason that holds water for them, and speak to that reason first.",
+  "breakdown": {
+    "fastRead": "A young mechanic fueled a piston plane with jet fuel and the engine quit on takeoff. The pilot crash-landed, walked back to the hangar, and found the kid already shaking. He squeezed his shoulder and asked him to service tomorrow's plane.\n\nThat is the whole move. The kid knew. Anything else would have made him defend himself instead of fix himself.\n\nMost of what you call correcting is just feeling right out loud. The other person hears blame and stops listening for the point.\n\nWhen the lesson is already on his face, hand him a wrench.",
+    "deepRead": "A father stands at the breakfast table. His daughter dented the fender last night. He has the speech ready, three sentences in, sharp at the end. Then he remembers his own father saying almost that exact sentence to him at sixteen, and how he stopped telling his father anything for two years after.\n\nHe sets the coffee down. He says, \"Rough night?\"\n\nThis is not softness. It is arithmetic. Every grown person you correct already has a story they tell themselves about what happened, and in that story they are not the villain. The supplier who shorted your flour order is overworked. The cook who burned the onions was rushing to keep up. The teenager was scared of you before she ever pulled into the driveway.\n\nWalk in arguing against that story and you are arguing against the person, not the act. They will defend the person. They will always defend the person. That is what people do.\n\nSo do the small, annoying work first. Picture how they explain it to themselves when no one is listening. Find the reason that holds water for them. Speak to that reason.\n\nYou are not excusing them. You are refusing to give them an excuse to stop listening before you have said the thing that matters.\n\nAddress the story they tell themselves, not the one you would tell about them.",
+    "fullRead": "Two-Gun Crowley shot a police officer over a request to see his license. He holed up in a girlfriend's apartment while officers surrounded the building. With bullets coming through the walls, he wrote a letter that began, \"Under my coat is a weary heart, but a kind one, one that would do nobody any harm.\"\n\nA man surrounded by his own corpses, writing about his kindness. That is the human animal under pressure. Not a special case. The default.\n\nAl Capone called himself a public benefactor. Dutch Schultz said the same. Walk through any prison and almost no one inside will tell you they belong there. The story they have built about themselves has no room for the verdict.\n\nNow bring it home. A charge nurse drafts a write-up of a younger colleague who missed a medication check on the night shift. She reads it back and something stops her. She has described the colleague using words the colleague would never use about herself. Words like careless. Words like sloppy. A patient on that floor could have gotten the wrong dose, and the write-up is the one thing standing between that near miss and the next one.\n\nDriving home that morning, the younger nurse was not telling herself she was sloppy. She was telling herself she was drowning. Six patients, two admits, the call light from room twelve that would not stop. She was telling herself she was barely holding it together and doing her best.\n\nCall her careless in writing and she will defend the nurse who was barely holding it together. She will not fix the checklist. She will go quiet for the rest of the month and start looking for another floor.\n\nSpeak to the story she was telling herself first, then point at the missed check, and she has nowhere to hide and no reason to fight. She can fix the checklist without losing the picture of herself she needs in order to come back tomorrow.\n\nThis is the move. Not soft, not flattering, not a trick. The person across from you has already built a defense, and the defense is the thing you walk around. Not through. Around.\n\nLincoln wrote a letter to General Meade after Gettysburg, furious that Meade had let Lee escape across the Potomac. The letter is sharp and clear and right. He never mailed it. They found it in his desk after he died.\n\nWhy not mail it? Because Lincoln knew Meade would read it, pick one sentence he could disagree with, and use that sentence to dismiss the whole thing. Meade would not come away thinking, I should have pursued. He would come away thinking, the President does not understand what it was like out there.\n\nThat is what correction does even when it is correct. Especially when it is correct.\n\nThe practical version is small and annoying. Before you open your mouth, ask how this person explains it to themselves. Picture the reason they would give their spouse at dinner. Start there. Then say the hard thing.\n\nYou will feel like you are giving up ground. You are not. You are taking away the one thing that lets them stop listening.\n\nName what they were telling themselves before you name what they did wrong."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-bernadette-writeup",
+      "title": "Bernadette Drafts a 3 a.m. Write-Up on the Night Shift",
+      "tags": [
+        "decision_point",
+        "nightshift",
+        "nurse"
+      ],
+      "planSpec": {
+        "domain": "a night-shift charge nurse writing up a younger colleague who missed a medication check",
+        "audience": "a reader who supervises people under pressure and is tempted to document their frustration",
+        "stakes": "whether the younger nurse shuts down for the rest of the month or actually changes her checklist habit",
+        "format": "decision_point",
+        "requiredBeat": "the charge nurse drafts the write-up, reads it back, and notices she has described the colleague in words the colleague would never use about herself, then rewrites from what the colleague probably told herself at 3am"
+      },
+      "scenario": "Bernadette is the charge nurse on a Tuesday at 3:12 a.m. when she sits down at the nurses' station to document that Rosalind, two years out of school, missed a second-dose check on a heparin drip. Her draft calls it careless and a pattern. She reads it back and realizes Rosalind would never use the word careless about herself. Rosalind would say she was slammed, that bed 4 was crashing, that she meant to come back. Bernadette's cursor blinks at the top of the page. She has to decide whether to file what she wrote or start over.",
+      "whatToDo": "Close the draft, write down the sentence Rosalind would have told herself at 3 a.m. about why the check got skipped, and rebuild the write-up starting from that sentence.",
+      "whyItMatters": "A write-up that names a person in words they would never accept about themselves gets filed and ignored. One that starts from their own account is the only version they can actually read and act on."
+    },
+    {
+      "exampleId": "ch01-ex02-desmond-fender",
+      "title": "Desmond and the Dented Fender Before Second Period",
+      "tags": [
+        "scene",
+        "father",
+        "table"
+      ],
+      "planSpec": {
+        "domain": "a father at the breakfast table about to confront his sixteen-year-old daughter about a dented car fender",
+        "audience": "a parent who keeps being technically right and losing the kid anyway",
+        "stakes": "the next four years of whether she tells him things or hides them",
+        "format": "scene",
+        "requiredBeat": "the father rehearses the lecture in his head, then remembers the last time his own father said the same sentence to him, and puts the coffee cup down before speaking"
+      },
+      "scenario": "Desmond is at the kitchen table on a Tuesday at 6:52 a.m., the coffee going cold, the keys to the Civic on the counter with a fresh scrape of gray paint across the passenger-side fender. His daughter Wren is upstairs brushing her teeth. He rehearses it in his head: how many times have I told you to park away from the cart returns. Then he hears the exact sentence in his own father's voice, 1987, a mailbox, a station wagon. He sets the coffee cup down. Wren's footsteps start down the stairs. He has about eleven seconds to decide what the first words out of his mouth will be.",
+      "whatToDo": "Open with what she is already telling herself ('you were probably sick about it the whole drive home'), then ask what happened, and only after she answers, talk about next time.",
+      "whyItMatters": "A sixteen-year-old who expects the lecture has her defenses up before she hits the bottom step. Meet the self-image she brought downstairs, or spend four years hearing about nothing."
+    },
+    {
+      "exampleId": "ch01-ex03-harriet-flour",
+      "title": "Harriet and the Delivery Driver at the Back Door",
+      "tags": [
+        "dialogue",
+        "regional",
+        "owner"
+      ],
+      "planSpec": {
+        "domain": "a regional bakery owner discovering a supplier shorted her flour order by two bags for the third week running",
+        "audience": "a small-business owner who has to keep working with the person she's angry at",
+        "stakes": "the supplier relationship she depends on for Saturday mornings, and her own reputation for being reasonable",
+        "format": "dialogue",
+        "requiredBeat": "the owner catches herself about to open with an accusation, pauses, and instead asks the delivery driver a question that lets him tell her what went wrong without needing to defend himself"
+      },
+      "scenario": "Harriet is standing at the back door of her bakery on a Friday afternoon, clipboard in hand, watching Dermot wheel in the flour order. Two bags short. Again. Third week. Her Saturday rush starts at five the next morning and she is already rehearsing the line: \"You people keep shorting me and I am done being quiet about it.\" Dermot is not looking at her. He is looking at the invoice. She opens her mouth, then closes it. She sets the clipboard down on a stack of empty crates and tries a different sentence.\n\n\"Dermot, what does the loading sheet say when you leave the depot on Thursday nights?\"",
+      "whatToDo": "Open with a question that lets the other person tell you what went wrong from inside their own version of events, before you name the problem or assign the blame.",
+      "whyItMatters": "Dermot already has a story about why the bags are short, and he will defend that story against any accusation. A question gets you inside his story, where the facts actually live."
+    },
+    {
+      "exampleId": "ch01-ex04-director-otieno",
+      "title": "Mr. Otieno Hands Back the Trumpet Part to Celestine",
+      "tags": [
+        "vignette",
+        "school",
+        "handing"
+      ],
+      "planSpec": {
+        "domain": "a high school band director handing back sheet music to a trumpet player who has been playing the second phrase flat for a month",
+        "audience": "a teacher or coach who has corrected the same mistake five times and is losing patience",
+        "stakes": "whether the student keeps showing up to rehearsal at all",
+        "format": "vignette",
+        "requiredBeat": "the director almost says what he has said four times before, sees the student bracing for it, and instead says something that acknowledges how hard the student has been trying before naming the phrase"
+      },
+      "scenario": "The rehearsal room smells like valve oil and floor wax. Celestine, second-chair trumpet, stands with her instrument across her forearms while Mr. Otieno flips to the second phrase of the Sousa. He has circled the same four measures in red four Tuesdays in a row. Her shoulders are already up by her ears. He can see her waiting for the sentence she has heard four times. His pencil hovers over the page, and he has the length of one inhale to decide whether to say it a fifth time or say something else.",
+      "whatToDo": "Name out loud the specific thing she has clearly been working on (tone, breath, showing up early), then point at the phrase as a puzzle the two of you haven't cracked yet.",
+      "whyItMatters": "A student who is bracing has already written the script in which you are the critic and she is the failure. Speaking to the effort she is proud of rewrites the script before the correction lands."
+    },
+    {
+      "exampleId": "ch01-ex05-ines-loan-email",
+      "title": "Ines Rewrites the Email to Her Sister After a Walk",
+      "tags": [
+        "before_after",
+        "woman",
+        "drafted"
+      ],
+      "planSpec": {
+        "domain": "a woman reading a drafted email to her sister about an unpaid loan",
+        "audience": "anyone writing a message while still angry",
+        "stakes": "the family thanksgiving and the loan both",
+        "format": "before_after",
+        "requiredBeat": "the first draft lists the sister's failures; the second draft, written after a walk, opens by stating the sister's own stated reason for the delay more generously than the sister herself put it, and only then makes the ask"
+      },
+      "scenario": "Ines has the draft open at her kitchen table in Providence on a Sunday afternoon. The first version, three paragraphs, lists every month her sister Marisol has gone quiet, every missed Venmo, the exact figure still owed. It ends with the word disappointed. Ines closes the laptop, walks to the end of the block and back, and opens it again. Marisol had said, once, that she did not know how to bring it up without crying. The new draft opens with that sentence, said more kindly than Marisol said it herself. Then, and only then, comes the ask.",
+      "whatToDo": "Before you send anything written in heat, state the other person's own reason for the problem more generously than they stated it, and put that sentence first.",
+      "whyItMatters": "A person who sees their own explanation at the top of your message does not have to spend the next paragraph defending themselves, which leaves them free to actually read yours."
+    },
+    {
+      "exampleId": "ch01-ex06-rafe-onions",
+      "title": "Rafe Swallows the Comeback After the Onion Tray Lands",
+      "tags": [
+        "reflection",
+        "prepped",
+        "thrown"
+      ],
+      "planSpec": {
+        "domain": "a line cook who just had a tray of prepped onions thrown out by the new sous-chef",
+        "audience": "someone low on the totem pole who has been publicly corrected by a peer",
+        "stakes": "whether the cook says something he cannot take back in front of the whole kitchen",
+        "format": "reflection",
+        "requiredBeat": "the cook thinks through what the sous-chef must be telling himself about why the onions had to go, and notices that his own urge to fire back is about being seen as competent, not about the onions"
+      },
+      "scenario": "Rafe is on garde manger, Friday, seven minutes to service, when the new sous-chef Bram dumps his whole hotel pan of small-diced onions into the trash and says, loud enough for the pass to hear, that the cut is sloppy. Rafe's hands are still on his knife. A sentence is already half-formed in his throat about Bram being three weeks on the line and trying to prove something. He does not say it yet. He stands there picturing what Bram told himself, walking past that tray, about why a new guy has to throw things out on his first Friday.",
+      "whatToDo": "Name, silently, the story Bram is telling himself about needing to set a standard. Then ask Bram, after service, what cut he wants, in private.",
+      "whyItMatters": "The public clapback wins the moment and loses the kitchen. Bram will double down to protect the authority he just claimed, and every onion Rafe cuts for a year becomes a referendum."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A dental hygienist keeps leaving the autoclave door cracked at closing. Her supervisor is trying to figure out why a direct talking-to has not stopped it. Which idea best explains why blunt correction has failed?",
+        "choices": [
+          "The hygienist has a private version of the story where she is not careless, and the talking-to never touches that version.",
+          "The hygienist is probably doing it on purpose to test the supervisor's authority.",
+          "The hygienist needs the rule repeated more times before it will stick in memory."
+        ],
+        "correctIndex": 0,
+        "explanation": "People defend their own image of themselves before they think about the rule. Until the correction meets her private version of events, she has no reason to change. Repetition or assumed defiance both miss the real block.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A warehouse supervisor finds a picker has logged the wrong aisle three shifts in a row. Before he walks over to talk to him, what should he try to do in his head first?",
+        "choices": [
+          "Plan the exact words that will make the picker admit he was wrong.",
+          "Picture the reason the picker would give a friend for the mix-ups, and plan to speak to that reason.",
+          "Decide on the discipline step in advance so the conversation stays firm."
+        ],
+        "correctIndex": 1,
+        "explanation": "Speaking to the reason the picker already gives himself keeps him from defending his competence before he can hear you. Scripted takedowns and pre-picked discipline both skip that step and invite resistance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A branch librarian notices a retired volunteer has reshelved fiction into the wrong sections twice this week. The librarian wants the shelving fixed without losing the volunteer. What opens the conversation best?",
+        "choices": [
+          "State that the shelves are wrong and ask her to redo both sections today.",
+          "Remind her that the Dewey rules were covered in her first training.",
+          "Ask how she has been finding the new fiction layout, since it trips a lot of people up."
+        ],
+        "correctIndex": 2,
+        "explanation": "Framing the layout as tricky lets her admit trouble without admitting fault, so she can learn. Ordering a redo or citing the training puts her in defense mode, and defense is when learning stops.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A co-founder is about to message her business partner about a botched vendor demo. She is still angry. What is the soundest thing to do before hitting send?",
+        "choices": [
+          "Walk away from the keyboard, then rewrite the opening from how her partner would explain the demo to a friend.",
+          "Send the message now while the details are sharp in her memory.",
+          "Shorten the message to two lines so it cannot be read as an attack."
+        ],
+        "correctIndex": 0,
+        "explanation": "The rewrite works because it meets her partner in his own version of events before making the ask. Sending while angry or trimming words does not change whose self-image the message attacks.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A swim coach has told a twelve-year-old to fix her flip turn five times. At the next practice the turn is still sloppy and the girl looks ready to cry. What should the coach try?",
+        "choices": [
+          "Demonstrate the turn once more and make her repeat it until it is right.",
+          "Sit her on the bench for the rest of practice so she takes the note seriously.",
+          "Start by noting how hard she has been working on her kick, then describe what the turn feels like when it clicks."
+        ],
+        "correctIndex": 2,
+        "explanation": "Naming the effort she already feels she is putting in makes her willing to hear the technical note. Another demo adds pressure she already feels, and the bench reads as punishment for trying.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Two department heads confront an assistant about missed calendar invites. The first opens by listing the meetings she missed. The second opens by asking whether the calendar system has been glitchy lately. Why does the second one get further?",
+        "choices": [
+          "The second is more polite, and polite people tend to get more cooperation on average.",
+          "The second meets her own version of events first, so she can admit the real cause without losing face.",
+          "The second avoids the topic of missed meetings, which keeps the mood light."
+        ],
+        "correctIndex": 1,
+        "explanation": "Asking about the system lets her own story come out without a fight, which is when honest answers appear. Politeness alone does not do this, and the second opening does not actually avoid the topic, it just enters it sideways.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A landlord emails a tenant who has paid rent late three months running: 'This is the third time. Handle your finances or find another place.' The email backfires and the tenant stops answering calls. What is the chief error?",
+        "choices": [
+          "The landlord used email instead of calling, which always reads as colder than speaking.",
+          "The landlord did not offer a specific payment plan, so the tenant had nothing concrete to act on.",
+          "The landlord described the tenant in words the tenant would never use about himself, so the tenant had to defend himself."
+        ],
+        "correctIndex": 2,
+        "explanation": "The phrase 'handle your finances' casts him as irresponsible, which he will never accept about himself, so he retreats. The medium and the missing plan are smaller factors than the attack on his self-image.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A flower shop owner has been shorted on stems twice this month by her delivery driver. She wants to vent to him the moment he arrives. Reading her urge honestly, what is it mostly about?",
+        "choices": [
+          "Being seen as someone who cannot be pushed around, more than the stems themselves.",
+          "Getting the missing stems replaced before the weekend rush.",
+          "Making sure the driver does not short the other shops on his route."
+        ],
+        "correctIndex": 0,
+        "explanation": "The urge is really about her standing as a proprietor, not the stems. Noticing that is what lets her ask a calm question instead of venting. The other motives are real but secondary to the pull of self-image.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A manager is about to talk to an engineer who shipped a bug that took down checkout for an hour. Which opening best applies the habit of speaking to the person's own version of events first?",
+        "choices": [
+          "That outage cost us real money. I need you to explain exactly how you missed this.",
+          "I know you were sprinting to hit the Friday cutoff, and the test matrix we had did not cover this path. Walk me through what you saw.",
+          "Mistakes happen to everyone. Let's not dwell on it and just push the fix."
+        ],
+        "correctIndex": 1,
+        "explanation": "The second opening states the engineer's likely version of events generously before asking for facts, so he can explain without flinching. The blunt demand puts him on defense, and the brush-off skips the learning entirely.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "Someone on your team made a mistake and you are about to correct them. What is the first move before you open your mouth?",
+      "back": "Picture how they already justify the behavior to themselves, and address that picture instead of the behavior. Find the story they are telling themselves where they are not the villain, then speak to that story before naming what went wrong.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Your teenager dented the car last night. You have a sharp three-sentence speech ready at the breakfast table. What do you do with the speech?",
+      "back": "Set it down and start with the story she probably told herself on the drive home, that she was scared and it was dark and she was already dreading you. Ask about her night before you name the fender. You are not excusing her, you are refusing to give her an excuse to stop listening.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A supplier shorted your order for the third week. You are about to call and open with an accusation. Why will that backfire, and what should replace it?",
+      "back": "An accusation argues against the person, not the act, and people always defend the person. Open with a question that lets him tell you what went wrong without needing to defend himself, so the reason he already believes can come out of his own mouth.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A colleague publicly corrected you in front of the room and you feel the urge to fire back. What quiet check stops you from saying something you cannot take back?",
+      "back": "Notice that the urge is about being seen as competent, not about the thing she corrected. Then picture what she is telling herself about why she had to do it in front of everyone. Once you can name her reason in words she would accept, the pressure to retaliate drops.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "You reread the angry email you drafted to your sister about the unpaid loan. How do you rewrite the opening so the message has a chance of working?",
+      "back": "Cut the list of her failures. Open by stating her own reason for the delay more generously than she put it herself, so she does not have to defend the person before she can hear the ask. Only then make the request. You are addressing the story she tells herself, not the one you would tell about her.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is reading the private story the other person is telling themselves about what they did, and speaking to that story instead of the one you would tell about them. Practiced over time, it becomes a reflex that kicks in right before you open your mouth to correct, write up, or send. You stop arguing with the act and start working with the self-image underneath it.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you are about to send a written correction to a direct report or peer, then first write one sentence naming the reason they would give for what happened, and paste it above your draft before you decide what to keep."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you catch yourself rehearsing a speech in your head for a family member, then set a two minute timer, say their version of events out loud to an empty room, and only then decide what you actually want to say."
+      },
+      {
+        "context": "money",
+        "plan": "If a vendor, contractor, or client has let you down for the second or third time, then open the conversation with a question that lets them tell you what went wrong, instead of leading with the count of how many times it has happened."
+      },
+      {
+        "context": "personal",
+        "plan": "If you feel the urge to fire back after being corrected in front of other people, then take one slow breath and ask yourself what the other person needs to feel competent right now, before you answer at all."
+      }
+    ],
+    "twentyFourHourChallenge": "Tonight, find one unsent message in your drafts or your head where you are about to correct somebody, and write two sentences describing how that person would explain their behavior to a friend over coffee. Then rewrite your opening line so it speaks to that explanation first.",
+    "weeklyPractice": "Once a week, pick the person who frustrated you most in the last seven days and spend five minutes writing their side of the story in first person, as generously as they would tell it themselves. Keep the page. Over a few weeks you will start to notice the same three or four stories repeating, and you will get faster at hearing them in real time."
+  }
+}

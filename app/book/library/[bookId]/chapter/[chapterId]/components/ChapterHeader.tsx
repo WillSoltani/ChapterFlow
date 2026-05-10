@@ -360,14 +360,16 @@ function TitleBlock({
       >
         {chapterLabel}: {chapterTitle}
       </h1>
-      <p className="mt-2 text-[12px] text-(--cr-text-disabled) flex flex-wrap items-center gap-x-2 gap-y-1">
+      {/* Compact metadata line. "Chapter X of Y" lived here historically but
+       * the nav row above already shows "Chapter 2 / 8", so the second copy
+       * was redundant. Mode label only renders in non-standard modes since
+       * Standard is the default and saying so adds no information. */}
+      <p className="mt-2 text-[11px] text-(--cr-text-disabled) flex flex-wrap items-center gap-x-2 gap-y-1">
         {showEstimatedReadingTime && <span>{minutes} min read</span>}
-        {showEstimatedReadingTime && <span aria-hidden="true">&middot;</span>}
-        <span>{modeLabel} mode</span>
-        <span aria-hidden="true">&middot;</span>
-        <span>
-          Chapter {chapterOrder} of {totalChapters}
-        </span>
+        {showEstimatedReadingTime && learningMode !== "standard" && (
+          <span aria-hidden="true">&middot;</span>
+        )}
+        {learningMode !== "standard" && <span>{modeLabel} mode</span>}
       </p>
       <div
         className="mt-3 sm:hidden h-0.5 w-full overflow-hidden rounded-full"

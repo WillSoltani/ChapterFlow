@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch23",
+  "number": 23,
+  "title": "Give a Dog a Good Name",
+  "coreMove": "Name the better trait the person almost has, then let them rise to meet the name you gave them",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a head nurse on a cardiac ward describing a sloppy new charge nurse to her face as 'the most careful documenter we've had in years' before the next shift",
+      "audience": "a charge nurse two years into management who keeps losing staff she has corrected",
+      "stakes": "whether the new hire stops cutting corners on med reconciliation or quits within the month after another write-up",
+      "format": "scene",
+      "requiredBeat": "the head nurse picks one true sliver of carefulness already visible in the new hire and names her by it before any correction lands, and the new hire is shown adjusting her own behavior to fit the name"
+    },
+    {
+      "domain": "a high school orchestra conductor introducing a chronically late second-chair cellist to a visiting guest soloist",
+      "audience": "a music teacher at a public school with no leverage beyond words",
+      "stakes": "whether the cellist starts arriving at warm-up or the section drifts further out of tune for the spring concert",
+      "format": "dialogue",
+      "requiredBeat": "the conductor introduces the cellist by a reputation she has not yet earned ('our most reliable opener') in the soloist's hearing, and the cellist's face shifts as she registers the name being placed on her"
+    },
+    {
+      "domain": "a father at the kitchen table speaking about his eleven-year-old son's messy room within the son's hearing while pouring coffee for a visiting uncle",
+      "audience": "a parent of a preteen who has tried nagging and lost",
+      "stakes": "whether the boy starts picking up after himself without a fight, or the family settles into another year of weekend yelling",
+      "format": "vignette",
+      "requiredBeat": "the father refers to the boy, casually and without performance, as someone who is becoming careful about his own things, and the boy overhears it and the room records what he does next without telling us what to feel"
+    },
+    {
+      "domain": "a regional grocery manager writing a one-paragraph note to a checkout clerk known for snapping at customers",
+      "audience": "a manager of forty hourly employees who cannot afford to fire the clerk",
+      "stakes": "whether the clerk's Saturday shift produces another customer complaint or whether her line becomes the one regulars choose",
+      "format": "before_after",
+      "requiredBeat": "the before note is the corrective version the manager almost sent; the after is the version that names the clerk as 'the one our older shoppers ask for' on the strength of one true Tuesday interaction, and we see what arrives in his inbox a week later"
+    },
+    {
+      "domain": "a public defender preparing a teenage client for a sentencing hearing where the judge has already read the file",
+      "audience": "a lawyer who knows the judge will be looking for a reason to be lenient or harsh",
+      "stakes": "whether the boy walks out with probation or with eighteen months in a youth facility",
+      "format": "decision_point",
+      "requiredBeat": "the lawyer must choose between defending the client against the file's worst readings or standing up and naming the client by a quality the judge has not yet seen evidence of, and the lawyer commits to the second move knowing the client will hear himself described that way for the first time"
+    },
+    {
+      "domain": "a long-married woman writing in her journal about how her husband answers the phone now compared to a year ago",
+      "audience": "a spouse trying to repair a marriage without sitting her partner down for a 'talk'",
+      "stakes": "whether the daily texture of the marriage softens or the couple drifts into separate rooms permanently",
+      "format": "reflection",
+      "requiredBeat": "the woman traces back to one specific evening she described her husband to her sister as patient, in his hearing, and she notices on the page that he has been quietly trying to be that man ever since, without either of them naming the deal"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

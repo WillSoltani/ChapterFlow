@@ -1,0 +1,66 @@
+{
+  "chapterId": "tiny-habits-ch02",
+  "number": 2,
+  "title": "Motivation-Focus on Matching",
+  "coreMove": "Stop trying to amplify motivation and instead match the size of the behavior to the motivation you actually have right now",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ER nurse trying to start a stretching routine after twelve-hour shifts",
+      "audience": "a healthcare worker whose energy is genuinely depleted, not metaphorically",
+      "stakes": "whether her chronic lower-back pain becomes a career-ending injury within two years",
+      "format": "vignette",
+      "requiredBeat": "she abandons the 20-minute YouTube routine and reframes the problem as 'what stretch can I do while the kettle boils' — the shift from amplifying willpower to shrinking the behavior to fit her real Tuesday-at-3am self"
+    },
+    {
+      "domain": "a high school band director trying to journal about each rehearsal",
+      "audience": "a working educator with a packed evening",
+      "stakes": "losing the only feedback loop he has for improving his teaching across a 40-student ensemble",
+      "format": "before_after",
+      "requiredBeat": "the before shows him bargaining with himself to write 'just one paragraph' and skipping for nine days; the after shows him writing one sentence on a sticky note while putting his trumpet in its case, and the reader sees the matching of behavior-size to leftover energy"
+    },
+    {
+      "domain": "a couple deciding whether to commit to cooking dinner together every weeknight",
+      "audience": "two partners with mismatched schedules",
+      "stakes": "whether the resentment building from takeout-and-screens evenings calcifies into something harder to fix",
+      "format": "dialogue",
+      "requiredBeat": "one partner stops defending the ambitious plan and asks aloud 'what is the version of this we can do on the worst night of the week' — the conversation models matching to the floor of their motivation, not the ceiling"
+    },
+    {
+      "domain": "a freelance illustrator with ADHD trying to build a daily sketching practice",
+      "audience": "a creative professional whose motivation genuinely fluctuates by the hour",
+      "stakes": "her portfolio stagnates and she loses a recurring client who wants to see range",
+      "format": "decision_point",
+      "requiredBeat": "she chooses between 'sketch for 30 minutes' on a high-motivation morning and 'draw one line' on a low-motivation morning, and the reader watches her pick the rule that survives both kinds of day"
+    },
+    {
+      "domain": "a recently retired man who promised himself he would learn Spanish before visiting his daughter-in-law's family",
+      "audience": "a 67-year-old who has the time but not the residual cognitive energy he expected",
+      "stakes": "a real trip in eight months and the relationship with grandchildren he cannot yet talk to",
+      "format": "reflection",
+      "requiredBeat": "he sits with the gap between his daydreamed self ('an hour of Duolingo every morning') and his actual self, and rewrites the behavior to one phrase before the first sip of coffee — the matching is internal, not technique-driven"
+    },
+    {
+      "domain": "a warehouse shift supervisor who keeps abandoning a budgeting habit",
+      "audience": "a worker with variable income and an exhausting commute",
+      "stakes": "a $4,200 emergency fund he has been trying to build for three years",
+      "format": "postmortem",
+      "requiredBeat": "he reconstructs the last four failed attempts and notices each one assumed his Sunday-night motivation, not his Wednesday-night motivation — the diagnosis names mismatched sizing as the actual failure mode, not laziness"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

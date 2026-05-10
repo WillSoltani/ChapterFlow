@@ -1,0 +1,102 @@
+{
+  "bookId": "how-to-win-friends-and-influence-people",
+  "title": "How to Win Friends and Influence People",
+  "author": "Dale Carnegie",
+  "thesisParagraph": "People do not behave according to logic. They behave according to pride, fear, and the hunger to feel important, and anyone who forgets this will lose every argument they technically win. Carnegie's claim is plain and slightly embarrassing to admit: if you want someone to change, stop criticizing them and start making them feel respected. The social skill is not charm or cleverness. It is a disciplined refusal to treat other people as obstacles to your own correctness. Most of what passes for persuasion is just the ordinary act of taking another person's self-image seriously enough to work with it instead of against it. The book is a field manual for doing that under pressure, when you are annoyed, when you are right, and especially when the other person is wrong.",
+  "coreIdeas": [
+    {
+      "name": "criticism never works",
+      "oneSentence": "Direct criticism rarely changes behavior because it attacks the one thing people defend hardest, their own self-image.",
+      "mentalMove": "Before correcting someone, pause and ask what they would need to hear to change on their own, then say that instead.",
+      "sourceAnchors": [
+        "Part 1, Principle 1",
+        "the Bob Hoover crash anecdote",
+        "\"Don't criticize, condemn, or complain\""
+      ]
+    },
+    {
+      "name": "the hunger to feel important",
+      "oneSentence": "Almost every adult is quietly starving for sincere appreciation and will open up to anyone who supplies it honestly.",
+      "mentalMove": "Find one specific, true thing to appreciate about the person in front of you and say it plainly before you ask for anything.",
+      "sourceAnchors": [
+        "Part 1, Principle 2",
+        "Charles Schwab's million-dollar salary passage",
+        "Part 2, Principle 6"
+      ]
+    },
+    {
+      "name": "see it from their side",
+      "oneSentence": "Persuasion begins when you can state the other person's position more generously than they can.",
+      "mentalMove": "Argue the other side out loud first, in good faith, until the person nods, then make your case.",
+      "sourceAnchors": [
+        "Part 3, Principle 1",
+        "Part 3, Principle 8",
+        "the \"Why He Changed His Mind\" letter examples"
+      ]
+    },
+    {
+      "name": "let them own the idea",
+      "oneSentence": "People support what they help create, so the faster you hand authorship of a decision to the other person, the faster they commit.",
+      "mentalMove": "Convert your conclusion into a question they can answer themselves, and accept the same answer coming from their mouth.",
+      "sourceAnchors": [
+        "Part 3, Principle 7",
+        "Part 4, Principle 6",
+        "the auto-dealer sales anecdotes"
+      ]
+    },
+    {
+      "name": "save their face",
+      "oneSentence": "Even when someone is wrong, humiliating them guarantees you lose the relationship and usually the point.",
+      "mentalMove": "Correct privately, praise publicly, and give the other person a graceful way to change their mind without admitting defeat.",
+      "sourceAnchors": [
+        "Part 4, Principle 5",
+        "the General Electric Charles Steinmetz demotion story"
+      ]
+    }
+  ],
+  "targetReader": "A competent but frustrated adult, often early in management or dealing with a difficult family member, who keeps winning arguments and losing people and suspects their intelligence is now working against them.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "short",
+    "signatureMoves": [
+      "Open each section with a short anecdote about a named historical or working person, under 40 words, before stating the principle",
+      "State the principle as a direct instruction to the reader, not a hypothesis",
+      "Use small, domestic examples (a dinner table, a sales call, a neighbor's dog) before reaching for famous ones",
+      "Quote the person in the anecdote in their own words whenever possible",
+      "End sections with a single-sentence rule the reader could write on an index card"
+    ],
+    "avoidMoves": [
+      "Never write \"the chapter\", \"this chapter\", \"the author\", \"the book\", \"the law\", or \"in this chapter\"",
+      "Never print \"Chapter 1\", \"Chapter 12\", or any chapter-number phrasing inside prose",
+      "Never use the house-ruled phrases: boundary condition, keeps the chapter honest, strips away, is not decorative, is not magic, operating logic, diagnostic discipline, durable practice, turns out to be, That matters because",
+      "Do not use academic hedging like \"one might argue\" or \"it could be suggested\"",
+      "Do not psychologize with clinical terms (narcissism, cognitive dissonance, attachment style); Carnegie stays in plain English"
+    ]
+  },
+  "voiceSpecimens": [
+    "You can win an argument and lose a customer in the same five minutes, and most of us have done both.",
+    "Ask yourself, honestly, what the other person wants out of this conversation before you open your mouth.",
+    "A man convinced against his will is of the same opinion still.",
+    "I once wrote a letter I am still ashamed of, and the only reason I remember it is that the person I sent it to wrote back kindly anyway.",
+    "Praise the smallest improvement and praise every improvement.",
+    "Nobody wakes up hoping to be corrected before breakfast.",
+    "If you want to gather honey, do not kick over the beehive."
+  ],
+  "voiceAntiSpecimens": [
+    "The neurobiological substrate of social reciprocity suggests that dopaminergic pathways reward affiliative behavior. (clinical; Carnegie never reaches for brain science)",
+    "Leverage this framework to optimize your interpersonal ROI. (business-jargon drift; Carnegie speaks like a neighbor, not a consultant)",
+    "Perhaps one might consider, tentatively, whether criticism has drawbacks. (academic hedging; Carnegie states flatly that it does not work)",
+    "In today's fast-paced digital landscape, networking is more critical than ever. (contemporary self-help filler; Carnegie uses timeless, concrete scenes)",
+    "It is important to note that empathy is a key skill. (throat-clearing abstraction; Carnegie would give you a story about a man and his son instead)"
+  ],
+  "teachingArc": "Begin with the hardest and least flattering lesson, that criticism almost never produces change, so the reader's instinct to correct is disarmed early. Build from there into the positive counterpart, sincere appreciation, then widen into seeing the situation from the other side. Close with the hardest application, handling people who are actually wrong without humiliating them, because by then the reader has the earlier habits to lean on.",
+  "forbiddenMoves": [
+    "No war, battle, or combat metaphors; Carnegie's world is dinner tables, offices, and front porches, not battlefields",
+    "No modern therapy vocabulary (boundaries, triggers, trauma, validation) even when the idea overlaps",
+    "No LinkedIn-style corporate language (stakeholders, alignment, synergy, leverage)",
+    "Do not soften Carnegie's directness into suggestions; he gives orders and the prose should too",
+    "Do not reuse the names Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, or Naomi for any example person",
+    "Never narrate the text as an object (\"the book argues\", \"this chapter shows\"); teach the principle directly to the reader"
+  ]
+}

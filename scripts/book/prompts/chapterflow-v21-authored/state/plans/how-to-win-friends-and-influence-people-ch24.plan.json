@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch24",
+  "number": 24,
+  "title": "Make the Fault Seem Easy to Correct",
+  "coreMove": "Frame the gap between someone's current performance and the standard you want as a small, near-at-hand adjustment they are already most of the way toward making.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a high school band director correcting a trumpet player who keeps rushing the tempo in the second movement",
+      "audience": "a teacher who has watched the student practice alone and knows she actually has the timing",
+      "stakes": "whether the trumpet player gives up before the spring concert and quits band entirely, which she has been threatening since October",
+      "format": "scene",
+      "requiredBeat": "the director points out that the rushing only happens in two measures and that her metronome work last week proves the timing is already in her hands"
+    },
+    {
+      "domain": "a head baker training a new apprentice whose laminated dough keeps tearing during the final fold",
+      "audience": "a baker running a small shop with one hire and no time to redo a batch",
+      "stakes": "the morning's croissant order for a hotel client who pays for thirty laminated pieces by 6am",
+      "format": "dialogue",
+      "requiredBeat": "the baker tells the apprentice that the tear is a butter-temperature problem he has already solved twice this week, not a hands problem, and shows him where the chill went wrong"
+    },
+    {
+      "domain": "a community-college math instructor returning a low-scoring exam to a student who is convinced he is bad at algebra",
+      "audience": "an instructor who has read the exam and seen that the student loses points only on sign errors, not concepts",
+      "stakes": "whether the student drops the course on Friday and loses his financial aid eligibility for the term",
+      "format": "decision_point",
+      "requiredBeat": "the instructor decides to circle the four sign errors and write that the underlying algebra is correct, rather than write the score and a generic study-harder note"
+    },
+    {
+      "domain": "a regional hardware-store manager coaching a long-tenured cashier whose register reconciliations have been off by small amounts for three weeks",
+      "audience": "a manager who likes the cashier and does not want to write him up",
+      "stakes": "corporate audit visiting in nine days; a fourth shortage triggers a mandatory written warning",
+      "format": "vignette",
+      "requiredBeat": "the manager mentions that he watched the cashier handle a tricky split-tender flawlessly yesterday and that the only thing missing is the habit of recounting before close, which the cashier already does on Saturdays"
+    },
+    {
+      "domain": "a swim coach giving feedback to a forty-six-year-old adult learner who keeps lifting his head during freestyle breathing",
+      "audience": "a coach with a class of nervous adult beginners who are one bad lesson from quitting",
+      "stakes": "the learner has paid for ten sessions and is privately terrified of deep water; this is session four",
+      "format": "dialogue",
+      "requiredBeat": "the coach tells him the lifting is a one-inch fix, not a stroke rebuild, and points out that his rotation, the harder skill, is already correct"
+    },
+    {
+      "domain": "a father helping his nine-year-old daughter who has decided after one bad recital that she 'cannot' play piano in front of people",
+      "audience": "a parent at the kitchen table the night after the recital",
+      "stakes": "whether she shows up for the next lesson on Wednesday or quits an instrument she has played for two years",
+      "format": "reflection",
+      "requiredBeat": "the father reframes the recital as one missed measure inside a piece she played correctly forty other times, and offers the specific, small fix of starting the piece from a different bar in practice"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

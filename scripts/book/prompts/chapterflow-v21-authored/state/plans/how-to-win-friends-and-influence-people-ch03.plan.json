@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch03",
+  "number": 3,
+  "title": "He Who Can Do This Has the Whole World With Him",
+  "coreMove": "Before asking for anything, name what the other person already wants and show how your request gets them closer to it — in their words, not yours.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a community theater director trying to get a sullen 16-year-old stagehand to show up for a Saturday tech rehearsal he has already blown off twice",
+      "audience": "a first-time volunteer director who keeps reaching for guilt and obligation",
+      "stakes": "whether the lighting cues are ready for opening night, and whether the teenager quits theater entirely after this season",
+      "format": "decision_point",
+      "requiredBeat": "the director stops rehearsing the speech about responsibility and asks what the teenager would get out of running the board himself during the run — and builds the ask from that answer"
+    },
+    {
+      "domain": "a rural large-animal veterinarian trying to convince a third-generation dairy farmer to switch his herd onto a pricier mineral supplement",
+      "audience": "a vet two years out of school who keeps losing these conversations by citing research",
+      "stakes": "the farmer's milk yield, a 20-year client relationship, and whether the vet's practice can keep its largest account",
+      "format": "dialogue",
+      "requiredBeat": "the vet drops her citation mid-sentence and instead asks what the farmer noticed about his cows last winter, then frames the supplement as the answer to the thing the farmer himself just described"
+    },
+    {
+      "domain": "a 74-year-old widower trying to get his 41-year-old daughter to accept weekly help with his insulin injections",
+      "audience": "an aging parent who hates being a burden and has been refusing help for months",
+      "stakes": "his independence, her anxiety at 2am phone calls, and the unspoken question of whether he moves in with her",
+      "format": "vignette",
+      "requiredBeat": "the father names out loud the thing his daughter is actually afraid of — missing the call that matters — and lets the weekly visit be the thing that protects her, not him"
+    },
+    {
+      "domain": "a self-employed plumber writing a quote to a small landlord for re-piping a 1920s triplex",
+      "audience": "a tradesman whose quotes keep getting undercut by bigger outfits",
+      "stakes": "a $14,000 job, six weeks of steady work, and whether the landlord calls him back for the other two buildings on the block",
+      "format": "before_after",
+      "requiredBeat": "the second version of the quote opens with the tenant complaints the landlord mentioned on the walk-through, not with the plumber's credentials or the pipe specs"
+    },
+    {
+      "domain": "a high school speech-and-debate coach reviewing why her proposal for eight refurbished laptops was turned down by the principal last spring",
+      "audience": "a teacher writing the same proposal again for this year's budget cycle",
+      "stakes": "the team's ability to compete in remote rounds, and the coach's standing with an administration that thinks debate is a luxury",
+      "format": "postmortem",
+      "requiredBeat": "the coach realizes her pitch spoke entirely about what her students needed and never named the metric — graduation rates, district rankings — that the principal is judged on every June"
+    },
+    {
+      "domain": "you want your next-door neighbor to prune the old plum tree that drops fruit and wasps into your toddler's sandbox every August",
+      "audience": "the reader, who has rehearsed a polite but pointed note three times and not delivered it",
+      "stakes": "a summer of stings, the sandbox your kid loves, and eleven more years of sharing a fence with this household",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader drafts the ask twice — once starting from their own grievance, once starting from something the neighbor has said they care about (the tree's history, the fruit, the quiet) — and notices which version they would answer yes to"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

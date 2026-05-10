@@ -264,11 +264,18 @@ export function AudioPlayer({
   const progress = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0;
 
   // ── Collapsed ──────────────────────────────────────────────────────
+  // Round icon-only trigger that visually matches the AskBookDrawer chat
+  // button, so the two floating controls feel like a coherent set.
   if (!open) {
     return (
-      <button type="button" onClick={handleOpen} className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-3.5 py-2 text-[13px] font-semibold text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-accent) hover:border-(--cr-accent)/30" title="Listen to this chapter">
-        <Headphones className="h-4 w-4" />
-        Listen to Summary
+      <button
+        type="button"
+        onClick={handleOpen}
+        title="Listen to this chapter"
+        aria-label="Listen to this chapter"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-(--cf-shadow-lg) transition hover:brightness-110"
+      >
+        <Headphones className="h-5 w-5" />
       </button>
     );
   }

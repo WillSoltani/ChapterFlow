@@ -1,0 +1,139 @@
+{
+  "$schema": "./banned-phrases.schema.json",
+  "version": "1.0.0",
+  "description": "Phrases that showed up across many unrelated v13 books, signaling a shared model-voice template. v21 writers receive this list in their system prompt; the critic also programmatically flags hits. Budgets are library-wide lifetime quotas. Once spent, any new occurrence is a blocker.",
+  "policies": {
+    "newBookReceivesStockPhraseBudget": 3,
+    "libraryBlockOncePhrasesExhausted": true,
+    "softWarnOnPerBookCount": 2
+  },
+  "hardBanned": [
+    {
+      "phrase": "boundary condition",
+      "reason": "Grad-school-philosophy register. Appeared 201 times across 46 books in v13 — a generator tell.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "keeps the chapter honest",
+      "reason": "111 hits across 36 books. Impossible to appear organically at that rate.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "keeps the chapter from",
+      "reason": "Meta-reference + stock construction. 167 hits across 50 books.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "strips away",
+      "reason": "149 hits across 43 books.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "is not decorative",
+      "reason": "68 hits across 31 books — same rhetorical move.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "is not magic",
+      "reason": "58 hits across 29 books.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "operating logic",
+      "reason": "60 hits across 15 books — fine occasionally, overused.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "tidy explanation",
+      "reason": "10 hits across 6 books — borderline tic.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "selective suspicion",
+      "reason": "Niche phrase repeated suspiciously.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "diagnostic discipline",
+      "reason": "Tic.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "durable practice",
+      "reason": "Tic, appears 33 times in just 3 books.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "usable lesson",
+      "reason": "Tic.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "reframes behavior",
+      "reason": "Tic.",
+      "libraryBudgetRemaining": 0
+    },
+    {
+      "phrase": "installs the operational",
+      "reason": "Tic.",
+      "libraryBudgetRemaining": 0
+    }
+  ],
+  "softBanned": [
+    {
+      "phrase": "That matters because",
+      "reason": "517 hits in 62 of 73 books — the #1 model crutch. Soft-ban: budget 10 per book, else rewrite.",
+      "perBookBudget": 10
+    },
+    {
+      "phrase": "chapter argues that",
+      "reason": "353 hits across 50 books. Direct meta-reference; should almost always be rewritten.",
+      "perBookBudget": 0
+    },
+    {
+      "phrase": "The chapter argues",
+      "reason": "312 hits across 48 books.",
+      "perBookBudget": 0
+    },
+    {
+      "phrase": "turns out to be",
+      "reason": "Rhetorical crutch.",
+      "perBookBudget": 3
+    },
+    {
+      "phrase": "rather than",
+      "reason": "Massively overused (top content bigram). Allow in moderation.",
+      "perBookBudget": 15
+    },
+    {
+      "phrase": "treats it as",
+      "reason": "76 hits across 42 books.",
+      "perBookBudget": 2
+    }
+  ],
+  "protagonistNamePool": {
+    "description": "Names that appeared too many times across v13. Writers should draw from a much larger pool, biased AWAY from these.",
+    "overusedNames": [
+      { "name": "Priya", "v13UsageCount": 170, "v13BookCount": 50 },
+      { "name": "Omar", "v13UsageCount": 124, "v13BookCount": 47 },
+      { "name": "Maya", "v13UsageCount": 118, "v13BookCount": 41 },
+      { "name": "Marcus", "v13UsageCount": 104, "v13BookCount": 49 },
+      { "name": "Elena", "v13UsageCount": 95, "v13BookCount": 39 },
+      { "name": "Lena", "v13UsageCount": 87, "v13BookCount": 41 },
+      { "name": "Victor", "v13UsageCount": 70, "v13BookCount": 42 },
+      { "name": "Theo", "v13UsageCount": 70, "v13BookCount": 41 },
+      { "name": "Jonah", "v13UsageCount": 69, "v13BookCount": 32 },
+      { "name": "Mateo", "v13UsageCount": 62, "v13BookCount": 38 },
+      { "name": "Tessa", "v13UsageCount": 57, "v13BookCount": 35 },
+      { "name": "Owen", "v13UsageCount": 56, "v13BookCount": 37 },
+      { "name": "Mira", "v13UsageCount": 55, "v13BookCount": 34 },
+      { "name": "Malik", "v13UsageCount": 55, "v13BookCount": 34 },
+      { "name": "Nadia", "v13UsageCount": 40, "v13BookCount": 25 },
+      { "name": "Felix", "v13UsageCount": 49, "v13BookCount": 37 },
+      { "name": "Caleb", "v13UsageCount": 46, "v13BookCount": 30 },
+      { "name": "Talia", "v13UsageCount": 46, "v13BookCount": 31 },
+      { "name": "Elise", "v13UsageCount": 42, "v13BookCount": 27 },
+      { "name": "Naomi", "v13UsageCount": 41, "v13BookCount": 29 }
+    ]
+  }
+}

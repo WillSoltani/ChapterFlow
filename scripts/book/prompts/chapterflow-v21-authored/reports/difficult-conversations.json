@@ -1,0 +1,5459 @@
+{
+  "bookId": "difficult-conversations",
+  "bookFile": "/Users/willsoltani/dev/chapterflow-siliconx/book-packages/difficult-conversations.modern.json",
+  "generatedAt": "2026-04-22T11:40:46.222Z",
+  "chapterCount": 12,
+  "unitCount": 300,
+  "unitResults": [
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A feedback conversation starts as an argument about missed deadlines and ends with both people angrier than when they began, and nobody quite knows why. What happened is that three conversations were…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The most important thing this chapter does is temporal. It moves your attention upstream. Most people date the problem from the visible breakdown — the moment the conversation went off the rails, the…"
+        },
+        {
+          "checkId": "register.no_banned_phrase",
+          "severity": "major",
+          "message": "banned phrase \"boundary condition\" — Grad-school-philosophy register. Appeared 201 times across 46 books in v13 — a generator tell.",
+          "evidence": "The most important thing this chapter does is temporal. It moves your attention upstream. Most people date the problem from the visible breakdown — the moment the conversation went off the rails, the…"
+        }
+      ],
+      "passedCount": 1,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-sort-out-the-three-conversations-ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Naomi is a product manager who moved into a team lead role 18 months ago. She is preparing to give formal feedback to Derek, a senior engineer who has been with the company for 14 years and recently …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-sort-out-the-three-conversations-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Aaliyah is the only first-year student in a second-year graduate seminar. Her group project received critical feedback from Professor Okafor in front of the whole class. The feedback was fair — the l…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-sort-out-the-three-conversations-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Carmen and her brother Miguel have been arguing by text for four days about who will take the next weekend visit to their father, who has early-stage dementia. The messages have been polite but escal…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Carmen and her brother Miguel have been arguing by text for four days about who will take the next weekend visit to their father, who has early-stage dementia. The messages have been polite but escal…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-sort-out-the-three-conversations-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Samir is an engineering manager who needs to tell Kezia, a senior IC, that the Meridian feature she has been leading for eight months is being cancelled. He asks a colleague what they think will be t…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-sort-out-the-three-conversations-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Theo has been unable to work for an hour. A week ago, Jordan made a comment in a study group that bothered him. Theo has been applying standard let-it-go reasoning: the comment was offhand, Jordan is…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Theo has been sitting in the university library for an hour, reading the same paragraph of the same paper for the fourth time, unable to focus. A week ago, in a study group session, his classmate Jor…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "example",
+        "unitId": "ch01-sort-out-the-three-conversations-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Leila and her partner Sasha have been having the same argument about household division of labor for months. Every Sunday evening, in some version, the argument arrives. The before: Leila walks in ca…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which of the following best describes what distinguishes the identity conversation from the other two conversations?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "review_card",
+        "unitId": "ch01-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 1,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter's diagnosis is temporal and structural. Most people analyze a stuck conversation from the content: who said what, who made the better argument, who failed to hear. The actual failure poin…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-stop-arguing-about-whos-right-ex01"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-stop-arguing-about-whos-right-ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Ananya's research methods seminar group had a disagreement in the meeting about which analytical approach to use. The meeting ended without resolution. In the group chat afterward — still open, still…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-stop-arguing-about-whos-right-ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Nneka and Bram have had the same conversation about household responsibilities eight times in six weeks. Each time, Nneka has a list. Each time, Bram has a counter-list. Each time, the conversation e…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nneka and Bram have had the same conversation about household responsibilities eight times in six weeks. Each time, Nneka has a list. Each time, Bram has a counter-list. Each time, the conversation e…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-stop-arguing-about-whos-right-ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Omar, a design director, needs to address a pattern with Fatima, a senior designer who has been consistently exceeding the agreed project scope. Omar has raised the issue twice: once as a question ('…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-stop-arguing-about-whos-right-ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Dev and his classmate Tomás have been disagreeing about the direction of their joint thesis proposal. Dev has a clear position and a set of arguments. He is planning to sit down with Tomás and make h…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "example",
+        "unitId": "ch02-stop-arguing-about-whos-right-ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Yara and her sibling Elan have been disagreeing for weeks about a family financial decision. Before: Yara has her position, her reasons, and her frustration that Elan keeps resisting what she sees as…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Yara and her sibling Elan have been disagreeing for weeks about a family financial decision. Before: Yara has her position, her reasons, and her frustration that Elan keeps resisting what she sees as…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which of the following best describes what the learning stance actually requires?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"easy\" (should normalize to \"simple\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Reza has tried two framings of a product roadmap argument with his co-founder Yuki. Neither has landed. He is about to try a third framing. What does the chapter suggest he consider instead?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What is the most important limitation of the learning stance that this chapter acknowledges?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the most important limitation of the learning stance that this chapter acknowledges?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A parent and a college-age child have been arguing about the child's career decision for months. The parent has explained the practical concerns many times. The child has explained their reasoning ma…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"medium\" (should normalize to \"standard\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the book\" (pattern the_book) — teach the idea, don't narrate the chapter",
+          "evidence": "Why is the message delivery stance described as the precondition for the rest of the book's skills failing — specifically, why would applying later techniques without this stance shift cause them to …"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "major",
+          "message": "non-canonical depthLevel \"hard\" (should normalize to \"deep\")"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "review_card",
+        "unitId": "ch02-rc05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does it mean when the learning stance produces no convergence — and how does the chapter want the reader to interpret this outcome?"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 4,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 2,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-example-01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Kai, a project lead, made a joke in a team meeting about a junior engineer's accent. Miriam heard it and felt uncomfortable. That evening, she messaged Kai: 'That comment in the meeting made me uncom…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Adaeze and Rodrigo just finished presenting their lab project to the class. As they are packing up their notes, Adaeze gives feedback: 'Your data analysis was not rigorous enough. You made some short…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Adaeze and Rodrigo just finished presenting their lab project to the class. As they are packing up their notes, Adaeze gives feedback: 'Your data analysis was not rigorous enough. You made some short…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Soleil has canceled plans with Hayden three times in five weeks. Hayden finally raises it: 'It feels like you do not want to spend time with me.' Soleil has been genuinely overwhelmed with work. The …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Soleil has canceled plans with Hayden three times in five weeks. Hayden finally raises it: 'It feels like you do not want to spend time with me.' Soleil has been genuinely overwhelmed with work. The …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Lars had a tense exchange with a client. The client felt that one of Lars's email comments was dismissive of their concerns. Lars reads the email and realizes it came across poorly, though that was n…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Lars had a tense exchange with a client. The client felt that one of Lars's email comments was dismissive of their concerns. Lars reads the email and realizes it came across poorly, though that was n…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-example-05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Brianna has been replaying something a classmate said for a week. In a class discussion, her classmate commented: 'That idea is kind of obvious, right?' Brianna took it as a dismissal of her thinking…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Brianna has been replaying something a classmate said for a week. In a class discussion, her classmate commented: 'That idea is kind of obvious, right?' Brianna took it as a dismissal of her thinking…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "example",
+        "unitId": "ch03-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Celia's mother made a comment years ago that Celia never addressed. 'You were always the sensitive one,' she said, in a way that made Celia feel pathologized. The hurt has been sitting there. Celia f…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Celia's mother made a comment years ago that Celia never addressed. 'You were always the sensitive one,' she said, in a way that made Celia feel pathologized. The hurt has been sitting there. Celia f…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 3\" — breaks reading experience",
+          "evidence": "What is the central distinction that Chapter 3 introduces?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the central distinction that Chapter 3 introduces?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When someone does something that hurts us, what does the chapter identify as the receiver-side failure?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "When someone does something that hurts us, what does the chapter identify as the receiver-side failure?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When you have caused harm to someone, what is the chapter's recommendation for how to respond?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "When you have caused harm to someone, what is the chapter's recommendation for how to respond?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q05"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the difference between 'I caused harm' and 'I intended harm'?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter argue that explaining your intent before acknowledging the impact usually backfires?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter argue that explaining your intent before acknowledging the impact usually backfires?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter say is required for the disentangle move to work when someone acknowledges causing harm?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter say is required for the disentangle move to work when someone acknowledges causing harm?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "quiz_question",
+        "unitId": "ch03-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter identify as the harder version of the intent/impact disentangle move?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter identify as the harder version of the intent/impact disentangle move?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-dont-assume-they-meant-it-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-dont-assume-they-meant-it-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-dont-assume-they-meant-it-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-dont-assume-they-meant-it-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "review_card",
+        "unitId": "ch03-dont-assume-they-meant-it-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 3,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Blame is not wrong. In most situations where we reach for it, it is accurate. The person who is being blamed did something that caused harm, and naming that is not a mistake. The problem with blame i…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-example-01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Dara, a remote employee, has been going quiet for three months — submitting work without comment, not responding in the team channel, declining optional meetings. Her manager Felix has responded by a…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A group project just ended. In the postmortem, the group's consensus is that Nola under-contributed. She missed two meetings, delivered her section late, and produced less than the others. The group …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A group project just ended. In the postmortem, the group's consensus is that Nola under-contributed. She missed two meetings, delivered her section late, and produced less than the others. The group …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Marta and Sione are having their annual holiday conversation, which always starts as a logistics discussion and always ends with both people frustrated. Marta raises that she handles everything; Sion…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Marta and Sione are having their annual holiday conversation, which always starts as a logistics discussion and always ends with both people frustrated. Marta raises that she handles everything; Sion…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Yemi is about to raise the timeline concern with Kwame using blame framing: 'You're consistently late.' Kwame's view: Yemi's work is rough when delivered and requires significant revision, which is w…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-example-05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Isabel wants to raise a concern with her project group that the group leader, Sage, contributed to the project's poor performance by being dismissive of alternative approaches early on. Isabel's hesi…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "example",
+        "unitId": "ch04-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Dani and her partner have a recurring argument about emotional connection. Dani's recurring complaint: 'You never initiate.' Before: Dani raises it as a blame complaint about her partner's behavior. …"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the central distinction between blame and contribution?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "In the situation where Dara stops communicating and Felix increases oversight, what does contribution analysis reveal?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q03"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q04"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "In a situation where one person contributed 90% and you contributed 10%, what does the chapter say about naming your 10%?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which question opens the possibility of change in a stuck situation?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter describes both people in a difficult conversation as 'playing roles in a system that keeps producing the same outcome.' What does this mean for how to address the problem?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say naming your contribution is the right move even when your proportion of the contribution is much smaller than the other person's?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "quiz_question",
+        "unitId": "ch04-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "In what situation does the chapter say contribution-mapping has asymmetric risks?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "In what situation does the chapter say contribution-mapping has asymmetric risks?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-abandon-blame-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-abandon-blame-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-abandon-blame-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-abandon-blame-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "review_card",
+        "unitId": "ch04-abandon-blame-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 4,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "We have all had the experience of being in a conversation that was technically about one thing and was actually about something else entirely. The meeting that was 'about the business reasoning' and …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-example-01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tara, a creative director, has a meeting with her CEO to 'understand the business reasoning' behind the decision to shelve a project she led for eight months. She has a printed agenda of appropriate,…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "A student organization held an event that did not go well. The postmortem is focused on logistics: what went wrong with the venue, the timing, the promotion. Three members sit in the room who felt di…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Rourke finally calls Zoe to raise the thing that happened at the group dinner. His first version is ready in his head: 'I felt like you were dismissing my work in front of everyone.' Zoe's response i…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Rourke finally calls Zoe to raise the thing that happened at the group dinner. His first version is ready in his head: 'I felt like you were dismissing my work in front of everyone.' Zoe's response i…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Amara's manager is considering canceling the standing weekly check-in meeting, which Amara has been saying is optional. The manager's logic: Amara seems fine, the check-ins feel redundant, the time c…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-example-05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Jin wants to tell their professor that feedback delivered publicly in seminar left them feeling humiliated. Jin's hesitation: saying this will make them seem unable to handle critique. If Jin raises …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Jin wants to tell their professor that feedback delivered publicly in seminar left them feeling humiliated. Jin's hesitation: saying this will make them seem unable to handle critique. If Jin raises …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "example",
+        "unitId": "ch05-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Vera and her partner are in an argument that has stalled. Vera has said 'I'm frustrated.' Her partner has defended himself. The conversation is going nowhere. Later, Vera finds the actual feeling und…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter say happens to suppressed feelings?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter say happens to suppressed feelings?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Tara prepares business questions for a meeting about a shelved project she led for eight months. She is actually feeling grief, fear, and anger, but has not named these feelings, even to herself. Wha…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which of the following is a feelings-shaped accusation rather than a direct feelings statement?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does 'negotiating with your feelings' mean in the chapter's five-move framework?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does 'negotiating with your feelings' mean in the chapter's five-move framework?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Rourke has been performing cheerfulness in his friend group for three months to suppress a grievance with Zoe. What does the chapter say about this suppression?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter recommend acknowledging the other person's feelings before problem-solving?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter recommend acknowledging the other person's feelings before problem-solving?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Ben accepts Sadie's 'I'm fine' in a 1:1, even though he senses something is wrong. What does the chapter identify as a better response?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the structural difference between 'I am hurt' and 'I feel like you don't care about me'?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When sharing feelings with the relevant person carries real professional or relational costs, what does the chapter suggest?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "quiz_question",
+        "unitId": "ch05-q10"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-have-your-feelings-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-have-your-feelings-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-have-your-feelings-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-have-your-feelings-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "review_card",
+        "unitId": "ch05-have-your-feelings-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 5,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "There is a conversation happening in every difficult exchange that most people are not tracking. It runs alongside the question of what happened and the feelings the exchange produces, but it is quie…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-example-01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Callum has just received his annual performance review. Most of it is positive, but one section stops him: a note that his team does not feel heard in planning meetings, and that his leadership style…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Yuna's dissertation proposal has been returned with major revisions requested. The committee, including Professor Balogun, has identified a significant gap in her theoretical framework — one that req…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Yuna's dissertation proposal has been returned with major revisions requested. The committee, including Professor Balogun, has identified a significant gap in her theoretical framework — one that req…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Esperanza and her partner Tobias are in the middle of an argument about how she handled a disagreement with his family. He says: 'When I bring something up, you tend to look for the angle where I'm w…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Natasha is a department manager giving Ravi, an eight-year employee, feedback on a pattern she has noticed: his deliverables tend to arrive complete but without the context stakeholders need to use t…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-example-05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Delia is in a graduate seminar peer critique session. Her paper is being discussed. A classmate, Callum, raises what he calls a structural concern: the argument in the second half does not follow fro…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "example",
+        "unitId": "ch06-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Oded and his daughter Sunita. She asks if they can talk. She tells him — carefully, not angrily — that growing up, she often felt like her feelings were moved past before she finished being upset. Th…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter call the experience of having a core identity belief threatened during a difficult conversation?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter call the experience of having a core identity belief threatened during a difficult conversation?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which of the following is one of the three all-or-nothing identity beliefs the chapter names as producing the most fragility in difficult conversations?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What does an all-or-nothing identity belief do when contradicting evidence arrives in a difficult conversation?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which of the following represents the AND/BOTH shift for the all-or-nothing identity belief 'I am competent'?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Oded hears his daughter Sunita say that growing up, she often felt her feelings were moved past before she finished being upset. He shuts down quickly, offers a brief apology, and changes the subject…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "When does the chapter say identity grounding should be done?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "When does the chapter say identity grounding should be done?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q07"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which of the following descriptions of AND/BOTH grounding is most accurate?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A senior designer receives feedback that a deliverable missed the mark on usability. She listens carefully, nods, and then explains at length the constraints that made the work difficult — the timeli…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q09"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "quiz_question",
+        "unitId": "ch06-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter name as the risk of using AND/BOTH without allowing the signal of legitimate feedback to actually land?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter name as the risk of using AND/BOTH without allowing the signal of legitimate feedback to actually land?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-ground-your-identity-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-ground-your-identity-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-ground-your-identity-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-ground-your-identity-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "review_card",
+        "unitId": "ch06-ground-your-identity-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 6,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Kasim had written three drafts of the meeting invite and deleted each one. The conversation he was planning was clear enough: the handoff process between his team and Lena's had been broken for more …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-example-01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Kasim is a product manager preparing to raise a long-standing process issue with Lena, whose team handles the final stage of the handoff. He has written three drafts of the meeting invite. Each one i…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Stellan is a second-year graduate student. In a seminar last semester, Professor Adler publicly dismissed his interpretation of a key reading in a way that felt dismissive and off-handed. He consider…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Celestine and her brother Duncan have not spoken easily in two years. At a family event, Duncan made a comment about Celestine's life choices that she has been deciding ever since whether to raise. S…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Cormac and Priscilla have been on the same cross-functional team for eight months. Six months ago, Cormac felt that Priscilla took credit for a joint initiative in a presentation to leadership. He ha…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-example-05"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "example",
+        "unitId": "ch07-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Fleur's partner Adil has noticed a pattern: when something bothers Fleur, she tends to raise it — often within a day or two, in a dedicated conversation, with a framing she has prepared. He has never…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which of the following is one of the three legitimate purposes for entering a difficult conversation, as named in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Which of the following is one of the three warning-sign purposes named in this chapter?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which of the following is one of the three warning-sign purposes named in this chapter?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say that the purpose of 'changing who the other person is' will not work as a reason to enter a difficult conversation?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What distinction does this chapter draw between letting go of a grievance and suppressing one?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What distinction does this chapter draw between letting go of a grievance and suppressing one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q05"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"this chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "According to this chapter, what should you do when you discover that a warning-sign purpose is mixed in with a legitimate one?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q07"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q08"
+      },
+      "findings": [
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"This chapter\" (pattern this_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "This chapter warns that the framework itself can be misused in a specific direction. What is the risk it names in a person who raises every grievance in confrontation?"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "quiz_question",
+        "unitId": "ch07-q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter says that from the outside, letting go and suppression look the same — both involve not raising the grievance with the person it concerns. What does the chapter offer as the test for whet…"
+        },
+        {
+          "checkId": "schema.enum_validity",
+          "severity": "blocker",
+          "message": "quiz question missing bloomsLevel"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-whats-your-purpose-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-whats-your-purpose-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-whats-your-purpose-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-whats-your-purpose-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "review_card",
+        "unitId": "ch07-whats-your-purpose-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 7,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-example-01"
+      },
+      "findings": [],
+      "passedCount": 5,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tsega is a first-year graduate student who wanted to raise a concern with her thesis advisor, Professor Huang, about how long chapter feedback had been sitting unaddressed. She opened the conversatio…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Wren wants to raise a recurring issue with her partner Obinna — when she is going through a hard stretch, she often feels like she has to be the one to initiate conversation about it rather than Obin…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Lerato is preparing to raise a concern with her colleague Phoebe about how credit has been assigned on a project they both worked on. She predicts that being direct — stating her view clearly and up …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Lerato is preparing to raise a concern with her colleague Phoebe about how credit has been assigned on a project they both worked on. She predicts that being direct — stating her view clearly and up …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-example-05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Cian is an undergraduate who wants to ask his professor about a grade he believes was marked incorrectly. He knows the third-story opener — 'I think we might be working from different readings of the…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Cian is an undergraduate who wants to ask his professor about a grade he believes was marked incorrectly. He knows the third-story opener — 'I think we might be working from different readings of the…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "example",
+        "unitId": "ch08-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Ines has a recurring issue with her partner about the division of household labor. She has raised it before, and the conversations always follow the same pattern: she describes what she sees as an im…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "According to the chapter, what is the defining feature of a first-story opener?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "According to the chapter, what is the defining feature of a first-story opener?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter identifies three things the third-story opener does. Which of the following is one of them?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "The chapter identifies three things the third-story opener does. Which of the following is one of them?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter says the first-story opener triggers defensiveness for structural reasons, not tonal ones. What does this mean?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter distinguishes between an invitation and a summons at the close of a third-story opener. What is the operational difference?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A colleague wants to raise a recurring concern about how client handoffs are being managed. Which of the following responses best follows the chapter's guidance for a third-story opener?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A manager uses a third-story opener to begin a performance conversation: 'I think we might be seeing this quarter's targets differently — I'd like to hear your read before we compare notes.' The empl…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter names two things the third-story opener cannot fix. A team lead uses a third-story opener with a direct report who has just come from a difficult client call. The direct report says, 'Can…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A project manager sits down to write a third-story opener to a colleague about a missed deadline. As she drafts the neutral frame, she notices the phrasing feels dishonest — 'I know exactly what happ…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-begin-from-the-third-story-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-begin-from-the-third-story-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-begin-from-the-third-story-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-begin-from-the-third-story-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "review_card",
+        "unitId": "ch08-begin-from-the-third-story-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 8,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "The assumption is that listening is what you do when you stop talking. But that describes a posture, not a process. Being quiet while someone speaks is a condition for listening. It is not listening …"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_chapter_number_literal",
+          "severity": "major",
+          "message": "literal chapter reference \"Chapter 2\" — breaks reading experience",
+          "evidence": "Seren was nodding. She had been nodding for four minutes — making appropriate sounds at appropriate intervals, maintaining eye contact when Nizhoni paused, producing every signal that something was b…"
+        }
+      ],
+      "passedCount": 2,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-example-01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Seren is in a 1:1 with her direct report Nizhoni, who has been talking for several minutes about how the recent restructuring has affected her team. Seren is nodding — producing every external signal…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Seren is in a 1:1 with her direct report Nizhoni, who has been talking for several minutes about how the recent restructuring has affected her team. Seren is nodding — producing every external signal…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-example-02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Augustin and his partner Rifka had a conversation six months ago that Rifka has described as the moment she stopped trying to reach him. Augustin cannot remember the specific words. From his perspect…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-example-03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Pita is in a seminar critique with his classmate Desmond, who has just finished explaining a major flaw in Pita's argument. Pita's internal voice is already three responses ahead — building the count…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Pita is in a seminar critique with his classmate Desmond, who has just finished explaining a major flaw in Pita's argument. Pita's internal voice is already three responses ahead — building the count…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-example-04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tariq is a team lead who has been in conflict with his colleague Camille about how their team's work has been presented to leadership. Camille has been frustrated for weeks. Tariq predicts that if he…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-example-05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Oluwatobi is in a feedback session with Professor Vidal. Professor Vidal is offering detailed critique of Oluwatobi's methodology chapter. A counter-argument has formed in Oluwatobi's mind before Pro…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Oluwatobi is in a feedback session with Professor Vidal. Professor Vidal is offering detailed critique of Oluwatobi's methodology chapter. A counter-argument has formed in Oluwatobi's mind before Pro…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "example",
+        "unitId": "ch09-example-06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Ingrid's partner Leigh has noticed a pattern: when they try to have a serious conversation, Leigh always ends up feeling like Ingrid is technically present but not actually there. Leigh cannot always…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter identifies three specific tasks the internal voice performs while someone is listening. What are they?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "The chapter identifies three specific tasks the internal voice performs while someone is listening. What are they?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "What does the chapter call the central move for improving listening, and what does it involve?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "major",
+          "message": "quiz prompt tests recall-about-text, not application of the idea",
+          "evidence": "What does the chapter call the central move for improving listening, and what does it involve?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Why does the chapter say suppressing the internal voice does not work?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why does the chapter say suppressing the internal voice does not work?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"The chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "The chapter says paraphrasing is 'proof of reception, not agreement.' What does this mean in practice?"
+        },
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "The chapter says paraphrasing is 'proof of reception, not agreement.' What does this mean in practice?"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "Seren is in a 1:1 with Nizhoni. While Nizhoni speaks, Seren is aware of three threads running in her internal voice: the talking point she needs to land before Thursday's all-hands, the fact that the…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A listener paraphrases a colleague's concern by saying: 'What I think I'm hearing is that the decision landed without warning, and the hardest part was not being in the conversation before it was mad…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "In a heated team meeting, one colleague confronts another about being sidelined on a decision. The second colleague responds: 'So what I'm hearing you say is that you feel your contributions aren't b…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "During a design critique, Oluwatobi notices a counter-argument forming in her head while the presenter is still speaking. The argument is: 'this approach ignores the mobile constraint entirely.' Acco…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A listener acknowledges a colleague's apparent emotion: 'That sounds really frustrating.' The colleague responds sharply: 'Don't tell me how I feel.' What does the chapter's framework say about this …"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [
+        {
+          "checkId": "register.no_meta_reference",
+          "severity": "blocker",
+          "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+          "evidence": "A manager runs a retention 1:1 with a direct report. She asks careful questions, paraphrases what she hears, and acknowledges the report's frustration — while internally calculating the talking point…"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": false
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-listen-from-the-inside-out-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-listen-from-the-inside-out-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-listen-from-the-inside-out-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-listen-from-the-inside-out-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "review_card",
+        "unitId": "ch09-listen-from-the-inside-out-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 9,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Soraya is getting ready for a Friday check-in with Emil after a strategy task force is announced without her name on it. One draft of what she wants to say is so cautious it almost disappears. Anothe…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Eamon finally told Salma that a pattern in their plans had started to wear on him. The moment she looked hurt, he rushed to erase it: he said he was overreacting, that it was probably nothing, that h…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Eamon finally told Salma that a pattern in their plans had started to wear on him. The moment she looked hurt, he rushed to erase it: he said he was overreacting, that it was probably nothing, that h…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "In graduate seminar, Gavin tells Marisol that her paper's central claim feels larger than the evidence she presented. She feels the room tense. She can either defend the whole paper at once or say wh…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "In graduate seminar, Gavin tells Marisol that her paper's central claim feels larger than the evidence she presented. She feels the room tense. She can either defend the whole paper at once or say wh…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Tenzin assumes he can make a critical sentence safe with one phrase. He plans to tell Joelle, 'When you shut me out of the review, the story I told myself was that you do not respect my judgment.' He…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Tenzin assumes he can make a critical sentence safe with one phrase. He plans to tell Joelle, 'When you shut me out of the review, the story I told myself was that you do not respect my judgment.' He…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Nandi goes to office hours after Professor Hart's feedback on a presentation. She wants to say that the comments left her feeling dismissed, but she is tempted to bury the point under a long cushion …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Nandi goes to office hours after Professor Hart's feedback on a presentation. She wants to say that the comments left her feeling dismissed, but she is tempted to bury the point under a long cushion …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "example",
+        "unitId": "ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Ivo raised hard things with Noor by understating them and then retracting them if she looked upset. After, he tries a different pattern: he names the event, the feeling, and the story, then w…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Ivo raised hard things with Noor by understating them and then retracting them if she looked upset. After, he tries a different pattern: he names the event, the feeling, and the story, then w…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What are the three parts of the expression move described here?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What problem is being corrected by the advice to say the hardest thing first?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What makes an observation different from an accusation?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can the phrase 'the story I started telling myself...' open a conversation when it is used well?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "After a speaker says an honest, calibrated sentence, the other person visibly reacts. What is the strongest next move?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best balances courage and openness after the other person pushes back on your story?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-speak-for-yourself-with-clarity-and-power-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-speak-for-yourself-with-clarity-and-power-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-speak-for-yourself-with-clarity-and-power-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-speak-for-yourself-with-clarity-and-power-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "review_card",
+        "unitId": "ch10-speak-for-yourself-with-clarity-and-power-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 10,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Farah and Miles have spent weeks circling the question of whether their business should hire its first full-time employee. Farah keeps seeing payroll risk. Miles keeps seeing burnout and lost opportu…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Keon and Pilar had a long meeting about why their student group kept missing handoff details between events. They left feeling better because the tension had finally been named. Two weeks later the n…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (165 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Sachi and Bruno keep arguing about household labor through fairness slogans. Each can describe what feels unfair, but neither description has become a workable plan."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Sachi and Bruno keep arguing about household labor through fairness slogans. Each can describe what feels unfair, but neither description has become a workable plan."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Yvette predicts that the fastest way to fix a recurring team handoff problem is to present Ellis with a finished plan and ask for agreement. Ellis nods in the meeting, and the process quietly falls a…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Yvette predicts that the fastest way to fix a recurring team handoff problem is to present Ellis with a finished plan and ask for agreement. Ellis nods in the meeting, and the process quietly falls a…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Mira meets with Professor Rowan about recurring teaching-section chaos. Rowan wants a tidy close and starts naming exact promises for Mira to make. Mira knows some of the moving parts are controlled …"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Mira meets with Professor Rowan about recurring teaching-section chaos. Rowan wants a tidy close and starts naming exact promises for Mira to make. Mira knows some of the moving parts are controlled …"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "example",
+        "unitId": "ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Dorian and Amal ended recurring planning talks with one person's plan and the other person's reluctant agreement. After, they slow down long enough to list options, choose a standard, and nam…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Dorian and Amal ended recurring planning talks with one person's plan and the other person's reluctant agreement. After, they slow down long enough to list options, choose a standard, and nam…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the main move at the problem-solving stage of a difficult conversation?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which set lists the four specific problem-solving moves taught here?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why is the first option on the table risky if the conversation evaluates it immediately?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What do mutual standards do in a disagreement?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which ending best turns a useful discussion into action?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which response best shows building on the other person's proposal instead of attacking it?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-problem-solving-take-the-lead-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-problem-solving-take-the-lead-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-problem-solving-take-the-lead-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-problem-solving-take-the-lead-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "review_card",
+        "unitId": "ch11-problem-solving-take-the-lead-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 11,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "breakdown",
+        "tier": "easy"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "breakdown",
+        "tier": "medium"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "breakdown",
+        "tier": "hard"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ex01"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Helena is deciding whether to raise a second missed client meeting with Victor. One draft of the conversation makes the omission sound trivial. Another makes it sound like proof that he has written h…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ex02"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario too short (168 chars) — needs ≥180 chars of concrete setup",
+          "evidence": "Amina and Cole keep having lab-partner conversations that seem productive in the moment. Then the same resentment returns the next week over a different missed handoff."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Amina and Cole keep having lab-partner conversations that seem productive in the moment. Then the same resentment returns the next week over a different missed handoff."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ex03"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Rhea starts a conversation with Mateo about how weekend plans keep getting changed at the last minute. Halfway through, Mateo says he has been hearing every schedule question as criticism."
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Rhea starts a conversation with Mateo about how weekend plans keep getting changed at the last minute. Halfway through, Mateo says he has been hearing every schedule question as criticism."
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ex04"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Jun predicts that if he carefully uses all the right language with Talia about a staffing problem, the meeting will go smoothly. Talia leaves saying little, and later tells a colleague she felt steer…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Jun predicts that if he carefully uses all the right language with Talia about a staffing problem, the meeting will go smoothly. Talia leaves saying little, and later tells a colleague she felt steer…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ex05"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Amina wants to raise the graduate-assistant coverage pattern with Professor Abbas, but he controls assignments and recommendations. She can see the value of a clear conversation and the risk of prete…"
+        }
+      ],
+      "passedCount": 4,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "example",
+        "unitId": "ex06"
+      },
+      "findings": [
+        {
+          "checkId": "narrative.specific_scene",
+          "severity": "major",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before, Niko kept rehearsing a conversation with Selene about money and avoiding it for another week. After, he works the situation on paper first and enters the talk knowing what happened, what he f…"
+        },
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Before, Niko kept rehearsing a conversation with Selene about money and avoiding it for another week. After, he works the situation on paper first and enters the talk knowing what happened, what he f…"
+        }
+      ],
+      "passedCount": 3,
+      "totalCount": 5,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q01"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What is the closing warning about using the sequence of moves in a difficult conversation?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q02"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Which sequence best captures the full arc being integrated here?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q03"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "Why can a conversation that sounds technically correct still fail?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q04"
+      },
+      "findings": [
+        {
+          "checkId": "pedagogy.quiz_tests_application",
+          "severity": "minor",
+          "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+          "evidence": "What changes when you prefer learning over winning in a difficult conversation?"
+        }
+      ],
+      "passedCount": 5,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q05"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q06"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q07"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q08"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q09"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "quiz_question",
+        "unitId": "q10"
+      },
+      "findings": [],
+      "passedCount": 6,
+      "totalCount": 6,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-putting-it-all-together-rc01"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-putting-it-all-together-rc02"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-putting-it-all-together-rc03"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-putting-it-all-together-rc04"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "review_card",
+        "unitId": "ch12-putting-it-all-together-rc05"
+      },
+      "findings": [],
+      "passedCount": 4,
+      "totalCount": 4,
+      "passed": true
+    },
+    {
+      "location": {
+        "bookId": "difficult-conversations",
+        "chapterNumber": 12,
+        "unitType": "key_takeaway"
+      },
+      "findings": [],
+      "passedCount": 3,
+      "totalCount": 3,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "passedUnits": 220,
+    "failedUnits": 80,
+    "passRate": 0.7333333333333333,
+    "byCheck": {
+      "register.no_chapter_number_literal": {
+        "pass": 297,
+        "fail": 3
+      },
+      "register.no_meta_reference": {
+        "pass": 169,
+        "fail": 59
+      },
+      "register.no_banned_phrase": {
+        "pass": 299,
+        "fail": 1
+      },
+      "narrative.named_protagonist": {
+        "pass": 72,
+        "fail": 0
+      },
+      "narrative.specific_scene": {
+        "pass": 30,
+        "fail": 42
+      },
+      "narrative.decision_point": {
+        "pass": 13,
+        "fail": 59
+      },
+      "pedagogy.quiz_tests_application": {
+        "pass": 71,
+        "fail": 49
+      },
+      "schema.enum_validity": {
+        "pass": 50,
+        "fail": 70
+      },
+      "schema.bloom_vocabulary": {
+        "pass": 120,
+        "fail": 0
+      },
+      "pedagogy.card_tests_retrieval": {
+        "pass": 60,
+        "fail": 0
+      },
+      "schema.answer_position_balance": {
+        "pass": 12,
+        "fail": 0
+      }
+    }
+  }
+}

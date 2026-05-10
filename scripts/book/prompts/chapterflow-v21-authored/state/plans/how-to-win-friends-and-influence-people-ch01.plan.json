@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch01",
+  "number": 1,
+  "title": "If You Want to Gather Honey, Don't Kick Over the Beehive",
+  "coreMove": "Before correcting someone, picture how they already justify their behavior to themselves, and address that picture instead of the behavior.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift charge nurse writing up a younger colleague who missed a medication check",
+      "audience": "a reader who supervises people under pressure and is tempted to document their frustration",
+      "stakes": "whether the younger nurse shuts down for the rest of the month or actually changes her checklist habit",
+      "format": "decision_point",
+      "requiredBeat": "the charge nurse drafts the write-up, reads it back, and notices she has described the colleague in words the colleague would never use about herself, then rewrites from what the colleague probably told herself at 3am"
+    },
+    {
+      "domain": "a father at the breakfast table about to confront his sixteen-year-old daughter about a dented car fender",
+      "audience": "a parent who keeps being technically right and losing the kid anyway",
+      "stakes": "the next four years of whether she tells him things or hides them",
+      "format": "scene",
+      "requiredBeat": "the father rehearses the lecture in his head, then remembers the last time his own father said the same sentence to him, and puts the coffee cup down before speaking"
+    },
+    {
+      "domain": "a regional bakery owner discovering a supplier shorted her flour order by two bags for the third week running",
+      "audience": "a small-business owner who has to keep working with the person she's angry at",
+      "stakes": "the supplier relationship she depends on for Saturday mornings, and her own reputation for being reasonable",
+      "format": "dialogue",
+      "requiredBeat": "the owner catches herself about to open with an accusation, pauses, and instead asks the delivery driver a question that lets him tell her what went wrong without needing to defend himself"
+    },
+    {
+      "domain": "a high school band director handing back sheet music to a trumpet player who has been playing the second phrase flat for a month",
+      "audience": "a teacher or coach who has corrected the same mistake five times and is losing patience",
+      "stakes": "whether the student keeps showing up to rehearsal at all",
+      "format": "vignette",
+      "requiredBeat": "the director almost says what he has said four times before, sees the student bracing for it, and instead says something that acknowledges how hard the student has been trying before naming the phrase"
+    },
+    {
+      "domain": "a woman reading a drafted email to her sister about an unpaid loan",
+      "audience": "anyone writing a message while still angry",
+      "stakes": "the family thanksgiving and the loan both",
+      "format": "before_after",
+      "requiredBeat": "the first draft lists the sister's failures; the second draft, written after a walk, opens by stating the sister's own stated reason for the delay more generously than the sister herself put it, and only then makes the ask"
+    },
+    {
+      "domain": "a line cook who just had a tray of prepped onions thrown out by the new sous-chef",
+      "audience": "someone low on the totem pole who has been publicly corrected by a peer",
+      "stakes": "whether the cook says something he cannot take back in front of the whole kitchen",
+      "format": "reflection",
+      "requiredBeat": "the cook thinks through what the sous-chef must be telling himself about why the onions had to go, and notices that his own urge to fire back is about being seen as competent, not about the onions"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

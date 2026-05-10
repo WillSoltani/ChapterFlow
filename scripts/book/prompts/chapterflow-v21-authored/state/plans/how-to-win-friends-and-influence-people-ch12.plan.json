@@ -1,0 +1,67 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch12",
+  "number": 12,
+  "title": "A Formula That Will Work Wonders for You",
+  "coreMove": "Before pressing your case, say the other person's position out loud in their own words, including the part that makes them feel right, and only speak after they have agreed you have it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a labor-and-delivery nurse handling a first-time father who is yelling in the hallway about how long the epidural is taking",
+      "audience": "a charge nurse on her third twelve-hour shift this week",
+      "stakes": "whether security gets called and the father misses the birth, or whether he sits down and trusts the room again",
+      "format": "dialogue",
+      "requiredBeat": "the nurse names what the father is afraid of, in his own phrasing, before she explains what is actually happening with the anesthesiologist"
+    },
+    {
+      "domain": "a high school band director answering a parent's late-night email about why their daughter was moved from first to third chair",
+      "audience": "a band director who has six similar emails in her inbox and a concert in nine days",
+      "stakes": "whether the parent pulls the student from the program over the weekend",
+      "format": "decision_point",
+      "requiredBeat": "the director writes out, on paper, what the mother believes about her daughter's playing and her daughter's effort, until she could defend that view in front of the mother herself, and only then drafts the reply"
+    },
+    {
+      "domain": "a tile contractor standing in a half-finished bathroom while the homeowner says the grout color is wrong and she wants it ripped out",
+      "audience": "a contractor who knows the grout matches the approved sample",
+      "stakes": "a four-thousand-dollar redo, a referral pipeline in a small town, and a Saturday off",
+      "format": "vignette",
+      "requiredBeat": "the contractor sets down his tools and walks the homeowner through what she was picturing when she chose the sample at the showroom, in her words, before he shows her the signed sample card"
+    },
+    {
+      "domain": "a regional bakery wholesale manager reviewing how she lost a four-cafe account by arguing about a late delivery",
+      "audience": "a wholesale manager doing a Monday-morning postmortem with her own boss",
+      "stakes": "a quarter of next year's wholesale revenue and the manager's bonus",
+      "format": "postmortem",
+      "requiredBeat": "she identifies the moment she explained her own logistics instead of repeating, slowly, what the cafe owner had said about her Saturday brunch rush"
+    },
+    {
+      "domain": "a father imagining his way into the head of his seventeen-year-old son who has stopped opening college applications",
+      "audience": "a father at the kitchen table at 11pm with the unopened applications in front of him",
+      "stakes": "the application deadline is six days out and the last three conversations have ended with a slammed door",
+      "format": "thought_experiment",
+      "requiredBeat": "the father writes one paragraph, in first person as his son, that he is willing to read aloud to his son and have his son say, yes, that is what I think"
+    },
+    {
+      "domain": "a pharmacist at a neighborhood counter facing an elderly man insisting his blood pressure pills are the wrong shape this month",
+      "audience": "a pharmacist with a line of four customers behind the man",
+      "stakes": "whether the man stops taking a medication he needs, or whether he leaves trusting the bottle in his hand",
+      "format": "before_after",
+      "requiredBeat": "the contrast turns on the pharmacist first restating, fully, the man's belief that his pills have been swapped, before mentioning the manufacturer change"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

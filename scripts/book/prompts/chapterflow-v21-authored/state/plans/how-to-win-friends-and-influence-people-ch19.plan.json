@@ -1,0 +1,60 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch19",
+  "number": 19,
+  "title": "Talk About Your Own Mistakes First",
+  "coreMove": "Before correcting anyone, name out loud a comparable mistake you have made yourself, in plain words, and only then point at theirs.",
+  "exampleCount": 5,
+  "exampleSpecs": [
+    {
+      "domain": "a small-bakery owner walking a new closing-shift lead through a botched inventory count at 11pm",
+      "audience": "an owner-operator of a four-person business who has to correct a 22-year-old without scaring her into hiding the next problem",
+      "stakes": "whether the shift lead keeps bringing closing-time mistakes into the open or starts quietly fudging the count to avoid being chewed out",
+      "format": "vignette",
+      "requiredBeat": "the owner first describes, in concrete detail, the night she herself overcounted by sixteen baguettes during her own first month, and only after the shift lead's shoulders drop does she point at tonight's discrepancy"
+    },
+    {
+      "domain": "a high-school marching band director correcting a senior trumpet player who is rushing the tempo in a four-bar solo two weeks before the spring concert",
+      "audience": "a teacher or coach who has to correct a skilled, proud adolescent without making the student go silent for the rest of rehearsal",
+      "stakes": "whether the senior keeps practicing the passage or freezes up and plays it tentatively from now on",
+      "format": "dialogue",
+      "requiredBeat": "the director, before saying a word about the student's tempo, tells her about how he rushed his own first college solo so badly the conductor stopped the orchestra, quoting himself from that night, and the student answers with a tempo question instead of an apology"
+    },
+    {
+      "domain": "a father in a parking lot teaching his sixteen-year-old daughter how to recover from a skid on black ice",
+      "audience": "a parent of a new driver who is one bad sentence away from being tuned out for the rest of the lesson",
+      "stakes": "whether the teenager actually absorbs the steering correction or files her father's voice under noise and learns the lesson the hard way in February",
+      "format": "scene",
+      "requiredBeat": "the father tells his daughter, in her own words later that week, about the hill he spun out on at seventeen and how scared he was, before he reaches over and adjusts her hands on the wheel; she stops gripping the wheel as if she is about to be lectured"
+    },
+    {
+      "domain": "a nurse preceptor debriefing a new graduate after a near-miss on a heparin double-check during a twelve-hour day shift",
+      "audience": "a clinical mentor responsible for a new grad's first three months on a busy med-surg unit",
+      "stakes": "whether the new grad keeps reporting her own near-misses or starts swallowing them, which is how patients get hurt months later",
+      "format": "postmortem",
+      "requiredBeat": "the preceptor opens the debrief by walking, step by step, through her own missed double-check from her first year and what almost happened to that patient, and the new grad then volunteers a second near-miss from earlier in the week she had not planned to mention"
+    },
+    {
+      "domain": "a junior partner at a six-person architecture firm catching a scale error on a draftsman's site plan the night before a client review",
+      "audience": "a mid-career professional managing one less-experienced colleague on tight deadlines",
+      "stakes": "a forty-thousand-dollar reprint of construction documents and whether the draftsman ever flags his own errors again instead of hoping nobody notices",
+      "format": "before_after",
+      "requiredBeat": "in the before, the partner circles the error and lectures, and the draftsman goes quiet for three days; in the after, the partner first sketches, in the corner of the plan, his own scale mistake from a 2021 project and what it cost him personally, and only then circles tonight's, and the draftsman keeps drawing"
+    }
+  ],
+  "quizFocus": {
+    "count": 8,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.75
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

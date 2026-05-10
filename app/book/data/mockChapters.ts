@@ -99,6 +99,7 @@ import {
   getUltralearningPackageForTone,
   ULTRALEARNING_RAW_CHAPTERS,
   isV12BookPackage,
+  isStrictReaderSchema,
   resolveTone,
   type BookPackage,
   type PackageChapter,
@@ -110,6 +111,12 @@ import {
   type VariantFamily,
   type VariantKey,
 } from "@/app/book/data/bookPackages";
+import {
+  V21_SCHEMA_VERSION,
+  extractV21ChapterExtras,
+  isV21NormalizedPackage,
+  type V21MemorableLine,
+} from "@/app/book/lib/v21-adapter";
 
 export type ReadingDepth = "simple" | "standard" | "deeper";
 export type ExampleScope = "work" | "school" | "personal";
@@ -179,7 +186,6 @@ export type BookChapter = {
   summaryByDepth: Record<ReadingDepth, ChapterSummaryBlock[]>;
   takeaways: string[];
   takeawaysByDepth: Record<ReadingDepth, string[]>;
-  keyQuote?: string;
   recap?: string;
   recapByDepth: Record<ReadingDepth, string[]>;
   activationPrompt?: string;
@@ -187,6 +193,10 @@ export type BookChapter = {
   selfCheckPrompt?: string;
   selfCheckPrompts?: string[];
   selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
+  reflectionPrompts?: string[];
+  reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
+  closingPrompt?: string;
+  closingPromptByDepth: Partial<Record<ReadingDepth, string>>;
   predictionPrompt?: string;
   predictionPromptByDepth: Partial<Record<ReadingDepth, string>>;
   keyTakeawayCard?: string;
@@ -198,17 +208,30 @@ export type BookChapter = {
   quizRetryPool: ChapterQuizQuestion[];
   quizPassingScorePercent: number;
   isStrictV12: boolean;
+  /** Source schema marker. Set to "chapterflow-v21-authored" for v21 books. */
+  schemaVersion?: string;
+  /** v21-only: arresting one-liner shown above the chapter title. */
+  hook?: string;
+  /** v21-only: 1–2 sentence framing of why the idea is non-obvious. */
+  counterintuition?: string;
+  /**
+   * v21-only: a single 30–90s directive shown as a mid-chapter callout.
+   * Replaces the deprecated reflectionBefore/After fields.
+   */
+  tryThisNow?: string;
+  /**
+   * DEPRECATED v21 fields. Kept for parsing legacy v21 packages (tiny-habits)
+   * cleanly; the reader UI no longer renders them.
+   */
+  reflectionBefore?: string;
+  reflectionAfter?: string;
+  /** v21-only: 3 quotable sentences from the chapter for share/highlight. */
+  memorableLines?: V21MemorableLine[];
 };
 
 type BookChapterBundle = {
   pages: number;
   chapters: BookChapter[];
-};
-
-const DEPTH_TARGETS: Record<ReadingDepth, number> = {
-  simple: 9,
-  standard: 12,
-  deeper: 17,
 };
 
 const QUIZ_TARGETS: Record<ReadingDepth, number> = {
@@ -218,7 +241,6 @@ const QUIZ_TARGETS: Record<ReadingDepth, number> = {
 };
 
 const SCENARIO_NAMES = ["Maya", "Jordan", "Alex", "Riley"] as const;
-const CANONICAL_DEPTHS: ReadingDepth[] = ["simple", "standard", "deeper"];
 
 function chapterCode(order: number): string {
   return `CH.${String(order).padStart(2, "0")}`;
@@ -336,18 +358,6 @@ function variantTakeaways(variant: PackageVariantContent | undefined): string[] 
   return dedupe([...(variant.takeaways ?? []), ...(variant.keyTakeaways ?? [])]);
 }
 
-function variantPractice(variant: PackageVariantContent | undefined): string[] {
-  if (!variant) return [];
-  return dedupe(variant.practice ?? []);
-}
-
-function variantSummaryBullets(variant: PackageVariantContent | undefined): string[] {
-  if (!variant) return [];
-  return Array.isArray(variant.summaryBullets) && variant.summaryBullets.length
-    ? dedupe(variant.summaryBullets)
-    : splitSentences(variant.importantSummary);
-}
-
 function variantSummaryBlocks(
   variant: PackageVariantContent | undefined
 ): PackageSummaryBlock[] {
@@ -375,7 +385,7 @@ function variantSummaryBlocks(
 }
 
 function isStrictV12ReaderPackage(bookPackage: BookPackage): boolean {
-  return isV12BookPackage(bookPackage);
+  return isStrictReaderSchema(bookPackage);
 }
 
 function exactSummaryBlocks(
@@ -464,41 +474,22 @@ function exactPredictionPrompt(
   return variant?.predictionPrompt ? cleanText(variant.predictionPrompt) : undefined;
 }
 
-function buildSummaryBullets(
+function exactReflectionPrompts(
   chapter: PackageChapter,
   family: VariantFamily,
   depth: ReadingDepth
 ): string[] {
-  const primary = getVariantContent(chapter, family, depth);
-  if (!primary) return [];
+  const variant = getVariantContent(chapter, family, depth);
+  return dedupe((variant?.reflectionPrompts ?? []).map(cleanText).filter(Boolean));
+}
 
-  const standard = getVariantContent(chapter, family, "standard");
-  const simple = getVariantContent(chapter, family, "simple");
-  const exampleInsights = chapter.examples.map((example) => {
-    const scenario = cleanText(example.scenario);
-    const whyItMatters = cleanText(example.whyItMatters);
-    return `${cleanText(example.title)}: ${scenario} ${whyItMatters}`;
-  });
-
-  const base = dedupe([
-    ...variantSummaryBullets(primary),
-    ...variantTakeaways(primary),
-  ]);
-
-  const supplements =
-    depth === "simple"
-      ? dedupe([...variantTakeaways(simple)])
-      : depth === "standard"
-        ? dedupe([
-            ...variantSummaryBullets(simple),
-            ...variantTakeaways(simple),
-          ])
-        : dedupe([
-            ...variantSummaryBullets(standard),
-            ...variantTakeaways(standard),
-          ]);
-
-  return dedupe([...base, ...supplements]).slice(0, DEPTH_TARGETS[depth]);
+function exactClosingPrompt(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string | undefined {
+  const variant = getVariantContent(chapter, family, depth);
+  return variant?.closingPrompt ? cleanText(variant.closingPrompt) : undefined;
 }
 
 function buildSummaryBlocks(
@@ -506,137 +497,22 @@ function buildSummaryBlocks(
   family: VariantFamily,
   depth: ReadingDepth
 ): ChapterSummaryBlock[] {
-  const primary = getVariantContent(chapter, family, depth);
-  const canonicalBullets = buildSummaryBullets(chapter, family, depth);
-  const explicitBlocks = variantSummaryBlocks(primary);
-  const explicitParagraphCount = explicitBlocks.filter((block) => block.type === "paragraph").length;
-  const explicitBulletCount = explicitBlocks.filter((block) => block.type === "bullet").length;
-  const detailPool = dedupe([
-    ...variantTakeaways(primary).map(
-      (takeaway) => typeof takeaway === "string" ? takeaway : cleanText(takeaway)
-    ).filter(Boolean),
-  ]);
-  const fallbackDetail =
-    splitSentences(primary?.importantSummary)[0] ??
-    "Explore this idea further in the Examples section.";
-
-  // Cap bullets to the actual number of real takeaways instead of padding with filler
-  const realTakeawayCount = (primary?.keyTakeaways ?? []).length;
-  const bulletTarget = realTakeawayCount > 0
-    ? Math.max(realTakeawayCount, depth === "simple" ? 3 : depth === "standard" ? 5 : 7)
-    : depth === "simple" ? 7 : depth === "standard" ? 10 : 15;
-  const minBulletsRequired = Math.min(bulletTarget, 10);
-  if (explicitParagraphCount >= 2 && explicitBulletCount >= minBulletsRequired) {
-    let paragraphIndex = 0;
-    let bulletIndex = 0;
-    const preserved: ChapterSummaryBlock[] = [];
-    explicitBlocks.forEach((block) => {
-      if (block.type === "paragraph") {
-        if (paragraphIndex >= 2) return;
-        paragraphIndex += 1;
-        preserved.push({
-          id: `${depth}-p-${paragraphIndex}`,
-          type: "paragraph",
-          text: cleanText(block.text),
-        });
-        return;
-      }
-      if (bulletIndex >= bulletTarget) return;
-      bulletIndex += 1;
-      preserved.push({
-        id: `${depth}-b-${bulletIndex}`,
-        type: "bullet",
-        text: cleanText(block.text),
-        detail: block.detail ? cleanText(block.detail) : undefined,
-      });
-    });
-    return preserved;
-  }
-
-  let paragraphCount = 0;
-  const blocks: ChapterSummaryBlock[] = [];
-
-  const pushParagraph = (text: string) => {
-    const normalized = cleanText(text);
-    if (!normalized) return;
-    paragraphCount += 1;
-    blocks.push({
-      id: `${depth}-p-${paragraphCount}`,
-      type: "paragraph",
-      text: normalized,
-    });
-  };
-
-  const pushBullet = (text: string, detail?: string) => {
-    const normalized = cleanText(text);
-    if (!normalized) return;
-    const bulletCount = blocks.filter((block) => block.type === "bullet").length + 1;
-    blocks.push({
-      id: `${depth}-b-${bulletCount}`,
-      type: "bullet",
-      text: normalized,
-      detail: detail != null ? cleanText(detail) : undefined,
-    });
-  };
-
-  for (const block of explicitBlocks) {
-    if (block.type === "paragraph") {
-      pushParagraph(block.text);
-      continue;
-    }
-    pushBullet(block.text, block.detail);
-  }
-
-  const importantSummarySentences = splitSentences(primary?.importantSummary);
-  if (!paragraphCount && importantSummarySentences.length > 0) {
-    pushParagraph(importantSummarySentences.slice(0, 2).join(" "));
-  }
-
-  if (!paragraphCount && canonicalBullets.length > 0) {
-    pushParagraph(canonicalBullets[0]);
-  }
-
-  const usedBulletTexts = new Set(
-    blocks
-      .filter((block): block is Extract<ChapterSummaryBlock, { type: "bullet" }> => block.type === "bullet")
-      .map((block) => block.text)
-  );
-  const bulletsToAdd = canonicalBullets.filter((bullet) => !usedBulletTexts.has(bullet));
-  bulletsToAdd.forEach((bullet, index) => {
-    const detail = detailPool.length > 0
-      ? detailPool[index % detailPool.length]
-      : undefined;
-    pushBullet(bullet, detail);
-  });
-
-  return blocks.slice(0, DEPTH_TARGETS[depth]);
+  return exactSummaryBlocks(chapter, family, depth);
 }
 
 function buildTakeaways(chapter: PackageChapter, family: VariantFamily): string[] {
   const preferred = getVariantContent(chapter, family, "standard");
-  const fallback = getVariantContent(chapter, family, "simple");
-  return dedupe([
-    ...variantTakeaways(preferred),
-    ...variantTakeaways(fallback),
-  ]).slice(0, 6);
+  return dedupe(variantTakeaways(preferred));
 }
 
-function buildKeyQuote(chapter: PackageChapter, family: VariantFamily): string | undefined {
-  const preferred = getVariantContent(chapter, family, "deeper");
-  const fallback = getVariantContent(chapter, family, "standard");
-  const firstSentence = splitSentences(preferred?.importantSummary)[0] ?? splitSentences(fallback?.importantSummary)[0];
-  return firstSentence || undefined;
-}
-
-function buildRecap(chapter: PackageChapter, family: VariantFamily): string | undefined {
-  const preferred = getVariantContent(chapter, family, "deeper");
-  const fallback = getVariantContent(chapter, family, "standard");
-  const practice = variantPractice(preferred);
-  const extra = variantPractice(fallback);
-  const items = dedupe([...practice, ...extra]).slice(0, 2);
-  if (!items.length) return undefined;
-  const recap = items.map((item) => ensureSentence(item)).filter(Boolean).join(" ");
-  return recap || undefined;
+function buildRecap(chapter: PackageChapter, family: VariantFamily): string[] {
+  const preferred = getVariantContent(chapter, family, "standard");
+  const fallback = getVariantContent(chapter, family, "deeper");
+  const items = dedupe([
+    ...(preferred?.oneMinuteRecap ?? []),
+    ...(fallback?.oneMinuteRecap ?? []),
+  ]);
+  return items;
 }
 
 function inferScope(example: PackageExample): ExampleScope {
@@ -841,6 +717,7 @@ function extractNewFields(rawChapter: any, tone: ToneKey): Partial<BookChapter> 
 function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKey = "direct"): BookChapterBundle {
   const family = bookPackage.book.variantFamily;
   const strictV12 = isStrictV12ReaderPackage(bookPackage);
+  const isV21 = isV21NormalizedPackage(bookPackage);
   const rawByNumber = new Map<number, unknown>();
   if (rawChapters) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -872,7 +749,7 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
       const newFields: Partial<BookChapter> = strictV12
         ? {}
         : extractNewFields(rawByNumber.get(chapter.number), tone);
-      const legacyRecap = strictV12 ? undefined : buildRecap(chapter, family);
+      const legacyRecap = strictV12 ? [] : buildRecap(chapter, family);
       const takeawaysByDepth: Record<ReadingDepth, string[]> = strictV12
         ? {
             simple: exactTakeaways(chapter, family, "simple"),
@@ -891,9 +768,9 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
             deeper: exactRecap(chapter, family, "deeper"),
           }
         : {
-            simple: [],
-            standard: legacyRecap ? [legacyRecap] : [],
-            deeper: legacyRecap ? [legacyRecap] : [],
+            simple: legacyRecap,
+            standard: legacyRecap,
+            deeper: legacyRecap,
           };
       const activationPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
         ? {
@@ -923,10 +800,26 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
         : {
             deeper: newFields.predictionPrompt,
           };
+      const reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[]>> = strictV12
+        ? {
+            simple: exactReflectionPrompts(chapter, family, "simple"),
+            standard: exactReflectionPrompts(chapter, family, "standard"),
+            deeper: exactReflectionPrompts(chapter, family, "deeper"),
+          }
+        : {};
+      const closingPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+        ? {
+            simple: exactClosingPrompt(chapter, family, "simple"),
+            standard: exactClosingPrompt(chapter, family, "standard"),
+            deeper: exactClosingPrompt(chapter, family, "deeper"),
+          }
+        : {};
       const standardTakeaways = takeawaysByDepth.standard ?? [];
       const standardRecap = recapByDepth.standard ?? [];
       const standardSelfCheckPrompts = selfCheckPromptsByDepth.standard ?? [];
+      const standardReflectionPrompts = reflectionPromptsByDepth.standard ?? [];
       const standardActivationPrompt = activationPromptByDepth.standard;
+      const standardClosingPrompt = closingPromptByDepth.standard;
       const deeperPredictionPrompt = predictionPromptByDepth.deeper;
 
       return {
@@ -949,7 +842,6 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
         },
         takeaways: standardTakeaways,
         takeawaysByDepth,
-        keyQuote: strictV12 ? undefined : buildKeyQuote(chapter, family),
         recap: standardRecap.length > 0 ? standardRecap.join(" ") : undefined,
         recapByDepth,
         activationPrompt: standardActivationPrompt,
@@ -957,6 +849,10 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
         selfCheckPrompt: standardSelfCheckPrompts[0],
         selfCheckPrompts: standardSelfCheckPrompts.length > 0 ? standardSelfCheckPrompts : undefined,
         selfCheckPromptsByDepth,
+        reflectionPrompts: standardReflectionPrompts.length > 0 ? standardReflectionPrompts : undefined,
+        reflectionPromptsByDepth,
+        closingPrompt: standardClosingPrompt,
+        closingPromptByDepth,
         predictionPrompt: deeperPredictionPrompt,
         predictionPromptByDepth,
         keyTakeawayCard: chapter.keyTakeawayCard ?? newFields.keyTakeawayCard,
@@ -991,6 +887,20 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
           Math.min(100, Math.round(chapter.quiz.passingScorePercent || 80))
         ),
         isStrictV12: strictV12,
+        ...(isV21
+          ? (() => {
+              const extras = extractV21ChapterExtras(rawByNumber.get(chapter.number));
+              return {
+                schemaVersion: V21_SCHEMA_VERSION,
+                hook: extras.hook,
+                counterintuition: extras.counterintuition,
+                tryThisNow: extras.tryThisNow,
+                reflectionBefore: extras.reflectionBefore,
+                reflectionAfter: extras.reflectionAfter,
+                memorableLines: extras.memorableLines,
+              };
+            })()
+          : {}),
       };
     });
 

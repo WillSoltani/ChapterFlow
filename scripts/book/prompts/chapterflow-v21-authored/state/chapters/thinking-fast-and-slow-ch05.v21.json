@@ -1,0 +1,71 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch05",
+  "number": 5,
+  "title": "Cognitive Ease",
+  "breakdown": {
+    "easy": "A claim that reads smoothly arrives at the mind already feeling partly true. Crisp type, clean paper, a phrase that rhymes, a name you have heard before — each one shaves a little effort off the reading, and the mind logs that reduced effort as a quiet vote of confidence. Nothing about the world has been checked. Only the ease of processing has changed. Try it on yourself: read a statement printed in faded gray, then the same statement in sharp black. The second one feels more credible, and you did not consult a single new fact to get there. The trick is to notice the feeling of fluency as its own signal — separate from evidence — and to treat that smoothness as a cue worth investigating, not a verdict to accept.",
+    "medium": "A claim that reads smoothly arrives at the mind already feeling partly true. Crisp type, clean paper, a familiar name, a phrase that rhymes — each one shaves a little effort off the reading, and the mind logs that reduced effort as a quiet vote of confidence. Nothing about the world has been checked. Only the ease of processing has changed.\n\nThe mechanism is a substitution. You meant to ask whether a statement is true, which is hard, and your fast machinery answered a different question instead: does this statement feel easy to take in. Easy reading, easy hearing, easy recall — all of them produce a warm sense of rightness that you experience as judgment. Psychologists call this fluency. Its effects are small per instance and ruthless in aggregate. Statements repeated become more believable. Stocks with pronounceable tickers outperform unpronounceable ones in the weeks after listing. Aphorisms that rhyme are rated more accurate than the same idea in prose.\n\nThe edges of the effect are worth knowing. Fluency cues stack: a legible note from a trusted colleague carries more weight than its content alone deserves, and a smudged note from a stranger carries less. They cross modalities — a confident voice, a clean PowerPoint, a familiar example all produce the same warmth. And they hide best when you are tired, which is exactly when most consequential reading happens.\n\nThe next time a document lands in front of you and you find yourself nodding along, pause and ask one question: would this still convince me if I encountered it as a smudged photocopy in an unfamiliar font? If the answer wobbles, the fluency was doing more of the work than the argument was.",
+    "hard": "A claim that reads smoothly arrives at the mind already feeling partly true. Crisp type, clean paper, a familiar name, a phrase that rhymes — each shaves a little effort off the reading, and the mind logs that reduced effort as a quiet vote of confidence. Nothing about the world has been checked. Only the ease of processing has changed.\n\nThe mechanism is a substitution. You meant to ask whether a statement is true, which is hard, and your fast machinery answered a different question instead: does this statement feel easy to take in. Easy reading, easy hearing, easy recall — all of them produce a warm sense of rightness that you experience as judgment. Psychologists call this fluency. Statements repeated become more believable. Stocks with pronounceable tickers outperform unpronounceable ones in the weeks after listing. Aphorisms that rhyme are rated more accurate than the same idea in prose. The size of any single effect is modest. The trouble is that fluency is everywhere, every day, in every document you read.\n\nThe deeper structure is that fluency and strain trigger different cognitive regimes. When reading is easy, your fast system runs unsupervised: it accepts, generalizes, and moves on. When reading is hard — bad font, low contrast, a difficult name — the slow system wakes up, becomes suspicious, and starts checking. The same study materials produce more careful answers when printed in a faintly hostile typeface. This is not a virtue you can summon by trying harder. It is a switch flipped by friction, and most professional environments have spent decades polishing the friction out.\n\nThe limits matter. Fluency does not fabricate truth from nothing; it tilts a verdict that was already close. It cannot rescue an obviously absurd claim, and it cannot sink an obviously rigorous one. Where it does its damage is in the wide middle band of judgments — vendor proposals, sentencing memos, grant applications, audition tapes, handoff notes — where the underlying evidence is mixed and the small extra warmth of easy reading decides which way the assessment falls. It also weakens with explicit contrast: when you read two things side by side and ask which is better written versus which is better reasoned, the leakage shrinks.\n\nThe transfer is to build that contrast into your work before the leakage happens. Predict your reaction before you read carefully, then notice where the careful read disagrees with the prediction. Re-encounter the smooth document as if it were rough: paraphrase it in your own plain words and ask whether the argument survives the loss of its cadence. When two artifacts compete, equalize their surface — same font, same length, names removed — before letting your impression form. None of this makes you immune. It only makes the fluency cue visible, which is the difference between a signal you can interrogate and a feeling you mistake for a conclusion."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-ishani-handoff",
+      "title": "Ishani at 3:10 a.m. in the cardiac step-down unit",
+      "scenario": "Ishani is nine hours into a twelve-hour shift on the cardiac step-down floor when two handoff notes land on her clipboard at 3:10 a.m. Bed 4's note is printed from the new EMR in a clean sans-serif. Bed 5's is a smudged carbon copy with a coffee ring near the allergies line. Both list a furosemide dose due in twenty minutes. She feels the legible note click into place as trustworthy and the smudged one as suspect, and her pen is already moving to initial bed 4 first. She has to decide, before she pulls the first syringe, which note actually deserves that trust.",
+      "whatToDo": "Stop, set both notes down, and cross-check each one line by line against the patient's chart and MAR — letting the chart, not the feel of the page, say which dose is correct.",
+      "whyItMatters": "Legibility and accuracy are produced by different processes; a crisp typeface reflects which ward migrated to the new EMR, not whether the reconciliation underneath it was done carefully."
+    },
+    {
+      "exampleId": "ch05-ex02-dagmar-zoning",
+      "title": "Dagmar weighs two zoning proposals in a church basement",
+      "scenario": "Dagmar is the newest member of the Fairhaven zoning board, sitting in a folding chair in the Methodist church basement on a Thursday night. Developer A's handout lists: 'Build smart, build green, build to stay.' Developer B's lists twenty-three sewer-capacity figures in nine-point type. The vote is in forty minutes. Dagmar notices she already trusts A more, and her pen is hovering over the yes column for a rezoning that will outlast her. She has to decide whether that trust is earned.",
+      "whatToDo": "Before voting, rewrite each of A's rhyming bullets as a flat paraphrase, and ask whether any concrete commitment, number, or mechanism survives the translation.",
+      "whyItMatters": "Rhyme and parallelism raise processing fluency, which the mind reads as truth. Forcing paraphrase severs the sound from the substance so only the testable content remains to be judged."
+    },
+    {
+      "exampleId": "ch05-ex03-rhodri-stock",
+      "title": "Rhodri Tastes Two Stocks on a Tuesday Prep Shift",
+      "scenario": "Rhodri, the sous chef at a twelve-table bistro, stands at the pass on a slow Tuesday afternoon with two warm ramekins in front of him. The left one is the house chicken stock he has ladled for four years. The right one is from a new supplier whose price undercuts the current vendor by eleven percent. He sips the left and it lands like home; he sips the right and something in his shoulders resists. The owner is waiting for a recommendation by six. He must decide whether the left one is actually better or merely more familiar.",
+      "whatToDo": "Run the taste test blind and scrambled, twice, against the same salted chicken, and grade only body, salinity, and finish — not the warmth of recognition.",
+      "whyItMatters": "Repeated exposure produces a glow of rightness that the palate cannot distinguish from flavor quality, so any comparison that lets familiarity vote will vote for the incumbent regardless of the liquid."
+    },
+    {
+      "exampleId": "ch05-ex04-hollis-postmortem",
+      "title": "Judge Hollis reconstructs Thursday's sentencing split at her desk",
+      "scenario": "It is 9:15 p.m. Thursday and Judge Hollis is alone in chambers with two sentencing orders she signed that afternoon. The defendants' facts were almost interchangeable — same offense level, similar priors, similar allocutions — but she gave one forty-two months and the other sixty. She pulls the memos back out. One is laser-printed in Garamond with numbered headings; the other is a single dense block from an overworked defender. She has to reconstruct, honestly, whether the shorter sentence tracked the facts or the font, and decide what to change before next Thursday's docket.",
+      "whatToDo": "Lay the two memos side by side, list each fact that actually moved the sentence, and draft a bench rule requiring a reformatted one-page fact summary before any sentencing read.",
+      "whyItMatters": "Reading ease enters judgment as warmth toward the writer's client, and equal facts presented unequally will produce unequal sentences unless the intake format equalizes the surface before the mind forms an impression."
+    },
+    {
+      "exampleId": "ch05-ex05-saoirse-clarinet-audition",
+      "title": "Saoirse auditions two clarinetists in a narrow practice room",
+      "scenario": "Saoirse has ten minutes between bells on a Thursday afternoon to hear two sophomores audition for first chair in the windowless practice room behind the band library. Beatrix plays the Weber warm-up excerpt Saoirse has drilled every September for eleven years; Yusra plays a Finzi passage Saoirse has only skimmed twice. Beatrix sounds, to her ear, noticeably more musical — rounder phrasing, cleaner returns. Her pencil is already drifting toward Beatrix's name on the clipboard. She has to decide, before calling them back in, whether what she is hearing is better playing or a more familiar tune.",
+      "whatToDo": "Stop the audition, hand both students the same two unfamiliar excerpts sight-read cold, and rank only after each has played identical repertoire neither has rehearsed.",
+      "whyItMatters": "Familiar music is processed faster by the listener, and that processing speed registers as warmth and competence in the player. Equalizing repertoire novelty removes the listener's fluency from the signal being measured."
+    },
+    {
+      "exampleId": "ch05-ex06-anneliese-study-section",
+      "title": "Anneliese scores the last four NIH proposals before midnight",
+      "scenario": "Anneliese is a tenured immunologist on an NIH study section, working from her kitchen table at 10:40 p.m. with four proposals left and scores due by morning. The top PDF is a veteran's — clean headings, parallel sentences, figures with legends that almost read themselves. Beneath it sits a first-time applicant's file: dense paragraphs, a figure whose axes need squinting. She has a habit of jotting a predicted score on a sticky note before she reads carefully, and her pen is already on the pad. She has to decide what that prediction is actually measuring.",
+      "whatToDo": "Write the pre-read score, then read each proposal in full, and in the critique split two separate lines: clarity of writing and quality of experimental design, scored independently.",
+      "whyItMatters": "Easy reading produces a warm impression that attaches to the science itself; unless the critique forces prose and design onto separate axes, the fluent veteran beats the clumsy first-timer on a dimension the funder never meant to reward."
+    }
+  ],
+  "criticFindings": [
+    {
+      "unit": "example[3] Judge Hollis reconstructs Thursday's sentencing split at her desk",
+      "findings": [
+        {
+          "checkId": "narrative.decision_point",
+          "severity": "major",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "It is 9:15 p.m. Thursday and Judge Hollis is alone in chambers with two sentencing orders she signed that afternoon. The defendants' facts were almost interchangeable — same offense level, similar pr…"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "generatedAt": "2026-04-22T12:32:37.532Z",
+    "totalWallTimeSec": "100.8"
+  }
+}

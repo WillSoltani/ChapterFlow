@@ -16,6 +16,16 @@ type GlobalSearchPanelProps = {
 
 const EMPTY_RESULTS: GroupedResults = { books: [], chapters: [], takeaways: [], examples: [] };
 
+/**
+ * Build a chapter URL segment. Prefers the full chapter slug (e.g. "ch01-the-habit-loop")
+ * when available; otherwise falls back to the plain chapter number, which resolves
+ * via the numeric fallback in app/book/library/[bookId]/chapter/[chapterId]/page.tsx.
+ */
+function buildChapterPath(result: { chapterId?: string; chapterNumber?: number }): string {
+  if (result.chapterId) return encodeURIComponent(result.chapterId);
+  return String(result.chapterNumber ?? 1);
+}
+
 /* ── Local fallback helpers (used when S3 index hasn't loaded) ── */
 
 function localBookSearch(search: string): SearchResult[] {
@@ -50,7 +60,8 @@ function localChapterSearch(search: string): SearchResult[] {
         bookId: book.id,
         bookTitle: book.title,
         author: book.author,
-        chapterNumber: parseInt(chapter.id.replace(/\D/g, ""), 10) || 1,
+        chapterId: chapter.id,
+        chapterNumber: chapter.order,
         chapterTitle: `${chapter.code} ${chapter.title}`,
         text: `${chapter.title} ${book.title}`,
         tags: [],
@@ -146,7 +157,7 @@ export function GlobalSearchPanel({ open, query, onClose }: GlobalSearchPanelPro
                       onClick={() => {
                         onClose();
                         router.push(
-                          `/book/library/${encodeURIComponent(r.bookId)}/chapter/ch${String(r.chapterNumber ?? 1).padStart(2, "0")}`
+                          `/book/library/${encodeURIComponent(r.bookId)}/chapter/${buildChapterPath(r)}`
                         );
                       }}
                       className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
@@ -182,7 +193,7 @@ export function GlobalSearchPanel({ open, query, onClose }: GlobalSearchPanelPro
                       onClick={() => {
                         onClose();
                         router.push(
-                          `/book/library/${encodeURIComponent(t.bookId)}/chapter/ch${String(t.chapterNumber ?? 1).padStart(2, "0")}`
+                          `/book/library/${encodeURIComponent(t.bookId)}/chapter/${buildChapterPath(t)}`
                         );
                       }}
                       className="flex w-full items-start gap-2 rounded-lg px-2 py-2 text-left text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
@@ -221,7 +232,7 @@ export function GlobalSearchPanel({ open, query, onClose }: GlobalSearchPanelPro
                       onClick={() => {
                         onClose();
                         router.push(
-                          `/book/library/${encodeURIComponent(e.bookId)}/chapter/ch${String(e.chapterNumber ?? 1).padStart(2, "0")}`
+                          `/book/library/${encodeURIComponent(e.bookId)}/chapter/${buildChapterPath(e)}`
                         );
                       }}
                       className="flex w-full items-start gap-2 rounded-lg px-2 py-2 text-left text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"

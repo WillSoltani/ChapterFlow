@@ -1,0 +1,70 @@
+{
+  "$schema": "./meta-patterns.schema.json",
+  "version": "1.0.0",
+  "description": "Regex patterns for register.no_meta_reference and register.no_chapter_number_literal critics. Pulled out so they can be tuned without touching critic code.",
+  "metaReferencePatterns": [
+    {
+      "id": "this_chapter",
+      "pattern": "(?i)\\bthis chapter\\b",
+      "severity": "blocker",
+      "example": "This chapter argues that..."
+    },
+    {
+      "id": "the_chapter",
+      "pattern": "(?i)\\bthe chapter\\b",
+      "severity": "blocker",
+      "example": "The chapter opens with..."
+    },
+    {
+      "id": "the_author",
+      "pattern": "(?i)\\bthe author\\b",
+      "severity": "blocker",
+      "example": "The author makes the case that..."
+    },
+    {
+      "id": "the_book",
+      "pattern": "(?i)\\bthe book\\b",
+      "severity": "blocker",
+      "example": "The book reframes habit as..."
+    },
+    {
+      "id": "in_this_x",
+      "pattern": "(?i)\\bin this (chapter|section|book|law)\\b",
+      "severity": "blocker"
+    },
+    {
+      "id": "chapter_verb",
+      "pattern": "(?i)\\bchapter\\s+(opens|argues|says|notes|introduces|reframes|shows|treats|warns|installs|closes|reminds|concludes|emphasizes|adds|explains|continues|begins|moves|uses)\\b",
+      "severity": "blocker",
+      "example": "Chapter 6 argues that..."
+    },
+    {
+      "id": "author_surname_verb",
+      "pattern": "(?i)\\b(Clear|Kahneman|Taleb|Housel|Tetlock|Cialdini|Greene|Machiavelli|Duhigg|Eyal|Covey|Ries|Brown|Kolb|Gladwell)\\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\\b",
+      "severity": "major",
+      "example": "Clear argues that small changes compound."
+    }
+  ],
+  "chapterNumberPatterns": [
+    {
+      "id": "chapter_n",
+      "pattern": "\\bChapter\\s+\\d+\\b",
+      "severity": "major",
+      "example": "Chapter 7..."
+    },
+    {
+      "id": "chapter_word",
+      "pattern": "\\bChapter\\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\\b",
+      "severity": "major"
+    }
+  ],
+  "allowedMetaContexts": {
+    "description": "Places where meta-reference IS acceptable (e.g., editorial provenance fields). Critics skip these fields entirely.",
+    "bypassFields": [
+      "book.edition.sourceProvenance",
+      "book.edition.name",
+      "schemaVersion",
+      "packageId"
+    ]
+  }
+}

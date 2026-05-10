@@ -418,6 +418,10 @@ export function useChapterState(
     setState((prev) => ({ ...prev, showRecap: !prev.showRecap }));
   }, []);
 
+  const markRecapSeen = useCallback(() => {
+    setState((prev) => (prev.showRecap ? prev : { ...prev, showRecap: true }));
+  }, []);
+
   const toggleExplanation = useCallback((questionId: string) => {
     setState((prev) => ({
       ...prev,
@@ -457,6 +461,7 @@ export function useChapterState(
     toggleFocusMode,
     setFontScale,
     toggleRecap,
+    markRecapSeen,
     toggleExplanation,
     toggleBookmarkedTakeaway,
   };

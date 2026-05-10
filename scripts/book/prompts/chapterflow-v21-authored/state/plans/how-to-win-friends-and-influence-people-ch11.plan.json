@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch11",
+  "number": 11,
+  "title": "How to Get Cooperation",
+  "coreMove": "Convert your conclusion into a question the other person can answer in their own words, then accept their answer as the plan.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a regional sales director rolling out a new commission structure to twelve reps who already hate it",
+      "audience": "a regional sales director who has already lost one rep to a competitor this quarter",
+      "stakes": "whether the team adopts the new structure as their own or quietly sandbags the rollout for six months",
+      "format": "decision_point",
+      "requiredBeat": "the director catches herself about to announce the structure, stops, and instead asks the reps what a fair commission would reward, then writes their answer on the whiteboard"
+    },
+    {
+      "domain": "a hospice nurse helping a dying woman's adult son decide whether to authorize a feeding tube",
+      "audience": "a hospice nurse who has watched families fracture over end-of-life decisions",
+      "stakes": "whether the son lives the next decade believing he chose well for his mother or believing he was talked into something",
+      "format": "dialogue",
+      "requiredBeat": "the nurse names what the son already seems to want out loud as a question, then waits in silence until he answers it himself"
+    },
+    {
+      "domain": "a high school orchestra conductor whose first violins are dragging the tempo every rehearsal",
+      "audience": "a second-year orchestra teacher who keeps tapping the stand louder",
+      "stakes": "whether the section plays the spring concert with confidence or with the conductor's resentment baked into every measure",
+      "format": "before_after",
+      "requiredBeat": "the conductor stops correcting the tempo and instead asks the section leader to count off what tempo the piece wants, accepting the slightly slow tempo she names"
+    },
+    {
+      "domain": "a divorced father trying to get his fourteen-year-old to stop leaving wet towels on the bathroom floor",
+      "audience": "a divorced father with weekend custody and no leverage left",
+      "stakes": "whether the bathroom becomes a daily skirmish or the boy starts treating the apartment as partly his own",
+      "format": "vignette",
+      "requiredBeat": "the father resists the urge to issue a rule and instead asks the boy what a fair towel arrangement would look like, then lives with the boy's answer even though it is not what he would have chosen"
+    },
+    {
+      "domain": "a city planner running a public meeting about a proposed bike lane on a contested commercial street",
+      "audience": "a city planner who has been shouted down at three previous meetings",
+      "stakes": "whether the lane gets built with shop-owner support or with a lawsuit attached",
+      "format": "scene",
+      "requiredBeat": "the planner sets aside her prepared slides and asks the room what they would need to see in a good bike-lane proposal, writing every answer on butcher paper before she says a word about her own plan"
+    },
+    {
+      "domain": "a restaurant owner whose line cook keeps overcooking the duck on Saturday nights",
+      "audience": "a restaurant owner who has already fired two cooks this year",
+      "stakes": "whether the kitchen finds its own standard for the dish or the owner spends every Saturday at the pass",
+      "format": "postmortem",
+      "requiredBeat": "the owner sits with the cook on a Sunday morning and asks him how he would know a duck was right, then adopts the cook's answer as the house standard"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

@@ -1,0 +1,66 @@
+{
+  "chapterId": "tiny-habits-ch01",
+  "number": 1,
+  "title": "The Elements of Behavior",
+  "coreMove": "Diagnose any failed behavior by asking which of motivation, ability, or prompt was missing at the moment it should have happened, and fix that one.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift nurse trying to drink more water during twelve-hour rotations",
+      "audience": "a healthcare worker whose schedule wrecks ordinary routines",
+      "stakes": "chronic dehydration headaches that bleed into patient handoffs",
+      "format": "decision_point",
+      "requiredBeat": "she traces her failed water-bottle habit to a missing prompt rather than weak willpower, and decides to redesign the cue instead of trying harder"
+    },
+    {
+      "domain": "a retired electrician learning to take a daily blood-pressure reading at his kitchen counter",
+      "audience": "an older adult navigating a new medical instruction",
+      "stakes": "whether his cardiologist has data to adjust medication before his next appointment",
+      "format": "vignette",
+      "requiredBeat": "the cuff sits in a drawer because nothing in his morning routine touches that drawer; the scene shows him moving it next to the coffee tin and a reading happening the next day"
+    },
+    {
+      "domain": "a junior associate at a regional law firm trying to journal three lines before bed",
+      "audience": "someone who already feels overscheduled",
+      "stakes": "a quiet sense that another self-improvement attempt is about to die",
+      "format": "postmortem",
+      "requiredBeat": "she walks back through the week and identifies that motivation was high on Monday and gone by Thursday, and concludes the design was leaning on the wrong lever"
+    },
+    {
+      "domain": "a high school orchestra teacher who keeps meaning to call his aging mother on Sunday afternoons",
+      "audience": "an adult navigating family obligation alongside a busy week",
+      "stakes": "the relationship slowly thinning into voicemails",
+      "format": "dialogue",
+      "requiredBeat": "a conversation with a friend over coffee where he realizes the call has no anchor in his Sunday and is competing with everything else for attention"
+    },
+    {
+      "domain": "a freelance illustrator trying to stretch her wrists between commissions",
+      "audience": "a self-employed creative whose day has no fixed structure",
+      "stakes": "early signs of repetitive strain that could end her income",
+      "format": "predict_reveal",
+      "requiredBeat": "the reader is asked to predict which of the three elements is failing, then the scene reveals it is ability — the stretch routine she chose takes eight minutes and she will not do eight minutes"
+    },
+    {
+      "domain": "a line cook who wants to start reading non-cookbook books on the bus ride home",
+      "audience": "a service-industry worker decompressing after a shift",
+      "stakes": "a quiet aspiration to feel like a person with interests outside the kitchen",
+      "format": "reflection",
+      "requiredBeat": "he sits with the recognition that the bus ride is already an anchor and a prompt is already firing — what was missing was making the behavior small enough to start while still smelling like fryer oil"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

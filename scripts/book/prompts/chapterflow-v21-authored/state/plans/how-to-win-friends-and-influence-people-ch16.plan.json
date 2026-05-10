@@ -1,0 +1,60 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch16",
+  "number": 16,
+  "title": "When Nothing Else Works, Try This",
+  "coreMove": "Throw down a clean, public-stakes challenge that lets a stalled person prove themselves, only after softer appeals have visibly failed",
+  "exampleCount": 5,
+  "exampleSpecs": [
+    {
+      "domain": "a head chef whose line cook has been undersalting plates for two weeks despite gentle correction",
+      "audience": "a kitchen veteran who runs the brigade by feel, not by lectures",
+      "stakes": "whether the cook gets his pride back on the line or gets quietly cut from the Friday rotation",
+      "format": "scene",
+      "requiredBeat": "the chef stops coaching technique and, in front of the rest of the brigade, says he wants to see whether this cook can match the Saturday closer's plate consistency by the end of the week, then walks away without waiting for an answer"
+    },
+    {
+      "domain": "a regional bakery manager whose night shift has trailed the day shift in output for three straight quarters",
+      "audience": "a manager who has already tried praise, retraining, and supportive one-on-ones",
+      "stakes": "whether the night crew rallies or gets folded into day operations and loses their hours",
+      "format": "decision_point",
+      "requiredBeat": "the manager has to choose between scheduling yet another encouraging huddle and posting the day shift's tray counts on the back wall with one handwritten line asking the night crew whether they want their own numbers up there next week"
+    },
+    {
+      "domain": "a retired junior-hockey assistant coach speaking with the team's leading scorer who has stopped backchecking",
+      "audience": "a 17-year-old with a college scholarship in play and a habit of coasting once his line is up two goals",
+      "stakes": "whether he keeps his place on the top line for the playoff push",
+      "format": "dialogue",
+      "requiredBeat": "the coach refuses to lecture, asks the kid plainly whether he thinks he can finish the season as the hardest-working forechecker on the roster, and then sits in silence until the kid answers in his own words"
+    },
+    {
+      "domain": "a grandmother whose 14-year-old grandson abandoned a half-built birdhouse in her garage",
+      "audience": "a grandmother who has already tried nagging, bribing, and pretending not to care",
+      "stakes": "whether the boy learns to finish what he begins or carries the habit of quitting into the rest of his life",
+      "format": "reflection",
+      "requiredBeat": "over morning toast she tells him she has never once seen a man in their family finish a real woodworking project without help, says she is curious whether he'll be the first, and then refuses to mention it again for the rest of the day"
+    },
+    {
+      "domain": "a volunteer fire captain pushing a probationary firefighter who keeps deferring the officer exam",
+      "audience": "a captain who has spent nine months on encouragement, mentorship, and private pep talks",
+      "stakes": "whether the probie sits the exam this cycle or remains the most senior person in the company without bars",
+      "format": "postmortem",
+      "requiredBeat": "looking back, the captain recounts the moment the gentle approach finally died: he said out loud, in earshot of two other officers, that nobody on the truck believed this guy would actually register, and watched the probie's posture change inside three seconds"
+    }
+  ],
+  "quizFocus": {
+    "count": 8,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.75
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 9
+}

@@ -1,0 +1,320 @@
+{
+  "chapterId": "thinking-fast-and-slow-ch05",
+  "number": 5,
+  "title": "Cognitive Ease",
+  "readingTimeMinutes": 14,
+  "hook": "A trial judge gives warmer sentences to defendants whose memos arrive in clean type, and she cannot feel herself doing it.",
+  "counterintuition": "Most readers assume they correct for clear writing: they know a legible memo is easier to read and believe they factor that out. They do not. Fluency binds silently to judgments of truth, competence, and character, and knowing the effect exists barely dents it.",
+  "keyTakeaway": "When a claim reads smoothly, rhymes, or looks crisp, I register it as likelier true; the fluency is a cheap proxy for truth, so treat ease itself as a question, not an answer.",
+  "breakdown": {
+    "fastRead": "A line cook tastes two stocks on a Tuesday afternoon. The house stock lands right. The new one feels off. She is about to write it up and move on.\n\nThen she stops. The house stock is what her tongue knows. Knowing is not the same as better.\n\nCall it cognitive ease. When a thing reads smooth, tastes familiar, fits, the mind treats that feeling as a hint about truth. It is a hint about familiarity. The effect is real and the effect is modest; a tendency, not a certainty.\n\nHere is what is worth keeping. When a claim feels obviously right, the feeling is about recognition, not accuracy. It arrives before the evidence, and leaves before anyone checks.",
+    "deepRead": "A zoning commissioner sits through two developer pitches on a Thursday night. The first rhymes a little. The second does not. An hour later, asked which proposal felt more trustworthy, she names the first without hesitation.\n\nShe is not foolish. She has no planning background, which is precisely why she has listened carefully all evening. The rhyming pitch slipped past her carefulness anyway. It landed easy, and easy felt like true.\n\nThat substitution is the effect. When a claim reads smoothly, looks crisp on the page, repeats a phrase already in the air, or rhymes, it registers as more likely to be correct. I fall for it too, reliably, in settings where I should know better. I catch myself nodding at the well-formatted memo and frowning at the smudged one before I have read either for content. The signal I am using is not the content. It is the feel.\n\nThe mechanism is unglamorous. Effort is expensive, so the mind uses ease as a cheap proxy for several things at once: safety, familiarity, truth, competence. When the proxy lines up with reality, nothing goes wrong and nobody notices the substitution. When it does not, the error is invisible, because it was made before anyone thought they were thinking.\n\nWatch for it where the stakes are real and the feel is doing the work. A cardiac nurse on the back half of a twelve-hour shift picks up two handoff notes, one laser-printed and one a smudged carbon. The clean one reads as more credible. It may be. It may not be, and a dose written in the wrong column does not care which note looked tidier. A wrong dose can cost a patient the night.\n\nEase is a question the mind presents as an answer. Treat it as the question.",
+    "fullRead": "It is nine-forty on a Thursday, and a grant reviewer is on her fourth proposal of the evening. The deadline is tomorrow. She has been at this for hours. The application in front of her is a first-timer's, workmanlike rather than polished; the one before was a veteran's, clean paragraphs, every transition smooth. She notices, with some discomfort, that her hand wanted to score the veteran higher before she had finished reading either.\n\nThe discomfort is the useful part. It is the moment an otherwise invisible process briefly surfaces. A claim that reads easy feels more likely to be correct than one that reads hard. The pull is not small, and knowing about it does not reliably cancel it.\n\nI will not pretend I don't fall for this. I do, reliably, with the crisp memo and the smudged one, feeling competence at the first and fatigue at the second before I have taken in a word. The feeling is real. The inference from the feeling is the problem.\n\nThe mind uses fluency, the ease with which a thing is processed, as a rough cue for a bundle of useful properties: this is familiar, therefore probably safe; this is smooth, therefore probably coherent; this is coherent, therefore probably true. Each step is defensible on average. Stacked, they produce a feeling of credibility with only a loose tie to whether the thing in front of you is correct. A name easy to pronounce, a rhyming slogan, a clean font, a phrase already in the air: each nudges the estimate a little toward trust. None is evidence.\n\nA sous chef finishes a tasting and is sure the house stock is better. She could stop there. Instead she pulls a third cup, blind, labels hidden. The verdict changes. What had felt like superior flavor was a palate recognizing itself.\n\nA district judge reading sentencing memos at the end of an afternoon docket is doing similar work with higher stakes and thinner warning. Two defendants, similar facts. One memo reads easy, one does not. A warmer impression forms of the defendant whose lawyer writes well, and warmth, at that hour, is worth months of someone's life. If she is honest afterward, she can reconstruct where the feel leaked into the reasoning. The answer is not willpower. The answer is a rule she applies to herself: read the facts summary before the argument, or read both memos in a uniform font, or require a second reader who has not seen either submission. The aim is not to feel fairer. The aim is to make the feeling matter less.\n\nThree threads tie together. Ease carries information about familiarity more reliably than it does about truth. The effect operates below the level where trying harder helps, so the correction has to sit in the environment, not in the mind. And the places where the error costs most are the places where the feel is strongest and the check is weakest: late in the shift, fourth proposal of six, final memo of a docket.\n\nWhen a claim feels obviously right, the feeling is data about you. Not about the claim."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-ingrid-handoff",
+      "title": "Ingrid decides which handoff note to trust at 3 a.m.",
+      "tags": [
+        "decision_point",
+        "cardiac",
+        "reviewing"
+      ],
+      "planSpec": {
+        "domain": "a cardiac nurse reviewing a handoff note printed in a crisp sans-serif versus a smudged carbon copy on the next patient",
+        "audience": "a bedside nurse working the back half of a twelve-hour shift",
+        "stakes": "whether a medication reconciliation error gets caught before the next dose or silently carried forward",
+        "format": "decision_point",
+        "requiredBeat": "the nurse catches herself weighting the legible note as more credible and forces herself to cross-check the smudged one against the chart rather than against her feeling about it"
+      },
+      "scenario": "Ingrid is four hours from the end of a twelve-hour cardiac shift when the night handoffs land on her clipboard. Bed 4's note is printed clean in a crisp sans-serif from the new EMR. Bed 5's is a smudged carbon copy, the metoprolol dose half-swallowed by a coffee ring. Both patients are due for meds in twenty minutes. She feels, reading them back to back, that bed 4 is the settled case and bed 5 is the messy one. Her hand is on the med cart. She has to decide, right now, whether that feeling is about the patients or about the paper.",
+      "whatToDo": "Set the feeling aside and cross-check both notes against the chart and the MAR directly, giving the smudged note the same line-by-line reconciliation as the clean one.",
+      "whyItMatters": "Legibility rides on the same neural signal as truth, so a clean typeface can borrow credibility a chart has not earned. The reconciliation has to be against the source, not against the reading experience."
+    },
+    {
+      "exampleId": "ch05-ex02-hollis-zoning",
+      "title": "Hollis at the zoning board hearing between two developer bids",
+      "tags": [
+        "scene",
+        "municipal",
+        "board"
+      ],
+      "planSpec": {
+        "domain": "a municipal zoning board hearing where one developer's proposal rhymes in its bullet points and the other's does not",
+        "audience": "a small-town zoning commissioner with no planning background",
+        "stakes": "a twenty-year land-use decision that will shape a neighborhood the commissioner's grandchildren will live in",
+        "format": "scene",
+        "requiredBeat": "the commissioner notices that the rhyming proposal is landing as more trustworthy and asks what specifically about its content, not its sound, would survive paraphrase"
+      },
+      "scenario": "Hollis chairs the Westbrook zoning board on a Tuesday night, fluorescent lights humming over a folding table. Two proposals sit in front of her for a nine-acre parcel by the creek. One reads in neat rhyming bullets: build it bright, build it right, build it tight. The other is dense prose about setbacks, runoff, and school capacity. She feels her pen drifting toward the rhyming bid. Her grandchildren will walk these sidewalks. She has to decide, before the next speaker is called, what in the cleaner-sounding bid would still hold up if she read it aloud in flat, un-rhymed paraphrase.",
+      "whatToDo": "Rewrite each rhyming bullet into plain prose in the margin, then judge only the paraphrase. Score the bids on setbacks, runoff, and density, not on cadence.",
+      "whyItMatters": "Rhyme and parallelism raise processing fluency, which the mind reads as credibility. Forcing paraphrase removes the acoustic cue and leaves only the claims that actually commit the developer."
+    },
+    {
+      "exampleId": "ch05-ex03-soren-stock",
+      "title": "Soren tastes two stocks on a Tuesday prep shift",
+      "tags": [
+        "before_after",
+        "tasting",
+        "stock"
+      ],
+      "planSpec": {
+        "domain": "a line cook tasting a new supplier's stock against the restaurant's house stock during a Tuesday prep shift",
+        "audience": "a sous chef deciding whether to switch vendors",
+        "stakes": "food cost, consistency across a twelve-table dinner service, and the chef's credibility with the owner",
+        "format": "before_after",
+        "requiredBeat": "the cook registers that the familiar stock feels right on the tongue in a way the new one does not, and isolates whether that is fluency of familiarity or actual flavor superiority before recommending"
+      },
+      "scenario": "Tuesday, 3:14 p.m. Soren has two small saucepans on the flattop, each reduced to a tablespoon. The left is the house stock he has ladled twice a day for four years. The right is the new supplier's sample, cheaper by eleven percent per liter. He tastes left, then right, then left again. The left lands cleaner, rounder, more like 'stock.' The right reads as slightly off. He is about to walk into the owner's office and recommend staying. Then he notices that 'right' and 'familiar' are doing the same work in his mouth.",
+      "whatToDo": "Pour both into blind-coded cups, have two other cooks taste without labels, and separately taste the new stock in the actual dish it will live in before recommending.",
+      "whyItMatters": "A palate trained on one stock registers that stock as correctness itself. Blinding and in-dish testing pull the judgment off the axis of familiarity and onto the axis of performance."
+    },
+    {
+      "exampleId": "ch05-ex04-yusra-postmortem",
+      "title": "Judge Yusra reconstructs a sentencing split at her kitchen table",
+      "tags": [
+        "postmortem",
+        "district",
+        "judge"
+      ],
+      "planSpec": {
+        "domain": "a district court judge reading sentencing memos at the end of an afternoon docket",
+        "audience": "a trial judge with twenty-six years on the bench",
+        "stakes": "whether two defendants with similar facts receive similar sentences or are split by the mood the memos put the judge in",
+        "format": "postmortem",
+        "requiredBeat": "the judge reconstructs, after the fact, how the easier-to-read memo produced a warmer impression of the defendant and asks what procedural countermeasure would have blocked that leakage"
+      },
+      "scenario": "Judge Yusra is at her kitchen table on a Friday night with two sentencing memos from the Wednesday docket spread in front of her. The facts were near-twins: same charge, same priors, same loss amount. She gave the first defendant eighteen months and the second thirty. Rereading, she sees it. The lighter memo was double-spaced, clean headers, short paragraphs. The heavier one was a wall of eight-point text with run-on footnotes. She had felt the first lawyer was more prepared. She is now asking what rule she needs before the next docket.",
+      "whatToDo": "Reformat every sentencing memo to a uniform template before reading, and score the defendant's facts from a fact sheet that strips the prose entirely.",
+      "whyItMatters": "Fluency of presentation rides on the same neural channel as credibility of content, so equalizing the format is the only way to keep typography from leaking into the sentence."
+    },
+    {
+      "exampleId": "ch05-ex05-saskia-audition",
+      "title": "Saskia and the Weber Excerpt She Has Heard Too Often",
+      "tags": [
+        "dilemma",
+        "highschool",
+        "director"
+      ],
+      "planSpec": {
+        "domain": "a high-school orchestra director auditioning two clarinetists for first chair in a narrow practice room",
+        "audience": "a public-school music teacher with a hundred-student program",
+        "stakes": "the morale of a section that will notice any chair placement that tracks social comfort rather than playing",
+        "format": "dilemma",
+        "requiredBeat": "the director recognizes that the student who plays the familiar warm-up excerpt sounds 'more musical' partly because the excerpt is familiar to the director's ear, and redesigns the audition so repertoire novelty is equalized"
+      },
+      "scenario": "Saskia is grading two clarinetists in practice room 3 after school Thursday, brass players waiting in the hall. Jiya just played the Weber opening Saskia has taught for eleven years; Corrin played a Finzi bagatelle Saskia has not heard since college. Jiya sounded more musical. Then Saskia catches it: she has heard that Weber so often it lands pre-parsed, and she is grading her own familiarity. Finish the audition, or send both students home and re-run Monday on a passage neither has drilled.",
+      "whatToDo": "Stop the audition. Pick a sight-readable passage neither clarinetist has rehearsed, hand each the same part, and score only that. Do not trust the 'more musical' read when one player chose the passage you have memorized.",
+      "whyItMatters": "A passage you have heard for years arrives in your ear pre-parsed. Expressiveness blurs into recognition. Equalize the novelty and the comparison measures playing; leave it unequal and it measures your familiarity with the score."
+    },
+    {
+      "exampleId": "ch05-ex06-anwen-studysection",
+      "title": "Anwen scores four NIH proposals before the midnight deadline",
+      "tags": [
+        "predict_reveal",
+        "grant",
+        "working"
+      ],
+      "planSpec": {
+        "domain": "a grant reviewer working through the last four proposals of the evening against a submission deadline",
+        "audience": "a tenured researcher serving on an NIH study section",
+        "stakes": "whether a first-time applicant's genuinely strong science is scored below a veteran's polished prose",
+        "format": "predict_reveal",
+        "requiredBeat": "the reviewer predicts her own scores before reading carefully, then reads and notices which proposals her prediction overrated on fluency alone, and adjusts her written critique to separate clarity of writing from quality of design"
+      },
+      "scenario": "It is 10:48 p.m. and Anwen, a tenured immunologist on the study section, has four proposals left and a midnight upload. She decides to try something. She writes a predicted impact score for each one based on a two-minute skim, seals the sticky note, and only then reads carefully. When she compares, proposal three, a veteran's, dropped a full point on close reading; its sentences had carried her. Proposal two, a first-time applicant's, rose. Her written critique for three still reads warmer than her score now justifies. She has to decide what to rewrite before upload.",
+      "whatToDo": "Rewrite each critique so the paragraph on writing quality is physically separate from the paragraph on experimental design, and score only the second one.",
+      "whyItMatters": "Fluency and rigor travel together in the reader's impression but not in the world. Splitting them on the page forces the scoring hand to attach to the thing being funded, not the thing being read."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A hiring manager at a software company is reviewing two final-round resumes near midnight. One uses a polished modern template; the other is a plain PDF with tight margins. Both candidates have similar credentials and experience. What is the soundest next move?",
+        "choices": [
+          "Re-read both resumes focusing only on specific accomplishments, dates, and responsibilities, setting the visual design aside.",
+          "Trust the impression the polished resume gave, since attention to visual detail tends to correlate with engineering care.",
+          "Downgrade the plain-PDF candidate for weaker presentation, since presentation is part of the job."
+        ],
+        "correctIndex": 0,
+        "explanation": "Presentation fluency is not evidence of engineering quality. Scoring the same content under equalized conditions isolates the signal. Treating polish as a competence proxy and penalizing plainness both bake the fluency effect into the verdict.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An investor is comparing two seed-stage pitches. The second founder uses a short rhyming tagline that lingers in the investor's head after the meeting. Both companies have similar traction and team quality. What is the soundest next move?",
+        "choices": [
+          "Weight the rhyming pitch higher, since a memorable tagline signals founder skill at customer acquisition.",
+          "Ask each founder to restate the core thesis in plain paraphrase without the tagline, then compare the substance.",
+          "Treat the tagline as a warning sign and lean toward the founder without one."
+        ],
+        "correctIndex": 1,
+        "explanation": "Rhymes and repetition ride a fluency shortcut that feels like truth. Paraphrasing strips the sound from the substance so the actual thesis can be compared. Weighting memorability as skill or penalizing it as fluff both mistake presentation for evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A peer reviewer is evaluating two submissions on a Sunday evening. The first flows effortlessly and feels persuasive; the second is technically dense and requires rereading several passages. What is the soundest next move?",
+        "choices": [
+          "Score the fluent submission higher, since clear writing usually accompanies clean thinking.",
+          "Assume the dense submission is probably sloppy, since careful scientists write accessibly.",
+          "List each paper's specific claims and check whether its evidence supports those claims on their own terms."
+        ],
+        "correctIndex": 2,
+        "explanation": "Reading fluency and research quality are separable. Auditing claims one at a time against their evidence prevents ease of prose from coloring the verdict. The other options each convert a writing signal into a science signal without justification.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A restaurant owner is tasting two bottles from a prospective distributor against the house pour during a busy Saturday prep. The house pour lands as more right on the tongue. What is the soundest next move?",
+        "choices": [
+          "Decide only after a blind, side-by-side tasting at a neutral hour, scored on specific flavor dimensions rather than overall feel.",
+          "Stick with the house pour, since regulars' palates match the long-standing flavor profile.",
+          "Switch to whichever new bottle tastes closest to the house pour so regulars will not notice the change."
+        ],
+        "correctIndex": 0,
+        "explanation": "Familiarity on the palate is not the same as quality. A blind, specific-criterion tasting isolates flavor from habit. Defaulting to the house pour or to the bottle most similar to it both treat familiarity as the decision rule rather than as the thing to test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A school board awarded a technology contract to the vendor whose proposal opened with a catchy slogan in its executive summary. A trustee reviewing the decision afterward wonders what actually drove it. Which reading best diagnoses the drift?",
+        "choices": [
+          "The losing vendor's proposal was probably technically inferior, and the scoring correctly identified the stronger bid.",
+          "The slogan's fluency registered as trust, and that borrowed warmth leaked into the scoring as if it were evidence about the product.",
+          "The trustees voted strategically to appease a constituency that favored that vendor's branding."
+        ],
+        "correctIndex": 1,
+        "explanation": "A slogan that reads easily generates a feeling of correctness that can color scoring on unrelated criteria. Assuming the technical bid was genuinely stronger begs the question. The strategic-voting explanation invents a motive the facts do not require.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A trial judge reviewing two similar drug cases realizes after sentencing that the defendant whose memo used a larger font and shorter paragraphs received the lighter sentence. What mechanism most plausibly explains the split?",
+        "choices": [
+          "Font choice is a recognized mitigating factor in sentencing doctrine and was correctly applied here.",
+          "The cases were in fact dissimilar in ways that happened to correlate with memo format.",
+          "Ease of reading produced a warmer overall impression of the case, and the warmth leaked into the sentencing call."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fluent reading produces a positive affective tone that bleeds into unrelated judgments like sentence severity. The doctrinal claim is fabricated. Asserting hidden case differences that happen to track formatting is post hoc rationalization.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A high-school orchestra director awards first chair to the clarinetist whose audition used a piece from the spring repertoire already familiar to the director's ear. The other student played a piece the director had not heard before. What signal most likely contaminated that call?",
+        "choices": [
+          "The familiar piece lets the director's ear anticipate every phrase, so the playing feels more polished than an unfamiliar piece at the same skill level.",
+          "Familiar repertoire is objectively easier to perform well, so the chosen student did in fact play better.",
+          "Directors usually favor older students, and familiar pieces tend to be taught in later grades."
+        ],
+        "correctIndex": 0,
+        "explanation": "Recognition fluency makes a familiar piece sound more musical regardless of the player's actual command. Claiming the familiar piece is easier confuses the director's ease of listening with the student's ease of playing. The seniority story has no support in the scene.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A grant reviewer with six proposals left and a midnight deadline is choosing a procedure to protect against fluency bias. Which procedure is most defensible?",
+        "choices": [
+          "Score each proposal on overall impression, then adjust the final score downward if the writing seemed unusually polished.",
+          "Write a predicted overall score on first impression, then score specific design criteria one by one and flag any gap between the two.",
+          "Tackle the clearest-written proposals first so fatigue does not hit the easier reads."
+        ],
+        "correctIndex": 1,
+        "explanation": "Separating a fast impression from a criterion-by-criterion score exposes fluency-driven gaps and makes them legible. A post-hoc downward adjustment is arbitrary and reintroduces the bias it claims to fix. Reading easy ones first does nothing to decouple fluency from score.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A training facilitator is explaining to a new cohort of analysts why easy-to-read material can mislead judgment. Which explanation captures the mechanism most faithfully?",
+        "choices": [
+          "Easy reading is a stronger signal of truth than careful analysis, especially under time pressure.",
+          "Ease of reading reflects familiarity and processing fluency, which the mind treats as a cue for truth even though the two often come apart.",
+          "Effort signals intelligence, so hard-to-read material is generally more trustworthy than easy-to-read material."
+        ],
+        "correctIndex": 1,
+        "explanation": "The effect is a substitution: a feeling of ease is read as a verdict of truth. The first option reverses the warning into an endorsement. The third inverts it into a different bias by treating difficulty as the credibility cue.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "A senior fraud auditor is briefing a junior colleague on the basic premise of the cognitive ease effect before a document review. Which statement most accurately captures the core claim?",
+        "choices": [
+          "Fluent processing tracks factual accuracy reliably, so ease can be used as a trustworthy shortcut.",
+          "Effort and accuracy are unrelated, so deliberation adds no value beyond snap judgment.",
+          "Feelings of familiarity and fluency shift how true or credible a claim seems, independent of its actual support."
+        ],
+        "correctIndex": 2,
+        "explanation": "Ease is a cue the mind confuses with truth; it is not a reliable proxy for accuracy. Treating ease as trustworthy endorses the bias. Denying any value to deliberation overstates the effect into a nihilism the evidence does not support.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You finish reading a memo and realize you already agree with it before checking a single fact. What is the one separation this moment requires?",
+      "back": "Separate the feeling that the claim reads smoothly from the evidence that it is true. Fluency is a cue worth investigating, not a signal to trust. Treat the ease itself as the question, and ask what would have to be so for the claim to hold up if rewritten in plainer prose.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "Two handoff notes reach a tired nurse at shift change. One is crisp laser print, the other a smudged carbon. Dose discrepancy is possible. What move comes first?",
+      "back": "Cross-check the smudged note against the chart, not against the feeling the clean note gives off. Legibility is fluency, not accuracy. The correct comparison is each note against the source record, because a dose written in the wrong column does not care which page looked tidier.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "In a zoning hearing, one proposal's bullets rhyme and land easily. You notice you trust it more. What specific test should you run on it before voting?",
+      "back": "Paraphrase the rhyming bullets into flat, unmusical prose and check whether the rewritten version still commits the developer to anything specific. If the claims survive being stripped of rhythm and alliteration, the content was doing the work. If they evaporate, the sound was.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A sous chef tastes a familiar house stock against a new supplier's version and the house one feels right. Before switching or refusing to switch, what must the chef isolate?",
+      "back": "Whether the preference comes from fluency of familiarity or from actual flavor superiority. Taste both blind, or taste the new one several times until its novelty wears off, then compare. A known flavor registers as better simply for being known, and that feeling has to be separated from the evidence on the palate.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A reviewer scoring grant proposals late at night notices her top-scored one was also the easiest to read. What procedural countermeasure blocks fluency from leaking into the score?",
+      "back": "Score writing quality and scientific design on separate lines before producing a composite, and predict scores before close reading so fluency bias can be measured against the careful judgment. Redesign the rubric so clarity of prose cannot silently substitute for quality of method, since ease of reading produces a warmer impression that the reader will not otherwise notice making.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is separating fluency from truth. You learn to register the pleasant click of a smooth claim as a data point about your own processing, not about the claim itself. Over time you stop asking whether something reads right and start asking whether it would survive being re-read in a harder form.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you find yourself nodding along to a crisp slide deck before the Q and A, then write down the three specific claims you would need to verify and ask for the source on each one before you vote."
+      },
+      {
+        "context": "health",
+        "plan": "If a handoff note or chart entry reads cleanly and feels trustworthy at a glance, then pull the primary record and reconcile the numbers line by line before acting on the impression."
+      },
+      {
+        "context": "civic",
+        "plan": "If a public proposal rhymes, alliterates, or keeps repeating a catchy phrase, then paraphrase each bullet into flat prose and judge only the paraphrase."
+      },
+      {
+        "context": "money",
+        "plan": "If a pitch deck or fund letter reads beautifully and you feel your shoulders relax, then flag that relaxation, print the numbers alone on a separate page, and review those first."
+      }
+    ],
+    "twentyFourHourChallenge": "Tonight, pick one document on your desk that you have been treating as credible because it looks clean, a memo, a report, a proposal, and retype its main argument into plain sentences with no formatting. Notice whether the argument still persuades you once the typography is gone.",
+    "weeklyPractice": "Once a week, run a fluency audit on a decision you made in the last seven days. Write the claim you acted on, then write what you actually verified, then write what you assumed because it read well. Keep the list; patterns will show up within a month."
+  }
+}

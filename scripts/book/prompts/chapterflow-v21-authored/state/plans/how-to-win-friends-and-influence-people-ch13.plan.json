@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch13",
+  "number": 13,
+  "title": "What Everybody Wants",
+  "coreMove": "Before pressing your request, name out loud the worry, fatigue, or wish the other person is carrying, and wait for them to confirm it before you continue",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a charge nurse asking a burned-out night-shift colleague to cover one more weekend",
+      "audience": "a charge nurse on a short-staffed cardiac unit",
+      "stakes": "whether the colleague agrees willingly or files a grievance the next morning",
+      "format": "dialogue",
+      "requiredBeat": "the charge nurse first says aloud what the colleague is tired of and waits for the small nod before mentioning the schedule"
+    },
+    {
+      "domain": "a violin teacher rescheduling a recital after a twelve-year-old student freezes in the dress rehearsal",
+      "audience": "a private music teacher with a studio of nine students",
+      "stakes": "whether the child quits violin that night or returns the following week",
+      "format": "scene",
+      "requiredBeat": "the teacher names the embarrassment the child is sitting in before suggesting any plan, and lets the child speak first"
+    },
+    {
+      "domain": "a roofer trying to collect a six-week-overdue payment from an elderly homeowner",
+      "audience": "the owner of a two-truck roofing outfit",
+      "stakes": "whether he gets paid this month or has to write off the job",
+      "format": "vignette",
+      "requiredBeat": "the roofer voices the homeowner's fear about her late husband's finances before the invoice is mentioned"
+    },
+    {
+      "domain": "a stepfather asking his teenage stepdaughter to put her phone away at dinner",
+      "audience": "a stepfather of eighteen months",
+      "stakes": "whether the household survives the meal without another door slammed",
+      "format": "decision_point",
+      "requiredBeat": "he chooses between his prepared sentence about respect and a sentence that names her loneliness, and he picks the second"
+    },
+    {
+      "domain": "a city bus driver defusing a passenger who is shouting about a missed stop",
+      "audience": "a transit driver on the late-evening route",
+      "stakes": "whether the situation ends with an apology or with police called",
+      "format": "dialogue",
+      "requiredBeat": "the driver names the passenger's worry about being late to a sick relative before answering anything about the route"
+    },
+    {
+      "domain": "a junior associate persuading a senior partner to reread a brief the partner already signed off on",
+      "audience": "a second-year associate at a mid-size firm",
+      "stakes": "whether a citation error reaches the judge or is caught in time",
+      "format": "reflection",
+      "requiredBeat": "the associate rehearses what the partner is anxious about this week and opens with that, not with the error"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12
+}

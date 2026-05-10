@@ -1,0 +1,74 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch04",
+  "number": 4,
+  "title": "Six Ways to Make People Like You",
+  "coreMove": "Spend your attention on what makes the other person feel important — their name, their interests, their own talk — before you offer a single thing about yourself.",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "a hospice nurse arriving for her first visit with a man who has stopped speaking to most visitors",
+      "audience": "a hospice nurse three months into her first hospice rotation",
+      "stakes": "whether she gets the patient to say a single full sentence today, which his daughter has begged for",
+      "format": "scene",
+      "requiredBeat": "she opens by asking about the framed photograph on his dresser, not about how he is feeling, and he begins to talk about the river in the picture"
+    },
+    {
+      "domain": "a high school basketball coach trying to reach a transfer player who will not make eye contact at practice",
+      "audience": "a coach in the second week of a new season",
+      "stakes": "whether the player stays on the roster or quits by Friday and tells his friends the program is cold",
+      "format": "dialogue",
+      "requiredBeat": "the coach asks about the player's old gym, listens for three full minutes without correcting anything, and only then mentions tomorrow's drill"
+    },
+    {
+      "domain": "a tax preparer sitting with a recently widowed woman who keeps apologizing for asking the same question twice",
+      "audience": "a small-practice tax preparer who is already running thirty minutes late on the day",
+      "stakes": "whether the client trusts him enough to come back next April, when her return becomes genuinely complicated",
+      "format": "vignette",
+      "requiredBeat": "he repeats her late husband's first name back to her gently when she mentions it, and uses that same name again twenty minutes later as if he had known the man"
+    },
+    {
+      "domain": "a head line cook newly promoted to expediter who decides to learn the name of every server who comes to the pass",
+      "audience": "a line cook in his first month running tickets",
+      "stakes": "whether the front of house begins to trust the kitchen instead of grumbling at it through the next Saturday rush",
+      "format": "before_after",
+      "requiredBeat": "on the busiest service of the month he calls each server by name as their plates leave the window, and the floor returns less food, not because cooking changed but because mood did"
+    },
+    {
+      "domain": "a dental hygienist treating a sixteen-year-old who has shown up in earbuds and refuses small talk",
+      "audience": "a hygienist who has already tried weather and weekend plans and gotten nothing back",
+      "stakes": "whether the teenager will actually start flossing instead of lying about flossing for another six months",
+      "format": "decision_point",
+      "requiredBeat": "she notices the band logo on his hoodie and asks one specific question about the drummer in that band, and he pulls out an earbud to answer"
+    },
+    {
+      "domain": "a hotel night auditor on the front desk at 2 a.m. when a stranded business traveler walks in furious about a missed shuttle",
+      "audience": "a night auditor who has been told by her manager that she is too quiet to handle complaints",
+      "stakes": "whether the guest writes a one-star review or asks for her by name on his next trip through the city",
+      "format": "postmortem",
+      "requiredBeat": "she does not defend the hotel; she asks his name, uses it twice, and asks where he was supposed to be tonight, and the anger drains out of him before she has typed anything"
+    },
+    {
+      "domain": "a parent volunteering at a fourth-grade book fair who notices a boy nobody is standing near",
+      "audience": "a parent who has always felt awkward around children who are not her own",
+      "stakes": "whether one quiet afternoon becomes a small lift this boy will remember the next time he feels invisible",
+      "format": "reflection",
+      "requiredBeat": "she does not ask his grade or his favorite subject; she asks which book he picked up first and why, and he tells her at length while she does not interrupt once"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 18
+}

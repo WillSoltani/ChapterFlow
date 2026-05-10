@@ -119,8 +119,7 @@ export function PracticePhase({
             The One Takeaway
           </p>
           <p
-            className={`text-(--cr-text-heading) leading-[1.75] ${fontScaleClass}`}
-            style={{ fontSize: "1.1em", fontWeight: 500 }}
+            className={`text-(--cr-text-heading) text-[1.1em] font-medium ${fontScaleClass}`}
           >
             {keyTakeawayCard}
           </p>
@@ -140,8 +139,7 @@ export function PracticePhase({
             {bookmarkedTakeaways.map((takeaway, i) => (
               <li
                 key={i}
-                className={`flex gap-3 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-(--cr-text-primary) leading-[1.75] ${fontScaleClass}`}
-                style={{ fontWeight: 450 }}
+                className={`flex gap-3 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-(--cr-text-primary) ${fontScaleClass}`}
               >
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--cr-accent)/15 text-[0.65rem] font-bold text-(--cr-accent)">
                   {i + 1}
@@ -224,7 +222,7 @@ export function PracticePhase({
           <p className="mb-1.5 text-xs font-bold uppercase tracking-[0.08em] text-(--cr-info)">
             Predict the Next Chapter
           </p>
-          <p className={`text-(--cr-text-primary) leading-[1.75] ${fontScaleClass}`}>
+          <p className={`text-(--cr-text-primary) ${fontScaleClass}`}>
             {predictionPrompt}
           </p>
         </section>

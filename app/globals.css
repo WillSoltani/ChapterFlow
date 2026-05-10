@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 /* OpenDyslexic — accessibility font for dyslexia support */
 @font-face {
@@ -54,6 +55,15 @@ body {
 }
 
 :focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Programmatic focus on phase-heading sections is for screen-reader anchoring
+ * only — sighted users don't expect a focus ring around a chunk of prose
+ * after a phase change. Suppress the visible outline; the focus event still
+ * fires so assistive tech announces the new section. */
+[data-phase-heading]:focus,
+[data-phase-heading]:focus-visible {
   outline: none;
 }
 

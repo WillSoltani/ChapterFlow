@@ -4,6 +4,7 @@ export type SearchDocument = {
   bookId: string;
   bookTitle: string;
   author: string;
+  chapterId?: string;
   chapterNumber?: number;
   chapterTitle?: string;
   text: string;

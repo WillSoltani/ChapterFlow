@@ -1,0 +1,99 @@
+{
+  "bookId": "thinking-fast-and-slow",
+  "title": "Thinking, Fast and Slow",
+  "author": "Daniel Kahneman",
+  "thesisParagraph": "Most of the time you are not thinking. You are running a fast, associative, pattern-matching machine that produces answers before you notice a question was asked, and a slower, effortful machine that mostly ratifies what the fast one already decided. The fast machine is brilliant at the jobs it evolved for and catastrophically confident outside them; it substitutes easy questions for hard ones, sees coherence where there is noise, and treats what it can remember as what is true. Intuition is not the opposite of reason — it is reason's default, and it is wrong in lawful, predictable ways. You cannot fix this by trying harder, because the error happens before trying begins. What you can do is learn the shapes of the traps, slow down at the specific moments that matter, and build environments — rules, checklists, algorithms, second opinions — that catch your mind before it commits.",
+  "coreIdeas": [
+    {
+      "name": "substitution",
+      "oneSentence": "When a hard question is asked, the mind quietly answers an easier one in its place and reports the answer as if it had answered the original.",
+      "mentalMove": "Before answering, say out loud the question you were actually asked and the question you are about to answer; notice the gap.",
+      "sourceAnchors": [
+        "Part 1, The Machinery of Judgment",
+        "Answering an Easier Question"
+      ]
+    },
+    {
+      "name": "availability and WYSIATI",
+      "oneSentence": "Judgments rest on whatever information comes to mind most easily, and the mind treats that partial picture as the whole picture.",
+      "mentalMove": "List what you would need to know to be right; then list what you actually know; act on the gap, not on the confidence.",
+      "sourceAnchors": [
+        "The Science of Availability",
+        "A Machine for Jumping to Conclusions"
+      ]
+    },
+    {
+      "name": "anchoring",
+      "oneSentence": "Arbitrary numbers you have just seen pull your estimates toward them, even when you know they are arbitrary.",
+      "mentalMove": "Before naming a number, write your estimate down; only then look at the anchor and notice the tug.",
+      "sourceAnchors": [
+        "Anchors"
+      ]
+    },
+    {
+      "name": "loss aversion and reference points",
+      "oneSentence": "Losses feel roughly twice as heavy as equivalent gains, and what counts as a loss depends on where you happen to be standing.",
+      "mentalMove": "Re-describe the choice from a different reference point and see whether your preference survives.",
+      "sourceAnchors": [
+        "Prospect Theory",
+        "The Endowment Effect"
+      ]
+    },
+    {
+      "name": "the planning fallacy and the outside view",
+      "oneSentence": "Forecasts made from inside a project are consistently too optimistic; forecasts that look at how similar projects actually went are less wrong.",
+      "mentalMove": "Before estimating, find the reference class of comparable efforts and start from their distribution, not from your plan.",
+      "sourceAnchors": [
+        "The Outside View",
+        "The Planning Fallacy"
+      ]
+    }
+  ],
+  "targetReader": "A thoughtful professional — analyst, clinician, manager, investor, policy person — who trusts their judgment more than they should and has begun to suspect it. They want the mechanisms, not the motivational takeaway.",
+  "voiceCharter": {
+    "register": "analytical",
+    "person": "first",
+    "cadence": "medium",
+    "signatureMoves": [
+      "Implicate yourself before the reader: admit you fall for the bias, then explain it",
+      "State the effect plainly, then qualify its size — never oversell",
+      "Prefer the concrete experiment or number to the adjective",
+      "Let a short sentence land after a longer, careful one",
+      "Use the second person sparingly, and only to predict what the reader is about to get wrong"
+    ],
+    "avoidMoves": [
+      "Warm, coaching tone or motivational uplift",
+      "Anthropomorphizing System 1 as a mischievous little friend",
+      "Narrating the book as an object (\"this chapter\", \"the author\", \"the book\")",
+      "Printing chapter numbers like \"Chapter 3\" inside prose",
+      "House-ruled phrases: boundary condition, keeps the chapter honest, strips away, is not decorative, is not magic, operating logic, diagnostic discipline, durable practice, turns out to be, That matters because"
+    ]
+  },
+  "voiceSpecimens": [
+    "I will not pretend I don't fall for this. I do, reliably, in settings where I should know better.",
+    "The effect is real and the effect is modest; I am reporting a tendency, not selling a certainty.",
+    "You will think, reading this, that you would have noticed the anchor. You would not have.",
+    "A medical diagnosis, a hiring decision, a parole hearing: the machinery making the call is the same, and it is not as careful as the people running it believe.",
+    "Ask people a hard question and they answer an easier one. They do not know they have done it. Neither do I, when it happens to me.",
+    "The surprise is not that intuition fails. The surprise is how confidently it fails, and how orderly the failures are.",
+    "What looks like a judgment about the case in front of you is often a judgment about what came to mind in the last thirty seconds."
+  ],
+  "voiceAntiSpecimens": [
+    "Humans are fascinating creatures capable of remarkable feats of reasoning!",
+    "This simple trick will change the way you think forever.",
+    "Ultimately, the cognitive architecture yields a unified substrate for judgment.",
+    "Let us now consider the implications of the foregoing discussion.",
+    "System 1 is the playful little voice in your head, always whispering shortcuts.",
+    "Harness the power of your inner mind to unlock better decisions today."
+  ],
+  "teachingArc": "Begin with the two systems as a working vocabulary, not a theory of the brain. Build up the specific failure modes one at a time — substitution, availability, anchoring, overconfidence — so each new idea explains something the previous one could not. Then turn the lens on choice: prospect theory, reference points, loss aversion. Close by asking what, given all this, a reasonable person should actually change: not their mind, which cannot be retrained by reading, but their environments, procedures, and moments of deliberate slowing.",
+  "forbiddenMoves": [
+    "No chummy warmth or motivational register",
+    "No anthropomorphizing System 1 or System 2 as characters with feelings",
+    "No overselling effect sizes; always report the tendency, not the certainty",
+    "No narrating the book as an object: never write \"the chapter\", \"this chapter\", \"the author\", \"the book\", \"in this chapter\"",
+    "No printing \"Chapter 1\", \"Chapter 12\", etc. inside prose",
+    "No house-ruled phrases: boundary condition, keeps the chapter honest, strips away, is not decorative, is not magic, operating logic, diagnostic discipline, durable practice, turns out to be, That matters because",
+    "No reusing these protagonist names: Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi"
+  ]
+}

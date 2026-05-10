@@ -1,0 +1,73 @@
+{
+  "chapterId": "tiny-habits-ch03",
+  "number": 3,
+  "title": "Ability-Easy Does It",
+  "coreMove": "Shrink a stalled behavior to its smallest meaningful version by attacking whichever of time, money, physical effort, mental effort, routine fit, or social fit is the actual bottleneck",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ICU nurse trying to start a stretching habit between 3am rounds",
+      "audience": "a healthcare worker whose energy budget is already spent",
+      "stakes": "chronic lower-back pain that will end her bedside career within five years if she does not move",
+      "format": "decision_point",
+      "requiredBeat": "she identifies that mental effort, not time, is the bottleneck and cuts the habit from a ten-minute routine to a single hamstring stretch against the supply closet door"
+    },
+    {
+      "domain": "a freelance violist preparing for a regional audition while raising a toddler",
+      "audience": "a working artist with fragmented practice time",
+      "stakes": "whether she keeps her chair in the orchestra or loses it to a younger player",
+      "format": "vignette",
+      "requiredBeat": "she opens the case and plays one bar — not as a warm-up, but as the entire practice — and feels the resistance dissolve the moment she lets the bar count"
+    },
+    {
+      "domain": "a regional bakery owner trying to learn bookkeeping software after years of paper ledgers",
+      "audience": "a small-business owner in his late fifties who has rejected three productivity systems",
+      "stakes": "a tax season he cannot afford to botch again",
+      "format": "before_after",
+      "requiredBeat": "the before version asks him to reconcile a week of receipts on Sunday night; the after version is opening the app and tagging one transaction after he locks the front door"
+    },
+    {
+      "domain": "a high school chemistry teacher and her partner negotiating who feeds the dog at 6am",
+      "audience": "a couple where one person carries most of the household's invisible labor",
+      "stakes": "a low-grade resentment that has started leaking into their weekends",
+      "format": "dialogue",
+      "requiredBeat": "they discover that the bottleneck is not willingness but routine fit — the partner's morning starts in a different room — and they redesign the cue around the coffee maker instead of the alarm"
+    },
+    {
+      "domain": "a recently widowed retiree trying to walk daily after his cardiologist's warning",
+      "audience": "an older reader for whom 'just thirty minutes a day' has been useless advice",
+      "stakes": "a second cardiac event the doctor said was likely within eighteen months",
+      "format": "scene",
+      "requiredBeat": "he sets the rule that the walk is putting on his shoes and stepping onto the porch — anything beyond that is optional — and on a hard grief day discovers that this is the only version he can actually do"
+    },
+    {
+      "domain": "a junior immigration paralegal trying to drink more water during back-to-back client intakes",
+      "audience": "a young professional in a high-volume desk job",
+      "stakes": "recurring tension headaches that are starting to affect her case accuracy",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader is asked to predict which constraint is binding before the answer is revealed — it is not time or memory but the physical effort of standing up, solved by moving the bottle from the kitchen to her desk"
+    },
+    {
+      "domain": "a divorced father re-learning to cook on the two nights a week his daughters stay over",
+      "audience": "a parent stitching a household back together one routine at a time",
+      "stakes": "whether his daughters experience these nights as a real home or a holding pattern",
+      "format": "reflection",
+      "requiredBeat": "he notices that the bottleneck was never skill or time but the mental load of choosing a recipe, and the tiny version becomes 'chop one onion before the kettle boils' — a behavior small enough to survive a bad week"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

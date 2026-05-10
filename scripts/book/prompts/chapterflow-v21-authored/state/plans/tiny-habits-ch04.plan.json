@@ -1,0 +1,66 @@
+{
+  "chapterId": "tiny-habits-ch04",
+  "number": 4,
+  "title": "Prompts-The Power of After",
+  "coreMove": "Anchor a new tiny behavior to the tail end of an existing routine by writing an 'After I ___, I will ___' recipe that fires automatically without reminders.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ICU nurse who keeps meaning to log a one-line gratitude before bed but never does",
+      "audience": "a reader who has tried phone reminders for a habit and watched themselves swipe them away",
+      "stakes": "whether a small daily reset that protects her sleep ever actually happens, or stays a someday plan for another six months",
+      "format": "decision_point",
+      "requiredBeat": "the nurse stops trying to remember and instead pins the gratitude line to the exact moment she sets her hospital badge on the dresser, because the badge-down already happens every shift"
+    },
+    {
+      "domain": "a high school orchestra teacher trying to drink more water during the school day",
+      "audience": "a reader whose new behavior keeps getting crowded out by an already-full schedule",
+      "stakes": "chronic afternoon headaches that make the last two periods miserable for him and his students",
+      "format": "before_after",
+      "requiredBeat": "the before scene shows him buying a fancy water bottle and forgetting it; the after scene shows him taking three sips after he writes the warm-up tempo on the whiteboard, the one routine he never skips"
+    },
+    {
+      "domain": "a freelance bookkeeper at her kitchen table who wants to start a two-minute end-of-day shutdown ritual",
+      "audience": "a reader whose work and home blur into one long evening",
+      "stakes": "the difference between closing the laptop at 6 and still answering client emails at 10",
+      "format": "vignette",
+      "requiredBeat": "she discovers the anchor cannot be 'when I'm done working' because that moment never arrives; the real anchor is the click of the kettle she boils for tea at 5:55"
+    },
+    {
+      "domain": "a recently divorced father of a seven-year-old trying to stretch his lower back so he can carry his kid without wincing",
+      "audience": "a reader who has confused 'morning' or 'evening' with an actual prompt",
+      "stakes": "whether he can pick up his daughter at the school gate next week without the now-familiar shoulder spasm",
+      "format": "dialogue",
+      "requiredBeat": "in conversation with a friend, he realizes 'every morning' is not an anchor; the anchor becomes the moment after he hangs up his daughter's backpack on the hook by the door"
+    },
+    {
+      "domain": "a graduate student in marine biology who wants to read one paragraph of a paper a day during a brutal qualifying-exam season",
+      "audience": "a reader who keeps choosing anchors that don't actually fit the new behavior's location, energy, or duration",
+      "stakes": "falling another week behind on a literature review her advisor expects by Friday",
+      "format": "postmortem",
+      "requiredBeat": "she walks back through three failed anchor choices and names the specific mismatch in each — wrong location, wrong energy level, wrong time of day — before landing on the anchor that fits"
+    },
+    {
+      "domain": "a regional bakery manager who wants to praise one staff member specifically each shift",
+      "audience": "a reader who treats anchors as optional scaffolding instead of the load-bearing piece",
+      "stakes": "whether morale on her team recovers before two strong bakers quit for a competitor",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader is invited to imagine the same behavior with three candidate anchors — clocking in, the morning oven check, the first till count — and notice which one the behavior would actually hang on without effort"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

@@ -27,6 +27,11 @@ import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader";
+import { AutoCollapsingHookBanner } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/HookBanner";
+import { TryThisNow } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/TryThisNow";
+import { MemorableLines } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/MemorableLines";
+import { ReadingDepthSwitch } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ReadingDepthSwitch";
+import { V21_SCHEMA_VERSION } from "@/app/book/lib/v21-adapter";
 import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
 import { PhaseInterstitial } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseInterstitial";
 import { ChapterBackgroundOrbs } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterBackgroundOrbs";
@@ -203,7 +208,7 @@ export function ChapterReaderClient({
     setNotes,
     appendNote,
     toggleFocusMode,
-    toggleRecap,
+    markRecapSeen,
     toggleBookmarkedTakeaway,
     syncFailed,
   } = useChapterState(
@@ -616,12 +621,18 @@ export function ChapterReaderClient({
   const chapterIndex = chapters.findIndex((item) => item.id === chapter.id);
   const nextChapter = chapters[chapterIndex + 1];
 
+  const isV21Chapter = chapter.schemaVersion === V21_SCHEMA_VERSION;
+
   const summaryBlocks = chapter.summaryByDepth[activeDepth] ?? chapter.summaryByDepth["standard"];
   const activeTakeaways = chapter.takeawaysByDepth[activeDepth] ?? chapter.takeaways;
   const activeRecap = chapter.recapByDepth[activeDepth] ?? [];
   const activeActivationPrompt = chapter.activationPromptByDepth[activeDepth] ?? chapter.activationPrompt;
   const activeSelfCheckPrompts =
     chapter.selfCheckPromptsByDepth[activeDepth] ?? chapter.selfCheckPrompts;
+  const activeReflectionPrompts =
+    chapter.reflectionPromptsByDepth[activeDepth] ?? chapter.reflectionPrompts;
+  const activeClosingPrompt =
+    chapter.closingPromptByDepth[activeDepth] ?? chapter.closingPrompt;
   const activePredictionPrompt =
     chapter.predictionPromptByDepth[activeDepth] ?? chapter.predictionPrompt;
 
@@ -796,6 +807,27 @@ export function ChapterReaderClient({
       </div>
       {!state.focusMode && <ChapterBackgroundOrbs />}
 
+      {/* Floating audio surface — accessible from anywhere in the chapter.
+       *  Stacked vertically ABOVE the AskBookDrawer's chat button. Both buttons
+       *  sit near the bottom edge (chat at bottom-6 mobile / md:bottom-8
+       *  desktop, audio ~64px above that). The collapsed AudioPlayer is now
+       *  also a 48x48 round icon button so the two floating controls visually
+       *  match. Visible only on Summary phase. */}
+      {state.activeTab === "summary" && !state.focusMode && (
+        <div className="pointer-events-none fixed right-6 bottom-24 z-40">
+          <div className="pointer-events-auto">
+            <AudioPlayer
+              bookId={bookId}
+              chapterNumber={chapter.order}
+              chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
+              tone={contentTone}
+              variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
+            />
+          </div>
+        </div>
+      )}
+
+
       <section
         className="w-full px-5 pb-12 pt-3 sm:px-8 sm:pt-3 md:pb-16"
       >
@@ -858,6 +890,19 @@ export function ChapterReaderClient({
           onOpenShortcuts={() => setShowShortcuts(true)}
         />
 
+        {/* Hook banner: only on the Summary phase. Sits BELOW the chapter
+         *  header (back nav + title) so the navbar gets visual primacy. The
+         *  banner auto-collapses to a compact line once the reader has
+         *  scrolled past the first viewport so it stops dominating the page. */}
+        {isV21Chapter && chapter.hook && state.activeTab === "summary" ? (
+          <div className="mt-4">
+            <AutoCollapsingHookBanner
+              hook={chapter.hook}
+              counterintuition={chapter.counterintuition}
+            />
+          </div>
+        ) : null}
+
         {/* 3-Phase Stepper — hidden in focus mode */}
         {!state.focusMode && (
           <div className="mt-6">
@@ -887,22 +932,30 @@ export function ChapterReaderClient({
           );
         })()}
 
-        {/* Content area */}
-        <div ref={contentRef} className="mt-4 space-y-5">
+        {/* Content area — constrained to user's preferred reading width for comfortable line length */}
+        <div
+          ref={contentRef}
+          className="mx-auto mt-4 space-y-5"
+          style={{ maxWidth: `${bookPrefs.reading.contentWidth}px` }}
+        >
           {showSummary && (
             <motion.div
               key={`summary-${state.readingDepth}`}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
+              className="space-y-4"
             >
+              {isV21Chapter ? (
+                <ReadingDepthSwitch
+                  value={state.readingDepth}
+                  onChange={setReadingDepth}
+                />
+              ) : null}
               <SummaryCard
                 blocks={summaryBlocks}
                 takeaways={activeTakeaways}
-                keyQuote={chapter.keyQuote}
                 recap={activeRecap}
-                showRecap={state.showRecap}
-                onToggleRecap={toggleRecap}
                 onSaveTakeaways={() => {
                   const hasBookmarks = state.bookmarkedTakeaways.length > 0;
                   const selected = hasBookmarks
@@ -921,16 +974,18 @@ export function ChapterReaderClient({
                 learningMode={learningMode}
                 activationPrompt={activeActivationPrompt}
                 selfCheckPrompts={activeSelfCheckPrompts}
-                headerAction={
-                  <AudioPlayer
-                    bookId={bookId}
-                    chapterNumber={chapter.order}
-                    chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
-                    tone={contentTone}
-                    variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
-                  />
-                }
+                reflectionPrompts={activeReflectionPrompts}
+                closingPrompt={activeClosingPrompt}
+                onRecapVisible={markRecapSeen}
+                /* Audio is now a floating control rendered separately so it's
+                 * accessible from anywhere in the chapter, not buried at the
+                 * bottom of the SummaryCard footer. Save takeaways stays in
+                 * the footer; audio lives bottom-right. */
               />
+              {isV21Chapter ? <TryThisNow text={chapter.tryThisNow} /> : null}
+              {isV21Chapter && chapter.memorableLines && chapter.memorableLines.length > 0 ? (
+                <MemorableLines lines={chapter.memorableLines} />
+              ) : null}
               <ContinueButton
                 ready={phaseCompletion.currentPhaseReady}
                 onClick={() => setActiveTab("examples")}

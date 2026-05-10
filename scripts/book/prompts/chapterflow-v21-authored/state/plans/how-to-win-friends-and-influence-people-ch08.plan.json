@@ -1,0 +1,66 @@
+{
+  "chapterId": "how-to-win-friends-and-influence-people-ch08",
+  "number": 8,
+  "title": "A Drop of Honey",
+  "coreMove": "Open a hard conversation with sincere warmth before you raise the disagreement, and keep that warmth in your voice until the other person has stopped bracing.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a landlord knocking on a tenant's door at 9pm to complain about a months-overdue rent check",
+      "audience": "a small-property landlord who has rehearsed an angry speech in the car",
+      "stakes": "whether the tenant pays this week or digs in for an eviction fight that will cost the landlord three months of rent",
+      "format": "scene",
+      "requiredBeat": "the landlord drops the prepared opener, asks first about the tenant's sick mother whose name he actually remembers, and only later mentions the check — and watches the tenant's shoulders come down before any money is discussed"
+    },
+    {
+      "domain": "a labor negotiator walking into a wage talk after a bitter strike vote the night before",
+      "audience": "a union representative who expects to be greeted as the enemy",
+      "stakes": "whether the talks open with a shouting match or a workable opening offer",
+      "format": "dialogue",
+      "requiredBeat": "the company's negotiator opens by naming, by name, two workers whose grievances were legitimate, and the union rep audibly hesitates before reading his prepared statement"
+    },
+    {
+      "domain": "a high school orchestra conductor confronting a violinist who has been late to three rehearsals in a row",
+      "audience": "a public-school music teacher with twenty other students watching",
+      "stakes": "whether the violinist quits the orchestra or goes back to playing first stand",
+      "format": "vignette",
+      "requiredBeat": "the conductor walks the student into the hallway, says one true sentence about the student's tone last Thursday, and only then asks what is going on at home"
+    },
+    {
+      "domain": "a grown daughter calling her father to tell him he should not be driving anymore",
+      "audience": "a daughter in her forties who has dreaded this call for a year",
+      "stakes": "whether the father takes her seriously or hangs up insulted and keeps the keys out of spite",
+      "format": "decision_point",
+      "requiredBeat": "the daughter notices her own throat tightening, hears herself almost lead with the accident report, and instead opens with a memory of him teaching her to parallel park — choosing warmth not as a tactic but because it is the truer first thing to say"
+    },
+    {
+      "domain": "a head chef telling a line cook the soup he has made every Tuesday for six years is being taken off the menu",
+      "audience": "a head chef in a sixty-seat restaurant",
+      "stakes": "whether the cook keeps showing up or walks out mid-shift on a Friday",
+      "format": "before_after",
+      "requiredBeat": "the first attempt is a curt announcement at family meal that costs the kitchen its best sauté hand for two days; the second attempt, weeks later with a different cut, begins with the chef thanking the cook in front of the staff for a specific save during last summer's heatwave"
+    },
+    {
+      "domain": "a homeowner trying to get a neighbor to stop letting her terrier dig under the fence",
+      "audience": "someone who has rewritten the same text message four times",
+      "stakes": "whether the next ten years on this street are friendly or frosty",
+      "format": "reflection",
+      "requiredBeat": "the homeowner sits at the kitchen table, deletes the draft that begins 'I've asked you repeatedly,' and writes one that opens by remembering the neighbor's kindness during the ice storm — and notices her own anger softening as she writes it, which is the point"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}
