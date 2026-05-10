@@ -70,7 +70,9 @@ export async function runVoicePass(input: VoicePassInput): Promise<BreakdownOutp
     maxTokens: 6000,
     temperature: 0.6,
     jsonMode: true,
-    timeoutMs: 300_000,
+    // 600s ceiling: voice-pass rewrites all three breakdown tiers
+    // (~5000 chars total), same wall-clock risk profile as writer-breakdown.
+    timeoutMs: 600_000,
   });
 
   return validate(result.content, input.draft);

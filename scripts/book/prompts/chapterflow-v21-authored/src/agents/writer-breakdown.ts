@@ -47,7 +47,12 @@ export async function runWriterBreakdown(input: BreakdownInput): Promise<Breakdo
       maxTokens: 5000,
       temperature: 0.7,
       jsonMode: true,
-      timeoutMs: 300_000,
+      // 600s ceiling. The fullRead tier is 2500–3500 chars and the model can
+      // occasionally take 4–6 minutes on harder chapters; the prior 300s ceiling
+      // killed Ch22 in HWF on a single slow generation and forced 3 retries.
+      // 600s gives enough headroom that retries are about content quality
+      // (voice-pass loop) rather than wallclock.
+      timeoutMs: 600_000,
     });
 
     try {
