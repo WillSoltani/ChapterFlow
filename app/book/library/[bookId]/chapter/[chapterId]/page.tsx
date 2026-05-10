@@ -80,19 +80,33 @@ export default async function ChapterReaderPage({
   await requireDashboardAccess();
   const { bookId, chapterId } = await params;
 
-  const remoteBook = await loadBook(bookId);
+  // Prefer local content first (mirrors the book detail page) so chapter
+  // IDs flow through to the reader client unchanged. The reader client
+  // always reads from local BOOK_PACKAGES; preferring remote here would
+  // hand it a chapterId from the published catalog (v13 slug) that the
+  // local v21 package can't resolve.
   const localBook = buildLocalFallback(bookId);
-  const book = remoteBook ?? localBook;
+  const remoteBook = await loadBook(bookId);
+  const book = localBook ?? remoteBook;
 
   if (!book) {
     notFound();
   }
 
-  // If the remote book doesn't contain this chapter (e.g. chapter IDs
-  // were updated in a newer local package), fall back to local data.
+  // Direct ID match in the chosen book.
   let chapter = book.chapters.find((item) => item.id === chapterId);
-  if (!chapter && localBook && book !== localBook) {
-    chapter = localBook.chapters.find((item) => item.id === chapterId);
+
+  // If the URL carried a chapter ID from a different schema version
+  // (v13 slug vs v21 numeric), match by number across both sides and
+  // resolve to the local ID.
+  if (!chapter) {
+    const fromOther = (remoteBook && remoteBook !== book ? remoteBook : null)?.chapters.find(
+      (item) => item.id === chapterId,
+    );
+    const matchNumber = fromOther?.number;
+    if (matchNumber !== undefined) {
+      chapter = book.chapters.find((item) => item.number === matchNumber);
+    }
   }
 
   // Support numeric chapter URLs (e.g. /chapter/2 → chapter with number 2)
@@ -100,9 +114,6 @@ export default async function ChapterReaderPage({
     const chapterNumber = Number(chapterId);
     if (!Number.isNaN(chapterNumber)) {
       chapter = book.chapters.find((item) => item.number === chapterNumber);
-      if (!chapter && localBook && book !== localBook) {
-        chapter = localBook.chapters.find((item) => item.number === chapterNumber);
-      }
     }
   }
 
