@@ -74,12 +74,17 @@ function summaryBlocksFromProse(prose: string): PackageSummaryBlock[] {
     .map((text) => ({ type: "paragraph", text }) satisfies PackageSummaryBlock);
 }
 
-function buildVariantFromTier(prose: string | undefined): PackageVariantContent | undefined {
+function buildVariantFromTier(
+  prose: string | undefined,
+  takeaways?: string[],
+): PackageVariantContent | undefined {
   if (!prose) return undefined;
-  return {
+  const variant: PackageVariantContent = {
     chapterBreakdown: prose,
     summaryBlocks: summaryBlocksFromProse(prose),
   };
+  if (takeaways && takeaways.length > 0) variant.takeaways = takeaways;
+  return variant;
 }
 
 function adaptExample(rawExample: unknown, index: number): PackageExample {
@@ -167,10 +172,18 @@ export function adaptV21Chapter(rawChapter: unknown): PackageChapter {
   const deepRead = asStringOrUndefined(breakdown.deepRead);
   const fullRead = asStringOrUndefined(breakdown.fullRead);
 
+  // v21 has no per-tier takeaways[] array; instead it has 3 curated
+  // memorableLines per chapter. Wire those into every depth so the reader's
+  // "Save takeaway to notes" surface has content. (The single keyTakeaway
+  // is rendered separately as the keyTakeawayCard.)
+  const memorableLineTexts = (Array.isArray(ch.memorableLines) ? ch.memorableLines : [])
+    .map((ml) => asStringOrUndefined(asRecord(ml)?.text))
+    .filter((s): s is string => !!s && s.length > 0);
+
   const contentVariants: PackageChapter["contentVariants"] = {};
-  const easy = buildVariantFromTier(fastRead);
-  const medium = buildVariantFromTier(deepRead);
-  const hard = buildVariantFromTier(fullRead);
+  const easy = buildVariantFromTier(fastRead, memorableLineTexts);
+  const medium = buildVariantFromTier(deepRead, memorableLineTexts);
+  const hard = buildVariantFromTier(fullRead, memorableLineTexts);
   if (easy) contentVariants.easy = easy;
   if (medium) contentVariants.medium = medium;
   if (hard) contentVariants.hard = hard;
