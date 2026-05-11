@@ -48,6 +48,7 @@ type Args = {
   ingestBucket: string;
   contentBucket: string;
   createdBy: string;
+  force: boolean;
 };
 
 function parseArgs(argv: string[]): Args {
@@ -57,6 +58,7 @@ function parseArgs(argv: string[]): Args {
     ingestBucket: process.env.BOOK_INGEST_BUCKET || "",
     contentBucket: process.env.BOOK_CONTENT_BUCKET || "",
     createdBy: process.env.BOOK_INGEST_CREATED_BY || "publish:single",
+    force: false,
   };
   for (let i = 2; i < argv.length; i += 1) {
     const v = argv[i];
@@ -70,6 +72,9 @@ function parseArgs(argv: string[]): Args {
       args.createdBy = next;
       i += 1;
       continue;
+    }
+    if (v === "--force") {
+      args.force = true;
     }
   }
   if (!args.file) throw new Error("--file <book-package.json> required");
@@ -114,6 +119,33 @@ async function main() {
       `File name "${path.basename(args.file)}" does not match book.bookId "${bookId}".\n` +
       `  Rename the file to "${bookId}.v21.json" before publishing, otherwise the catalog row and S3 path will drift.`,
     );
+  }
+
+  // bookId-uniqueness check. The DDB catalog allows different bookIds to
+  // coexist as separate rows, which means publishing "you-cant-hurt-me"
+  // when "you-can't-hurt-me" already exists creates a duplicate library
+  // entry instead of updating the canonical one. Detect by normalizing
+  // every existing bookId (strip apostrophes/dashes/dots, lowercase) and
+  // comparing — if the normalized form matches an existing row that has
+  // a DIFFERENT exact bookId, fail unless --force is passed.
+  if (!args.force) {
+    const restoreShim2 = installServerOnlyShim();
+    const repo = await import("@/app/app/api/book/_lib/repo");
+    restoreShim2();
+    const items = await repo.listPublishedCatalogItems(args.tableName);
+    const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const target = norm(bookId);
+    const collisions = items.filter((it: any) => it.bookId !== bookId && norm(it.bookId) === target);
+    if (collisions.length > 0) {
+      const list = collisions.map((c: any) => `    - "${c.bookId}" (v${c.currentPublishedVersion ?? "?"} ${c.status})`).join("\n");
+      throw new Error(
+        `bookId "${bookId}" collides with existing catalog row(s) under different exact ids:\n${list}\n` +
+        `  Publishing would create a duplicate library entry. Two options:\n` +
+        `  1. Rename your file + book.bookId field to the existing canonical id, then re-publish.\n` +
+        `  2. Run again with --force ONLY if you've already archived/cleaned the colliding rows.\n` +
+        `  Caught: Can't Hurt Me migrated to "you-cant-hurt-me" while the existing catalog row was "you-can't-hurt-me", creating a duplicate.`,
+      );
+    }
   }
 
   const ingestKey = `${INGEST_PREFIX}/${bookId}/${Date.now()}-${path.basename(args.file)}`;

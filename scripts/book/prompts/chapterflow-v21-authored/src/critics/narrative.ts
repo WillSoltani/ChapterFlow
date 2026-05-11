@@ -121,6 +121,62 @@ export function checkExampleTemplating(
   return findings;
 }
 
+/**
+ * Check N: alphabet-cycling protagonist names within a chapter.
+ *
+ * When an agent enumerates names by walking the alphabet, the first letters
+ * of consecutive example titles run A, B, C, D, E... — a script tell that
+ * the agent generated a name list rather than choosing protagonists scene
+ * by scene. Antifragile shipped with 21/25 chapters following this pattern
+ * (Aderemi, Brontez, Cvetko, Delyth, Evaristo, Flavia → Gennaro, Hanneli,
+ * Irfan, Jacinta, Kostya, Liora → ...). C8 didn't catch it because the
+ * scenarios themselves were varied; only the naming was patterned.
+ *
+ * Fires when 4 or more example titles in a chapter start with consecutive
+ * letters of the alphabet (in either order). Below 4 may be accidental;
+ * 4+ is mechanical.
+ */
+export function checkAlphabetCyclingNames(
+  examples: Array<{ title?: string }>,
+): CriticFinding[] {
+  if (examples.length < 4) return [];
+  const firstLetters: string[] = examples
+    .map((ex) => (ex.title ?? "").trim().charAt(0).toUpperCase())
+    .filter((c) => /^[A-Z]$/.test(c));
+  if (firstLetters.length < 4) return [];
+
+  // Find the longest run of consecutive alphabet letters in the sequence
+  // (in title order — the order the agent picked the names).
+  let longestRun = 1;
+  let runStart = 0;
+  let bestStart = 0;
+  for (let i = 1; i < firstLetters.length; i++) {
+    const diff = firstLetters[i].charCodeAt(0) - firstLetters[i - 1].charCodeAt(0);
+    if (diff === 1 || diff === -1) {
+      const run = i - runStart + 1;
+      if (run > longestRun) {
+        longestRun = run;
+        bestStart = runStart;
+      }
+    } else {
+      runStart = i;
+    }
+  }
+
+  if (longestRun >= 4) {
+    const offenders = firstLetters.slice(bestStart, bestStart + longestRun).join("");
+    return [
+      finding(
+        "narrative.alphabet_cycling_names",
+        "blocker",
+        `${longestRun} consecutive example titles start with alphabet-sequential letters (${offenders}) — agent enumerated the alphabet instead of choosing protagonists scene by scene; rewrite with unrelated names`,
+        offenders,
+      ),
+    ];
+  }
+  return [];
+}
+
 /** Check 1: named protagonist present in scenario. */
 export function checkNamedProtagonist(ex: Example): CriticFinding[] {
   const findings: CriticFinding[] = [];

@@ -12,7 +12,7 @@
 
 import { ChapterV21, ExampleV21 } from "../types.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
-import { checkDecisionPoint, checkExampleTemplating, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
+import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
@@ -68,6 +68,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C3: "major",
   C7: "blocker",
   C8: "blocker",
+  C9: "blocker",
   // Pedagogy (D)
   D1: "major",
   D2: "minor",
@@ -167,6 +168,13 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // seven-powers; would have prevented both bad books from shipping.
   for (const f of checkExampleTemplating(chapter.examples)) {
     push("C8", "examples", f.message, f.evidence);
+  }
+
+  // ── Alphabet-cycling protagonist names (C9): a script tell where an agent
+  // enumerated the alphabet rather than choosing protagonists scene by scene.
+  // Caught Antifragile shipping with 21/25 chapters using A-B-C-D-E-F → G-H-…
+  for (const f of checkAlphabetCyclingNames(chapter.examples)) {
+    push("C9", "examples", f.message, f.evidence);
   }
 
   // ── Examples (B1, B2, B4, B5, C1, C2, C3, C7) ────────────────────────────

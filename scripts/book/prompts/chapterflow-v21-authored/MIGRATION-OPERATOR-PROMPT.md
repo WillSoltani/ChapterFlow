@@ -1,10 +1,12 @@
-# v13 → v21 Migration: Per-Book Operator Prompt
+# v13 → v21 Migration: Per-Book Operator Prompt (Claude Code / pipeline path)
 
-Paste this entire document into a fresh Claude or GPT/Codex session. The agent will migrate ONE book end-to-end: generate v21 content, validate, score, publish to production catalog, and wire it into the library metadata.
+Paste this entire document into a fresh Claude Code session. The agent will migrate ONE book end-to-end through the deterministic pipeline: `generate-book` spawns the Anthropic Code CLI subprocess (free under Claude Max), produces the v21 package, validates, scores, publishes to production catalog, and wires it into library metadata.
 
-Before pasting, replace `<BOOK_ID>` everywhere below with the kebab-case bookId of the book you want to migrate (pick the next `○ ready` row from [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md)).
+> If you're driving migrations from a GPT/Codex session, use [MIGRATION-CODEX-PROMPT.md](MIGRATION-CODEX-PROMPT.md) instead — that flow has the GPT agent write chapters inline (Pro/Max sub, no API key, no paid spend).
 
-> **CRITICAL — bookId MUST be lowercase kebab-case.** Always use the value from the `bookId` column of MIGRATION-ROSTER.md (e.g. `getting-things-done`, `atomic-habits`, `the-power-of-habit`). Do **NOT** use the casing from the v13 filename or from the v13 `book.title` — some v13 packages have mixed-case file names (e.g. `Getting-Things-Done.modern.json`) but the canonical bookId is always lowercase. If you use the wrong casing, you will create a duplicate catalog row in DDB and the production publish will fail (or worse, succeed with a broken bookId that the reader can't resolve). The pipeline scripts now reject non-kebab-case bookIds, but get it right at the start to save the round trip.
+Before pasting, replace **`<BOOK_ID>`** everywhere below with the kebab-case bookId from the next `○ ready` row in [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md).
+
+> **CRITICAL — bookId MUST be lowercase kebab-case.** Always use the value from the `bookId` column of MIGRATION-ROSTER.md (e.g. `getting-things-done`, `atomic-habits`, `the-power-of-habit`). Do **NOT** use the casing from the v13 filename, the book title, or any other source — only the roster's bookId column. The publish step rejects non-kebab-case bookIds, and rejects kebab-case bookIds that collide with an existing catalog row under a different normalized form (e.g. `you-cant-hurt-me` colliding with `you-can't-hurt-me`).
 
 ---
 
@@ -14,36 +16,7 @@ Migrate `<BOOK_ID>` from v13 (`book-packages/<BOOK_ID>.modern.json`) to v21. Pro
 
 The chapter index is already written at `scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json`. Title and author are in the v13 package's `book.bookId/title/author` fields — read them once at the start.
 
-## Setup
 
-```bash
-cd /Users/willsoltani/dev/chapterflow-siliconx
-set -a; source .env.local; set +a
-```
-
-This loads `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `BOOK_TABLE_NAME`, `BOOK_INGEST_BUCKET`, `BOOK_CONTENT_BUCKET`, and `AWS_REGION` from `.env.local`.
-
-### Provider: anthropic-cli only
-
-**Do not** set `CHAPTERFLOW_PROVIDER`. Leave it unset so the pipeline routes through the Anthropic Code CLI subprocess — which uses the operator's Claude Max subscription auth, not an API key. No paid API spend.
-
-This applies whether the session driving this migration is Claude Code or GPT/Codex. Even from a Codex session, the underlying writer subprocess is the `claude` CLI binary; it doesn't matter who's driving — what matters is that the writer runs under Max-sub auth, not paid API.
-
-If you see paid-API variables in the shell environment, unset them before running anything:
-
-```bash
-unset CHAPTERFLOW_PROVIDER CHAPTERFLOW_WRITER_MODEL CHAPTERFLOW_RESEARCHER_MODEL CHAPTERFLOW_CRITIC_MODEL
-```
-
-Then verify the provider:
-
-```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts ping
-```
-
-Should print `{"ok": true, "provider": "anthropic-cli", ...}`. If the `provider` field shows anything other than `anthropic-cli`, **stop** and tell the user — the migration must run on the CLI provider to stay within the Max subscription.
-
-If ping fails entirely, run `claude /login` to re-authenticate the Anthropic Code CLI.
 
 ## Step 1 — Read book metadata
 
@@ -53,7 +26,7 @@ jq '.book | {bookId, title, author}' book-packages/<BOOK_ID>.modern.json
 
 Capture `title` and `author` for use in the next steps. **Some v13 titles
 have stray curly quotes and dashes** baked into the data (e.g.
-`"Smarter-Faster-Better"` instead of `Smarter Faster Better`, or
+`"<BOOK_ID>"` instead of `Smarter Faster Better`, or
 `"Charles-Duhigg"` instead of `Charles Duhigg`). Clean those before passing
 to the pipeline:
 - Strip leading/trailing curly quotes (`"`, `"`, `'`, `'`)

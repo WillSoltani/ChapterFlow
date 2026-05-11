@@ -68,7 +68,7 @@ Notice: vague role ("analyst"), vague time ("Monday morning" — what time?), va
 8. **No meta-references**: never "the chapter", "this chapter", "the author", "the book", "Chapter N".
 9. **No v13-pool names**: Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi.
 10. **No protagonist name repeats across the book** — keep a running list in this conversation; check it before naming each new protagonist.
-11. **No alphabet-cycling names** (Amara, Bastien, Cyra, Dario, Eulalie, Farid...). That's a script tell.
+11. **No alphabet-cycling names** (Amara, Bastien, Cyra, Dario, Eulalie, Farid...). **The ship gate hard-blocks this as C9** — if 4+ consecutive example titles in a chapter start with alphabet-sequential letters, the chapter is rejected. Pick names that fit each scene's domain, not from a sequential generator.
 12. **Banned stock phrases** (FAILURE-MODES B4): no "boundary condition", "double down", "hold lightly", "stack the deck", "decision fatigue", "low-hanging fruit", "skin in the game", "lean in", "move the needle", "circle back".
 
 ## Step 1 — Read book metadata + chapter index
