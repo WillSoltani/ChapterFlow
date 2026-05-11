@@ -56,6 +56,11 @@ Commands:
                                      Final gate. Re-validates every chapter + book-level checks,
                                      then writes book-packages/<id>.v21.json on success.
                                      Quarantines to state/books/_blocked/ on failure.
+  gate-chapter <chapter.json>        Run the per-chapter ship gate against a single chapter JSON.
+                                     Useful when an agent is producing chapters by hand (e.g.,
+                                     Codex sessions writing inline) and wants to validate
+                                     output before saving / before assembling a book package.
+                                     Exits 0 if no blockers; non-zero otherwise.
   help                               This message
 
 Examples:
@@ -382,6 +387,25 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   return result.promoted ? 0 : 1;
 }
 
+async function runGateChapter(args: string[]): Promise<number> {
+  const chapterFile = args[0];
+  if (!chapterFile) {
+    console.error("Usage: gate-chapter <path/to/chapter.json>");
+    return 2;
+  }
+  const { runShipGate, formatGateReport } = await import("./critics/finalGate.js");
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${chapterFile}: ${(err as Error).message}`);
+    return 2;
+  }
+  const report = runShipGate(chapter);
+  console.log(formatGateReport(report));
+  return report.blockers.length === 0 ? 0 : 1;
+}
+
 async function main() {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));
   switch (cmd) {
@@ -398,6 +422,8 @@ async function main() {
       return runGenerateBook(args, flags);
     case "promote-book":
       return runPromoteBook(args, flags);
+    case "gate-chapter":
+      return runGateChapter(args);
     case "help":
     case undefined:
     case "--help":
