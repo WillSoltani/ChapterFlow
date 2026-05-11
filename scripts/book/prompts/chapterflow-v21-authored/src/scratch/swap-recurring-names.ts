@@ -29,6 +29,8 @@ const SWAPS: Swap[] = [
   { bookId: "how-to-win-friends-and-influence-people", chapterNumber: 11, exampleIdPrefix: "ch11-ex06", oldName: "Bram",   newName: "Soren"  },
   { bookId: "how-to-win-friends-and-influence-people", chapterNumber: 9,  exampleIdPrefix: "ch09-ex02", oldName: "Hollis", newName: "Tomek"  },
   { bookId: "how-to-win-friends-and-influence-people", chapterNumber: 20, exampleIdPrefix: "ch20-ex02", oldName: "Ingrid", newName: "Yannis" },
+  // atomic-habits: Soren appears in ch12 and ch18 — rename in ch18
+  { bookId: "atomic-habits", chapterNumber: 18, exampleIdPrefix: "ch18-ex03", oldName: "Soren", newName: "Bastian" },
 ];
 
 function swapInString(s: string, oldName: string, newName: string): string {

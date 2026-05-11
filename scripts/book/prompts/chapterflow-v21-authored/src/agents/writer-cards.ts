@@ -32,7 +32,7 @@ export type CardsInput = {
   breakdown: BreakdownOutput;
 };
 
-const MAX_CARDS_RETRIES = 1;
+const MAX_CARDS_RETRIES = 2;
 
 export async function runWriterCards(input: CardsInput): Promise<CardsOutput> {
   const systemPrompt = readFileSync(
@@ -43,8 +43,9 @@ export async function runWriterCards(input: CardsInput): Promise<CardsOutput> {
   // structural-only (no named prohibitions), the brief is sanitized upstream,
   // and we additionally drop any line in the rendered user prompt that
   // contains a meta-tell (could leak from the plan or breakdown).
-  const userPrompt = sanitizeUserPromptForWriter(buildUserPrompt(input));
+  const baseUserPrompt = sanitizeUserPromptForWriter(buildUserPrompt(input));
 
+  let userPrompt = baseUserPrompt;
   let lastError: Error | null = null;
   for (let attempt = 0; attempt <= MAX_CARDS_RETRIES; attempt += 1) {
     try {
@@ -61,6 +62,18 @@ export async function runWriterCards(input: CardsInput): Promise<CardsOutput> {
     } catch (err) {
       lastError = err instanceof Error ? err : new Error(String(err));
       if (attempt === MAX_CARDS_RETRIES) break;
+      const reasons = lastError.message
+        .replace(/^cards invalid:\s*/, "- ")
+        .replace(/;\s*/g, "\n- ");
+      userPrompt = [
+        baseUserPrompt,
+        "",
+        "# Your previous draft was rejected by the validator.",
+        "Reasons:",
+        reasons,
+        "",
+        "Rewrite ALL cards from scratch. Fronts must address the reader directly in a scene; backs must teach a move the reader performs. Never use the words 'the chapter', 'the book', 'the author', or any reference to written material.",
+      ].join("\n");
     }
   }
   throw lastError ?? new Error("cards: writer exhausted retries with no result");
