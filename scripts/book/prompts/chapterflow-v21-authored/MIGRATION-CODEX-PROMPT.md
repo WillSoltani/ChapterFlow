@@ -1,18 +1,18 @@
 # v13 → v21 Migration: Codex/GPT Operator Prompt
 
-For when the operator is GPT/Codex (not Claude Code). Uses the GPT Max subscription — no API key, no paid spend. The agent in this session *is* the writer: it produces each chapter's content via its own turn output, validates against the v21 ship gate, then saves.
+For when the operator is GPT/Codex (not Claude Code). Uses your GPT Pro/Max subscription — no API key, no paid spend. The agent in this session *is* the writer: you produce each chapter's content via your own turn output, validate against the v21 ship gate, then save.
 
-> If you're driving migrations from a Claude Code session instead, use [MIGRATION-OPERATOR-PROMPT.md](MIGRATION-OPERATOR-PROMPT.md) — that flow runs the deterministic pipeline via the `claude` CLI subprocess.
+> If you're driving migrations from a Claude Code session, use [MIGRATION-OPERATOR-PROMPT.md](MIGRATION-OPERATOR-PROMPT.md) instead — that flow runs the deterministic pipeline via `claude` CLI subprocess.
 
-Before pasting, replace `<BOOK_ID>` everywhere with the kebab-case bookId from the next `○ ready` row in [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md).
+Before pasting, replace `<BOOK_ID>` everywhere with the **kebab-case lowercase** bookId from the next `○ ready` row in [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md). Examples: `getting-things-done`, `atomic-habits`, `the-power-of-habit`. **NEVER** use the v13 file's mixed-case form (`Getting-Things-Done`) — the publish step rejects non-kebab-case bookIds.
 
 ---
 
 ## Mission
 
-Migrate `<BOOK_ID>` from v13 to v21 by hand-writing the chapter content yourself (you, the GPT agent in this session). Use the chapter index pre-staged at `scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json`. For each chapter, produce a complete `ChapterV21` JSON, validate it against the ship gate, save it. After all chapters, assemble the book package and ship it to production.
+Migrate `<BOOK_ID>` from v13 to v21. Quality target: **match the output we shipped for How to Win Friends and Influence People** ([book-packages/how-to-win-friends-and-influence-people.v21.json](book-packages/how-to-win-friends-and-influence-people.v21.json)). Browse a couple of HWF chapters before you start so you know the bar.
 
-You are the model. Don't try to run `generate-book` — that subprocess uses `claude` CLI which is the Claude Max sub. We're using your GPT Max sub here instead, which means the writing happens in your turn output.
+The v21 ship gate enforces structural rules (no em dashes, no meta-references, balanced quiz answer positions, named protagonists, etc.) AND a new C8 templating check that rejects Cartesian-product output. If your examples are 6 substitutions of one template, gate-chapter fails the chapter and you have to rewrite. Don't try to game it — write distinct scenes the first time.
 
 ## Setup
 
@@ -21,21 +21,55 @@ cd /Users/willsoltani/dev/chapterflow-siliconx
 set -a; source .env.local; set +a
 ```
 
-Loads AWS credentials and bucket names from `.env.local` so the publish step works later. No API keys for model access — you ARE the model.
+Don't set `CHAPTERFLOW_PROVIDER` — leave it unset. You're the writer, not the API.
 
-## Read these once before writing anything
+## Required reading before you write anything
 
-In order of importance:
+Open these files. Spend real time on them. Don't skim.
 
-1. **[FAILURE-MODES.md](FAILURE-MODES.md)** — the canonical list of every v13 failure the v21 gate enforces. Every rule here is a BLOCKER you must follow.
-2. **[src/types.ts](src/types.ts)** lines 305–360 — the `ChapterV21` TypeScript shape your output must match exactly.
-3. **[prompts/writer-breakdown.system.md](prompts/writer-breakdown.system.md)** — how to write the three reading tiers.
-4. **[prompts/writer-example.system.md](prompts/writer-example.system.md)** — how to write a scene-based example.
-5. **[prompts/writer-quiz.system.md](prompts/writer-quiz.system.md)** — quiz rules (application not recall, balanced answer positions, valid Bloom's levels).
-6. **[prompts/writer-cards.system.md](prompts/writer-cards.system.md)** — retrieval card framing.
-7. **[prompts/writer-hook.system.md](prompts/writer-hook.system.md)** — hook constraints.
+1. **[book-packages/how-to-win-friends-and-influence-people.v21.json](book-packages/how-to-win-friends-and-influence-people.v21.json)** — pick chapters 5, 11, and 15. Read the full scenario for every example. This is your quality bar.
+2. **[FAILURE-MODES.md](FAILURE-MODES.md)** — every BLOCKER from this list is enforced by the ship gate. Internalize them.
+3. **[src/types.ts](src/types.ts)** lines 305–360 — the `ChapterV21` TypeScript shape your output must match exactly.
+4. **[prompts/writer-example.system.md](prompts/writer-example.system.md)** — the example writer prompt the deterministic pipeline uses. Follow it as if you were that writer.
 
-Internalize the rules. The ship gate enforces every one. You'll know if you got it wrong because `gate-chapter` will fail your output.
+## What "HWF-quality" actually means for examples
+
+Read this twice. This is where most agents fail.
+
+A v21 example is **not** "one paragraph about a person doing something." It's a **scene** — a specific moment with sensory detail, captured at the exact point a decision is being made. Look at this HWF Ch15 example:
+
+> "It is 7:14 p.m. and Anika, a small-animal vet two years out of school, is sitting in her car in the clinic parking lot with her phone in her lap. She gave a beagle named Biscuit twice the prescribed dose of phenobarbital this afternoon. Biscuit is fine for now, but needs to be watched. She has rehearsed three sentences that make the error sound like a software glitch. The owner picks up on the second ring..."
+
+Notice:
+- Specific clock time (7:14 p.m., not "evening")
+- Specific role (small-animal vet two years out of school, not "professional")
+- Specific place (her car in the clinic parking lot, not "the office")
+- Specific concrete object (phone in her lap, Biscuit the beagle, three rehearsed sentences)
+- A decision happening **right now** in the present moment of the scene
+- Sensory anchor (phone, lap, second ring)
+
+Compare to a **bad** templated example we've shipped and now reject:
+
+> "Bastien is an analyst in Tallinn at Monday morning, standing over a marked-up spreadsheet and a cold cup of coffee. Two options look similar until Bastien traces the unit cost curve..."
+
+Notice: vague role ("analyst"), vague time ("Monday morning" — what time?), vague stake, no sensory detail, no specific objects beyond stock office props. It's a thesis dressed up with a name and a city. The C8 critic now rejects this pattern when 3+ examples share a 5-word phrase.
+
+**Your job for every example: write a scene with the specificity of the Anika excerpt.** If you find yourself writing "X is a [role] in [city] at [time]" you've fallen back to the template trap — start over with a real moment.
+
+## Hard rules — every chapter, no exceptions
+
+1. **Write each example as a fresh, focused turn**. Do not use a helper script that loops through an array of names/cities/roles to emit all examples at once. The previous Codex agents that did this all produced template-locked output. Even if it's faster, don't.
+2. **No Cartesian products**. No `for name in [...]: for city in [...]: writeExample(name, city)`. Each example must be conceived independently.
+3. **6 examples per chapter, each in a different format** from {scene, vignette, dialogue, decision_point, predict_reveal, postmortem, before_after, reflection, thought_experiment}. Format repeats are OK up to 2; 3+ of the same format in one chapter is a fail.
+4. **Specific time anchors**: every scenario opens with a clock time, a day-and-time, or an unmistakable temporal marker. "7:14 p.m." is good. "Monday morning" alone is not.
+5. **Specific place anchors**: not "the office" — "the Glenmoor warehouse back room", "diesel pump 4 at the Pinedale truck stop", "her car in the clinic parking lot".
+6. **Specific objects/sensory detail in the first 80 chars**: phone in her lap, mason jar on the dais, knife still in her hand. The reader needs to see something concrete immediately.
+7. **No em dashes (`—`)** anywhere. Commas, periods, parens, colons only.
+8. **No meta-references**: never "the chapter", "this chapter", "the author", "the book", "Chapter N".
+9. **No v13-pool names**: Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi.
+10. **No protagonist name repeats across the book** — keep a running list in this conversation; check it before naming each new protagonist.
+11. **No alphabet-cycling names** (Amara, Bastien, Cyra, Dario, Eulalie, Farid...). That's a script tell.
+12. **Banned stock phrases** (FAILURE-MODES B4): no "boundary condition", "double down", "hold lightly", "stack the deck", "decision fatigue", "low-hanging fruit", "skin in the game", "lean in", "move the needle", "circle back".
 
 ## Step 1 — Read book metadata + chapter index
 
@@ -44,165 +78,106 @@ jq '.book | {bookId, title, author}' book-packages/<BOOK_ID>.modern.json
 jq '.' scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json
 ```
 
-Clean the title/author of stray curly quotes and dashes if present (some v13 books have `"Smarter-Faster-Better"` baked in).
+Clean the title/author of stray curly quotes and dashes if present. The bookId you use throughout MUST be kebab-case lowercase — match the value from the roster, not the v13 filename casing.
 
-## Step 2 — Establish the book brief (in your own context)
+## Step 2 — Establish voice + protagonist-name list
 
-You won't write a JSON brief; just decide and write down (in this conversation, not a file) the following so you stay consistent across all chapters of this book:
+In this conversation (not a file), write:
 
-- **Thesis** — 1 sentence summarizing what the book argues.
-- **Voice charter** — 2–3 sentences describing the prose voice you'll write. Be specific: short clipped sentences vs. long lyric sentences; concrete sensory detail vs. abstract; conversational vs. instructional. Pick one. Stick with it for every chapter.
-- **Signature moves** — 3 voice patterns to keep using (e.g., "open every breakdown with a concrete scene", "end every section with a one-line landing").
-- **Avoid moves** — 3 patterns to reject. **DO NOT** echo "the chapter", "this chapter", "the author", "the book", or any banned phrase from FAILURE-MODES. Describe what to avoid structurally.
-- **Protagonist name list** — keep a running list of named characters you've used so far. No name appears twice across the same book (block F1).
+- **Thesis**: 1 sentence on what the book argues.
+- **Voice charter**: 2–3 sentences describing the prose voice. Short clipped vs. long lyric; concrete sensory vs. abstract; conversational vs. instructional. Pick one. Stick with it for every chapter.
+- **Signature moves**: 3 voice patterns to keep using.
+- **Protagonist name list**: empty to start. Add every name as you write it. No reuse across chapters.
 
 ## Step 3 — For each chapter, in order
 
-For chapter N (N starts at 1), do the following:
+### 3a. Plan the chapter's example slate FIRST
 
-### 3a. Decide the chapter's core move
+Before writing any prose, list the 6 example slots for this chapter. For each slot, write 3 lines in this conversation:
 
-In one sentence, what's the single mental move the reader should walk away able to do? Write it in this conversation; keep it short. Every part of the chapter teaches this one move.
+```
+Slot 1
+  format: scene
+  protagonist: Tomek, a 53-year-old machinist on overnight shift
+  requiredBeat: he catches a tool slipping in the chuck and decides whether to stop the lathe or finish the cut
+  setting: 3:18 a.m. at the Pittsburgh fab shop's #6 lathe
 
-### 3b. Write the chapter content
+Slot 2
+  format: dialogue
+  protagonist: Pemma, a fourth grader at her grandmother's kitchen table
+  requiredBeat: she asks the grandmother whether the recipe needs salt; the grandmother answers by handing her the spoon
+  setting: Sunday 10:42 a.m., flour on the counter
 
-Produce a single JSON object matching the `ChapterV21` shape. Required fields and constraints:
-
-```jsonc
-{
-  "chapterId": "<BOOK_ID>-ch<NN>",  // zero-padded to 2 digits, e.g. ch01
-  "number": <N>,                     // 1..total
-  "title": "<chapter title from the index>",
-  "readingTimeMinutes": 8,           // realistic estimate, integer
-
-  // 60–120 chars. Specific image or one-line counterintuition. Not abstract.
-  "hook": "...",
-
-  // 1–2 sentences. What people assume that's wrong about this idea.
-  "counterintuition": "...",
-
-  // 80–220 chars, directive (not a question). One specific 30–90s action the
-  // reader can do right now. Renders as a mid-chapter callout.
-  "tryThisNow": "...",
-
-  // 140–220 chars. Single sentence carrying the whole lesson.
-  "keyTakeaway": "...",
-
-  "breakdown": {
-    // 400–700 chars. Scene + rule, 2-min read. Open in a moment. No abstraction.
-    "fastRead": "...",
-    // 1200–1800 chars. Mechanism + second scene + the move + a limit.
-    "deepRead": "...",
-    // 2500–3500 chars. Depth + third angle + counter-objection + tie back.
-    "fullRead": "..."
-  },
-
-  "examples": [
-    // 5–7 entries. Each named protagonist, specific time/place anchor,
-    // decision point, mixed formats across the slate. No protagonist name
-    // appears twice in the same book.
-    {
-      "exampleId": "ch<NN>-ex01-<protagonist-slug>",
-      "title": "...",
-      "tags": ["scene", "..."],
-      "planSpec": {
-        "domain": "...",
-        "audience": "...",
-        "stakes": "...",
-        "format": "scene",   // or vignette, dialogue, decision_point, predict_reveal, postmortem, before_after, reflection, thought_experiment
-        "requiredBeat": "..."
-      },
-      "scenario": "...",    // 200–700 chars. Opens with the named protagonist in a specific moment.
-      "whatToDo": "...",    // 60+ chars. Imperative move the reader takes from this scene.
-      "whyItMatters": "..." // 60+ chars. Mechanism: why the move works.
-    }
-  ],
-
-  "quiz": {
-    "passingScorePercent": 70,
-    "questions": [
-      // 9 questions. Application not recall. No "What does the chapter say...".
-      // Each question has 3 choices. Correct-index distribution across the
-      // 9 questions: no single position >45%. Aim for ~3/3/3.
-      // Bloom's levels: mix across understand/apply/analyze/evaluate.
-      // depthLevel: mix across simple/standard/deep.
-      {
-        "questionId": "q01",
-        "prompt": "...",  // 150+ chars — scenario-based, not recall.
-        "choices": ["...", "...", "..."],
-        "correctIndex": 0,
-        "explanation": "...",
-        "bloomsLevel": "apply",
-        "depthLevel": "standard"
-      }
-    ]
-  },
-
-  "reviewCards": [
-    // 3–5 cards. Front is retrieval-framed (ends with a question or scenario).
-    // Back teaches the move. Difficulty mix across easy/medium/hard.
-    {
-      "cardId": "rc01",
-      "front": "...",        // 30–200 chars
-      "back": "...",         // 80–400 chars
-      "difficulty": "easy"
-    }
-  ],
-
-  "implementationPlan": {
-    "coreSkill": "...",
-    "ifThenPlans": [
-      // 4 entries. Each: concrete trigger ("If <specific moment>") +
-      // concrete response ("then <specific action>"). Avoid generic advice.
-      { "context": "work",         "plan": "..." },
-      { "context": "health",       "plan": "..." },
-      { "context": "personal",     "plan": "..." },
-      { "context": "relationships","plan": "..." }
-    ],
-    "twentyFourHourChallenge": "...",  // 100+ chars, specific
-    "weeklyPractice": "..."             // structured weekly cadence
-  },
-
-  "memorableLines": [
-    // Exactly 3. Each .text is a verbatim sentence from the chapter content.
-    // Each ≥30 chars. No em dashes.
-    {
-      "text": "...",
-      "location": "breakdown.deepRead",  // or hook, examples[N].scenario, etc.
-      "why": "..."
-    }
-  ]
-}
+Slot 3
+  format: postmortem
+  protagonist: ...
 ```
 
-### 3c. Hard rules — every chapter, no exceptions
+**The 6 slots must use at least 4 different formats. The 6 protagonists must be unique to this chapter. The 6 settings must be in unrelated domains** (don't have 3 office-meeting scenes; mix work, home, hospital, classroom, kitchen, etc.).
 
-- **Zero em dashes (`—`)**. Use periods, commas, parentheses, or colons.
-- **Zero meta-references**. Never write "the chapter", "this chapter", "the author", "the book", "Chapter N" anywhere in the chapter prose. Write to the reader directly.
-- **Zero v13-pool names**: don't use Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi as protagonist names. Choose fresh names.
-- **Zero banned stock phrases** (FAILURE-MODES B4): no "boundary condition", "double down", "hold lightly", "stack the deck", "decision fatigue", "low-hanging fruit", "skin in the game", "lean in", "move the needle", "circle back".
-- **Cross-chapter name discipline**: keep your running protagonist-name list updated; never reuse a name as a recurring character in a later chapter.
-- **Voice consistency**: every chapter's prose voice should match the voice charter you established in Step 2. Don't drift.
+If you find yourself wanting to share a phrase or template across slots, **stop and rewrite the slots so they're actually different**.
 
-### 3d. Save the chapter
+### 3b. Write each example, one turn at a time
 
-```bash
-# Save the JSON you just wrote to:
+For Slot 1: produce the full Example JSON (exampleId, title, tags, planSpec, scenario, whatToDo, whyItMatters) for that slot, and only that slot. Save it to memory (don't write a file yet).
+
+Then Slot 2 as a separate output, and so on. Don't batch. Don't write a helper that emits all 6.
+
+Each scenario must:
+- Open with the named protagonist doing something concrete in the first 80 chars
+- Include the specific clock time + place
+- Include at least one sensory anchor (object, action, smell, sound)
+- Reach a decision point or revelation moment
+- Be 350–700 chars
+
+The `title` must be a specific phrase about THIS scene, not a template. Compare:
+- Good: "Saffi sets two heads of romaine on the table"
+- Bad: "Saffi tests scale economies in Reno"
+
+### 3c. Write the rest of the chapter
+
+Once all 6 examples are drafted, write the remaining ChapterV21 fields:
+
+- **hook** (60–120 chars): specific concrete image or one-line counterintuition. Not abstract.
+- **counterintuition** (80–400 chars): what most readers assume + what's actually true.
+- **tryThisNow** (80–220 chars): one specific 30–90s action, directive not question.
+- **keyTakeaway** (140–220 chars): single sentence carrying the lesson.
+- **breakdown.fastRead** (400–700 chars): scene + rule, 2-min read. Open in a moment.
+- **breakdown.deepRead** (1200–1800 chars): mechanism + second scene + the move + a limit.
+- **breakdown.fullRead** (2500–3500 chars): depth + third angle + counter-objection + tie back.
+- **quiz**: 9 questions. Each is a NEW scenario (different from the chapter's examples). Application not recall. 3 choices each. Answer-index distribution: no single position >45% across the 9 questions. Mix Bloom's levels and depthLevel.
+- **reviewCards**: 3–5 cards. Front is retrieval-framed (a situation + question). Back teaches a move. Difficulty mix.
+- **implementationPlan**: 4 ifThen plans (work/health/personal/relationships), concrete triggers and responses. twentyFourHourChallenge (100+ chars, specific). weeklyPractice.
+- **memorableLines**: exactly 3. Each `.text` is verbatim from your chapter prose. Each ≥30 chars. No em dashes.
+
+### 3d. Assemble the full chapter JSON
+
+Combine into one `ChapterV21` object matching the type at `src/types.ts:305–360`. The `chapterId` MUST be `<BOOK_ID>-ch<NN>` with `<NN>` zero-padded to 2 digits (e.g., `getting-things-done-ch01`).
+
+### 3e. Save the chapter file
+
+Write the JSON to:
+
+```
 scripts/book/prompts/chapterflow-v21-authored/state/chapters/<BOOK_ID>-ch<NN>.v21-native.chapter.json
 ```
 
-Make sure it's valid JSON (no trailing commas, escaped strings).
-
-### 3e. Validate against the ship gate
+### 3f. Validate against the ship gate
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter \
   scripts/book/prompts/chapterflow-v21-authored/state/chapters/<BOOK_ID>-ch<NN>.v21-native.chapter.json
 ```
 
-If it prints `Ship gate: PASS`, move to the next chapter. If you see `blockers: N` with N > 0, the output lists each blocker with the catalog ID (B1, C1, etc.) and the offending text. Fix the chapter JSON, save again, re-run. **Don't move on until the ship gate passes.**
+If it prints `Ship gate: PASS`, move on. If it shows blockers, fix the chapter JSON, save again, re-run. The output lists each blocker with the catalog ID — common ones:
 
-### 3f. Ingest into the librarian ledger
+- **C8** (NEW): example templating detected. Multiple examples share a verbatim 5-word phrase. **You MUST rewrite the affected examples as distinct scenes. Don't just rename — restructure.** If C8 fires, your slate plan in Step 3a was templated; redo it.
+- **C1/C2/C3**: missing named protagonist, missing scene specificity, missing decision point.
+- **B1/B2/B5**: meta-reference / chapter literal / em dash. Find and remove.
+
+Don't move to the next chapter until C8 (and everything else) passes.
+
+### 3g. Ingest into the librarian ledger
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts ledger ingest \
@@ -210,25 +185,20 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts ledger ingest \
   --book-id <BOOK_ID> --title "<title>" --author "<author>"
 ```
 
-This adds the protagonist names from this chapter to the cross-book ledger so future books don't reuse them.
+This adds your protagonist names to the cross-book ledger so future books don't reuse them.
 
-## Step 4 — Assemble the book package
+## Step 4 — Book-level promotion
 
-After every chapter is saved and ship-gate-passing, run the book-level gate via the existing promote command:
+After every chapter is saved and ship-gate-passing:
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts promote-book <BOOK_ID> \
   --title "<title>" --author "<author>"
 ```
 
-This:
-1. Loads every `state/chapters/<BOOK_ID>-chNN.v21-native.chapter.json` file
-2. Re-runs the ship gate on each (defense in depth)
-3. Runs the book gate (cumulative answer-position balance, within-book name uniqueness, schema completeness, voice consistency)
-4. Runs the categorizer (uses `claude` CLI under the hood — that's fine; categories are book-level metadata, one cheap call)
-5. Writes `book-packages/<BOOK_ID>.v21.json` if everything passes
+Runs the ship gate again on every chapter (defense in depth), runs the book gate (cumulative answer-position balance, within-book name uniqueness, schema completeness, voice consistency), runs the categorizer, writes `book-packages/<BOOK_ID>.v21.json`.
 
-If the book gate fails, it'll tell you which check failed. Fix the offending chapter, re-save, re-run `promote-book`.
+If the book gate fails on F1 (within-book name dup), you reused a protagonist name across chapters. Fix it and re-run.
 
 ## Step 5 — Validate the package
 
@@ -245,7 +215,7 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/score-chapters
   book-packages/<BOOK_ID>.v21.json
 ```
 
-Aim for avg ≥95/100. If you're below 90 on any chapter, look at the listed gaps and decide whether to rewrite that chapter.
+Aim for avg ≥95/100, range narrow. If a chapter is below 92, look at the listed gaps and decide whether to rewrite that chapter.
 
 ## Step 7 — Publish to production catalog
 
@@ -253,11 +223,11 @@ Aim for avg ≥95/100. If you're below 90 on any chapter, look at the listed gap
 npx tsx scripts/book/publish-single-package.ts --file book-packages/<BOOK_ID>.v21.json
 ```
 
-Should print `✓ Published <BOOK_ID> v<N>`.
+The publish script rejects non-kebab-case bookIds and mismatched filenames. If you see an error here, fix the bookId/filename and re-run.
 
 ## Step 8 — Wire into library metadata
 
-Add an entry to `app/book/data/booksCatalog.metadata.json` modeled on the existing tiny-habits or how-to-win-friends-and-influence-people row. Pull the categories/tags from the v21 package, compute `estimatedMinutes` as the sum of `readingTimeMinutes` across chapters.
+Add an entry to `app/book/data/booksCatalog.metadata.json` modeled on the existing tiny-habits / how-to-win-friends-and-influence-people row. Pull categories/tags from the v21 package; compute `estimatedMinutes` as the sum of `readingTimeMinutes` across chapters. Pick an icon emoji that fits.
 
 ## Step 9 — Wire into bookPackages.ts (localhost reader)
 
@@ -281,18 +251,19 @@ Flips this book's roster row from `○ ready` to `✓ shipped`.
 
 Tell the user:
 - `<BOOK_ID>` migrated end-to-end
-- Wall time (Codex sessions are slower than the deterministic pipeline; expect 3–6 hours for a 12-chapter book at a deliberate pace)
+- Wall time (expect 4–6+ hours for a proper Codex run — if you finished in under an hour, you probably templated; check C8)
 - Avg chapter score
+- How many chapters needed C8 rewrites
 - Categories assigned
 - Catalog version
-- Any chapters that needed re-writing after ship gate failure, and why
 - Next pending bookId from the roster
 
 ## What to NEVER do
 
-- Don't try to run `generate-book` — that uses the `claude` CLI subprocess. We're using your GPT context to write directly.
+- Don't write a helper script that loops over an array to emit all examples. The C8 critic will catch the templating; don't waste cycles on it.
 - Don't ship a chapter that didn't pass `gate-chapter`. Always validate first.
 - Don't reuse a protagonist name across chapters of the same book.
 - Don't use em dashes. Anywhere.
 - Don't reference "the chapter", "the author", "the book", or any banned phrase.
-- Don't skip the ledger ingest in step 3f — without it, cross-book name discipline breaks for future migrations.
+- Don't use a mixed-case bookId. Always lowercase kebab-case.
+- Don't finish a 25-chapter book in 15 minutes. That's templating speed. HWF took the deterministic pipeline ~4 hours. Your time should be similar or longer.

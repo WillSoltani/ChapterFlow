@@ -94,6 +94,28 @@ async function main() {
   const bookId = parsed?.book?.bookId;
   if (!bookId) throw new Error(`Missing book.bookId in ${args.file}`);
 
+  // Reject non-kebab-case bookIds. Multiple v13 packages carried bookIds with
+  // accidental mixed-case (e.g. "Getting-Things-Done"); ingesting those creates
+  // a separate DDB catalog row from the existing lowercase entry, leaving the
+  // book unreachable in the library. Fail fast so the operator fixes it before
+  // the network round trip and S3 write.
+  const KEBAB_CASE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+  if (!KEBAB_CASE.test(bookId)) {
+    throw new Error(
+      `book.bookId "${bookId}" is not kebab-case (lowercase, hyphenated).\n` +
+      `  Fix the bookId field inside ${args.file} AND rename the file to match before re-running.\n` +
+      `  Expected pattern: ${KEBAB_CASE.source}\n` +
+      `  Example: getting-things-done, atomic-habits, the-power-of-habit.`,
+    );
+  }
+  const fileBasename = path.basename(args.file).replace(/\.v21\.json$/, "");
+  if (fileBasename !== bookId) {
+    throw new Error(
+      `File name "${path.basename(args.file)}" does not match book.bookId "${bookId}".\n` +
+      `  Rename the file to "${bookId}.v21.json" before publishing, otherwise the catalog row and S3 path will drift.`,
+    );
+  }
+
   const ingestKey = `${INGEST_PREFIX}/${bookId}/${Date.now()}-${path.basename(args.file)}`;
   console.log(`1) Uploading ${args.file} to s3://${args.ingestBucket}/${ingestKey}`);
   await s3.send(

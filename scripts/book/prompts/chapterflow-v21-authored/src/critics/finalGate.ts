@@ -12,7 +12,7 @@
 
 import { ChapterV21, ExampleV21 } from "../types.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
-import { checkDecisionPoint, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
+import { checkDecisionPoint, checkExampleTemplating, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
@@ -67,6 +67,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C2: "major",
   C3: "major",
   C7: "blocker",
+  C8: "blocker",
   // Pedagogy (D)
   D1: "major",
   D2: "minor",
@@ -158,6 +159,14 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     "breakdown",
   )) {
     push("B8", "breakdown", f.message);
+  }
+
+  // ── Example-slate templating (C8): catches Cartesian-product output where
+  // an agent shipped N "examples" that are one template with substituted
+  // name/role/city. Fired by GPT-in-Codex on smarter-faster-better and
+  // seven-powers; would have prevented both bad books from shipping.
+  for (const f of checkExampleTemplating(chapter.examples)) {
+    push("C8", "examples", f.message, f.evidence);
   }
 
   // ── Examples (B1, B2, B4, B5, C1, C2, C3, C7) ────────────────────────────

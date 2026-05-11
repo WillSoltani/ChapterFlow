@@ -2,15 +2,17 @@
 
 Paste this entire document into a fresh Claude or GPT/Codex session. The agent will migrate ONE book end-to-end: generate v21 content, validate, score, publish to production catalog, and wire it into the library metadata.
 
-Before pasting, replace `Getting-Things-Done` everywhere below with the kebab-case bookId of the book you want to migrate (pick the next `○ ready` row from [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md)).
+Before pasting, replace `<BOOK_ID>` everywhere below with the kebab-case bookId of the book you want to migrate (pick the next `○ ready` row from [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md)).
+
+> **CRITICAL — bookId MUST be lowercase kebab-case.** Always use the value from the `bookId` column of MIGRATION-ROSTER.md (e.g. `getting-things-done`, `atomic-habits`, `the-power-of-habit`). Do **NOT** use the casing from the v13 filename or from the v13 `book.title` — some v13 packages have mixed-case file names (e.g. `Getting-Things-Done.modern.json`) but the canonical bookId is always lowercase. If you use the wrong casing, you will create a duplicate catalog row in DDB and the production publish will fail (or worse, succeed with a broken bookId that the reader can't resolve). The pipeline scripts now reject non-kebab-case bookIds, but get it right at the start to save the round trip.
 
 ---
 
 ## Mission
 
-Migrate `Getting-Things-Done` from v13 (`book-packages/Getting-Things-Done.modern.json`) to v21. Produce `book-packages/Getting-Things-Done.v21.json`, ship it to the production DynamoDB catalog, register it in the library metadata, and report back.
+Migrate `<BOOK_ID>` from v13 (`book-packages/<BOOK_ID>.modern.json`) to v21. Produce `book-packages/<BOOK_ID>.v21.json`, ship it to the production DynamoDB catalog, register it in the library metadata, and report back.
 
-The chapter index is already written at `scripts/book/prompts/chapterflow-v21-authored/state/indexes/Getting-Things-Done.json`. Title and author are in the v13 package's `book.bookId/title/author` fields — read them once at the start.
+The chapter index is already written at `scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json`. Title and author are in the v13 package's `book.bookId/title/author` fields — read them once at the start.
 
 ## Setup
 
@@ -46,7 +48,7 @@ If ping fails entirely, run `claude /login` to re-authenticate the Anthropic Cod
 ## Step 1 — Read book metadata
 
 ```bash
-jq '.book | {bookId, title, author}' book-packages/Getting-Things-Done.modern.json
+jq '.book | {bookId, title, author}' book-packages/<BOOK_ID>.modern.json
 ```
 
 Capture `title` and `author` for use in the next steps. **Some v13 titles
@@ -64,7 +66,7 @@ in the catalog metadata at step 7.
 ## Step 2 — Confirm the chapter index is ready
 
 ```bash
-jq 'length' scripts/book/prompts/chapterflow-v21-authored/state/indexes/Getting-Things-Done.json
+jq 'length' scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json
 ```
 
 Expect a number (the chapter count). If the file doesn't exist, run:
@@ -76,24 +78,24 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/extract-all-ch
 ## Step 3 — Generate v21 content
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book Getting-Things-Done \
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book <BOOK_ID> \
   --title "<title>" --author "<author>"
 ```
 
-This invokes the full pipeline: editor-in-chief → planner → hook + breakdown → voice-pass → line-editor → examples (over-generated, curated) → quiz/cards/plan/try-this-now → memorable-lines → ship gate per chapter, then book gate → categorizer → promotion to `book-packages/Getting-Things-Done.v21.json`.
+This invokes the full pipeline: editor-in-chief → planner → hook + breakdown → voice-pass → line-editor → examples (over-generated, curated) → quiz/cards/plan/try-this-now → memorable-lines → ship gate per chapter, then book gate → categorizer → promotion to `book-packages/<BOOK_ID>.v21.json`.
 
 **Wall time**: ~10–13 minutes per chapter on the CLI provider. A 12-chapter book is ~2.5 hours.
 
 If the run aborts on a ship-gate blocker:
 
-- The failing chapter's quarantine report is at `scripts/book/prompts/chapterflow-v21-authored/state/chapters/_blocked/Getting-Things-Done-chNN.blocked.<timestamp>.json`. Read it.
+- The failing chapter's quarantine report is at `scripts/book/prompts/chapterflow-v21-authored/state/chapters/_blocked/<BOOK_ID>-chNN.blocked.<timestamp>.json`. Read it.
 - Common causes: meta-references in cards (rare post-fix; just retry), em dashes (defense-in-depth caught it; retry), within-book name dup (regenerate the offending example or use [src/scratch/swap-recurring-names.ts](src/scratch/swap-recurring-names.ts)).
 - Delete the quarantine, then re-run `generate-book` — the orchestrator will resume from cache and only redo the failed chapter.
 
 ## Step 4 — Validate the package
 
 ```bash
-node scripts/book/validate-book.mjs book-packages/Getting-Things-Done.v21.json
+node scripts/book/validate-book.mjs book-packages/<BOOK_ID>.v21.json
 ```
 
 Must print `RESULT: PASS`. If not, fix the structural issue before publishing.
@@ -102,7 +104,7 @@ Must print `RESULT: PASS`. If not, fix the structural issue before publishing.
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/score-chapters.ts \
-  book-packages/Getting-Things-Done.v21.json
+  book-packages/<BOOK_ID>.v21.json
 ```
 
 Read the output. Average score should be ≥95/100. If a chapter is below 90, look at the listed gaps; usually they're cosmetic (one short memorable line, a counter that didn't trigger the paradox heuristic). Decide whether to regenerate that chapter or accept and move on.
@@ -110,33 +112,33 @@ Read the output. Average score should be ≥95/100. If a chapter is below 90, lo
 ## Step 6 — Publish to the production DynamoDB catalog
 
 ```bash
-npx tsx scripts/book/publish-single-package.ts --file book-packages/Getting-Things-Done.v21.json
+npx tsx scripts/book/publish-single-package.ts --file book-packages/<BOOK_ID>.v21.json
 ```
 
-Should print `✓ Published Getting-Things-Done v<N>`. The script:
+Should print `✓ Published <BOOK_ID> v<N>`. The script:
 1. Uploads the package JSON to `s3://<BOOK_INGEST_BUCKET>/book-ingest/bootstrap/...`
-2. Calls `ingestBookPackageFromS3` which validates (v21 schema is accepted via the v21 adapter), writes the manifest + chapter files to `<BOOK_CONTENT_BUCKET>/book-content/books/Getting-Things-Done/v<NNNNNN>/...`, and updates the DDB catalog row.
+2. Calls `ingestBookPackageFromS3` which validates (v21 schema is accepted via the v21 adapter), writes the manifest + chapter files to `<BOOK_CONTENT_BUCKET>/book-content/books/<BOOK_ID>/v<NNNNNN>/...`, and updates the DDB catalog row.
 3. Marks the new version as PUBLISHED and bumps `currentPublishedVersion`.
 
 If the v13 entry was at v1, v21 publishes as v2. The new version is what the library list, book detail page, and reader will resolve to going forward.
 
 ## Step 7 — Wire into the library metadata
 
-The library grid reads from `app/book/data/booksCatalog.metadata.json`. Add (or update) the entry for `Getting-Things-Done`. Use the v21 package's metadata as the source of truth:
+The library grid reads from `app/book/data/booksCatalog.metadata.json`. Add (or update) the entry for `<BOOK_ID>`. Use the v21 package's metadata as the source of truth:
 
 ```bash
 # Compute estimated minutes (sum of chapter readingTimeMinutes)
-jq '[.chapters[].readingTimeMinutes] | add' book-packages/Getting-Things-Done.v21.json
+jq '[.chapters[].readingTimeMinutes] | add' book-packages/<BOOK_ID>.v21.json
 
 # Get the categories and tags the categorizer assigned
-jq '.book | {categories, tags}' book-packages/Getting-Things-Done.v21.json
+jq '.book | {categories, tags}' book-packages/<BOOK_ID>.v21.json
 ```
 
 Then add an entry to `app/book/data/booksCatalog.metadata.json` modeled on the existing tiny-habits or how-to-win-friends-and-influence-people row:
 
 ```json
 {
-  "id": "Getting-Things-Done",
+  "id": "<BOOK_ID>",
   "title": "<title>",
   "author": "<author>",
   "categories": [...from package],
@@ -145,7 +147,7 @@ Then add an entry to `app/book/data/booksCatalog.metadata.json` modeled on the e
   "chapterCount": <N>,
   "estimatedMinutes": <sum>,
   "icon": "📘",
-  "coverImage": "/book-covers/Getting-Things-Done.svg",
+  "coverImage": "/book-covers/<BOOK_ID>.svg",
   "difficulty": "Medium",
   "synopsis": "A modern reading of <author>'s <N> chapters on <theme>."
 }
@@ -180,12 +182,12 @@ This re-reads the DDB catalog and writes a fresh search index to `<BOOK_CONTENT_
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/extract-all-chapter-indexes.ts
 ```
 
-This re-scans `book-packages/`, sees the new `Getting-Things-Done.v21.json`, and updates `MIGRATION-ROSTER.md` so the book moves from `○ ready` to `✓ shipped`.
+This re-scans `book-packages/`, sees the new `<BOOK_ID>.v21.json`, and updates `MIGRATION-ROSTER.md` so the book moves from `○ ready` to `✓ shipped`.
 
 ## Step 11 — Report back
 
 Tell the user:
-- `Getting-Things-Done` migrated, v21 package at `book-packages/Getting-Things-Done.v21.json`
+- `<BOOK_ID>` migrated, v21 package at `book-packages/<BOOK_ID>.v21.json`
 - Wall time for the run
 - Average score across chapters (from Step 5)
 - Categories assigned (from Step 6)

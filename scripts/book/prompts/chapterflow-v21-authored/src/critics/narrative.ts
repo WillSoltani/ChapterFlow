@@ -25,6 +25,102 @@ const PROPER_NOUN_STOPWORDS = new Set([
 
 const PROPER_NOUN_RE = /\b[A-Z][a-z]{2,}\b/g;
 
+/**
+ * Check N: detects Cartesian-product / template-locked examples within a
+ * chapter. When an agent (especially GPT-in-Codex) generates "6 examples"
+ * by substituting name+city+role into one shared template, the scenarios
+ * end up sharing long verbatim phrases. This check looks for 5+ consecutive
+ * words that appear identically in 3 or more example scenarios — a signature
+ * Cartesian-product gives but legitimate scene-writing does not.
+ *
+ * Specifically: 7-powers ch1 shipped with
+ *   "{name} is a {role} in {city} at {time}, standing over a marked-up
+ *    spreadsheet and a cold cup of coffee. Two options look similar until
+ *    {name} traces the unit cost curve..."
+ * across 6 examples. This check fires on that.
+ */
+export function checkExampleTemplating(
+  examples: Array<{ scenario?: string; title?: string }>,
+): CriticFinding[] {
+  if (examples.length < 3) return [];
+
+  // Normalize: lowercase, collapse whitespace, drop the first word (often the
+  // protagonist's name, which we expect to vary).
+  const tokenizedScenarios = examples.map((ex) => {
+    const raw = (ex.scenario ?? "").toLowerCase().replace(/\s+/g, " ").trim();
+    const words = raw.split(" ");
+    return words.slice(1); // skip the leading protagonist name
+  });
+
+  // Build all 5-grams across all scenarios with their owning example index.
+  const NGRAM = 5;
+  const ngramToExamples = new Map<string, Set<number>>();
+  for (let i = 0; i < tokenizedScenarios.length; i++) {
+    const words = tokenizedScenarios[i];
+    for (let j = 0; j + NGRAM <= words.length; j++) {
+      const gram = words.slice(j, j + NGRAM).join(" ");
+      // Skip grams that are mostly stopwords / generic phrases (these will
+      // overlap naturally between real scenes too).
+      if (/^[a-z ]+$/.test(gram) && gram.replace(/ /g, "").length >= 20) {
+        if (!ngramToExamples.has(gram)) ngramToExamples.set(gram, new Set());
+        ngramToExamples.get(gram)!.add(i);
+      }
+    }
+  }
+
+  const findings: CriticFinding[] = [];
+  const reportedExamples = new Set<number>();
+  for (const [gram, exSet] of ngramToExamples) {
+    if (exSet.size >= 3) {
+      const indices = Array.from(exSet).sort((a, b) => a - b);
+      // Report once per offending example.
+      const newOnes = indices.filter((i) => !reportedExamples.has(i));
+      if (newOnes.length === 0) continue;
+      for (const i of indices) reportedExamples.add(i);
+      findings.push(
+        finding(
+          "narrative.example_templating",
+          "blocker",
+          `examples ${indices.map((i) => i + 1).join(", ")} share the verbatim 5-word phrase "${gram}" — this is a Cartesian-product / template-locked output, not distinct scenes`,
+          gram,
+        ),
+      );
+    }
+  }
+
+  // Also catch shared title patterns: if 3+ titles share an exact 3-word
+  // substring after the first word, it's the same template.
+  const titles = examples.map((ex) => (ex.title ?? "").toLowerCase().split(/\s+/).slice(1));
+  const titleNgram = 3;
+  const titleNgramToExamples = new Map<string, Set<number>>();
+  for (let i = 0; i < titles.length; i++) {
+    const words = titles[i];
+    for (let j = 0; j + titleNgram <= words.length; j++) {
+      const gram = words.slice(j, j + titleNgram).join(" ");
+      if (gram.replace(/ /g, "").length >= 8) {
+        if (!titleNgramToExamples.has(gram)) titleNgramToExamples.set(gram, new Set());
+        titleNgramToExamples.get(gram)!.add(i);
+      }
+    }
+  }
+  for (const [gram, exSet] of titleNgramToExamples) {
+    if (exSet.size >= 3) {
+      const indices = Array.from(exSet).sort((a, b) => a - b);
+      findings.push(
+        finding(
+          "narrative.title_templating",
+          "blocker",
+          `example titles ${indices.map((i) => i + 1).join(", ")} share the 3-word phrase "${gram}" — titles must be specific to each scene, not "<Name> ${gram}..." across the slate`,
+          gram,
+        ),
+      );
+      break; // one report per chapter is enough
+    }
+  }
+
+  return findings;
+}
+
 /** Check 1: named protagonist present in scenario. */
 export function checkNamedProtagonist(ex: Example): CriticFinding[] {
   const findings: CriticFinding[] = [];
