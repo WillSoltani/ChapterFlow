@@ -71,6 +71,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C8: "blocker",
   C9: "blocker",
   E4: "major",
+  A11: "blocker",
   // Pedagogy (D)
   D1: "major",
   D2: "minor",
@@ -121,6 +122,30 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   if (chapter.memorableLines) {
     chapter.memorableLines.forEach((line, i) => {
       runRegisterChecks(`memorableLines[${i}]`, line.text, push);
+    });
+    // A11: every pinned memorable line's .text MUST appear verbatim somewhere
+    // in the chapter's breakdown prose. The marker agent extracts lines FROM
+    // the prose at generation time, so this invariant holds by construction
+    // after a fresh run. But polish/refactor passes can rewrite prose while
+    // leaving the pin stale, which breaks the reader's quote / share-card
+    // surface. Fail closed so any prose edit that drops a pinned sentence
+    // either restores the pin or repoints it to a new sentence.
+    const proseHaystack =
+      (chapter.breakdown.fastRead ?? "") +
+      "\n" +
+      (chapter.breakdown.deepRead ?? "") +
+      "\n" +
+      (chapter.breakdown.fullRead ?? "");
+    chapter.memorableLines.forEach((line, i) => {
+      if (!line?.text) return;
+      if (!proseHaystack.includes(line.text)) {
+        push(
+          "A11",
+          `memorableLines[${i}]`,
+          `pinned memorable line "${line.text.slice(0, 80)}${line.text.length > 80 ? "…" : ""}" does not appear verbatim in any breakdown tier — either restore the original sentence to the prose or repoint memorableLines[${i}].text to a sentence that does appear`,
+          line.text,
+        );
+      }
     });
   }
 

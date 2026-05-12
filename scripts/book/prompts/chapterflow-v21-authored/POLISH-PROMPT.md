@@ -129,23 +129,22 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter \
   scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch<NN>.v21-native.chapter.json
 ```
 
-Must print `Ship gate: PASS`. If E4 still fires, polish more — your paragraph openers are still aphoristic. If E1 fires, sentences are still too long or words too multisyllabic. Don't move on until the chapter passes clean.
+Must print `Ship gate: PASS`. Common failures during polish:
+
+- **E4**: paragraph openers are still aphoristic. Restructure — open with a named character or specific moment, not "The X is…" / "There is…" / numbered-rule cascades. The critic looks at the FIRST 30 chars of each paragraph, but the polish should improve the WHOLE paragraph; surface-only rephrasing to evade the regex is gaming, not fixing.
+- **E1**: sentences too long or words too multisyllabic. Apply the plain-word swaps; break long subordinated sentences.
+- **A11**: you rewrote a sentence that was pinned in `memorableLines`. Either restore it or repoint the pin (see next step).
+
+Don't move on until the chapter passes clean.
 
 ### Verify memorableLines still match
 
-```bash
-npx tsx -e '
-import { readFileSync } from "fs";
-const ch = JSON.parse(readFileSync("scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch<NN>.v21-native.chapter.json", "utf8"));
-const allProse = ch.breakdown.fastRead + "\n" + ch.breakdown.deepRead + "\n" + ch.breakdown.fullRead;
-for (const ml of ch.memorableLines || []) {
-  if (!allProse.includes(ml.text)) console.error("BROKEN memorable line:", ml.text);
-  else console.log("OK:", ml.text.slice(0, 50));
-}
-'
-```
+You don't need a separate bash check — the ship gate now enforces this as **A11** (BLOCKER). `gate-chapter` will fail any chapter whose `memorableLines[].text` no longer appears verbatim in `breakdown.fastRead`, `breakdown.deepRead`, or `breakdown.fullRead`. Two recovery options when A11 fires:
 
-If a memorable line is broken (you accidentally rewrote a pinned sentence), restore the original sentence verbatim into the prose, OR update the `memorableLines[].text` to point at a new sentence you actually wrote.
+1. **Restore the original sentence** verbatim into the prose (preferred when the prose around it is fine and you only need to put the pinned sentence back in).
+2. **Repoint the pin** by updating `memorableLines[i].text` to a sentence you actually wrote in the new prose. Pick a sentence that's quotable on its own and as memorable as the original.
+
+If neither feels right, run [scripts/book/prompts/chapterflow-v21-authored/src/scratch/regenerate-broken-memorable-lines.ts](scripts/book/prompts/chapterflow-v21-authored/src/scratch/regenerate-broken-memorable-lines.ts) `--book <bookId>`. It calls the memorable-lines agent on each broken chapter to pick 3 fresh lines from the current prose. Free under Anthropic CLI / Max — costs about $0 and ~30s per chapter.
 
 ## Step 3 — After every problem chapter in a book is polished, re-promote
 

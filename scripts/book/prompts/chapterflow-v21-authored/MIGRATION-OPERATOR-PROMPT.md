@@ -175,3 +175,4 @@ Tell the user:
 - Don't run two `generate-book` invocations on the SAME book in parallel (briefs/plans cache-collide). Different books are fine — the librarian ledger is atomic.
 - Don't bypass the ship gate or book gate. If a check blocks, fix the cause.
 - Don't push to production without `validate-book.mjs` passing first.
+- **A11 (BLOCKER): broken memorable lines.** Every `memorableLines[i].text` must appear verbatim in `breakdown.fastRead`, `breakdown.deepRead`, or `breakdown.fullRead`. The deterministic pipeline maintains this by construction (the memorable-lines agent extracts pins FROM the prose), but if you hand-edit a chapter after generation and accidentally rewrite a pinned sentence, the gate blocks promotion. Recovery: restore the original sentence, repoint the pin, or run `scripts/book/prompts/chapterflow-v21-authored/src/scratch/regenerate-broken-memorable-lines.ts --book <bookId>` to have the agent pick fresh pins from the new prose.

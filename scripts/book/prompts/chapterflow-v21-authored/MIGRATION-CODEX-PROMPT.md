@@ -1,16 +1,8 @@
-# v13 → v21 Migration: Codex/GPT Operator Prompt
 
-For when the operator is GPT/Codex (not Claude Code). Uses your GPT Pro/Max subscription — no API key, no paid spend. The agent in this session *is* the writer: you produce each chapter's content via your own turn output, validate against the v21 ship gate, then save.
-
-> If you're driving migrations from a Claude Code session, use [MIGRATION-OPERATOR-PROMPT.md](MIGRATION-OPERATOR-PROMPT.md) instead — that flow runs the deterministic pipeline via `claude` CLI subprocess.
-
-Before pasting, replace `<BOOK_ID>` everywhere with the **kebab-case lowercase** bookId from the next `○ ready` row in [MIGRATION-ROSTER.md](MIGRATION-ROSTER.md). Examples: `getting-things-done`, `atomic-habits`, `the-power-of-habit`. **NEVER** use the v13 file's mixed-case form (`Getting-Things-Done`) — the publish step rejects non-kebab-case bookIds.
-
----
 
 ## Mission
 
-Migrate `<BOOK_ID>` from v13 to v21. Quality target: **match the output we shipped for How to Win Friends and Influence People** ([book-packages/how-to-win-friends-and-influence-people.v21.json](book-packages/how-to-win-friends-and-influence-people.v21.json)). Browse a couple of HWF chapters before you start so you know the bar.
+Migrate `Superforecasting` from v13 to v21. Quality target: **match the output we shipped for How to Win Friends and Superforecasting People** ([book-packages/how-to-win-friends-and-Superforecasting-people.v21.json](book-packages/how-to-win-friends-and-Superforecasting-people.v21.json)). Browse a couple of HWF chapters before you start so you know the bar.
 
 The v21 ship gate enforces structural rules (no em dashes, no meta-references, balanced quiz answer positions, named protagonists, etc.) AND a new C8 templating check that rejects Cartesian-product output. If your examples are 6 substitutions of one template, gate-chapter fails the chapter and you have to rewrite. Don't try to game it — write distinct scenes the first time.
 
@@ -27,7 +19,7 @@ Don't set `CHAPTERFLOW_PROVIDER` — leave it unset. You're the writer, not the 
 
 Open these files. Spend real time on them. Don't skim.
 
-1. **[book-packages/how-to-win-friends-and-influence-people.v21.json](book-packages/how-to-win-friends-and-influence-people.v21.json)** — pick chapters 5, 11, and 15. Read the full scenario for every example. This is your quality bar.
+1. **[book-packages/how-to-win-friends-and-Superforecasting-people.v21.json](book-packages/how-to-win-friends-and-Superforecasting-people.v21.json)** — pick chapters 5, 11, and 15. Read the full scenario for every example. This is your quality bar.
 2. **[FAILURE-MODES.md](FAILURE-MODES.md)** — every BLOCKER from this list is enforced by the ship gate. Internalize them.
 3. **[src/types.ts](src/types.ts)** lines 305–360 — the `ChapterV21` TypeScript shape your output must match exactly.
 4. **[prompts/writer-example.system.md](prompts/writer-example.system.md)** — the example writer prompt the deterministic pipeline uses. Follow it as if you were that writer.
@@ -74,8 +66,8 @@ Notice: vague role ("analyst"), vague time ("Monday morning" — what time?), va
 ## Step 1 — Read book metadata + chapter index
 
 ```bash
-jq '.book | {bookId, title, author}' book-packages/<BOOK_ID>.modern.json
-jq '.' scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json
+jq '.book | {bookId, title, author}' book-packages/Superforecasting.modern.json
+jq '.' scripts/book/prompts/chapterflow-v21-authored/state/indexes/Superforecasting.json
 ```
 
 Clean the title/author of stray curly quotes and dashes if present. The bookId you use throughout MUST be kebab-case lowercase — match the value from the roster, not the v13 filename casing.
@@ -180,26 +172,27 @@ The user's exact feedback on books that ignored this was "kinda wordy and not as
 
 ### 3d. Assemble the full chapter JSON
 
-Combine into one `ChapterV21` object matching the type at `src/types.ts:305–360`. The `chapterId` MUST be `<BOOK_ID>-ch<NN>` with `<NN>` zero-padded to 2 digits (e.g., `getting-things-done-ch01`).
+Combine into one `ChapterV21` object matching the type at `src/types.ts:305–360`. The `chapterId` MUST be `Superforecasting-ch<NN>` with `<NN>` zero-padded to 2 digits (e.g., `getting-things-done-ch01`).
 
 ### 3e. Save the chapter file
 
 Write the JSON to:
 
 ```
-scripts/book/prompts/chapterflow-v21-authored/state/chapters/<BOOK_ID>-ch<NN>.v21-native.chapter.json
+scripts/book/prompts/chapterflow-v21-authored/state/chapters/Superforecasting-ch<NN>.v21-native.chapter.json
 ```
 
 ### 3f. Validate against the ship gate
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter \
-  scripts/book/prompts/chapterflow-v21-authored/state/chapters/<BOOK_ID>-ch<NN>.v21-native.chapter.json
+  scripts/book/prompts/chapterflow-v21-authored/state/chapters/Superforecasting-ch<NN>.v21-native.chapter.json
 ```
 
 If it prints `Ship gate: PASS`, move on. If it shows blockers, fix the chapter JSON, save again, re-run. The output lists each blocker with the catalog ID — common ones:
 
 - **C8** (NEW): example templating detected. Multiple examples share a verbatim 5-word phrase. **You MUST rewrite the affected examples as distinct scenes. Don't just rename — restructure.** If C8 fires, your slate plan in Step 3a was templated; redo it.
+- **A11**: a pinned `memorableLines[i].text` doesn't appear verbatim in any breakdown tier. You picked a quotable sentence for the pin that isn't actually in the prose, OR you edited the prose later without updating the pin. The .text field MUST be a substring of one of the three breakdown tiers — no exceptions. Either copy the pinned sentence verbatim into the prose, or repoint the pin to a sentence that's actually written.
 - **C1/C2/C3**: missing named protagonist, missing scene specificity, missing decision point.
 - **B1/B2/B5**: meta-reference / chapter literal / em dash. Find and remove.
 
@@ -209,8 +202,8 @@ Don't move to the next chapter until C8 (and everything else) passes.
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts ledger ingest \
-  scripts/book/prompts/chapterflow-v21-authored/state/chapters/<BOOK_ID>-ch<NN>.v21-native.chapter.json \
-  --book-id <BOOK_ID> --title "<title>" --author "<author>"
+  scripts/book/prompts/chapterflow-v21-authored/state/chapters/Superforecasting-ch<NN>.v21-native.chapter.json \
+  --book-id Superforecasting --title "<title>" --author "<author>"
 ```
 
 This adds your protagonist names to the cross-book ledger so future books don't reuse them.
@@ -220,18 +213,18 @@ This adds your protagonist names to the cross-book ledger so future books don't 
 After every chapter is saved and ship-gate-passing:
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts promote-book <BOOK_ID> \
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts promote-book Superforecasting \
   --title "<title>" --author "<author>"
 ```
 
-Runs the ship gate again on every chapter (defense in depth), runs the book gate (cumulative answer-position balance, within-book name uniqueness, schema completeness, voice consistency), runs the categorizer, writes `book-packages/<BOOK_ID>.v21.json`.
+Runs the ship gate again on every chapter (defense in depth), runs the book gate (cumulative answer-position balance, within-book name uniqueness, schema completeness, voice consistency), runs the categorizer, writes `book-packages/Superforecasting.v21.json`.
 
 If the book gate fails on F1 (within-book name dup), you reused a protagonist name across chapters. Fix it and re-run.
 
 ## Step 5 — Validate the package
 
 ```bash
-node scripts/book/validate-book.mjs book-packages/<BOOK_ID>.v21.json
+node scripts/book/validate-book.mjs book-packages/Superforecasting.v21.json
 ```
 
 Must print `RESULT: PASS`.
@@ -240,7 +233,7 @@ Must print `RESULT: PASS`.
 
 ```bash
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/score-chapters.ts \
-  book-packages/<BOOK_ID>.v21.json
+  book-packages/Superforecasting.v21.json
 ```
 
 Aim for avg ≥95/100, range narrow. If a chapter is below 92, look at the listed gaps and decide whether to rewrite that chapter.
@@ -248,14 +241,14 @@ Aim for avg ≥95/100, range narrow. If a chapter is below 92, look at the liste
 ## Step 7 — Publish to production catalog
 
 ```bash
-npx tsx scripts/book/publish-single-package.ts --file book-packages/<BOOK_ID>.v21.json
+npx tsx scripts/book/publish-single-package.ts --file book-packages/Superforecasting.v21.json
 ```
 
 The publish script rejects non-kebab-case bookIds and mismatched filenames. If you see an error here, fix the bookId/filename and re-run.
 
 ## Step 8 — Wire into library metadata
 
-Add an entry to `app/book/data/booksCatalog.metadata.json` modeled on the existing tiny-habits / how-to-win-friends-and-influence-people row. Pull categories/tags from the v21 package; compute `estimatedMinutes` as the sum of `readingTimeMinutes` across chapters. Pick an icon emoji that fits.
+Add an entry to `app/book/data/booksCatalog.metadata.json` modeled on the existing tiny-habits / how-to-win-friends-and-Superforecasting-people row. Pull categories/tags from the v21 package; compute `estimatedMinutes` as the sum of `readingTimeMinutes` across chapters. Pick an icon emoji that fits.
 
 ## Step 9 — Wire into bookPackages.ts (localhost reader)
 
@@ -278,7 +271,7 @@ Flips this book's roster row from `○ ready` to `✓ shipped`.
 ## Step 12 — Report back
 
 Tell the user:
-- `<BOOK_ID>` migrated end-to-end
+- `Superforecasting` migrated end-to-end
 - Wall time (expect 4–6+ hours for a proper Codex run — if you finished in under an hour, you probably templated; check C8)
 - Avg chapter score
 - How many chapters needed C8 rewrites
