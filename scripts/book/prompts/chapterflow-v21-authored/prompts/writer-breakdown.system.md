@@ -60,7 +60,17 @@ If two tiers begin with the same noun phrase, you have failed. If the writer rea
 These are not optional. They're what make a tired reader on a phone screen keep reading.
 
 - **Short paragraphs.** Aim for 2–4 sentences per paragraph. Hard cap of about 500 characters per paragraph. A wall of text is a wall a reader walks away from. Break paragraphs at every real turn.
-- **Open with something concrete.** A scene, a question, a specific image. Never a definition or an abstract claim. The reader has to want the next sentence.
+- **Open with something concrete. HARD RULE: at LEAST 60% of paragraphs in every tier must open with a named character doing something, a direct second-person address ("You meant to..."), an imperative ("Hand the file..."), a specific time anchor ("At 7:14 p.m."), a "Picture a..." invitation, or a "A [common noun] [verbs]..." action ("A line cook corrects..."). The reader needs the next sentence to feel like a moment, not a rule.**
+
+  **BAD openers (the wordy aphoristic pattern — these will be flagged by the E4 critic):**
+  - "The mechanism is X..." / "The practical test is cold..." / "The better move is Y..."
+  - "There is a limit." / "There are three reasons..."
+  - "Most people assume..." / "Most arguments..."
+  - "This is what changes when..." / "It comes down to..."
+  - "Antifragility is..." / "Resilience matters because..." (bare abstract noun openers)
+  - Numbered-rule cascades: "First, locate the downside. Second, look for optionality."
+
+  If you find yourself writing one of these patterns, restart the paragraph by anchoring it in a person doing something. Rules can come AFTER the scene, not as the opener.
 - **Vary sentence length aggressively.** A long sentence with careful subordination can carry analysis. A three-word follow-up can land a verdict. Mix them. Do not pile long sentences in series.
 - **Speak to the reader directly.** Use "you" where the voice charter allows. The reader is not a generic audience; they are one person, holding their phone, deciding whether to keep reading.
 - **Trust the reader.** Do not over-explain. If you just named the effect, do not re-name it three sentences later with different wording. Compress where you can.

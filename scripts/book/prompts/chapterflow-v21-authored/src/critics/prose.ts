@@ -12,6 +12,79 @@ import { CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
 
 /**
+ * Concrete-opener ratio across paragraphs.
+ *
+ * Most common reader feedback on early v21 books was "wordy / hard to
+ * follow" even though Flesch-Kincaid grade was low. The cause: too many
+ * paragraphs open with abstract claims ("The practical test is cold",
+ * "There is a limit", "Most people want…") rather than concrete moments.
+ * HWF opens ~67% of paragraphs with a named person, time, or scene image.
+ * Antifragile shipped at ~50%, which felt aphoristic to readers.
+ *
+ * This critic counts paragraphs opening with SCENIC vs ABSTRACT patterns.
+ * Fires MAJOR when <40% are scenic OR >50% are abstract in a tier.
+ */
+
+// Patterns that signal an aphoristic/rule-stating opener — the
+// "wordy / hard to follow" complaint pattern. Concrete openers (named
+// people, second-person address, imperatives, time anchors, scenes) are
+// hard to enumerate exhaustively, so we don't try; we only flag when too
+// many openers match these abstract patterns.
+const ABSTRACT_OPENERS = [
+  // "The X is/was..." with a conceptual X
+  /^The\s+(mechanism|move|rule|limit|answer|principle|point|practice|practical|antifragile|stronger|better|old|new|right|wrong|hard|simple|deeper|deepest|main|first|second|third|whole|same|other|only|key|truth|fact|test|trick|lesson|catch|trap|payoff|cost|risk|gain|loss|effect|cause|reason|problem|solution|reality|theory|model|system|approach|method|tactic|strategy|essential|essence|nature|function|purpose|pattern|structure|hierarchy)\b/i,
+  // "There is/are/was/were"
+  /^There\s+(is|are|was|were)\s+/i,
+  // "Most + plural noun"
+  /^Most\s+(?:[a-z]+\s)?(people|readers|leaders|teams|managers|workers|adults|things|days|moments|situations|cases|problems|decisions|choices)/i,
+  // "This is/means/requires" without an explicit subject reference
+  /^This\s+(is|means|requires|matters|works|fails|happens|points|reveals|gives|leads|forces|prevents|allows)\b/i,
+  // "It is/matters/comes down" without subject
+  /^It\s+(is|matters|works|comes|takes|fails|happens)\b/i,
+  // "A rule/principle/etc. that..."
+  /^A\s+(rule|wreck|fact|principle|forecast|model|theory|framework|method|tactic|policy|strategy)\s+(is|that)/i,
+  // "Antifragility/Resilience/Optionality is" — bare abstract noun opener
+  /^(Antifragility|Resilience|Optionality|Mastery|Discipline|Pressure|Instinct|Knowledge|Power|Strength|Wisdom|Authority|Trust|Truth|Reality|Time|Pressure|Performance)\s+(is|was|comes|begins|ends|works|fails|matters)\b/i,
+  // Numbered rule list ("First, X. Second, Y.")
+  /^(First|Second|Third|Fourth|Fifth|Last|Finally),\s+/i,
+];
+
+function isAbstractOpener(paragraph: string): boolean {
+  const first = paragraph.trim().split(/(?<=[.!?])\s+/)[0]?.trim() ?? "";
+  return ABSTRACT_OPENERS.some((re) => re.test(first));
+}
+
+/**
+ * Flags a prose tier when more than 40% of paragraphs open with abstract
+ * rule-stating patterns. This catches the "aphoristic stack" failure mode
+ * where Flesch-Kincaid grade looks fine but readers find the prose hard
+ * to follow because every paragraph starts with a generic claim instead
+ * of a scene. Severity MAJOR (E4) — surfaced for the writer to fix but
+ * doesn't block, since some legitimate stylistic choices may also trip
+ * this and the call belongs to the operator.
+ */
+export function checkConcreteParagraphOpeners(text: string, unitLabel: string): CriticFinding[] {
+  const paragraphs = text.split(/\n\s*\n/).map((p) => p.trim()).filter((p) => p.length >= 40);
+  if (paragraphs.length < 3) return [];
+
+  let abstract = 0;
+  for (const p of paragraphs) {
+    if (isAbstractOpener(p)) abstract += 1;
+  }
+  const total = paragraphs.length;
+  const abstractPct = (abstract / total) * 100;
+
+  if (abstractPct > 40) {
+    return [finding(
+      "register.no_meta_reference" as any,
+      "major",
+      `${unitLabel}: ${abstract}/${total} (${abstractPct.toFixed(0)}%) of paragraphs open with abstract claims ("The X is…", "There is…", "Most people…", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead.`,
+    )];
+  }
+  return [];
+}
+
+/**
  * Opening concreteness: the first sentence should contain a concrete anchor —
  * a named person, a specific time, a concrete object, or a direct question.
  * Abstract definitional openers ("Cognitive ease is the feeling of...") are

@@ -18,6 +18,7 @@ import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
+  checkConcreteParagraphOpeners,
   checkCrossTierPhraseUniqueness,
   checkOpeningConcreteness,
   checkParagraphStartVariety,
@@ -69,6 +70,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C7: "blocker",
   C8: "blocker",
   C9: "blocker",
+  E4: "major",
   // Pedagogy (D)
   D1: "major",
   D2: "minor",
@@ -131,6 +133,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     runRegisterChecks(`breakdown.${tierName}`, tierText, push);
     for (const f of checkReadingLevel(tierText, tierName)) {
       push("E1", `breakdown.${tierName}`, f.message);
+    }
+    for (const f of checkConcreteParagraphOpeners(tierText, `breakdown.${tierName}`)) {
+      push("E4", `breakdown.${tierName}`, f.message);
     }
     for (const f of checkOpeningConcreteness(tierText, `breakdown.${tierName}`)) {
       push("E3", `breakdown.${tierName}`, f.message);
