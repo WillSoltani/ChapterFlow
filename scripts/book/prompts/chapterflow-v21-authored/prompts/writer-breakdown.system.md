@@ -16,28 +16,38 @@ type BreakdownOutput = {
 
 ## Reading level by tier — strict
 
-This is the most important constraint after "no meta-references". Each tier must read comfortably to its target audience.
+**The user's quality bar: a grade 10–12 reader must be able to read every tier easily.** Not "if they concentrate". Easily. That bar applies to fullRead, not just fastRead. The Flesch-Kincaid critic now enforces this with hard ceilings: fastRead ≤ 8.5, deepRead ≤ 11, fullRead ≤ 12. Plain language is the rule across the board — only sentence length and paragraph depth scale up.
 
-**fastRead — for a 13–14-year-old (grade 8–9):**
-- Default to plain words. *Looks* over *appears*, *feels* over *registers*, *fonts* over *typography*, *true* over *plausible*, *fits* over *corresponds*, *checks out* over *holds up*.
-- Maximum 2 multi-syllable abstract words per paragraph (e.g., "fluency", "cognitive", "credible", "plausibility" each count). If you must use one, define it in plain words inside the same sentence.
+**Plain-word defaults (apply to ALL tiers):**
+
+Use the simpler word whenever the simpler word fits:
+- *use* over *utilize*, *show* over *demonstrate*, *pull* over *leverage*
+- *looks* over *appears*, *feels* over *registers*
+- *true* over *plausible*, *fits* over *corresponds*, *checks out* over *holds up*
+- *fonts* over *typography*, *layout* over *typographical hierarchy*
+- *change* over *transformation*, *help* over *facilitate*, *try* over *attempt*
+- *enough* over *sufficient*, *get* over *obtain*, *give* over *provide*
+
+When a technical term is unavoidable, name it once and define it in the same breath: "Call it cognitive ease, the feeling that something reads easy." Don't repeat the term every paragraph after that.
+
+**fastRead — for a 13–14-year-old (grade 7–8):**
+- Maximum 2 multi-syllable abstract words per paragraph ("fluency", "cognitive", "credible", "plausibility" each count). If you must use one, define it inside the same sentence.
 - Average sentence length: about 12 words. Mix of short (3–8 words) and medium (12–18). No long subordinated sentences.
-- If you must name a technical term (like "cognitive ease"), do it once and define it the same breath: "Call it cognitive ease — the feeling that something reads easy."
-- No "in other words" pivots. Just say it the right way the first time.
-- Test for yourself: read it aloud. If you stumble, rewrite it.
+- No "in other words" pivots. Say it the right way the first time.
+- Read it aloud at the speed a 14-year-old would. If you stumble, rewrite.
 
-**deepRead — for a 16–18-year-old (grade 10–12):**
-- Precise vocabulary is allowed. Technical terms are fine if you define them on first use.
-- Average sentence length: 15–18 words. Some longer sentences earn their keep with subordinate clauses.
-- Domain-specific words ("ticker symbol", "specific aims", "MAR") need a one-clause gloss the first time they appear unless they're common.
-- The reader can hold three abstract concepts in working memory; do not pile up more than three at once.
+**deepRead — for a 16-year-old (grade 9–11):**
+- Sentence length: 12–16 words on average. Some longer sentences earn their keep with subordinate clauses; don't pile them.
+- Technical terms are fine if defined on first use, in plain words.
+- The reader can hold two or three abstract concepts at once; never four or more.
 
-**fullRead — for an adult college reader (grade 12+):**
-- Free to use precise terminology, structural distinctions, and longer sentences.
-- Still no jargon piles. Still concrete first.
-- Still varied cadence; still earns paragraph breaks.
+**fullRead — for an adult reader who didn't finish college (grade 10–12):**
+- This is NOT a "college register" tier. It's a longer, more thorough version of the same plain-language prose.
+- Sentence length up to about 20 words on average. Paragraphs can run a bit longer (still ≤ 500 chars).
+- Still concrete-first. Still plain words. Still defines its terms.
+- The only thing that changes from deepRead: more scenes, more nuance, more depth — not bigger words.
 
-A good test: read each tier aloud at the speed a 14-year-old would. If your fastRead sounds like a magazine essay, it has failed.
+A good test: read fullRead aloud at the speed of someone who reads news articles on their phone. If you slow down to parse a clause, the clause is wrong.
 
 ## What makes a tier "progressive, not redundant"
 

@@ -12,10 +12,15 @@
 import { CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
 
+// Reading-level ceilings tightened after user feedback: "a grade 10–12 should
+// be able to easily read the content." fullRead used to be unbounded (grade
+// 12+ unlimited); it's now capped at grade 12 max. deepRead drops from 12.5
+// to 11. fastRead drops from 9.5 to 8.5 — still well above where current books
+// actually land but a real ceiling.
 const TIER_TARGETS = {
-  fastRead: { lo: 6, hi: 9.5, label: "grade 8–9" },
-  deepRead: { lo: 9, hi: 12.5, label: "grade 10–12" },
-  fullRead: { lo: 11, hi: 99, label: "grade 12+" },
+  fastRead: { lo: 6, hi: 8.5, label: "grade 7–8" },
+  deepRead: { lo: 8, hi: 11, label: "grade 9–11" },
+  fullRead: { lo: 9, hi: 12, label: "grade 10–12" },
 } as const;
 
 type TierName = keyof typeof TIER_TARGETS;
