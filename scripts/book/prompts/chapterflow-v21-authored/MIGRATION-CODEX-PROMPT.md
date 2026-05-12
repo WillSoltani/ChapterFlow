@@ -145,6 +145,34 @@ Once all 6 examples are drafted, write the remaining ChapterV21 fields:
 - **breakdown.fastRead** (400–700 chars): scene + rule, 2-min read. Open in a moment.
 - **breakdown.deepRead** (1200–1800 chars): mechanism + second scene + the move + a limit.
 - **breakdown.fullRead** (2500–3500 chars): depth + third angle + counter-objection + tie back.
+
+### Plain language is the rule across ALL three tiers
+
+User's quality bar: a grade 10–12 reader should be able to read every tier **easily**, not "if they concentrate". The Flesch-Kincaid critic enforces this with hard ceilings: **fastRead ≤ 8.5, deepRead ≤ 11, fullRead ≤ 12**. fullRead is NOT a college register tier — it's a longer, more thorough version of the same plain-language prose. The only thing that scales up from deepRead to fullRead is *length and depth*, never *vocabulary*.
+
+**Plain-word defaults — apply to every tier:**
+
+- *use* over *utilize*, *show* over *demonstrate*, *pull* over *leverage*
+- *looks* over *appears*, *feels* over *registers*, *checks out* over *holds up*
+- *true* over *plausible*, *fits* over *corresponds*, *change* over *transformation*
+- *help* over *facilitate*, *try* over *attempt*, *enough* over *sufficient*
+- *get* over *obtain*, *give* over *provide*, *fonts* over *typography*
+
+Technical terms are fine if you define them in the same breath on first use ("Call it cognitive ease, the feeling that something reads easy"). Don't repeat the term every paragraph after that. No "in other words" pivots — say it the right way the first time.
+
+**Paragraph openers — the E4 critic blocks aphoristic stacking.**
+
+≥60% of paragraphs in every tier must open with a **concrete anchor**: a named character doing something, a direct second-person address ("You meant to..."), an imperative ("Hand the file..."), a specific time ("At 7:14 p.m."), a "Picture a..." invitation, or a "A [common noun] [verbs]..." action ("A line cook corrects..."). The reader needs the next sentence to feel like a moment, not a rule.
+
+**BAD openers (E4 fires on >40% of these in a tier):**
+- "The mechanism is X..." / "The practical test is cold..." / "The better move is Y..."
+- "There is a limit." / "There are three reasons..."
+- "Most people assume..." / "Most arguments hide..."
+- "This is what changes..." / "It comes down to..."
+- "Antifragility is..." / "Resilience matters..." (bare abstract noun openers)
+- Numbered-rule cascades: "First, locate the downside. Second, look for optionality."
+
+The user's exact feedback on books that ignored this was "kinda wordy and not as easy to understand." Don't ship that. If you find yourself writing one of those bad openers, restart the paragraph by anchoring it in a person doing something. Rules can come AFTER the scene, not as the opener.
 - **quiz**: 9 questions. Each is a NEW scenario (different from the chapter's examples). Application not recall. 3 choices each. Answer-index distribution: no single position >45% across the 9 questions. Mix Bloom's levels and depthLevel.
 - **reviewCards**: 3–5 cards. Front is retrieval-framed (a situation + question). Back teaches a move. Difficulty mix.
 - **implementationPlan**: 4 ifThen plans (work/health/personal/relationships), concrete triggers and responses. twentyFourHourChallenge (100+ chars, specific). weeklyPractice.
