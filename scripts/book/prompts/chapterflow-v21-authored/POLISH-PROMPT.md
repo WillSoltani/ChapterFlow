@@ -6,14 +6,25 @@ Paste this entire document into a fresh Claude Code or GPT/Codex session. The ag
 
 ## Mission
 
-The user's reader feedback on v21 books: *"kinda wordy and not as easy to understand"*. The pipeline added two new gates (E1 tighter FK ceilings, E4 aphoristic-opener detection) and a stronger plain-language writer prompt, but those only affect FUTURE generation. The 13 books already shipped to production still carry the wordy prose. This pass fixes them in place.
+The user's reader feedback on v21 books: *"kinda wordy and not as easy to understand"*. The pipeline added two new gates (E1 tighter FK ceilings, E4 aphoristic-opener detection) and a stronger plain-language writer prompt, but those only affect FUTURE generation. The 13 books already shipped to production as v21 still carry the wordy prose. This pass fixes them in place.
+
+> **SCOPE — v21 only, never touch v13.**
+>
+> This pass operates exclusively on the new v21 schema books:
+> - Files: `book-packages/<bookId>.v21.json` (the `.v21.json` extension is mandatory)
+> - Chapter sidecars: `scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-chNN.v21-native.chapter.json`
+> - Production catalog entries that have a v21-shaped manifest
+>
+> **Do NOT touch the legacy v13 packages.** Those live at `book-packages/<bookId>.modern.json` and `book-packages/_legacy/*.modern.json`. They have a completely different schema (tone matrix, `chapterBreakdown` as `{gentle/direct/competitive}` objects, etc.) and editing them would corrupt them. The v13 corpus is read-only for this pass — the chapter index extractor and v13 normalize scripts reference them, but you don't.
+>
+> Every file path in this prompt references `.v21.json` or the v21-native chapter sidecars. If you find yourself opening anything in `book-packages/_legacy/` or anything ending in `.modern.json`, you've gone outside scope — back out.
 
 You will:
-1. Identify which chapters across all shipped v21 books need polish.
-2. Polish ONLY the breakdown prose (fastRead, deepRead, fullRead). Don't touch examples, quiz, cards, plan, or schema fields.
+1. Identify which chapters across all shipped **v21** books need polish.
+2. Polish ONLY the breakdown prose (fastRead, deepRead, fullRead) in **v21** chapter sidecars and the matching v21 book package. Don't touch examples, quiz, cards, plan, or schema fields.
 3. Preserve every sentence that appears verbatim in a chapter's `memorableLines` (those are pinned).
 4. Re-validate each chapter against the ship gate (must still PASS after polish).
-5. Re-promote and re-publish each book on completion.
+5. Re-promote and re-publish each v21 book on completion.
 
 ## Setup
 
@@ -25,6 +36,8 @@ set -a; source .env.local; set +a
 Don't set `CHAPTERFLOW_PROVIDER` — you're the writer.
 
 ## Step 1 — Audit which chapters need polish
+
+Note: the glob `book-packages/*.v21.json` matches **only** the v21 packages. It will not match `*.modern.json` or anything in `_legacy/`. Don't change the glob.
 
 ```bash
 for book in $(ls book-packages/*.v21.json | xargs -n1 basename | sed 's/.v21.json//'); do
@@ -184,6 +197,8 @@ Summary across all books:
 
 ## What to NEVER do
 
+- **Never edit a `.modern.json` file** — those are the legacy v13 corpus, read-only for this pass. The publish guard and gate-chapter critics don't even apply to them; their schema is completely different. If you open one by mistake, close it.
+- **Never edit anything under `book-packages/_legacy/`** — that's the archive of v13 packages that have been migrated. Same reason: wrong schema, wrong content, out of scope.
 - Don't polish chapters that already pass cleanly (no E1/E4 findings, score ≥96). Leave them alone.
 - Don't touch examples, quiz, cards, plan, or any non-breakdown field. The scope is breakdown prose only.
 - Don't rewrite sentences pinned in `memorableLines`. Those are quotable lines the reader expects to find verbatim.
