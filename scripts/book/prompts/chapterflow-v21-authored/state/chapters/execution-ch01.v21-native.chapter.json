@@ -1,0 +1,319 @@
+{
+  "chapterId": "execution-ch01",
+  "number": 1,
+  "title": "The Gap Nobody Knows",
+  "readingTimeMinutes": 12,
+  "hook": "A trailer seal is missing at dawn, and the launch plan suddenly has no owner.",
+  "counterintuition": "People assume the gap opens after teams start working, but actually it opens earlier, when a goal sounds clear before ownership, assumptions, and follow-through have been tested.",
+  "tryThisNow": "Pick one active promise. Write the next owner, the first proof point, and the assumption most likely to break before the next check-in.",
+  "keyTakeaway": "Execution begins when a leader turns aspiration into named ownership, tested assumptions, and a follow-through rhythm that meets reality before drift gets expensive.",
+  "breakdown": {
+    "fastRead": "At 5:42 a.m., Rufino finds a missing trailer seal on bay 11 while the launch poster still says green. That is the gap: the room agreed, the poster smiled, and the work never received a real owner.\n\nClose it by making every promise answer three plain questions: who owns the next hard move, what must be true, and when will proof show up. Execution starts when the clean words meet ownership, time, and proof. A leader who skips that test may still get nods, but the work has already begun to drift.",
+    "deepRead": "At 8:13 a.m., Zeynep watches the clinic label printer jam while the waiting room fills and yesterday's rollout note says patient intake is stable. The trouble is not that the staff lacks effort. The trouble is that the plan left the meeting without a named person for the jammed handoff.\n\nYou can see the mechanism in the first awkward pause. People tend to protect a promise after it has been spoken out loud. They smooth bad news, widen dates, and call vague ownership teamwork. closing the gap between a promise and the work that can carry it cuts through that comfort by asking for the live fact that changes action.\n\nAt 6:05 p.m., Bronwyn holds a soaked permit binder for the weekend festival and sees that every safety task says parks team, not a person. The useful move is not louder pressure. It is closer contact with the work. Ask who owns the next hard move, what might block it, and what proof will be visible soon. Then stay long enough to change the plan when the answer is rough.\n\nAt 9:50 p.m., Cormac studies a robotics pit full of loose screws and realizes no amount of pep could replace an owner for final inspection. There is a limit. Strong execution cannot make a weak premise true. It can only expose the weak premise early, while a leader still has time to change the promise, move the person, narrow the goal, or stop pretending.",
+    "fullRead": "At 3:31 a.m., Thandiwe stands beside a silent bakery oven, flour on her sleeve, while the expansion plan taped to the fridge still promises six new wholesale accounts. The promise felt real when the plan was written. It became real only when she named who checked the oven, who called the route driver, and what number had to change by Friday.\n\nYou meant to lead by setting direction. That part matters, but direction alone is thin. The work has to pass through names, dates, resources, trade-offs, and the small facts people would rather soften. When those facts stay hidden, the plan keeps its shape in meetings and loses its shape in the world.\n\nAt 2:17 p.m., Laszlo hears the middle-school band cheer after a clean run-through, then asks the trumpets to start alone at measure 38. The applause was a feeling. The exposed measure was evidence.\n\nA leader can miss this while working hard. The calendar is full, the reviews happen, and the language sounds serious. Still, a system can be busy and evasive at the same time. The test is whether a warning changes anything. If a bad signal only becomes a nicer slide, the process is protecting comfort.\n\nAt 4:46 p.m., a warehouse supervisor can either send a green update or walk the floor and count the short pallets with her own marker. The second move is slower for ten minutes and faster for the business.\n\nThe counterargument is that this much contact can feel slow. It can be slow when it becomes meddling. The point is not to grab every task. The point is to stay close enough to reality that ownership, staffing, strategy, and operations correct one another. Delegate the work. Do not delegate the truth about whether the work can be carried.\n\nA promise earns trust only after it has an owner, a test, and a date when reality can answer back."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-rufino-seal",
+      "title": "Rufino finds the missing trailer seal at bay 11",
+      "tags": [
+        "scene",
+        "warehouse",
+        "launch"
+      ],
+      "planSpec": {
+        "domain": "a dock lead finding a missing trailer seal before a launch shipment",
+        "audience": "a warehouse supervisor trying to keep a new fulfillment promise honest",
+        "stakes": "a national retailer launch that will fail before sunrise if ownership stays vague",
+        "format": "scene",
+        "requiredBeat": "he sees the plan marked green while the seal is gone and realizes the next move has no owner"
+      },
+      "scenario": "At 5:42 a.m., Rufino pinches the torn plastic tail of a trailer seal between two gloved fingers at bay 11. The launch board above the time clock is still marked green in thick marker. Three pallets for the Albuquerque truck are staged, but no one knows who checked the count after the night picker left sick. The yard dog is already backing in. Rufino is about to wave him forward when he sees the blank owner box beside final verification.",
+      "whatToDo": "Stop the load, write one name beside final verification, and have that person count the pallets before the trailer door closes.",
+      "whyItMatters": "The launch promise is not real until the last handoff has an owner. A green board without a named check only hides the gap until the truck leaves."
+    },
+    {
+      "exampleId": "ch01-ex02-zeynep-labels",
+      "title": "Zeynep stops the clinic rollout at the label printer",
+      "tags": [
+        "dialogue",
+        "clinic",
+        "handoff"
+      ],
+      "planSpec": {
+        "domain": "a clinic supervisor facing a broken intake handoff during a new scheduling rollout",
+        "audience": "a supervisor with patients arriving and a calm implementation email in her inbox",
+        "stakes": "whether the first clinic morning teaches the staff to hide or surface weak handoffs",
+        "format": "dialogue",
+        "requiredBeat": "she asks who owns the broken label-printer handoff instead of repeating that the rollout is live"
+      },
+      "scenario": "At 8:13 a.m., Zeynep has a strip of sticky labels curled around her wrist while the intake printer clicks and jams again. The waiting room at Harbor Pediatric is filling. \"The rollout note says front desk owns intake,\" Marisol says. \"Front desk owns greeting,\" Zeynep answers, looking at the half-printed chart. \"Who owns labels when the printer stops?\" The room goes quiet. She has to decide whether to keep greeting patients or stop long enough to name the missing handoff.",
+      "whatToDo": "Name the handoff out loud, assign one person to own labels for the morning, and update the rollout note before the next patient checks in.",
+      "whyItMatters": "A process fails where ownership is assumed. Naming the broken handoff teaches the team that reality can edit the plan while it still matters."
+    },
+    {
+      "exampleId": "ch01-ex03-bronwyn-permit",
+      "title": "Bronwyn sees rain spread across the permit binder",
+      "tags": [
+        "decision_point",
+        "parks",
+        "festival"
+      ],
+      "planSpec": {
+        "domain": "a parks director approving a festival plan with unnamed safety owners",
+        "audience": "a city department head under pressure to keep a popular weekend event alive",
+        "stakes": "public safety, council pressure, and a plan that looks complete until weather hits",
+        "format": "decision_point",
+        "requiredBeat": "she must decide whether to approve the festival permit before naming safety owners"
+      },
+      "scenario": "At 6:05 p.m., Bronwyn spreads the Maple Street festival binder across the hood of her city truck while rain dots the plastic cover. The permit map has tents, food trucks, and a first-aid station drawn in neat boxes. The safety page says parks team beside crowd flow, generator checks, and storm calls. Her pen hovers over the approval line. The council chair is texting again. Bronwyn must decide whether a team name is enough to carry a thunderstorm.",
+      "whatToDo": "Refuse the approval until each safety task has a named owner, a trigger for action, and a check-in time before gates open.",
+      "whyItMatters": "A festival plan with team ownership feels polite and fails under weather. Safety work needs a person who knows when to act and can be found fast."
+    },
+    {
+      "exampleId": "ch01-ex04-cormac-robot",
+      "title": "Cormac traces the loose wheel to no owner",
+      "tags": [
+        "postmortem",
+        "robotics",
+        "students"
+      ],
+      "planSpec": {
+        "domain": "a robotics coach reviewing why a competition robot failed inspection",
+        "audience": "a volunteer coach who praised effort but never assigned final verification",
+        "stakes": "students learning whether enthusiasm can replace ownership under pressure",
+        "format": "postmortem",
+        "requiredBeat": "he sees the exact missing owner that turned a strong build week into a failed inspection"
+      },
+      "scenario": "At 9:50 p.m., Cormac sits on the shop floor with a cold slice of pizza, the failed inspection sheet, and the robot's loose left wheel in his lap. The students had stayed late all week. The whiteboard still says drive team ready. He reads the checklist again and finds three initials beside wiring, two beside code, and nothing beside final bolt torque. That blank square is the moment the promise thinned out. He writes it on the margin before he locks the door.",
+      "whatToDo": "Make final verification its own owned task, with one student signing the torque check before the robot leaves the shop.",
+      "whyItMatters": "Effort can fill a room and still miss the last inch. The failure was not morale, it was a promise without a final owner."
+    },
+    {
+      "exampleId": "ch01-ex05-thandiwe-oven",
+      "title": "Thandiwe rewrites the wholesale plan beside the dead oven",
+      "tags": [
+        "before_after",
+        "bakery",
+        "growth"
+      ],
+      "planSpec": {
+        "domain": "a bakery owner turning a growth promise into operating checks after an oven failure",
+        "audience": "a small business owner who likes the new-account goal more than the support work",
+        "stakes": "whether six new wholesale accounts become revenue or missed deliveries",
+        "format": "before_after",
+        "requiredBeat": "the dead oven forces her to add names, checks, and dates to the expansion plan"
+      },
+      "scenario": "At 3:31 a.m., Thandiwe rests her floury palm on oven two and feels no heat. Before tonight, the wholesale plan was a bright list on the fridge: six new cafes by June. After the silent oven, she pulls the list down and writes smaller lines under it. Who checks burners on Sunday. Who calls the repair tech. Which cafe gets frozen backup loaves if the second oven fails. The goal has not changed, but the paper finally starts to look like work.",
+      "whatToDo": "Keep the growth target, but attach the maintenance owner, backup route, and weekly capacity check that let the promise survive a bad morning.",
+      "whyItMatters": "Expansion fails when the attractive goal outruns the system beneath it. The oven turns ambition into visible operating duties."
+    },
+    {
+      "exampleId": "ch01-ex06-laszlo-metronome",
+      "title": "Laszlo makes the trumpets start at measure 38",
+      "tags": [
+        "predict_reveal",
+        "school",
+        "music"
+      ],
+      "planSpec": {
+        "domain": "a band director testing whether rehearsal applause proves performance readiness",
+        "audience": "a teacher whose students confuse a good full run with a ready concert",
+        "stakes": "a spring concert that will expose the weak measure in front of families",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts the hard passage will fail when isolated and uses the reveal to reset practice"
+      },
+      "scenario": "At 2:17 p.m., Laszlo taps a cracked metronome on the piano after the seventh-grade band finishes a clean full run and starts clapping for itself. The concert is Friday. He asks the trumpets what will happen if they start alone at measure 38. \"We'll be fine,\" Briar says, grinning. Laszlo counts them in. By beat three the back row is late and the melody sags. The applause drains out of the room. He has to decide what the next twenty minutes are for.",
+      "whatToDo": "Treat the failed measure as the real status report. Spend the next block on the exposed passage, with one clear owner for counting the entrance.",
+      "whyItMatters": "A clean full run can hide the weak link. Execution needs proof at the point of strain, not applause around the whole promise."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch01-q01",
+        "prompt": "A manager is looking at a clean launch note while two owners on the hardest workstream are still blank. Which action best fits closing the gap between a promise and the work that can carry it?",
+        "choices": [
+          "Name the owner, the date, and the test that will prove the work is real before the update goes wider.",
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong."
+        ],
+        "correctIndex": 0,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch01-q02",
+        "prompt": "An engineer has a deadline everyone likes, but the part supplier has missed three calls and no one has checked the backup path. What should happen next?",
+        "choices": [
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Pause the deadline talk and check the supplier fact, the backup owner, and the next visible proof point.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong."
+        ],
+        "correctIndex": 1,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q03",
+        "prompt": "A teacher sees a team celebrating a project plan before anyone has named who will do the hardest piece. Which response uses the execution lens best?",
+        "choices": [
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong.",
+          "Turn the plan into named work, then ask each owner what could block the next step this week."
+        ],
+        "correctIndex": 2,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q04",
+        "prompt": "A founder hears three reassuring status updates and one quiet warning from the warehouse lead. Which move keeps the work closest to reality?",
+        "choices": [
+          "Bring the warning into the room, ask for the raw detail, and change the plan while correction is still cheap.",
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong."
+        ],
+        "correctIndex": 0,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch01-q05",
+        "prompt": "A director wants to approve a plan because the deck is polished and the room feels aligned. What is the first weak signal to test?",
+        "choices": [
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask what must be true for the deck to work, then test the riskiest assumption against live evidence.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong."
+        ],
+        "correctIndex": 1,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q06",
+        "prompt": "A clinic lead has to design a Friday review for a troubled rollout. Which agenda would most improve follow-through?",
+        "choices": [
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong.",
+          "Review the few promises that matter, who owns them, what changed, and what decision is needed now."
+        ],
+        "correctIndex": 2,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q07",
+        "prompt": "An operations team is busy every day, but the same customer problem keeps returning. Which interpretation is strongest?",
+        "choices": [
+          "Treat the busyness as weak proof and trace whether the recurring problem has a named owner and a fix date.",
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong."
+        ],
+        "correctIndex": 0,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q08",
+        "prompt": "A new supervisor finds that everyone knows the goal, but no one knows what changes by Wednesday. Which question should she ask first?",
+        "choices": [
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask who owns the next hard move and what evidence will show by Wednesday that the work has moved.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong."
+        ],
+        "correctIndex": 1,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q09",
+        "prompt": "A department head learns that the original target rests on a false staffing assumption. Which response shows real discipline?",
+        "choices": [
+          "Keep the old message for now so the team does not lose energy or have to face conflict.",
+          "Ask for a cleaner update and wait until the next meeting to decide whether anything is wrong.",
+          "Reset the target around the staffing truth and explain which premise failed before more trust is spent."
+        ],
+        "correctIndex": 2,
+        "explanation": "closing the gap between a promise and the work that can carry it means the leader tests the live work, not the mood around it. The best choice names reality, ownership, and a near proof point before delay gets expensive.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch01-rc01",
+      "front": "A plan sounds clear, but the next hard owner is unnamed. What should you retrieve?",
+      "back": "Retrieve the execution test: name the owner, the next action, the date, and the evidence that will prove the work moved.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch01-rc02",
+      "front": "A team gives calm status while field evidence feels rough. What move keeps truth close?",
+      "back": "Ask for the raw signal from the place where the work happens, then decide what changes before the next review.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc03",
+      "front": "You spot a comforting story covering a weak handoff. What question breaks the spell?",
+      "back": "Ask what must be true by a near date, who owns that proof, and what will happen if the proof does not appear.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc04",
+      "front": "A target was built on a false assumption. What does strong follow-through require?",
+      "back": "Change the target, name the failed premise, and protect the system from pretending the old promise still fits reality.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "closing the gap between a promise and the work that can carry it starts with a live promise and forces it into owned action. The habit is to ask what is true now, who owns the next hard move, and what proof will appear soon.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a work plan earns quick agreement, then I will ask for the owner, date, and proof point on the hardest piece before I call it ready."
+      },
+      {
+        "context": "health",
+        "plan": "If I set a health goal, then I will name the next physical setup, the time it happens, and the check I will use tomorrow."
+      },
+      {
+        "context": "personal",
+        "plan": "If I keep repeating a personal promise, then I will turn it into one visible action with a time, place, and fallback."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone depends on me, then I will state exactly what I will do next and when they can see or hear the result."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, choose one promise that sounds settled and write the owner, the next action, the riskiest assumption, and the proof you expect to see within seven days.",
+    "weeklyPractice": "For one week, end each serious planning conversation by asking what changed, who owns the next hard move, and what evidence will be visible before the next check-in."
+  },
+  "memorableLines": [
+    {
+      "text": "A trailer seal is missing at dawn, and the launch plan suddenly has no owner.",
+      "location": "hook",
+      "why": "The line turns an execution lesson into a concrete image."
+    },
+    {
+      "text": "Execution begins when a leader turns aspiration into named ownership, tested assumptions, and a follow-through rhythm that meets reality before drift gets expensive.",
+      "location": "keyTakeaway",
+      "why": "It carries the practical move in one sentence."
+    },
+    {
+      "text": "A promise earns trust only after it has an owner, a test, and a date when reality can answer back.",
+      "location": "breakdown.fullRead",
+      "why": "It closes with the leadership responsibility the reader can use."
+    }
+  ]
+}

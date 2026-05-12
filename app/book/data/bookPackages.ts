@@ -1,55 +1,63 @@
 import thePowerOfHabitPackageJson from "@/book-packages/the-power-of-habit.modern.json";
-import makeTimePackageJson from "@/book-packages/make-time.modern.json";
-import makeItStickPackageJson from "@/book-packages/make-it-stick.modern.json";
-import madeToStickPackageJson from "@/book-packages/made-to-stick.modern.json";
-import crucialConversationsPackageJson from "@/book-packages/crucial-conversations.modern.json";
-import difficultConversationsPackageJson from "@/book-packages/difficult-conversations.modern.json";
+import makeTimePackageJson from "@/book-packages/make-time.v21.json";
+import makeItStickPackageJson from "@/book-packages/make-it-stick.v21.json";
+import madeToStickPackageJson from "@/book-packages/made-to-stick.v21.json";
+import crucialConversationsPackageJson from "@/book-packages/crucial-conversations.v21.json";
+import difficultConversationsPackageJson from "@/book-packages/difficult-conversations.v21.json";
 import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.modern.json";
 import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
 import tinyHabitsPackageJson from "@/book-packages/tiny-habits.v21.json";
 import howToWinFriendsAndInfluencePeoplePackageJson from "@/book-packages/how-to-win-friends-and-influence-people.v21.json";
-import essentialismPackageJson from "@/book-packages/essentialism.modern.json";
-import deepWorkPackageJson from "@/book-packages/deep-work.modern.json";
-import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.modern.json";
-import predictablyIrrationalPackageJson from "@/book-packages/predictably-irrational.modern.json";
+import gamesPeoplePlayPackageJson from "@/book-packages/games-people-play.v21.json";
+import mistakesWereMadeButNotByMePackageJson from "@/book-packages/mistakes-were-made-but-not-by-me.v21.json";
+import seekingWisdomPackageJson from "@/book-packages/seeking-wisdom.v21.json";
+import measureWhatMattersPackageJson from "@/book-packages/measure-what-matters.v21.json";
+import clearThinkingPackageJson from "@/book-packages/clear-thinking.v21.json";
+import antifragilePackageJson from "@/book-packages/antifragile.v21.json";
+import blueOceanStrategyPackageJson from "@/book-packages/blue-ocean-strategy.v21.json";
+import gettingThingsDonePackageJson from "@/book-packages/Getting-Things-Done.v21.json";
+import essentialismPackageJson from "@/book-packages/essentialism.v21.json";
+import deepWorkPackageJson from "@/book-packages/deep-work.v21.json";
+import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.v21.json";
+import predictablyIrrationalPackageJson from "@/book-packages/predictably-irrational.v21.json";
 import thinkingFastAndSlowPackageJson from "@/book-packages/thinking-fast-and-slow.modern.json";
 import thinkingInBetsPackageJson from "@/book-packages/thinking-in-bets.modern.json";
 import thePsychologyOfMoneyPackageJson from "@/book-packages/the-psychology-of-money.modern.json";
 import theLawsOfHumanNaturePackageJson from "@/book-packages/the-laws-of-human-nature.modern.json";
 import theAlmanackOfNavalRavikantPackageJson from "@/book-packages/the-almanack-of-naval-ravikant.modern.json";
 import theHardThingAboutHardThingsPackageJson from "@/book-packages/the-hard-thing-about-hard-things.modern.json";
-import influencePackageJson from "@/book-packages/influence.modern.json";
+import influencePackageJson from "@/book-packages/influence.v21.json";
 import theInnovatorsDilemmaPackageJson from "@/book-packages/the-innovators-dilemma.modern.json";
-import builtToLastPackageJson from "@/book-packages/built-to-last.modern.json";
-import competingAgainstLuckPackageJson from "@/book-packages/competing-against-luck.modern.json";
-import leadersEatLastPackageJson from "@/book-packages/leaders-eat-last.modern.json";
-import limitlessPackageJson from "@/book-packages/limitless.modern.json";
-import peakPackageJson from "@/book-packages/peak.modern.json";
-import playingToWinPackageJson from "@/book-packages/playing-to-win.modern.json";
+import builtToLastPackageJson from "@/book-packages/built-to-last.v21.json";
+import competingAgainstLuckPackageJson from "@/book-packages/competing-against-luck.v21.json";
+import leadersEatLastPackageJson from "@/book-packages/leaders-eat-last.v21.json";
+import limitlessPackageJson from "@/book-packages/limitless.v21.json";
+import peakPackageJson from "@/book-packages/peak.v21.json";
+import playingToWinPackageJson from "@/book-packages/playing-to-win.v21.json";
 import theOneThingPackageJson from "@/book-packages/the-one-thing.modern.json";
 import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern.json";
 import theLikeSwitchPackageJson from "@/book-packages/the-like-switch.modern.json";
-import goodToGreatPackageJson from "@/book-packages/good-to-great.modern.json";
-import howToTalkToAnyonePackageJson from "@/book-packages/how-to-talk-to-anyone.modern.json";
-import sevenPowersPackageJson from "@/book-packages/seven-powers.modern.json";
-import smarterFasterBetterPackageJson from "@/book-packages/smarter-faster-better.modern.json";
+import goodToGreatPackageJson from "@/book-packages/good-to-great.v21.json";
+import howToTalkToAnyonePackageJson from "@/book-packages/how-to-talk-to-anyone.v21.json";
+import sevenPowersPackageJson from "@/book-packages/seven-powers.v21.json";
+import smarterFasterBetterPackageJson from "@/book-packages/smarter-faster-better.v21.json";
 import talkLikeTedPackageJson from "@/book-packages/talk-like-ted.modern.json";
-import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.modern.json";
-import pitchAnythingPackageJson from "@/book-packages/pitch-anything.modern.json";
-import preSuasionPackageJson from "@/book-packages/pre-suasion.modern.json";
-import superThinkingPackageJson from "@/book-packages/super-thinking.modern.json";
-import superforecastingPackageJson from "@/book-packages/superforecasting.modern.json";
-import youCantHurtMePackageJson from "@/book-packages/you-can't-hurt-me.modern.json";
-import indistractablePackageJson from "@/book-packages/indistractable.modern.json";
-import extremeOwnershipPackageJson from "@/book-packages/extreme-ownership.modern.json";
+import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.v21.json";
+import pitchAnythingPackageJson from "@/book-packages/pitch-anything.v21.json";
+import preSuasionPackageJson from "@/book-packages/pre-suasion.v21.json";
+import superThinkingPackageJson from "@/book-packages/super-thinking.v21.json";
+import superforecastingPackageJson from "@/book-packages/superforecasting.v21.json";
+import youCantHurtMePackageJson from "@/book-packages/you-cant-hurt-me.v21.json";
+import indistractablePackageJson from "@/book-packages/indistractable.v21.json";
+import extremeOwnershipPackageJson from "@/book-packages/extreme-ownership.v21.json";
 import theArtOfWarPackageJson from "@/book-packages/the-art-of-war.modern.json";
 import theWarOfArtPackageJson from "@/book-packages/the-war-of-art.modern.json";
 import the33StrategiesOfWarPackageJson from "@/book-packages/the-33-strategies-of-war.modern.json";
-import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
+import atomicHabitsPackageJson from "@/book-packages/atomic-habits.v21.json";
 import theGreatMentalModelsVol1PackageJson from "@/book-packages/the-great-mental-models-vol-1.modern.json";
 import theLeanStartupPackageJson from "@/book-packages/the-lean-startup.modern.json";
 import theChecklistManifestoPackageJson from "@/book-packages/the-checklist-manifesto.modern.json";
-import executionPackageJson from "@/book-packages/execution.modern.json";
+import executionPackageJson from "@/book-packages/execution.v21.json";
 import theBlackSwanPackageJson from "@/book-packages/the-black-swan.modern.json";
 import theFirst20HoursPackageJson from "@/book-packages/the-first-20-hours.modern.json";
 import theOutsidersPackageJson from "@/book-packages/the-outsiders.modern.json";
@@ -494,52 +502,52 @@ export function getThePowerOfHabitPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(thePowerOfHabitPackageJson, tone);
 }
 
-export const MAKE_TIME_PACKAGE = normalizeNstdPackage(makeTimePackageJson, "direct");
+export const MAKE_TIME_PACKAGE = normalizeAnyPackage(makeTimePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const MAKE_TIME_RAW_CHAPTERS = getRawChapters(makeTimePackageJson);
 
 export function getMakeTimePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(makeTimePackageJson, tone);
+  return normalizeAnyPackage(makeTimePackageJson, tone);
 }
 
-export const MAKE_IT_STICK_PACKAGE = normalizeNstdPackage(makeItStickPackageJson, "direct");
+export const MAKE_IT_STICK_PACKAGE = normalizeAnyPackage(makeItStickPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const MAKE_IT_STICK_RAW_CHAPTERS = getRawChapters(makeItStickPackageJson);
 
 export function getMakeItStickPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(makeItStickPackageJson, tone);
+  return normalizeAnyPackage(makeItStickPackageJson, tone);
 }
 
-export const MADE_TO_STICK_PACKAGE = normalizeNstdPackage(madeToStickPackageJson, "direct");
+export const MADE_TO_STICK_PACKAGE = normalizeAnyPackage(madeToStickPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const MADE_TO_STICK_RAW_CHAPTERS = getRawChapters(madeToStickPackageJson);
 
 export function getMadeToStickPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(madeToStickPackageJson, tone);
+  return normalizeAnyPackage(madeToStickPackageJson, tone);
 }
 
 export const CRUCIAL_CONVERSATIONS_PACKAGE =
-  normalizeNstdPackage(crucialConversationsPackageJson, "direct");
+  normalizeAnyPackage(crucialConversationsPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const CRUCIAL_CONVERSATIONS_RAW_CHAPTERS = getRawChapters(crucialConversationsPackageJson);
 
 export function getCrucialConversationsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(crucialConversationsPackageJson, tone);
+  return normalizeAnyPackage(crucialConversationsPackageJson, tone);
 }
 
 export const DIFFICULT_CONVERSATIONS_PACKAGE =
-  normalizeNstdPackage(difficultConversationsPackageJson, "direct");
+  normalizeAnyPackage(difficultConversationsPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const DIFFICULT_CONVERSATIONS_RAW_CHAPTERS =
   getRawChapters(difficultConversationsPackageJson);
 
 export function getDifficultConversationsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(difficultConversationsPackageJson, tone);
+  return normalizeAnyPackage(difficultConversationsPackageJson, tone);
 }
 
 export const WHAT_EVERY_BODY_IS_SAYING_PACKAGE =
@@ -584,25 +592,105 @@ export function getHowToWinFriendsAndInfluencePeoplePackageForTone(tone: ToneKey
   return normalizeAnyPackage(howToWinFriendsAndInfluencePeoplePackageJson, tone);
 }
 
-export const ESSENTIALISM_PACKAGE = normalizeNstdPackage(essentialismPackageJson, "direct");
+export const GAMES_PEOPLE_PLAY_PACKAGE = normalizeAnyPackage(gamesPeoplePlayPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const GAMES_PEOPLE_PLAY_RAW_CHAPTERS = getRawChapters(gamesPeoplePlayPackageJson);
+
+export function getGamesPeoplePlayPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(gamesPeoplePlayPackageJson, tone);
+}
+
+export const MISTAKES_WERE_MADE_BUT_NOT_BY_ME_PACKAGE = normalizeAnyPackage(
+  mistakesWereMadeButNotByMePackageJson,
+  "direct",
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const MISTAKES_WERE_MADE_BUT_NOT_BY_ME_RAW_CHAPTERS = getRawChapters(
+  mistakesWereMadeButNotByMePackageJson,
+);
+
+export function getMistakesWereMadeButNotByMePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(mistakesWereMadeButNotByMePackageJson, tone);
+}
+
+export const SEEKING_WISDOM_PACKAGE = normalizeAnyPackage(seekingWisdomPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const SEEKING_WISDOM_RAW_CHAPTERS = getRawChapters(seekingWisdomPackageJson);
+
+export function getSeekingWisdomPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(seekingWisdomPackageJson, tone);
+}
+
+export const MEASURE_WHAT_MATTERS_PACKAGE = normalizeAnyPackage(measureWhatMattersPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const MEASURE_WHAT_MATTERS_RAW_CHAPTERS = getRawChapters(measureWhatMattersPackageJson);
+
+export function getMeasureWhatMattersPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(measureWhatMattersPackageJson, tone);
+}
+
+export const CLEAR_THINKING_PACKAGE = normalizeAnyPackage(clearThinkingPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const CLEAR_THINKING_RAW_CHAPTERS = getRawChapters(clearThinkingPackageJson);
+
+export function getClearThinkingPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(clearThinkingPackageJson, tone);
+}
+
+export const ANTIFRAGILE_PACKAGE = normalizeAnyPackage(antifragilePackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ANTIFRAGILE_RAW_CHAPTERS = getRawChapters(antifragilePackageJson);
+
+export function getAntifragilePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(antifragilePackageJson, tone);
+}
+
+export const BLUE_OCEAN_STRATEGY_PACKAGE = normalizeAnyPackage(blueOceanStrategyPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const BLUE_OCEAN_STRATEGY_RAW_CHAPTERS = getRawChapters(blueOceanStrategyPackageJson);
+
+export function getBlueOceanStrategyPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(blueOceanStrategyPackageJson, tone);
+}
+
+export const GETTING_THINGS_DONE_PACKAGE = normalizeAnyPackage(
+  gettingThingsDonePackageJson,
+  "direct",
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const GETTING_THINGS_DONE_RAW_CHAPTERS = getRawChapters(gettingThingsDonePackageJson);
+
+export function getGettingThingsDonePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeAnyPackage(gettingThingsDonePackageJson, tone);
+}
+
+export const ESSENTIALISM_PACKAGE = normalizeAnyPackage(essentialismPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ESSENTIALISM_RAW_CHAPTERS = getRawChapters(essentialismPackageJson);
 
 export function getEssentialismPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(essentialismPackageJson, tone);
+  return normalizeAnyPackage(essentialismPackageJson, tone);
 }
 
-export const DEEP_WORK_PACKAGE = normalizeNstdPackage(deepWorkPackageJson, "direct");
+export const DEEP_WORK_PACKAGE = normalizeAnyPackage(deepWorkPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const DEEP_WORK_RAW_CHAPTERS = getRawChapters(deepWorkPackageJson);
 
 export function getDeepWorkPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(deepWorkPackageJson, tone);
+  return normalizeAnyPackage(deepWorkPackageJson, tone);
 }
 
-export const SO_GOOD_THEY_CANT_IGNORE_YOU_PACKAGE = normalizeNstdPackage(
+export const SO_GOOD_THEY_CANT_IGNORE_YOU_PACKAGE = normalizeAnyPackage(
   soGoodTheyCantIgnoreYouPackageJson,
   "direct"
 );
@@ -613,10 +701,10 @@ export const SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS = getRawChapters(
 );
 
 export function getSoGoodTheyCantIgnoreYouPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(soGoodTheyCantIgnoreYouPackageJson, tone);
+  return normalizeAnyPackage(soGoodTheyCantIgnoreYouPackageJson, tone);
 }
 
-export const PREDICTABLY_IRRATIONAL_PACKAGE = normalizeNstdPackage(
+export const PREDICTABLY_IRRATIONAL_PACKAGE = normalizeAnyPackage(
   predictablyIrrationalPackageJson,
   "direct"
 );
@@ -625,7 +713,7 @@ export const PREDICTABLY_IRRATIONAL_PACKAGE = normalizeNstdPackage(
 export const PREDICTABLY_IRRATIONAL_RAW_CHAPTERS = getRawChapters(predictablyIrrationalPackageJson);
 
 export function getPredictablyIrrationalPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(predictablyIrrationalPackageJson, tone);
+  return normalizeAnyPackage(predictablyIrrationalPackageJson, tone);
 }
 
 export const THINKING_FAST_AND_SLOW_PACKAGE = normalizeNstdPackage(
@@ -699,13 +787,13 @@ export function getTheHardThingAboutHardThingsPackageForTone(tone: ToneKey): Boo
   return normalizeNstdPackage(theHardThingAboutHardThingsPackageJson, tone);
 }
 
-export const INFLUENCE_PACKAGE = normalizeNstdPackage(influencePackageJson, "direct");
+export const INFLUENCE_PACKAGE = normalizeAnyPackage(influencePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const INFLUENCE_RAW_CHAPTERS = getRawChapters(influencePackageJson);
 
 export function getInfluencePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(influencePackageJson, tone);
+  return normalizeAnyPackage(influencePackageJson, tone);
 }
 
 export const THE_INNOVATORS_DILEMMA_PACKAGE = normalizeNstdPackage(
@@ -722,16 +810,16 @@ export function getTheInnovatorsDilemmaPackageForTone(tone: ToneKey): BookPackag
   return normalizeNstdPackage(theInnovatorsDilemmaPackageJson, tone);
 }
 
-export const BUILT_TO_LAST_PACKAGE = normalizeNstdPackage(builtToLastPackageJson, "direct");
+export const BUILT_TO_LAST_PACKAGE = normalizeAnyPackage(builtToLastPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const BUILT_TO_LAST_RAW_CHAPTERS = getRawChapters(builtToLastPackageJson);
 
 export function getBuiltToLastPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(builtToLastPackageJson, tone);
+  return normalizeAnyPackage(builtToLastPackageJson, tone);
 }
 
-export const COMPETING_AGAINST_LUCK_PACKAGE = normalizeNstdPackage(
+export const COMPETING_AGAINST_LUCK_PACKAGE = normalizeAnyPackage(
   competingAgainstLuckPackageJson,
   "direct"
 );
@@ -742,10 +830,10 @@ export const COMPETING_AGAINST_LUCK_RAW_CHAPTERS = getRawChapters(
 );
 
 export function getCompetingAgainstLuckPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(competingAgainstLuckPackageJson, tone);
+  return normalizeAnyPackage(competingAgainstLuckPackageJson, tone);
 }
 
-export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
+export const LEADERS_EAT_LAST_PACKAGE = normalizeAnyPackage(
   leadersEatLastPackageJson,
   "direct"
 );
@@ -754,34 +842,34 @@ export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
 export const LEADERS_EAT_LAST_RAW_CHAPTERS = getRawChapters(leadersEatLastPackageJson);
 
 export function getLeadersEatLastPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(leadersEatLastPackageJson, tone);
+  return normalizeAnyPackage(leadersEatLastPackageJson, tone);
 }
 
-export const LIMITLESS_PACKAGE = normalizeNstdPackage(limitlessPackageJson, "direct");
+export const LIMITLESS_PACKAGE = normalizeAnyPackage(limitlessPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LIMITLESS_RAW_CHAPTERS = getRawChapters(limitlessPackageJson);
 
 export function getLimitlessPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(limitlessPackageJson, tone);
+  return normalizeAnyPackage(limitlessPackageJson, tone);
 }
 
-export const PEAK_PACKAGE = normalizeNstdPackage(peakPackageJson, "direct");
+export const PEAK_PACKAGE = normalizeAnyPackage(peakPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PEAK_RAW_CHAPTERS = getRawChapters(peakPackageJson);
 
 export function getPeakPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(peakPackageJson, tone);
+  return normalizeAnyPackage(peakPackageJson, tone);
 }
 
-export const PLAYING_TO_WIN_PACKAGE = normalizeNstdPackage(playingToWinPackageJson, "direct");
+export const PLAYING_TO_WIN_PACKAGE = normalizeAnyPackage(playingToWinPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PLAYING_TO_WIN_RAW_CHAPTERS = getRawChapters(playingToWinPackageJson);
 
 export function getPlayingToWinPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(playingToWinPackageJson, tone);
+  return normalizeAnyPackage(playingToWinPackageJson, tone);
 }
 
 export const THE_ONE_THING_PACKAGE = normalizeNstdPackage(theOneThingPackageJson, "direct");
@@ -814,16 +902,16 @@ export function getTheLikeSwitchPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(theLikeSwitchPackageJson, tone);
 }
 
-export const GOOD_TO_GREAT_PACKAGE = normalizeNstdPackage(goodToGreatPackageJson, "direct");
+export const GOOD_TO_GREAT_PACKAGE = normalizeAnyPackage(goodToGreatPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const GOOD_TO_GREAT_RAW_CHAPTERS = getRawChapters(goodToGreatPackageJson);
 
 export function getGoodToGreatPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(goodToGreatPackageJson, tone);
+  return normalizeAnyPackage(goodToGreatPackageJson, tone);
 }
 
-export const HOW_TO_TALK_TO_ANYONE_PACKAGE = normalizeNstdPackage(
+export const HOW_TO_TALK_TO_ANYONE_PACKAGE = normalizeAnyPackage(
   howToTalkToAnyonePackageJson,
   "direct"
 );
@@ -832,19 +920,19 @@ export const HOW_TO_TALK_TO_ANYONE_PACKAGE = normalizeNstdPackage(
 export const HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS = getRawChapters(howToTalkToAnyonePackageJson);
 
 export function getHowToTalkToAnyonePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(howToTalkToAnyonePackageJson, tone);
+  return normalizeAnyPackage(howToTalkToAnyonePackageJson, tone);
 }
 
-export const SEVEN_POWERS_PACKAGE = normalizeNstdPackage(sevenPowersPackageJson, "direct");
+export const SEVEN_POWERS_PACKAGE = normalizeAnyPackage(sevenPowersPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SEVEN_POWERS_RAW_CHAPTERS = getRawChapters(sevenPowersPackageJson);
 
 export function getSevenPowersPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(sevenPowersPackageJson, tone);
+  return normalizeAnyPackage(sevenPowersPackageJson, tone);
 }
 
-export const SMARTER_FASTER_BETTER_PACKAGE = normalizeNstdPackage(
+export const SMARTER_FASTER_BETTER_PACKAGE = normalizeAnyPackage(
   smarterFasterBetterPackageJson,
   "direct"
 );
@@ -853,7 +941,7 @@ export const SMARTER_FASTER_BETTER_PACKAGE = normalizeNstdPackage(
 export const SMARTER_FASTER_BETTER_RAW_CHAPTERS = getRawChapters(smarterFasterBetterPackageJson);
 
 export function getSmarterFasterBetterPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(smarterFasterBetterPackageJson, tone);
+  return normalizeAnyPackage(smarterFasterBetterPackageJson, tone);
 }
 
 export const TALK_LIKE_TED_PACKAGE = normalizeNstdPackage(talkLikeTedPackageJson, "direct");
@@ -865,7 +953,7 @@ export function getTalkLikeTedPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(talkLikeTedPackageJson, tone);
 }
 
-export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE = normalizeNstdPackage(
+export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE = normalizeAnyPackage(
   neverSplitTheDifferencePackageJson,
   "direct"
 );
@@ -876,67 +964,64 @@ export const NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS = getRawChapters(
 );
 
 export function getNeverSplitTheDifferencePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(neverSplitTheDifferencePackageJson, tone);
+  return normalizeAnyPackage(neverSplitTheDifferencePackageJson, tone);
 }
 
-export const PITCH_ANYTHING_PACKAGE = normalizeNstdPackage(pitchAnythingPackageJson, "direct");
+export const PITCH_ANYTHING_PACKAGE = normalizeAnyPackage(pitchAnythingPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PITCH_ANYTHING_RAW_CHAPTERS = getRawChapters(pitchAnythingPackageJson);
 
 export function getPitchAnythingPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(pitchAnythingPackageJson, tone);
+  return normalizeAnyPackage(pitchAnythingPackageJson, tone);
 }
 
-export const PRE_SUASION_PACKAGE = normalizeNstdPackage(preSuasionPackageJson, "direct");
+export const PRE_SUASION_PACKAGE = normalizeAnyPackage(preSuasionPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PRE_SUASION_RAW_CHAPTERS = getRawChapters(preSuasionPackageJson);
 
 export function getPreSuasionPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(preSuasionPackageJson, tone);
+  return normalizeAnyPackage(preSuasionPackageJson, tone);
 }
 
-export const SUPER_THINKING_PACKAGE = normalizeNstdPackage(superThinkingPackageJson, "direct");
+export const SUPER_THINKING_PACKAGE = normalizeAnyPackage(superThinkingPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SUPER_THINKING_RAW_CHAPTERS = getRawChapters(superThinkingPackageJson);
 
 export function getSuperThinkingPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(superThinkingPackageJson, tone);
+  return normalizeAnyPackage(superThinkingPackageJson, tone);
 }
 
-export const SUPERFORECASTING_PACKAGE = normalizeNstdPackage(
-  superforecastingPackageJson,
-  "direct"
-);
+export const SUPERFORECASTING_PACKAGE = normalizeAnyPackage(superforecastingPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SUPERFORECASTING_RAW_CHAPTERS = getRawChapters(superforecastingPackageJson);
 
 export function getSuperforecastingPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(superforecastingPackageJson, tone);
+  return normalizeAnyPackage(superforecastingPackageJson, tone);
 }
 
-export const YOU_CANT_HURT_ME_PACKAGE = normalizeNstdPackage(youCantHurtMePackageJson, "direct");
+export const YOU_CANT_HURT_ME_PACKAGE = normalizeAnyPackage(youCantHurtMePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const YOU_CANT_HURT_ME_RAW_CHAPTERS = getRawChapters(youCantHurtMePackageJson);
 
 export function getYouCantHurtMePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(youCantHurtMePackageJson, tone);
+  return normalizeAnyPackage(youCantHurtMePackageJson, tone);
 }
 
-export const INDISTRACTABLE_PACKAGE = normalizeNstdPackage(indistractablePackageJson, "direct");
+export const INDISTRACTABLE_PACKAGE = normalizeAnyPackage(indistractablePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const INDISTRACTABLE_RAW_CHAPTERS = getRawChapters(indistractablePackageJson);
 
 export function getIndistractablePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(indistractablePackageJson, tone);
+  return normalizeAnyPackage(indistractablePackageJson, tone);
 }
 
-export const EXTREME_OWNERSHIP_PACKAGE = normalizeNstdPackage(
+export const EXTREME_OWNERSHIP_PACKAGE = normalizeAnyPackage(
   extremeOwnershipPackageJson,
   "direct"
 );
@@ -945,7 +1030,7 @@ export const EXTREME_OWNERSHIP_PACKAGE = normalizeNstdPackage(
 export const EXTREME_OWNERSHIP_RAW_CHAPTERS = getRawChapters(extremeOwnershipPackageJson);
 
 export function getExtremeOwnershipPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(extremeOwnershipPackageJson, tone);
+  return normalizeAnyPackage(extremeOwnershipPackageJson, tone);
 }
 
 export const THE_ART_OF_WAR_PACKAGE = normalizeNstdPackage(theArtOfWarPackageJson, "direct");
@@ -980,13 +1065,13 @@ export function getThe33StrategiesOfWarPackageForTone(tone: ToneKey): BookPackag
   return normalizeNstdPackage(the33StrategiesOfWarPackageJson, tone);
 }
 
-export const ATOMIC_HABITS_PACKAGE = normalizeNstdPackage(atomicHabitsPackageJson, "direct");
+export const ATOMIC_HABITS_PACKAGE = normalizeAnyPackage(atomicHabitsPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ATOMIC_HABITS_RAW_CHAPTERS = getRawChapters(atomicHabitsPackageJson);
 
 export function getAtomicHabitsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(atomicHabitsPackageJson, tone);
+  return normalizeAnyPackage(atomicHabitsPackageJson, tone);
 }
 
 export const THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE = normalizeNstdPackage(
@@ -1024,13 +1109,13 @@ export function getTheChecklistManifestoPackageForTone(tone: ToneKey): BookPacka
   return normalizeNstdPackage(theChecklistManifestoPackageJson, tone);
 }
 
-export const EXECUTION_PACKAGE = normalizeNstdPackage(executionPackageJson, "direct");
+export const EXECUTION_PACKAGE = normalizeAnyPackage(executionPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const EXECUTION_RAW_CHAPTERS = getRawChapters(executionPackageJson);
 
 export function getExecutionPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(executionPackageJson, tone);
+  return normalizeAnyPackage(executionPackageJson, tone);
 }
 
 export const THE_BLACK_SWAN_PACKAGE = normalizeNstdPackage(theBlackSwanPackageJson, "direct");
@@ -1084,6 +1169,14 @@ export const BOOK_PACKAGES: BookPackage[] = [
   THE_PRINCE_PACKAGE,
   TINY_HABITS_PACKAGE,
   HOW_TO_WIN_FRIENDS_AND_INFLUENCE_PEOPLE_PACKAGE,
+  GAMES_PEOPLE_PLAY_PACKAGE,
+  MISTAKES_WERE_MADE_BUT_NOT_BY_ME_PACKAGE,
+  SEEKING_WISDOM_PACKAGE,
+  MEASURE_WHAT_MATTERS_PACKAGE,
+  CLEAR_THINKING_PACKAGE,
+  ANTIFRAGILE_PACKAGE,
+  BLUE_OCEAN_STRATEGY_PACKAGE,
+  GETTING_THINGS_DONE_PACKAGE,
   DEEP_WORK_PACKAGE,
   SO_GOOD_THEY_CANT_IGNORE_YOU_PACKAGE,
   PREDICTABLY_IRRATIONAL_PACKAGE,
@@ -1143,6 +1236,14 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "the-prince": getThePrincePackageForTone,
   "tiny-habits": getTinyHabitsPackageForTone,
   "how-to-win-friends-and-influence-people": getHowToWinFriendsAndInfluencePeoplePackageForTone,
+  "games-people-play": getGamesPeoplePlayPackageForTone,
+  "mistakes-were-made-but-not-by-me": getMistakesWereMadeButNotByMePackageForTone,
+  "seeking-wisdom": getSeekingWisdomPackageForTone,
+  "measure-what-matters": getMeasureWhatMattersPackageForTone,
+  "clear-thinking": getClearThinkingPackageForTone,
+  antifragile: getAntifragilePackageForTone,
+  "blue-ocean-strategy": getBlueOceanStrategyPackageForTone,
+  "Getting-Things-Done": getGettingThingsDonePackageForTone,
   "deep-work": getDeepWorkPackageForTone,
   "so-good-they-cant-ignore-you": getSoGoodTheyCantIgnoreYouPackageForTone,
   "predictably-irrational": getPredictablyIrrationalPackageForTone,
@@ -1173,7 +1274,7 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "pre-suasion": getPreSuasionPackageForTone,
   "super-thinking": getSuperThinkingPackageForTone,
   superforecasting: getSuperforecastingPackageForTone,
-  "you-can't-hurt-me": getYouCantHurtMePackageForTone,
+  "you-cant-hurt-me": getYouCantHurtMePackageForTone,
   indistractable: getIndistractablePackageForTone,
   "extreme-ownership": getExtremeOwnershipPackageForTone,
   "the-art-of-war": getTheArtOfWarPackageForTone,
@@ -1268,6 +1369,66 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of Dale Carnegie's twenty-five chapters on handling people, making others feel valued, winning people to your way of thinking, and leading without arousing resentment.",
     pages: 304,
+  },
+  "games-people-play": {
+    icon: "🎭",
+    coverImage: getBookCoverPath("games-people-play"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Eric Berne's ten chapters on transactional analysis, ego states, hidden social scripts, repeated payoffs, and contact beyond familiar games.",
+  },
+  "mistakes-were-made-but-not-by-me": {
+    icon: "🪞",
+    coverImage: getBookCoverPath("mistakes-were-made-but-not-by-me"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of self-justification, cognitive dissonance, bias, memory, blame, conflict, and the hard practice of owning mistakes before they harden into identity.",
+    pages: 304,
+  },
+  "seeking-wisdom": {
+    icon: "🧠",
+    coverImage: getBookCoverPath("seeking-wisdom"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Peter Bevelin's practical mental models for judgment: misjudgment patterns, incentives, probability, consequences, checklists, and temperament.",
+  },
+  "measure-what-matters": {
+    icon: "🎯",
+    coverImage: getBookCoverPath("measure-what-matters"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of John Doerr's OKR system: choosing focused objectives, defining key results, aligning teams, tracking progress, stretching honestly, and using frequent conversations to improve.",
+    pages: 320,
+  },
+  "clear-thinking": {
+    icon: "🧭",
+    coverImage: getBookCoverPath("clear-thinking"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of noticing default reactions, building safeguards, defining problems clearly, evaluating options, and learning from decisions.",
+  },
+  antifragile: {
+    icon: "🧬",
+    coverImage: getBookCoverPath("antifragile"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of hidden fragility, optionality, nonlinear harm, time-tested systems, medical restraint, ethics, and designs that gain from bounded disorder.",
+    pages: 544,
+  },
+  "blue-ocean-strategy": {
+    icon: "🌊",
+    coverImage: getBookCoverPath("blue-ocean-strategy"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of value innovation, strategy canvases, noncustomers, fair process, renewal, and the traps that pull market creation back into rivalry.",
+    pages: 320,
+  },
+  "Getting-Things-Done": {
+    icon: "📊",
+    coverImage: getBookCoverPath("Getting-Things-Done"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of David Allen's thirteen chapters on capturing commitments, clarifying next actions, organizing trusted lists, reviewing consistently, and defining outcomes clearly.",
   },
   essentialism: {
     icon: "🎯",
@@ -1516,9 +1677,9 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
       "A modern reading of Philip E. Tetlock and Dan Gardner's twelve chapters on probabilistic judgment, scorekeeping, revision, team forecasting, and building better institutions for thinking about the future.",
     pages: 352,
   },
-  "you-can't-hurt-me": {
+  "you-cant-hurt-me": {
     icon: "🏃",
-    coverImage: getBookCoverPath("you-can't-hurt-me"),
+    coverImage: getBookCoverPath("you-cant-hurt-me"),
     difficulty: "Hard",
     synopsis:
       "A modern reading of David Goggins's eleven chapters on abuse, accountability, suffering, discipline, failure, recovery, and widening strength beyond old verdicts.",

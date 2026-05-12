@@ -1,0 +1,2579 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "playing-to-win-v21-1778547455459",
+  "createdAt": "2026-05-12T00:57:35.459Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "playing-to-win",
+    "title": "Playing to Win",
+    "author": "A.G. Lafley, Roger L. Martin",
+    "categories": [
+      "Business",
+      "Strategy",
+      "Management",
+      "Decision Making"
+    ],
+    "tags": [
+      "strategy",
+      "competitive-advantage",
+      "management-systems",
+      "choice-cascade",
+      "where-to-play",
+      "how-to-win"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "playing-to-win-ch01",
+      "number": 1,
+      "title": "Strategy Is Choice",
+      "readingTimeMinutes": 14,
+      "hook": "Six red sticky notes can look like a strategy until the budget can only fund two of them.",
+      "counterintuition": "Most teams assume strategy gets better when it includes every worthy aim. It usually gets weaker. A real strategy chooses a field, a win, and a way to win, then lets good options lose. Instead, the sharper move is to let one choice lead and let other good options lose status.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "Strategy begins when a team accepts that it cannot pursue every attractive path and still create force in the one place it most needs to win.",
+      "breakdown": {
+        "fastRead": "Mireya stands in the Cedarline war room at 8:06 p.m., peeling red sticky notes off the glass. Growth, retention, stability, partnerships, AI tools, and Europe all have a sponsor. Only two have funding.\n\nA list can sound serious and still choose nothing. The work starts when one claim gets permission to lead and another good claim gets moved out of the way.\n\nYou do not have a strategy because the page has priorities. You have one when the page makes a tradeoff someone can feel tomorrow.",
+        "deepRead": "Suri wipes flour off a prep table before sunrise and says the bakery can keep wholesale, custom cakes, and walk-in breakfast alive. Her bookkeeper points at the oven schedule. By 7:00 a.m., the oven is already full. One business has to lead, or all three will keep stealing heat from each other.\n\nStrategy is not a long wish list. It is a linked set of choices. What will count as winning? Where will you play? How will you win there? What must you be good at? What will you measure and manage so the choice stays real?\n\nPicture Deshun at a public pool with lap swimmers in lane one, swim-team parents at the gate, families asking about noon, and lesson cards stacked by the register. He cannot make the summer schedule fair by giving every group the prime hours. He has to decide what the pool is trying to win this summer. Once he names that, the schedule gets easier and less polite.\n\nThe test is simple. If every person can keep doing what they planned before the strategy meeting, no strategy happened. The words were approved, but no choice took power.\n\nA warehouse supervisor faces the same truth when a rush order arrives. If the plan says safety, speed, training, cost, and perfect attendance all lead equally, the crew will use habit to decide. If the plan says hospital orders go first because reliability is the win, the crew has a rule before voices get loud. Strategy saves time at the point of pressure because the hard choice was made before the pressure arrived.",
+        "fullRead": "Grafton unlocks an empty equipment cage after a failed youth soccer season. The cones are wet, the goalie gloves smell sour, and the travel-team jerseys are still in plastic. Six months earlier, the board wanted elite travel, low fees, every neighborhood served, and no parent turned away. Each aim was decent. Together they made a program nobody could run.\n\nA choice hurts because it closes doors. That is why teams avoid it. They write plans that keep every door named, then call the list balanced. The market, the season, or the customer does not reward balance in that sense. It rewards a pattern of choices that fit.\n\nBramwell learns the same thing in a hospital staffing office. His colored magnets promise flexible coverage across four units. At 2:13 p.m., he moves one respiratory therapist to pediatrics and sees the ICU board go thin. He predicted flexibility would help. The reveal is colder: a plan that claims every unit as a priority leaves every unit one absence away from trouble. The strategy question is not whether flexibility is nice. It is which service line the hospital is choosing to win and which capabilities must be deep there first.\n\nRoksana finds the positive version under a whale skeleton at 10:11 a.m. Her museum tour used to promise art, fossils, local history, and climate in one hour. Teachers smiled and did not rebook. She cuts the tour to fourth-grade science, builds every stop around evidence students can touch, and leaves the rest for other visits. The museum did not become smaller. The offer became sharper.\n\nA good strategy is not a slogan. It is a chain. The aspiration points to a field. The field demands an edge. The edge demands capabilities. The capabilities demand systems that reward the right work. Break the chain and the plan becomes a brochure. Keep the chain tight and even a hard no starts to feel useful.\n\nThe next time a plan feels impressive, count the choices it actually makes. Then count the things it asks people to stop doing. The second count is the truth test.\n\nA planning team can still discuss many ideas. Choice does not ban curiosity. It sets the order in which curiosity earns resources. The team can keep a later list, run small tests, or protect a future option. What it cannot do is pretend every option has the same claim on the present. Present tense is where strategy gets expensive.\n\nThe best leaders make the cost visible without drama. They say, if this is the field, then that project waits. If this is the edge, then that metric drops. If this capability matters, then that old routine loses time. People may dislike the cut, but they can finally see the logic. Hidden cuts create politics. Visible cuts create debate, and debate can improve the choice.\n\nUse the cascade as a plain checklist. Winning aim. Field. Edge. Capabilities. Management checks. Read the plan from top to bottom and ask whether each line supports the next. If one line pulls away from the others, do not polish it. Fix the choice."
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01-mireya-peels-the-sixth-red-note-off-the-glas",
+          "title": "Mireya peels the sixth red note off the glass",
+          "tags": [
+            "software",
+            "roadmap",
+            "choice"
+          ],
+          "planSpec": {
+            "domain": "software roadmap planning",
+            "audience": "product lead",
+            "stakes": "budget and focus for the next quarter",
+            "format": "decision_point",
+            "requiredBeat": "force one customer field and one win condition"
+          },
+          "scenario": "Mireya has a red sticky note stuck to her thumb at 8:06 p.m. in Cedarline's war room. The glass wall lists six priorities in two neat rows, and each VP has initialed one. The budget spreadsheet on her laptop funds two. She can send the deck as written and let every leader see their word, or she can circle the enterprise onboarding note, cut Europe and AI tools, and walk into Friday with one field named. Her cursor hovers over the slide title.",
+          "whatToDo": "Circle the choice that should lead the quarter, name the customer field it serves, and move the other good ideas into a visible later list. Do not let equal wording hide unequal funding.",
+          "whyItMatters": "A strategy that keeps every sponsor comfortable gives the product team no rule for tradeoffs. The budget already chose. Mireya needs the plan to admit it before work scatters."
+        },
+        {
+          "exampleId": "ch01-ex02-grafton-counts-unused-jerseys-in-the-equipme",
+          "title": "Grafton counts unused jerseys in the equipment cage",
+          "tags": [
+            "soccer",
+            "youth",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "youth sports program",
+            "audience": "program director",
+            "stakes": "season design and parent trust",
+            "format": "postmortem",
+            "requiredBeat": "replay how serving every aim broke the program"
+          },
+          "scenario": "Grafton kneels by the empty equipment cage at 6:22 p.m. Saturday, counting travel jerseys still sealed in plastic. The fall plan promised elite tournaments, low fees, neighborhood access, and no cuts. Now the scholarship fund is dry, the best players left, and the Saturday beginners got half-trained coaches. He writes the four promises on the back of a roster and sees the failure in the same ink.",
+          "whatToDo": "Write the promises as choices that competed for the same money and coaches. Pick the one the program will be built around next season, then price and staff around it.",
+          "whyItMatters": "The season did not fail because the aims were bad. It failed because they could not all lead. Naming the conflict lets the next plan become a strategy instead of a brochure."
+        },
+        {
+          "exampleId": "ch01-ex03-suri-hears-the-oven-timer-answer-before-she-",
+          "title": "Suri hears the oven timer answer before she does",
+          "tags": [
+            "bakery",
+            "dialogue",
+            "tradeoff"
+          ],
+          "planSpec": {
+            "domain": "neighborhood bakery",
+            "audience": "owner",
+            "stakes": "one business model must lead",
+            "format": "dialogue",
+            "requiredBeat": "bookkeeper asks which line loses oven space"
+          },
+          "scenario": "Suri taps flour from a steel scoop at 5:48 a.m. Tuesday while the deck oven ticks behind her. \"Wholesale keeps us steady,\" she says. \"Custom cakes keep the margin. Breakfast keeps the line out the door.\" Her bookkeeper, Ilya, slides the oven chart across the prep table. \"At seven, when croissants and sheet cakes both need the top rack, which business loses?\" Suri looks at the chart and does not answer.",
+          "whatToDo": "Choose the business that gets first claim on oven time, staff prep, and menu changes. Let the other two support that choice or shrink until they fit.",
+          "whyItMatters": "The oven is the real strategy meeting. If the choice cannot decide who gets heat at 7:00 a.m., it will not decide anything when orders collide."
+        },
+        {
+          "exampleId": "ch01-ex04-bramwell-moves-one-blue-magnet-and-loses-the",
+          "title": "Bramwell moves one blue magnet and loses the ICU",
+          "tags": [
+            "hospital",
+            "staffing",
+            "reveal"
+          ],
+          "planSpec": {
+            "domain": "hospital staffing",
+            "audience": "scheduler",
+            "stakes": "coverage safety",
+            "format": "predict_reveal",
+            "requiredBeat": "flexibility prediction fails when coverage thins"
+          },
+          "scenario": "Bramwell stands at 2:13 p.m. in the staffing office with colored magnets lined along a whiteboard. He predicted cross-training would make four units safer. Then he moves one blue magnet, respiratory therapy, from ICU to pediatrics. The ICU column drops below safe coverage, and the charge nurse's radio crackles before he can move it back. He must decide whether the flexible plan is a strategy or just a nicer label for shortage.",
+          "whatToDo": "Stop calling the board flexible. Name the service line the hospital must protect first, then build depth there before promising equal coverage everywhere else.",
+          "whyItMatters": "A shared pool of talent sounds efficient until every unit needs the same person. Choice tells Bramwell where depth matters most and where flexibility has to wait."
+        },
+        {
+          "exampleId": "ch01-ex05-roksana-watches-fourth-graders-reach-for-the",
+          "title": "Roksana watches fourth graders reach for the fossil trays",
+          "tags": [
+            "museum",
+            "school",
+            "before_after"
+          ],
+          "planSpec": {
+            "domain": "museum education",
+            "audience": "program designer",
+            "stakes": "teacher rebooking and learning impact",
+            "format": "before_after",
+            "requiredBeat": "broad tour fails, narrow tour succeeds"
+          },
+          "scenario": "Thursday at 10:11 a.m., Roksana stands under the whale skeleton as a fifth teacher guides her class toward the exit without rebooking. Her old tour covered paintings, fossils, maps, and weather in fifty minutes. After winter break she tries one narrow bet: fourth-grade science, six touch trays, one evidence notebook. In March, a boy in a yellow raincoat runs back to ask if his class can do the bone station again.",
+          "whatToDo": "Build the tour around one chosen school need and make every stop serve it. Keep the other museum treasures for another offer with its own field.",
+          "whyItMatters": "The narrower tour does not make the museum less ambitious. It gives teachers a clear reason to return and students a clear path through the room."
+        },
+        {
+          "exampleId": "ch01-ex06-deshun-dries-the-lesson-cards-and-redraws-th",
+          "title": "Deshun dries the lesson cards and redraws the pool day",
+          "tags": [
+            "pool",
+            "schedule",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "city pool operations",
+            "audience": "pool manager",
+            "stakes": "summer schedule and public trust",
+            "format": "scene",
+            "requiredBeat": "stop serving four groups equally"
+          },
+          "scenario": "Deshun wipes chlorine water from a stack of lesson cards at 6:35 a.m. on the lifeguard desk. The summer grid has lap swimmers at dawn, swim team at dusk, family swim at noon, and beginner lessons squeezed into whatever is left. Four angry emails sit open on the tablet. He is about to split the prime hours evenly, then sees the mayor's note: reduce first-year drown risk. The schedule suddenly has a lead aim.",
+          "whatToDo": "Give beginner lessons the hours when new families can actually come, then explain the tradeoff to the other groups without pretending everyone got the same priority.",
+          "whyItMatters": "Equal hours would look fair and miss the chosen win. Once safety for new swimmers leads, Deshun has a rule for the hardest schedule calls."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch01-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch01-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch01-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch01-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch01-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch01-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch01-card-02",
+          "front": "A team says every priority matters equally. How do you test whether strategy is choice is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is choice under constraint. You learn to turn broad planning language into a visible tradeoff that decides money, time, and attention.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write the five choices for the nearest plan: winning aim, field, edge, capabilities, and management checks. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "You do not have a strategy because the page has priorities.",
+          "location": "breakdown.fastRead",
+          "why": "It names the false comfort of a long planning page."
+        },
+        {
+          "text": "A good strategy is not a slogan. It is a chain.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the cascade simple and memorable."
+        },
+        {
+          "text": "The second count is the truth test.",
+          "location": "breakdown.fullRead",
+          "why": "It gives readers a quick way to check whether a plan chose."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch02",
+      "number": 2,
+      "title": "What Is Winning",
+      "readingTimeMinutes": 14,
+      "hook": "Avel can keep the clinic respectable, or he can name the patient wait time he wants to beat.",
+      "counterintuition": "Most teams assume a safe aspiration keeps everyone aligned. It often keeps everyone vague. A winning aspiration should be sharp enough to change later choices. Instead, the right aim should create pressure that later choices cannot politely ignore.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "Winning has to be defined in a way that changes decisions, because a soft aim lets every later choice stay broad, cautious, and easy to defend.",
+      "breakdown": {
+        "fastRead": "Avel holds a laminated clinic scorecard at 7:32 a.m. by the front desk. The top line says serve patients well. Nobody can object. Nobody can tell which queue gets fixed first either.\n\nA winning aspiration is not a mood. It is a standard that forces later choices. It names the result that matters enough to reorder the day.\n\nIf the goal would not change the schedule, the budget, or the apology you give a customer, it is still too soft.",
+        "deepRead": "Sonya stands beside a paint-splattered robotics table after school. Her team wants to do well at regionals. That phrase is safe, and it is also useless. Do well could mean finish the robot, make the judges laugh, or avoid a breakdown. When she changes the aim to win the autonomous scoring round, the next three weeks become clearer.\n\nA winning aspiration gives the rest of the strategy permission to choose. It does not need to be loud. It needs to be strong enough to decide what counts.\n\nPicture Walid at his kitchen counter with a blood-pressure cuff, a salt shaker, and a calendar of missed walks. Be healthier sounds kind. It does not tell him what dinner to cook tonight. Lower the morning reading by ten points before his July appointment does. The aim is narrower, but it gives the week a job.\n\nThe limit is pride. A bold line that the team does not believe becomes theater. A good aspiration stretches the group and still gives it something real to build around.\n\nA cafe owner can say the shop wants to be loved by the neighborhood. The phrase is warm, but it does not choose between earlier hours, better bread, faster lunch, or more tables. If the aspiration becomes the easiest place for shift workers to get a real breakfast before 7:00, the next moves line up. The baker starts earlier. The menu gets smaller. The sign changes. The aim has begun to work.",
+        "fullRead": "Phaedra opens a volunteer theater budget at 9:18 p.m. in a lobby that smells like sawdust and old coffee. The board says the season should be vibrant, inclusive, financially careful, and artistically brave. She likes every word. Then she tries to choose between a safe comedy and a new local play, and the words refuse to help.\n\nA winning aspiration has to earn its place by changing a later choice. If the sentence lets the safe comedy and the new local play look equally right, it is not yet doing strategic work. Phaedra rewrites the aim: become the first small stage local playwrights try before leaving the county. Now the new play has a reason to lead. The budget still matters, but it serves a clearer win.\n\nJiro sees the same test in a hardware store aisle. The owner says the store wants loyal customers. Jiro asks which customers. Contractors who need parts at 6:30 a.m. before job sites open, or weekend homeowners who need patient advice at noon? Both are good. They demand different hours, stock, and staff habits. Winning with one group gives the store a shape. Trying to sound good to both keeps the shelves confusing.\n\nNechama, a library director, shows the humane side of the move. Her branch cannot win every metric. She names third-grade reading confidence as the year's aspiration, then moves Saturday staff from general desk coverage into small reading circles. Some patrons wait longer for printer help. That cost is not a mistake. It is the sign that the aspiration has teeth.\n\nA weak aspiration flatters the room. A useful one changes the room. It tells people what good news looks like, what tradeoffs are allowed, and which tempting work will not receive equal status.\n\nWhen the next goal sounds agreeable, ask what decision it would make easier by noon tomorrow. If the answer is none, sharpen it until it can lead.\n\nA winning aspiration also protects people from false agreement. In a meeting, broad aims let everyone hear their own favorite plan inside the same sentence. One person hears growth. Another hears quality. Another hears caution. They leave smiling and spend the month pulling apart. A sharper aspiration may create disagreement in the room, but that disagreement is useful because it appears before money and time are spent.\n\nThe aspiration should not become a fantasy poster. It must connect to a field and a way to win. If the clinic wants to cut first-visit waits, it still needs to decide which patients, which hours, and what service model will make the wait fall. The aspiration starts the chain. It does not replace the chain.\n\nYou can test any goal with one sentence: if we meant this, what would change first? The first change might be a budget line, a schedule block, a product cut, or a new review question. If nobody can name that first change, the goal is still floating above the work."
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01-avel-folds-the-clinic-scorecard-beside-the-c",
+          "title": "Avel folds the clinic scorecard beside the coffee urn",
+          "tags": [
+            "clinic",
+            "aspiration",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "community clinic",
+            "audience": "operations director",
+            "stakes": "patient wait time and service focus",
+            "format": "decision_point",
+            "requiredBeat": "turn a soft service aim into a win condition"
+          },
+          "scenario": "Avel folds a laminated scorecard beside the coffee urn at 7:32 a.m. in the Maple Street clinic lobby. The first line says serve patients well. Three nurses are asking whether to add walk-in slots, call-backs, or a second flu table. All three sound like service. Avel can keep the safe sentence and let each shift choose, or he can write one hard aim on the whiteboard: cut first-visit waits under twenty minutes by June.",
+          "whatToDo": "Replace the agreeable phrase with a win condition that decides the next staffing choice. Make the target specific enough that one good idea can outrank another.",
+          "whyItMatters": "A soft aspiration keeps peace but cannot guide the nurses. Once the wait-time win leads, every staffing move has a test it can pass or fail."
+        },
+        {
+          "exampleId": "ch02-ex02-sonya-replays-the-robot-match-under-the-fold",
+          "title": "Sonya replays the robot match under the folded bleachers",
+          "tags": [
+            "robotics",
+            "school",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "robotics club",
+            "audience": "student captain",
+            "stakes": "regional preparation",
+            "format": "postmortem",
+            "requiredBeat": "do well fails as a standard"
+          },
+          "scenario": "Sonya sits under the folded bleachers at 5:16 p.m., picking dried hot glue from her sleeve while the robot battery cools. The team said it wanted to do well at regionals. In practice, that meant three students tuned the claw, two polished the poster, and nobody owned the autonomous code. She writes do well on the pizza box, then crosses it out. The lost match finally says what the aim never did.",
+          "whatToDo": "Name the scoring round the team is trying to win, then rebuild practice time around that round before improving anything else.",
+          "whyItMatters": "The old aim let every task feel valid. A real winning standard makes some useful work secondary, which is how the team stops preparing in fragments."
+        },
+        {
+          "exampleId": "ch02-ex03-phaedra-hears-the-budget-chair-ask-what-brav",
+          "title": "Phaedra hears the budget chair ask what brave means",
+          "tags": [
+            "theater",
+            "dialogue",
+            "choice"
+          ],
+          "planSpec": {
+            "domain": "community theater",
+            "audience": "board president",
+            "stakes": "season selection",
+            "format": "dialogue",
+            "requiredBeat": "vague brave aim fails to choose"
+          },
+          "scenario": "Phaedra holds two scripts at 9:18 p.m. in the volunteer theater lobby, one safe comedy and one new local play. \"We said brave and inclusive,\" she tells the budget chair. He taps the calculator with a pencil. \"Does brave mean we risk half the box office for a county playwright, or does inclusive mean we choose the show families already know?\" The lobby fan clicks. Phaedra has to answer before the vote.",
+          "whatToDo": "Translate the values into a winning aspiration for the season, then let that aspiration choose between the scripts. Do not let two nice words cancel each other.",
+          "whyItMatters": "Values help only when they become a standard for choice. Phaedra needs a win clear enough that the board can accept the cost of the show it selects."
+        },
+        {
+          "exampleId": "ch02-ex04-jiro-counts-contractor-receipts-before-the-d",
+          "title": "Jiro counts contractor receipts before the doors open",
+          "tags": [
+            "retail",
+            "hardware",
+            "reveal"
+          ],
+          "planSpec": {
+            "domain": "independent hardware store",
+            "audience": "store manager",
+            "stakes": "customer focus and hours",
+            "format": "predict_reveal",
+            "requiredBeat": "loyal customers splits into two different wins"
+          },
+          "scenario": "Jiro spreads contractor receipts across the paint counter at 6:41 a.m., twenty minutes before the hardware store opens. He predicted the loyalty push would help everyone. Then the receipts show most high-value buyers came before 8:00, while weekend homeowners came after lunch needing advice. One aim, loyal customers, hides two games. He must decide which customer the store is trying to win before he changes hours.",
+          "whatToDo": "Split the loyalty claim by customer type and choose the group whose win will shape hours, stock, and staffing. Treat the other group as a later design problem.",
+          "whyItMatters": "The same word can hide different businesses. Until Jiro names the customer and the win, every schedule change looks both right and wrong."
+        },
+        {
+          "exampleId": "ch02-ex05-nechama-moves-printer-help-to-protect-readin",
+          "title": "Nechama moves printer help to protect reading circles",
+          "tags": [
+            "library",
+            "before_after",
+            "focus"
+          ],
+          "planSpec": {
+            "domain": "public library",
+            "audience": "branch director",
+            "stakes": "staff allocation",
+            "format": "before_after",
+            "requiredBeat": "third-grade reading aim changes staffing"
+          },
+          "scenario": "At 3:04 p.m. Wednesday, Nechama watches two staff members untangle printer problems while six third graders wait by the beanbags. Last year the branch tried to improve service for everyone and moved nothing. This spring she names the win: every third grader in the school partnership reads aloud with confidence by May. Printer help gets one desk hour, reading circles get two staff. A boy named Ludo reads the first page without stopping.",
+          "whatToDo": "Let the reading-confidence win move staff time even when other services feel exposed. Track the chosen outcome before adding back broad coverage.",
+          "whyItMatters": "A winning aspiration proves itself by changing the calendar. Nechama is not ignoring other patrons; she is giving the chosen result enough help to become real."
+        },
+        {
+          "exampleId": "ch02-ex06-walid-puts-the-salt-shaker-behind-the-cuff-c",
+          "title": "Walid puts the salt shaker behind the cuff case",
+          "tags": [
+            "health",
+            "personal",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "personal health planning",
+            "audience": "middle-aged parent",
+            "stakes": "blood pressure and daily choices",
+            "format": "scene",
+            "requiredBeat": "be healthier becomes a measurable win"
+          },
+          "scenario": "Walid sets the blood-pressure cuff on the kitchen counter at 6:55 a.m., beside toast crumbs and the salt shaker. His note from last January says be healthier. It has survived untouched for eleven months. The appointment card for July is tucked under the cuff case. He slides the salt behind the case and writes one line on the grocery pad: morning reading ten points lower before July. Breakfast finally has a decision rule.",
+          "whatToDo": "Turn the broad health wish into one measurable win tied to a date, then let meals, walks, and shopping serve that win first.",
+          "whyItMatters": "Walid does not need a nicer intention. He needs an aim that can choose between toast, salt, a walk, and the couch on an ordinary morning."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch02-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch02-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch02-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch02-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch02-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch02-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch02-card-02",
+          "front": "A team says every priority matters equally. How do you test whether what is winning is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch02-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch02-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is defining the win before protecting the plan. You learn to replace agreeable aims with standards that guide choices.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write one current goal as a result, a customer or audience, and a deadline that would change a decision this week. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "If the goal would not change the schedule, the budget, or the apology you give a customer, it is still too soft.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "A weak aspiration flatters the room. A useful one changes the room.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "When the next goal sounds agreeable, ask what decision it would make easier by noon tomorrow.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch03",
+      "number": 3,
+      "title": "Where to Play",
+      "readingTimeMinutes": 14,
+      "hook": "Bruna can sell to every customer on the map, right up until the van has only one route.",
+      "counterintuition": "Most teams treat the playing field as a given market map. It is a choice. Customer, channel, geography, product type, and price level create the field where advantage can grow. Instead, the field should be chosen because it gives the chosen edge room to grow.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "Where to play means choosing the customers, channels, places, and offers where your odds of building a strong position are better than broad reach.",
+      "breakdown": {
+        "fastRead": "Bruna pins six delivery zones to a corkboard at 4:27 a.m. in the dairy cooler. The van can make one route before noon. Every cafe wants fresh yogurt. Only the hospital kitchens reorder on time and pay without chasing.\n\nA field choice is not a geography lesson. It is the ground where the strategy will spend force.\n\nChoose the field where the win can become real, then let the other attractive fields wait outside the van.",
+        "deepRead": "Keziah sits at a folding table after a parent night with three signup sheets: toddlers, teens, and adult beginners. Her art studio could serve all of them badly. When she chooses anxious middle-schoolers who need a quiet place after school, the room changes. The shelves, hours, prices, and teacher scripts start to fit one audience.\n\nWhere to play turns a broad dream into a bounded game. The boundary can be customer, channel, region, need, price, or occasion. The point is not to make the aim timid. The point is to pick ground where the way to win has a chance.\n\nPicture Yuki at a farmers market stall with unsold jars of chili oil. Tourists praise the label and walk away. The ramen shop owner asks for a case and a wholesale sheet. The field may not be shoppers with tote bags. It may be small kitchens that need a finishing oil by Friday.\n\nThe trap is treating the old field as fate. It is often just habit with a map attached.\n\nA dentist can say the practice serves families. That field sounds clear until the appointment book shows toddlers, teens with braces, anxious adults, and emergency crowns all competing for the same rooms. If the practice chooses working parents who need early pediatric cleanings, hours, reminders, toys, and insurance scripts start to line up. The field gives the team a design problem it can actually solve.",
+        "fullRead": "Dalton stands inside a city bus depot at 5:52 a.m., watching route maps curl at the corners. His repair crew is good, but the contract bids cover school buses, airport shuttles, municipal buses, and private coaches across three counties. Each segment needs different parts, hours, and promises. The shop calls this growth. The mechanics call it Tuesday chaos.\n\nWhere to play is the choice that tells the rest of the strategy what game it is in. A company can choose high-end beauty buyers in airport retail, rural clinics needing simple diagnostics, parents of toddlers in dense neighborhoods, or contractors who need parts before sunrise. Each field changes what winning means and what capabilities matter.\n\nSohail learns it in a tenant-rights nonprofit. The group says it serves renters. That sounds focused until the phones show eviction defense, repair demands, lease questions, and senior housing confusion all piling into the same two staff members. Sohail chooses one field for the next grant cycle: eviction prevention for families with court dates inside fourteen days. The phone script changes. The volunteer training changes. The outreach partners change. The field is narrower, but the work finally has weight.\n\nMaritza gets the warning on a college radio station. Alumni tell her the station has always served everyone on campus. That old map feels noble. It also leaves the schedule full of shows nobody can find twice. She chooses late-night commuters and lab students as the audience for live talk blocks. Some DJs complain. Then the message board fills after midnight.\n\nNarrowing can be lazy if it only dodges hard work. A small field is not automatically a good field. It must be large enough to matter, reachable by the channels you can use, and matched to an advantage you can build.\n\nWhen someone says the market is obvious, ask which slice of it you are refusing. The refusal is where the field becomes a choice.\n\nField choice also decides what you stop learning about. A team that chooses hospital kitchens for yogurt should learn ordering cycles, cooler space, food-service budgets, and chef frustrations. It should stop spending its best attention on weekend browsers who praise labels and buy nothing. Focus is not only where you sell. It is where you learn fastest.\n\nThe field has to be tested against reality. Is the segment large enough to matter? Can you reach it without spending more than the win is worth? Does your way to win fit the field, or are you choosing a customer who needs something else? A narrow field that fails these tests is not strategy. It is comfort.\n\nA useful field often feels awkward at first because it disappoints someone. The cafe owner outside the field, the parent whose preferred hour changes, the donor who liked the old broad label. That discomfort is information. If the team can explain the field and the reason for refusing other fields, the strategy is becoming clear."
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01-bruna-folds-the-route-map-in-the-dairy-coole",
+          "title": "Bruna folds the route map in the dairy cooler",
+          "tags": [
+            "food",
+            "route",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "regional dairy delivery",
+            "audience": "owner",
+            "stakes": "route design and customer focus",
+            "format": "decision_point",
+            "requiredBeat": "choose one customer field for the van"
+          },
+          "scenario": "Bruna holds a wet route map against the dairy cooler door at 4:27 a.m., the paper curling from the cold. Six cafe pins dot the city, plus three hospital kitchens that pay on time. Her van can make one route before noon. The cafes love samples and haggle by text. The hospitals reorder every Thursday. She must choose whether the yogurt business is chasing charming counters or feeding kitchens that already know their volumes.",
+          "whatToDo": "Pick the field the van can serve reliably and profitably, then redesign sales around that field. Leave the other pins visible but outside the current route.",
+          "whyItMatters": "The route is the constraint that makes the field real. Bruna cannot build an advantage while pretending every pin deserves the same morning."
+        },
+        {
+          "exampleId": "ch03-ex02-keziah-stacks-three-signup-sheets-after-pare",
+          "title": "Keziah stacks three signup sheets after parent night",
+          "tags": [
+            "art",
+            "studio",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "after-school art studio",
+            "audience": "studio founder",
+            "stakes": "audience and offer fit",
+            "format": "postmortem",
+            "requiredBeat": "too many age groups make the studio incoherent"
+          },
+          "scenario": "Keziah stacks three signup sheets at 8:39 p.m. after parent night in the church basement: toddlers, teens, and adults. The markers smell sharp, and the sample clay has dried around the edges. Her first month tried to serve all three. Toddlers needed cleanup time, teens needed quiet, adults wanted wine and critique. She circles the middle-school sheet and finally sees why every Saturday felt like three businesses in one room.",
+          "whatToDo": "Choose the age group and occasion where the studio can matter most, then rebuild hours, supplies, and teacher scripts around that field.",
+          "whyItMatters": "The studio was not failing from lack of interest. It was failing because one room was asked to host three different games. Field choice gives the offer a shape."
+        },
+        {
+          "exampleId": "ch03-ex03-dalton-hears-the-mechanic-name-four-business",
+          "title": "Dalton hears the mechanic name four businesses",
+          "tags": [
+            "transport",
+            "dialogue",
+            "field"
+          ],
+          "planSpec": {
+            "domain": "bus repair shop",
+            "audience": "operations manager",
+            "stakes": "contract bids and capability fit",
+            "format": "dialogue",
+            "requiredBeat": "segments demand different support"
+          },
+          "scenario": "Dalton stands by bay three at 5:52 a.m. while a mechanic wipes grease from his wrist. \"School buses need us before homeroom,\" the mechanic says. \"Airport shuttles need midnight parts. Coaches need upholstery. City buses need brake stock.\" Dalton has one bid packet in his hand for all four segments. The compressor kicks on. He faces a choice before the noon submission.",
+          "whatToDo": "Separate the segments by what they require, then bid only on the field the shop can support with real depth. Do not let one contract packet hide four businesses.",
+          "whyItMatters": "Different customers pull different capabilities from the shop. Dalton needs a field where the repair edge can show up every week, not a field that flatters the revenue line."
+        },
+        {
+          "exampleId": "ch03-ex04-sohail-sorts-eviction-calls-by-court-date",
+          "title": "Sohail sorts eviction calls by court date",
+          "tags": [
+            "nonprofit",
+            "service",
+            "reveal"
+          ],
+          "planSpec": {
+            "domain": "tenant-rights nonprofit",
+            "audience": "program director",
+            "stakes": "grant focus and case load",
+            "format": "predict_reveal",
+            "requiredBeat": "renters is too broad; eviction court window is sharper"
+          },
+          "scenario": "Sohail predicted a renters hotline would focus the nonprofit. At 11:06 a.m. in the intake room, the call log says otherwise: mold, leases, rent hikes, senior housing, court summons. A volunteer points to a mother whose hearing is nine days away. The broad field is swallowing the urgent one. Sohail must decide whether next month's grant serves renters in general or families with court dates inside fourteen days.",
+          "whatToDo": "Choose the urgent field and design intake, partners, and scripts around it. Keep other renter problems in referral paths until the core work has enough force.",
+          "whyItMatters": "The chosen field changes what speed means. A family with a court date needs a different system than a caller with a broad lease question."
+        },
+        {
+          "exampleId": "ch03-ex05-maritza-turns-the-midnight-callers-into-the-",
+          "title": "Maritza turns the midnight callers into the audience",
+          "tags": [
+            "radio",
+            "campus",
+            "before_after"
+          ],
+          "planSpec": {
+            "domain": "college radio",
+            "audience": "station manager",
+            "stakes": "audience relevance",
+            "format": "before_after",
+            "requiredBeat": "old broad campus field gives way to late-night audience"
+          },
+          "scenario": "At 12:17 a.m., Maritza watches the studio phone blink during a live call-in about lab shifts and bus rides. The old schedule tried to serve the whole campus and drew silence. She moves the strongest talk blocks after eleven, cuts three sleepy afternoon shows, and names the field: students awake when campus is closed. By October, the message board fills before the opening song ends.",
+          "whatToDo": "Let the audience that already responds define the field, then change the schedule enough that the choice can be felt.",
+          "whyItMatters": "The station did not need broader appeal. It needed a field with a real habit and a reason to listen at a specific hour."
+        },
+        {
+          "exampleId": "ch03-ex06-yuki-weighs-tourist-praise-against-ramen-sho",
+          "title": "Yuki weighs tourist praise against ramen-shop orders",
+          "tags": [
+            "food",
+            "market",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "specialty food stall",
+            "audience": "maker",
+            "stakes": "channel selection",
+            "format": "scene",
+            "requiredBeat": "tourist retail loses to small kitchens"
+          },
+          "scenario": "Yuki lines up chili-oil jars at 9:44 a.m. under the farmers market tent. Tourists keep lifting the jars, praising the red label, and setting them back. Then the ramen shop owner from Halsey Street arrives with an empty crate and asks for twelve by Friday. Rain ticks on the canopy. Yuki can keep tuning the stall for weekend browsers or choose small kitchens as the field.",
+          "whatToDo": "Treat the reorder as evidence of a better field. Build pricing, packaging, and delivery for small kitchens before spending another month chasing compliments from browsers.",
+          "whyItMatters": "Praise is not the same as a field. The ramen owner shows a channel where the product solves a repeated problem and can build a position."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch03-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch03-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch03-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch03-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch03-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch03-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch03-card-02",
+          "front": "A team says every priority matters equally. How do you test whether where to play is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is field selection. You learn to choose the customer, channel, place, occasion, or price tier where advantage can actually grow.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write the customer, channel, place, and occasion you are choosing for one active plan. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "A field choice is not a geography lesson. It is the ground where the strategy will spend force.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "The trap is treating the old field as fate. It is often just habit with a map attached.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "The refusal is where the field becomes a choice.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch04",
+      "number": 4,
+      "title": "How to Win",
+      "readingTimeMinutes": 14,
+      "hook": "Thayer can copy every rival feature and still give customers no reason to choose him.",
+      "counterintuition": "Most teams assume matching competitors closes the gap. It can trap them in the rival's game. How to win means choosing the basis on which customers will prefer you. Instead, the team must choose the value basis it can own and prove.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "A how-to-win choice names the value customers will choose, then aligns the offer so preference is earned on your terms, not the rival's.",
+      "breakdown": {
+        "fastRead": "Thayer runs a finger down a competitor checklist at 10:03 p.m. in a lab lit by one desk lamp. His prototype now matches eight features. The customer quote on the wall still says setup takes too long.\n\nWinning is not matching the rival point for point. It is giving the chosen customer a reason to prefer you.\n\nThe question is not what can we copy. The question is what basis of choice can we own.\n\nCopying can close a visible gap. It cannot, by itself, create preference.",
+        "deepRead": "Luzia sits in a salon break room with two price cards. The chain down the street is cheaper and faster. Her stylists cannot win that contest. Then she reads the reviews: clients come back because color corrections feel calm, careful, and shame-free. The way to win is not speed. It is rescue work people trust.\n\nHow to win is the value equation. It says why the chosen customer will pick this offer over the next easiest option. Price can be the answer. Speed can be the answer. Trust, taste, fit, access, proof, and low hassle can also be the answer.\n\nPicture Yehuda at a tutoring table with two parent emails. One asks for higher scores. One says her son cries before math. Competing on score guarantees puts him against bigger centers. Competing on low-fear math help for anxious fifth graders gives him a different basis for preference.\n\nThe limit is wishful difference. A value claim has to matter to the customer and be backed by what the team can actually do.\n\nA gym owner faces the same choice when a budget chain opens across town. She can chase lower monthly fees and lose. Or she can win with small strength classes for women returning after injury, backed by careful intake and coaches who remember limits. The second path is narrower, but it gives the customer a reason to choose that price and that room.",
+        "fullRead": "Belen opens a catering quote at 6:26 a.m. beside a hotel kitchen printer that keeps spitting breakfast tickets. Three larger caterers can beat her on price, menu range, and glossy photos. Her first instinct is to add more menu pages. Then the event planner calls about a board breakfast where the CEO has celiac disease and the last caterer got it wrong. Belen hears the game change.\n\nHow to win asks why the chosen customer should prefer you. Not why you are good in general. Not why you work hard. Why this customer, in this field, facing these alternatives, should pick your offer. Belen cannot out-menu the big firms. She can own allergy-safe executive breakfasts with labeled trays, separate prep, and a calm phone call the night before. That is a basis of choice.\n\nCrispin gets the opposite lesson at a bike shop. He tries to beat the online warehouse by stocking every accessory it carries. The pegboard gets crowded and the margin gets worse. Then a courier brings in a cracked wheel at 4:40 p.m. and asks if anyone can get him riding before dinner. The shop's edge is not breadth. It is same-day repair for riders whose bike is their income. Once Crispin chooses that, inventory shrinks and the repair bench grows.\n\nFarida sees the personal version with a tutoring flier. Her draft says experienced, patient, customized. Every tutor says that. She changes it to first-generation college essays for students whose parents cannot edit in English, with two Sunday family calls included. The offer now carries a reason to choose.\n\nA value equation can be wrong. Customers may not care, or a rival may copy it fast, or the team may lack the skills to deliver. That is why the claim must be tested in real choices, not admired in a slide.\n\nWhen the plan starts with feature parity, stop. Ask which comparison you are accepting without noticing. Then ask what the customer would gladly choose if you stopped fighting on the rival's terms.\n\nThe basis of choice must reach all the way into the offer. If Belen claims allergy-safe breakfasts, she needs vendor checks, separate tongs, labeled trays, staff training, and a calm way to handle last-minute changes. Without those parts, the value equation is only a claim. Customers may try it once and leave with a better story about why not to trust her.\n\nA team should also ask which rival comparison it is accepting. The bike shop that copies an online warehouse accepts breadth as the field of battle. That is convenient for the warehouse. The tutoring offer that promises score gains accepts the big center's advertising frame. A sharper strategy changes the question customers use to choose.\n\nDo not confuse difference with advantage. A strange feature, a quirky tone, or a niche claim can make an offer stand out and still fail to matter. Advantage begins when the difference solves a real problem for the chosen customer and the team can deliver it better than the alternatives."
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01-thayer-covers-the-competitor-grid-with-a-cus",
+          "title": "Thayer covers the competitor grid with a customer quote",
+          "tags": [
+            "product",
+            "features",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "medical device startup",
+            "audience": "product lead",
+            "stakes": "feature roadmap",
+            "format": "decision_point",
+            "requiredBeat": "stop matching rival features and choose setup ease"
+          },
+          "scenario": "Thayer holds a blue marker at 10:03 p.m. in the medical device lab, the competitor grid taped beside a quote from a nurse: setup takes too long. His prototype now matches eight rival features, and the ninth is on tomorrow's sprint list. The quote keeps pulling his eyes off the grid. He can chase feature parity for another month, or he can make five-minute setup the basis of choice.",
+          "whatToDo": "Stop adding rival checkmarks. Rewrite the roadmap around the customer reason to prefer the device, then cut features that slow that reason down.",
+          "whyItMatters": "The grid measures resemblance, not preference. Thayer wins only if the nurse chooses his device for a reason the rival has not made easy."
+        },
+        {
+          "exampleId": "ch04-ex02-luzia-reads-the-color-correction-reviews-in-",
+          "title": "Luzia reads the color-correction reviews in the break room",
+          "tags": [
+            "salon",
+            "reviews",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "hair salon",
+            "audience": "owner",
+            "stakes": "positioning against chain",
+            "format": "postmortem",
+            "requiredBeat": "reviews reveal trust over speed"
+          },
+          "scenario": "Luzia sits in the salon break room at 8:51 p.m., eating almonds from a paper towel while the chain salon coupon lies open on her phone. She spent two months trying to cut appointment times. The reviews tell another story: fixed my orange roots, did not make me feel stupid, stayed late before the wedding. She underlines shame-free in the printout and sees the lost weeks clearly.",
+          "whatToDo": "Build the salon around trusted color rescue, not faster generic cuts. Train scripts, booking, and pricing to support that promise.",
+          "whyItMatters": "The chain owns cheap speed. Luzia has evidence that clients choose her when the risk feels personal and trust matters more than minutes."
+        },
+        {
+          "exampleId": "ch04-ex03-belen-hears-the-allergy-mistake-in-the-plann",
+          "title": "Belen hears the allergy mistake in the planner's voice",
+          "tags": [
+            "catering",
+            "dialogue",
+            "edge"
+          ],
+          "planSpec": {
+            "domain": "executive catering",
+            "audience": "small caterer",
+            "stakes": "customer preference",
+            "format": "dialogue",
+            "requiredBeat": "allergy-safe breakfast becomes basis of choice"
+          },
+          "scenario": "Belen stands by the hotel kitchen printer at 6:26 a.m. as breakfast tickets chatter onto the floor. \"The last caterer said gluten-free and used the same tongs,\" the event planner says on speaker. Belen's old quote lists six pastry options and three juices. Her hand rests on the menu pages. She must decide whether to sell variety or sell an allergy-safe breakfast the planner can trust.",
+          "whatToDo": "Answer with the safety system, not more menu range: separate prep, labeled trays, and a confirmation call the night before. Price the offer around that promise.",
+          "whyItMatters": "The planner is not shopping for pastries first. She is buying relief from a repeat failure. Belen's edge has to match the anxiety that decides the order."
+        },
+        {
+          "exampleId": "ch04-ex04-crispin-watches-the-courier-choose-the-repai",
+          "title": "Crispin watches the courier choose the repair bench",
+          "tags": [
+            "bike",
+            "retail",
+            "reveal"
+          ],
+          "planSpec": {
+            "domain": "bike shop",
+            "audience": "shop owner",
+            "stakes": "basis of competition",
+            "format": "predict_reveal",
+            "requiredBeat": "same-day repair beats accessory breadth"
+          },
+          "scenario": "Crispin predicted a fuller accessory wall would pull riders from the online warehouse. At 4:40 p.m., a courier rolls in with a cracked wheel and rain dripping from his helmet. He does not look at the pegboard. He asks, \"Can I work tonight?\" The mechanic glances at the repair queue. Crispin realizes the shop is not being chosen for breadth at all.",
+          "whatToDo": "Move the business toward same-day repair for working riders. Stock parts that support that promise and stop imitating the warehouse wall.",
+          "whyItMatters": "The courier reveals the real comparison. Online breadth cannot get him paid tonight. The shop can win on uptime if it builds around that need."
+        },
+        {
+          "exampleId": "ch04-ex05-yehuda-changes-the-math-promise-after-the-se",
+          "title": "Yehuda changes the math promise after the second tearful email",
+          "tags": [
+            "tutoring",
+            "before_after",
+            "positioning"
+          ],
+          "planSpec": {
+            "domain": "math tutoring",
+            "audience": "solo tutor",
+            "stakes": "parent choice",
+            "format": "before_after",
+            "requiredBeat": "low-fear math beats score guarantee"
+          },
+          "scenario": "At 9:07 p.m., Yehuda rereads two parent emails at his dining table. His old flier promises score gains, just like the big centers. The second email says, My son cries before fractions. Yehuda rewrites the offer for anxious fifth graders: no timed drills for the first month, parent debriefs, slow confidence before speed. Three weeks later, that parent sends two referrals.",
+          "whatToDo": "Compete on the pain the big centers are not solving. Make the low-fear method concrete enough that parents can see how it differs.",
+          "whyItMatters": "Parents do not choose a tutor from effort alone. They choose the offer that matches the struggle in their house better than the alternatives."
+        },
+        {
+          "exampleId": "ch04-ex06-farida-writes-the-family-call-into-the-essay",
+          "title": "Farida writes the family call into the essay package",
+          "tags": [
+            "college",
+            "personal",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "college essay coaching",
+            "audience": "freelance coach",
+            "stakes": "clear offer",
+            "format": "scene",
+            "requiredBeat": "specific first-generation family support creates preference"
+          },
+          "scenario": "Farida sits at 11:42 a.m. in the public library study room with a draft flier that says experienced, patient, customized. Across the table, a student explains that her parents want to help but cannot edit in English. Farida draws a box around two Sunday family calls and a parent-friendly outline. The offer stops sounding like every tutor on the bulletin board.",
+          "whatToDo": "Name the specific buyer problem and build the package around it. Replace broad virtue words with parts of the service that solve that problem.",
+          "whyItMatters": "Experience is not a reason to choose unless the customer can see how it helps their case. The family calls make Farida's value visible."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch04-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch04-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch04-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch04-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch04-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch04-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch04-card-02",
+          "front": "A team says every priority matters equally. How do you test whether how to win is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is defining customer preference. You learn to state why the chosen customer will pick you and what must change to earn that choice.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write the next easiest alternative your chosen customer has and the reason you want them to prefer your offer. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "Winning is not matching the rival point for point.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "The question is not what can we copy. The question is what basis of choice can we own.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "A value equation can be wrong.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch05",
+      "number": 5,
+      "title": "Play to Your Strengths",
+      "readingTimeMinutes": 14,
+      "hook": "Harlan can promise white-glove service, but the call queue knows what the company can really do.",
+      "counterintuition": "Most teams list strengths they admire. Strategy needs capabilities that fit the chosen way to win. A strength that does not support the edge can become expensive pride. Instead, the useful strength is the one that helps the chosen promise survive pressure.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "Capabilities matter when they reinforce the chosen edge, so the hard work is testing which strengths are real, which are missing, and which no longer fit.",
+      "breakdown": {
+        "fastRead": "Harlan listens to hold music at 4:12 p.m. beside the support floor. The strategy says white-glove service. The queue says forty-three calls waiting.\n\nStrength is not what the company praises in itself. Strength is what the chosen way to win requires and the system can deliver again tomorrow.\n\nIf the promise needs a capability the team does not have, the promise is not strategic. It is a future apology.",
+        "deepRead": "Sonal stands in a school kitchen with a farm-to-table menu and two dented steam tables. The district wants fresh lunches. The cooks are skilled, but deliveries arrive late and knives are shared across three prep stations. The capability gap is not passion. It is cold-chain timing, prep space, and purchasing discipline.\n\nPlay to your strengths does not mean do what you already like. It means build the few capabilities that make the chosen edge believable. Sometimes the strength exists. Sometimes it must be built. Sometimes an old strength must lose status because the strategy changed.\n\nPicture Rivka in a pharmacy stockroom. Everyone praises her head pharmacist, who remembers every customer. The chosen edge is same-day chronic refill reliability. One star memory cannot carry that. The system needs refill reminders, supplier checks, and technician handoffs.\n\nThe limit is honesty. A team can love a strength that no longer matters. Strategy asks fit, not nostalgia.\n\nA hotel manager can praise the staff for friendliness, and the praise may be true. If the strategy is fastest check-in for late business travelers, friendliness needs help from mobile keys, clean room status, and a night desk script that solves problems in minutes. The admired trait becomes strategic only when it is joined to the capabilities the promise needs.",
+        "fullRead": "Petrina walks through a fulfillment aisle at 6:08 a.m., touching the blue bins that hold premium gift orders. The new strategy promises custom packaging shipped within twenty-four hours. Marketing loves the phrase. The floor has one label printer, two seasonal temps, and no quality check after ribbon tying. Petrina can see the promise becoming a stack of refunds.\n\nCapabilities are the skills, processes, tools, and habits that let a strategy happen repeatedly. They are not a list of virtues. Friendly culture, smart people, hard work, and good taste are useful only when they connect to the chosen edge. If the edge is custom speed, the system needs fast art approval, stocked materials, clean handoffs, and a check that catches wrong notes before packing.\n\nJovana gets the same lesson in a clinic. The clinic wants to win with warm same-day care for working parents. The doctor is excellent, but the phones open at 9:00, after many parents are already on shift. The needed capability is not more medical skill. It is early triage, text booking, and a nurse protocol that clears simple visits before lunch. The admired strength remains real. It is just not enough.\n\nNakul shows the trap inside personal growth. He wants to build a freelance design practice and lists his strengths: taste, patience, curiosity, craft. The clients who would pay need fast landing pages for small launches. He has to build quoting, templates, revision rules, and delivery rhythm. Taste helps. The business depends on repeatable throughput.\n\nA capability choice has two sides. First, protect what truly supports the edge. Second, stop funding strengths that only feel prestigious. The old excellence may be beautiful and still wrong for the new game.\n\nBefore you praise a strength, ask what promise it helps you keep under pressure. If no customer would notice its absence, it may be a hobby wearing a strategy badge.\n\nCapabilities also have to reinforce one another. A fast quote process without fast material supply creates a new bottleneck. A skilled clinician without early triage leaves working parents stuck on hold. A brilliant designer without revision rules spends taste on endless loops. The system matters because customers experience the chain, not the strongest link in isolation.\n\nThis is where pride can get expensive. Leaders often protect a capability because it built the old reputation. The company may still be good at it. The question is whether it supports the current edge. If it does not, the team has to decide how much status, money, and leadership time it should keep.\n\nBuild capability work into the calendar. Pick one weak link that blocks the promise, assign an owner, and review evidence of improvement every week. A capability that nobody practices, funds, or checks is only a hope with a better label."
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01-harlan-listens-to-forty-three-calls-under-th",
+          "title": "Harlan listens to forty-three calls under the service poster",
+          "tags": [
+            "support",
+            "capability",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "customer support center",
+            "audience": "service director",
+            "stakes": "promise credibility",
+            "format": "decision_point",
+            "requiredBeat": "white-glove claim meets call queue reality"
+          },
+          "scenario": "Harlan stands at 4:12 p.m. under a poster that says white-glove service while the support screen shows forty-three calls waiting. A sales deck on his tablet promises every premium account a named contact. The best agents are already handling escalations, and two new hires are reading scripts. He can approve the promise for Monday's pitch or stop the launch until the support system can carry it.",
+          "whatToDo": "Audit the promise against real support capacity. Delay or narrow the offer until staffing, routing, and account ownership can repeat the service on a bad afternoon.",
+          "whyItMatters": "A capability claim is only true when the floor can deliver it under load. Harlan needs the strategy to fit what the system can actually do."
+        },
+        {
+          "exampleId": "ch05-ex02-sonal-finds-the-farm-menu-blocked-by-steam-t",
+          "title": "Sonal finds the farm menu blocked by steam tables",
+          "tags": [
+            "school",
+            "food",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "school lunch program",
+            "audience": "nutrition director",
+            "stakes": "fresh lunch rollout",
+            "format": "postmortem",
+            "requiredBeat": "passion is not the capability gap"
+          },
+          "scenario": "Sonal stands in the school kitchen at 1:44 p.m., scraping roasted carrots from a dented steam table. The farm-to-table pilot had beautiful posters and cooks who cared. It also had late deliveries, one prep sink, and knives shared between salad and hot lunch. She writes failed because staff resisted, then crosses it out. The staff wanted it. The capability system did not.",
+          "whatToDo": "Map the capabilities the fresh menu requires: delivery timing, prep space, knife stations, and purchasing rules. Build those before judging the cooks.",
+          "whyItMatters": "The wrong postmortem blames attitude and misses the system. Sonal needs to know which capabilities make the chosen lunch promise possible."
+        },
+        {
+          "exampleId": "ch05-ex03-rivka-tells-the-owner-one-pharmacist-is-not-",
+          "title": "Rivka tells the owner one pharmacist is not a system",
+          "tags": [
+            "pharmacy",
+            "dialogue",
+            "systems"
+          ],
+          "planSpec": {
+            "domain": "neighborhood pharmacy",
+            "audience": "owner",
+            "stakes": "refill reliability",
+            "format": "dialogue",
+            "requiredBeat": "one star employee cannot carry same-day refill edge"
+          },
+          "scenario": "Rivka is in the pharmacy stockroom at 7:05 p.m., counting blister packs while the owner praises Tomer at the front counter. \"He remembers everyone,\" the owner says. Rivka points to three refill slips clipped to an empty bin. \"Our promise is same-day chronic refills,\" she says. \"Tomer's memory is a gift, but what happens on his day off?\" The refrigerator hum fills the pause.",
+          "whatToDo": "Turn the admired employee skill into a repeatable system: reminders, stock checks, technician handoffs, and clear backup rules.",
+          "whyItMatters": "A star can hide weakness for a while. The strategy needs a capability that survives vacation, sickness, and the next busy Thursday."
+        },
+        {
+          "exampleId": "ch05-ex04-petrina-sees-ribbon-tying-break-the-custom-s",
+          "title": "Petrina sees ribbon tying break the custom-shipping promise",
+          "tags": [
+            "fulfillment",
+            "reveal",
+            "operations"
+          ],
+          "planSpec": {
+            "domain": "gift fulfillment",
+            "audience": "operations lead",
+            "stakes": "custom shipping edge",
+            "format": "predict_reveal",
+            "requiredBeat": "custom speed requires new operational capabilities"
+          },
+          "scenario": "Petrina predicted the premium gift line could ship custom boxes within twenty-four hours. At 6:08 a.m., she walks the fulfillment aisle and watches one temp hunt for ivory ribbon while another waits for the only label printer. A wrong gift note sits in the discard tray. The promise is not blocked by demand. It is blocked by missing capabilities she can name.",
+          "whatToDo": "List the exact capabilities the promise needs and build the first weak one before selling more volume. Start with materials, label flow, and note checks.",
+          "whyItMatters": "The edge is not custom packaging in a phrase. It is a set of small abilities that must work in order when orders pile up."
+        },
+        {
+          "exampleId": "ch05-ex05-jovana-opens-the-clinic-phones-before-the-fi",
+          "title": "Jovana opens the clinic phones before the first shift change",
+          "tags": [
+            "clinic",
+            "before_after",
+            "care"
+          ],
+          "planSpec": {
+            "domain": "family clinic",
+            "audience": "clinic administrator",
+            "stakes": "same-day care promise",
+            "format": "before_after",
+            "requiredBeat": "early triage supports working parents"
+          },
+          "scenario": "At 8:02 a.m., Jovana watches three missed calls blink on the clinic phone while parents line up at the factory gate across the street. The clinic used to praise its excellent doctor and open phones at nine. After she names working-parent same-day care as the edge, the phones open at seven-thirty, a nurse triages simple cases, and the first text confirmations go out before shift change.",
+          "whatToDo": "Build the capabilities around the chosen parent need, not around the clinic's old pride. Early phones and triage make the promise real.",
+          "whyItMatters": "Medical skill still matters, but the chosen edge depends on access at the hour parents can use it. The capability must match the promise."
+        },
+        {
+          "exampleId": "ch05-ex06-nakul-times-the-landing-page-handoff-at-the-",
+          "title": "Nakul times the landing-page handoff at the laundromat",
+          "tags": [
+            "freelance",
+            "personal",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "freelance design",
+            "audience": "solo designer",
+            "stakes": "capability focus",
+            "format": "scene",
+            "requiredBeat": "taste alone does not deliver fast launch pages"
+          },
+          "scenario": "Nakul sits in a laundromat at 9:36 p.m. with a client text asking if the landing page can go live by Friday. His notebook lists strengths: taste, patience, curiosity. The washer thumps behind him. None of those words tells him how to quote, collect copy, limit revisions, or hand off files. He draws four boxes across the page and starts building the delivery system.",
+          "whatToDo": "Convert broad strengths into the few capabilities the offer needs: quote, copy intake, revision limit, and launch handoff. Practice those until delivery is repeatable.",
+          "whyItMatters": "Taste helps Nakul win only when clients receive the page on time. The real strength is the system that turns taste into a kept promise."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch05-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch05-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch05-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch05-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch05-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch05-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-card-02",
+          "front": "A team says every priority matters equally. How do you test whether play to your strengths is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is capability fit. You learn to test strengths against the chosen edge and build the few missing abilities that matter most.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write one promised edge, the three capabilities it requires, and the weakest capability you can improve this week. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "Strength is not what the company praises in itself.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "If the promise needs a capability the team does not have, the promise is not strategic.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "Before you praise a strength, ask what promise it helps you keep under pressure.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch06",
+      "number": 6,
+      "title": "Manage What Matters",
+      "readingTimeMinutes": 14,
+      "hook": "Perla's dashboard is green at 9:05 a.m., while the strategy is slipping in aisle seven.",
+      "counterintuition": "Most teams think management systems are neutral trackers. They are not. Measures, reviews, and rewards teach people what the real strategy is, even when slides say something else. Instead, the system quietly teaches the real strategy through what it counts and praises.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "Management systems make strategy real only when measures, reviews, and rewards push people toward the chosen field and edge every week.",
+      "breakdown": {
+        "fastRead": "Perla taps a green dashboard at 9:05 a.m. in the grocery office. Aisle seven is out of the local items the strategy says matter most. The report still says the store is healthy.\n\nA measure is a teacher. It tells people what to protect when the day gets crowded.\n\nIf the dashboard rewards the old game, people will play the old game with discipline.\n\nPerla does not need a prettier report. She needs a report that protects the promise customers were told to expect.",
+        "deepRead": "Simeon sits through a Tuesday review where every manager reads last week's activity list. The room is tidy. The strategy is not. Nobody asks why the chosen small-business segment is missing from the pipeline. The ritual has cadence without consequence.\n\nManage what matters means building systems that reinforce the choices. Measures should track the result the strategy needs. Review meetings should surface evidence and conflict. Rewards should honor behavior that supports the edge, not just visible busyness.\n\nPicture Dunja at a physical therapy clinic. The clinic says it wins by helping older patients keep independence. The staff bonus still rewards visits per hour. Therapists learn to shorten conversations and fill slots. The system is teaching the opposite lesson.\n\nThe limit is overload. Tracking everything feels responsible, but it makes no signal strong. A few sharp measures beat a wall of polite numbers.\n\nA hotel front desk can say it values calm guest recovery, then score clerks only on average transaction time. Clerks will learn to move the line, even when one angry guest needs five extra minutes. The measure is not neutral. It tells the clerk which risk to take when the lobby is full.\n\nA review should create a conversation the strategy needs. What moved? What stalled? What evidence changed our view? What will we do before the next review? Without those questions, the meeting becomes a recital of activity.",
+        "fullRead": "Brice opens the Monday sales packet at 7:58 a.m. and sees every region ranked by total calls. The strategy says the company is shifting toward complex municipal accounts. Total calls rewards quick small-business check-ins. By lunch, the reps will do exactly what the packet praises.\n\nManagement systems are the routines that make behavior repeat. Scorecards, review calendars, bonus rules, promotion stories, exception approvals, and even meeting agendas all teach the organization what matters. If those systems point at the old game, the new strategy will lose quietly.\n\nKatarzyna sees it at a warehouse. The company wants to win with reliable two-hour delivery for hospital supplies. Supervisors still celebrate total boxes picked. Workers race through easy orders while urgent hospital totes wait for a checker. Nobody is lazy. The system is precise and wrong. She changes the first board of the day to on-time hospital totes, missed reasons, and fixes due by noon. The floor starts solving the chosen problem.\n\nRyo gets a personal version with a habit tracker. He wants deeper client work, but his tracker rewards inbox zero, ten tiny tasks, and daily posts. He feels productive and keeps dodging the proposal that would change his business. The tracker is not neutral. It is paying him in check marks for the wrong game. He cuts it to two measures: proposal hours and client follow-up quality.\n\nGood management does not mean more control. It means clear reinforcement. The system should make the desired behavior easier to see, harder to ignore, and more likely to be repeated.\n\nA warning belongs here. Measures can distort work if they get too crude. The answer is not to abandon measures. It is to review them in conversation with real examples, so the number never replaces judgment.\n\nLook at what gets counted, reviewed, and praised. That is the strategy people will believe.\n\nA good management system has a small number of strong signals. The first signal shows whether the chosen customer or field is being served. The second shows whether the edge is improving. The third shows whether the needed capability is getting stronger. More numbers can sit behind those, but they should not crowd the front of the room.\n\nRewards deserve the same scrutiny. A company can say it wants careful consultative sales and still promote the rep who closes quick mismatched deals. A school can say it wants student confidence and still praise only test speed. A family can say it wants calmer mornings and still reward the person who finds every tiny mistake before breakfast. Praise is a management system too.\n\nThe fix starts with one meeting. Put the chosen result at the top. Bring one real case where the system helped and one where it hurt. Change one measure, one agenda item, or one reward before the next meeting. Small system edits compound because they change what people prepare for."
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01-perla-taps-the-green-dashboard-while-aisle-s",
+          "title": "Perla taps the green dashboard while aisle seven is empty",
+          "tags": [
+            "grocery",
+            "dashboard",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "regional grocery store",
+            "audience": "store manager",
+            "stakes": "local product strategy",
+            "format": "decision_point",
+            "requiredBeat": "green measures reward wrong behavior"
+          },
+          "scenario": "Perla taps the green dashboard at 9:05 a.m. in the grocery office while a stock clerk radios from aisle seven: the local honey shelf is empty again. The strategy says win weekend shoppers with local items. The dashboard rewards total shelf fill, and canned soup is perfect. She can praise the green report before the district call, or she can change the first measure to local-item availability.",
+          "whatToDo": "Change the measure that leads the review. Track the shelf condition tied to the chosen strategy before celebrating broad operational health.",
+          "whyItMatters": "The store is doing what the dashboard teaches. If Perla keeps rewarding total fill, the local promise will lose to easier shelves every morning."
+        },
+        {
+          "exampleId": "ch06-ex02-simeon-circles-the-missing-segment-after-the",
+          "title": "Simeon circles the missing segment after the review",
+          "tags": [
+            "sales",
+            "postmortem",
+            "meeting"
+          ],
+          "planSpec": {
+            "domain": "B2B sales review",
+            "audience": "sales manager",
+            "stakes": "pipeline quality",
+            "format": "postmortem",
+            "requiredBeat": "review ritual misses chosen segment"
+          },
+          "scenario": "Simeon sits alone at 3:38 p.m. after the Tuesday review, the conference room still smelling of dry-erase marker. Every manager reported calls, demos, and proposals. Nobody named the small-business segment the strategy depends on. He circles the blank column on the packet. The meeting was orderly, and that is the problem. It reviewed activity without asking whether the right customers moved.",
+          "whatToDo": "Redesign the review around the chosen segment: evidence, blockers, next action, and consequence. Keep activity counts only when they explain that movement.",
+          "whyItMatters": "A review can be disciplined and still protect drift. Simeon needs a meeting that makes the strategy visible enough to argue with."
+        },
+        {
+          "exampleId": "ch06-ex03-dunja-asks-why-the-bonus-rewards-shorter-vis",
+          "title": "Dunja asks why the bonus rewards shorter visits",
+          "tags": [
+            "clinic",
+            "dialogue",
+            "incentive"
+          ],
+          "planSpec": {
+            "domain": "physical therapy clinic",
+            "audience": "clinic director",
+            "stakes": "patient outcomes and incentives",
+            "format": "dialogue",
+            "requiredBeat": "visit-count bonus fights independence goal"
+          },
+          "scenario": "Dunja stands by the therapy bands at 6:14 p.m. while the clinic director points to the bonus sheet. \"Visits per hour keeps us solvent,\" he says. Dunja nods toward Mrs. Bell practicing stairs. \"We said independence for older patients is the win. Why are we paying therapists to shorten the talk that teaches home safety?\" The rubber bands snap softly in the next room.",
+          "whatToDo": "Move part of the reward to independence milestones and safe home routines, then review cases where visit speed hurt the chosen outcome.",
+          "whyItMatters": "People follow the pay signal when the day is hard. If the signal rewards speed alone, the clinic will train away from its own promise."
+        },
+        {
+          "exampleId": "ch06-ex04-katarzyna-changes-the-first-warehouse-board-",
+          "title": "Katarzyna changes the first warehouse board before the shift bell",
+          "tags": [
+            "warehouse",
+            "reveal",
+            "metrics"
+          ],
+          "planSpec": {
+            "domain": "medical supply warehouse",
+            "audience": "operations lead",
+            "stakes": "hospital delivery reliability",
+            "format": "predict_reveal",
+            "requiredBeat": "total boxes picked hides hospital misses"
+          },
+          "scenario": "Katarzyna predicted total boxes picked would keep the warehouse sharp. At 6:47 a.m., the shift board shows a record day, but three hospital totes missed the two-hour window. Easy clinic supplies made the count look heroic. The hospital runner is waiting by dock two with his arms crossed. Katarzyna must decide which number owns the first board before the shift bell.",
+          "whatToDo": "Put hospital on-time totes, miss reasons, and noon fixes on the first board. Let total boxes become a support number, not the headline.",
+          "whyItMatters": "The headline number tells workers what to save when pressure hits. Katarzyna needs the board to protect the chosen promise, not the easiest count."
+        },
+        {
+          "exampleId": "ch06-ex05-ryo-deletes-seven-check-boxes-from-his-habit",
+          "title": "Ryo deletes seven check boxes from his habit tracker",
+          "tags": [
+            "personal",
+            "before_after",
+            "routine"
+          ],
+          "planSpec": {
+            "domain": "freelance work system",
+            "audience": "solo consultant",
+            "stakes": "attention and reinforcement",
+            "format": "before_after",
+            "requiredBeat": "tracker rewards wrong work"
+          },
+          "scenario": "At 10:21 p.m., Ryo colors in seven boxes on his habit tracker and still has not opened the proposal that could change his month. The old tracker rewards inbox zero, posts, invoices, and tiny tasks. After one blunt Friday review, he cuts it to proposal hours and client follow-up quality. The first week feels less busy. The second week produces the proposal.",
+          "whatToDo": "Trim the tracker to the behaviors that serve the chosen work. Remove check marks that make small tasks feel like strategic progress.",
+          "whyItMatters": "A personal system teaches the same way a company system does. Ryo was not lacking discipline; he was disciplined around the wrong rewards."
+        },
+        {
+          "exampleId": "ch06-ex06-marnix-host-stand",
+          "title": "Marnix rings the brass bell for the allergy save",
+          "tags": [
+            "restaurant",
+            "praise",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "restaurant management",
+            "audience": "owner",
+            "stakes": "service standard",
+            "format": "scene",
+            "requiredBeat": "praise signal changes behavior"
+          },
+          "scenario": "At 5:43 p.m., Marnix stands at the host stand with a brass bell in his palm. The bistro says it wins by turning first-time guests into regulars, but the nightly shout-out always goes to fastest table turns. Tonight he reads one comment card about a server remembering a nut allergy, rings the bell once, and names that care in front of the staff. The servers look up from folding napkins.",
+          "whatToDo": "Praise the behavior that proves the chosen edge, and do it in the room where others can copy it. Keep speed visible, but stop making it the only story.",
+          "whyItMatters": "People repeat what gets status. Marnix changes the system by changing which moment earns public attention before the doors open."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch06-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch06-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch06-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch06-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch06-card-02",
+          "front": "A team says every priority matters equally. How do you test whether manage what matters is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is reinforcement design. You learn to make measures, reviews, and rewards teach the strategy people should practice.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write the main measure in one current plan, the behavior it rewards, and whether that behavior serves the chosen strategy. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "A measure is a teacher. It tells people what to protect when the day gets crowded.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "If the dashboard rewards the old game, people will play the old game with discipline.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "Look at what gets counted, reviewed, and praised. That is the strategy people will believe.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch07",
+      "number": 7,
+      "title": "Think Through Strategy",
+      "readingTimeMinutes": 14,
+      "hook": "Noam has sixty pages of research and an options column with three lonely words in it.",
+      "counterintuition": "Most teams mistake more analysis for better strategy. Analysis helps only when it tests real options and changes what the team might choose. Instead, the work gets sharper when evidence has real options to test.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "Strategic thinking improves when options and evidence work together, because facts gain force only when they pressure a real choice.",
+      "breakdown": {
+        "fastRead": "Noam scrolls through sixty pages at 11:19 p.m. in a hotel business center. Market data, interviews, and cost tables fill the deck. The options slide has three lonely words: expand, partner, wait.\n\nAnalysis is not the work by itself. It needs live options to judge.\n\nIf evidence never has to change a choice, the room may be studying instead of thinking.\n\nNoam does not need a longer appendix. He needs a fork in the road that makes the appendix useful.",
+        "deepRead": "Shaila runs a campus food pantry survey and feels prepared until a volunteer asks which three service models are still alive. She has hunger data, class schedules, bus routes, and donor notes. She does not have options. The question changes the meeting.\n\nThinking through strategy is a loop. Generate possibilities, ask what would need to be true, test the most important conditions, then revise the options. The loop should narrow or improve the choices. If it only creates more binders, it is avoiding the cut.\n\nPicture Judson at a repair shop counter with two estimates. One path adds mobile service. One doubles down on faster in-shop turnaround. A third partners with a tow company. Now the customer data can do work. It can show which option fits actual breakdown patterns.\n\nThe limit is false precision. A spreadsheet can make a weak option look mature. Keep asking what decision the evidence changes.\n\nA product team can spend weeks studying churn and still avoid the strategic question. Are they building deeper onboarding for new users, cutting weak features for power users, or changing pricing for small teams? Once those options are named, the churn data starts to sort. Some facts matter more. Some facts stop mattering. The work gets lighter because the choice set has shape.\n\nIteration should leave marks. After each pass, one option should look stronger, weaker, merged, or dead. If the option list never changes, the process is not learning.",
+        "fullRead": "Vikram tapes five index cards to a conference-room wall at 8:33 a.m. Each card has a possible path for the regional bank: serve medical practices, specialize in farm loans, build digital tools for freelancers, buy a small competitor, or stay broad and cut costs. For the first time all week, the data has something to do.\n\nGood strategy thinking is not a march from facts to answer. It is a conversation between options and evidence. Options without evidence become guessing. Evidence without options becomes display. The useful loop keeps making the choice set better.\n\nAlthea sees the failure mode in a city arts grant. Her committee has a thick folder on audience decline, venue costs, and school partnerships. The folder is impressive. When she asks what options the folder is testing, the room gets quiet. More research will not fix that silence. The committee needs possible strategies: school residencies, touring micro-stages, neighborhood festivals, or fewer grants with deeper support. Then the evidence can start sorting.\n\nRaquel gets the same lesson in her career notebook. She has salary charts, program rankings, alumni interviews, and skill lists. The pages keep growing because they never have to choose among paths. She writes three live options on one page and marks the condition that would make each one work. The research pile stops being a hiding place and starts becoming a test bench.\n\nA strong loop has movement. It creates options, exposes what must be true, tests the load-bearing parts, and then changes the options. Sometimes an option dies. Sometimes two merge. Sometimes the best evidence says the original aim was wrong. That is progress.\n\nWhen a strategy process feels smart but stuck, ask what options are alive and what evidence could change them by Friday. If nobody can answer, the process needs a fork in the road.\n\nThe first option set does not need to be perfect. It needs to be real enough to invite criticism. A rough option with a clear logic is better than a polished research deck with no path inside it. Once the option exists, people can ask what would have to be true, where it is weak, and what test would teach the most.\n\nThis style of thinking also changes meetings. Instead of asking whether everyone likes the recommendation, the leader asks which option the evidence has improved and which condition still worries the room. The conversation becomes less personal. People are not defending status. They are improving the choice set.\n\nBe careful with options that differ only in wording. Serve premium customers, focus on high-value customers, and pursue affluent buyers may be one option wearing three jackets. Real options make different choices. They require different capabilities, carry different risks, and would change the next test."
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01-noam-finds-the-empty-options-slide-at-the-bu",
+          "title": "Noam finds the empty options slide at the business center",
+          "tags": [
+            "bank",
+            "analysis",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "regional bank strategy",
+            "audience": "strategy lead",
+            "stakes": "option generation",
+            "format": "decision_point",
+            "requiredBeat": "analysis has no real options"
+          },
+          "scenario": "Noam scrolls through sixty pages at 11:19 p.m. in the hotel business center, the printer warming behind him. Market data, branch maps, and customer interviews fill the deck. Slide fifty-eight says options and lists expand, partner, wait. The words look like labels, not choices. He can send the deck before breakfast, or he can pull the team back to write real paths the evidence can test.",
+          "whatToDo": "Pause the deck and create a small set of real options with different choices, costs, and success conditions. Then attach the evidence to those options.",
+          "whyItMatters": "The research cannot think for the team. Noam needs options sharp enough that the facts can strengthen, weaken, or kill them."
+        },
+        {
+          "exampleId": "ch07-ex02-shaila-labels-the-pantry-binders-after-the-v",
+          "title": "Shaila labels the pantry binders after the volunteer question",
+          "tags": [
+            "campus",
+            "food",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "campus food pantry",
+            "audience": "student organizer",
+            "stakes": "service model choice",
+            "format": "postmortem",
+            "requiredBeat": "survey data lacks service models"
+          },
+          "scenario": "Shaila sits on the pantry floor at 7:46 p.m., labeling binders of survey data while canned beans line the wall. A volunteer had asked which service models were still possible: pop-up tables, dorm delivery, or grocery cards. Shaila had no answer. She had class schedules, bus routes, and hunger data, but no live options. The binders suddenly look less like preparation and more like delay.",
+          "whatToDo": "Turn the data into tests for two or three service models. Decide what each model would need to be true, then use the next survey pass to pressure those conditions.",
+          "whyItMatters": "The pantry does not need more information in general. It needs information aimed at a choice the team might actually make."
+        },
+        {
+          "exampleId": "ch07-ex03-vikram-makes-the-five-bank-cards-argue-with-",
+          "title": "Vikram makes the five bank cards argue with the data",
+          "tags": [
+            "banking",
+            "dialogue",
+            "options"
+          ],
+          "planSpec": {
+            "domain": "bank planning workshop",
+            "audience": "facilitator",
+            "stakes": "choice set quality",
+            "format": "dialogue",
+            "requiredBeat": "options and evidence interact"
+          },
+          "scenario": "Vikram tapes five index cards to the conference-room wall at 8:33 a.m. \"Medical practices, farm loans, freelancers, acquisition, broad cost cut,\" he says. The CFO points to the freelancer card. \"Our branch staff cannot sell that.\" Vikram hands her a marker. \"Good. Write the condition that would have to change.\" For the first time, the data tables on the screen have opponents.",
+          "whatToDo": "Put the options where the room can test them. For each objection, write the condition that would have to hold instead of letting the objection stay vague.",
+          "whyItMatters": "Options make evidence useful by giving it something to challenge. Vikram turns disagreement into a sharper test of the strategy paths."
+        },
+        {
+          "exampleId": "ch07-ex04-althea-watches-the-arts-grant-folder-fail-to",
+          "title": "Althea watches the arts grant folder fail to choose",
+          "tags": [
+            "arts",
+            "grant",
+            "reveal"
+          ],
+          "planSpec": {
+            "domain": "city arts grant",
+            "audience": "committee chair",
+            "stakes": "funding strategy",
+            "format": "predict_reveal",
+            "requiredBeat": "thick evidence folder has no tested paths"
+          },
+          "scenario": "Althea predicted the thick arts-grant folder would settle the debate. At 2:24 p.m., she opens it in city hall: audience decline, venue costs, school contacts, donor notes. Then a sculptor asks which funding model the evidence supports. The room goes quiet except for a page sliding off the table. The folder is full. The choice set is empty.",
+          "whatToDo": "Name the possible funding models first, then use the evidence to compare them. Stop treating the folder as progress until it changes an option.",
+          "whyItMatters": "Evidence cannot choose unless the room gives it options to work on. Althea needs the folder to test paths, not impress the committee."
+        },
+        {
+          "exampleId": "ch07-ex05-judson-compares-mobile-repairs-with-faster-s",
+          "title": "Judson compares mobile repairs with faster shop turnaround",
+          "tags": [
+            "repair",
+            "before_after",
+            "test"
+          ],
+          "planSpec": {
+            "domain": "appliance repair shop",
+            "audience": "owner",
+            "stakes": "service model decision",
+            "format": "before_after",
+            "requiredBeat": "options make customer data useful"
+          },
+          "scenario": "At 4:18 p.m., Judson used to stare at service tickets and complain that customers were unpredictable. Then he wrote three options on butcher paper: mobile same-day, faster in-shop turnaround, tow-company partner. The same ticket pile changed. Breakdowns clustered by neighborhood, not appliance age. Two weeks later he tested mobile calls in one zip code instead of guessing across the whole shop.",
+          "whatToDo": "Frame the live options, then read the data against them. Let the pattern suggest a test that narrows the choice.",
+          "whyItMatters": "The tickets were always there. They became strategic only after Judson gave them a fork in the road to judge."
+        },
+        {
+          "exampleId": "ch07-ex06-raquel-trims-her-career-notebook-to-three-li",
+          "title": "Raquel trims her career notebook to three live paths",
+          "tags": [
+            "career",
+            "personal",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "career planning",
+            "audience": "professional",
+            "stakes": "decision progress",
+            "format": "scene",
+            "requiredBeat": "research pile becomes option test"
+          },
+          "scenario": "Raquel sits at 6:02 a.m. in a quiet train car with salary charts, alumni notes, and program rankings spread across her tablet. The research has grown for months. Her stop is twelve minutes away. She opens a blank note and writes three paths: stay and specialize, switch firms, apply to a part-time program. Under each, she adds one condition that would make it worth doing. The pile finally has a job.",
+          "whatToDo": "Reduce the research to live paths and conditions. Use the next call or search to test one condition, not to add more general material.",
+          "whyItMatters": "Personal research can become a hiding place. Raquel makes it useful by forcing it to pressure choices she might actually make."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch07-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch07-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch07-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch07-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-card-02",
+          "front": "A team says every priority matters equally. How do you test whether think through strategy is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is option-driven analysis. You learn to make evidence test live possibilities so the choice set gets sharper.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write two real options for a current decision and the one piece of evidence that could change which option leads. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "Analysis is not the work by itself. It needs live options to judge.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "Options without evidence become guessing. Evidence without options becomes display.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "If nobody can answer, the process needs a fork in the road.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    },
+    {
+      "chapterId": "playing-to-win-ch08",
+      "number": 8,
+      "title": "Shorten Your Odds",
+      "readingTimeMinutes": 14,
+      "hook": "Muriel does not need perfect confidence before launch. She needs the three conditions that must hold.",
+      "counterintuition": "Most teams ask whether they feel confident enough. The better question is what would have to be true. Naming and testing the key conditions improves the odds before commitment grows. Instead, the team should expose the few conditions that carry the most risk.",
+      "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+      "keyTakeaway": "You shorten the odds by turning vague uncertainty into conditions, ranking the conditions by consequence, and testing the one that could change the decision fastest.",
+      "breakdown": {
+        "fastRead": "Muriel writes launch? on a whiteboard at 8:48 a.m. while the prototype charger blinks red. The room wants confidence. The charger wants a condition. Will users tolerate a six-hour charge?\n\nUncertainty becomes useful when it has a shape. Name what must be true, then test the riskiest condition first.\n\nYou do not need the fog to lift everywhere. You need one beam on the thing that could sink the plan.",
+        "deepRead": "Tariro stands in a school gym with a new after-care sign and twelve parent questions. The program might work if pickup is safe, snacks are covered, and older students do not crowd the younger ones. Those are not worries to admire. They are conditions to test.\n\nShortening the odds means reverse engineering the win. Start with the desired result. Ask what would have to be true. Ask which condition would hurt most if false. Then run the cheapest honest test.\n\nPicture Pernille at a pharmacy counter considering a home-delivery pilot. She does not survey everyone. She tests the hard condition first: can insulin deliveries stay cold on the longest route in August? A thermometer in a sample box teaches more than a month of confidence talk.\n\nThe limit is courage. A real test might tell you to stop. That is not failure. It is saved time, money, and trust.\n\nA restaurant owner can feel unsure about adding delivery for months. The useful question is smaller. What would have to be true? Food must travel well for twenty minutes. Drivers must arrive during the dinner peak. Packaging must protect fries from steam. The first test can happen with six boxed meals and a timer, not a full launch.\n\nThe order matters. Test the condition that would change the decision most. Easy tests are tempting, but they do little if they avoid the heaviest assumption.",
+        "fullRead": "Solvi holds a clipboard at 5:27 a.m. beside a ferry dock, watching wind push spray over the first row of cars. Her team wants to add a commuter coffee cart on the pier. The idea is charming. The question is not whether everyone likes coffee. The question is what would have to be true for the cart to work in this place.\n\nThree conditions appear fast. Commuters must arrive early enough to stop. The cart must stay upright and stocked in bad weather. The ferry crew must not see it as blocking the loading lane. Each condition can be tested before buying the cart. Count arrivals for three mornings. Set up a taped footprint in the wind. Walk the lane with the crew lead at rush hour. The odds improve because the guess becomes a set of checks.\n\nHuxley sees the same pattern in a software launch. The team wants one more month to feel ready. He asks what must be true. Trial users must invite a teammate in the first week, billing must not break on annual plans, and support must answer setup tickets in under two hours. The team stops debating mood and starts testing conditions. One fails. The launch narrows.\n\nDahlia uses it at home. She is thinking about moving her father into her spare room. The fear is huge until she names conditions: stairs, medication storage, privacy, and the morning commute to dialysis. She tests the stairs with him on Saturday and learns the upstairs room is wrong. Painful information, early, prevents a larger mistake.\n\nA condition list is not a guarantee. Some surprises will stay hidden. But the method changes the kind of uncertainty you carry. Instead of a cloud called risk, you get a short list of load-bearing assumptions and a next test.\n\nWhen a team asks for more confidence, trade the word for a condition. Then put the heaviest condition under pressure while the cost of being wrong is still small.\n\nShortening the odds is not the same as removing risk. It is choosing which risk deserves contact first. A team can still be surprised. A competitor can move, weather can shift, a supplier can fail, or customers can behave oddly after launch. The point is to stop carrying avoidable ignorance about the assumptions already in front of you.\n\nA good condition is written plainly enough that a test can touch it. Customers will love this is too vague. Ten of twenty trial users will invite a teammate in week one is testable. Pickup will be safe is too soft. No child crosses the loading lane during the taped pilot is sharper. Clear conditions make honest learning possible.\n\nThe test should be cheap but real. A survey about whether people like the idea of coffee on a pier is weaker than watching commuters move around a taped cart space in the wind. A family talk about stairs is weaker than walking the stairs with the person who will climb them. Contact beats opinion when the condition is physical, behavioral, or operational.\n\nUse the result with discipline. If the heavy condition fails, change the plan while the cost is small. That change may feel like retreat. It is often the reason the next attempt has better odds."
+      },
+      "examples": [
+        {
+          "exampleId": "ch08-ex01-muriel-circles-the-red-charger-light-before-",
+          "title": "Muriel circles the red charger light before launch review",
+          "tags": [
+            "hardware",
+            "launch",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "consumer hardware launch",
+            "audience": "product manager",
+            "stakes": "launch risk",
+            "format": "decision_point",
+            "requiredBeat": "replace confidence talk with key condition"
+          },
+          "scenario": "Muriel writes launch? on the lab whiteboard at 8:48 a.m. while the prototype charger blinks red beside her laptop. The room says it needs more confidence. The customer interviews are mixed, but one issue keeps returning: six hours to charge. She can ask for another broad research sprint, or she can name the condition that must hold: users will accept overnight charging.",
+          "whatToDo": "Turn the fear into a condition and test that condition first with real users. Do not spend another sprint measuring confidence in general.",
+          "whyItMatters": "The charger light points to the load-bearing assumption. Muriel improves the odds by testing what could sink the launch, not by collecting mood."
+        },
+        {
+          "exampleId": "ch08-ex02-tariro-sorts-parent-questions-on-the-gym-flo",
+          "title": "Tariro sorts parent questions on the gym floor",
+          "tags": [
+            "school",
+            "aftercare",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "school after-care program",
+            "audience": "program lead",
+            "stakes": "pilot design",
+            "format": "postmortem",
+            "requiredBeat": "worries become conditions"
+          },
+          "scenario": "Tariro sits on the gym floor at 7:11 p.m., sorting parent question cards after the after-care meeting. Pickup safety, snack allergies, older kids crowding younger ones, late buses. During the meeting she called them concerns and kept smiling. Now she writes what must be true across the top of the first card. The pile changes from anxiety into a test plan.",
+          "whatToDo": "Translate each major worry into a condition for success, then rank which false condition would do the most damage in week one.",
+          "whyItMatters": "The cards are not objections to soothe. They are early warnings about what the program must prove before the pilot grows."
+        },
+        {
+          "exampleId": "ch08-ex03-solvi-asks-the-ferry-crew-to-walk-the-taped-",
+          "title": "Solvi asks the ferry crew to walk the taped coffee-cart footprint",
+          "tags": [
+            "ferry",
+            "dialogue",
+            "test"
+          ],
+          "planSpec": {
+            "domain": "ferry commuter service",
+            "audience": "operations planner",
+            "stakes": "coffee cart pilot",
+            "format": "dialogue",
+            "requiredBeat": "conditions tested before purchase"
+          },
+          "scenario": "Solvi kneels at 5:27 a.m. on the ferry pier, pressing silver tape to wet concrete where the coffee cart would stand. \"If the line backs up here, we miss loading,\" the crew lead says. Spray dots the clipboard. Solvi points to the taped rectangle. \"Walk the rush with me before I buy anything.\" The first cars are already rolling down the ramp.",
+          "whatToDo": "Test the space and crew condition before buying the cart. Use a cheap physical trial where the real constraint will show itself.",
+          "whyItMatters": "The cart idea depends on pier flow, not just coffee demand. Solvi shortens the odds by testing the condition that could block the whole plan."
+        },
+        {
+          "exampleId": "ch08-ex04-pernille-watches-the-insulin-thermometer-on-",
+          "title": "Pernille watches the insulin thermometer on the longest route",
+          "tags": [
+            "pharmacy",
+            "delivery",
+            "reveal"
+          ],
+          "planSpec": {
+            "domain": "pharmacy delivery pilot",
+            "audience": "pharmacy owner",
+            "stakes": "cold-chain risk",
+            "format": "predict_reveal",
+            "requiredBeat": "longest route tests cold condition"
+          },
+          "scenario": "Pernille predicted customers would decide the delivery pilot. At 2:36 p.m. in August, she is staring at a thermometer inside a sample insulin box after the longest rural route. The reading is still safe by one degree. The driver has sweat through his collar. Customer interest matters, but this condition can kill the service before demand does.",
+          "whatToDo": "Keep testing the cold-chain condition under worse heat and longer delays before expanding the pilot. Put demand surveys second.",
+          "whyItMatters": "The riskiest condition is operational, not emotional. If insulin cannot arrive safely, popularity only makes the failure larger."
+        },
+        {
+          "exampleId": "ch08-ex05-huxley-cuts-the-launch-after-the-teammate-in",
+          "title": "Huxley cuts the launch after the teammate-invite test",
+          "tags": [
+            "software",
+            "before_after",
+            "assumption"
+          ],
+          "planSpec": {
+            "domain": "SaaS product launch",
+            "audience": "growth lead",
+            "stakes": "activation risk",
+            "format": "before_after",
+            "requiredBeat": "teammate invite condition fails and launch narrows"
+          },
+          "scenario": "At 4:09 p.m., Huxley used to ask whether the team felt ready for launch. Then he wrote three conditions on the glass: invite a teammate, annual billing works, support answers setup in two hours. The invite test failed badly. Only four of thirty trial users brought in a teammate. The launch changed from public release to a narrower onboarding experiment.",
+          "whatToDo": "Let the failed condition reshape the plan. Keep testing activation before buying traffic or announcing a broad launch.",
+          "whyItMatters": "The test saved the team from scaling a weak habit. Huxley improved the odds by letting one condition change the commitment."
+        },
+        {
+          "exampleId": "ch08-ex06-dahlia-carries-the-tea-tray-up-the-stairs-wi",
+          "title": "Dahlia carries the tea tray up the stairs with her father",
+          "tags": [
+            "family",
+            "personal",
+            "scene"
+          ],
+          "planSpec": {
+            "domain": "family care decision",
+            "audience": "adult child",
+            "stakes": "move-in plan",
+            "format": "scene",
+            "requiredBeat": "stairs condition changes care plan"
+          },
+          "scenario": "Dahlia carries a tea tray up the narrow stairs at 10:14 a.m. Saturday while her father grips the rail behind her. She has been imagining him in the spare upstairs room after his lease ends. The fear felt too large to touch, so she named conditions: stairs, medication, privacy, dialysis rides. Halfway up, he stops and laughs without breath. The upstairs room is no longer a maybe.",
+          "whatToDo": "Test the physical condition before planning around hope. Move the care plan downstairs or look for another setup while there is still time.",
+          "whyItMatters": "The stair test is painful, but it is cheap truth. Dahlia prevents a bigger failure by checking the condition that daily life would expose anyway."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch08-q01",
+            "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+            "choices": [
+              "Force the slide to name the one choice that decides the rest.",
+              "Add a sentence saying all priorities remain important.",
+              "Delay the review until every leader has edited the slide."
+            ],
+            "correctIndex": 0,
+            "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch08-q02",
+            "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+            "choices": [
+              "Run all three as shorter projects.",
+              "Choose the project that fits the chosen students and let the others wait.",
+              "Ask students to vote without naming the learning target."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q03",
+            "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+            "choices": [
+              "Promise both groups a lighter version.",
+              "Build the feature requested by the louder group.",
+              "Pick the customer group tied to the win and say no to the other request."
+            ],
+            "correctIndex": 2,
+            "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch08-q04",
+            "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+            "choices": [
+              "Change the measure so it tracks the wait that decides the chosen service line.",
+              "Celebrate the green dashboard to keep morale high.",
+              "Add a second dashboard for every department."
+            ],
+            "correctIndex": 0,
+            "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q05",
+            "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+            "choices": [
+              "Rank the activities by how impressive they sound.",
+              "Name the one summer outcome that should lead the schedule.",
+              "Keep all activities and shorten sleep for two weeks."
+            ],
+            "correctIndex": 1,
+            "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch08-q06",
+            "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+            "choices": [
+              "Split the grant into four equal mini-programs.",
+              "Use the grant on the group with the loudest advocate.",
+              "Choose one audience and design the program to win trust there first."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q07",
+            "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+            "choices": [
+              "Choose the habit that reinforces the desired position with customers.",
+              "Try all three and review after staff burn out.",
+              "Let each shift choose its own priority."
+            ],
+            "correctIndex": 0,
+            "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch08-q08",
+            "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+            "choices": [
+              "Collect more survey answers before speaking.",
+              "Write two or three real options and use the evidence to test them.",
+              "Pick the safest option because it has fewer objections."
+            ],
+            "correctIndex": 1,
+            "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q09",
+            "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+            "choices": [
+              "Wait until the full prototype is polished.",
+              "Ask friends which concept sounds more exciting.",
+              "Test the assumption that would kill the concept if it fails."
+            ],
+            "correctIndex": 2,
+            "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch08-card-01",
+          "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+          "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch08-card-02",
+          "front": "A team says every priority matters equally. How do you test whether shorten your odds is real?",
+          "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch08-card-03",
+          "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+          "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch08-card-04",
+          "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+          "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is assumption testing. You learn to turn uncertainty into conditions, rank them by consequence, and test the heaviest one early.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+          },
+          {
+            "context": "health",
+            "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+          },
+          {
+            "context": "personal",
+            "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+          }
+        ],
+        "twentyFourHourChallenge": "Before the next planning conversation, write one decision you are delaying, three things that would have to be true, and the single condition you can test fastest. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+        "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+      },
+      "memorableLines": [
+        {
+          "text": "Uncertainty becomes useful when it has a shape.",
+          "location": "breakdown.fastRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "You do not need the fog to lift everywhere.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        },
+        {
+          "text": "When a team asks for more confidence, trade the word for a condition.",
+          "location": "breakdown.fullRead",
+          "why": "This line carries the practical test in plain language."
+        }
+      ]
+    }
+  ]
+}

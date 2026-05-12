@@ -1,0 +1,277 @@
+{
+  "bookId": "playing-to-win",
+  "title": "Playing to Win",
+  "author": "A.G. Lafley, Roger L. Martin",
+  "promotedAt": "2026-05-12T00:57:35.439Z",
+  "chapterCount": 8,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Suri taps flour from a steel scoop at 5:48 a.m. Tuesday while the deck oven ticks behind her. \"Wholesale keeps us steady,\" she says. \"Custom cakes keep the margin. Breakfast keeps the line out the do…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Avel folds a laminated scorecard beside the coffee urn at 7:32 a.m. in the Maple Street clinic lobby. The first line says serve patients well. Three nurses are asking whether to add walk-in slots, ca…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Walid sets the blood-pressure cuff on the kitchen counter at 6:55 a.m., beside toast crumbs and the salt shaker. His note from last January says be healthier. It has survived untouched for eleven mon…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a winning\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Yuki lines up chili-oil jars at 9:44 a.m. under the farmers market tent. Tourists keep lifting the jars, praising the red label, and setting them back. Then the ramen shop owner from Halsey Street ar…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thayer holds a blue marker at 10:03 p.m. in the medical device lab, the competitor grid taped beside a quote from a nurse: setup takes too long. His prototype now matches eight rival features, and th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Crispin predicted a fuller accessory wall would pull riders from the online warehouse. At 4:40 p.m., a courier rolls in with a cracked wheel and rain dripping from his helmet. He does not look at the…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Farida sits at 11:42 a.m. in the public library study room with a draft flier that says experienced, patient, customized. Across the table, a student explains that her parents want to help but cannot…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"customer a reason to\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Harlan stands at 4:12 p.m. under a poster that says white-glove service while the support screen shows forty-three calls waiting. A sales deck on his tablet promises every premium account a named con…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rivka is in the pharmacy stockroom at 7:05 p.m., counting blister packs while the owner praises Tomer at the front counter. \"He remembers everyone,\" the owner says. Rivka points to three refill slips…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Petrina predicted the premium gift line could ship custom boxes within twenty-four hours. At 6:08 a.m., she walks the fulfillment aisle and watches one temp hunt for ivory ribbon while another waits …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nakul sits in a laundromat at 9:36 p.m. with a client text asking if the landing page can go live by Friday. His notebook lists strengths: taste, patience, curiosity. The washer thumps behind him. No…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Perla taps the green dashboard at 9:05 a.m. in the grocery office while a stock clerk radios from aisle seven: the local honey shelf is empty again. The strategy says win weekend shoppers with local …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:43 p.m., Marnix stands at the host stand with a brass bell in his palm. The bistro says it wins by turning first-time guests into regulars, but the nightly shout-out always goes to fastest table…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is not neutral it\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Noam scrolls through sixty pages at 11:19 p.m. in the hotel business center, the printer warming behind him. Market data, branch maps, and customer interviews fill the deck. Slide fifty-eight says op…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Vikram tapes five index cards to the conference-room wall at 8:33 a.m. \"Medical practices, farm loans, freelancers, acquisition, broad cost cut,\" he says. The CFO points to the freelancer card. \"Our …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Althea predicted the thick arts-grant folder would settle the debate. At 2:24 p.m., she opens it in city hall: audience decline, venue costs, school contacts, donor notes. Then a sculptor asks which …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Raquel sits at 6:02 a.m. in a quiet train car with salary charts, alumni notes, and program rankings spread across her tablet. The research has grown for months. Her stop is twelve minutes away. She …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"needs a fork in\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Muriel writes launch? on the lab whiteboard at 8:48 a.m. while the prototype charger blinks red beside her laptop. The room says it needs more confidence. The customer interviews are mixed, but one i…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Solvi kneels at 5:27 a.m. on the ferry pier, pressing silver tape to wet concrete where the coffee cart would stand. \"If the line backs up here, we miss loading,\" the crew lead says. Spray dots the c…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pernille predicted customers would decide the delivery pilot. At 2:36 p.m. in August, she is staring at a thermometer inside a sample insulin box after the longest rural route. The reading is still s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dahlia carries a tea tray up the narrow stairs at 10:14 a.m. Saturday while her father grips the rail behind her. She has been imagining him in the spare upstairs room after his lease ends. The fear …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"what must be true\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 21
+  },
+  "bookGate": {
+    "bookId": "playing-to-win",
+    "chapterCount": 8,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        24,
+        24,
+        24
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 72,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

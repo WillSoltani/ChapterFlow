@@ -1,0 +1,319 @@
+{
+  "chapterId": "competing-against-luck-ch09",
+  "number": 9,
+  "title": "The Jobs-Focused Organization",
+  "readingTimeMinutes": 11,
+  "hook": "Hugo sees the job lose when every dashboard in the room is green.",
+  "counterintuition": "Most teams assume using jobs language means the organization has changed. But actually the change appears only when recurring decisions route through the buyer's progress.",
+  "tryThisNow": "Take one recurring meeting and add a first agenda line: which buyer progress are we protecting today, and what tradeoff threatens it?",
+  "keyTakeaway": "A jobs-focused organization keeps research, metrics, meetings, incentives, and tradeoffs anchored in the progress buyers hire, so judgment changes repeatedly.",
+  "breakdown": {
+    "fastRead": "Hugo stands in a handoff war room where every internal dashboard is green, while customers are still calling because medicine arrived after bedtime. A jobs-focused company is not one that knows the words. It is one whose repeated decisions are governed by the job. Metrics, handoffs, staffing, reviews, and tradeoffs all have to answer the same question: does this protect the buyer's progress. If the old incentives still win, only the words changed.",
+    "deepRead": "A jobs-focused organization is built from repeated judgment. The job is no longer a research finding that lives in a slide. It becomes a standard for priorities, metrics, tradeoffs, service rules, and meetings. People can point to it when choosing what to protect and what to refuse.\n\nAt 9:32 a.m., Tirzah listens while fulfillment celebrates lower packaging cost and support reports a spike in cracked replacement parts. Both teams are right by their own measures. The buyer hired the company to restore a broken appliance before the weekend. Cheaper packaging that creates replacement calls is not a win through that lens.\n\nThe organizational move is to make the job consequential. Put it inside scorecards, escalation rules, roadmap reviews, and frontline scripts. Use it to settle conflicts between local goals. The limit is cosmetic adoption. Jobs language can spread quickly while decisions stay product-centered, function-centered, or metric-centered. The test is behavior under tradeoff, not vocabulary in a meeting.",
+    "fullRead": "An organization becomes jobs-focused when the job changes how decisions are made again and again. Research is only the beginning. A team may discover a strong job, describe it beautifully, and still keep choosing through old categories. The sales target wins. The department metric wins. The roadmap habit wins. The customer progress becomes a phrase people respect but do not obey.\n\nAt the moment, the choice is visible. The deeper shift is governance. Which metrics matter. Which exceptions are allowed. Which tradeoffs get escalated. Which work gets funded. Which customer complaints are treated as urgent. A jobs-focused organization routes those questions through the progress buyers hire. This does not make every decision easy, but it gives the organization a shared standard that is outside its internal convenience.\n\nIra, leading a product review at 2:04 p.m., may see two dashboards. One says engagement is up because users open the app more often. The other says the same users take longer to finish the paperwork they hired the app to simplify. A product-centered organization celebrates engagement. A jobs-focused organization asks whether extra opens mean value or confusion. The job changes the interpretation of the metric.\n\nOn the calendar, this is why vocabulary is a weak test. A company can rename teams, add posters, and repeat the job in strategy decks while still rewarding the same behaviors as before. If approval paths, incentives, and resource fights do not change, the organization is not focused on the job. It is focused on sounding focused.\n\nThe objection is that organizations need many measures. They do. A jobs-focused organization still tracks cost, quality, growth, risk, and capacity. The difference is that those measures are interpreted through the buyer's progress when they conflict. Cost reduction is good unless it damages the hire. Engagement is good unless it signals confusion. Growth is good unless it pulls the offering away from the earned resume.\n\nThe value of this orientation is coherence. People in different functions can make local calls that still line up because they are using the same external standard. The job becomes a source of truth when pressure returns. Without that, jobs thinking remains an insight project. With it, the company develops a way to keep choosing on behalf of the progress that made customers come in the first place."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch09-ex01",
+      "title": "Hugo watches green dashboards miss the medicine job",
+      "tags": [
+        "delivery",
+        "metrics",
+        "organization"
+      ],
+      "planSpec": {
+        "domain": "last-mile delivery",
+        "audience": "executives",
+        "stakes": "internal dashboards obscure customer progress",
+        "format": "scene",
+        "requiredBeat": "he sees all metrics green while buyer job fails"
+      },
+      "scenario": "Hugo stands at 8:49 p.m. in the delivery war room, green dashboards glowing across the wall while support calls blink red on a side monitor. Route efficiency is up. Driver idle time is down. Three customers are still asking where the refrigerated medicine is because bedtime doses have passed. Hugo's hand rests on the staffing plan. He must decide whether the organization is winning the route game or failing the medicine-at-home job.",
+      "whatToDo": "Make the medicine job govern the room. Add bedtime-dose risk to routing, staffing, escalation, and scorecards before celebrating efficiency.",
+      "whyItMatters": "A jobs-focused organization interprets metrics through customer progress. Green internal numbers can still hide a failed hire."
+    },
+    {
+      "exampleId": "competing-against-luck-ch09-ex02",
+      "title": "Tirzah makes packaging cost answer to the repair job",
+      "tags": [
+        "manufacturing",
+        "conflict",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "appliance parts",
+        "audience": "operations teams",
+        "stakes": "department wins conflict with buyer job",
+        "format": "dialogue",
+        "requiredBeat": "she resolves department argument with the job"
+      },
+      "scenario": "Tirzah stands at 9:32 a.m. between fulfillment and support, a cracked pump housing in a padded mailer on the conference table. \"Packaging cost is down eighteen percent,\" Fulfillment says. \"Replacement calls doubled,\" Support answers. Tirzah picks up the broken part. \"The customer hired us to get a washer running before Saturday,\" she says. \"Which metric tells us that happened?\" The room goes quiet, and the decision shifts.",
+      "whatToDo": "Use the repair job to judge the tradeoff. Score packaging by successful first delivery before weekend use, not by unit cost alone.",
+      "whyItMatters": "The job gives departments a shared standard. Without it, each team can win locally while the customer waits another week."
+    },
+    {
+      "exampleId": "competing-against-luck-ch09-ex03",
+      "title": "Ira questions engagement in the paperwork review",
+      "tags": [
+        "software",
+        "metrics",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "workflow software",
+        "audience": "product leaders",
+        "stakes": "common metric misreads progress",
+        "format": "decision_point",
+        "requiredBeat": "he must choose which metric governs"
+      },
+      "scenario": "Ira opens the 2:04 p.m. product review with two charts projected over the glass wall. Daily opens rose after the redesign. Completion time rose too. The growth lead smiles at engagement. A support note says users now open the app five times because they cannot find the next form. Ira's thumb hovers over the clicker. He must decide whether the meeting rewards attention or the paperwork-done job buyers hired.",
+      "whatToDo": "Interpret engagement through the job. Treat extra opens as suspicious until completion speed, confidence, and fewer support contacts prove progress improved.",
+      "whyItMatters": "A jobs-focused organization does not worship familiar metrics. It asks whether the metric signals progress or friction in disguise."
+    },
+    {
+      "exampleId": "competing-against-luck-ch09-ex04",
+      "title": "Pippa predicts the slogan will change approvals",
+      "tags": [
+        "organization",
+        "predict reveal",
+        "governance"
+      ],
+      "planSpec": {
+        "domain": "consumer electronics",
+        "audience": "strategy teams",
+        "stakes": "language changes without decision rights",
+        "format": "predict_reveal",
+        "requiredBeat": "she sees old approval path overpower job language"
+      },
+      "scenario": "Pippa pins the new poster at 7:55 a.m. outside the design studio: Make setup feel effortless. She predicts the slogan will settle the accessory debate. By lunch, the old approval path wins again. Finance requires a separate upsell screen, legal adds two confirmations, and support gets no vote. The reveal is embarrassing. Everyone can repeat the job, but the decision rights still serve internal control. Pippa needs to choose what changes before the next review.",
+      "whatToDo": "Move the job into governance. Give support and setup evidence a formal veto over screens that add friction to first use.",
+      "whyItMatters": "Vocabulary does not change behavior by itself. The job must alter who decides and which tradeoffs are allowed."
+    },
+    {
+      "exampleId": "competing-against-luck-ch09-ex05",
+      "title": "Ronan finds the branch redesign kept the old incentives",
+      "tags": [
+        "banking",
+        "postmortem",
+        "incentives"
+      ],
+      "planSpec": {
+        "domain": "retail banking",
+        "audience": "bank leaders",
+        "stakes": "physical redesign failed because incentives stayed product-centered",
+        "format": "postmortem",
+        "requiredBeat": "he sees old incentives blocking jobs focus"
+      },
+      "scenario": "Ronan sits at 6:21 p.m. in the renovated bank branch, tablet kiosks dark and brochure racks perfectly squared. The redesign promised guidance for first-time homebuyers. Mystery-shopper notes show staff still steering conversations toward credit-card quotas before mortgage questions. The postmortem is not about furniture. The branch looked jobs-focused, but incentives kept pulling employees toward product sales.",
+      "whatToDo": "Align incentives with the homebuying guidance job. Reward completed next steps, clarity, and handoffs to mortgage help before counting product pitches.",
+      "whyItMatters": "The organization follows what it rewards. A new layout cannot overcome incentives that tell staff to serve another goal first."
+    },
+    {
+      "exampleId": "competing-against-luck-ch09-ex06",
+      "title": "Nuri changes the clinic huddle from volume to readiness",
+      "tags": [
+        "clinic",
+        "before after",
+        "huddle"
+      ],
+      "planSpec": {
+        "domain": "primary care",
+        "audience": "healthcare managers",
+        "stakes": "recurring meetings must use the job standard",
+        "format": "before_after",
+        "requiredBeat": "she changes a recurring meeting around patient progress"
+      },
+      "scenario": "Nuri stands at 7:18 a.m. by the clinic huddle board, dry-erase cap between her teeth. Before, the team reviewed visit volume and late starts. After hearing diabetic patients say they left unsure what to do at dinner, she adds one line to every huddle: who needs to leave meal-ready today. Nurses flag handouts, doctors flag insulin changes, schedulers flag follow-up calls. The meeting starts governing the job, not only the day.",
+      "whatToDo": "Put the patient progress into the recurring huddle. Assign each function a visible role in making the person meal-ready before leaving.",
+      "whyItMatters": "Jobs focus becomes real when ordinary meetings change. The standard has to guide repeated choices, not just special projects."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch09-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch09-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch09-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch09-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch09-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch09-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch09-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch09-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch09-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying turning jobs insight into repeated organizational judgment and tradeoffs. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch09-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch09-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch09-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back jobs-focused judgment?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch09-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves jobs-focused judgment."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "If the old incentives still win, only the words changed.",
+      "location": "breakdown.fastRead",
+      "why": "It separates language from organizational behavior."
+    },
+    {
+      "text": "The test is behavior under tradeoff, not vocabulary in a meeting.",
+      "location": "breakdown.deepRead",
+      "why": "It names the practical proof of focus."
+    },
+    {
+      "text": "The deeper shift is governance.",
+      "location": "breakdown.fullRead",
+      "why": "It shows where real jobs focus has to live."
+    }
+  ]
+}

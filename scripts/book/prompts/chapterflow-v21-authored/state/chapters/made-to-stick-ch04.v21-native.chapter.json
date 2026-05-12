@@ -1,0 +1,319 @@
+{
+  "chapterId": "made-to-stick-ch04",
+  "number": 4,
+  "title": "Credible",
+  "readingTimeMinutes": 12,
+  "hook": "The cracked helmet on the conference table beats a perfect safety claim.",
+  "counterintuition": "Most people assume credibility comes from sounding authoritative, but actually trust grows when the audience can inspect the proof, test it, or feel the cost behind it.",
+  "tryThisNow": "Find one claim you need people to trust. Add a proof device they can inspect: a test, a witness, a concrete detail, or a human-scale number.",
+  "keyTakeaway": "A credible idea gives people evidence they can judge for themselves, close enough to test, inspect, or feel without turning proof into theater.",
+  "breakdown": {
+    "fastRead": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m. His safety slide says our design passed. The helmet says something harder: this is what the old latch did in the curb test. The room can inspect the split foam and bent strap. Trust moves closer when evidence leaves the claim and enters the room.\n\nCredibility is not just a confident voice. People believe more when proof becomes judgeable. That proof can be a test, a lived witness, a vivid detail, or a number translated to human scale. The limit is honesty. If the proof device exaggerates or distracts, it becomes theater and trust starts leaking out.",
+    "deepRead": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m. The product team has seen the safety claim on slides for weeks. The helmet changes the claim’s location. It is no longer a sentence asking for belief. It is split foam, a bent strap, and a latch that failed under a curb test they can repeat.\n\nCredibility grows when the audience can judge the evidence instead of merely admire the speaker. Authority helps, but it is not the only path. A testable claim lets doubt do useful work. People can ask, what would prove this wrong? A witness who has paid the cost can also carry force because the warning is attached to lived consequence, not just expertise.\n\nPicture Liora, a diabetes educator, at 3:20 p.m. in a clinic classroom. She can say uncontrolled blood sugar damages feet. Instead, she places two socks on the table: one clean, one cut open by an orthotic seam that a patient never felt. Then she explains nerve loss. The sock is not a scare tactic by itself. It is a judgeable door into the claim.\n\nNumbers need the same care. A big statistic may show scale while failing to create judgment. Translate it into a day, a room, a household, or a repeated action. Keep the math honest. A vivid proof that bends the data wins attention and loses trust. The goal is not to overwhelm doubt. The goal is to give doubt a fair place to look and a reason to settle.",
+    "fullRead": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m. The slide behind him says our design passed, and the phrase is technically true for the old lab standard. The helmet makes the claim more serious. In the curb test, the latch popped, the strap twisted, and the foam split where a child’s temple would be. Anyone in the room can pick it up. Anyone can ask to rerun the test.\n\nThat is credibility by inspection. The claim stops depending on Harlan’s confidence and starts depending on evidence the audience can judge. A strong proof device changes the listener’s job. Instead of deciding whether Harlan sounds convincing, the listener can examine the latch, the test, and the failure. Doubt has a place to go.\n\nAuthority still matters in many settings. A trained surgeon, a certified engineer, or a careful auditor can earn trust through expertise. But authority alone often feels distant. People hear the title and still wonder whether the claim touches the case in front of them. Internal proof closes that distance. A test, a sharp detail, or a visible structure lets the message carry some of its own weight.\n\nLiora uses lived proof in a clinic classroom at 3:20 p.m. She teaches foot care to people with diabetes. A lecture on nerve damage is accurate, but easy to file away. She places two socks on the table. One is clean. One is cut open along the side where an orthotic seam rubbed a patient’s skin raw without pain. Then she explains how numbness changes the morning shoe check. The sock is quiet evidence. It does not replace medical facts. It makes the facts near.\n\nA witness can do similar work. A person who paid the cost of an error may be more believable than a person with a title because the audience can see what disbelief has already cost. That path has to be handled with care. Pain should clarify the claim, not be used as a blunt instrument.\n\nStatistics need translation too. A number like 3.2 million missed doses may be true and still hard to judge. A nurse might say, in this clinic, that is one skipped pill cup on every breakfast tray for eleven days. Now the scale has a room and a routine. The number has not been softened. It has been made available to judgment.\n\nThe danger is proof theater. A dramatic image can overstate a small risk. A single witness can be treated as if one case proves every case. A human-scale number can bend the math if the translation is loose. Credibility depends on the proof staying faithful. The evidence should let the audience test the claim, not trap them into agreement.\n\nGive people something close enough to inspect and honest enough to survive inspection. When proof enters the room that way, belief is not begged for. It is earned in front of the listener."
+  },
+  "examples": [
+    {
+      "exampleId": "made-to-stick-ch04-ex01",
+      "title": "Harlan sets the split helmet beside the slide",
+      "tags": [
+        "safety",
+        "product",
+        "proof"
+      ],
+      "planSpec": {
+        "domain": "product safety",
+        "audience": "design review team",
+        "stakes": "a generic claim needs inspectable evidence",
+        "format": "scene",
+        "requiredBeat": "move credibility from assertion to testable proof"
+      },
+      "scenario": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m., flakes of black foam caught in the hinge. The slide says our design passed. The helmet came from yesterday’s curb test, where the latch popped and the strap twisted. Harlan watches the room go quiet. He has to decide whether to keep defending the claim in words or invite the team to pick up the helmet and rerun the test.",
+      "whatToDo": "Put the failed object and test method in front of the team. Let questions attach to the latch, the foam, and the repeatable test instead of to your confidence.",
+      "whyItMatters": "Proof becomes credible when people can inspect it. The helmet gives doubt a fair object to examine and a way to check the claim."
+    },
+    {
+      "exampleId": "made-to-stick-ch04-ex02",
+      "title": "Liora cuts open the sock at the clinic table",
+      "tags": [
+        "health",
+        "witness",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "diabetes education",
+        "audience": "patients learning foot care",
+        "stakes": "accurate warning feels distant",
+        "format": "decision_point",
+        "requiredBeat": "use lived object to make proof near"
+      },
+      "scenario": "Liora lays two socks on the clinic classroom table at 3:20 p.m., one white and folded, one cut open along a bloody seam. The air smells faintly of alcohol wipes. Twelve patients wait for the foot-care talk. Her script says nerve damage reduces pain response. The cut sock belonged to a man who never felt the rub until the skin opened. Liora is deciding whether to begin with the definition or with the sock and the morning shoe check it demands.",
+      "whatToDo": "Begin with the sock, then explain the nerve damage that makes the sock matter. Ask each patient to practice the morning shoe check before leaving.",
+      "whyItMatters": "The sock turns a medical claim into a judgeable consequence. It lets people see why an invisible loss of feeling changes a daily action."
+    },
+    {
+      "exampleId": "made-to-stick-ch04-ex03",
+      "title": "Petra translates the missed doses into breakfast trays",
+      "tags": [
+        "hospital",
+        "numbers",
+        "scale"
+      ],
+      "planSpec": {
+        "domain": "hospital quality",
+        "audience": "nursing staff",
+        "stakes": "large statistics fail to guide behavior",
+        "format": "before_after",
+        "requiredBeat": "translate raw magnitude into human-scale routine"
+      },
+      "scenario": "Before Petra changed the briefing, the number 3.2 million missed doses sat on slide nine like weather over another country. At Wednesday 6:55 a.m., she rolled a breakfast cart into the staff room and placed eleven empty pill cups on one tray. In this clinic, she said, our share looks like one tray missing a cup every morning for eleven days. The nurses leaned in, not because the number shrank, but because it had a tray, a room, and a shift.",
+      "whatToDo": "Translate the statistic into the routine people already know, then show the original number beside it so the scale stays honest.",
+      "whyItMatters": "Human-scale math gives the audience a way to judge magnitude. It keeps the number true while moving it close enough to feel operational."
+    },
+    {
+      "exampleId": "made-to-stick-ch04-ex04",
+      "title": "Crispin hears the expert badge fail",
+      "tags": [
+        "legal",
+        "credibility",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "tenant court",
+        "audience": "legal aid attorney",
+        "stakes": "authority alone does not settle doubt",
+        "format": "postmortem",
+        "requiredBeat": "diagnose why title-based proof was distant"
+      },
+      "scenario": "Crispin sits on the courthouse stairs at 5:12 p.m., his legal-aid badge clipped crooked and a denied repair order folded in his hand. In court he said, I’m an attorney, and cited the housing code. The landlord’s lawyer smiled. The judge asked for photos, dates, and the inspector’s test sheet. Crispin had the title and the right rule, but not the proof close enough to inspect. He circles the empty evidence line on his notes and knows what must come next time.",
+      "whatToDo": "Build the next filing around dated photos, a repeatable temperature log, and the inspector sheet. Let the title support the evidence, not replace it.",
+      "whyItMatters": "Authority can open the door, but judgeable proof carries the claim. The court needed evidence tied to the apartment, not just a person with credentials."
+    },
+    {
+      "exampleId": "made-to-stick-ch04-ex05",
+      "title": "Nerissa lets the scale test answer",
+      "tags": [
+        "food",
+        "quality",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "commercial kitchen",
+        "audience": "catering client",
+        "stakes": "client doubts portion claim",
+        "format": "dialogue",
+        "requiredBeat": "use a live test instead of assertion"
+      },
+      "scenario": "Nerissa places a digital scale on the stainless counter at 11:08 a.m., while the catering client taps a pen against the tasting menu. \"Your portions look light,\" he says. \"They meet contract weight,\" she answers, then stops. A tray of salmon portions waits under plastic wrap. \"Pick any three,\" she says, sliding the scale forward. The client points to the corner pieces. Nerissa has to choose whether to keep explaining yield or let the scale answer in ounces.",
+      "whatToDo": "Run the test in front of the client with pieces he chooses. Record the weights and adjust if the claim fails.",
+      "whyItMatters": "A live test lowers the fight over trust. The client gets a fair way to judge the claim, and Nerissa accepts the same standard if the result goes against her."
+    },
+    {
+      "exampleId": "made-to-stick-ch04-ex06",
+      "title": "Wesley lowers the photo after the donor gasps",
+      "tags": [
+        "fundraising",
+        "ethics",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "arts nonprofit",
+        "audience": "donor presentation",
+        "stakes": "vivid proof risks overstating the case",
+        "format": "reflection",
+        "requiredBeat": "notice when proof turns theatrical"
+      },
+      "scenario": "Wesley lowers the flood-damaged violin photo at 8:41 p.m. in the rehearsal hall, after a donor gasps and reaches for her checkbook. The photo is real. So is the repair backlog. But the violin belonged to one school, not all nine in the campaign. Wesley feels the room tilt toward a bigger conclusion than the evidence supports. His thumb rests on the remote. He is deciding whether to let the gasp carry the pledge or put the repair list and count back on screen.",
+      "whatToDo": "Keep the photo, then immediately place it beside the repair count and school list. Let vivid evidence clarify scale, not inflate it.",
+      "whyItMatters": "Credibility dies when proof outruns the claim. The photo can make damage real, but only honest context keeps the trust it wins."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "made-to-stick-ch04-q01",
+        "prompt": "A startup claims its new filter catches defects better than the old one. Investors look skeptical. Which proof device best builds credibility?",
+        "choices": [
+          "Run a blind test on sample parts in the room and show the misses.",
+          "Add more confident language to the pitch.",
+          "Quote a famous founder who likes quality."
+        ],
+        "correctIndex": 0,
+        "explanation": "A judgeable test gives the audience evidence it can inspect. Confidence and borrowed status are weaker when the claim itself can be tested.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q02",
+        "prompt": "A doctor warns patients about a risk with a huge national statistic, and the room goes flat. Which revision fits human-scale credibility?",
+        "choices": [
+          "Use a larger national statistic so the danger feels bigger.",
+          "Translate the statistic into a daily clinic routine while keeping the original number visible.",
+          "Remove the statistic and rely only on a sad story."
+        ],
+        "correctIndex": 1,
+        "explanation": "Human-scale translation makes the number judgeable. Keeping the original number protects accuracy.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q03",
+        "prompt": "A campaign uses one intense witness story to imply every case is identical. The audience later feels misled. What failed?",
+        "choices": [
+          "The witness lacked emotion.",
+          "The campaign should have used no human stories.",
+          "The proof device overstated what the evidence could support."
+        ],
+        "correctIndex": 2,
+        "explanation": "A lived witness can clarify a claim, but it must not be used to prove more than one case can honestly prove.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q04",
+        "prompt": "A manager says, trust me, I checked the numbers, before asking for budget. Which next move would create internal credibility?",
+        "choices": [
+          "Show the small audit trail, the sample checked, and where an error would appear.",
+          "Repeat the request with a firmer tone.",
+          "Tell the team that trust is part of the culture."
+        ],
+        "correctIndex": 0,
+        "explanation": "Internal credibility lets the message carry evidence inside itself. The audit trail gives people something to judge.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q05",
+        "prompt": "A teacher wants students to believe a bridge design is weak. Which classroom demonstration is strongest?",
+        "choices": [
+          "Tell students the design violates a rule.",
+          "Place weights on a model until the weak joint bends, then connect the bend to the rule.",
+          "Ask students to memorize the name of the weak joint."
+        ],
+        "correctIndex": 1,
+        "explanation": "The live model makes the claim inspectable. The rule lands better after students see what it explains.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q06",
+        "prompt": "A nonprofit shares a dramatic photo from one site. What must be added to keep trust high?",
+      "choices": [
+        "A more dramatic photo from the same site.",
+        "A celebrity quote placed under the photo.",
+        "Context showing how the photo relates to the full data and where it does not."
+      ],
+      "correctIndex": 2,
+        "explanation": "Context keeps vivid evidence faithful. Without it, a real image can still lead to a false scale judgment.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q07",
+        "prompt": "A quality lead has a correct claim but only her title to support it. The floor supervisor resists. What is the better move?",
+      "choices": [
+        "Remind the supervisor that titles exist for a reason.",
+        "Escalate immediately without showing evidence.",
+        "Bring the repeatable inspection result and let the supervisor check the sample."
+      ],
+      "correctIndex": 2,
+        "explanation": "The inspection result moves credibility from status to judgeable proof. It gives doubt a useful path.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q08",
+        "prompt": "A restaurant promises portion sizes are fair. A client doubts it. Which response best uses testability?",
+        "choices": [
+          "Explain average yield in general terms.",
+          "Let the client choose samples, weigh them in front of him, and accept the result.",
+          "Show photos of happy customers eating the portions."
+        ],
+        "correctIndex": 1,
+        "explanation": "A test the client partly controls is harder to dismiss. It turns the claim into something both sides can inspect.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch04-q09",
+        "prompt": "A safety video uses shocking crash footage but never shows the tested equipment or method. What is the strongest critique?",
+        "choices": [
+          "The video creates emotion without giving the audience judgeable proof.",
+          "The footage should be shorter to keep attention.",
+          "Safety claims cannot use visual evidence."
+        ],
+        "correctIndex": 0,
+        "explanation": "The problem is not visual evidence. The problem is a lack of inspectable proof tied to the specific claim.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "made-to-stick-ch04-rc01",
+      "front": "Someone doubts your claim. What proof should you retrieve first?",
+      "back": "Find evidence the audience can judge: a test, object, witness, detail, or human-scale number tied directly to the claim.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "made-to-stick-ch04-rc02",
+      "front": "A statistic is true but too large to feel useful. What move helps?",
+      "back": "Translate it into a familiar room, day, routine, or unit while keeping the original number nearby for honesty.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "made-to-stick-ch04-rc03",
+      "front": "A vivid story wins attention but may mislead. What check protects credibility?",
+      "back": "Ask whether the story supports the exact claim being made. Add scope and context before the audience draws a bigger conclusion.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "made-to-stick-ch04-rc04",
+      "front": "Authority is present but trust is low. What should change?",
+      "back": "Let authority point to the evidence, not stand in for it. Give people something they can inspect or test themselves.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is moving proof close enough for the audience to judge. You support claims with tests, visible details, human-scale numbers, or lived witnesses, while keeping scope honest.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a stakeholder doubts a claim, then bring the test method, sample, or audit trail and invite them to inspect the weak point with you."
+      },
+      {
+        "context": "health",
+        "plan": "If a health statistic feels distant, then translate it into one daily action or room-level count before deciding what to do."
+      },
+      {
+        "context": "personal",
+        "plan": "If you are tempted to say trust me, then replace the phrase with the receipt, log, photo, or result that made you trust the claim."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone doubts your memory of an event, then offer the concrete record you have and name what it can and cannot prove."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one claim you planned to assert and add one proof device: a test, object, witness, detail, or human-scale number.",
+    "weeklyPractice": "Each week, review one message that asks for trust. Mark the claim, the evidence, what the audience can inspect, and where the proof should stop."
+  },
+  "memorableLines": [
+    {
+      "text": "Trust moves closer when evidence leaves the claim and enters the room.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the credibility shift in a concrete image."
+    },
+    {
+      "text": "Doubt has a place to go.",
+      "location": "breakdown.fullRead",
+      "why": "It explains why inspectable proof reduces resistance."
+    },
+    {
+      "text": "Give people something close enough to inspect and honest enough to survive inspection.",
+      "location": "breakdown.fullRead",
+      "why": "It is the chapter’s practical standard in one line."
+    }
+  ]
+}

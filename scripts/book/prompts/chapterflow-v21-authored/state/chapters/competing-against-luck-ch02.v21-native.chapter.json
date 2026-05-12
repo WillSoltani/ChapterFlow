@@ -1,0 +1,319 @@
+{
+  "chapterId": "competing-against-luck-ch02",
+  "number": 2,
+  "title": "Progress, Not Products",
+  "readingTimeMinutes": 11,
+  "hook": "Oona stares at a soaked ceiling tile and does not want a better repair app.",
+  "counterintuition": "Most people assume progress means a functional upgrade. But actually the hire often includes social relief, less embarrassment, and a safer feeling of control.",
+  "tryThisNow": "Name one current frustration as a before and after: what situation are you in now, and what would feel noticeably better ninety seconds later?",
+  "keyTakeaway": "Progress is the movement a person wants from a strained current state to a better one, including the practical, social, and emotional change the moment demands.",
+  "breakdown": {
+    "fastRead": "Oona stands under a wet ceiling tile at 7:28 a.m. and wants the leak handled before her landlord blames the washer again. A repair app, a phone call, a neighbor's wrench, and a bucket are all possible answers. The product label does not explain the hire. The progress does. She wants the drip stopped, but she also wants to feel believed, not foolish, when she reports it. Progress is the movement from this strained state to a better one. It can be practical, social, and emotional at the same time.",
+    "deepRead": "Progress is more precise than desire. It names a movement from a current circumstance toward a better state. The current state has friction, risk, delay, or discomfort. The better state has a shape the buyer can recognize. A person may want the form filed, the leak stopped, the child calmer, the invoice paid, or the room less humiliating.\n\nAt 5:46 p.m., Dima clips a cape around a customer before a reunion. The customer asks for the same haircut as last time, but keeps touching the thin spot near his crown. A literal reading says, repeat the cut. A progress reading says, help him walk into the reunion without feeling watched. The scissors are functional. The job is larger.\n\nThis is why social and emotional forces are part of the work, not decorations around it. A tool that solves the task while making the buyer feel exposed may still lose. A service that gives less technical power but lets the buyer feel capable may win. The limit is that progress must stay tied to a circumstance. If the phrase gets inflated into happiness, freedom, or a better life, it stops guiding design. Name the before, name the after, and keep both close enough to observe.",
+    "fullRead": "A product is a thing. Progress is a change. That difference sounds small until a team tries to explain why a customer chooses one answer over another. The thing can be described from the company's side: features, package, speed, price, materials, interface. The change has to be described from the buyer's side: what is wrong now, what would feel better, and what has to be protected while the buyer moves.\n\nThe movement often has three layers. Functional progress is the obvious layer. The leak stops. The form gets filed. The car starts. Social progress is about how the buyer can appear to other people. The parent feels responsible. The new employee does not look lost. The patient does not feel like a burden. Emotional progress is about the internal state that changes when the answer works. The buyer feels calmer, less exposed, more ready, or less stuck.\n\nGood innovation work does not rank those layers too early. It listens for how they combine in the live circumstance. Rhea, an HR lead, may think an enrollment tool is about completing benefit forms. Then she watches an employee stand by the printer at 3:03 p.m., pay stub in hand, afraid to ask whether the dependent-care account means she has been leaving money behind for years. Completion matters, but shame is blocking the hire. A tool that only speeds the form may miss the progress.\n\nThe useful test is concreteness. A claim such as customers want confidence is too broad unless the team can point to the situation where confidence is missing and describe what would change. Confidence before a job interview, after a medical bill, during a first gym visit, or in front of a teenager's math homework are not the same job. Each has different substitutes and different signs of success.\n\nThis also explains why buyers can seem inconsistent. The same person may pick the cheapest option in one setting and a premium option in another. The person did not become irrational. The progress target changed. When the team can see that movement clearly, product decisions become less like preference guessing and more like helping the buyer cross a specific gap."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch02-ex01",
+      "title": "Oona looks past the repair app under the wet tile",
+      "tags": [
+        "home repair",
+        "tenant",
+        "emotion"
+      ],
+      "planSpec": {
+        "domain": "housing",
+        "audience": "service teams",
+        "stakes": "functional repair misses dignity and trust",
+        "format": "scene",
+        "requiredBeat": "she hires speed, dignity, and relief, not a generic repair app"
+      },
+      "scenario": "Oona presses a cereal bowl under the drip at 7:28 a.m. in the third-floor laundry room, water darkening the ceiling tile above her shoulder. The building app promises faster maintenance, but the last ticket came back marked user error. Her thumb rests on the upload button while the washer thumps behind her. She does not only need a plumber. She needs a record that makes the landlord believe her before the stain reaches the hallway.",
+      "whatToDo": "Define the progress as more than leak repair. Capture the need for evidence, speed, and dignity before deciding whether the app, a call, or a neighbor witness is the right answer.",
+      "whyItMatters": "The practical fix and the emotional relief are joined in this moment. If the service only handles water, it may still fail the job Oona is hiring it to do."
+    },
+    {
+      "exampleId": "competing-against-luck-ch02-ex02",
+      "title": "Dima hears the reunion inside the haircut request",
+      "tags": [
+        "barber",
+        "appearance",
+        "social progress"
+      ],
+      "planSpec": {
+        "domain": "personal care",
+        "audience": "experience designers",
+        "stakes": "literal requests hide social progress",
+        "format": "dialogue",
+        "requiredBeat": "he hears the customer wants to feel unexposed at a reunion"
+      },
+      "scenario": "Dima snaps the black cape at 5:46 p.m. in the barber chair, the neck strip tight against Arun's collar. \"Same as last time,\" Arun says, then taps the thin patch near his crown and glances at the mirror. \"My cousins are all coming tonight.\" Dima sets the clippers down. \"So we are not just matching last time,\" he says. \"We are making sure the first joke is not about your hair.\" Arun exhales and has to decide whether to admit that is exactly the job.",
+      "whatToDo": "Listen past the requested cut. Ask what room Arun is walking into and what he wants to avoid feeling there, then choose the haircut against that social moment.",
+      "whyItMatters": "The service is not only removing hair. It is helping a customer cross a public threshold with less exposure, and that changes what good work means."
+    },
+    {
+      "exampleId": "competing-against-luck-ch02-ex03",
+      "title": "Rhea stops at the dependent-care question by the printer",
+      "tags": [
+        "benefits",
+        "HR",
+        "shame"
+      ],
+      "planSpec": {
+        "domain": "employee benefits",
+        "audience": "HR leaders",
+        "stakes": "completion metrics ignore emotional friction",
+        "format": "decision_point",
+        "requiredBeat": "she must decide whether functional completion is enough when shame blocks action"
+      },
+      "scenario": "Rhea stands beside the HR printer at 3:03 p.m., warm forms curling into the output tray while an employee holds a pay stub with two fingers. The new enrollment tool has a clean progress bar and no errors. Still, the employee whispers, \"If I ask about dependent care, will payroll know I messed this up last year?\" Rhea's pen hovers over the vendor scorecard. She must decide whether completed forms prove the job is done.",
+      "whatToDo": "Score the tool against the shame in the moment. Add private guidance, plain examples, and a way to check choices without broadcasting confusion.",
+      "whyItMatters": "A technically smooth flow can fail if the buyer feels exposed. Progress includes reaching the better state without paying a social cost that blocks the switch."
+    },
+    {
+      "exampleId": "competing-against-luck-ch02-ex04",
+      "title": "Quincy learns why first-timers rent the dull shoes",
+      "tags": [
+        "gym",
+        "first visit",
+        "predict reveal"
+      ],
+      "planSpec": {
+        "domain": "climbing gym",
+        "audience": "operators",
+        "stakes": "product prediction misses beginner progress",
+        "format": "predict_reveal",
+        "requiredBeat": "his product-based prediction misses progress from nervous first-timers"
+      },
+      "scenario": "Quincy counts rental shoes at 9:20 a.m. by the climbing gym cubbies, sure the bright new performance pairs will move first. They sit untouched. The scuffed gray shoes vanish before ten. On the waiver desk, first-timers keep asking whether they will look ridiculous. The reveal stings: they are not hiring rubber. They are hiring permission to try badly. Quincy has to decide before the next order whether better means grippier or less intimidating.",
+      "whatToDo": "Treat the rental choice as beginner progress. Preserve shoes, signage, and staff cues that make a nervous first attempt feel normal, then improve performance second.",
+      "whyItMatters": "The best technical product may lose when it raises the social cost of starting. The job is entry into the activity, not only grip on the wall."
+    },
+    {
+      "exampleId": "competing-against-luck-ch02-ex05",
+      "title": "Maren reads the unopened reports after renewals fall",
+      "tags": [
+        "tutoring",
+        "parents",
+        "confidence"
+      ],
+      "planSpec": {
+        "domain": "education services",
+        "audience": "learning teams",
+        "stakes": "measures missed the parent progress job",
+        "format": "postmortem",
+        "requiredBeat": "she sees parents hired confidence before grades"
+      },
+      "scenario": "Maren sits at 8:41 p.m. with unopened progress reports fanned across her dining table, each one printed on heavy cream paper. Spring renewals are down, even though scores rose. Parent emails mention car rides, tears before algebra, and not knowing what to say at conferences. The postmortem becomes uncomfortable. Families did not hire the tutoring center only for points. They hired a way to stop feeling helpless at the kitchen table.",
+      "whatToDo": "Rebuild the renewal review around parent progress. Track confidence in helping, calmer homework starts, and clearer conference language alongside test gains.",
+      "whyItMatters": "Grades are part of the job, but not the whole movement. If parents still feel useless at home, the service has not delivered what kept them paying."
+    },
+    {
+      "exampleId": "competing-against-luck-ch02-ex06",
+      "title": "Ruth books therapy before the elevator reaches one",
+      "tags": [
+        "health",
+        "rehab",
+        "momentum"
+      ],
+      "planSpec": {
+        "domain": "physical therapy",
+        "audience": "patients",
+        "stakes": "appointment optimization misses recovery momentum",
+        "format": "before_after",
+        "requiredBeat": "she stops optimizing appointment time and starts hiring momentum"
+      },
+      "scenario": "Ruth waits outside the clinic elevator at 12:14 p.m. on Wednesday, discharge sheet folded into a white square in her coat pocket. Before the knee flare, she booked therapy by cheapest slot and shortest drive. After three skipped weeks, she notices the real job: leave the appointment with enough momentum to do the exercises before doubt returns. She chooses the therapist who sends her straight to the small practice room, even though parking is worse.",
+      "whatToDo": "Choose the appointment against recovery momentum. Value the handoff into practice, the reminder before fear returns, and the setting that makes the next rep happen.",
+      "whyItMatters": "The practical task is not booking a slot. It is moving from intention to repeated action while pain and doubt are still loud."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch02-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying progress as functional, social, and emotional movement. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying progress as functional, social, and emotional movement. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying progress as functional, social, and emotional movement. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying progress as functional, social, and emotional movement. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying progress as functional, social, and emotional movement. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying progress as functional, social, and emotional movement. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying progress as functional, social, and emotional movement. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying progress as functional, social, and emotional movement. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch02-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying progress as functional, social, and emotional movement. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch02-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch02-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back circumstance-bound progress?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves circumstance-bound progress."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "A product is a thing. Progress is a change.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the central distinction easy to retrieve."
+    },
+    {
+      "text": "The movement often has three layers.",
+      "location": "breakdown.fullRead",
+      "why": "It cues the functional, social, and emotional scan."
+    },
+    {
+      "text": "The person did not become irrational. The progress target changed.",
+      "location": "breakdown.fullRead",
+      "why": "It explains shifting choices without blaming the buyer."
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "chapterId": "getting-things-done-ch08",
+  "number": 8,
+  "title": "Reviewing: Keeping Your System Functional",
+  "readingTimeMinutes": 18,
+  "hook": "The list you trusted on Monday can start lying to you quietly by Friday.",
+  "counterintuition": "Reviewing feels like maintenance you do after the real work, but in GTD it is what makes the work possible. A stale list is just another inbox in disguise, so the weekly review is where you decide what is current, what is waiting, and what can safely stay undone.",
+  "tryThisNow": "Take a moment to look at your to-do list or reminders. Identify one task that feels incomplete or outdated, and either complete it now or remove it from your list. Notice how that feels.",
+  "keyTakeaway": "When email, calendars, and loose notes start to hum in the background, review each container until every reminder says what it is, what you want true, the next action, and where it safely lives.",
+  "breakdown": {
+    "fastRead": "Friday at 4:40, your desk looks calm, but your head is running inventory. A bill is in your bag. A reply is in your email. A promise from lunch is on a napkin. None of it is hard. It feels loud because you have not checked the places where those reminders are meant to wait.\n\nReview does the plain thing your mind has been trying to do all day: it checks whether your reminders are complete, current, and in places you actually use. A list you never look at is just a drawer with a label. Once a week, gather the loose notes, look at the lists, and make the simple decisions. What is it? What do you want true? Does it need a date, a next action, or a home? Your mind can stand down when every open loop is parked where you trust yourself to return.",
+    "deepRead": "Before Monday court, a public defender flips through one case folder after another. One client needs an update. One clerk is waiting on a form. One investigator promised a photo log. The danger is not that she forgot the whole case. The danger is the small promise hiding inside a larger file. For the client, that small promise is not small. It may mean getting an answer today instead of spending another week in uncertainty.\n\nReview makes the system prove itself again. You do not stare at a master list and hope it feels right. You move through the containers: inboxes, calendar, project list, next actions, and waiting-for items, the reminders that someone else owes you a reply or a result. Each item gets tested with working questions. What is this reminder pointing at? What outcome should exist? What is the next visible action? Does it belong on a date? Is someone else carrying the next move?\n\nRelief shows up in a more ordinary place. Not from finishing all the work, and not from making the list prettier. Relief comes when the map is current enough that you can choose from it without suspicion. If the case list says, “interpreter request, awaiting clerk response, check Friday,” the lawyer can stop carrying that loop in her chest during dinner.\n\nA regional maintenance supervisor faces the same test when a new tenant complaint lands at 8:10. The message looks urgent. But six buildings already hold open repair tickets, vendor promises, and inspection dates. If his lists are stale, the newest noise wins. If he has reviewed them, he can compare today’s leak, tomorrow’s safety repair, and the vendor who still has not called. Review comes before priority. When the lists are current, the loudest item no longer gets a vote it did not earn.",
+    "fullRead": "A stale list has a smell. You open it, see three items you know are already done, two you no longer care about, and one that says “call Sam” with no clue which Sam or why. Your brain learns fast. It stops trusting the list and starts keeping its own private version, the one that wakes you up at 2:17.\n\nReview is how you earn the right to stop remembering. Capture puts work into the system. Clarifying gives each item meaning. Organizing parks reminders where they belong. Review keeps those places usable. Without it, even a clean setup becomes a drawer with headings.\n\nThe mechanism is simple and unforgiving. First, you collect loose inputs: receipts, meeting notes, texts, sticky notes, scraps from your coat pocket, the idea you left in a draft email. Then you empty the inboxes by deciding what each thing means. Then you look across the lists that are supposed to hold your week: calendar, next actions, projects, waiting-for, someday, and any area that tends to go stale. You are not asking, “Can I do all of this?” You are asking, “Is this a true map?”\n\nThat question keeps the review from becoming another work session. A calendar item with a fixed date belongs on the calendar. A next action belongs on the list where you can do it, at a phone, at a laptop, at home, or out running errands. A waiting-for reminder belongs where you will see it before silence creates damage. A project with no next action is not being managed. It is being wished at.\n\nPicture a stage manager one week before opening night. The prop table is crowded, the director is tense, and every actor has a small emergency. If she runs rehearsal from memory, the same problems will be discovered again each night: missing lantern, unclear entrance, venue rule about tape on the floor. A review changes the room. Done items get deleted. Stale worries get retired. “Ask Leo about the lantern by 6:30” stays because it can actually move tonight.\n\nThere is a trap here. Review can become a hiding place. You can spend an hour polishing categories while avoiding the one call that would clear the project. You can also review so rarely that the system feels like old mail. The useful middle is plain: often enough that your lists stay current, brief enough that the review serves action.\n\nA parent coordinating sports forms, an orthodontist visit, and shared custody logistics needs the same current map. The win is not doing every family task this week. The win is seeing the whole set and choosing what will wait on purpose. A form missed in a family system does not stay a form. It becomes a rushed pickup, an embarrassed child, or a tense phone call at 9:30. “Not this week” feels very different when it sits in a reviewed system instead of circling the room at bedtime.\n\nReview also protects attention from false urgency. The newest email has the advantage of being new. The oldest safety item may be more important. A current system lets you compare them without depending on mood, volume, or guilt. It gives your mind a runway: here is what is fixed, here is what is waiting, here is what can be done from where you are.\n\nDo not trust a list because you once made it. Trust it because you return to it, repair it, and keep it true."
+  },
+  "examples": [
+    {
+      "exampleId": "ch08-ex01-zehra-commode-request",
+      "title": "Zehra Finds the Missing Commode Request",
+      "tags": [
+        "postmortem",
+        "charge",
+        "doing"
+      ],
+      "planSpec": {
+        "domain": "a charge nurse doing a Friday afternoon review of staffing notes, supply requests, and follow-up calls",
+        "audience": "a hospital shift lead whose week leaves scraps of commitments in pockets, texts, and handoff sheets",
+        "stakes": "whether a promised equipment request and two staff callbacks vanish into memory until they become interruptions during patient care",
+        "format": "postmortem",
+        "requiredBeat": "the nurse identifies that the miss came from an unreviewed holding place, then repairs the review routine instead of blaming herself for not remembering"
+      },
+      "scenario": "Zehra is the charge nurse in the break room at 4:50 p.m. Friday, rebuilding why the bariatric commode request never reached materials and why two aides never got callback times. The slips are not in her staffing folder. They are in a scrub pocket from Tuesday, beside a protein bar wrapper. Shame rises, and she has to decide whether to blame her memory or fix the sweep. She names the miss: an unreviewed holding place, then adds pockets, texts, and handoff sheets to the Friday checklist.",
+      "whatToDo": "Rebuild the miss from the actual paper trail. Add every pocket, text thread, and handoff sheet to the Friday review, then confirm each staffing note, supply request, and callback has a current next step.",
+      "whyItMatters": "A reminder outside the review is not part of the system. Once loose holding places are swept on schedule, promises stop depending on recall during patient care."
+    },
+    {
+      "exampleId": "ch08-ex02-sofiane",
+      "title": "Sofiane Rebuilds His Monday Case List",
+      "tags": [
+        "before_after",
+        "public",
+        "scanning"
+      ],
+      "planSpec": {
+        "domain": "a public defender scanning active case folders before Monday court",
+        "audience": "an overextended lawyer carrying dozens of small promises across hearings, clients, clerks, and investigators",
+        "stakes": "whether a client update, interpreter request, or evidence follow-up is current before the week starts",
+        "format": "before_after",
+        "requiredBeat": "the example must show the case list becoming trustworthy only after each matter is checked for outcome, next action, waiting-for item, and calendar trigger"
+      },
+      "scenario": "Sofiane sits alone in the public defender workroom at 6:15 p.m. Sunday, pizza box beside the copier, scanning forty-two active folders before Monday court. He is about to print the list as ready, even though it is just names with scraps beside them: call Reyes, bodycam, Arabic interpreter. After last week’s missed client update, he goes file by file for outcome, next action, waiting-for item, and calendar trigger. Only then does Monday look current.",
+      "whatToDo": "Review each active folder before treating the list as ready: name the outcome, write the next physical action, mark who owes you what, and place every hearing, deadline, or reminder on the calendar.",
+      "whyItMatters": "A case list earns trust when every open loop has a home. Without the waiting-for and calendar checks, old promises hide behind fresh hearings and reappear as Monday surprises."
+    },
+    {
+      "exampleId": "ch08-ex03-mireya-map",
+      "title": "Mireya's Sunday Night Map of Forms and Rides",
+      "tags": [
+        "reflection",
+        "parent",
+        "ninth"
+      ],
+      "planSpec": {
+        "domain": "a parent coordinating a ninth grader's sports forms, orthodontist appointments, and shared custody logistics",
+        "audience": "a household captain who feels ambushed by school emails and family obligations",
+        "stakes": "whether family commitments keep surfacing as bedtime anxiety instead of sitting in clear reminders",
+        "format": "reflection",
+        "requiredBeat": "the parent notices that relief comes not from finishing everything, but from seeing the full family map and deciding what is not being done this week on purpose"
+      },
+      "scenario": "At 10:37 p.m., Mireya sits on the edge of her bed with the ninth-grade soccer form open on her phone, an orthodontist reminder card in her robe pocket, and a custody swap text from her co-parent in the message thread. Her old reflex is to stay up and finish every loose item. Looking at the full family list instead, she feels the click of relief: rides, signatures, copays, and calls are all visible. She must decide what will wait until next week on purpose.",
+      "whatToDo": "Gather the school emails, cards, texts, and notes into one family review. Update each outcome, next action, calendar date, and waiting item, then mark what is intentionally not for this week.",
+      "whyItMatters": "Bedtime anxiety returns when reminders live in separate hiding places. A current map lets custody, sports, and medical commitments compete in one place instead of ambushing memory."
+    },
+    {
+      "exampleId": "ch08-ex04-roxana-band-review",
+      "title": "Roxana sorts festival notes after rehearsal",
+      "tags": [
+        "dialogue",
+        "school",
+        "reviewing"
+      ],
+      "planSpec": {
+        "domain": "a high school band director reviewing festival deadlines after rehearsal",
+        "audience": "a teacher managing students, buses, permission slips, instrument repairs, and administrator requests",
+        "stakes": "whether the concert season is run from a current inventory or from whoever asks loudest that day",
+        "format": "dialogue",
+        "requiredBeat": "the dialogue must have the director separate calendar-only deadlines from next-action list items and waiting-for reminders during the review"
+      },
+      "scenario": "Roxana, the high school band director, stands in the empty band room at 5:42 p.m., chairs still crooked after rehearsal. The student aide asks, \"Do we answer the principal's festival budget email first?\" Roxana points to three piles. \"Fee deadline, calendar only. Bus estimate, next action: email transportation tomorrow. Clarinet repair, waiting for shop quote, check Thursday. Permission slips, next action: print missing list.\" The aide nods. \"So the email?\" Roxana's hand rests on the mouse.",
+      "whatToDo": "Finish the review before answering the loudest request: put true deadlines only on the calendar, turn tasks into next physical actions, and park outside promises as waiting-for checks.",
+      "whyItMatters": "A festival season has several holding places: email, rehearsal notes, forms, repair slips. Until each is current, the newest demand can hide older commitments with real dates and owners."
+    },
+    {
+      "exampleId": "ch08-ex05-dulcie-return",
+      "title": "Dulcie Sorts the Trip Before the Translation",
+      "tags": [
+        "scene",
+        "freelance",
+        "returning"
+      ],
+      "planSpec": {
+        "domain": "a freelance translator returning from a three-day trip with receipts, client notes, and half-answered messages",
+        "audience": "an independent contractor who has no assistant and no clean boundary between travel, billing, and client delivery",
+        "stakes": "whether unpaid invoices and promised revisions stay hidden in travel debris until cash flow or reputation suffers",
+        "format": "scene",
+        "requiredBeat": "the scene must linger on gathering all loose inputs first, then reviewing lists so the system becomes whole before new work is chosen"
+      },
+      "scenario": "Dulcie gets home from a three-day translation trip at 8:15 p.m., suitcase open on the kitchen floor, train receipts in a passport sleeve, client edits in a hotel notepad, and two half-answered messages on her phone. A new legal translation is waiting in her inbox. She empties every pocket, forwards voice notes, stacks receipts, and drops the notepad pages into her inbox tray. Then she reviews invoices, revisions, waiting items, and calendar dates before deciding whether to open the new file.",
+      "whatToDo": "Gather every loose trip input first, then review each list for missing invoices, promised revisions, waiting replies, and dates before accepting or starting new client work.",
+      "whyItMatters": "Travel scatters commitments across bags, paper, phone, and memory. A review reconnects those fragments to the same inventory, so unpaid work and promises are visible before fresh work competes for attention."
+    },
+    {
+      "exampleId": "ch08-ex06-nkiru-stage-review",
+      "title": "Nkiru Clears the Rehearsal Table Before Notes",
+      "tags": [
+        "vignette",
+        "community",
+        "stage"
+      ],
+      "planSpec": {
+        "domain": "a community theater stage manager one week before opening night",
+        "audience": "a volunteer coordinator juggling props, actors, venue rules, and last-minute fixes",
+        "stakes": "whether rehearsal energy gets spent on real next moves or on rediscovering the same unresolved issues each night",
+        "format": "vignette",
+        "requiredBeat": "the stage manager uses the review to close loops by updating project statuses, deleting stale reminders, and surfacing the few actions that actually belong at tonight's rehearsal"
+      },
+      "scenario": "Nkiru, the community theater stage manager, sits in the second row one week before opening night, binder open across two seats while actors warm up onstage. She reviews every loose note: fog machine permit now approved, sofa delivery still waiting on Lenox Rentals, “find blue teacup” crossed off because the prop was cut. By 6:55, only three cards remain for tonight’s rehearsal: mark the trapdoor tape, confirm Act II blackout cue, ask Ben to bring the brass tray.",
+      "whatToDo": "Review the whole show file before rehearsal starts. Mark each prop, venue, actor, and cue item as done, waiting, later, or next, then carry only tonight’s real actions into notes.",
+      "whyItMatters": "A rehearsal burns time when old reminders mingle with live ones. Current statuses remove false work, waiting-for items stop disappearing, and the remaining list matches the room you are in."
+    },
+    {
+      "exampleId": "ch08-ex07-parviz-review",
+      "title": "Parviz Reviews Tickets Before Returning the New Voicemail",
+      "tags": [
+        "decision_point",
+        "regional",
+        "supervisor"
+      ],
+      "planSpec": {
+        "domain": "a regional maintenance supervisor reviewing open repair tickets across six apartment buildings",
+        "audience": "a field manager moving between sites with phone calls, vendor promises, tenant complaints, and inspection dates",
+        "stakes": "whether urgent-looking messages crowd out older safety, compliance, and waiting-for items that still matter",
+        "format": "decision_point",
+        "requiredBeat": "the supervisor chooses the review before jumping into the newest complaint, proving that current lists make later priority decisions calmer and more accurate"
+      },
+      "scenario": "Parviz, the regional maintenance supervisor, is parked behind the Glenrock apartments at 4:35 p.m., laptop balanced on the steering wheel, with six buildings' repair tickets open. A new voicemail flashes: unit 3C says water is dripping through the bathroom light. His thumb moves to call back, then stops. He sets the phone face down and starts the ticket review first, checking overdue safety items, vendor promises, tenant callbacks, and inspection dates before deciding what gets the next hour.",
+      "whatToDo": "Run the review before calling back: update every open ticket for status, next action, waiting-for owner, and date, then choose the response from the current whole list.",
+      "whyItMatters": "Newest messages feel like priority because they are fresh. A current six-building list lets safety, compliance, vendor waits, and tenant pain compete on the same map."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "An architecture firm is cleaning up its Friday review. Which reminder belongs on the calendar rather than on a next-action list or a someday list?",
+        "choices": [
+          "Attend the zoning hearing on Thursday at 2 p.m.",
+          "Call the surveyor to ask for the revised boundary file.",
+          "Explore whether the lobby could use reclaimed wood."
+        ],
+        "correctIndex": 0,
+        "explanation": "Calendar items are day- or time-specific, so the hearing belongs there. The surveyor call is a next action. The lobby idea is not time-bound and may belong on a project note or someday list.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A bakery owner finds order notes, supplier texts, and two repair reminders before opening. What would show that her review has done its real job?",
+        "choices": [
+          "She finishes the quickest five items so the pile feels smaller.",
+          "She knows every commitment is captured, clarified, and parked where she will see it.",
+          "She rebuilds her categories so the lists look cleaner than last week."
+        ],
+        "correctIndex": 1,
+        "explanation": "A review restores trust by making the whole inventory complete and current. Finishing easy items can still leave hidden loops. Prettier categories do not help if commitments remain unclear.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A customer support lead returns from a trade show with business cards, voice memos, refund promises, and unread messages. What should she do before choosing today's work?",
+        "choices": [
+          "Answer the loudest unread messages first so customers feel movement.",
+          "Rewrite her quarterly goals so the week has a stronger direction.",
+          "Gather all loose inputs, then review and update the lists they affect."
+        ],
+        "correctIndex": 2,
+        "explanation": "The system cannot guide choices until all new inputs are collected and processed. Loud messages may hide older promises. Big-picture planning helps later, not while loose commitments are still scattered.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A research lab manager sees “Jules will send assay results” during review. The grant draft depends on it, but no one in the lab can create the file. Where should the reminder go?",
+        "choices": [
+          "On a waiting-for list with a follow-up date.",
+          "On the lab next-action list as “get assay results.”",
+          "Only on the grant deadline in the calendar."
+        ],
+        "correctIndex": 0,
+        "explanation": "If someone else owns the next move, the reminder is waiting-for, paired with a follow-up trigger. Calling it a next action hides who acts next. The final deadline alone is too late to manage the dependency.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A landscaping supervisor is about to review open jobs when a new client sends an angry message. Several safety repairs and vendor promises are also in play. What is the best next move?",
+        "choices": [
+          "Drop the review and handle the newest complaint before anything else.",
+          "Do a quick full review, then decide where the complaint ranks against the whole map.",
+          "Ignore the complaint until every older item is finished."
+        ],
+        "correctIndex": 1,
+        "explanation": "A current map makes priority decisions calmer and fairer. The newest complaint may not be most important. Refusing to look at it until old work is finished is just another rigid shortcut.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A bookstore manager keeps a notebook, email flags, register slips, and sticky notes. She captures plenty, yet keeps waking up worried about author events and invoices. What is most likely broken?",
+        "choices": [
+          "She has accepted too many projects for one person.",
+          "Her lists lack priority numbers on each line.",
+          "Her capture points are not reviewed often enough to become trustworthy."
+        ],
+        "correctIndex": 2,
+        "explanation": "Capture reduces noise only when the places are emptied and reviewed. Too much work may be real, but the clue is scattered holding places. Priority numbers cannot rescue reminders that are not current.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A wedding planner reviews old client boards and sees completed venue calls, a florist quote that changed, and an undecided seating chart. What review action best repairs the system?",
+        "choices": [
+          "Delete stale reminders, update changed items, and name the next action or waiting-for for each live piece.",
+          "Archive the whole board and start a fresh one so old clutter stops distracting her.",
+          "Spend the review redefining her ideal client and long-term business vision."
+        ],
+        "correctIndex": 0,
+        "explanation": "Review keeps the map accurate by removing dead items and refreshing live ones. Archiving everything risks losing commitments. Vision work may be useful, but it does not fix stale runway reminders.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A city parks director wants a review habit for permits, mower repairs, council requests, and seasonal hiring. Which plan is strongest?",
+        "choices": [
+          "Scan urgent email each morning and trust that anything important will resurface.",
+          "Once a week, check inboxes, calendar, project list, waiting-for items, and next actions.",
+          "Hold a review only after a deadline slips, so the process stays light."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest plan checks every major container on a regular rhythm, so the system stays complete and current. Email-only review misses commitments. Waiting for failure makes the review reactive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A graduate student has 20 minutes before catching a train. After a weekly review, her lists are current. How should she choose what to do?",
+        "choices": [
+          "Open the newest message and handle whatever arrived last.",
+          "Start the thesis outline because it is the largest project.",
+          "Pick a phone or laptop action that fits the time, context, energy, and priority."
+        ],
+        "correctIndex": 2,
+        "explanation": "Once the review makes lists reliable, choice can use context, time, energy, and priority. Newest is not the same as best. Biggest may be important, but it may not fit a short travel window.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You made clean lists last month, but your mind is nagging you again today. What move restores trust?",
+      "back": "Refresh your system until every reminder is complete, current, and safe to trust again. Do not just add more items. Review what is already there, remove stale reminders, update next actions, and confirm that each commitment has a place you will look.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A charge nurse finds callback notes in her pocket after a missed equipment request. What should she fix first?",
+      "back": "Fix the review routine, not your character. Gather the loose notes, texts, and handoff scraps into one inbox. Then review them until each one is either done, scheduled, delegated, or placed on a current list with a clear next action.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "You scan case folders before Monday court and see promises to clients, clerks, and an investigator. How do you make the list trustworthy?",
+      "back": "Check each matter for four things: the desired outcome, the next physical action, any waiting-for item, and any calendar trigger. A folder is not reviewed just because you looked at it. It is reviewed when the reminders match reality.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "You lie awake thinking about sports forms, dentist dates, and custody logistics. What review move reduces the bedtime noise?",
+      "back": "Build the full family map before trying to finish everything. Gather the school emails, forms, dates, and promises. Update the lists and calendar. Then choose what is not being done this week on purpose, so your mind does not keep re-asking.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "You manage repairs across six buildings when a new complaint arrives. Older tickets may hide safety issues. What do you do before reacting?",
+      "back": "Review the whole repair inventory first. Update vendor promises, inspection dates, tenant callbacks, and next actions. Delete what is stale. Once the system is current, choose from real priority instead of the newest noise.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is a regular review that makes your reminders trustworthy again. You gather loose notes, check each list, update what changed, delete what no longer matters, and choose the next real action where one is needed. The point is not to finish everything, but to know what is current, what is waiting, and what you are leaving alone on purpose.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If Friday afternoon arrives and you have scraps in meeting notes, texts, email flags, or sticky notes, then spend 25 minutes pulling them into one inbox and updating your project, waiting-for, calendar, and next-action lists before you leave."
+      },
+      {
+        "context": "personal",
+        "plan": "If Sunday night anxiety starts listing school forms, appointments, bills, or errands in your head, then open your family or personal lists and mark each item as calendar, next action, waiting for someone, or not this week."
+      },
+      {
+        "context": "school",
+        "plan": "If a new week starts with assignments spread across a syllabus, portal, notebook, and group chat, then make one pass through each source and write the next visible action for every active class item."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you remember a promise to call, send, ask, or follow up with someone, then put it on a waiting-for or next-action list during your next review instead of trusting yourself to remember at the right moment."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, set a 20-minute timer and review one small system: your email flags, notebook, task list, or family calendar. For each item, decide whether it is done, waiting, scheduled, deleted, or needs one next action.",
+    "weeklyPractice": "Pick one fixed review slot each week, such as Friday at 3:30 or Sunday at 7:00. During that slot, empty loose capture points, scan your calendar two weeks back and two weeks ahead, update active projects, check waiting-for items, and choose a few next actions that still make sense."
+  },
+  "memorableLines": [
+    {
+      "text": "A stale list has a smell.",
+      "location": "breakdown.fullRead",
+      "why": "This line uses a vivid metaphor to convey the discomfort of an outdated system, making it both relatable and memorable."
+    },
+    {
+      "text": "Review makes the system prove itself again.",
+      "location": "keyTakeaway",
+      "why": "This line encapsulates the essence of the chapter, emphasizing the critical role of review in maintaining trust in one's organizational system."
+    },
+    {
+      "text": "Relief comes when the map is current enough that you can choose from it without suspicion.",
+      "location": "breakdown.deepRead",
+      "why": "This line captures a profound truth about clarity and decision-making, resonating with anyone who has felt overwhelmed by their tasks."
+    }
+  ]
+}

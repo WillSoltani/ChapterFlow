@@ -1,0 +1,67 @@
+{
+  "chapterId": "getting-things-done-ch12",
+  "number": 12,
+  "title": "The Power of the Next-Action Decision",
+  "coreMove": "Translate every vague commitment on your list into the specific physical action that would move it forward, so that choosing becomes possible.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a staffing consultant reviewing client proposals at her home desk at 6:45 PM on a Friday",
+      "audience": "a self-employed consultant who bills by project and manages her own pipeline",
+      "stakes": "whether a $40,000 proposal reaches the client this week or slips another cycle while a competitor fills the gap",
+      "format": "decision_point",
+      "requiredBeat": "she stares at 'follow up with Hendricks Group' and realizes she is not avoiding it — she genuinely does not know what the physical action is — then rewrites it as 'email Dana Hendricks asking whether she has questions about Section 3 of the proposal'"
+    },
+    {
+      "domain": "a high school principal's annual fire drill compliance project",
+      "audience": "a K-12 principal juggling dozens of mandated annual tasks with no administrative support staff",
+      "stakes": "whether a fire drill deadline is met or triggers a district compliance review that consumes three weeks of her fall semester",
+      "format": "before_after",
+      "requiredBeat": "the list shifts from 'handle fire drill documentation' to 'call the district safety office at ext. 4421 and ask which form they need submitted by May 30' — and the project that sat untouched for two months suddenly has a clear first move"
+    },
+    {
+      "domain": "a recurring weekly status meeting at a four-person architecture firm",
+      "audience": "a junior architect who facilitates team standups but has no formal project management training",
+      "stakes": "whether a client facade revision misses its permit window because the team keeps discussing it without assigning a physical first step to anyone",
+      "format": "dialogue",
+      "requiredBeat": "the meeting breaks open when someone finally asks 'what is the actual next action and who has it' — and the answer turns out to be a two-minute phone call to the building department that everyone assumed someone else was already making"
+    },
+    {
+      "domain": "a home kitchen renovation that stalled four months into a projected six-week project",
+      "audience": "a first-time homeowner who works full-time as a pediatric nurse and manages two school-age children",
+      "stakes": "whether a half-dismantled kitchen stays unusable through another winter or gets finished before the holidays",
+      "format": "vignette",
+      "requiredBeat": "she realizes 'research countertops' has appeared on her list seventeen times because it never became 'spend twenty minutes on one supplier's site, write down three product names, and text them to the contractor'"
+    },
+    {
+      "domain": "two versions of a freelance legal translator's Monday morning project list",
+      "audience": "a freelance translator managing five simultaneous client contracts across two languages",
+      "stakes": "whether client relationships stay smooth or degrade through missed responses and perceived unreliability across a six-month stretch",
+      "format": "thought_experiment",
+      "requiredBeat": "in version B where every item carries a next action she can scan forty items in three minutes and start the first one — in version A she spends those same three minutes staring and eventually opens her phone instead"
+    },
+    {
+      "domain": "a mobile app launch that shipped three weeks late and missed its press window",
+      "audience": "a product team lead running a retrospective with two engineers and a designer",
+      "stakes": "a competitor released first with a smaller feature set, costing the team the first-mover narrative they had built for six months",
+      "format": "postmortem",
+      "requiredBeat": "the team discovers that every item on the milestone tracker was an outcome ('beta testing complete') rather than a physical action, and that nobody had ever explicitly owned the call to the QA vendor that would have started the clock"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 20
+}

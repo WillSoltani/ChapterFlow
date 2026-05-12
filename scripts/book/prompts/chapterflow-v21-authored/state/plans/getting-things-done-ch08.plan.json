@@ -1,0 +1,74 @@
+{
+  "chapterId": "getting-things-done-ch08",
+  "number": 8,
+  "title": "Reviewing: Keeping Your System Functional",
+  "coreMove": "Refresh your system until every reminder is complete, current, and safe to trust again",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "a charge nurse doing a Friday afternoon review of staffing notes, supply requests, and follow-up calls",
+      "audience": "a hospital shift lead whose week leaves scraps of commitments in pockets, texts, and handoff sheets",
+      "stakes": "whether a promised equipment request and two staff callbacks vanish into memory until they become interruptions during patient care",
+      "format": "postmortem",
+      "requiredBeat": "the nurse identifies that the miss came from an unreviewed holding place, then repairs the review routine instead of blaming herself for not remembering"
+    },
+    {
+      "domain": "a public defender scanning active case folders before Monday court",
+      "audience": "an overextended lawyer carrying dozens of small promises across hearings, clients, clerks, and investigators",
+      "stakes": "whether a client update, interpreter request, or evidence follow-up is current before the week starts",
+      "format": "before_after",
+      "requiredBeat": "the example must show the case list becoming trustworthy only after each matter is checked for outcome, next action, waiting-for item, and calendar trigger"
+    },
+    {
+      "domain": "a parent coordinating a ninth grader's sports forms, orthodontist appointments, and shared custody logistics",
+      "audience": "a household captain who feels ambushed by school emails and family obligations",
+      "stakes": "whether family commitments keep surfacing as bedtime anxiety instead of sitting in clear reminders",
+      "format": "reflection",
+      "requiredBeat": "the parent notices that relief comes not from finishing everything, but from seeing the full family map and deciding what is not being done this week on purpose"
+    },
+    {
+      "domain": "a high school band director reviewing festival deadlines after rehearsal",
+      "audience": "a teacher managing students, buses, permission slips, instrument repairs, and administrator requests",
+      "stakes": "whether the concert season is run from a current inventory or from whoever asks loudest that day",
+      "format": "dialogue",
+      "requiredBeat": "the dialogue must have the director separate calendar-only deadlines from next-action list items and waiting-for reminders during the review"
+    },
+    {
+      "domain": "a freelance translator returning from a three-day trip with receipts, client notes, and half-answered messages",
+      "audience": "an independent contractor who has no assistant and no clean boundary between travel, billing, and client delivery",
+      "stakes": "whether unpaid invoices and promised revisions stay hidden in travel debris until cash flow or reputation suffers",
+      "format": "scene",
+      "requiredBeat": "the scene must linger on gathering all loose inputs first, then reviewing lists so the system becomes whole before new work is chosen"
+    },
+    {
+      "domain": "a community theater stage manager one week before opening night",
+      "audience": "a volunteer coordinator juggling props, actors, venue rules, and last-minute fixes",
+      "stakes": "whether rehearsal energy gets spent on real next moves or on rediscovering the same unresolved issues each night",
+      "format": "vignette",
+      "requiredBeat": "the stage manager uses the review to close loops by updating project statuses, deleting stale reminders, and surfacing the few actions that actually belong at tonight's rehearsal"
+    },
+    {
+      "domain": "a regional maintenance supervisor reviewing open repair tickets across six apartment buildings",
+      "audience": "a field manager moving between sites with phone calls, vendor promises, tenant complaints, and inspection dates",
+      "stakes": "whether urgent-looking messages crowd out older safety, compliance, and waiting-for items that still matter",
+      "format": "decision_point",
+      "requiredBeat": "the supervisor chooses the review before jumping into the newest complaint, proving that current lists make later priority decisions calmer and more accurate"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 18
+}

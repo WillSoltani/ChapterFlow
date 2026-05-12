@@ -1,0 +1,325 @@
+{
+  "chapterId": "smarter-faster-better-ch03",
+  "number": 3,
+  "title": "Focus",
+  "readingTimeMinutes": 12,
+  "hook": "A blinking alert can feel like focus while it quietly steals the rest of the sky.",
+  "counterintuition": "Most people assume focus means locking harder onto the urgent signal. Instead, useful focus often means keeping a wider model alive when pressure tries to shrink the field.",
+  "tryThisNow": "When one cue grabs you today, stop for thirty seconds and name three checks that would have to be true before that cue deserves to drive the decision.",
+  "keyTakeaway": "Focus becomes reliable when a mental model keeps attention scanning for context, contradictions, and missing signals instead of obeying the loudest cue.",
+  "breakdown": {
+    "fastRead": "The simulator alert blinks. The trainee wants to fix altitude now. That feels like focus. It may be a tunnel.\n\nStrong focus is not a stare. It is a scan under pressure. The mind needs a model before the alarm arrives: traffic, weather, handoff, altitude. Without that frame, the brightest signal becomes the whole problem.\n\nStress often narrows attention before you know it. The cure is not to care less. It is to keep asking what else belongs in the picture. The loudest cue is allowed into the room, but it does not get to become the room.",
+    "deepRead": "Air France Flight 447 gives this idea its harshest edge. A cockpit under pressure is not a place where generic advice about concentration means much. The lesson is sharper: attention can become dangerously narrow while the person inside it feels intensely focused.\n\nThat is cognitive tunneling. Distraction scatters attention. Tunneling hardens it. One alert, one number, one injury, one sentence, or one fear starts acting like the whole situation. The mind enjoys the relief of a single target, especially when the room is loud. Relief is not accuracy.\n\nA model gives attention a route when stress wants to give it a tunnel. It tells the paramedic to scan airway and breathing, not only the blood. It tells the reporter to check absentee votes and neighboring precincts, not only the flashing map. It tells the parent to check hunger, sleep, and exits, not only the shriek.\n\nThe model does not make the pressure vanish. It gives pressure a shape to move through. That matters because speed without a frame can be a fast mistake. The person looks decisive while the field shrinks.\n\nThere is a limit. Models can become stale. A checklist can be followed without seeing. Useful focus is not blind obedience to a script. It is a disciplined scan that keeps updating as reality answers back. The model exists to widen attention, not to replace attention.",
+    "fullRead": "Focus has a public image problem. It is often pictured as intensity: eyes fixed, noise ignored, mind locked on the task. That image is partly right. Some work needs exclusion. A pianist cannot attend equally to every cough in the hall. A surgeon cannot treat every monitor beep as equally important. A student cannot read a paragraph while answering every message.\n\nBut pressure changes the problem. Under stress, the danger is not always distraction. It is narrowed certainty. The mind picks a cue and starts treating that cue as the map. A bleeding sleeve. A blinking altitude alert. A precinct number moving faster than the others. A child shrieking in the cereal aisle. Each cue may be real. The error comes when real becomes complete.\n\nCognitive tunneling is seductive because it feels responsible. You are not drifting. You are locked in. You are doing something. That feeling can hide the fact that you have stopped asking what else is true. The field collapses while your confidence rises.\n\nMental models protect against that collapse. They are not academic furniture. They are practical frames built before the hard moment. The responder has a scan. The controller has a traffic picture. The reporter has a result checklist. The parent has a simple hunger, sleep, exit model. In each case the model makes attention move across the situation instead of kneeling before the loudest fact.\n\nThe strongest model does two jobs. First, it tells you where to look next. Second, it tells you what would change your mind. Without those jobs, a model can become another tunnel. People can worship a checklist as badly as they worship an alarm. The point is not to memorize a frame and stop seeing. The point is to keep seeing when pressure wants the first clean story.\n\nThe loudest cue is allowed into the room, but it does not get to become the room. That sentence matters in ordinary life because ordinary pressure also narrows. A manager sees one bad metric and misses a staffing change. A teacher hears one rude sentence and misses the student's exhaustion. A founder sees one angry customer and rewrites the whole roadmap by midnight. These are not failures of caring. They are failures of frame.\n\nA useful focus practice starts before the emergency. Ask what picture you will need when pressure rises. What are the three checks? What signal tends to hypnotize you? What quiet evidence do you usually miss? Then, when the cue arrives, say the model out loud if you can. The spoken model buys a second of distance. It reminds the mind that the first signal is evidence, not a verdict.\n\nThe counterargument is real: sometimes action cannot wait. A model should not become a ritual for delay. But the best models speed action by preventing thrash. They keep you from solving the wrong slice of the problem with impressive urgency.\n\nReal focus is disciplined breadth. It stays organized enough to act and wide enough to stay accurate. It does not ask the loud signal to go away. It asks the signal to take its proper place in the larger picture."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-ilona-route18",
+      "title": "Ilona looks away from the bleeding sleeve",
+      "tags": [
+        "decision_point",
+        "ems",
+        "focus"
+      ],
+      "planSpec": {
+        "domain": "a county paramedic triaging a highway pileup while the loudest injury draws attention",
+        "audience": "a responder who needs focus wide enough to keep scanning under pressure",
+        "stakes": "whether transport order follows the whole scene or the most dramatic cue",
+        "format": "decision_point",
+        "requiredBeat": "she catches herself staring at the loudest injury and forces a head-to-toe scan before choosing transport order"
+      },
+      "scenario": "Ilona kneels in sleet at 7:19 a.m. on the shoulder of Route 18, orange flares hissing behind her and a man's torn sleeve dripping bright blood onto the gravel. He is shouting. Everyone is looking at him. Ten feet away, a teenage girl sits upright against a guardrail, quiet, lips pale, one hand pressed under her ribs. Ilona's radio crackles for transport order. Her eyes keep snapping back to the blood. Before the first ambulance doors close, she must choose between the sleeve that owns the scene and the scan that may tell the truth.",
+      "whatToDo": "Name the pull of the visible injury, then force the scan: airway, breathing, circulation, mental status, mechanism. Let the model rank the scene before the loud cue ranks it for her.",
+      "whyItMatters": "Under stress, attention can feel sharp while it narrows. A mental model keeps the frame open long enough for quieter evidence to compete with the first alarming signal."
+    },
+    {
+      "exampleId": "ch03-ex02-rafiq-simulator",
+      "title": "Rafiq says the traffic picture before touching altitude",
+      "tags": [
+        "dialogue",
+        "aviation",
+        "model"
+      ],
+      "planSpec": {
+        "domain": "an air-traffic trainee in a simulator reacting to a blinking altitude alert",
+        "audience": "a trainee who is being coached to resist cognitive tunneling under alarm pressure",
+        "stakes": "whether he preserves the whole traffic picture or fixes one alert into a new conflict",
+        "format": "dialogue",
+        "requiredBeat": "he stops answering the blinking altitude alert alone and talks through the whole traffic picture"
+      },
+      "scenario": "Rafiq adjusts a plastic headset at 2:28 p.m. Thursday in simulator bay C, the altitude alert blinking amber above sector 14. \"Descend cargo 602?\" he asks, hand already on the strip. His coach says, \"Whole picture first.\" Rafiq exhales. \"Cargo 602 is high, medevac 31 is climbing through twelve, storm cell is closing the east handoff, and the west lane is empty.\" The blinking light keeps pulsing. His hand hovers over the strip. The question is whether the light gets one quick answer or the traffic picture gets to lead.",
+      "whatToDo": "Speak the whole model before issuing the command. Place the alert inside traffic, weather, altitude, and handoff constraints, then choose the move that fits the full picture.",
+      "whyItMatters": "Alarms are designed to seize attention. The model gives attention somewhere larger to stand, so the controller does not solve one blinking problem by creating another."
+    },
+    {
+      "exampleId": "ch03-ex03-orfeo-bottlecap",
+      "title": "Orfeo misses the mate behind the queen threat",
+      "tags": [
+        "predict_reveal",
+        "chess",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "a youth chess coach demonstrating how an obvious threat can hide the board's real danger",
+        "audience": "a coach teaching children that intense attention is not the same as accurate attention",
+        "stakes": "whether students learn to scan the position or chase the flashiest piece",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts the obvious queen threat is decisive, then reveals the quiet mate threat he missed by scanning only one part of the board"
+      },
+      "scenario": "Orfeo taps a captured pawn into a bottle cap at 10:11 a.m. Saturday at table 6 of the library chess club, the position set and twelve kids leaning over the board. \"Black's queen fork decides it,\" he says, asking them to predict the best move. Most hands shoot up. Then quiet little rook h8 lands on the back rank, and the white king has no square. Orfeo lets the room groan. He had stared at the queen so hard the mate net became invisible. Now the question is which lesson to teach: the tactic, or the scan he skipped.",
+      "whatToDo": "Teach the missed scan, not just the move. Have the students check king safety, forcing moves, loose pieces, and only then queen threats, so the obvious cue stops owning the board.",
+      "whyItMatters": "A dramatic signal can become a tunnel. The cure is not weaker focus; it is a repeatable scan that keeps attention moving across the field."
+    },
+    {
+      "exampleId": "ch03-ex04-gita-rack-oven",
+      "title": "Gita finds the second mistake behind the oven alarm",
+      "tags": [
+        "postmortem",
+        "bakery",
+        "tunneling"
+      ],
+      "planSpec": {
+        "domain": "a bakery owner reviewing why a batch burned after an oven alarm sounded",
+        "audience": "an owner who solved the loud problem and missed the quiet process failure beside it",
+        "stakes": "whether the next morning's bake fixes the system or only the alarm habit",
+        "format": "postmortem",
+        "requiredBeat": "she sees the oven alarm was real but became the whole story, hiding the proofing rack mistake"
+      },
+      "scenario": "Gita stands beside the rack oven at 5:52 a.m. Monday, sesame smoke hanging low in the prep room and thirty-six blistered buns cooling like evidence. The oven alarm did fail, and she yelled about it for ten minutes. In the postmortem, she rebuilds the morning on butcher paper. Alarm at 5:12. Pull at 5:18. Proofing rack loaded at 4:03 instead of 3:47. The batch was already late before the alarm. The loud failure was real. It had swallowed the quieter one that set it up.",
+      "whatToDo": "Keep the alarm on the timeline, then force the timeline backward until the earlier cause appears. Use the model of the process, not the noise of the failure, to decide the repair.",
+      "whyItMatters": "Tunneling can attach to a true signal. The question is whether the true signal explains enough, or whether attention stopped before the full chain came into view."
+    },
+    {
+      "exampleId": "ch03-ex05-ishaan-map-monitor",
+      "title": "Ishaan stops refreshing the loud precinct",
+      "tags": [
+        "before_after",
+        "newsroom",
+        "election"
+      ],
+      "planSpec": {
+        "domain": "a local reporter covering election returns while one dramatic precinct number keeps refreshing",
+        "audience": "a reporter under deadline pressure who needs a model before making the call",
+        "stakes": "whether the newsroom publishes a premature result based on the loudest visible number",
+        "format": "before_after",
+        "requiredBeat": "he moves from refreshing the loudest precinct number to building a checklist of what would have to be true"
+      },
+      "scenario": "Ishaan refreshes the county map at 9:47 p.m. Tuesday in the newsroom, cold pizza stiff beside the monitor and one lakeside precinct flashing a wild swing. Before, he hit refresh every thirty seconds and felt focused because the number was moving. After his editor asks what else must be true, he writes three checks on a napkin: absentee count, turnout in the mill ward, same swing in two nearby precincts. The lakeside number still glows. It no longer gets to be the whole race.",
+      "whatToDo": "Build the checklist before writing the alert. Name what else would have to be true for the swing to matter, then check those signals before treating one live number as the result.",
+      "whyItMatters": "Pressure makes the moving number feel like the story. A model turns focus from staring into testing, so the newsroom can stay fast without becoming blind."
+    },
+    {
+      "exampleId": "ch03-ex06-vesko-aisle9",
+      "title": "Vesko hears the shriek and checks the model",
+      "tags": [
+        "scene",
+        "parenting",
+        "focus"
+      ],
+      "planSpec": {
+        "domain": "a father in a grocery aisle using a simple mental model during a toddler meltdown",
+        "audience": "a parent whose attention narrows around embarrassment and noise",
+        "stakes": "whether he reacts to the shriek alone or reads the full situation before acting",
+        "format": "scene",
+        "requiredBeat": "he catches the shriek narrowing his attention and uses a simple model of hunger, sleep, and exits before deciding what to do"
+      },
+      "scenario": "Vesko grips the cart handle at 4:36 p.m. Sunday in aisle 9, cereal boxes bright as billboards and crushed crackers under the front wheel. His toddler is shrieking on the tile. Two shoppers turn. Vesko feels the whole store shrink to the sound and the heat in his face. Then he runs the small model taped in his head: hunger, sleep, exit. Lunch was early. Nap was missed. The exit is six steps behind him. The cereal box is in his hand, but the real decision is whether the shriek gets an argument or the model gets them out.",
+      "whatToDo": "Use the model before responding to the noise. Check hunger, sleep, and exit, then act on the most useful read instead of trying to win against the loudest signal.",
+      "whyItMatters": "Embarrassment narrows attention fast. A simple model can keep the parent from treating one shriek as the whole situation and choosing a response too small for the real problem."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A security guard hears a fire-door alarm in a museum and sprints toward it, ignoring the camera wall. On the cameras, two visitors are moving toward a restricted stairwell. Which move best resists tunneling?",
+        "choices": [
+          "Pause long enough to check the alarm, camera wall, visitor flow, and exits before choosing where to go.",
+          "Run straight to the fire door because the loudest alarm should always receive first response.",
+          "Silence the alarm immediately so it stops distracting everyone else in the lobby."
+        ],
+        "correctIndex": 0,
+        "explanation": "The alarm may matter, but it cannot become the whole scene. A quick model of alarm, cameras, people, and exits keeps attention wide enough to choose well.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A teacher sees one student roll his eyes during a lesson and spends the next ten minutes reacting to that gesture, missing three confused hands elsewhere. What is the focus failure?",
+        "choices": [
+          "The teacher was distracted because attention scattered across too many student signals.",
+          "The teacher tunneled on one irritating cue and let it replace the whole classroom picture.",
+          "The teacher needed a stricter rule against facial expressions before instruction began."
+        ],
+        "correctIndex": 1,
+        "explanation": "The issue is narrowed attention, not scattered attention. One visible cue became the whole story, so the teacher stopped scanning for other evidence that mattered more.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A nurse hears a pump beep and reaches for the nearest medication bag. The patient is also sweating and newly confused. Which mental-model prompt would help most?",
+        "choices": [
+          "Which alarm is most annoying to everyone nearby?",
+          "Which medication bag is physically closest to the pump?",
+          "What are the patient, line, dose, vitals, and recent changes telling me together?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The useful prompt widens the frame. It places the beep inside a patient model instead of letting a single device cue drive the next action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A project lead sees one angry client email and wants to rebuild the entire rollout plan by noon. The team has survey data, usage logs, and support tickets waiting. What should happen first?",
+        "choices": [
+          "Define which other signals would confirm the email represents the broader rollout, then check them.",
+          "Rewrite the rollout immediately because intense client emotion is the clearest signal available.",
+          "Ignore the email until the next scheduled review so the team does not overreact."
+        ],
+        "correctIndex": 0,
+        "explanation": "The email is evidence, not a verdict. The lead needs a model for confirming scope before one vivid cue pulls the whole plan into a tunnel.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A goalkeeper studies penalty videos and keeps watching only the striker's feet. In matches, she misses hip position and run-up rhythm. What would improve her focus?",
+        "choices": [
+          "Watch the feet even harder because the ball is struck there.",
+          "Use a repeatable scan: run-up angle, hips, plant foot, then strike foot.",
+          "Stop studying video and rely on instinct so her attention stays natural."
+        ],
+        "correctIndex": 1,
+        "explanation": "A scan keeps attention mobile. The feet matter, but the model prevents one cue from crowding out other predictors that improve the read.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A founder watches daily revenue dip and freezes hiring, marketing, and product experiments in the same hour. Later she learns one large customer had a delayed invoice. Which critique is fairest?",
+        "choices": [
+          "She acted too slowly because daily revenue should trigger instant cuts.",
+          "She should have ignored revenue until monthly reports arrived.",
+          "She treated one metric as the whole business before checking the model around it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The dip was real but incomplete. A business model would ask what else changed before making broad cuts, so one visible metric does not become the whole field.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A driver hears a thump under the car on an icy road and stares at the dashboard warning lights while drifting toward the shoulder. Which response best keeps focus useful?",
+        "choices": [
+          "Scan steering, speed, mirrors, shoulder distance, and lights before choosing the next safe move.",
+          "Keep staring at the dashboard because the warning lights explain the whole problem.",
+          "Brake hard immediately so the thump cannot cause more damage."
+        ],
+        "correctIndex": 0,
+        "explanation": "The dashboard is only one part of the situation. A quick driving model keeps attention on control, surroundings, and speed so the response stays safe.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A student reads an essay prompt and fixates on the phrase 'compare two causes,' ignoring the instruction to evaluate evidence quality. The essay earns a low grade. What model would have helped?",
+        "choices": [
+          "A rule to write faster once one instruction seems clear.",
+          "A prompt scan for task verb, evidence standard, scope, and output format.",
+          "A habit of choosing the easiest phrase and building the essay around it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The scan keeps attention from stopping at the first clear phrase. It forces the student to place that phrase inside the larger assignment before writing.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A chef hears a timer and pulls every tray from the oven, even though two trays went in six minutes later. The later pastries collapse. Which principle did he miss?",
+        "choices": [
+          "Timers should be ignored when kitchen work is busy and sensory judgment is available.",
+          "The first alarm is usually the most reliable cue because it is objective.",
+          "A cue must be placed inside the process model before it drives action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The timer was real but not complete. The process model included staggered tray times, so the alarm needed context before becoming the action signal.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch03-rc01",
+      "front": "A loud cue grabs your attention under pressure. What should you retrieve before acting?",
+      "back": "Retrieve the model that tells you what else belongs in the picture. The cue may be real, but it needs context before it earns control of the decision.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch03-rc02",
+      "front": "You feel intensely focused and still may be wrong. What is the warning sign?",
+      "back": "You have stopped scanning. Intensity can hide cognitive tunneling when one signal becomes the whole story and contrary or quieter evidence disappears from view.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch03-rc03",
+      "front": "A checklist starts making people blind to what is actually happening. What limit should you remember?",
+      "back": "A model should widen attention, not replace attention. Use it to guide the next scan and update it when reality gives evidence the model did not expect.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch03-rc04",
+      "front": "A manager overreacts to one bad metric. How do you turn the metric into evidence instead of a tunnel?",
+      "back": "Ask what else would have to be true for the metric to mean what it seems to mean. Then check those signals before changing the whole plan.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch03-rc05",
+      "front": "A room rewards the person who commits fastest under pressure. What focus failure can that create?",
+      "back": "It can reward premature closure. The room may confuse decisiveness with accuracy, making the person who keeps scanning look hesitant even when that scan protects the decision.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is using a mental model to keep attention wide under pressure. Before the urgent cue arrives, know the scan you will run. When the cue appears, place it inside the model before you let it drive the next move.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If one metric, email, or alert makes you want to act immediately, then name two other signals that would have to confirm it before changing the plan."
+      },
+      {
+        "context": "health",
+        "plan": "If one symptom or device reading scares you, then check the full set your clinician taught you, such as breathing, pain, temperature, timing, and recent changes."
+      },
+      {
+        "context": "personal",
+        "plan": "If you feel your attention shrink around one upsetting detail, then write the detail at the top of a page and list three missing pieces before responding."
+      },
+      {
+        "context": "relationships",
+        "plan": "If one phrase in a conversation makes you want to react, then ask what else is being communicated through timing, tone, fatigue, and the larger pattern before answering."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, catch one moment where a single cue grabs you. Write a three-part scan for that situation, run it once, and record whether the cue still deserves to lead.",
+    "weeklyPractice": "Once this week, build a model for one recurring pressure situation. List the loud cue, the quiet cues you miss, and the scan you will speak aloud next time."
+  },
+  "memorableLines": [
+    {
+      "text": "Strong focus is not a stare. It is a scan under pressure.",
+      "location": "breakdown.fastRead",
+      "why": "It flips focus from intensity to range in a short, teachable contrast."
+    },
+    {
+      "text": "A model gives attention a route when stress wants to give it a tunnel.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the role of mental models concrete under pressure."
+    },
+    {
+      "text": "The loudest cue is allowed into the room, but it does not get to become the room.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the core discipline of using evidence without surrendering to it."
+    }
+  ]
+}

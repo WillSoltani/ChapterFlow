@@ -1,0 +1,319 @@
+{
+  "chapterId": "playing-to-win-ch06",
+  "number": 6,
+  "title": "Manage What Matters",
+  "readingTimeMinutes": 14,
+  "hook": "Perla's dashboard is green at 9:05 a.m., while the strategy is slipping in aisle seven.",
+  "counterintuition": "Most teams think management systems are neutral trackers. They are not. Measures, reviews, and rewards teach people what the real strategy is, even when slides say something else. Instead, the system quietly teaches the real strategy through what it counts and praises.",
+  "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+  "keyTakeaway": "Management systems make strategy real only when measures, reviews, and rewards push people toward the chosen field and edge every week.",
+  "breakdown": {
+    "fastRead": "Perla taps a green dashboard at 9:05 a.m. in the grocery office. Aisle seven is out of the local items the strategy says matter most. The report still says the store is healthy.\n\nA measure is a teacher. It tells people what to protect when the day gets crowded.\n\nIf the dashboard rewards the old game, people will play the old game with discipline.\n\nPerla does not need a prettier report. She needs a report that protects the promise customers were told to expect.",
+    "deepRead": "Simeon sits through a Tuesday review where every manager reads last week's activity list. The room is tidy. The strategy is not. Nobody asks why the chosen small-business segment is missing from the pipeline. The ritual has cadence without consequence.\n\nManage what matters means building systems that reinforce the choices. Measures should track the result the strategy needs. Review meetings should surface evidence and conflict. Rewards should honor behavior that supports the edge, not just visible busyness.\n\nPicture Dunja at a physical therapy clinic. The clinic says it wins by helping older patients keep independence. The staff bonus still rewards visits per hour. Therapists learn to shorten conversations and fill slots. The system is teaching the opposite lesson.\n\nThe limit is overload. Tracking everything feels responsible, but it makes no signal strong. A few sharp measures beat a wall of polite numbers.\n\nA hotel front desk can say it values calm guest recovery, then score clerks only on average transaction time. Clerks will learn to move the line, even when one angry guest needs five extra minutes. The measure is not neutral. It tells the clerk which risk to take when the lobby is full.\n\nA review should create a conversation the strategy needs. What moved? What stalled? What evidence changed our view? What will we do before the next review? Without those questions, the meeting becomes a recital of activity.",
+    "fullRead": "Brice opens the Monday sales packet at 7:58 a.m. and sees every region ranked by total calls. The strategy says the company is shifting toward complex municipal accounts. Total calls rewards quick small-business check-ins. By lunch, the reps will do exactly what the packet praises.\n\nManagement systems are the routines that make behavior repeat. Scorecards, review calendars, bonus rules, promotion stories, exception approvals, and even meeting agendas all teach the organization what matters. If those systems point at the old game, the new strategy will lose quietly.\n\nKatarzyna sees it at a warehouse. The company wants to win with reliable two-hour delivery for hospital supplies. Supervisors still celebrate total boxes picked. Workers race through easy orders while urgent hospital totes wait for a checker. Nobody is lazy. The system is precise and wrong. She changes the first board of the day to on-time hospital totes, missed reasons, and fixes due by noon. The floor starts solving the chosen problem.\n\nRyo gets a personal version with a habit tracker. He wants deeper client work, but his tracker rewards inbox zero, ten tiny tasks, and daily posts. He feels productive and keeps dodging the proposal that would change his business. The tracker is not neutral. It is paying him in check marks for the wrong game. He cuts it to two measures: proposal hours and client follow-up quality.\n\nGood management does not mean more control. It means clear reinforcement. The system should make the desired behavior easier to see, harder to ignore, and more likely to be repeated.\n\nA warning belongs here. Measures can distort work if they get too crude. The answer is not to abandon measures. It is to review them in conversation with real examples, so the number never replaces judgment.\n\nLook at what gets counted, reviewed, and praised. That is the strategy people will believe.\n\nA good management system has a small number of strong signals. The first signal shows whether the chosen customer or field is being served. The second shows whether the edge is improving. The third shows whether the needed capability is getting stronger. More numbers can sit behind those, but they should not crowd the front of the room.\n\nRewards deserve the same scrutiny. A company can say it wants careful consultative sales and still promote the rep who closes quick mismatched deals. A school can say it wants student confidence and still praise only test speed. A family can say it wants calmer mornings and still reward the person who finds every tiny mistake before breakfast. Praise is a management system too.\n\nThe fix starts with one meeting. Put the chosen result at the top. Bring one real case where the system helped and one where it hurt. Change one measure, one agenda item, or one reward before the next meeting. Small system edits compound because they change what people prepare for."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-perla-taps-the-green-dashboard-while-aisle-s",
+      "title": "Perla taps the green dashboard while aisle seven is empty",
+      "tags": [
+        "grocery",
+        "dashboard",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "regional grocery store",
+        "audience": "store manager",
+        "stakes": "local product strategy",
+        "format": "decision_point",
+        "requiredBeat": "green measures reward wrong behavior"
+      },
+      "scenario": "Perla taps the green dashboard at 9:05 a.m. in the grocery office while a stock clerk radios from aisle seven: the local honey shelf is empty again. The strategy says win weekend shoppers with local items. The dashboard rewards total shelf fill, and canned soup is perfect. She can praise the green report before the district call, or she can change the first measure to local-item availability.",
+      "whatToDo": "Change the measure that leads the review. Track the shelf condition tied to the chosen strategy before celebrating broad operational health.",
+      "whyItMatters": "The store is doing what the dashboard teaches. If Perla keeps rewarding total fill, the local promise will lose to easier shelves every morning."
+    },
+    {
+      "exampleId": "ch06-ex02-simeon-circles-the-missing-segment-after-the",
+      "title": "Simeon circles the missing segment after the review",
+      "tags": [
+        "sales",
+        "postmortem",
+        "meeting"
+      ],
+      "planSpec": {
+        "domain": "B2B sales review",
+        "audience": "sales manager",
+        "stakes": "pipeline quality",
+        "format": "postmortem",
+        "requiredBeat": "review ritual misses chosen segment"
+      },
+      "scenario": "Simeon sits alone at 3:38 p.m. after the Tuesday review, the conference room still smelling of dry-erase marker. Every manager reported calls, demos, and proposals. Nobody named the small-business segment the strategy depends on. He circles the blank column on the packet. The meeting was orderly, and that is the problem. It reviewed activity without asking whether the right customers moved.",
+      "whatToDo": "Redesign the review around the chosen segment: evidence, blockers, next action, and consequence. Keep activity counts only when they explain that movement.",
+      "whyItMatters": "A review can be disciplined and still protect drift. Simeon needs a meeting that makes the strategy visible enough to argue with."
+    },
+    {
+      "exampleId": "ch06-ex03-dunja-asks-why-the-bonus-rewards-shorter-vis",
+      "title": "Dunja asks why the bonus rewards shorter visits",
+      "tags": [
+        "clinic",
+        "dialogue",
+        "incentive"
+      ],
+      "planSpec": {
+        "domain": "physical therapy clinic",
+        "audience": "clinic director",
+        "stakes": "patient outcomes and incentives",
+        "format": "dialogue",
+        "requiredBeat": "visit-count bonus fights independence goal"
+      },
+      "scenario": "Dunja stands by the therapy bands at 6:14 p.m. while the clinic director points to the bonus sheet. \"Visits per hour keeps us solvent,\" he says. Dunja nods toward Mrs. Bell practicing stairs. \"We said independence for older patients is the win. Why are we paying therapists to shorten the talk that teaches home safety?\" The rubber bands snap softly in the next room.",
+      "whatToDo": "Move part of the reward to independence milestones and safe home routines, then review cases where visit speed hurt the chosen outcome.",
+      "whyItMatters": "People follow the pay signal when the day is hard. If the signal rewards speed alone, the clinic will train away from its own promise."
+    },
+    {
+      "exampleId": "ch06-ex04-katarzyna-changes-the-first-warehouse-board-",
+      "title": "Katarzyna changes the first warehouse board before the shift bell",
+      "tags": [
+        "warehouse",
+        "reveal",
+        "metrics"
+      ],
+      "planSpec": {
+        "domain": "medical supply warehouse",
+        "audience": "operations lead",
+        "stakes": "hospital delivery reliability",
+        "format": "predict_reveal",
+        "requiredBeat": "total boxes picked hides hospital misses"
+      },
+      "scenario": "Katarzyna predicted total boxes picked would keep the warehouse sharp. At 6:47 a.m., the shift board shows a record day, but three hospital totes missed the two-hour window. Easy clinic supplies made the count look heroic. The hospital runner is waiting by dock two with his arms crossed. Katarzyna must decide which number owns the first board before the shift bell.",
+      "whatToDo": "Put hospital on-time totes, miss reasons, and noon fixes on the first board. Let total boxes become a support number, not the headline.",
+      "whyItMatters": "The headline number tells workers what to save when pressure hits. Katarzyna needs the board to protect the chosen promise, not the easiest count."
+    },
+    {
+      "exampleId": "ch06-ex05-ryo-deletes-seven-check-boxes-from-his-habit",
+      "title": "Ryo deletes seven check boxes from his habit tracker",
+      "tags": [
+        "personal",
+        "before_after",
+        "routine"
+      ],
+      "planSpec": {
+        "domain": "freelance work system",
+        "audience": "solo consultant",
+        "stakes": "attention and reinforcement",
+        "format": "before_after",
+        "requiredBeat": "tracker rewards wrong work"
+      },
+      "scenario": "At 10:21 p.m., Ryo colors in seven boxes on his habit tracker and still has not opened the proposal that could change his month. The old tracker rewards inbox zero, posts, invoices, and tiny tasks. After one blunt Friday review, he cuts it to proposal hours and client follow-up quality. The first week feels less busy. The second week produces the proposal.",
+      "whatToDo": "Trim the tracker to the behaviors that serve the chosen work. Remove check marks that make small tasks feel like strategic progress.",
+      "whyItMatters": "A personal system teaches the same way a company system does. Ryo was not lacking discipline; he was disciplined around the wrong rewards."
+    },
+    {
+      "exampleId": "ch06-ex06-marnix-host-stand",
+      "title": "Marnix rings the brass bell for the allergy save",
+      "tags": [
+        "restaurant",
+        "praise",
+        "scene"
+      ],
+      "planSpec": {
+        "domain": "restaurant management",
+        "audience": "owner",
+        "stakes": "service standard",
+        "format": "scene",
+        "requiredBeat": "praise signal changes behavior"
+      },
+      "scenario": "At 5:43 p.m., Marnix stands at the host stand with a brass bell in his palm. The bistro says it wins by turning first-time guests into regulars, but the nightly shout-out always goes to fastest table turns. Tonight he reads one comment card about a server remembering a nut allergy, rings the bell once, and names that care in front of the staff. The servers look up from folding napkins.",
+      "whatToDo": "Praise the behavior that proves the chosen edge, and do it in the room where others can copy it. Keep speed visible, but stop making it the only story.",
+      "whyItMatters": "People repeat what gets status. Marnix changes the system by changing which moment earns public attention before the doors open."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch06-q01",
+        "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+        "choices": [
+          "Force the slide to name the one choice that decides the rest.",
+          "Add a sentence saying all priorities remain important.",
+          "Delay the review until every leader has edited the slide."
+        ],
+        "correctIndex": 0,
+        "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch06-q02",
+        "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+        "choices": [
+          "Run all three as shorter projects.",
+          "Choose the project that fits the chosen students and let the others wait.",
+          "Ask students to vote without naming the learning target."
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q03",
+        "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+        "choices": [
+          "Promise both groups a lighter version.",
+          "Build the feature requested by the louder group.",
+          "Pick the customer group tied to the win and say no to the other request."
+        ],
+        "correctIndex": 2,
+        "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q04",
+        "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+        "choices": [
+          "Change the measure so it tracks the wait that decides the chosen service line.",
+          "Celebrate the green dashboard to keep morale high.",
+          "Add a second dashboard for every department."
+        ],
+        "correctIndex": 0,
+        "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q05",
+        "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+        "choices": [
+          "Rank the activities by how impressive they sound.",
+          "Name the one summer outcome that should lead the schedule.",
+          "Keep all activities and shorten sleep for two weeks."
+        ],
+        "correctIndex": 1,
+        "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch06-q06",
+        "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+        "choices": [
+          "Split the grant into four equal mini-programs.",
+          "Use the grant on the group with the loudest advocate.",
+          "Choose one audience and design the program to win trust there first."
+        ],
+        "correctIndex": 2,
+        "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q07",
+        "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+        "choices": [
+          "Choose the habit that reinforces the desired position with customers.",
+          "Try all three and review after staff burn out.",
+          "Let each shift choose its own priority."
+        ],
+        "correctIndex": 0,
+        "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q08",
+        "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+        "choices": [
+          "Collect more survey answers before speaking.",
+          "Write two or three real options and use the evidence to test them.",
+          "Pick the safest option because it has fewer objections."
+        ],
+        "correctIndex": 1,
+        "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q09",
+        "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+        "choices": [
+          "Wait until the full prototype is polished.",
+          "Ask friends which concept sounds more exciting.",
+          "Test the assumption that would kill the concept if it fails."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch06-card-01",
+      "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+      "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch06-card-02",
+      "front": "A team says every priority matters equally. How do you test whether manage what matters is real?",
+      "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-card-03",
+      "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+      "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-card-04",
+      "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+      "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is reinforcement design. You learn to make measures, reviews, and rewards teach the strategy people should practice.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+      },
+      {
+        "context": "health",
+        "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+      },
+      {
+        "context": "personal",
+        "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next planning conversation, write the main measure in one current plan, the behavior it rewards, and whether that behavior serves the chosen strategy. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+    "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+  },
+  "memorableLines": [
+    {
+      "text": "A measure is a teacher. It tells people what to protect when the day gets crowded.",
+      "location": "breakdown.fastRead",
+      "why": "This line carries the practical test in plain language."
+    },
+    {
+      "text": "If the dashboard rewards the old game, people will play the old game with discipline.",
+      "location": "breakdown.fullRead",
+      "why": "This line carries the practical test in plain language."
+    },
+    {
+      "text": "Look at what gets counted, reviewed, and praised. That is the strategy people will believe.",
+      "location": "breakdown.fullRead",
+      "why": "This line carries the practical test in plain language."
+    }
+  ]
+}

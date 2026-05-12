@@ -1,0 +1,100 @@
+{
+  "bookId": "atomic-habits",
+  "title": "Atomic Habits",
+  "author": "James Clear",
+  "thesisParagraph": "The argument is that behavior change is not a willpower problem, it is a design problem. You do not rise to your goals, you fall to your systems, and your systems are built out of tiny repeated actions whose effects compound long before they are visible. Clear reframes habits as votes for an identity rather than tasks on a list, which makes the unit of change a person you are becoming rather than an outcome you are chasing. He gives a four-part loop, cue, craving, response, reward, and four practical levers, make it obvious, attractive, easy, satisfying, that let a reader engineer the loop in either direction. The book's quiet move is to make change feel small enough to be undeniable and slow enough to be trusted. Its risk is the opposite, that smallness sounds like permission to do less, when the real demand is consistency over years.",
+  "coreIdeas": [
+    {
+      "name": "identity-based habits",
+      "oneSentence": "Lasting change comes from acting as the person you want to be, not from chasing outcomes.",
+      "mentalMove": "Cast each small action as a vote for an identity, then ask which identity that vote elects.",
+      "sourceAnchors": [
+        "Ch 2: How Your Habits Shape Your Identity",
+        "'Every action you take is a vote'"
+      ]
+    },
+    {
+      "name": "the four laws",
+      "oneSentence": "Behaviors stick when the cue is obvious, the craving attractive, the response easy, and the reward satisfying.",
+      "mentalMove": "Audit a stuck habit against all four laws and fix the weakest one first, instead of adding willpower.",
+      "sourceAnchors": [
+        "Ch 3: How to Build a Habit in Four Simple Steps",
+        "Ch 5–18 (the four laws in detail)"
+      ]
+    },
+    {
+      "name": "environment over motivation",
+      "oneSentence": "What you do next is shaped more by what is in front of you than by how badly you want it.",
+      "mentalMove": "Redesign the room before redesigning the resolution: move the cue closer, or push it out of sight.",
+      "sourceAnchors": [
+        "Ch 6: Motivation Is Overrated; Environment Often Matters More",
+        "Ch 12: The Law of Least Effort"
+      ]
+    },
+    {
+      "name": "the two-minute rule",
+      "oneSentence": "A habit must first be established as a ritual you can finish in two minutes before it can grow.",
+      "mentalMove": "Shrink the entry version of the habit until refusal feels absurd, then keep that version sacred.",
+      "sourceAnchors": [
+        "Ch 13: How to Stop Procrastinating by Using the Two-Minute Rule"
+      ]
+    },
+    {
+      "name": "the plateau of latent potential",
+      "oneSentence": "Compounding hides results until a threshold breaks, so most people quit in the valley.",
+      "mentalMove": "Treat invisible progress as banked, not absent, and keep showing up on the days the graph looks flat.",
+      "sourceAnchors": [
+        "Ch 1: The Surprising Power of Atomic Habits",
+        "'Valley of Disappointment'"
+      ]
+    }
+  ],
+  "targetReader": "A working adult who has tried and failed at the same change several times and is starting to suspect the problem is them. They want a system they can run for years, not a motivational rush that wears off by Wednesday.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "short",
+    "signatureMoves": [
+      "Open a section with one concrete scene of an ordinary person doing one ordinary thing, then pull back to the principle",
+      "Make the central claim of a section in a sentence under twelve words, then unpack",
+      "Use parallel pairs that flip the conventional wisdom, e.g. you do not X, you Y",
+      "Anchor abstract claims in a number, a date, or a small physical detail",
+      "Close sections with a directive the reader could act on before the next page"
+    ],
+    "avoidMoves": [
+      "Hedging with 'perhaps', 'arguably', 'it could be argued'",
+      "Academic throat-clearing before a claim",
+      "Long Latinate sentences with three subordinate clauses",
+      "Narrating the book as an object: 'the chapter', 'this chapter', 'the author', 'the book', 'the law', 'in this chapter'",
+      "Printing 'Chapter 1', 'Chapter 12', etc. inside prose",
+      "House-ruled phrases: 'boundary condition', 'keeps the chapter honest', 'strips away', 'is not decorative', 'is not magic', 'operating logic', 'diagnostic discipline', 'durable practice', 'turns out to be', 'That matters because'",
+      "Reusing protagonist names: Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi"
+    ]
+  },
+  "voiceSpecimens": [
+    "You do not rise to the level of your goals. You fall to the level of your systems.",
+    "Start so small that you cannot talk yourself out of it.",
+    "Every action you take is a vote for the type of person you wish to become.",
+    "The goal is not to run a marathon. The goal is to become a runner.",
+    "A habit must be established before it can be improved. So make it ridiculous, then make it real.",
+    "Environment is the invisible hand that shapes human behavior. Put the running shoes by the door, or do not be surprised when the couch wins.",
+    "One percent better every day looks like nothing on Tuesday and like everything in a year."
+  ],
+  "voiceAntiSpecimens": [
+    "The neuroplastic architecture underlying habit formation is, at its core, a feedback-driven substrate.",
+    "Perhaps one might consider the subtle interplay of cue and reward across diverse populations.",
+    "It could be argued that small wins, in certain contexts, may yield disproportionate returns.",
+    "Let us now turn to the question of how habits are formed in the human brain.",
+    "This simple trick will rewire your brain forever and unlock the life you were meant to live.",
+    "Ultimately, the implications for human flourishing are nothing short of profound."
+  ],
+  "teachingArc": "Begin with the case that small is not weak: compounding makes one percent the most underrated lever a person owns. From there, move from outcome to identity, so the reader stops asking what to do and starts asking who to become. Then hand over the four laws as a working toolkit, one per section, with the same shape each time so the method becomes muscle. Close on the long game: how to keep a habit alive after the novelty dies, and how to know when to let one go.",
+  "forbiddenMoves": [
+    "No war or battle metaphors for habit change (no 'fighting urges', no 'arsenal of tactics', no 'winning the war on procrastination')",
+    "No motivational-poster lines that promise transformation without effort over time",
+    "No neuroscience name-dropping (basal ganglia, dopaminergic pathways) used as decoration rather than mechanism",
+    "No 'studies show' without a specific anchor; if cited, name the researcher or year",
+    "No moralizing about people who fail at habits; the failure is design, not character",
+    "No printed chapter numbers, no narrating the book as an object, no house-ruled phrases listed in avoidMoves"
+  ]
+}

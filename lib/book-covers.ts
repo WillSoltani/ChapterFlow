@@ -79,6 +79,7 @@ const REAL_BOOK_COVER_PATHS: Record<string, string> = {
 const BOOK_COVER_ALIASES: Record<string, string> = {
   "the-great-mental-models-vol-1": "the-great-mental-models-v-1",
   "the-laws-of-human-nature": "laws-of-human-nature",
+  "you-cant-hurt-me": "you-can't-hurt-me",
 };
 
 function dedupe(values: Array<string | undefined>): string[] {

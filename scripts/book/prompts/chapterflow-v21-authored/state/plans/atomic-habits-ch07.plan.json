@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch07",
+  "number": 7,
+  "title": "The Secret to Self-Control",
+  "coreMove": "Engineer the cue out of reach instead of trying to resist it once it appears",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ICU nurse who keeps reaching for the vending machine cookies stocked next to the staff coffee maker",
+      "audience": "a healthcare worker whose shift wrecks her usual eating rhythm",
+      "stakes": "a creeping ten pounds and an A1C reading her own doctor flagged last month",
+      "format": "vignette",
+      "requiredBeat": "she stops trying to white-knuckle past the cookies and instead asks the unit clerk to relocate the basket to the supply room across the hall, and notices the craving fade within a week without any added willpower"
+    },
+    {
+      "domain": "a recovering sports-betting app user uninstalling the app and asking his bank to block the merchant category",
+      "audience": "a thirty-eight-year-old contractor six weeks into trying to quit",
+      "stakes": "his marriage, after his wife found a hidden card statement",
+      "format": "decision_point",
+      "requiredBeat": "he chooses friction over discipline by removing the app and the saved payment method, recognizing that every minute the icon was on his phone was a minute he was relying on resolve he did not actually have"
+    },
+    {
+      "domain": "a high school orchestra teacher rearranging her classroom so the phone charging station is by the door instead of the music stands",
+      "audience": "a teacher tired of confiscating phones mid-rehearsal",
+      "stakes": "twenty-five teenagers losing fifteen minutes of every period to checking notifications",
+      "format": "before_after",
+      "requiredBeat": "the rearrangement converts a daily discipline battle into a default; show the room before, the room after, and the visible drop in interruptions without a single new rule"
+    },
+    {
+      "domain": "a couple arguing about screens at the dinner table while their seven-year-old watches",
+      "audience": "two parents who have each separately resolved to 'be more present'",
+      "stakes": "whether their kid grows up associating dinner with parents staring at their laps",
+      "format": "dialogue",
+      "requiredBeat": "the conversation moves from blaming each other's self-control to agreeing on a basket by the front door where both phones live from 6pm to 8pm, framing it as a design fix not a moral upgrade"
+    },
+    {
+      "domain": "a graduate student in molecular biology trying to stop refreshing her advisor's inbox for grant news",
+      "audience": "a PhD candidate three months from her qualifying exam",
+      "stakes": "focused lab time she cannot get back, and sleep she is losing to 2am email checks",
+      "format": "postmortem",
+      "requiredBeat": "she reviews a wasted week and traces every refresh back to one cue — the email tab pinned in her browser — and concludes the fix is unpinning the tab and signing out on her laptop, not promising herself to check less"
+    },
+    {
+      "domain": "a former pack-a-day smoker walking past the bodega where he used to buy his cigarettes",
+      "audience": "a man eight months into quitting",
+      "stakes": "a relapse that statistically would set him back to square one",
+      "format": "reflection",
+      "requiredBeat": "he notices that the urge is not inside him but inside the route, and quietly changes his walk home to the next street over, treating the rerouting as the actual self-control rather than the gritted teeth he used to call self-control"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

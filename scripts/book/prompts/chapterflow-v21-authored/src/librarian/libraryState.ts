@@ -7,7 +7,7 @@
  * updated after each chapter is assembled, saved back atomically.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync, unlinkSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -141,7 +141,6 @@ async function acquireLock(): Promise<void> {
 
 function releaseLock(): void {
   try {
-    const { unlinkSync, existsSync } = require("fs");
     if (existsSync(LOCK_PATH)) unlinkSync(LOCK_PATH);
   } catch {
     // best-effort

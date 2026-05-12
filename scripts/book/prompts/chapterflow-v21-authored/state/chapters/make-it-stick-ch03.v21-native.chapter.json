@@ -1,0 +1,319 @@
+{
+  "chapterId": "make-it-stick-ch03",
+  "number": 3,
+  "title": "Mix Up Your Practice",
+  "readingTimeMinutes": 12,
+  "hook": "The neat stack of same-kind problems feels fast because it has already whispered the method.",
+  "counterintuition": "Most people assume the cleanest practice block is the most efficient. The twist is that mixed practice can look worse because it is training the harder skill: choosing.",
+  "tryThisNow": "Take three similar problems or tasks you normally group together. Shuffle them, hide the labels, and name the method before you solve each one.",
+  "keyTakeaway": "Interleave related tasks so you practice choosing the right move, not just repeating the move the last problem already handed you.",
+  "breakdown": {
+    "fastRead": "Faye holds two glaze tiles at 7:22 p.m. beside kiln shelf four. The blue samples look easy after ten straight blues. Then the instructor slides in a copper green, a white crawl, and an ash glaze with the same shine. Faye slows down. Good. Now she has to see the difference, not just repeat the last answer.\n\nBlocked practice makes you look quick because the category stays warm. Mixed practice asks a harder question: what kind of problem is this? If future work arrives mixed, practice should include that choice.",
+    "deepRead": "Faye holds two glaze tiles at 7:22 p.m. beside kiln shelf four. Clay dust is gray under her nails. After ten straight blue samples, she names the next blue before the tile leaves the instructor's hand. Then the row changes. Copper green, white crawl, ash glaze, blue again. Faye hesitates and laughs.\n\nThat hesitation is the lesson. In a block, the answer category stays active. The learner can get faster without doing much choosing. Interleaving related cases makes the learner identify the case first. That is why it can feel worse while teaching better.\n\nGrover sees the same pattern at 6:05 p.m. in support pod B. His agents drilled password tickets all morning and looked sharp. At 3 p.m., real tickets came mixed with refunds, shipping holds, and account locks. The first agent used the password script on a billing complaint. The drill had trained speed, not sorting.\n\nMixing should be disciplined, not random. The cases need to be close enough that comparison teaches. Too much variety turns practice into fog. A good mix puts lookalikes side by side so the learner has to ask, what makes this one different?\n\nIf the real task requires choice, the practice has to practice choice.\n\nCarys proves the point with scissors in the tutoring center. She cuts a grouped algebra packet into strips and drops related problem types into one folder. Students slow down because the page no longer announces the method. By Friday, the first choice improves, not just the arithmetic.",
+    "fullRead": "Faye holds two glaze tiles at 7:22 p.m. beside kiln shelf four. The studio smells like wet clay and hot dust. Her instructor has handed her ten blue samples in a row, and by the eighth one Faye can name the glaze by shine alone. She feels quick. Then the instructor slides in a copper green, a white crawl, and an ash glaze with nearly the same gloss. Faye pauses so long the tile cools in her fingers.\n\nThe pause tells the truth. The earlier block let the answer category stay warm. Faye was not only seeing blue. She was also being told, by the row itself, that blue was likely. Mixed practice removes that hint. Now she has to notice the features that separate one glaze from another.\n\nThis is the power of interleaving. It does not merely add variety. It trains discrimination, the ability to tell near neighbors apart and choose the right move. That is a different skill from repetition. A math student who solves twenty slope problems in a row may get fast at slope. On a mixed test, the first task is deciding whether this is slope, area, ratio, or rate. If practice never asks that question, the test will.\n\nGrover learns it at 6:05 p.m. in support pod B, where the carpet smells like burnt coffee. His agents practiced password reset tickets all morning. They sounded crisp. After lunch the queue mixed password resets with refunds, account locks, shipping holds, and one angry billing complaint. An agent used the password opening on the billing complaint and the customer went quiet. The agent knew the script. She had not practiced choosing it.\n\nA good mix is not chaos. Roan sorts mushrooms at 8:16 a.m. at a field station because the lookalikes are close. Chanterelle, jack-o-lantern, false chanterelle. Those cases belong together because the differences matter. If the instructor threw in tree bark, bird tracks, and cloud types, the comparison would teach less.\n\nSo mix near neighbors. Ask for the category before the answer. Leave enough repetition to learn the move, then shuffle soon enough that the learner has to select it. Expect the session to look messier. Messier is not the goal, but it may be the sign that selection has entered the room.\n\nIf the real task requires choice, the practice has to practice choice.\n\nCarys brings the same move to the tutoring center with scissors and a red folder. The old algebra packet grouped all slope problems, then all area problems, then all ratio problems. The grouped pages produced neat rows of answers and weak mixed quizzes. She cuts the packet into strips and asks students to name the method before they calculate. At first the room slows down. Students argue with the folder. That argument is the practice.\n\nUse enough blocked practice to learn the move, then mix before the block starts doing the choosing. Ask the learner to say what kind of case it is. Ask why this method fits and the nearby one does not. Review mistakes by pairing confused cases side by side. The goal is not surprise. The goal is recognition under honest conditions.\n\nIf practice always announces the method, later work will feel like a trick. If practice includes selection, later work feels more like another round of the same game."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-faye-glaze-tiles",
+      "title": "Faye sees the blue glaze vanish into lookalikes",
+      "tags": [
+        "decision_point",
+        "craft",
+        "interleaving"
+      ],
+      "planSpec": {
+        "domain": "ceramics glaze identification",
+        "audience": "learners fooled by fast blocked practice",
+        "stakes": "whether she can distinguish similar glazes outside the block",
+        "format": "decision_point",
+        "requiredBeat": "she chooses whether to keep same-glaze drills or mix lookalikes"
+      },
+      "scenario": "Faye holds a cobalt glaze tile at 7:22 p.m. beside kiln shelf four, clay dust gray under her thumbnail. After ten blue samples she names the next one before it cools. Then her instructor slides in copper green and ash glaze with the same shine. Faye reaches for the blue label, stops, and sees she was reading the row as much as the tile. She has to decide whether to ask for more blues or shuffle the lookalikes now.",
+      "whatToDo": "Shuffle the close glazes and name the category before checking the label. Keep the samples similar enough that each mistake teaches a visible difference.",
+      "whyItMatters": "The blocked row was giving away the answer. The mixed row trains Faye to notice the features she will need when the shelf is not sorted for her."
+    },
+    {
+      "exampleId": "ch03-ex02-grover-ticket-queue",
+      "title": "Grover watches the password script hit a billing complaint",
+      "tags": [
+        "postmortem",
+        "support",
+        "selection"
+      ],
+      "planSpec": {
+        "domain": "customer support ticket training",
+        "audience": "trainers who overuse same-case drills",
+        "stakes": "whether agents can choose the right response under mixed queues",
+        "format": "postmortem",
+        "requiredBeat": "he reviews mislabeled support tickets and sees blocked drills trained speed but not sorting"
+      },
+      "scenario": "Grover stands over booth 12 at 6:05 p.m. in support pod B, a cold paper cup bending in his fist. The morning password drills sounded perfect. The live queue did not arrive in blocks. Refund, password, account lock, shipping hold, billing complaint. On the billing complaint, an agent opened with the password reset script and the caller went silent. Grover scrolls the call log and has to decide what the drill failed to teach.",
+      "whatToDo": "Redesign practice as mixed ticket triage. Before any script, have agents label the ticket type, explain the cue, then choose the response.",
+      "whyItMatters": "The job is not reciting a script after someone names it. The job is recognizing which script fits when the queue changes shape."
+    },
+    {
+      "exampleId": "ch03-ex03-alma-keon-violin",
+      "title": "Alma makes Keon enter from the wrong measure",
+      "tags": [
+        "dialogue",
+        "music",
+        "variation"
+      ],
+      "planSpec": {
+        "domain": "violin rehearsal",
+        "audience": "performers who polish one sequence",
+        "stakes": "whether the player can recover when performance starts mid-phrase",
+        "format": "dialogue",
+        "requiredBeat": "she challenges him to rotate passages instead of repeating one"
+      },
+      "scenario": "Alma taps measure 47 with a pencil at 11:13 a.m. in practice room C, rosin dust on the black piano lid. \"From here,\" she says. Keon keeps his bow near the opening bar. \"I sound better from the top.\" Alma closes the score. \"Better, or cued by the road in?\" The hallway trumpet blares a wrong note. Keon smiles, then looks back at measure 47. He has to decide whether to protect the polished opening or enter cold.",
+      "whatToDo": "Rotate three nearby passages and name the entry cue before playing. Keep returning to the weak start until it no longer depends on the opening.",
+      "whyItMatters": "A polished sequence can hide weak access. Mixed starts teach Keon to identify the passage and recover the move without the usual runway."
+    },
+    {
+      "exampleId": "ch03-ex04-sibyl-free-throws",
+      "title": "Sibyl learns the free throw block lied politely",
+      "tags": [
+        "predict_reveal",
+        "sports",
+        "transfer"
+      ],
+      "planSpec": {
+        "domain": "basketball shooting practice",
+        "audience": "athletes who trust clean blocked reps",
+        "stakes": "whether shooting form survives game-like changes",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts blocked free throws will transfer, then mixed practice wins under game conditions"
+      },
+      "scenario": "Sibyl wipes orange dust from her palm at 8:58 p.m. in the high school gym, the mop bucket squeaking by the baseline. She predicts fifty straight free throws will beat the station circuit: sprint, corner shot, rebound, free throw, defensive slide. In the block she hits forty-one. In Saturday scrimmage, her legs shake after two fast breaks and the straight-block group misses short. The circuit group looks rough in practice and steadier at the line.",
+      "whatToDo": "Keep form work, but add mixed, game-like stations where the free throw comes after different tasks. Track the shot after the shuffle, not only the clean block.",
+      "whyItMatters": "The straight block warms one motion. The mixed station asks the shooter to recover the motion after the game has changed her body."
+    },
+    {
+      "exampleId": "ch03-ex05-roan-mushroom-table",
+      "title": "Roan sorts the orange mushrooms under a rain tarp",
+      "tags": [
+        "vignette",
+        "fieldwork",
+        "comparison"
+      ],
+      "planSpec": {
+        "domain": "mushroom identification",
+        "audience": "learners handling near-neighbor categories",
+        "stakes": "whether lookalikes are sorted by features instead of labels",
+        "format": "vignette",
+        "requiredBeat": "he sorts close mushroom lookalikes and notices comparison drives learning"
+      },
+      "scenario": "Roan lines three orange mushrooms on a field-station table at 8:16 a.m., rain ticking on the blue tarp overhead. Chanterelle, jack-o-lantern, false chanterelle. The labels stay facedown. He runs a thumb along the gills, sniffs damp earth, and moves one cap left, then back. Nobody has mixed in tree bark or fern fronds. The set is narrow on purpose. The differences are small enough to teach.",
+      "whatToDo": "Compare near neighbors in a tight mix. Say the feature that decides each choice before turning over the label.",
+      "whyItMatters": "Useful mixing needs related cases. Roan learns by seeing fine differences, not by sorting a random pile that has nothing to compare."
+    },
+    {
+      "exampleId": "ch03-ex06-carys-math-packet",
+      "title": "Carys cuts the algebra packet into shuffled strips",
+      "tags": [
+        "before_after",
+        "math",
+        "choice"
+      ],
+      "planSpec": {
+        "domain": "algebra homework design",
+        "audience": "teachers and students using grouped worksheets",
+        "stakes": "whether students choose methods on a mixed assessment",
+        "format": "before_after",
+        "requiredBeat": "she rebuilds grouped drills into mixed choices"
+      },
+      "scenario": "Carys sits at 3:41 p.m. in the tutoring center, scissors beside a packet of grouped algebra drills. Last week the slope page looked perfect and the mixed quiz fell apart. Today she cuts the packet into strips, drops slope, area, ratio, and rate into one red folder, and asks students to name the method before solving. The room slows down. By Friday, the answers are not just faster. The first choices are better.",
+      "whatToDo": "Mix related problem strips and require a method label before any calculation. Review misses by comparing the problems students confused.",
+      "whyItMatters": "Grouped pages train the current method. Shuffled strips train the choice that students need when the assessment stops announcing the category."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch03-q01",
+        "prompt": "A student finishes twenty identical area problems quickly, then misses mixed geometry questions. What did the block hide?",
+        "choices": [
+          "The need to decide which method each problem required",
+          "The need to memorize every answer",
+          "The fact that practice should avoid feedback"
+        ],
+        "correctIndex": 0,
+        "explanation": "The block kept the method active. The mixed set required selection, which had not been practiced.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch03-q02",
+        "prompt": "Which practice design best builds discrimination?",
+        "choices": [
+          "Ten unrelated tasks thrown together",
+          "Related cases shuffled so the learner names the type before acting",
+          "One problem repeated until it feels automatic"
+        ],
+        "correctIndex": 1,
+        "explanation": "Related mixing lets comparison teach. The learner practices recognizing the case, not just repeating a move.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch03-q03",
+        "prompt": "Why can mixed practice feel worse while working better?",
+        "choices": [
+          "It removes all structure from the session",
+          "It proves the learner has less ability",
+          "It forces the learner to choose before using a method"
+        ],
+        "correctIndex": 2,
+        "explanation": "The added choice slows the session. That choice is often what later performance requires.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch03-q04",
+        "prompt": "A coach rotates serve return, volley, and baseline drills. What should she watch besides total errors?",
+        "choices": [
+          "Whether players identify the situation and choose the right response",
+          "Whether players complain less",
+          "Whether every drill takes the same time"
+        ],
+        "correctIndex": 0,
+        "explanation": "The goal is not a clean-looking block. It is better selection under changing conditions.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch03-q05",
+        "prompt": "What is the risk of mixing cases that are too unrelated?",
+        "choices": [
+          "The learner will become too fast too soon",
+          "The learner may lose the comparison that makes the mix useful",
+          "The learner will avoid all mistakes"
+        ],
+        "correctIndex": 1,
+        "explanation": "Interleaving works best with near neighbors. Random variety can become noise instead of useful comparison.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch03-q06",
+        "prompt": "A language learner practices only past-tense verbs for an hour. What mixed addition would help transfer?",
+        "choices": [
+          "Repeat the same past-tense list twice more",
+          "Switch to unrelated vocabulary with no pattern",
+          "Add present and future prompts that require naming the tense before answering"
+        ],
+        "correctIndex": 2,
+        "explanation": "The mixed prompts ask the learner to classify the tense before forming it, which is closer to real use.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch03-q07",
+        "prompt": "Which result is strongest evidence for interleaving?",
+        "choices": [
+          "A slower mixed practice session followed by better performance on shuffled tasks",
+          "A fast blocked session followed by weak shuffled performance",
+          "A session with no related cases"
+        ],
+        "correctIndex": 0,
+        "explanation": "The delayed or shuffled task reveals whether selection improved, even if practice felt slower.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch03-q08",
+        "prompt": "A software team drills one bug type all morning. What should the next round add?",
+        "choices": [
+          "More copies of the same ticket",
+          "A mixed queue of similar bug reports with type labels hidden",
+          "A break from all practice"
+        ],
+        "correctIndex": 1,
+        "explanation": "A hidden-label mixed queue trains triage. The team must decide what kind of bug each report is.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch03-q09",
+        "prompt": "What does blocked practice often give the learner?",
+        "choices": [
+          "A guarantee of transfer",
+          "A way to skip feedback forever",
+          "A cue about what move to use next"
+        ],
+        "correctIndex": 2,
+        "explanation": "The repeated category itself becomes a cue. That can inflate fluency without training choice.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch03-rc01",
+      "front": "A worksheet groups all problems by type. What hidden help does that give?",
+      "back": "The grouping tells the learner which method is likely. To test learning, mix related problem types and ask for the method before solving.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch03-rc02",
+      "front": "Your mixed practice session looks slower and messier. When is that useful?",
+      "back": "It is useful when the mess comes from choosing among related cases. The learner is practicing recognition and selection, not just repeating a known move.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch03-rc03",
+      "front": "How do you avoid turning interleaving into random noise?",
+      "back": "Mix near neighbors. The cases should be similar enough that comparing them teaches the differences that matter.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch03-rc04",
+      "front": "What should you ask before solving a mixed problem?",
+      "back": "Ask what kind of problem it is and which move fits. Naming the type makes selection part of practice.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is practicing selection. Mix related tasks so you have to identify the case before using the method.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If training uses one scenario all afternoon, then add a mixed queue of related cases and ask people to classify each one first."
+      },
+      {
+        "context": "health",
+        "plan": "If you practice one movement in a perfect block, then add a small circuit where you recover that movement after a different task."
+      },
+      {
+        "context": "personal",
+        "plan": "If you study one grammar form or problem type, then shuffle it with two close neighbors before you stop."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you rehearse one response for a hard talk, then practice choosing between three possible openings based on what the other person says first."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, take one blocked drill and mix it with two related cases. Before each attempt, write or say which move fits and why.",
+    "weeklyPractice": "For one week, keep one practice session mixed. Track whether your first choice improves, not only whether your final answer is correct."
+  },
+  "memorableLines": [
+    {
+      "text": "If the real task requires choice, the practice has to practice choice.",
+      "location": "breakdown.deepRead",
+      "why": "It states the practical rule in one sentence."
+    },
+    {
+      "text": "The earlier block let the answer category stay warm.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the hidden cue in blocked practice visible."
+    },
+    {
+      "text": "Messier is not the goal, but it may be the sign that selection has entered the room.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps the reader from worshiping difficulty while accepting useful roughness."
+    }
+  ]
+}

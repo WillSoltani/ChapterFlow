@@ -1,0 +1,319 @@
+{
+  "chapterId": "Influence-ch05",
+  "number": 5,
+  "title": "Authority: Directed Deference",
+  "readingTimeMinutes": 13,
+  "hook": "A white coat can make a wrong dose look quieter than the label in your hand.",
+  "counterintuition": "Authority is useful because real expertise saves time and lives. The risk is not respect. The risk is letting titles, uniforms, status, or fame answer questions outside their proof.",
+  "tryThisNow": "Before following an expert cue today, name the exact field of expertise and one fact you still need to check for this case.",
+  "keyTakeaway": "Respect authority by using it precisely: ask whether the expert knows this issue, whether the evidence fits, and whether a symbol is standing in for proof.",
+  "breakdown": {
+    "fastRead": "Etsuko holds two pill bottles at 3:28 p.m. while the pickup counter rattles with bins. The dosage change came from a famous cardiologist. The label in her hand still does not match the patient's weight note. Her body wants to trust the title.\n\nAuthority should speed attention, not erase checking. A title can mean skill, training, and responsibility. It can also pull obedience into places where the details still matter. The move is to make authority specific: expert in what, about which facts, for this patient or decision?",
+    "deepRead": "Nabil sits in cockpit seat two at 6:12 a.m., rain sliding down the windshield, when the captain reads back the taxi instruction wrong. The captain has twenty thousand hours. Nabil has six months on the aircraft. The runway number on the display is not the one in his headset. Rank makes his throat tighten.\n\nThe safest respect is clear correction. Nabil does not need to challenge the captain's career. He needs to state the mismatch: Tower gave two seven left; display says two seven right. That sentence uses evidence, not ego.\n\nAuthority cues come in many costumes: titles, uniforms, confident voices, awards, expensive suits, and fame. Each can be useful when it points to real knowledge in the right domain. A senior surgeon knows surgery. That does not mean she knows the billing code, the family history, or the software setting on the pump.\n\nThe test is narrow fit. What does this authority actually know? Is the claim inside that lane? What evidence in front of me agrees or disagrees? Respect gets better when it gets more exact. Blind deference flatters authority while making its mistakes harder to catch.\n\nA good hierarchy welcomes this because it catches small mistakes before they become large ones. The question protects the authority too, by giving facts a path upward.",
+    "fullRead": "Harriet stands in the museum conservation lab at 1:03 p.m., one hand near a cracked gilt frame, while a consultant in a perfect navy suit describes a donor strategy with no clear repair budget. His watch flashes each time he points to the slide. The suit, the fee, and the calm voice all say expert. The frame beside her says, ask for the numbers.\n\nAuthority works because expertise is real. No one wants a world where every patient debates every medication from scratch or every passenger votes on cockpit procedure. We need trained people. We need rank in emergencies. We need signals that help us find competence quickly.\n\nPavel sees the failure mode at 9:41 p.m. at his kitchen table. A forecast sheet has a red error banner across row 44. The report went out that morning because a senior economist signed the cover note. Pavel had noticed one odd input but let the signature settle him. Now he opens the raw sheet and finds a copied column from last quarter. The signature was real. It was not a substitute for row 44.\n\nThe clean move is not rebellion. It is evidence-based deference. Follow the expert where the expert has earned range. Ask for the basis when the claim crosses into a new area. Speak up when the object in your hand conflicts with the title in the room.\n\nZora builds this into ICU rounds at 7:22 a.m. outside room 18. Before the attending's order is final, one nurse must ask the challenge question: what would make this order wrong for this patient today? At first the room feels tense. After two weeks, the question is normal. The attending still leads. The patient gets one more layer of sight.\n\nLucien faces the soft version at 10:14 p.m. on the couch, tablet dimming in his hand. A celebrity doctor is speaking confidently about a supplement for children. The doctor is famous, polished, and maybe expert in some field. Lucien searches the specialty and finds it is adult cosmetic surgery, not pediatric nutrition. Fame made the voice loud. It did not move the claim into the right lane.\n\nThe better question is never, should I trust authority or not? The better question is, what exactly is this authority good evidence for? Once the question is that precise, respect and scrutiny can work together.\n\nA courtroom, cockpit, clinic, and boardroom all need authority because delay has costs. But the same speed that helps can hide mismatches. The person with rank may not have seen the newest lab. The person with the award may be speaking outside the award's field. The person with the calmest voice may be calm because they have not noticed the broken part.\n\nBuild the check into the process before pride enters. Ask every team to name the one fact that would change the decision. Put the source beside the claim. Invite the lowest-status person to read back the number that matters. These routines do not weaken authority. They make authority more accurate by connecting it to the evidence it is supposed to organize."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-etsuko-dose",
+      "title": "Etsuko hears the cardiologist in the label",
+      "tags": [
+        "decision_point",
+        "pharmacy",
+        "title"
+      ],
+      "planSpec": {
+        "domain": "a pharmacy tech holding a dosage change from a famous cardiologist",
+        "audience": "a pharmacy tech who respects physicians but sees a concrete mismatch",
+        "stakes": "whether a patient receives a dose no one rechecked",
+        "format": "decision_point",
+        "requiredBeat": "the title pressures her to skip the mismatch she sees on the label"
+      },
+      "scenario": "Etsuko holds two amber bottles at the pickup counter at 3:28 p.m., pill caps rattling in the blue bin while a line forms behind the tape. The dosage change came from Dr. Vale, the cardiologist whose photo is on the hospital wall. But the weight note on the profile does not match the new label. Her scanner chirps. She has to decide whether the famous name quiets the mismatch in her hand.",
+      "whatToDo": "Stop the fill and ask the pharmacist to verify the dose against the weight note. Treat the cardiologist's order as important, not untouchable.",
+      "whyItMatters": "Real expertise can still meet wrong data, wrong transcription, or a changed patient. The label in hand is evidence too."
+    },
+    {
+      "exampleId": "ch05-ex02-nabil-taxi",
+      "title": "Nabil says the runway number once",
+      "tags": [
+        "dialogue",
+        "aviation",
+        "rank"
+      ],
+      "planSpec": {
+        "domain": "a junior pilot hearing a captain misread a taxi instruction",
+        "audience": "a junior pilot balancing respect and safety",
+        "stakes": "whether rank delays correction near an active runway",
+        "format": "dialogue",
+        "requiredBeat": "rank makes correction feel dangerous even when the runway is real"
+      },
+      "scenario": "Nabil sits in seat two at 6:12 a.m., rain ticking on the cockpit windshield, when the captain reads back, \"Taxi two seven right.\" In Nabil's headset the tower said two seven left. The captain has twenty thousand hours. Nabil has six months on this aircraft. His finger touches the chart clipped to his knee. \"Captain,\" he says, and must decide whether to make the correction plain.",
+      "whatToDo": "State the discrepancy in one factual sentence: Tower gave two seven left; you read back two seven right. Keep the correction tied to the instruction, not to the captain's competence.",
+      "whyItMatters": "Rank is useful until it muffles fresh evidence. A factual challenge preserves respect while giving safety a voice."
+    },
+    {
+      "exampleId": "ch05-ex03-harriet-frame",
+      "title": "Harriet watches the suit outshine the frame",
+      "tags": [
+        "scene",
+        "museum",
+        "status"
+      ],
+      "planSpec": {
+        "domain": "a museum donor facing a consultant in an expensive suit",
+        "audience": "a donor deciding whether status symbols are enough proof",
+        "stakes": "whether a vague plan receives repair money meant for conservation",
+        "format": "scene",
+        "requiredBeat": "symbols of status make the vague plan feel more expert than it is"
+      },
+      "scenario": "At 1:03 p.m. Thursday, Harriet stands in the conservation lab beside a cracked gilt frame while the consultant's navy suit catches the overhead light. His slides say donor journey, but none name the frame, the humidity fix, or the repair cost. The museum director nods. Harriet can smell varnish from the workbench. She has to decide whether the suit and fee are expertise or just the loudest objects in the lab.",
+      "whatToDo": "Ask for the plan in conservation terms: cost, timeline, risk, and what gets repaired first. Let polish earn attention, not approval.",
+      "whyItMatters": "Status symbols can borrow the feel of expertise without supplying the missing details. The object needing repair should set the questions."
+    },
+    {
+      "exampleId": "ch05-ex04-pavel-forecast",
+      "title": "Pavel finds the red banner after signoff",
+      "tags": [
+        "postmortem",
+        "forecast",
+        "signature"
+      ],
+      "planSpec": {
+        "domain": "a data analyst reviewing a forecast signed by a senior economist",
+        "audience": "an analyst learning how signatures affect checking behavior",
+        "stakes": "whether a published forecast carries a copied input error",
+        "format": "postmortem",
+        "requiredBeat": "the signature stopped him from checking the input sheet"
+      },
+      "scenario": "At 9:41 p.m., Pavel sits at his kitchen table with a cold plate of noodles and the forecast workbook open. A red banner runs across row 44. This morning he saw the odd input, then noticed the senior economist's signature on the cover note and stopped worrying. Now the raw sheet shows last quarter's column pasted into this quarter. He writes in his notebook: a signature is not a cell check.",
+      "whatToDo": "Add a required input review even when a senior person signs the report. Check the cells that drive the result before letting a signature settle the work.",
+      "whyItMatters": "Authority can reduce anxiety without reducing error. The spreadsheet did not become right because a respected name sat on the cover."
+    },
+    {
+      "exampleId": "ch05-ex05-zora-rounds",
+      "title": "Zora adds one challenge question to rounds",
+      "tags": [
+        "before_after",
+        "ICU",
+        "orders"
+      ],
+      "planSpec": {
+        "domain": "an ICU nurse changing how rounds handle attending orders",
+        "audience": "a clinical team trying to keep hierarchy without losing patient-specific checks",
+        "stakes": "whether silence around attending orders misses contraindications",
+        "format": "before_after",
+        "requiredBeat": "the team moves from silent obedience to one required challenge question"
+      },
+      "scenario": "At 7:22 a.m. Tuesday, Zora stands outside room 18 with pumps beeping through the glass. Before: the attending named the order, everyone nodded, and the team moved on. After: Zora asks the same question every round, what would make this wrong for this patient today? The first week felt sharp. This morning the intern catches a kidney lab before the dose is entered.",
+      "whatToDo": "Make one challenge question part of the routine, not a personal confrontation. Ask what patient fact could make the order wrong before the team leaves the door.",
+      "whyItMatters": "A routine question lets evidence rise without forcing a junior person to attack rank. Authority still leads, but the patient gets checked."
+    },
+    {
+      "exampleId": "ch05-ex06-lucien-tablet",
+      "title": "Lucien checks the famous doctor's lane",
+      "tags": [
+        "reflection",
+        "parenting",
+        "fame"
+      ],
+      "planSpec": {
+        "domain": "a parent thinking about a celebrity doctor clip",
+        "audience": "a parent sorting expertise from fame online",
+        "stakes": "whether confidence outside the relevant field guides a child's supplement choice",
+        "format": "reflection",
+        "requiredBeat": "fame outside the topic borrowed medical authority"
+      },
+      "scenario": "At 10:14 p.m. Sunday, Lucien sits on the couch with a tablet dimming against his knee and a vitamin bottle still sealed on the coffee table. The celebrity doctor in the clip sounded certain about children's focus supplements. Lucien searches the name again. Adult cosmetic surgery. Not pediatrics. Not nutrition. The voice was calm and the coat was white. He writes on the receipt: famous for what?",
+      "whatToDo": "Check the expert's actual lane before buying or dosing. Look for relevant training, evidence on children, and advice from a clinician who knows the child.",
+      "whyItMatters": "Fame widens attention, not expertise. A white coat on a screen cannot answer whether this claim fits this child."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A nurse sees a medication order from a respected specialist that conflicts with the patient's allergy list. What should happen?",
+        "choices": [
+          "Hold and verify the conflict before giving the medication.",
+          "Give it because specialists outrank allergy lists.",
+          "Ignore the order because authority is always suspect."
+        ],
+        "correctIndex": 0,
+        "explanation": "The specialist matters, but the allergy list is direct evidence for this patient. Verification respects expertise and safety together.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A uniformed security guard tells a tenant to let a stranger into a locked office. Which question matters most?",
+        "choices": [
+          "Does the guard sound confident?",
+          "Is the request within the guard's role and supported by the office access rules?",
+          "Is the stranger dressed well enough?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Uniforms are authority cues, but the request still needs to fit the role and rules. Confidence and dress are weaker signals.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A famous athlete promotes a recovery supplement. What is the best interpretation?",
+        "choices": [
+          "Athletic fame proves the supplement is medically sound.",
+          "The supplement is false because famous people promote it.",
+          "The fame deserves attention, but medical evidence and relevant expertise must decide."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fame can make a claim visible. It does not supply clinical evidence or expertise in the relevant field.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A junior engineer notices a senior architect used the wrong load figure. How can she raise it well?",
+        "choices": [
+          "Point to the load table and ask whether the plan should use the updated figure.",
+          "Say, \"You are wrong,\" in the meeting to prove independence.",
+          "Stay quiet because senior architects own the design."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tying the challenge to evidence lowers ego threat and keeps the correction inside the work. Silence lets rank hide a possible error.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A consultant's expensive suit and calm voice make a thin proposal feel strong. What should the buyer ask for?",
+        "choices": [
+          "A more impressive meeting room.",
+          "Specific evidence: costs, risks, timeline, and prior results tied to this problem.",
+          "A discount before checking whether the proposal works."
+        ],
+        "correctIndex": 1,
+        "explanation": "Status cues may earn attention, but they do not fill missing proof. Specific evidence must carry the decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Why is authority often a useful shortcut?",
+        "choices": [
+          "Because authorities never make mistakes.",
+          "Because obedience removes responsibility from the follower.",
+          "Because trained experts can know things laypeople cannot check quickly."
+        ],
+        "correctIndex": 2,
+        "explanation": "Authority helps when expertise is real and relevant. The danger appears when that shortcut is stretched beyond its proper range.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A signed report contains a formula error. What lesson should the analyst carry forward?",
+        "choices": [
+          "Signoff is not a substitute for checking the cells that drive the result.",
+          "Senior signatures reduce the need for input checks.",
+          "Reports should never be signed by senior people."
+        ],
+        "correctIndex": 0,
+        "explanation": "The signature may show review or responsibility, but it does not make the underlying inputs correct. Critical drivers still need inspection.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A clinic wants staff to speak up when an attending order may be wrong. Which design helps most?",
+        "choices": [
+          "A poster telling junior staff to be brave.",
+          "A routine challenge question asked every round.",
+          "A policy saying attendings are usually right."
+        ],
+        "correctIndex": 1,
+        "explanation": "A routine question makes speaking up part of the process rather than a personal challenge to rank.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A financial influencer has a large audience and a confident tone. What should a viewer check first?",
+        "choices": [
+          "Whether the video has expensive lighting.",
+          "Whether many commenters call the influencer a genius.",
+          "Whether the claim fits the person's actual credentials, incentives, and evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "Audience size and polish are authority-like cues. The viewer needs relevant expertise, incentive clarity, and evidence before acting.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "An expert title makes a claim feel settled. What should you retrieve?",
+      "back": "Ask expert in what, on which facts, for this case. Authority is strongest when the claim sits inside the expert's actual lane.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "You spot evidence that conflicts with a senior person. What is the clean move?",
+      "back": "State the evidence in one factual sentence. Do not attack the person; put the object, number, or instruction in view.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "A status symbol makes a proposal feel expert. How do you test it?",
+      "back": "Ask for concrete proof tied to the problem: numbers, process, risks, and prior results. Polish earns attention, not approval.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A famous person speaks outside their field. What question protects you?",
+      "back": "Ask, famous for what, and does that expertise fit this claim? Fame can spread a message without validating it.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is precise deference. Respect real expertise while checking whether the cue applies to the exact claim and facts in front of you.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a senior person signs off on work you own, then still check the few inputs or assumptions that drive the result."
+      },
+      {
+        "context": "health",
+        "plan": "If a medical authority cue moves you, then ask whether the person has relevant expertise for this condition, patient, and treatment."
+      },
+      {
+        "context": "personal",
+        "plan": "If fame or status pushes a purchase, then look for evidence from someone qualified in the actual domain."
+      },
+      {
+        "context": "relationships",
+        "plan": "If rank makes you afraid to speak, then phrase the concern as a concrete mismatch you are seeing, not a verdict on the person."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, notice one authority cue. Write the title, uniform, status, or fame, then write the exact question it can answer and the question it cannot.",
+    "weeklyPractice": "Once this week, practice one evidence-based challenge: point to a number, label, instruction, or source that needs a second look, while keeping the tone respectful."
+  },
+  "memorableLines": [
+    {
+      "text": "Authority should speed attention, not erase checking.",
+      "location": "breakdown.fastRead",
+      "why": "It balances respect with scrutiny in one line."
+    },
+    {
+      "text": "The safest respect is clear correction.",
+      "location": "breakdown.deepRead",
+      "why": "It reframes speaking up as part of respect."
+    },
+    {
+      "text": "Fame made the voice loud. It did not move the claim into the right lane.",
+      "location": "breakdown.fullRead",
+      "why": "It makes misplaced authority easy to spot."
+    }
+  ]
+}

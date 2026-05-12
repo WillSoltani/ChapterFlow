@@ -1,0 +1,74 @@
+{
+  "chapterId": "getting-things-done-ch09",
+  "number": 9,
+  "title": "Doing: Making the Best Action Choices",
+  "coreMove": "Choose the next action by filtering a trusted list through context, time, energy, and priority instead of reacting to the loudest reminder",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "an emergency department charge nurse between patient waves",
+      "audience": "a nurse responsible for keeping a shift stable without pretending every task is equally urgent",
+      "stakes": "whether scarce quiet minutes go to the charting, supply call, or staff check-in that will prevent later friction",
+      "format": "decision_point",
+      "requiredBeat": "the nurse first limits choices to what can be done at the station in the next ten minutes, then uses energy and priority to pick one concrete next action rather than scanning the whole burden"
+    },
+    {
+      "domain": "a touring violinist with ninety minutes in a train station before rehearsal",
+      "audience": "a musician managing professional commitments while traveling with limited tools and attention",
+      "stakes": "whether travel time becomes anxious list-staring or a useful pocket for calls, score marking, and venue logistics",
+      "format": "vignette",
+      "requiredBeat": "the scene shows the action list behaving like a context menu: only phone, paper, and low-noise tasks are even eligible from the station bench"
+    },
+    {
+      "domain": "a city building inspector after a morning route gets delayed by roadwork",
+      "audience": "a field worker whose day is shaped by geography, appointments, and public-facing obligations",
+      "stakes": "whether a disrupted route causes cascading missed inspections or a controlled resequencing of reachable next actions",
+      "format": "postmortem",
+      "requiredBeat": "the postmortem identifies that the failure was not lack of effort but choosing from memory instead of from calendar, location, available time, and priority"
+    },
+    {
+      "domain": "a parent of twins during the forty minutes between school pickup and pediatrician appointment",
+      "audience": "a household captain trying to act calmly inside chopped-up family time",
+      "stakes": "whether the short gap gets wasted on guilt about the entire household backlog or used for one possible errand or call",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader is asked to remove every action that cannot fit the time, place, and energy available, leaving a small honest set instead of a moral inventory"
+    },
+    {
+      "domain": "a public defender in the courthouse hallway after a hearing is postponed",
+      "audience": "a lawyer balancing client communication, filings, and court constraints under emotional pressure",
+      "stakes": "whether unexpected time is spent reacting to fresh stress or making the highest-value call that can only be made while near the clerk and client",
+      "format": "dialogue",
+      "requiredBeat": "the dialogue has the defender ask, 'What can I do here, with this much time, at this energy level, that matters most?' before choosing the next physical action"
+    },
+    {
+      "domain": "a line cook after the lunch rush when the prep list, vendor issue, and broken fridge all compete",
+      "audience": "a kitchen lead who must distinguish immediate operational reality from general backlog",
+      "stakes": "whether the next thirty minutes protect dinner service or disappear into whatever complaint arrived last",
+      "format": "before_after",
+      "requiredBeat": "the before version reacts to the newest irritation; the after version checks context, time, energy, and priority against a complete list and selects the fridge call as the constraining next action"
+    },
+    {
+      "domain": "a doctoral student leaving a seminar with a heavy backpack and low mental energy",
+      "audience": "a graduate student who has serious work but not serious energy at every moment",
+      "stakes": "whether tired time is mistaken for useless time or matched to low-cognitive actions that keep projects moving",
+      "format": "reflection",
+      "requiredBeat": "the reflection normalizes energy as a legitimate filter, showing the student choosing library returns and citation cleanup now while leaving deep argument revision for a better block"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 24
+}

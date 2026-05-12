@@ -1,0 +1,653 @@
+{
+  "bookId": "atomic-habits",
+  "title": "Atomic Habits",
+  "author": "James Clear",
+  "promotedAt": "2026-05-12T01:07:46.391Z",
+  "chapterCount": 20,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Brisa stays after Thursday rehearsal in the empty band room, the second-violin chairs still angled where her students left them. Her notebook is open to eight weeks of tally marks: intonation drills …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Week eleven. The dynamometer reads the same fourteen kilograms it read in week eight. Aravind watches his patient, a retired postal sorter named Wendolyn, set the squeeze gauge down and reach for her…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "You set an ice cube in a sealed room at twenty-five degrees Fahrenheit and turn the dial up one degree every hour. At twenty-six, nothing. At twenty-seven, nothing. The cube sits through twenty-eight…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "You set an ice cube in a sealed room at twenty-five degrees Fahrenheit and turn the dial up one degree every hour. At twenty-six, nothing. At twenty-seven, nothing. The cube sits through twenty-eight…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "It is month five and Ingrith is back in the same conference room where, in week eight, she had drafted a performance improvement plan for a junior rep named Bevan. She pulls the dashboard. The meetin…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the surface holds still\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rasmus is forty-one, a high school band director, and the clarinet on his kitchen table has not been touched in nineteen years until tonight. He sets the kitchen timer for fifteen minutes after the d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ottavia rinses glasses at her parents' sink while her older brother leans on the counter beside her. 'Two years sober and you still order Diet Coke like it's a phase,' he says. 'It's not a phase.' 'Y…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Picture Thaddeus, retired from the post office last spring, sitting in his sun-warmed kitchen on a Tuesday with a library copy of a slim novel his granddaughter chose for him. He has told himself sin…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"cast the ballot tomorrow\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 11:48 p.m. Pavlina is elbow-deep in suds again. Bashir walks in from the back bedroom holding a kombucha.\n'Five years, and you still wait until I crack.'\n'I'm not waiting. I genuinely don't s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Haruto is 68, three months out from his last bridge inspection, and his border collie Biscuit is staring at the leash again. The doctor was clear: walk daily or the knee locks. Haruto has the shoes, …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the response do not\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Fionnula crosses the threshold of a third-floor walk-up at 4:11 a.m. The husband is talking fast, the dog is loose, the kitchen light is too yellow. She has not touched the patient. She is already sa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "After Thursday rehearsal, Desmond is packing up when Mr. Halverson pulls a chair over. \"Walk me through it,\" he says. \"You get home, you open the case. What happens?\" Desmond shrugs. \"I take out the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tomasz is alone at the dispatch board in a rail tower outside Hammond at 2:14 a.m., tracking a coal train rolling east toward a junction where a maintenance crew is supposed to have cleared by midnig…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Merritt sits in her driveway after a fifteen-minute run to the pharmacy, engine still ticking as it cools. She pulls a receipt from the cupholder and writes on the back: phone buzz at the first stopl…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rhiannon is leaning against the counter at 9 p.m., the printed physio sheet pinned under a magnet, three weeks of unchecked boxes glaring back. Her roommate Soledad sets down her tea. \"You keep sayin…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Sixth-period band, ten minutes left. Mr. Okafor uncaps a marker and writes on the whiteboard: After I [existing habit], I will [new habit] at [time] in [place]. Then he turns to a flutist named Bexle…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sixth-period band, ten minutes left. Mr. Okafor uncaps a marker and writes on the whiteboard: After I [existing habit], I will [new habit] at [time] in [place]. Then he turns to a flutist named Bexle…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Eero rides the 7:42 PATH out of Jersey City with his forehead against the window, taking the exact seat he has taken for nineteen months. The doors close leaving Newport with the same two-tone chime …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"do the thing two\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:14 a.m. on a Tuesday, Svana, the charge nurse on the cardiac ICU, fills a one-liter bottle, writes SVANA in black marker across the side, and clips it to the top tray of the charting cart she ro…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It's 11:14 p.m. and Inés is sitting on the edge of the bed with her arms crossed. Bram is in the doorway. They've had this exact fight, in this exact room, maybe forty times in six years. Inés opens …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:14 a.m. in the cardiac ICU, Meren pours her fourth coffee. The wicker basket of vending-machine cookies sits six inches from the carafe, where it has sat every night for two years. She has alrea…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Roisin glances up from her phone. 'You said you'd put it down at dinner.' Cosmin doesn't look up. 'Answering one thing.' Their daughter Pip stirs her pasta and watches. Roisin tries again. 'We're bot…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Roisin glances up from her phone. 'You said you'd put it down at dinner.' Cosmin doesn't look up. 'Answering one thing.' Their daughter Pip stirs her pasta and watches. Roisin tries again. 'We're bot…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday, 7:14 p.m., Room 204 of the community college. Belkis has just clicked off a five-minute clip of Café con Aroma de Mujer and the room is humming. Then the slide changes to a preterite drill a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Brigit is sitting cross-legged on the kitchen floor at 8:54 p.m. on a Tuesday, scrubbing a saucepan that has been soaking since Sunday. Her roommate Hester walks in holding a laptop queued to the new…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ezekiel is seventy-one and three months a widower, and the cardiologist's forty-minute walk has become the worst part of his day. He sits on the edge of the bed at three fifty, staring at his shoes. …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"once and the craving\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It is Friday night. Rohan slides his phone across the kitchen table to Saskia. The cycling club's signup is open. He says, \"I want in. Sundays, 6am, the fast group.\" Saskia stirs her tea. \"So I wake …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "On a Thursday after pickup, Orinthia counts six untouched library books on her thirteen-year-old's nightstand. Last fall, that stack turned over every weekend. She runs the obvious suspects: phone ti…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It is 3:14 a.m. in the ambulance bay and Eilidh is still in her gown, the code on the motorcyclist called eleven minutes ago. Her hand is already in her scrub pocket fishing out two crumpled dollars …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Yuki is at her drafting desk on a Thursday afternoon, two weeks behind on a children's book contract that covers her rent. The notification banner slides down: subject line from the art director, no …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Suppose you drive the 14 line, six days a week, the same forty-three stops in the same order. At the end of every shift you stop at the Korean grocery on Lyndale and buy one scratch ticket. Tonight y…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is a guess about\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sept race is twenty weeks out. At 10:14 p.m. Beatrix sends Yusra a screenshot: a color-coded spreadsheet with tempo runs, fartleks, taper week, and a rest-day rationale in the margin. Yusra reads it …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Pernille sits at the kitchen counter of her third apartment in two years, the dispatch radio cooling on the shelf after a fourteen-hour shift. Her watercolor block is still taped shut in a moving box…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"when you are stuck\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "By 7:40 on a Saturday, Maeve has not sent the email she usually sends. She has coiled the green hose into a flat circle at the garden gate, set a small chalkboard above it, and written three plot num…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Tadeusz, sixty-eight and four months out from a knee replacement, sits at his kitchen table with a calendar his physical therapist asked him to mark. Green dots on the walked days, red on the missed …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:14pm Bartholomew stands at his station with a printed ticket history from last Friday and an empty stainless rail. He places shallots at his left hand because the seared duck fires first at 5:30…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Brenton is sixty-eight, four months past shoulder surgery, parked in his sedan outside the Eastlake Aquatic Center on a gray Tuesday at 6:14 a.m. He is wearing his swim trunks under sweatpants, as he…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"that is the habit\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Iolanthe inks panels at her kitchen table, six feet from a pantry that holds a sleeve of shortbread. Every morning at 8am she runs a strip of blue painter's tape across the pantry door before she ope…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Picture Desmond, a city council aide whose book proposal has been 'almost started' since 2023. His alarm is set for 4:55am. His laptop is on the kitchen counter, charged. He has done this setup ninet…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rashad has eighteen months clean. Every weekday at 6:12pm his commute carries him past the off-track betting parlor on Linden Avenue, and every weekday at 6:12pm his hands tighten on the wheel. His s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rhoswen catches her office manager, Davies, in the hallway on a Tuesday and shuts the door behind him. 'I want you to lock my office at 6:01pm every weekday,' she says. 'And refuse to reopen it. No m…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It is 11:14 a.m. in the pediatric ICU. Bishara has just drained her second water bottle behind the supply cart, and her left hand goes into her right scrub pocket, fishes out a paperclip, and drops i…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Cressida is a freelance illustrator at her kitchen table when the Stripe ping lands: $1,850 from a picture-book client, cleared. She opens her bank. The 'Future Me' account sits right under checking,…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Helka, seventy-one, stands in her kitchen at 7:14 a.m. holding a single butterscotch candy she has not unwrapped in eight months. Her cardiologist's letter is on the counter, warning of a second sten…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Itzel comes off a twelve-hour at the hospice in Tucson at 8:14 p.m., still smelling of the lavender lotion she rubs into Mr. Quintero's hands. She drops her bag, opens the spiral notebook on the kitc…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Jovan sits in his pickup outside the union hall, the recovery app open on his phone. The streak reads 218 days. Last Tuesday he let the seven o'clock check-in call with his sponsor go to voicemail an…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lazlo is twenty minutes behind on the mise at 4:35 on a Thursday, sweating through his bandana, the shallots only half-minced and the herb oil not even started. He could pace himself, miss the 4:55 d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It is 7:02pm on Thursday. Saphira opens the laptop in her kitchen, a half-eaten bowl of rice cooling beside it, and clicks into the recurring video room she shares with Bo, her old classmate from Gla…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Think of Aleksy, a regional sales manager who clears comfortable money, four gym sessions a week he keeps missing, a brother-in-law he privately finds smug. They sign a contract: every week Aleksy lo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:28 a.m. the thermometer on Arto's porch reads nineteen degrees. He is sixty-four, two years retired from the engine company, and his cardiologist has used the word stent twice in one appointment…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"pick someone whose silence\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It is the Friday dinner rush at a thirty-seat bistro, and Rasul has been written up twice this month for skipping the citrus zest on the trout plates. The laminated checklist is taped above eye level…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tycho sits at the upright in Sigourney's basement studio, a tax-season binder still under his arm. 'Charlotte's daughter started at six,' he says. 'I'm fifty-four. What's the point.' Sigourney closes…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Picture this. You are Yusra, regional manager, and two folders sit on your desk for the open territory. Folder one: Dembe, a natural talker who closes warm rooms and lets his expense reports pile up …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "It's 9:14 p.m. Ottoline is on the couch with a mug of tea she forgot to drink. Jorin sits down beside her. \"You were somewhere else again tonight,\" he says. \"He told you a whole thing about a dragon …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sunday, 8:47 p.m. Jovi pours the second glass of wine and asks, \"So, one thing that went well this week?\" Rhetta answers on cue. Then he asks, \"One thing that felt hard?\" She gives the practiced answ…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Kalinda sits across from her attending, chart open between them. The patient: 34, epigastric pain, normal vitals, sent home with a gastritis workup. Bounced back forty hours later with a ruptured app…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "After seven years on the same weekly loop, Halla's 10K time has settled at 44:12 and sat there three seasons. She has kept showing up. The body memorized every step: tempo, intervals, long run, repea…"
+          }
+        ],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 57
+  },
+  "bookGate": {
+    "bookId": "atomic-habits",
+    "chapterCount": 20,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        60,
+        64,
+        59
+      ],
+      "answerPositionPctMax": 0.34972677595628415,
+      "totalQuizQuestions": 183,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

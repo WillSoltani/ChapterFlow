@@ -76,7 +76,7 @@ export async function runExampleCurator(input: CurateInput): Promise<CurateResul
     maxTokens: 2000,
     temperature: 0.2,
     jsonMode: true,
-    timeoutMs: 120_000,
+    timeoutMs: 240_000,
   });
 
   // Fallback defense if the model forgot fields

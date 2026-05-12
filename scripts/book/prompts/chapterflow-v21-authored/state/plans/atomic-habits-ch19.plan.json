@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch19",
+  "number": 19,
+  "title": "The Goldilocks Rule: How to Stay Motivated in Life and Work",
+  "coreMove": "Calibrate the difficulty of your next rep to sit just past the edge of your current ability, so engagement survives the disappearance of novelty.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a high school orchestra cellist practicing the same étude for the fourth week in a row",
+      "audience": "a 16-year-old who used to love the instrument and is now bored",
+      "stakes": "whether she keeps playing through the summer or quietly puts the cello in the closet",
+      "format": "scene",
+      "requiredBeat": "her teacher nudges the metronome up four clicks and the étude is suddenly hard enough to be interesting again — the cellist notices that boredom was a difficulty signal, not a verdict on the instrument"
+    },
+    {
+      "domain": "a hospice nurse with twelve years on the unit recalibrating how she runs family meetings",
+      "audience": "a veteran clinician whose competence has flattened into routine",
+      "stakes": "whether her work stays meaningful or curdles into the kind of going-through-the-motions that ends careers",
+      "format": "reflection",
+      "requiredBeat": "she names one specific skill — leading the silence after bad news — that she is not yet good at, and decides that becomes the edge she works on this quarter"
+    },
+    {
+      "domain": "a recreational climber choosing between two routes at the gym on a Tuesday night",
+      "audience": "a 34-year-old climber who has been stuck at the same grade for eight months",
+      "stakes": "whether the next six months are another plateau or a real grade jump",
+      "format": "decision_point",
+      "requiredBeat": "he picks the route he can do maybe one move on, not the one he can flash, and catches himself wanting the flash because it would feel like progress without being progress"
+    },
+    {
+      "domain": "a line cook on the sauté station of a busy bistro at month fourteen",
+      "audience": "a 26-year-old cook who is no longer scared of the rush",
+      "stakes": "whether he stays a competent line cook for a decade or pushes toward sous chef",
+      "format": "vignette",
+      "requiredBeat": "during a lull he asks the chef for one new technique to drill on family meal — not a promotion, a harder rep — and the chef hands him a beurre blanc that splits the first three tries"
+    },
+    {
+      "domain": "a tax attorney who has just won a case so cleanly that her firm is celebrating",
+      "audience": "a partner-track lawyer in her early forties",
+      "stakes": "whether the win becomes the ceiling she coasts to or the floor she builds from",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader imagines the attorney one year out under two versions of herself — one who took on a kind of case she has never argued, one who repeated the winning playbook — and sees which version is still curious"
+    },
+    {
+      "domain": "a stay-at-home parent of a four-year-old running the same bedtime routine night after night",
+      "audience": "a parent six months into a stretch where every day looks like the last",
+      "stakes": "whether the parent stays present at bedtime or starts checking out mentally while their kid is still talking",
+      "format": "dialogue",
+      "requiredBeat": "the parent and their partner talk about why bedtime has gone numb, and land on the idea that the routine is not too hard, it is too easy — they pick one new small ritual that requires actual attention from the parent"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11
+}

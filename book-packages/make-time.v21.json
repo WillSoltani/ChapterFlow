@@ -1,0 +1,1630 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "make-time-v21-1778547641029",
+  "createdAt": "2026-05-12T01:00:41.038Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "make-time",
+    "title": "Make Time",
+    "author": "Jake Knapp and John Zeratsky",
+    "categories": [
+      "Productivity",
+      "Self-Help"
+    ],
+    "tags": [
+      "attention",
+      "priorities",
+      "habits",
+      "energy",
+      "distraction",
+      "time-management"
+    ],
+    "edition": {
+      "name": "Make Time: How to Focus on What Matters Every Day",
+      "publisher": "Crown Currency",
+      "publishedDate": "2018-09-25",
+      "publishedYear": 2018,
+      "isbn13": "9780525572428",
+      "format": "Hardcover / print reference edition",
+      "sourceText": ".chapterflow/runs/make-time/20260407-020852/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle: Penguin Random House metadata, Google Books contents preview, official Make Time site, Jake Knapp author page, Highlight Course, and Make Time Notes PDF."
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "make-time-ch01",
+      "number": 1,
+      "title": "Introduction + How Make Time Works",
+      "readingTimeMinutes": 8,
+      "hook": "A buzzing label printer can choose your morning before your hand reaches the coffee.",
+      "counterintuition": "The paradox is that a lost day often feels responsible while it is happening. Defaults choose first, then make reaction look like the right thing to do.",
+      "tryThisNow": "Open tomorrow's calendar and draw a box around one block that defaults usually steal. Write one word beside it: Highlight, Laser, Energize, or Reflect.",
+      "keyTakeaway": "A better day starts when you stop treating busyness and endless feeds as weather, and begin changing the defaults that decide where your best attention goes.",
+      "breakdown": {
+        "fastRead": "Inez peels a discharge label off the printer at 6:08 a.m. and sees the inbox counter jump from 19 to 31. Nothing dramatic has happened. The day is simply being claimed before she has named what matters. That is the trap: the Busy Bandwagon makes response look noble, and Infinity Pools make drift feel like a break. The first move is to give the day a chosen shape. Pick a Highlight, protect it with Laser, support your body with Energize, then use Reflect to learn from the result.",
+        "deepRead": "Bruna dusts almond flour off her sleeve at 4:51 a.m. while the bakery phone starts flashing. A school order, a cracked mixer belt, and two wholesale texts all want the morning. If she answers in arrival order, the day will look productive and still miss the wedding cake that pays the rent. The framework starts there, in the moment before the defaults take command.\n\nBusy work is not always fake work. Many messages are real. Many errands matter. The problem is that incoming demand has no built-in respect for meaning. Endless feeds work the same way. They do not ask what deserves your best hour. They just keep offering one more thing. A tired mind accepts the offer because it is easy.\n\nChoose one center first. Call it the Highlight, the part of the day you would be glad to protect. Then make distraction harder through Laser. Give the body enough movement, food, light, and rest through Energize. End with Reflect, a small note about what worked and what to change. The limit is plain: this does not erase obligations. It gives you one handle on a day that was already being designed by someone else.\n\nInez does not need a perfect morning. She needs one chosen starting move before the printer, inbox, and phone divide her attention. That is why the framework begins small. It asks for a daily center, then asks what would make that center more likely to survive real conditions.",
+        "fullRead": "Stellan unlocks tutoring room B at 1:05 p.m. and finds three dry-erase caps scattered across the table. Last week he answered every walk-in question, every faculty email, and every student who said the phrase only a minute. He went home useful and oddly sad because the nursing student who needed dosage practice never got the hour he promised her. The room was busy. It was not shaped.\n\nThat difference is the whole starting point. A day can be full and still fail the person living it. The forces behind that failure often feel normal because they are normal. The Busy Bandwagon rewards a packed calendar, fast replies, and the public look of being needed. Infinity Pools reward checking, scrolling, refreshing, and sampling because there is always another drop of novelty. One force fills the day. The other fills the cracks. Together they can leave your best attention with whatever scraps remain.\n\nThe answer is not to become severe. It is to redesign the day in four plain moves. Highlight asks what deserves the center today. Not forever. Today. Laser asks what must be removed, blocked, slowed, or hidden so that center has a chance. Energize asks what the body needs so attention is not trying to work from an empty tank. Reflect asks what happened, without drama, so tomorrow can be adjusted.\n\nKeir sees this at 11:36 p.m. with his boots beside the trash can. His double shift was full of real service, yet his license renewal sat untouched again because every small ping looked more urgent than a quiet form with a deadline next week. The useful question is not whether Keir is weak. It is which defaults got voting power. Once he sees that, he can make a different starting setup for tomorrow.\n\nA framework can turn into another burden if it becomes a purity test. That is the edge to avoid. The point is not a perfect schedule or a heroic refusal of modern life. The point is one better default, then another. A better day starts when you stop treating busyness and endless feeds as weather, and begin changing the defaults that decide where your best attention goes.\n\nSolange sees the other half of the trap in the coat-check room. She does not choose to waste the donor setup hour. She chooses one quick email, then another useful link, then one shipping page that seems related. Endlessness is dangerous because each step can look reasonable. The fix is also concrete: name the room setup as the Highlight, put a timer on the inbox, and let the badges in front of her outrank the stream behind the screen.\n\nBrennan faces the social version beside field 3. Six drills would make him look ready. One player learning to call for the ball would make practice matter. The Busy Bandwagon is strongest when witnesses are nearby, because visible motion feels safer than a narrow choice. A chosen Highlight gives him permission to look less busy while doing the better work.\n\nTry the framework as a set of small levers, not a personality makeover. Write the center. Remove one leak. Support the body once. Leave one note. That is enough to change how tomorrow starts."
+      },
+      "examples": [
+        {
+          "exampleId": "make-time-ch01-ex01",
+          "title": "Inez catches the label printer choosing her morning",
+          "tags": [
+            "hospital",
+            "defaults",
+            "opening"
+          ],
+          "planSpec": {
+            "domain": "hospital administration",
+            "audience": "overloaded service workers",
+            "stakes": "defaults capture the day before a meaningful patient call happens",
+            "format": "scene",
+            "requiredBeat": "she sees the day get seized by inbox defaults before she chooses one patient call that matters"
+          },
+          "scenario": "Inez peels a warm discharge label from the printer at 6:08 a.m. at the fourth-floor station, toner smell sharp in the air. The inbox counter jumps from 19 to 31 while the label curls over her thumb. One message is from a daughter waiting to learn whether her father can come home before noon. Inez has seventeen forms open and a buzzing phone at her elbow. She must decide whether to answer the queue in order or protect that one call first.",
+          "whatToDo": "Choose the patient call as the morning Highlight, write it on a sticky note by the monitor, and close every tab except the discharge record and phone log until it is done.",
+          "whyItMatters": "The queue has no sense of meaning. If Inez lets arrival order rule, the day will feel responsible while the most human task waits behind louder defaults."
+        },
+        {
+          "exampleId": "make-time-ch01-ex02",
+          "title": "Brennan stops waving the cracked clipboard",
+          "tags": [
+            "sports",
+            "busy bandwagon",
+            "practice"
+          ],
+          "planSpec": {
+            "domain": "youth sports",
+            "audience": "volunteer leaders",
+            "stakes": "looking busy crowds out the one practice moment that matters",
+            "format": "dialogue",
+            "requiredBeat": "he names the pull of looking busy and asks what one practice moment should matter"
+          },
+          "scenario": "Brennan taps a cracked clipboard against his thigh at 5:42 p.m. beside field 3, grass clippings stuck to his cleats. Parents line the fence. \"We can run six drills,\" his assistant says. \"Looks organized.\" Brennan watches a shy defender lace and relace her boot. \"Or we can teach Mara how to call for the ball once,\" he says. The whistle is in his teeth. He has to choose what practice is for before the first cone moves.",
+          "whatToDo": "Name the one practice win out loud, then cut any drill that only makes the session look full. Build the next hour around the moment one player most needs.",
+          "whyItMatters": "Visible motion can fool the coach as much as the parents. One chosen center gives the practice a point that a crowded clipboard cannot supply."
+        },
+        {
+          "exampleId": "make-time-ch01-ex03",
+          "title": "Solange watches ten minutes become forty-seven",
+          "tags": [
+            "museum",
+            "infinity pools",
+            "event"
+          ],
+          "planSpec": {
+            "domain": "museum membership",
+            "audience": "event coordinators",
+            "stakes": "an endless digital pool swallows the setup hour",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts email will take ten minutes, then sees the endless pool swallow the setup hour"
+          },
+          "scenario": "Solange lines donor badges in the coat-check room at 10:17 a.m., silver clips spread beside a lukewarm mug. She predicts ten minutes of email before arranging the name cards. The first reply links to a venue photo, the photo leads to a comment thread, and a shipping alert pulls her into tracking pages. When the lobby clock chimes eleven, the badges are still crooked and the florist is at the door holding wet stems. She has to decide, before opening another message, whether the inbox or the room gets the next ten minutes.",
+          "whatToDo": "Treat the inbox as an Infinity Pool, not a small errand. Set a timer, close it when the bell rings, and return to the physical setup before the room starts deciding for her.",
+          "whyItMatters": "The danger was not one email. It was a stream with no natural end. Laser starts when Solange stops pretending that endless tools will stop themselves."
+        },
+        {
+          "exampleId": "make-time-ch01-ex04",
+          "title": "Keir marks the pings that ate the renewal form",
+          "tags": [
+            "paramedic",
+            "postmortem",
+            "defaults"
+          ],
+          "planSpec": {
+            "domain": "emergency services",
+            "audience": "shift workers",
+            "stakes": "reactive pings displace quiet important work",
+            "format": "postmortem",
+            "requiredBeat": "he reconstructs how reacting to pings filled the day while the license renewal never started"
+          },
+          "scenario": "Keir stands at his kitchen counter at 11:36 p.m., boots by the trash can and a renewal form flattened under a cereal bowl. He draws a line down a grocery receipt and lists the pings that split his double shift: overtime thread, uniform order, station meme, old classmate, app badge, app badge, app badge. None was foolish alone. Together they took every pause where the form could have started.",
+          "whatToDo": "Use the receipt as evidence. Tomorrow, put the renewal form in the first break spot and move the phone to the locker until the first page is submitted.",
+          "whyItMatters": "A postmortem turns a vague bad feeling into design data. Keir can change the next pause only after he sees what captured the last one."
+        },
+        {
+          "exampleId": "make-time-ch01-ex05",
+          "title": "Bruna picks the wedding cake before the walk-ins arrive",
+          "tags": [
+            "bakery",
+            "highlight",
+            "owner"
+          ],
+          "planSpec": {
+            "domain": "small business",
+            "audience": "owners with reactive mornings",
+            "stakes": "walk-in errands threaten the one order that pays the week",
+            "format": "decision_point",
+            "requiredBeat": "she must decide whether to let walk-in errands define the morning or pick the one order to protect"
+          },
+          "scenario": "Bruna flips on the pastry-case light at 4:51 a.m., almond flour ghosting her black sleeve. The register drawer sticks, the mixer belt squeals, and two wholesale texts blink on the counter phone. In the walk-in, twelve cake layers wait for the Serrano wedding pickup at noon. Her hand is already reaching for the phone. She must decide whether the morning belongs to whatever complains first or to the cake that cannot be late.",
+          "whatToDo": "Write Serrano cake on the flour bag in marker, silence the counter phone for forty minutes, and do the next cake step before touching the register or wholesale texts.",
+          "whyItMatters": "The loudest problem is not always the day's center. A Highlight gives Bruna a standard for what gets first claim on her freshest attention."
+        },
+        {
+          "exampleId": "make-time-ch01-ex06",
+          "title": "Stellan gives tutoring room B a daily shape",
+          "tags": [
+            "college",
+            "before after",
+            "framework"
+          ],
+          "planSpec": {
+            "domain": "community college tutoring",
+            "audience": "student support staff",
+            "stakes": "useful drift becomes a designed day",
+            "format": "before_after",
+            "requiredBeat": "he moves from default office-hour drift to a four-part daily shape"
+          },
+          "scenario": "At 1:05 p.m. Thursday, Stellan finds dry-erase caps scattered across tutoring room B and remembers last week: seven walk-ins helped, one nursing student still lost on dosage math. Today he writes her name in the center of the board, puts his phone in the supply cabinet, fills his water bottle, and leaves one note card for 4:30. By closing, the room is still busy, but the promised hour happened.",
+          "whatToDo": "Use the four moves as a tiny daily design: name the student session, reduce the phone pull, support the body, and leave a note about what to change tomorrow.",
+          "whyItMatters": "The framework does not make tutoring quiet. It gives Stellan a way to keep one meaningful promise from being rubbed away by useful but endless drift."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A clinic coordinator arrives to twenty-six messages and one family waiting for a discharge call. What move best matches the framework? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Pick the family call as today's Highlight and protect a short block for it before clearing the queue.",
+              "Answer messages in exact arrival order so nobody can complain about fairness.",
+              "Open every tool at once so she can watch all demands equally."
+            ],
+            "correctIndex": 0,
+            "explanation": "The framework starts by choosing a center before defaults choose for you. The queue matters, but it should not silently outrank the call that would make the day feel used well.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A designer says his day vanished because he is lazy, but his calendar was packed by others and every break went to feeds. What is the better diagnosis?",
+            "choices": [
+              "He needs a more complex task manager before changing anything else.",
+              "Default forces captured the day before he made a clear choice.",
+              "He should remove every obligation that involves other people."
+            ],
+            "correctIndex": 1,
+            "explanation": "The problem is not only character. Busy demands and endless feeds created a setting where reaction became the path of least resistance. Redesign gives more leverage than blame.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A coach is setting up tomorrow's practice and wants to use the four-part rhythm instead of drifting through drills. Which order best fits the framework?",
+            "choices": [
+              "Reflect, Energize, Laser, Highlight.",
+              "Laser, Reflect, Highlight, Energize.",
+              "Highlight, Laser, Energize, Reflect."
+            ],
+            "correctIndex": 2,
+            "explanation": "The practical order is choose the center, protect attention, support the body, then learn from the day. The parts can overlap, but that sequence gives the day a clear shape.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A student keeps saying, \"I will focus harder,\" while leaving games one tap from her homework screen. What would Laser add? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Make the game harder to reach before the homework block starts.",
+              "Write a longer promise about caring more tomorrow.",
+              "Start with the easiest game to relax before work."
+            ],
+            "correctIndex": 0,
+            "explanation": "Laser changes the setting around attention. A small barrier beats another private speech when the tempting path is still frictionless.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A manager wants a full redesign of every minute and feels guilty when interruptions happen. Which correction best fits the opening framework? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Interruptions prove the system is useless.",
+              "The aim is useful control over one meaningful part of the day, not perfect control over life.",
+              "The answer is to ignore coworkers until the Highlight is done."
+            ],
+            "correctIndex": 1,
+            "explanation": "The method is humane because it seeks leverage, not total command. It helps protect what matters without pretending real obligations vanish.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A nurse protected her charting block but skipped food and hit a hard crash. Which part of the framework did she neglect? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Highlight.",
+              "Reflect.",
+              "Energize."
+            ],
+            "correctIndex": 2,
+            "explanation": "Energize treats the body as part of attention. If the body is depleted, the chosen block and focus barrier become harder to sustain.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A founder reviews a rough launch day and writes, \"Phone on counter stole first hour,\" on a sticky note by the laptop. What is the value of that note for tomorrow?",
+            "choices": [
+              "It turns a vague frustration into a specific design change for tomorrow.",
+              "It proves the shop owner is bad at mornings.",
+              "It replaces the need to choose a Highlight next time."
+            ],
+            "correctIndex": 0,
+            "explanation": "Reflect makes the system learn. The note points to a concrete change: move or silence the phone before the first protected block.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A teacher feels productive after answering parent emails all afternoon, but the lesson lab never got built. Which question should he ask first tomorrow?",
+            "choices": [
+              "Which inbox rule will let me answer faster?",
+              "What is the one center I would be glad to protect today?",
+              "How can I add more visible tasks to the list?"
+            ],
+            "correctIndex": 1,
+            "explanation": "The first question is about the Highlight. Without a chosen center, visible activity can crowd out the work that would make the day matter.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A manager wants to prove commitment by being reachable every minute, even during the one strategy block the team needs most. What risk should she see?",
+            "choices": [
+              "Reachability can become a default that spends her attention before she chooses where it belongs.",
+              "Fast replies always create the best work.",
+              "The only good answer is to quit all messaging tools."
+            ],
+            "correctIndex": 2,
+            "explanation": "The risk is not communication itself. The risk is letting responsiveness become the day's command system. She needs defaults that serve the work, not swallow it.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "make-time-ch01-rc01",
+          "front": "Your morning opens with messages before you choose anything. What is the first Make Time move?",
+          "back": "Name a Highlight before the queue names one for you. The chosen center gives every later yes, no, and delay a point of comparison.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "make-time-ch01-rc02",
+          "front": "A feed keeps filling every tired pause. What is the structural problem?",
+          "back": "It is an Infinity Pool: a source with no clean stopping point. Treat it with friction, not with another promise that you will stop naturally.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch01-rc03",
+          "front": "A day was busy and still felt empty. What did the framework likely miss?",
+          "back": "The day lacked a protected center. Busy work may be real, but without a Highlight it can absorb attention while meaning waits.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch01-rc04",
+          "front": "You used a tactic and it failed. What does Reflect ask you to do next?",
+          "back": "Record what happened, change one condition, and try again. Reflection is design feedback, not a verdict on your character.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is daily design. Choose one center, change the setting so attention can stay with it, support the body, and use a small note to improve the next attempt.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If the first screen of the day is an inbox, then write the day's Highlight on paper before opening the first message."
+          },
+          {
+            "context": "health",
+            "plan": "If you plan a focus block after lunch, then decide the food, water, and short walk that will make that block easier before noon."
+          },
+          {
+            "context": "personal",
+            "plan": "If you reach for a feed during a pause, then put the phone down and ask whether this pause belongs to rest, a Highlight, or a small reset."
+          },
+          {
+            "context": "relationships",
+            "plan": "If someone asks for time that would displace your Highlight, then name the protected block and offer the nearest honest alternative."
+          }
+        ],
+        "twentyFourHourChallenge": "Before tomorrow starts, choose one Highlight, one distraction barrier, one energy support, and one reflection time. Keep each choice small enough to do even on a crowded day.",
+        "weeklyPractice": "For seven days, use the same four-line note each evening: Highlight, Laser, Energize, Reflect. Change only one part the next day so you can tell what helped."
+      },
+      "memorableLines": [
+        {
+          "text": "A day can be full and still fail the person living it.",
+          "location": "breakdown.fullRead",
+          "why": "It separates motion from meaning in one plain sentence."
+        },
+        {
+          "text": "The queue has no sense of meaning.",
+          "location": "example[0].whyItMatters",
+          "why": "It turns the abstract problem of defaults into a concrete warning."
+        },
+        {
+          "text": "A better day starts when you stop treating busyness and endless feeds as weather, and begin changing the defaults that decide where your best attention goes.",
+          "location": "keyTakeaway",
+          "why": "It captures the practical thesis without blaming the reader."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-time-ch02",
+      "number": 2,
+      "title": "Highlight",
+      "readingTimeMinutes": 8,
+      "hook": "A blue price sticker on Catrin's wrist can decide what the whole house is for today.",
+      "counterintuition": "The paradox is that choosing one thing can make the whole day feel larger, not smaller. A concrete Highlight narrows attention so the meaningful work finally has room.",
+      "tryThisNow": "Write three possible Highlights for tomorrow. Cross out any that cannot fit in a real block, then circle the one you would be glad to have protected.",
+      "keyTakeaway": "A Highlight gives the day a center you can defend, so attention is guided by a chosen meaningful moment instead of by whatever arrives loudest.",
+      "breakdown": {
+        "fastRead": "Catrin has blue price stickers stuck to her wrist at 7:26 a.m. and a whole split-level house to sort before bidders arrive. Every room can argue for first place. The china cabinet is fragile. The garage is a mess. The photo albums are emotional. Highlight asks her to choose the one protectable win that would make the day feel used well. Once that center is named, other rooms still matter, but it no longer gets to pull her by panic alone.",
+        "deepRead": "Nikhil snaps off his gloves beside centrifuge 4 at 2:11 a.m. The night shift has a dozen small bench tasks, and each one can claim a little urgency. If he drifts through them in the order they appear, he may do honest work and still miss the assay setup that saves the morning crew an hour. Highlight is the move that prevents that quiet loss.\n\nA good Highlight is not a slogan. It has to be concrete enough to protect. Finish the grant is too big for one ordinary day. Draft the first two paragraphs before lunch can guide real tradeoffs. Call Dad is too vague if it can be delayed forever. Sit with Dad through dinner without the phone is a defendable choice.\n\nThe value is emotional as well as practical. A day feels different when one meaningful part gets your best attention. The limit is also important: a Highlight does not erase chores, care work, illness, or paid duty. It gives those claims a reference point. When something tries to interrupt, you can ask whether it truly outranks the chosen center or merely arrived with more noise.\n\nCatrin feels this in the split-level house. A whole estate can make every object sound important. The Highlight does not claim the garage is worthless or the china is easy. It says the family albums deserve first protection because they carry the pain that no sale total will repair. That choice gives the rest of the morning a spine.",
+        "fullRead": "Audra balances a coffee on a file box outside courtroom 3B at 8:38 a.m. The docket will start in twenty-two minutes. Five clients need her, a prosecutor wants to talk, and her phone shows three texts from a social worker. All of it is real. Still, one case has the fragile point of the day: a young father can avoid a warrant if she gets the judge to accept proof of treatment. If she does not name that as the center now, the hallway will name something else for her.\n\nHighlight is a simple idea with a hard edge. You choose one priority for the day, not because nothing else matters, but because attention needs a center. Without one, the day becomes a series of reactions that can each be defended in isolation. You answered the text. You found the file. You handled the surprise. Then evening comes and the thing that mattered most never received a clean hour.\n\nThe strongest Highlight sits between meaning and size. It should matter enough that you will be glad you protected it. It should also be small enough to fit inside a real day. A giant dream cannot steer a Tuesday if it has no next move. A tiny errand may be too thin to give the day shape unless it carries real meaning. The useful test is concrete: if this happened, would the day feel meaningfully better, even if other things stayed messy?\n\nRafiq learns the sizing problem in the band room. He wants the spring concert to sound mature, but that phrase is too large to guide a rehearsal with seventh graders and squeaky chairs. When he changes the Highlight to eight clean bars where the clarinets enter together, the room knows what to do. The smaller target does not shrink the ambition. It makes the ambition reachable.\n\nA Highlight can be misused when it becomes a new way to scold yourself. Some days are crowded by grief, caregiving, weather, or work that cannot wait. The point is not to pretend every claim is optional. The point is to give your best available attention a fair assignment. A Highlight gives the day a center you can defend, so attention is guided by a chosen meaningful moment instead of by whatever arrives loudest.\n\nJuno faces the same test at 9:04 p.m. with the bakery schedule glowing on her laptop. Payroll is important. Inventory is important. The oven repair is important. But tomorrow's sourdough mix has a narrow window, and missing it changes the noon shelves. Once she circles that block, she is not ignoring payroll, inventory, or the oven. She is protecting the task that keeps the morning from becoming damage control.\n\nLinnea's postmortem shows why this matters. Her flower shop made money on Mother's Day and still missed the sympathy arrangement that carried the most human weight. Without a Highlight, the loudest customer, the broken ribbon, and the balloon order each won a small vote. None looked wrong alone. Together they pushed aside the order she will remember.\n\nUse the choice as a test, not a fantasy. If the Highlight cannot fit, shrink it. If it has no meaning, choose again. If a true emergency outranks it, move it with respect rather than letting it vanish. A Highlight is strong because it is both meaningful and possible."
+      },
+      "examples": [
+        {
+          "exampleId": "make-time-ch02-ex01",
+          "title": "Catrin chooses the photo albums before the garage",
+          "tags": [
+            "estate sale",
+            "priority",
+            "sorting"
+          ],
+          "planSpec": {
+            "domain": "estate sale",
+            "audience": "people facing too many urgent piles",
+            "stakes": "a protectable Highlight prevents a whole house from scattering attention",
+            "format": "decision_point",
+            "requiredBeat": "she chooses one protectable Highlight instead of trying to honor every urgent pile"
+          },
+          "scenario": "Catrin presses a blue price sticker onto a lamp at 7:26 a.m. in the split-level living room, then notices three more stickers stuck to her wrist. Buyers arrive at noon. The garage is chaos, the china cabinet is fragile, and the family photo albums are still in cardboard boxes by the stairs. Her sister texts, start with tools, they sell. Catrin must decide whether the day is about clearing the loudest mess or saving the one thing the family will ache over later.",
+          "whatToDo": "Choose the family photo albums as the Highlight, set a forty-minute timer, and move them to a labeled safe box before pricing another object.",
+          "whyItMatters": "Highlight is not the busiest task. It is the chosen center that makes later tradeoffs honest, especially when many tasks can sound urgent."
+        },
+        {
+          "exampleId": "make-time-ch02-ex02",
+          "title": "Nikhil sets one tube rack at the center of the shift",
+          "tags": [
+            "lab",
+            "night shift",
+            "center"
+          ],
+          "planSpec": {
+            "domain": "clinical lab",
+            "audience": "night-shift workers",
+            "stakes": "small bench tasks threaten the assay setup that matters most",
+            "format": "vignette",
+            "requiredBeat": "his chosen Highlight gives the shift a center that random bench tasks cannot erase"
+          },
+          "scenario": "Nikhil snaps his gloves off beside centrifuge 4 at 2:11 a.m., blue nitrile caught on the trash rim. The lab hums with little claims: refill pipette tips, restock tubes, clear the courier bin, answer the analyzer chirp. On the counter he sets one red tube rack by itself, the morning assay setup that will save the next shift an hour. Every time the night tries to scatter him, the rack sits there like a quiet center. He has to decide whether to begin with the red rack or let the small bench tasks choose first.",
+          "whatToDo": "Make the assay setup visible and treat it as the shift Highlight. Let routine tasks happen around it, not before it by default.",
+          "whyItMatters": "A visible Highlight keeps honest small work from spreading until it consumes the best window. The rack gives Nikhil a physical reference point."
+        },
+        {
+          "exampleId": "make-time-ch02-ex03",
+          "title": "Audra names the warrant hearing in the hallway",
+          "tags": [
+            "court",
+            "dialogue",
+            "tradeoffs"
+          ],
+          "planSpec": {
+            "domain": "public defense",
+            "audience": "advocates juggling live demands",
+            "stakes": "a docket pulls attention unless one case outcome is named first",
+            "format": "dialogue",
+            "requiredBeat": "she states one case outcome worth protecting before the docket starts pulling at her"
+          },
+          "scenario": "Audra balances coffee on a file box at 8:38 a.m. outside courtroom 3B. The hallway smells like wet wool. \"You have five clients,\" her intern whispers. \"And the prosecutor wants two pleas.\" Audra taps the top file. \"This one first. Kellan brought treatment proof. If I get it in before the judge calls warrants, he sleeps at home tonight.\" The courtroom door clicks. She has forty seconds to decide what the morning is about.",
+          "whatToDo": "Say the Highlight in one plain sentence before the docket starts, then arrange the first three actions around that outcome.",
+          "whyItMatters": "The hallway will supply endless urgency. Naming one outcome gives Audra a standard for which interruption deserves attention and which can wait."
+        },
+        {
+          "exampleId": "make-time-ch02-ex04",
+          "title": "Rafiq shrinks the spring concert into eight bars",
+          "tags": [
+            "school",
+            "rehearsal",
+            "before after"
+          ],
+          "planSpec": {
+            "domain": "middle school music",
+            "audience": "teachers with broad goals",
+            "stakes": "a vague giant goal becomes one protectable rehearsal win",
+            "format": "before_after",
+            "requiredBeat": "he changes from a giant vague goal to one concrete rehearsal win"
+          },
+          "scenario": "At 3:07 p.m. Thursday, Rafiq wipes trumpet oil from a music stand and writes \"concert polish\" on the board. The phrase hangs there uselessly while thirty-two students unpack. He erases it. Under the squeak of chairs he writes, \"Clarinets enter together, bars 41 to 48.\" Before, he tried to fix the whole spring concert in one rehearsal. After the change, every repeat has a target the room can hear.",
+          "whatToDo": "Turn the broad wish into one clear Highlight for the rehearsal. Protect that win before chasing every flaw in the room.",
+          "whyItMatters": "A Highlight must fit the day. When Rafiq names eight bars, the students can aim their attention instead of drowning in the size of the concert."
+        },
+        {
+          "exampleId": "make-time-ch02-ex05",
+          "title": "Juno circles the dough schedule that saves tomorrow",
+          "tags": [
+            "bakery",
+            "calendar",
+            "thought experiment"
+          ],
+          "planSpec": {
+            "domain": "bakery scheduling",
+            "audience": "people planning tomorrow at night",
+            "stakes": "one calendar block can make the whole day feel used well",
+            "format": "thought_experiment",
+            "requiredBeat": "choose the one block that would make the day feel used well"
+          },
+          "scenario": "Juno stands at her kitchen counter at 9:04 p.m., marker uncapped above tomorrow's bakery schedule glowing on her laptop. Suppose she can protect only one block before deliveries and walk-ins start barking. Inventory matters, payroll matters, the oven repair matters. But the sourdough mix at 6:30 a.m. decides whether shelves look full at noon. The marker hovers over that square.",
+          "whatToDo": "Circle the block that would change how the whole day feels if it happened well. Then write the first physical action needed to start it.",
+          "whyItMatters": "The thought experiment forces a tradeoff before the rush begins. A Highlight becomes real when it owns a specific block and first move."
+        },
+        {
+          "exampleId": "make-time-ch02-ex06",
+          "title": "Linnea sees the sympathy arrangement that got crowded out",
+          "tags": [
+            "florist",
+            "postmortem",
+            "loudest task"
+          ],
+          "planSpec": {
+            "domain": "florist shop",
+            "audience": "owners after a chaotic sales day",
+            "stakes": "the loudest order displaced the arrangement that mattered most",
+            "format": "postmortem",
+            "requiredBeat": "she sees that the loudest order displaced the arrangement that mattered most"
+          },
+          "scenario": "Linnea sweeps rose thorns behind the cooler at 6:19 p.m. on Mother's Day, wrists sticky from stem tape. The register total is strong. The complaint pile is small. Then she sees the untouched card for Mrs. Alvarez, whose husband asked for yellow ranunculus after the funeral home called. Linnea remembers three loud walk-ins, one broken ribbon spool, and a balloon order she never wanted. The day was profitable and still missed its heart.",
+          "whatToDo": "Write tomorrow's most meaningful order on the cooler door before opening, then protect its first step before taking custom walk-ins.",
+          "whyItMatters": "A loud sales floor can hide a value choice. The postmortem shows Linnea that income and importance are not always the same center."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A manager arrives with twelve tasks, three pings, and one client demo that would unblock the whole team by 3 p.m. Which choice fits Highlight best? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Prepare the exact demo script due at 3 p.m. that will unblock the client.",
+              "Be excellent at leadership all day.",
+              "Keep the task list open and decide by mood each hour."
+            ],
+            "correctIndex": 0,
+            "explanation": "A Highlight should be meaningful and concrete enough to protect. The demo script has a time, purpose, and clear finish line.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A parent picks \"have a better family life\" as today's Highlight. What is the main problem? The choice has to be made before the next work block begins.",
+            "choices": [
+              "It is too personal to count.",
+              "It is too vague to guide a real block or tradeoff.",
+              "It should be replaced by the loudest chore."
+            ],
+            "correctIndex": 1,
+            "explanation": "The aim may matter, but it needs a next visible form. A better Highlight might be dinner with the phone in another room.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A manager has one quiet hour before customers arrive and three plausible tasks on the counter. Which question best helps choose the Highlight? The choice has to be made before the next work block begins.",
+            "choices": [
+              "What task will make me look busiest?",
+              "Which task has the newest notification?",
+              "What one completed block would make this day feel used well?"
+            ],
+            "correctIndex": 2,
+            "explanation": "The Highlight is chosen by meaning and fit, not by noise or appearance. The question points attention to the day's center.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A student chooses a Highlight so large it cannot fit before midnight. What is the best next move? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Resize it into a concrete piece that can be protected today.",
+              "Keep the giant version to stay ambitious.",
+              "Drop the idea of choosing priorities."
+            ],
+            "correctIndex": 0,
+            "explanation": "A Highlight is not a life mission. Resizing keeps the meaning while making the day able to act on it.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A nurse says, \"I chose a Highlight, so I should ignore every interruption,\" while charge calls keep coming. What is the better reading? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Yes, the Highlight cancels all other duties.",
+              "No, the Highlight gives a reference point for judging interruptions, not permission to deny reality.",
+              "No, the Highlight should always be the easiest task."
+            ],
+            "correctIndex": 1,
+            "explanation": "The Highlight helps compare claims. Some interruptions truly outrank it, but they should win by reason, not by volume alone.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "An accountant ended the day with many checks cleared but no progress on the tax letter that mattered most. What likely failed? The choice has to be made before the next work block begins.",
+            "choices": [
+              "He moved too slowly through email.",
+              "He had too many colored folders.",
+              "He let useful small tasks replace a chosen center."
+            ],
+            "correctIndex": 2,
+            "explanation": "Small tasks can be real and still displace the important work. A Highlight would have protected the tax letter from default drift.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A teacher marks \"plant the north bed by 10 a.m.\" on a card and leaves it on the seed tray before students arrive. What is the card doing? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Making the Highlight visible at the point of action.",
+              "Adding shame if the weather changes.",
+              "Replacing the need to adjust during the day."
+            ],
+            "correctIndex": 0,
+            "explanation": "A visible cue helps the chosen center survive the pull of other tasks. It is a guide, not a threat.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A founder can choose between fixing a tiny typo and calling the customer whose renewal is at risk. Which reasoning fits Highlight? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Pick the typo because it is fastest to finish.",
+              "Pick the renewal call if it is the meaningful protectable center of the day.",
+              "Avoid choosing until both feel urgent."
+            ],
+            "correctIndex": 1,
+            "explanation": "Completion speed alone does not define the Highlight. The renewal call likely carries more meaning and needs protected attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A parent wants joy, urgency, and satisfaction to all matter when choosing tomorrow's one protected block. What should he do with those factors? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Treat them as prompts for finding one concrete Highlight, not as three separate jobs for the day.",
+              "Always pick urgency and ignore joy.",
+              "Refuse any Highlight that includes practical chores."
+            ],
+            "correctIndex": 2,
+            "explanation": "The factors help surface candidates. The final choice still needs to become one concrete center that can guide the day.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "make-time-ch02-rc01",
+          "front": "A candidate Highlight sounds meaningful but cannot fit today. What is the move?",
+          "back": "Shrink it to the next concrete piece. A Highlight should keep the meaning while becoming small enough to protect in a real block.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "make-time-ch02-rc02",
+          "front": "Everything on the list feels important. What does Highlight add?",
+          "back": "It does not deny the list. It gives the day one center, so incoming demands have to compete against something chosen.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch02-rc03",
+          "front": "You chose the easiest task as the Highlight and still feel empty. What went wrong?",
+          "back": "Ease is not enough. A strong Highlight carries meaning, satisfaction, or true urgency, and it is concrete enough to defend.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch02-rc04",
+          "front": "An interruption appears during the Highlight block. How should you judge it?",
+          "back": "Ask whether it truly outranks the chosen center or just arrived louder. The Highlight creates a reference point for that call.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is choosing one meaningful, protectable center for the day. You are not ranking your whole life. You are deciding where your best available attention should land today.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If your task list has more than five items, then circle the one result that would make the day feel meaningfully used before opening email."
+          },
+          {
+            "context": "health",
+            "plan": "If a workout plan feels too large, then choose one protectable Highlight such as a twenty-minute walk after lunch."
+          },
+          {
+            "context": "personal",
+            "plan": "If errands start multiplying, then write the one personal moment you do not want pushed out and schedule it before the first errand."
+          },
+          {
+            "context": "relationships",
+            "plan": "If family time keeps becoming leftover time, then choose one concrete shared moment as the day's Highlight and protect the start time."
+          }
+        ],
+        "twentyFourHourChallenge": "Tonight, list three possible Highlights for tomorrow: one urgent, one satisfying, one joyful. Pick one, schedule its first block, and write the first action beside it.",
+        "weeklyPractice": "For one week, choose each day's Highlight the night before. At the end of each day, mark whether it was too large, too small, or about right."
+      },
+      "memorableLines": [
+        {
+          "text": "A day feels different when one meaningful part gets your best attention.",
+          "location": "breakdown.deepRead",
+          "why": "It states the emotional reason the tactic matters."
+        },
+        {
+          "text": "The smaller target does not shrink the ambition.",
+          "location": "breakdown.fullRead",
+          "why": "It protects realism from feeling like surrender."
+        },
+        {
+          "text": "A Highlight gives the day a center you can defend, so attention is guided by a chosen meaningful moment instead of by whatever arrives loudest.",
+          "location": "keyTakeaway",
+          "why": "It gives the whole chapter a practical test."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-time-ch03",
+      "number": 3,
+      "title": "Laser",
+      "readingTimeMinutes": 8,
+      "hook": "A phone hidden under a legal pad can protect an hour better than a heroic promise.",
+      "counterintuition": "The paradox is that focus often improves when you stop treating it as a private test. A small barrier can do what a stronger promise keeps failing to do.",
+      "tryThisNow": "Before your next focus block, move one tempting device or app two steps farther away: log out, hide it, block it, or put it in another room.",
+      "keyTakeaway": "Laser protects the Highlight by adding friction where distraction is easiest, so focus depends less on heroic resistance and more on a better setup.",
+      "breakdown": {
+        "fastRead": "Orla slides her phone under a legal pad at 8:12 a.m. before the transcript block begins. That small move is Laser. It treats distraction as a design problem. An endless feed can be ordinary and still be powerful. It only needs to be closer, easier, and fresher than the work. Add friction where the leak begins: hide the app, silence the channel, block the site, move the device, change the room. Focus gets easier when the path away from it gets slower.",
+        "deepRead": "Alton pulls open drawer H-17 in the basement archive at 6:31 p.m. Dust marks the cotton gloves across his knuckles. He has two hours to read letters that cannot leave the room. His phone is warm in his pocket, close enough for a glance whenever a paragraph gets hard. Laser asks him to decide before the hard paragraph arrives.\n\nDistraction often wins through timing. It waits until focus gets dull, then offers relief with almost no cost. A feed, inbox, or chat thread has no natural finish line. If it stays one tap away, willpower has to win the same fight again and again. That is poor design.\n\nFriction changes the fight. Alton can lock the phone in the archive cubby, write the retrieval time on his request slip, and keep only a pencil at the desk. The move feels small because it is small. Its effect is large because it removes dozens of future choices. The limit matters: Laser is not a war on all contact. Some work needs alerts. Some people need to reach you. The skill is placing friction around the predictable leaks, not pretending silence is always virtue.\n\nOrla's locked drawer is not dramatic. That is why it works. The phone under the legal pad still asks for a decision every time the transcript gets difficult. The phone in the drawer asks once. Laser turns repeated tiny battles into one setup choice, which leaves more attention for the work itself.",
+        "fullRead": "Maribel sits in dispatch bay 2 at 4:23 a.m. with radio static under the wall clock. The route map has to be rebuilt before the first buses roll, but three channels blink on the side monitor. Each one can claim legitimacy: weather, driver notes, maintenance. If she leaves them all open while she maps, every tiny update gets a vote. Laser begins when she changes the voting rules.\n\nThe usual story says focus is a private test of strength. That story fails in rooms built for interruption. If a phone glows on the desk, if the inbox refreshes by itself, if the chat badge flashes red, attention is not meeting one temptation. It is meeting a machine that keeps producing new invitations. The human brain likes new signals, especially when the work in front of it is slow.\n\nLaser is not about hating technology. It is about refusing to give the easiest path to the thing that harms the Highlight. Sometimes the fix is blunt: delete the app for the workweek, block the site, leave the phone in a locker. Sometimes it is lighter: turn off badges, close the extra monitor, batch message checks, print the document, work in a chair that is not where you scroll. The right barrier matches the leak.\n\nDusan learns the cost of a weak barrier in his cedar-scented workshop. He thinks one video will fill the varnish wait, then misses the tack window because the next clip starts by itself. The failure is not mysterious. The feed had a stronger design than his intention. Next time he can set a kitchen timer and leave the phone on the paint shelf across the room.\n\nA barrier can become too rigid if it blocks real responsibility. A dispatcher cannot vanish. A parent may need the phone on. A team may need an emergency channel. Laser works best when it is honest about the difference between access and drift. Keep the needed channel. Add friction to the habitual escape. Laser protects the Highlight by adding friction where distraction is easiest, so focus depends less on heroic resistance and more on a better setup.\n\nHenrik needs the same kind of defense in April. His inbox is not silly. Clients do need answers. The problem is sequence. When the inbox opens first, each message gets to define the morning before the Alvarez return has a chance to start. Turning the monitor away and opening the folder first does not deny the inbox. It delays its authority until the important block has begun.\n\nZadie's cousin thread makes the point gentler. The photos are sweet. The baby is welcome. The thread still breaks the glazing order because it stays open during work that depends on sequence and touch. Laser does not need to accuse the distraction of being bad. It only has to notice that the open path is poorly placed.\n\nBuild barriers with respect for the real job. If people need you, publish a check time. If one channel is truly urgent, keep that channel. If the leak is a habit, add distance. The aim is not silence as a badge of honor. The aim is a work surface where the Highlight is easier to touch than the escape."
+      },
+      "examples": [
+        {
+          "exampleId": "make-time-ch03-ex01",
+          "title": "Orla slides the phone under the legal pad",
+          "tags": [
+            "court",
+            "friction",
+            "transcript"
+          ],
+          "planSpec": {
+            "domain": "legal transcription",
+            "audience": "people starting deep work near tempting devices",
+            "stakes": "a feed threatens the first clean transcript hour",
+            "format": "scene",
+            "requiredBeat": "she adds friction before an endless feed steals the first hour"
+          },
+          "scenario": "Orla places her phone face down under a yellow legal pad at 8:12 a.m. at the rented desk near the courthouse. A bus sighs outside the window. The transcript audio is cued to minute 14, where the witness starts mumbling. Her thumb twitches toward the weather app before the first hard sentence. She slides the whole pad into the bottom drawer and turns the tiny key. Now the only bright thing on the desk is the foot pedal light. She has to decide whether to trust the face-down phone or make the barrier real before the audio starts.",
+          "whatToDo": "Add the barrier before the work gets hard. Lock the phone away, start the audio, and let the transcript be the easiest available path for the next hour.",
+          "whyItMatters": "Laser works upstream. Orla does not wait to prove strength at every dull sentence. She changes the desk so fewer tests appear."
+        },
+        {
+          "exampleId": "make-time-ch03-ex02",
+          "title": "Dusan misses the varnish window by one video",
+          "tags": [
+            "workshop",
+            "predict reveal",
+            "feed"
+          ],
+          "planSpec": {
+            "domain": "craft workshop",
+            "audience": "makers with timed work",
+            "stakes": "one quick video ruins a physical timing window",
+            "format": "predict_reveal",
+            "requiredBeat": "he predicts one quick video is harmless, then sees the feed ruin the timing"
+          },
+          "scenario": "Dusan pinches a tack cloth between two sticky fingers at 1:44 p.m. in the cedar-scented workshop. The walnut table needs twelve quiet minutes before the next coat. He predicts one restoration video will fill the wait. The clip ends, another starts, then a third shows a clever clamp trick. When he looks up, the varnish has gone past tacky and caught three dust specks like black pepper.",
+          "whatToDo": "Use a kitchen timer and put the phone on the far paint shelf before the waiting period starts. Let the timer, not the feed, call him back.",
+          "whyItMatters": "An Infinity Pool has no respect for drying time. Physical work often needs clean stopping points, so Dusan has to supply one on purpose."
+        },
+        {
+          "exampleId": "make-time-ch03-ex03",
+          "title": "Maribel closes two channels before the route map",
+          "tags": [
+            "transit",
+            "dialogue",
+            "defaults"
+          ],
+          "planSpec": {
+            "domain": "bus dispatch",
+            "audience": "operations workers with live channels",
+            "stakes": "communication defaults threaten a focus block",
+            "format": "dialogue",
+            "requiredBeat": "she changes the channel defaults before the route map work begins"
+          },
+          "scenario": "Maribel sits in dispatch bay 2 at 4:23 a.m., radio static crackling under the wall clock. \"Storm channel stays open?\" Leon asks, pointing at the side monitor. \"Storm and emergency only,\" she says, clicking two chat rooms closed. \"Driver notes at five.\" The route map blinks half-finished in front of her. A red badge appears on the closed channel. Leon looks at it. Maribel keeps her hand off the mouse. She has to decide whether the red badge gets a vote before the map is done.",
+          "whatToDo": "Decide which channels are truly live, close the rest, and set the next check time where the team can see it.",
+          "whyItMatters": "Laser is not disappearance. It is clear access for what matters and friction for what only feels immediate."
+        },
+        {
+          "exampleId": "make-time-ch03-ex04",
+          "title": "Alton chooses the archive cubby over willpower",
+          "tags": [
+            "archive",
+            "decision",
+            "phone"
+          ],
+          "planSpec": {
+            "domain": "graduate research",
+            "audience": "students doing slow reading",
+            "stakes": "willpower alone may not survive the archive block",
+            "format": "decision_point",
+            "requiredBeat": "he must decide whether to trust willpower or lock away the phone before reading"
+          },
+          "scenario": "Alton pulls drawer H-17 open at 6:31 p.m. in the basement archive, dust striping his cotton gloves. The letters are tied with gray cotton tape. His phone is warm in his pocket, and the reading room has no one else in it. He tells himself he can leave it there. Then the first page opens with cramped handwriting and a missing date. His hand moves toward his pocket before he has read three lines.",
+          "whatToDo": "Put the phone in the archive cubby, write the retrieval time on the request slip, and return to the letters with only pencil and paper.",
+          "whyItMatters": "Slow work creates weak moments by design. A barrier turns one hard choice into a settled condition, which protects the whole block."
+        },
+        {
+          "exampleId": "make-time-ch03-ex05",
+          "title": "Zadie finds the thread inside the ruined glaze",
+          "tags": [
+            "pottery",
+            "postmortem",
+            "messages"
+          ],
+          "planSpec": {
+            "domain": "ceramics studio",
+            "audience": "artists with message interruptions",
+            "stakes": "one open thread breaks attention during fragile work",
+            "format": "postmortem",
+            "requiredBeat": "she traces a ruined glazing session to one always-open message thread"
+          },
+          "scenario": "Zadie stands at the wedging table at 10:58 p.m., clay drying under her nails while three mugs cool with cloudy glaze. Her kiln notes show the same mark beside each mistake: cousin thread open, cousin thread open, cousin thread open. The thread was sweet, photos from a new baby, nothing poisonous. It still pulled her eyes between coats until she forgot which mug had the second dip.",
+          "whatToDo": "Mark the thread as a predictable leak, then put the phone outside the studio during glazing and check it only after the notes are complete.",
+          "whyItMatters": "Laser does not require judging the distraction as bad. It only asks whether the open path breaks the work that needs full attention."
+        },
+        {
+          "exampleId": "make-time-ch03-ex06",
+          "title": "Henrik stops letting April start in the inbox",
+          "tags": [
+            "tax",
+            "before after",
+            "blocked time"
+          ],
+          "planSpec": {
+            "domain": "tax preparation",
+            "audience": "deadline workers",
+            "stakes": "inbox-first drift threatens a defended focus block",
+            "format": "before_after",
+            "requiredBeat": "he moves from inbox-first drift to a blocked, defended focus block"
+          },
+          "scenario": "Wednesday 7:03 a.m., Henrik unlocks the strip-mall tax office with unopened envelopes stacked by the scanner. Before, April began with the inbox and ended with half-built returns. Today he turns the monitor away, tapes a note to the door that says client pickup at nine, and opens the Alvarez folder before mail loads. By 8:40, one ugly return is ready for review. The inbox is still noisy. It is no longer first.",
+          "whatToDo": "Start the day with the return folder, not the inbox. Delay mail, post the next access time, and protect the first focus block from default checking.",
+          "whyItMatters": "A deadline season will stay loud. Laser gives Henrik a defended start, which is where the inbox had been taking control every morning."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A writer keeps her phone beside the keyboard and checks it during hard paragraphs. What is the Laser move? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Move the phone out of reach before drafting starts.",
+              "Promise to be more serious about writing.",
+              "Check the phone first so curiosity is gone forever."
+            ],
+            "correctIndex": 0,
+            "explanation": "Laser changes the environment before the weak moment. Distance and delay remove repeated tests that willpower would otherwise face every few minutes.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A team is rebuilding its morning plan and says chat must stay open for true emergencies, but most pings are jokes and side comments. What setup fits Laser best?",
+            "choices": [
+              "Turn off all contact for a week without telling anyone.",
+              "Keep one emergency channel open and batch the social channels.",
+              "Accept every ping because some could matter."
+            ],
+            "correctIndex": 1,
+            "explanation": "Laser is calibrated friction. It preserves needed access while slowing the predictable leak that steals attention.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A writer is tempted by an endless feed and argues that each item takes only a few seconds, so the risk is tiny. What is the flaw in that reasoning? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Short items are always useful.",
+              "Feeds only distract people who dislike their work.",
+              "The cost is the stream, not one item."
+            ],
+            "correctIndex": 2,
+            "explanation": "The danger is the lack of a clean endpoint. Each item is small, but the path keeps refreshing and keeps attention from returning.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A chef needs twenty quiet minutes to price a menu before lunch prep, but the office laptop opens straight to news. Which barrier is strongest? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Use a site blocker or different device that opens only the spreadsheet.",
+              "Leave the news tab open and avoid looking.",
+              "Start with headlines as a warmup."
+            ],
+            "correctIndex": 0,
+            "explanation": "The strongest move changes the default path. If the work device opens directly to the work, the chef faces fewer avoidable choices.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A designer is setting up a two-hour mockup block and wonders whether focus is only a matter of wanting it enough. What does Laser assume? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Focus should never require tools or settings.",
+              "Focus is helped by structure around the person, not only effort inside the person.",
+              "Focus means ignoring all other humans."
+            ],
+            "correctIndex": 1,
+            "explanation": "Laser treats attention as shaped by surroundings. Better settings make focus more likely without asking for constant heroics.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A student blocks every website, including the portal needed for class notes. What should she refine? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Nothing, stricter is always better.",
+              "Quit the class to avoid online work.",
+              "Make the barrier match the leak while preserving needed access."
+            ],
+            "correctIndex": 2,
+            "explanation": "A useful barrier is specific. It should slow the distraction without breaking the real work that the block requires.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A mechanic loses focus while waiting for sealant to set and keeps missing the exact return time. Which pair best applies Laser? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Timer on the bench, phone across the shop.",
+              "Phone in hand, feed open for a quick rest.",
+              "No timer, memory only."
+            ],
+            "correctIndex": 0,
+            "explanation": "The timer creates a stopping point, and phone distance adds friction. Together they protect a timed physical task.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A consultant says, \"I fail because I lack discipline,\" after working beside three open dashboards. What should she examine first? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Whether her career is wrong.",
+              "Whether the dashboards create avoidable attention tests.",
+              "Whether she needs more dashboards to feel informed."
+            ],
+            "correctIndex": 1,
+            "explanation": "Laser asks about the setup before the self-judgment. Three open dashboards may be creating repeated pulls that can be reduced.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A designer wants to create a Laser plan for a two-hour mockup block. Which plan is best? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Hope the mockup becomes interesting enough to overpower every alert.",
+              "Keep all channels open so no one waits.",
+              "Mute phone, close chat, block two sites, and write the check-in time on the team board."
+            ],
+            "correctIndex": 2,
+            "explanation": "The plan adds friction and communicates access. It protects the block without pretending the rest of work does not exist.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "make-time-ch03-rc01",
+          "front": "You keep checking the same app during hard work. What does Laser change?",
+          "back": "It changes access. Hide, block, delete, log out, or move the app before the work starts so attention faces fewer repeated tests.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "make-time-ch03-rc02",
+          "front": "Why is one quick feed check risky during a focus block?",
+          "back": "The feed has no natural finish line. The first check opens a stream, so the real risk is not one item but the endless path behind it.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch03-rc03",
+          "front": "A barrier blocks real emergency access. What is the fix?",
+          "back": "Calibrate the barrier. Keep the true emergency channel open and add friction to the channels that only feel urgent.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch03-rc04",
+          "front": "You blame weak discipline while working in a distracting setup. What should you inspect?",
+          "back": "Inspect the defaults around attention: device position, open tabs, badges, room cues, and check habits. Laser starts there.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is adding practical friction between your Highlight and predictable distraction. Make the desired path easier and the distracting path slower before attention gets tired.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If you start a focus block, then close chat, write the next check time, and open only the file needed for the first task."
+          },
+          {
+            "context": "health",
+            "plan": "If late-night scrolling steals sleep, then charge the phone outside the bedroom and put a paper book or alarm clock by the bed."
+          },
+          {
+            "context": "personal",
+            "plan": "If a hobby requires careful hands, then place the phone outside the room before the first messy step starts."
+          },
+          {
+            "context": "relationships",
+            "plan": "If you want a real conversation, then put both phones in a drawer for the first twenty minutes and agree when to check them after."
+          }
+        ],
+        "twentyFourHourChallenge": "Pick one focus block in the next day and add one barrier before it begins: distance, delay, logout, blocker, or visible check time. Notice whether starting feels easier.",
+        "weeklyPractice": "For one week, track the top three distraction leaks. Add one barrier at a time and keep only the barriers that protect attention without breaking real responsibilities."
+      },
+      "memorableLines": [
+        {
+          "text": "Focus gets easier when the path away from it gets slower.",
+          "location": "breakdown.fastRead",
+          "why": "It turns the chapter into one testable design rule."
+        },
+        {
+          "text": "The right barrier matches the leak.",
+          "location": "breakdown.fullRead",
+          "why": "It keeps the advice practical instead of extreme."
+        },
+        {
+          "text": "Laser protects the Highlight by adding friction where distraction is easiest, so focus depends less on heroic resistance and more on a better setup.",
+          "location": "keyTakeaway",
+          "why": "It names both the mechanism and the purpose."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-time-ch04",
+      "number": 4,
+      "title": "Energize",
+      "readingTimeMinutes": 8,
+      "hook": "A badge reel clicking against a vending machine can be the sound of focus running out.",
+      "counterintuition": "The paradox is that the most practical focus move may look like not working: a walk, a meal, daylight, or sleep protected before the hard block arrives.",
+      "tryThisNow": "Before your next important block, choose one body support: a ten-minute walk, water, daylight, a real snack, or a caffeine cutoff you can keep.",
+      "keyTakeaway": "Energize makes focus more realistic by improving the body's starting conditions, so the Highlight is not carried by willpower alone.",
+      "breakdown": {
+        "fastRead": "Soraya stands by the vending machine at 3:32 p.m., badge reel clicking against the glass. Another coffee would be easy. A four-minute stairwell walk would help the next charting block more. Energize is the reminder that attention has a body. Sleep, movement, food, light, caffeine, and recovery change how focus feels later. The move is not to build a perfect health identity. It is to give your next meaningful block a better starting condition.",
+        "deepRead": "Bram steps onto Pier 6 at 5:18 a.m. and smells diesel in the cold air. He slept six hours, walks the length of the ferry before opening the engine panel, and lets the dawn light hit his face while the harbor is still gray. None of this looks like productivity. It will matter at 10:40 when a small vibration in the starboard pump needs calm attention.\n\nEnergize treats the body as part of the time system. A chosen Highlight and a strong Laser barrier still depend on the person who must use them. If that person is under-slept, under-moved, poorly fed, over-caffeinated, or wired too late at night, focus becomes brittle. Distraction feels stronger because the body is asking for relief.\n\nThe practical moves are ordinary on purpose. Move a little. Get outside when you can. Eat in a way that avoids obvious crashes. Use caffeine with timing instead of reflex. Protect sleep as a support for tomorrow's attention. The limit is important: this is not medical advice or a demand for perfect routines. Energize works when it stays in service of the day's meaningful work, not when it becomes another scoreboard.\n\nGreta shows the humane version at 12:14 a.m. She cannot borrow a perfect routine from someone with quiet nights. Her energy move has to fit a baby monitor, laundry, and broken sleep. Putting the stroller by the door is small, but it makes morning daylight more likely. Energize respects the life that must use it.",
+        "fullRead": "Asha rests her hand on the piano at 11:06 a.m. in studio C. A singer wants to run the hard passage again, but his voice is thin and his shoulders are high. The lemon tea beside the piano is still full. Asha could push. She could praise effort. Instead she asks him to drink, breathe, and walk the hallway once before the next take. The music problem is partly a body problem.\n\nThat is the useful shift in Energize. Focus is not a floating mental beam. It is carried by a person with blood sugar, joints, sleep history, caffeine timing, light exposure, and nerves. When those conditions are poor, even a well-chosen Highlight can feel strangely heavy. Laser can block the phone, yet the tired body may still hunt for relief. The answer is not to scold the mind. It is to support the person doing the focusing.\n\nThe supports are modest because modest supports are more likely to survive real life. A walk around the block can change the next hour. A real lunch can prevent the 3 p.m. crash from deciding the day. Morning light can help the body wake. A caffeine cutoff can protect sleep rather than borrowing attention from tomorrow. None of these is glamorous. That is why they work as tools rather than as theater.\n\nPavel sees the opposite at 9:47 p.m. in the library community room. He predicts granola bars will keep him sharp for chess pairings, then watches his attention smear across the sheet after the sugar rush fades. The lesson is not that snacks are bad. The lesson is that energy choices have timing. What feels helpful now can charge interest later.\n\nEnergize can go wrong when it becomes a second obsession. If every meal, step, and minute of sleep becomes a grade, the support system starts stealing the life it was meant to help. Keep the question simple: what would make the next important block easier for the body carrying it? Energize makes focus more realistic by improving the body's starting conditions, so the Highlight is not carried by willpower alone.\n\nRenzo's alley postmortem keeps the lesson from becoming cute wellness advice. The sloppy prep shift was not only a mood problem. It had causes: espresso without food, no daylight, six hours bent over the board. When he sees those causes, he can change the next shift without pretending the kitchen will become calm. A sandwich before noon and water on the shelf are not glamorous. They may save the parsley, labels, and onions when the rush starts.\n\nSoraya's vending-machine moment adds another limit. Sometimes coffee is useful. Sometimes it is just the nearest button. Energize asks what the next block needs. If parents are about to receive discharge teaching, steadiness may beat speed. The right support is the one that helps the real task, not the one that looks disciplined on paper.\n\nKeep the body supports close to the work they serve. A walk before charting. Food before measurements. Light before the engine panel. A caffeine cutoff before sleep. When the support is tied to a real Highlight, it stays practical. When it becomes a separate performance, it starts to drain the attention it was meant to protect."
+      },
+      "examples": [
+        {
+          "exampleId": "make-time-ch04-ex01",
+          "title": "Soraya chooses the stairs over coffee four",
+          "tags": [
+            "nursing",
+            "energy",
+            "choice"
+          ],
+          "planSpec": {
+            "domain": "hospital nursing",
+            "audience": "care workers in afternoon slumps",
+            "stakes": "a body support protects the next attention block",
+            "format": "decision_point",
+            "requiredBeat": "she supports the next attention block through the body, not force"
+          },
+          "scenario": "Soraya stands outside NICU room 12 at 3:32 p.m., badge reel clicking against the vending machine glass. Her fourth coffee is one button away. The next hour is discharge teaching for parents who write every word down. Her calves ache from the morning, and the stairwell door is six steps to her left. She must decide whether to borrow another jolt or give her body a short reset before she teaches.",
+          "whatToDo": "Take the four-minute stairwell walk, drink water at the nurses' station, then return to the teaching sheet before buying another coffee.",
+          "whyItMatters": "The next block needs steadiness more than stimulation. Energize asks Soraya to support the body that has to carry the conversation."
+        },
+        {
+          "exampleId": "make-time-ch04-ex02",
+          "title": "Bram walks the ferry before opening the panel",
+          "tags": [
+            "ferry",
+            "morning",
+            "baseline"
+          ],
+          "planSpec": {
+            "domain": "ferry maintenance",
+            "audience": "early-shift tradespeople",
+            "stakes": "sleep, light, and movement shape later attention",
+            "format": "vignette",
+            "requiredBeat": "sleep, light, and movement shape how steady his focus feels later"
+          },
+          "scenario": "Bram steps onto Pier 6 at 5:18 a.m., diesel smell sharp in the cold air. He has slept six hours, not eight, but he walks the ferry deck before touching the engine panel. The harbor light turns the windows silver. By the time he crouches beside the pump housing, his knees are warmer and his breathing is slower. Later, the faint rattle under the starboard grate will have somewhere steady to land. He has to decide whether this walk is optional or part of the repair.",
+          "whatToDo": "Keep the pre-work walk and morning light as part of the shift setup, especially before tasks that require fine attention.",
+          "whyItMatters": "Energy is not a mood Bram finds at the panel. He shapes the baseline before the subtle problem appears."
+        },
+        {
+          "exampleId": "make-time-ch04-ex03",
+          "title": "Asha pauses the passage for lemon tea",
+          "tags": [
+            "music",
+            "dialogue",
+            "recovery"
+          ],
+          "planSpec": {
+            "domain": "vocal coaching",
+            "audience": "teachers and performers",
+            "stakes": "small body support improves focus without chasing perfection",
+            "format": "dialogue",
+            "requiredBeat": "she links a small energy support to better focus, not body perfection"
+          },
+          "scenario": "Asha sets lemon tea beside the piano at 11:06 a.m. in studio C. \"Again from the bridge?\" Cal asks, rubbing the same note in the score. His voice has gone papery. \"Not yet,\" Asha says. \"Drink first. Then walk to the exit sign and back.\" He frowns. \"I thought we were fixing rhythm.\" Asha taps the cup. \"We are. Your body is the metronome right now.\" She has to decide whether to spend the next minute on another correction or on the support that makes correction useful.",
+          "whatToDo": "Pause the drill long enough for water, breath, and a short walk, then return to the same passage instead of forcing another tired take.",
+          "whyItMatters": "The rhythm problem is partly an energy problem. A small support can make the next repetition cleaner than another strained attempt."
+        },
+        {
+          "exampleId": "make-time-ch04-ex04",
+          "title": "Pavel watches granola confidence fade at pairing time",
+          "tags": [
+            "chess",
+            "predict reveal",
+            "food timing"
+          ],
+          "planSpec": {
+            "domain": "club tournament",
+            "audience": "volunteer organizers",
+            "stakes": "late snacks create a crash during detail work",
+            "format": "predict_reveal",
+            "requiredBeat": "he predicts late snacks will help, then notices the crash during pairing work"
+          },
+          "scenario": "Pavel tears open a granola bar at 9:47 p.m. in the library community room, wrappers piled beside the pairing sheets. He predicts the sugar will carry him through the final chess brackets. For twenty minutes he feels quick. Then board numbers blur, two siblings get paired, and a parent points at the error with a pencil eraser. The room is quiet enough to hear the fluorescent lights buzz. He has to decide whether to call it bad luck or redesign the snack timing before next week.",
+          "whatToDo": "Use food timing as part of the work plan: eat something steadier before pairings and keep water beside the sheets.",
+          "whyItMatters": "Energize is about consequences, not virtue. Pavel needs energy that holds through detail work, not a burst that fades when accuracy matters."
+        },
+        {
+          "exampleId": "make-time-ch04-ex05",
+          "title": "Greta lowers the routine to one support",
+          "tags": [
+            "parenting",
+            "reflection",
+            "sleep"
+          ],
+          "planSpec": {
+            "domain": "new parent home routine",
+            "audience": "people with constrained recovery",
+            "stakes": "a perfect routine is impossible but one support helps tomorrow",
+            "format": "reflection",
+            "requiredBeat": "she lowers the standard from perfect routine to one support that makes tomorrow easier"
+          },
+          "scenario": "Greta folds warm towels on the bedroom rug at 12:14 a.m., knees braced against the pile while the baby monitor hisses. Her old plan had a run, meal prep, a clean kitchen, and lights out by ten. Tonight the sink is full and her shirt smells faintly of formula. She looks at tomorrow and lets the plan shrink without becoming nothing: put the stroller by the door before sleep. That one support can survive the night.",
+          "whatToDo": "Choose one energy support small enough for this season: stroller by the door, water filled, or ten minutes of daylight after feeding.",
+          "whyItMatters": "Energize fails if it demands a life Greta does not have. It works when one support makes tomorrow's attention less fragile."
+        },
+        {
+          "exampleId": "make-time-ch04-ex06",
+          "title": "Renzo finds the skipped lunch in the bad prep shift",
+          "tags": [
+            "restaurant",
+            "postmortem",
+            "baseline"
+          ],
+          "planSpec": {
+            "domain": "restaurant kitchen",
+            "audience": "service workers after a poor shift",
+            "stakes": "skipped food and no sunlight made focus brittle before rush",
+            "format": "postmortem",
+            "requiredBeat": "he sees that skipped food and no sunlight made focus brittle before the rush"
+          },
+          "scenario": "Renzo stands in the alley at 4:02 p.m., orange peel under his shoe and fryer heat leaking through the back door. Prep went sloppy: parsley chopped wet, labels crooked, onions short by a pan. He starts blaming attitude, then remembers the double espresso at ten, no lunch, no daylight, and six hours bent over the board. The rush did not break his focus. He brought brittle focus to the rush.",
+          "whatToDo": "Treat the next prep shift as an energy design problem: real food before noon, five minutes outside, water on the shelf, and caffeine before the cutoff.",
+          "whyItMatters": "The postmortem moves Renzo from shame to cause. Focus got weak because the body was under-supported before the pressure arrived."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A nurse has a critical family teaching block after lunch, feels a slump coming, and has six minutes before the parents arrive. Which Energize move fits best?",
+            "choices": [
+              "Take a short walk, drink water, and eat a steady snack before the block.",
+              "Open a feed for stimulation until the family arrives.",
+              "Skip all breaks to prove commitment."
+            ],
+            "correctIndex": 0,
+            "explanation": "Energize supports attention through the body. A small reset before the block is more useful than stimulation that scatters attention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A programmer chose a Highlight and blocked distractions, but after four hours of sleep the code review feels impossible. What does Energize explain? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Laser is useless for technical work.",
+              "The body can make focus fragile even when the plan is good.",
+              "The Highlight should always be moved to midnight."
+            ],
+            "correctIndex": 1,
+            "explanation": "Energize adds the physical baseline. Poor sleep can weaken attention even when priorities and barriers are clear.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A student turns energy routines into a two-hour tracking ritual. What is the risk? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Tracking always improves attention.",
+              "Energy only matters if every number is perfect.",
+              "The ritual may become a burden that steals from the work it should support."
+            ],
+            "correctIndex": 2,
+            "explanation": "Energize should serve the meaningful block. When support becomes the new center, the hierarchy has flipped.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A carpenter crashes every day at 2 p.m. after coffee-only mornings, right when cabinet measurements need care. What should he test first? The choice has to be made before the next work block begins.",
+            "choices": [
+              "A morning food and water change before the detailed afternoon work.",
+              "A stricter phone blocker only.",
+              "A later bedtime to create more evening time."
+            ],
+            "correctIndex": 0,
+            "explanation": "The pattern points to body conditions. Testing food and water before detail work follows Energize better than treating every crash as distraction.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A coach wants better energy for practice but fears turning health into another scoreboard. What makes Energize different from a perfectionist health plan?",
+            "choices": [
+              "It requires ideal sleep before any work counts.",
+              "It uses ordinary supports to make attention easier, not perfect routines to grade the person.",
+              "It ranks people by fitness discipline."
+            ],
+            "correctIndex": 1,
+            "explanation": "Energize is practical and subordinate. The goal is better starting conditions for focus, not a new identity or scorecard.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A team schedules the hardest strategy meeting after a heavy lunch in a windowless room. Which adjustment best fits Energize? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Make the meeting longer so people push through.",
+              "Ban all notes to keep people alert.",
+              "Add a short outdoor walk and lighter food before the meeting."
+            ],
+            "correctIndex": 2,
+            "explanation": "Light, movement, and food timing can change how attention feels. The setup should support the hard thinking it requires.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A parent with a newborn cannot keep a full routine. What would Energize advise? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Choose one small support that makes tomorrow easier.",
+              "Wait to focus on anything until life is perfect.",
+              "Copy the routine of someone without caregiving demands."
+            ],
+            "correctIndex": 0,
+            "explanation": "The support must fit the real season. One small setup can help without pretending the constraint is gone.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A tournament organizer uses late sugar for detail work and keeps making pairing errors after the first burst fades. What is the likely lesson? The choice has to be made before the next work block begins.",
+            "choices": [
+              "The organizer lacks care for the event.",
+              "The timing and type of fuel may be weakening the attention needed later.",
+              "Details should always be done while hungry."
+            ],
+            "correctIndex": 1,
+            "explanation": "Energize reads the crash as a design clue. Fuel that gives a short burst may not support the later accuracy needed.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A teacher has picked a Highlight and blocked her phone, but the day still falls apart when she is hungry and underslept. Why does Energize belong with Highlight and Laser?",
+            "choices": [
+              "Because body routines replace priorities.",
+              "Because focus is only about exercise.",
+              "Because the body supplies the attention those moves need."
+            ],
+            "correctIndex": 2,
+            "explanation": "Highlight and Laser still need a person with enough energy to use them. Energize supports the attention that the rest of the framework directs.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "make-time-ch04-rc01",
+          "front": "You chose a Highlight but feel too depleted to hold it. What should you inspect?",
+          "back": "Inspect the body conditions around the block: sleep, food, movement, light, caffeine, and recovery. Energize starts with those supports.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "make-time-ch04-rc02",
+          "front": "How can caffeine help and hurt the day?",
+          "back": "Used with timing, it can support alertness. Used by reflex or too late, it can borrow energy from sleep and weaken tomorrow's focus.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch04-rc03",
+          "front": "A health routine starts taking over the day. What is the Energize correction?",
+          "back": "Make the routine serve the Highlight again. Keep the smallest supports that improve attention and drop tracking that becomes its own burden.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "make-time-ch04-rc04",
+          "front": "Why does a short walk count as productivity here?",
+          "back": "Because it can improve the body's starting condition for the next meaningful block. It is support for attention, not avoidance.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is treating the body as part of the attention system. Use small supports that make the next important block easier instead of chasing perfect routines.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a demanding block starts after lunch, then take a ten-minute walk and fill water before opening the work file."
+          },
+          {
+            "context": "health",
+            "plan": "If caffeine after 2 p.m. hurts sleep, then switch to water or tea and protect tomorrow's focus instead of today's jolt."
+          },
+          {
+            "context": "personal",
+            "plan": "If evening plans keep collapsing, then set up one morning energy support before bed: shoes by the door, bottle filled, or lunch packed."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a hard conversation is planned, then avoid starting it hungry or exhausted when a snack, walk, or earlier time would make steadiness more likely."
+          }
+        ],
+        "twentyFourHourChallenge": "Choose one important block tomorrow and pair it with one body support before it starts. Keep the support ordinary: water, food, movement, light, or sleep timing.",
+        "weeklyPractice": "For one week, note which body support most improves your Highlight. Keep the one that helps and ignore the ones that only look impressive."
+      },
+      "memorableLines": [
+        {
+          "text": "The music problem is partly a body problem.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the mechanism concrete and memorable."
+        },
+        {
+          "text": "The supports are modest because modest supports are more likely to survive real life.",
+          "location": "breakdown.fullRead",
+          "why": "It protects the reader from perfectionism."
+        },
+        {
+          "text": "Energize makes focus more realistic by improving the body's starting conditions, so the Highlight is not carried by willpower alone.",
+          "location": "keyTakeaway",
+          "why": "It states the role of energy inside the system."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-time-ch05",
+      "number": 5,
+      "title": "Reflect",
+      "readingTimeMinutes": 8,
+      "hook": "A curling strip of receipt paper can turn a rough day into tomorrow's cleaner start.",
+      "counterintuition": "The paradox is that a smaller review teaches more. Reflect works when it turns one real day into one next move, not when it tries to explain everything.",
+      "tryThisNow": "Tonight, write three short lines: worked, failed, next. Keep each line under ten words and choose one adjustment for tomorrow.",
+      "keyTakeaway": "Reflect turns each day into practical feedback, so the system keeps learning without turning self-improvement into another heavy job.",
+      "breakdown": {
+        "fastRead": "Mireille closes the circulation desk at 4:48 p.m. while receipt paper curls from the printer. She could replay every failure. Instead she writes three lines: story hour worked, phone at desk failed, cart first tomorrow. That is Reflect. The day becomes evidence, not a trial. Keep the loop small: what worked, what failed, what changes next. A short note can make tomorrow smarter without making tonight feel like homework.",
+        "deepRead": "Basma stands in treatment room 5 at 6:12 p.m., resistance bands hanging from the peg behind her. A patient canceled, two exercises ran long, and her paperwork block collapsed. She can call the day a mess, or she can look for design evidence. The late exercises were useful. The paperwork block was too close to closing. The adjustment is simple: move the forms before the last appointment.\n\nReflect gives the framework a learning loop. Highlight, Laser, and Energize will not fit every day on the first try. Real life changes. Energy changes. People interrupt. A tactic that sounds smart may fail under pressure, while a tiny cue may work better than expected.\n\nThe key is to keep reflection tied to action. Write what worked. Write what failed. Pick one refine, add, or drop move for tomorrow. Stop there. The limit is overbuilding. If the review turns into a dashboard, a diary marathon, or a nightly courtroom, it will become the next burden. Reflection should leave you with one useful next step and enough peace to sleep.\n\nNestor's stage note shows the right scale. The rehearsal had many problems, but the missing prop letter gives him one useful first fix. If he tries to solve trust, timing, morale, and blocking at midnight, he will carry fog home. If he labels the prop table before actors arrive, tomorrow starts cleaner.",
+        "fullRead": "Nestor stands on the empty stage at 11:17 p.m. with spike tape stuck to his shoe. Rehearsal was rough. The door cue missed twice, the prop letter vanished, and the lead actor snapped at a volunteer. He could carry the whole night home as proof that the production is doomed. Instead he sits on the apron, pulls the tape from his sole, and writes one sentence: prop table needs labels before actors arrive.\n\nThat small sentence is the point of Reflect. The framework becomes useful when it learns from real days. A Highlight may have been too large. A Laser barrier may have been too weak. An energy support may have helped more than expected. Without reflection, those facts blur into mood. With reflection, they become design material.\n\nThe best reflection is almost plain to the point of boredom. Worked. Failed. Next. Those three words prevent two common mistakes. The first mistake is self-attack, where every rough day becomes a verdict on the person. The second is vague optimism, where every rough day gets waved away with tomorrow will be better. Reflect chooses a third path. It asks what reality showed and what adjustment should follow.\n\nClarice finds this at 10:39 p.m. in her editing nook. She thought her strict morning barrier solved the photo backlog, but the SD cards lined beside the blue lamp tell a different story. The real leak was evening upload timing. Her morning was clean. Her night was clogged. That finding is useful only if she lets it change tomorrow's setup.\n\nA feedback loop can become too heavy. Some people love systems enough to build a system about the system, then spend more energy scoring the day than living it. Yara sees that risk in the locker room with her paper tracker. The right move is a light loop, not a control room. Reflect turns each day into practical feedback, so the system keeps learning without turning self-improvement into another heavy job.\n\nEamon uses the same idea at the fire station table. A hard call can make a crew defensive if the review sounds like blame. Refine radio check, add spare battery bin, drop the lecture gives everyone a way to learn without standing trial. The words are plain because the next drill needs action, not a speech.\n\nBasma's treatment room adds another lesson: reflection should protect mixed evidence. Two gait sessions improved. Paperwork failed. If she says the whole afternoon was blown, she throws away the useful part with the broken one. A good review separates signals before mood flattens them. Keep the support. Change the weak condition. Try again.\n\nYara's locker-room choice is the edge case. A beautiful dashboard can feel serious, but seriousness is not the goal. The goal is tomorrow's better setup. A paper tracker with three boxes may teach more because it survives rounds, fatigue, and the walk to the parking lot. The loop is good only while it stays light enough to use."
+      },
+      "examples": [
+        {
+          "exampleId": "make-time-ch05-ex01",
+          "title": "Mireille keeps the library note to three lines",
+          "tags": [
+            "library",
+            "feedback",
+            "closing"
+          ],
+          "planSpec": {
+            "domain": "school library",
+            "audience": "people ending a busy service day",
+            "stakes": "one note turns the day into tomorrow's adjustment",
+            "format": "scene",
+            "requiredBeat": "she writes one note on what worked and one next adjustment"
+          },
+          "scenario": "Mireille tears a curling strip of receipt paper from the circulation printer at 4:48 p.m., returns bin thumping beside her knee. Story hour worked. The phone on the desk did not. The biography cart never moved because it started behind the copier. She writes three lines on the receipt, caps the pen, and tapes it to the cart handle for morning. The library is not fixed, but tomorrow now has a better first move. The question is whether she will keep picking at the day or tape one cue to the cart and go home.",
+          "whatToDo": "Write only what helps tomorrow: one thing that worked, one thing that failed, and one first adjustment. Stop before the note turns into a diary.",
+          "whyItMatters": "Reflect keeps learning light. Mireille gets the signal while it is fresh and leaves herself a physical cue where the next day begins."
+        },
+        {
+          "exampleId": "make-time-ch05-ex02",
+          "title": "Basma refuses to put the whole day on trial",
+          "tags": [
+            "therapy",
+            "dialogue",
+            "experiment"
+          ],
+          "planSpec": {
+            "domain": "physical therapy clinic",
+            "audience": "health professionals after a mixed day",
+            "stakes": "a rough day becomes experiment evidence instead of a verdict",
+            "format": "dialogue",
+            "requiredBeat": "she treats the day as experiment evidence instead of a verdict"
+          },
+          "scenario": "Basma clips a patient log shut at 6:12 p.m. in treatment room 5, resistance bands hanging from the peg. \"I blew the whole afternoon,\" she tells Arun. He points to the log. \"Whole afternoon, or the paperwork block?\" Basma looks again. Two gait sessions improved. The forms failed because she scheduled them after the last appointment. She uncaps a pen and writes, forms before final patient. Her pencil hovers over the margin between self-blame and one schedule change.",
+          "whatToDo": "Separate the rough part from the whole day. Keep what worked, name what failed, and move one condition for tomorrow's test.",
+          "whyItMatters": "An experiment can have mixed results. If Basma labels the whole day failure, she loses the parts that should be kept."
+        },
+        {
+          "exampleId": "make-time-ch05-ex03",
+          "title": "Eamon turns station chaos into refine, add, drop",
+          "tags": [
+            "firehouse",
+            "before after",
+            "learning loop"
+          ],
+          "planSpec": {
+            "domain": "volunteer fire station",
+            "audience": "team leads improving routines",
+            "stakes": "random tactic switching becomes a small refine, add, drop loop",
+            "format": "before_after",
+            "requiredBeat": "he replaces random tactic switching with a small refine, add, drop loop"
+          },
+          "scenario": "At 9:28 p.m. Tuesday, Eamon sits at the station table with chili bowls in the sink and turnout gear half-zipped on the bench. Before, he changed drill nights by instinct after every messy call. Tonight he writes three words on the whiteboard: refine radio check, add spare battery bin, drop the ten-minute lecture. The crew is still tired. The next drill is no longer a guess.",
+          "whatToDo": "Use the rough call to choose one refine, one add, and one drop. Keep the loop visible so the team sees learning, not blame.",
+          "whyItMatters": "Reflect turns scattered reaction into a learning rhythm. Eamon changes the system without making the crew feel judged for a hard call."
+        },
+        {
+          "exampleId": "make-time-ch05-ex04",
+          "title": "Clarice finds the real leak in the upload hour",
+          "tags": [
+            "photography",
+            "predict reveal",
+            "timing"
+          ],
+          "planSpec": {
+            "domain": "wedding photography",
+            "audience": "solo operators testing tactics",
+            "stakes": "reflection reveals the wrong part of the day was being fixed",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts a strict morning barrier worked, then learns the real problem was evening upload timing"
+          },
+          "scenario": "Clarice lines three SD cards beside a blue lamp at 10:39 p.m., the editing nook warm from the laptop fan. She predicted her strict morning barrier would fix the backlog. It did protect editing. The reveal comes from the cards still sitting full after dinner: upload time, not morning focus, is the leak. Her cat bats one card toward the floor while the progress bar waits at zero. The real decision is whether to protect her pride in the morning rule or follow the evidence to the evening upload.",
+          "whatToDo": "Keep the morning barrier, but move card upload to the first step after each shoot and make that the next experiment.",
+          "whyItMatters": "Reflection prevents the wrong fix from getting defended. Clarice keeps the tactic that worked and changes the condition that actually failed."
+        },
+        {
+          "exampleId": "make-time-ch05-ex05",
+          "title": "Yara chooses the paper tracker over the dashboard",
+          "tags": [
+            "pharmacy",
+            "decision",
+            "light loop"
+          ],
+          "planSpec": {
+            "domain": "hospital pharmacy residency",
+            "audience": "people tempted to overtrack",
+            "stakes": "a feedback loop can become too heavy",
+            "format": "decision_point",
+            "requiredBeat": "she must decide whether to build a giant dashboard or keep the feedback loop light"
+          },
+          "scenario": "Yara sits in the staff locker room at 7:02 a.m., pencil tucked behind her ear and a paper tracker across her knees. Her spreadsheet plan has twelve columns: sleep, caffeine, interruptions, mood, task size, error count. Rounds start in eight minutes. The paper has three boxes: worked, failed, next. Her finger rests on the laptop power button. She must decide whether learning needs a dashboard or a loop she will actually use.",
+          "whatToDo": "Use the paper tracker for one week. Capture the three useful signals, choose one next adjustment, and resist adding columns until the loop proves too thin.",
+          "whyItMatters": "Reflect works only if it gets used. A light loop that changes tomorrow beats a beautiful dashboard that becomes the new job."
+        },
+        {
+          "exampleId": "make-time-ch05-ex06",
+          "title": "Nestor labels the prop table after the rehearsal",
+          "tags": [
+            "theater",
+            "postmortem",
+            "next action"
+          ],
+          "planSpec": {
+            "domain": "community theater",
+            "audience": "creative teams after rough practice",
+            "stakes": "a rough rehearsal becomes one practical change for tomorrow",
+            "format": "postmortem",
+            "requiredBeat": "he uses a rough rehearsal to choose one practical change for tomorrow"
+          },
+          "scenario": "Nestor stands on the empty stage at 11:17 p.m., spike tape stuck to his shoe and the ghost light buzzing near the apron. Rehearsal missed the door cue twice. The prop letter vanished. The lead snapped at a volunteer. He wants to write doomed in the margin. Instead he picks up the missing envelope from behind a flat and writes one note: label prop table before actors arrive.",
+          "whatToDo": "Turn the postmortem into one setup change. Label the prop table before the next rehearsal and leave the bigger feelings for after the fix is placed.",
+          "whyItMatters": "A rough rehearsal has too many lessons to carry at once. One practical change gives tomorrow a better start without pretending tonight was fine."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A teacher ends the day upset because group work failed, but one quiet reading block worked well. What should Reflect do? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Separate the two results and keep the useful reading setup.",
+              "Call the whole day failure and replace every routine.",
+              "Ignore the failure so morale stays high."
+            ],
+            "correctIndex": 0,
+            "explanation": "Reflect uses mixed evidence. Keeping what worked while adjusting what failed is smarter than flattening the day into one verdict.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A designer wants to write a two-page journal entry every night but quits after three days. What is the likely fix? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Add more categories to make the journal complete.",
+              "Shrink the loop to worked, failed, and next.",
+              "Stop learning from the day at all."
+            ],
+            "correctIndex": 1,
+            "explanation": "The reflection must be light enough to use. Three practical lines can keep learning alive where a heavy ritual collapses.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A sales rep leaves a failed focus block and says, \"My tactic failed, so the whole system is useless,\" while tomorrow's calendar is still open. Which response fits Reflect?",
+            "choices": [
+              "Agree and drop every tactic.",
+              "Repeat the same tactic for a month without changes.",
+              "Ask what condition made the tactic fail and test one adjustment tomorrow."
+            ],
+            "correctIndex": 2,
+            "explanation": "Reflect treats failure as information. The next step is a focused adjustment, not total rejection or blind repetition.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A designer is tired after a mixed day and has ninety seconds before leaving the studio. What is the main job of Reflect in that moment? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Turn real days into feedback for the next attempt.",
+              "Create a perfect permanent record of every mood.",
+              "Prove that good people never miss Highlights."
+            ],
+            "correctIndex": 0,
+            "explanation": "Reflect exists to improve the next day. It is practical feedback, not a diary competition or moral score.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A cafe owner sees that closing notes only change behavior when they are taped to the espresso machine before morning prep. What should she do? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Move notes into a hidden folder for neatness.",
+              "Keep the physical cue because it changes tomorrow's first action.",
+              "Stop writing notes because memory should be enough."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful note is the one that affects action. A visible cue at the starting point fits Reflect well.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A runner tracks twelve data points after every workout and now spends more time scoring the routine than running. What warning applies? The choice has to be made before the next work block begins.",
+            "choices": [
+              "More tracking always creates more learning.",
+              "Running without perfect data cannot improve.",
+              "The feedback loop has become the burden it was meant to reduce."
+            ],
+            "correctIndex": 2,
+            "explanation": "Reflect should stay subordinate to action. When scoring takes over, the system has lost its purpose.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A project manager reviews a bad meeting and writes, \"send agenda earlier,\" instead of \"be more organized.\" Why is the first note better? The choice has to be made before the next work block begins.",
+            "choices": [
+              "It names a concrete next experiment.",
+              "It sounds more impressive.",
+              "It avoids admitting anything went wrong."
+            ],
+            "correctIndex": 0,
+            "explanation": "A concrete adjustment can be tested tomorrow. A vague self-description creates fog rather than learning.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A student wants to use refine, add, drop after a study day. Which set fits? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Refine everything, add guilt, drop sleep.",
+              "Refine flashcards, add library room, drop studying with TV on.",
+              "Refine nothing, add more subjects, drop breaks."
+            ],
+            "correctIndex": 1,
+            "explanation": "The first set changes real conditions in a small way. It keeps learning practical and tied to the next study block.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A chef had a rough service but knows the new prep list prevented two errors before dinner rush. What should he avoid during reflection? The choice has to be made before the next work block begins.",
+            "choices": [
+              "Changing one weak timing issue.",
+              "Writing a short note before leaving.",
+              "Throwing away the prep list just because the night felt bad."
+            ],
+            "correctIndex": 2,
+            "explanation": "A bad mood can hide good evidence. Reflect protects useful tactics from being discarded with the parts that failed.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "make-time-ch05-rc01",
+          "front": "A day was mixed. What does Reflect ask you to preserve?",
+          "back": "Preserve the part that worked. Mixed results are normal, and keeping the useful condition prevents one rough feeling from erasing good evidence.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "make-time-ch05-rc02",
+          "front": "Your nightly review keeps becoming a long diary. What is the simpler loop?",
+          "back": "Worked, failed, next. The review should lead to one adjustment for tomorrow, not become another project.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch05-rc03",
+          "front": "A tactic failed under real pressure. What is the next move?",
+          "back": "Name the condition that broke it, then refine, add, or drop one thing for the next test. Do not defend the tactic or burn down the whole system.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "make-time-ch05-rc04",
+          "front": "When does reflection become counterproductive?",
+          "back": "When tracking, scoring, or self-judgment takes more attention than the action it is meant to improve. The loop has to stay light.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is turning the day into evidence you can use. Keep the review short, tie it to tomorrow, and let reality adjust the system.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a focus tactic fails at work, then write the condition that broke it and change one setup detail before trying again."
+          },
+          {
+            "context": "health",
+            "plan": "If an energy support helps or hurts, then note the timing and adjust tomorrow's food, movement, caffeine, or sleep cue by one step."
+          },
+          {
+            "context": "personal",
+            "plan": "If the day feels messy, then write worked, failed, next on any scrap of paper before choosing what tomorrow starts with."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a planned conversation goes poorly, then note the moment it turned and choose one different opener or setting for the next attempt."
+          }
+        ],
+        "twentyFourHourChallenge": "Tonight, take ninety seconds to write three lines: what worked, what failed, and the next experiment. Put the note where tomorrow's first action will happen.",
+        "weeklyPractice": "For seven days, keep reflection under three minutes. At week's end, look for one repeated failure point and one repeated support worth keeping."
+      },
+      "memorableLines": [
+        {
+          "text": "The day becomes evidence, not a trial.",
+          "location": "breakdown.fastRead",
+          "why": "It captures the emotional shift in plain language."
+        },
+        {
+          "text": "The best reflection is almost plain to the point of boredom.",
+          "location": "breakdown.fullRead",
+          "why": "It warns against overbuilt systems with a memorable phrase."
+        },
+        {
+          "text": "Reflect turns each day into practical feedback, so the system keeps learning without turning self-improvement into another heavy job.",
+          "location": "keyTakeaway",
+          "why": "It sums up the mechanism and the limit."
+        }
+      ]
+    }
+  ]
+}

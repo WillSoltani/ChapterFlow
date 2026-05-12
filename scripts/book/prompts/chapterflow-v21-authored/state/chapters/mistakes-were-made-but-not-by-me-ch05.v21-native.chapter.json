@@ -1,0 +1,319 @@
+{
+  "chapterId": "mistakes-were-made-but-not-by-me-ch05",
+  "number": 5,
+  "title": "Good Intentions, Bad Science: The Closed Loop of Clinical Judgment",
+  "readingTimeMinutes": 13,
+  "hook": "A counselor’s notebook says progress, while the attendance sheet says the boy has stopped coming.",
+  "counterintuition": "You may think caring work corrects itself because helpers care. In fact, care can make weak evidence feel noble, and closed feedback loops let harm look like patience.",
+  "tryThisNow": "Before giving advice or treatment today, write one prediction you can check later: what should improve, by when, and what would count as no progress.",
+  "keyTakeaway": "Good intentions need outside checks, because a helper who only hears confirming stories can mistake confidence for care and persistence for proof.",
+  "breakdown": {
+    "fastRead": "Myfanwy writes progress in her counseling notebook at 4:52 p.m. The chair across from her is empty for the third week. She cares about the boy. That is why the word feels kind. The attendance sheet says something colder.\n\nHelping work can trap good people in a closed loop. The helper sees effort, hears thanks, remembers the one success, and misses the quiet failures. Break the loop before pride joins it. Make a prediction. Track the outcome. Ask what no progress would look like. Care gets safer when it agrees to be checked.",
+    "deepRead": "Myfanwy’s office has a sand tray, two beanbags, and a notebook full of careful language. She believes the boy is opening up because he once told her about a fight with his stepfather. But he has missed three sessions. His teacher says his desk is empty more often. The evidence she sees and the evidence she does not see are not equal.\n\nClosed-loop judgment is dangerous because it rewards the helper with the feeling of helping. A therapist, doctor, tutor, coach, or caseworker can read warmth as progress and resistance as proof that the method is deep. Without outside measures, almost any result can be made to fit. Improvement proves the approach. No improvement proves the client needs more of it.\n\nBasil sees the same trap in a physical therapy room. A runner smiles through pain and says the exercises are fine. The step-down test shows the knee still collapsing inward. The smile is feedback, but it is not enough feedback.\n\nThe move is to name the expected change in advance. Pain down two points in two weeks. Attendance up by Friday. Blood pressure logged at home. If the change does not come, revise the plan instead of protecting the method. The limit is that people are not machines. Some progress is slow and hard to measure. Still, when every outcome supports the helper’s belief, the belief is no longer being tested.",
+    "fullRead": "Myfanwy turns a page in the counseling notebook and writes progress after a session that did not happen. She means that the boy is not ready yet. She means trust takes time. She means missed sessions can be part of the work. All of that can be true. The trouble is that the empty chair is also data, and she has been treating it like atmosphere.\n\nGood intentions make this trap harder to see. A helper who wants to heal will not feel like a person defending status. She will feel patient, loyal, and humane. When the method fails, she may protect it by changing what failure means. A client quits because the work was too deep. A patient worsens because the dose needs more time. A student resists because learning is uncomfortable. Each sentence may be possible. Together they can close the loop so tightly that no contrary evidence gets in.\n\nNaveed faces it in a clinic at 7:40 a.m. He believes his migraine plan is working because two patients praised it in follow-up calls. Then a nurse shows him the refill log: five others never returned, and three went to urgent care. Praise was loud. Dropout was quiet. His judgment had been listening only to the people still in the room.\n\nThe repair is not cynicism. It is better care. Write the expected outcome before the work begins. Decide what signal would make you change course. Check the people who stop showing up, not just the ones who thank you. Compare your results with a base rate or a colleague’s second read. This turns care from a private feeling into a practice that can learn.\n\nA fair objection is that many human changes cannot be reduced to neat numbers. Grief, trust, pain, trauma, motivation, and school safety are not simple dials. True. But even complex work has observable signals: attendance, sleep, dosage, panic calls, missed shifts, test errors, pain scores, or the client’s own goal. The measure does not replace judgment. It keeps judgment from floating free.\n\nMyfanwy can still decide to stay patient. But the decision should now include the missed sessions, the teacher’s note, and a plan for outreach. If the boy is not coming, the method is not reaching him, no matter how kind the notebook sounds. Care that cannot be corrected becomes care for the helper’s story. Care that can be checked has a chance to reach the person it was meant for."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-myfanwy-empty-chair",
+      "title": "Myfanwy writes progress beside the empty chair",
+      "tags": [
+        "counseling",
+        "feedback",
+        "care"
+      ],
+      "planSpec": {
+        "domain": "school counseling",
+        "audience": "student support staff",
+        "stakes": "student safety and missed intervention",
+        "format": "scene",
+        "requiredBeat": "she calls missed sessions patience until the attendance sheet forces a check"
+      },
+      "scenario": "Myfanwy writes progress at 4:52 p.m. in a blue counseling notebook, though the beanbag across from her is empty for the third Tuesday. The boy once told her about a fight at home, and she has been treating each absence as fragile trust. Then the attendance sheet slides from the printer. He has missed two full school days too. The office smells like marker ink and carpet cleaner. She is about to decide whether patience is still the plan or whether the plan has stopped reaching him.",
+      "whatToDo": "Call the absences data, not background. Check with the teacher and guardian, set a clear outreach step, and define what attendance change would show the plan is working.",
+      "whyItMatters": "Good intent made the empty chair feel meaningful in her favor. Tracking attendance keeps care aimed at the student instead of at the story of patient helping."
+    },
+    {
+      "exampleId": "ch05-ex02-basil-knee-smile",
+      "title": "Basil watches the knee cave on the step-down test",
+      "tags": [
+        "physical therapy",
+        "measurement",
+        "pain"
+      ],
+      "planSpec": {
+        "domain": "physical therapy",
+        "audience": "rehab clinicians",
+        "stakes": "injury recovery and return-to-run safety",
+        "format": "predict_reveal",
+        "requiredBeat": "a runner says she feels better, then a movement test shows the same risk pattern"
+      },
+      "scenario": "Basil sets the foam step under the mirror at 6:18 p.m., after Lina tells him the knee program is finally working. He predicts the step-down test will look clean. She smiles, lowers once, and the knee caves inward just as it did three weeks ago. The rubber mat squeaks under her shoe. Basil’s hand is already near the discharge form. The reveal sits in the mirror, asking whether comfort in the room counts more than the joint in motion.",
+      "whatToDo": "Let the movement test override the pleasant report for return-to-run timing. Keep the encouragement, but change the plan and retest the specific pattern.",
+      "whyItMatters": "A grateful patient can make a clinician feel effective. The knee angle is colder feedback, and colder feedback is what protects the runner from being cleared too soon."
+    },
+    {
+      "exampleId": "ch05-ex03-naveed-refill-log",
+      "title": "Naveed sees the migraine patients who vanished",
+      "tags": [
+        "medicine",
+        "dropout",
+        "records"
+      ],
+      "planSpec": {
+        "domain": "primary care",
+        "audience": "clinicians",
+        "stakes": "treatment quality and hidden harm",
+        "format": "postmortem",
+        "requiredBeat": "he judged a migraine plan by praise from return patients until refill and urgent-care logs showed dropouts"
+      },
+      "scenario": "Naveed stands at the clinic printer at 7:40 a.m., coffee cooling in a paper cup, reading the migraine refill log. He has been telling residents the new plan is working because two patients thanked him. The log shows five never refilled and three went to urgent care within ten days. The praise had stayed in his office. The failures had left through other doors. His postmortem now has to include the people who stopped coming back.",
+      "whatToDo": "Track every patient started on the plan, including no-shows, urgent-care visits, and refill gaps. Judge the protocol by the whole list, not by the people who praise it.",
+      "whyItMatters": "A closed loop hears from survivors of the method. Counting dropouts lets hidden failure speak, which is the only way a caring plan can improve."
+    },
+    {
+      "exampleId": "ch05-ex04-senga-tutor-dialogue",
+      "title": "Senga asks what the quiz would show",
+      "tags": [
+        "tutoring",
+        "dialogue",
+        "learning"
+      ],
+      "planSpec": {
+        "domain": "math tutoring",
+        "audience": "tutors and parents",
+        "stakes": "student learning instead of adult reassurance",
+        "format": "dialogue",
+        "requiredBeat": "a parent praises the tutor, but Senga asks for a cold quiz to check learning"
+      },
+      "scenario": "Senga sits at a kitchen table at 5:07 p.m., pencil shavings stuck to her sleeve, while Arman’s mother says, “He seems so much calmer with you.” Arman is drawing cubes in the margin. “I’m glad,” Senga says, “but can we try five fraction problems without hints?” The mother blinks. “Right now?” Senga nods and turns the worksheet over. The dishwasher hums. She has to decide whether reassurance is enough or whether learning gets checked.",
+      "whatToDo": "Give the short no-hint quiz and score it before celebrating. Use the result to choose the next lesson, even if the room felt better today.",
+      "whyItMatters": "Calm matters, but calm can hide weak learning. A small cold check keeps the tutor from mistaking a better mood for a stronger skill."
+    },
+    {
+      "exampleId": "ch05-ex05-odhran-case-plan",
+      "title": "Odhran rewrites the family case goal",
+      "tags": [
+        "social work",
+        "case plan",
+        "goals"
+      ],
+      "planSpec": {
+        "domain": "family services",
+        "audience": "caseworkers",
+        "stakes": "child safety and family trust",
+        "format": "before_after",
+        "requiredBeat": "he replaces vague engagement notes with observable safety signals"
+      },
+      "scenario": "At 8:26 a.m. Friday, Odhran flips through a family case file on the hood of his county car, drizzle spotting the folder tab. His old note says the mother is engaging more openly. After a supervisor asks what that changed for the child, he rewrites the goal: fridge stocked by Monday visit, medication locked, school pickup confirmed three days in a row. By the next review, the warm phrase is gone, replaced by three things someone can actually check.",
+      "whatToDo": "Translate engagement into observable safety signals with dates. Keep warmth in the relationship, but make the plan answerable to the child’s real conditions.",
+      "whyItMatters": "A kind impression can drift for months. Concrete signals let the caseworker see whether help is changing the home or only changing the tone of the notes."
+    },
+    {
+      "exampleId": "ch05-ex06-tilly-dog-dose",
+      "title": "Tilly weighs the spaniel before repeating the dose",
+      "tags": [
+        "veterinary",
+        "decision",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "veterinary care",
+        "audience": "veterinary teams",
+        "stakes": "animal safety and protocol learning",
+        "format": "decision_point",
+        "requiredBeat": "she almost repeats a familiar dose until weight and symptom notes challenge the habit"
+      },
+      "scenario": "Tilly lifts Miso the spaniel onto the scale at 9:33 a.m., the dog’s wet leash cold against her wrist. The ear infection looks like the last four she treated, and the usual dose is already in her head. Then the scale reads lower than last visit, and the owner mentions vomiting after the prior medication. The exam room smells like disinfectant and liver treats. Tilly has to decide whether experience is enough or the dose needs a fresh check.",
+      "whatToDo": "Pause the habitual dose. Recalculate by current weight, review the prior reaction, and write a follow-up time to check whether symptoms and side effects changed.",
+      "whyItMatters": "Pattern recognition is useful until it closes the case too soon. A fresh measure keeps past confidence from overruling today’s animal."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch05-q01",
+        "prompt": "A therapist says a client’s missed sessions show resistance to deep work. What should she check before accepting that story?",
+        "choices": [
+          "Attendance patterns, client goals, and outreach results.",
+          "Whether the client praised her once.",
+          "Whether the office feels welcoming to staff."
+        ],
+        "correctIndex": 0,
+        "explanation": "Missed sessions may mean many things. Checking attendance and goals prevents the therapist from turning dropout into proof that the method is working.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q02",
+        "prompt": "A doctor judges a new protocol by the patients who return smiling. Which group is missing?",
+        "choices": [
+          "Patients who liked the waiting-room music.",
+          "Patients who did not return, worsened elsewhere, or stopped the plan.",
+          "Patients treated before the doctor was hired."
+        ],
+        "correctIndex": 1,
+        "explanation": "The quiet failures often leave the room. A full outcome list must include no-shows, urgent visits, and discontinued care.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch05-q03",
+        "prompt": "A tutor feels successful because a student is calmer, but quiz scores are flat. What should change?",
+        "choices": [
+          "Stop caring about mood.",
+          "Tell the parent scores are irrelevant.",
+          "Keep the calmer routine but adjust the teaching plan to target the missed skills."
+        ],
+        "correctIndex": 2,
+        "explanation": "Mood is useful but not enough. The tutor should preserve what helps the room work while letting the skill measure guide instruction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q04",
+        "prompt": "Before starting a new coaching plan, what should the coach write down?",
+        "choices": [
+          "A prediction about what should improve, by when, and what would count as no progress.",
+          "A promise that the plan will work if players believe.",
+          "A list of excuses in case the plan fails."
+        ],
+        "correctIndex": 0,
+        "explanation": "A written prediction gives later evidence something to test. Without it, almost any outcome can be explained as success in disguise.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q05",
+        "prompt": "A caseworker writes, family engaged well. Why is that weak by itself?",
+        "choices": [
+          "It sounds too warm to be useful.",
+          "It does not say what changed for safety, attendance, food, medication, or care.",
+          "It proves the family is lying."
+        ],
+        "correctIndex": 1,
+        "explanation": "Engagement can matter, but the note needs observable outcomes. Otherwise the case plan may reward a good meeting while conditions stay the same.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q06",
+        "prompt": "A surgeon says a complication is rare and not worth tracking locally. What is the better response?",
+        "choices": [
+          "Trust memory because rare events stand out.",
+          "Discuss only successful cases at review.",
+          "Track local cases anyway and compare with a reliable base rate."
+        ],
+        "correctIndex": 2,
+        "explanation": "Local tracking and a base rate keep judgment from relying on memory and reputation. Rare does not mean invisible.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q07",
+        "prompt": "What makes a helping loop “closed”?",
+        "choices": [
+          "The helper receives mostly confirming feedback and can explain away contrary outcomes.",
+          "The helper has too many forms to complete.",
+          "The client uses plain language."
+        ],
+        "correctIndex": 0,
+        "explanation": "A closed loop keeps the helper from hearing disconfirming evidence. The method then starts proving itself no matter what happens.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch05-q08",
+        "prompt": "A vet’s usual dose comes to mind before she weighs the animal. What should she do?",
+        "choices": [
+          "Use the usual dose because experience is always enough.",
+          "Recalculate with current weight and prior reaction before prescribing.",
+          "Wait until the owner insists."
+        ],
+        "correctIndex": 1,
+        "explanation": "Experience helps pattern recognition, but current measures protect against a familiar case that is not actually the same case.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q09",
+        "prompt": "Why does good intent make bad evidence harder to see?",
+        "choices": [
+          "Because caring people never make errors.",
+          "Because measurement ruins every human relationship.",
+          "Because care can make persistence feel noble even when outcomes are not improving."
+        ],
+        "correctIndex": 2,
+        "explanation": "A helper can protect a failing method by treating patience as proof of care. Outcome checks keep care tied to the person being helped.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch05-rc01",
+      "front": "A helper feels the work is helping. What must be checked?",
+      "back": "Check the outcome the work was meant to change, including dropouts and quiet failures, not just gratitude from people who stayed.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch05-rc02",
+      "front": "Why write a prediction before treatment, tutoring, or coaching starts?",
+      "back": "A prediction gives later evidence a target. It prevents you from redefining every result so it protects the method.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc03",
+      "front": "How can “resistance” become a dangerous label?",
+      "back": "It can turn no progress into proof that the method is deep, which closes the feedback loop. Define what change should occur and when to revise.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch05-rc04",
+      "front": "A client smiles and thanks you. What else do you need?",
+      "back": "Warmth is feedback, but it is not enough. Pair it with a direct measure of the goal: pain, attendance, skill, safety, symptoms, or follow-through.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Open the feedback loop around helping work. Define the expected change, track people who leave or worsen, and revise the method when evidence fails to move.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If I advise, coach, treat, teach, or supervise, then I will name one outcome to check before I call the help successful."
+      },
+      {
+        "context": "health",
+        "plan": "If I start a care plan, then I will record baseline symptoms and a date to review whether they changed."
+      },
+      {
+        "context": "personal",
+        "plan": "If a habit plan feels inspiring, then I will choose one visible measure that must improve within a week."
+      },
+      {
+        "context": "relationships",
+        "plan": "If I give someone advice, then I will ask later what changed for them rather than assuming my advice landed."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, write one prediction for a helping action you take: who it should help, what should improve, by when, and what will make you change course.",
+    "weeklyPractice": "Each week, review one helping effort by checking the people or cases that disappeared, not only the ones that stayed close and thanked you."
+  },
+  "memorableLines": [
+    {
+      "text": "Care gets safer when it agrees to be checked.",
+      "location": "breakdown.fastRead",
+      "why": "It holds warmth and rigor together."
+    },
+    {
+      "text": "The smile is feedback, but it is not enough feedback.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the closed-loop problem concrete."
+    },
+    {
+      "text": "Care that cannot be corrected becomes care for the helper’s story.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the chapter’s warning a sharp landing."
+    }
+  ]
+}

@@ -1,0 +1,606 @@
+{
+  "bookId": "peak",
+  "title": "Peak",
+  "author": "Anders Ericsson, Robert Pool",
+  "promotedAt": "2026-05-12T01:15:37.279Z",
+  "chapterCount": 9,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 8:11 p.m., Padmin sits on a folding chair in Studio B with rosin flakes on his black pants and a pencil tucked behind his ear. He has played the whole folk tune six times for his teacher and smile…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A swimmer wants to improve starts before Saturday. Which coach response best follows purposeful practice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A pianist says she practiced for two hours but cannot say what changed. What is the missing ingredient?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A warehouse trainer wants new hires to learn pallet wrapping faster. Which plan best creates a practice loop?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A tennis player loves drills he can already win. Which coach choice best challenges him without making practice random?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nurse learning IV starts misses on rolling veins. Which next rep best fits the idea?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 622 am roscoe\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:12 p.m., Marisol slides a test plate under the heat lamp at La Rueda and sets the timer on her phone for ninety seconds. Her salad station is perfect during prep and sloppy by 7:30, when warm pl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:33 p.m., Farah stands beside a cafeteria table covered in index cards and orange peels after debate club. Her best speaker can explain a case in four calm minutes but freezes in crossfire. The s…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for harnessing adaptability. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 540 pm ines\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:44 a.m., Pilar leans over a copper pot in the bakery annex while steam freckles her glasses. The caramel is still pale, but the smell has shifted from sweet to nutty, and the bubbles at the edge…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for mental representations. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 216 pm natsuko\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:59 a.m., Beryl clips a short lane rope across the shallow end while fog lifts from the outdoor pool. Her masters swimmer keeps crossing over on the right arm and calls it endurance work. Beryl m…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for the gold standard. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the gold\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 708 pm cormac\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 11:06 a.m., Mirek stands under the warehouse mezzanine with a paper cup of burnt coffee and the floor camera frozen on aisle K. The new driver clipped a pallet because his rear wheel drifted wide …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for principles of deliberate practice on the job. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 847 am stefan\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:52 a.m., Felicity drags the hallway mirror beside a blue yoga mat and sets a kitchen timer for eight minutes. Her hip stretch always turns into a rounded-back slump by the third breath. Today sh…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 603 pm yara\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 10:58 p.m., Sivan sits on a folding chair after the scholarship gala with glitter stuck to his cuff and the pool ledger balanced on his knees. He has made the same nervous donor ask for six months…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for the road to extraordinary. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 512 am gudrun\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:06 a.m., Maelle unlocks the studio while frost fogs the front window and points to the worn strip of wood along the barre. A new student had called the soloist effortless after recital night. Ma…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for but what about natural talent?. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a head\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 441 pm imogen\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:15 p.m., Kendrick arranges three folding chairs in the church basement and sets a chipped timer on the snack table. The workshop flyer promised better talks with teens. Instead of lecturing, he …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead is creating a practice block for where do we go from here?. Which plan should she write?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner adds hills, speed, and distance in the same week, then cannot tell why his knee hurts. What should he analyze?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A violin student wants faster progress but hates sounding bad. Which advice is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 730 am zora\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 65
+  },
+  "bookGate": {
+    "bookId": "peak",
+    "chapterCount": 9,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        27,
+        27,
+        27
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 81,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

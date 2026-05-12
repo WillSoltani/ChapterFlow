@@ -1,0 +1,366 @@
+{
+  "bookId": "super-thinking",
+  "title": "Super Thinking",
+  "author": "Gabriel Weinberg; Lauren McCann",
+  "promotedAt": "2026-05-12T01:11:35.162Z",
+  "chapterCount": 7,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Mud,\" Nola says at Saturday 8:12 a.m., cleats black beside Dunbar Park's north goal. Kwame squats by the ball, wipes rain from his whistle, and points at the defender's heel mark. \"Before your foot …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A blue resistance band hums under Bram's shoe at Thursday 2:33 p.m. in Bayview Rehab, and the scar above his knee turns pale when he lifts. He grips the vinyl table hard enough to squeak. The pain is…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Orange lockout tags lie on the table by press line three at Monday 5:55 a.m. Marisol's March forecast looked better after she cut two maintenance Fridays. She predicted a clean quarter and got it. No…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A diesel van idles under the new no-loading sign at Alder and Ninth at Thursday 3:17 p.m., then rolls thirty yards and blocks a driveway. Nello stands with a folded curb map and watches two more vans…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A cafeteria bans snacks from classrooms. Wrappers disappear from desks but pile up in lockers. What does this show?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team adds a response-time target. What guardrail would best prevent metric capture?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A clinic keeps charging missed-visit fees, but no-shows do not fall. Which next move fits best?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"One episode,\" Kiko says at Monday 7:32 a.m. in the hospital locker room, wet hair dripping onto her scrub top. Her phone buzzes with the show she saved for after night shift. Bev closes her own lock…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Grease pencil rests on Arvid's yellow pad at Friday 4:51 p.m. beside the scooter repair counter. In March, his daily note about brake cable routing felt like fussing. In August, new hire Celia opens …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A runner plans evening workouts but always chooses the couch when tired. Which redesign best addresses present bias?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants to add five new recurring meetings to improve communication. Which question is strongest?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"You built it for people with Tuesdays free,\" Leona says at 6:11 p.m. by the compost bins, while tomato twine tangles around Ansel's fist. The half-empty beds are all twenty feet long and water acces…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A barcode scanner chirps at Thursday 1:37 p.m. at the east-branch help desk as Hafsa adds the twelfth reader to the hold-alert group. She predicts the first week will feel thin. By week five, eighty-…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team keeps pushing a new habit, but each attempt is just as hard as the first. What question is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A new exercise class loses beginners because the first session is punishing. What design change fits best?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Read this,\" Rocio says at Sunday 9:11 p.m., soap bubbles sliding down her cracked phone screen at the kitchen sink. The family chat has a hospital story about a supplement reaction, three crying emo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Orange cones sit under the bleachers at Friday 6:38 p.m. as Tej watches Brynn hit thirteen corner threes in a row. He predicts the starting lineup just changed. Then he opens the season chart: game a…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A report says failures rose 50 percent, from two to three cases. What is the issue?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A survey headline says satisfaction is high, but it does not say who answered. What is missing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reader notices that some charts are framed badly and decides to ignore every statistic. What is the flaw?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A city says bike thefts doubled near a station. What extra fact would most help residents understand scale?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A dashboard spike looks exciting. What sequence best protects judgment?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"out of how many\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"It just feels scary,\" Sacha says at Tuesday 1:14 p.m. in the guidance office while rain taps the window air conditioner. Ms. Errol draws two boxes on a legal pad. \"Scary how?\" Welding means paid hou…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Hester's headlamp shines on a laminated map at Thursday 4:03 a.m. beside the marsh truck. She predicts the river road is safest because it is shortest. Then the branch map adds bridge closure, crate …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says a launch feels risky but cannot say why. What should they do first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A neat decision tree includes numbers that are mostly guesses. What should the team do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A business owner reviews a failed expansion and calls it one bad decision. What is the better postmortem?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A project has three options, but one branch under option two is still broad and vague. What should happen?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A meeting keeps circling between \"too risky\" and \"worth it.\" What would improve the discussion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A decision tree shows one unknown that would change the choice if answered. What is the best next action?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 78% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"The pan again?\" Noor says at Monday 10:17 p.m. in the galley kitchen, one saucepan soaking in gray water. Helmi has the dish speech ready. Then she hears music through the wall from Noor's guests an…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Stapled newsletters lie warm from the copier at Wednesday 5:44 a.m. in the break room. Oskar reads the supervisor's jab about the union safety complaint and predicts his reply will feel strong. Then …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A valid complaint sounds self-serving from the person who lost the vote. What might help it land as a process issue?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Two roommates keep arguing about a mug, but the real issue is overnight guests. What is the better move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A project lead can win a minor wording dispute but risks slowing the launch. What model helps her choose?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A mediator uses silence to make a frightened person agree faster. What is the ethical problem?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader has authority that could settle a dispute quickly. What should she still check?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"your move changes the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 38
+  },
+  "bookGate": {
+    "bookId": "super-thinking",
+    "chapterCount": 7,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        27,
+        19,
+        17
+      ],
+      "answerPositionPctMax": 0.42857142857142855,
+      "totalQuizQuestions": 63,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

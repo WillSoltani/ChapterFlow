@@ -1,0 +1,319 @@
+{
+  "chapterId": "made-to-stick-ch03",
+  "number": 3,
+  "title": "Concrete",
+  "readingTimeMinutes": 11,
+  "hook": "A chipped mug can carry more meaning than a paragraph called customer value.",
+  "counterintuition": "Most people assume abstract words make an idea sound bigger, but actually they often make people translate it in private. Concrete detail gives everyone the same thing to point at.",
+  "tryThisNow": "Pick one abstract phrase you use often. Replace it with an object, scene, or example a listener could sketch in thirty seconds.",
+  "keyTakeaway": "Concrete ideas stick because people can see, handle, repeat, and coordinate around them, as long as the visible detail keeps serving the meaning.",
+  "breakdown": {
+    "fastRead": "Della sets a chipped blue mug on the claims counter at 8:48 a.m. The training slide says customer value. The mug says something sharper: Mrs. Kwan waited six weeks for a replacement after the warehouse sent the wrong box twice. Everyone can see the hairline crack. Everyone can imagine the call.\n\nConcrete detail gives the mind a handle. Abstract words can be repeated while people picture different things. A visible object, a named scene, or a small story makes the idea shared. The danger is letting the detail become a souvenir. The mug works only if it keeps pointing to the service failure it was chosen to show.",
+    "deepRead": "Della sets a chipped blue mug on the claims counter at 8:48 a.m. The training slide behind her says customer value, but the room has heard that phrase all quarter. The mug is harder to ignore. It belongs to Mrs. Kwan, who waited six weeks for a replacement after the wrong box shipped twice. The crack gives the idea a shape people can hold in memory.\n\nConcrete language matters because minds do not store labels as cleanly as scenes. A person can repeat customer value and still picture speed, discounts, kindness, quality, or apology. Put the mug on the counter and the team has one shared reference. They can argue about what to do, but they are arguing over the same object.\n\nPicture Rafiq in a city planning room at 2:17 p.m. He wants neighbors to care about floodplain restoration. Acres and projections make the project sound large and far away. He tapes a grocery receipt to the map, marked with the aisle where floodwater reached last April. Now the scale has a shelf, a floor, and a person who had to throw out cereal.\n\nThe move is not to decorate an abstract idea. It is to choose a carrier that preserves the idea. A fable works because the fox, the grapes, and the shrug replay the lesson without a lecture. A receipt works because it turns flood risk into a lived place. The limit comes when the carrier is remembered alone. If people remember only the cute mug and not the broken replacement process, concreteness has slipped from meaning into prop.",
+    "fullRead": "Della sets a chipped blue mug on the claims counter at 8:48 a.m. The slide behind her says customer value in clean gray type. The phrase has been in four trainings, three memos, and one quarterly goal. People nod when they hear it. Then they return to different private meanings. For one rep, customer value means speed. For another, it means politeness. For another, it means not giving refunds too easily.\n\nThe mug narrows the room. It belongs to Mrs. Kwan, who ordered a replacement for her kitchen set and got the wrong box twice. The hairline crack runs through a painted bird. The second shipment arrived with the same crack because the warehouse reused the old item code. Now customer value is not floating above the counter. It is the difference between closing a ticket and fixing the thing a person actually sees every morning.\n\nConcrete detail helps because it creates shared mental furniture. People can point to it, replay it, and test language against it. An abstract phrase may sound flexible, but flexibility can hide disagreement. If six people picture six different things, they do not have one idea. They have six labels wearing the same name.\n\nRafiq uses the same move in a city planning room at 2:17 p.m. He has maps, rainfall models, and acre counts for a floodplain project. The numbers are real, but neighbors keep hearing them as distant scale. Then he tapes a grocery receipt to the map. The receipt is from the store where water reached aisle six last April. Suddenly the flood has cereal boxes, wet cardboard, and a clerk who closed early. The large number has a place to land.\n\nConcrete carriers also help teams coordinate. A product team can say make onboarding warmer and each person will alter a different part of the flow. Show them a screen recording of a first-time user hovering over a gray button for nine seconds, and the discussion changes. The button, the pause, and the cursor become a common reference.\n\nThe risk is souvenir thinking. A vivid detail can travel so well that it detaches from the lesson. People may remember the blue mug because it is charming, then forget the broken item code. The carrier has to keep pulling attention back to the core. Choose details that make the meaning easier to use, not details that merely make the room admire your storytelling.\n\nA concrete idea gives memory places to grip. It lets people see the same problem, tell the same story, and correct the same process. When the object keeps serving the point, the idea stops being a cloud and starts being something people can carry."
+  },
+  "examples": [
+    {
+      "exampleId": "made-to-stick-ch03-ex01",
+      "title": "Della sets Mrs. Kwan’s mug on the counter",
+      "tags": [
+        "service",
+        "object",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "customer service",
+        "audience": "claims representatives",
+        "stakes": "abstract value language hides a broken process",
+        "format": "scene",
+        "requiredBeat": "turn customer value into a visible object"
+      },
+      "scenario": "Della sets a chipped blue mug on the claims counter at 8:48 a.m., next to a stack of unopened claim forms. The slide behind her says customer value. The mug belongs to Mrs. Kwan, who waited six weeks while the warehouse sent the wrong replacement box twice. The crack runs through a painted bird. Della sees the reps glance from the phrase to the mug. She has to decide whether to keep explaining value or tell the room how that crack reached the counter.",
+      "whatToDo": "Start with the mug and the shipment trail, then tie each service rule to the visible failure it would have prevented.",
+      "whyItMatters": "The mug gives the abstract phrase one shared referent. The team can now connect value to a process choice instead of nodding at a label."
+    },
+    {
+      "exampleId": "made-to-stick-ch03-ex02",
+      "title": "Rafiq tapes the grocery receipt to the flood map",
+      "tags": [
+        "planning",
+        "public",
+        "scale"
+      ],
+      "planSpec": {
+        "domain": "city planning",
+        "audience": "neighborhood residents",
+        "stakes": "large numbers feel distant",
+        "format": "decision_point",
+        "requiredBeat": "turn floodplain scale into a lived place"
+      },
+      "scenario": "Rafiq tapes a warped grocery receipt to the flood map at 2:17 p.m. in the library meeting room. Rain taps the skylight while neighbors stare at shaded acres and twenty-year flood lines. The receipt is from aisle six of the Market Basket store, the aisle that stood in brown water last April. Rafiq is about to decide whether to keep describing acreage or point to the cereal, batteries, and baby formula printed on the damp paper.",
+      "whatToDo": "Use the receipt to anchor the scale, then explain the map through that aisle. Let the big numbers answer what happened in a place people know.",
+      "whyItMatters": "Concrete scale lets residents picture consequence without pretending the numbers are smaller. The receipt turns acreage into a room they have walked through."
+    },
+    {
+      "exampleId": "made-to-stick-ch03-ex03",
+      "title": "Blythe hears six meanings of warmer onboarding",
+      "tags": [
+        "software",
+        "coordination",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "product design",
+        "audience": "startup team",
+        "stakes": "abstract strategy caused divergent work",
+        "format": "postmortem",
+        "requiredBeat": "show how a shared concrete reference fixes coordination"
+      },
+      "scenario": "Blythe replays the design review at 6:05 p.m., one cold slice of pizza beside her laptop and six sticky notes reading warmer onboarding. The engineer changed button color. The writer added jokes. The designer rounded the cards. The support lead wanted a help bubble. Nobody was lazy. The phrase let each person picture a different repair. Blythe pauses the screen recording at the nine-second cursor hover over the gray Continue button and sees what the team should have shared first.",
+      "whatToDo": "Bring the screen recording into the next review and name the concrete moment: nine seconds of hesitation at Continue. Make every proposal answer that moment.",
+      "whyItMatters": "A shared picture reduces private translation. Once the team can see the same hesitation, warmer has a test instead of six separate guesses."
+    },
+    {
+      "exampleId": "made-to-stick-ch03-ex04",
+      "title": "Oksana swaps the moral for the fox",
+      "tags": [
+        "classroom",
+        "fable",
+        "memory"
+      ],
+      "planSpec": {
+        "domain": "elementary classroom",
+        "audience": "students learning proverbs",
+        "stakes": "moral slogan is too thin to carry meaning",
+        "format": "dialogue",
+        "requiredBeat": "use replayable scene to preserve abstract truth"
+      },
+      "scenario": "Oksana holds a purple grape stem over the reading rug Tuesday at 11:03 a.m. \"What does sour grapes mean?\" she asks. A boy says, \"Being mean.\" A girl says, \"Not liking fruit.\" Oksana smiles and moves a cardboard fox away from a paper vine. \"He can’t reach them,\" she says. \"Now listen to what he says.\" The room leans forward. She must decide whether to define the phrase again or let the fox, the grapes, and the shrug carry the idea.",
+      "whatToDo": "Act out the scene before naming the moral. Ask students to retell what the fox wanted, failed to get, and pretended not to want.",
+      "whyItMatters": "The scene stores the pattern. Students can replay wanting, failing, and dismissing later, which a bare definition cannot do as well."
+    },
+    {
+      "exampleId": "made-to-stick-ch03-ex05",
+      "title": "Gareth brings the brake pad to the budget table",
+      "tags": [
+        "transit",
+        "maintenance",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "public transit",
+        "audience": "budget committee",
+        "stakes": "maintenance requests sound abstract",
+        "format": "before_after",
+        "requiredBeat": "use a worn object to align judgment"
+      },
+      "scenario": "Before Thursday, Gareth’s maintenance requests sounded like gray columns: deferred replacements, rider risk, fleet reliability. At 7:25 a.m. he walked into the budget room carrying a worn brake pad sealed in a plastic lunch container. The pad was thin as a coin at one edge. He set it beside the coffee urn and said it came off bus 412 yesterday. After that, every dollar question pointed back to the object on the table. The committee still debated cost, but nobody debated what worn meant.",
+      "whatToDo": "Bring the object that shows the condition, then use it as the reference for the budget choice. Keep the numbers nearby, but let the object ground them.",
+      "whyItMatters": "The brake pad gives the claim a shared visual standard. It does not replace the budget math, it makes the math easier to judge."
+    },
+    {
+      "exampleId": "made-to-stick-ch03-ex06",
+      "title": "Sabine pockets the seashell after the donor tour",
+      "tags": [
+        "fundraising",
+        "nature",
+        "reflection"
+      ],
+      "planSpec": {
+        "domain": "coastal preserve",
+        "audience": "donor guide",
+        "stakes": "vivid object risks becoming souvenir",
+        "format": "reflection",
+        "requiredBeat": "notice when concrete detail detaches from meaning"
+      },
+      "scenario": "Sabine pockets a striped seashell at 4:44 p.m. after the donor tour, standing by the preserve gate with sand in her shoes. Everyone loved the shell story. They passed it hand to hand and took photos. Nobody asked about the eroding dune behind the boardwalk. Sabine feels the small shell in her palm and sees the problem. The object was memorable, but it floated free. She is deciding how to make tomorrow’s tour tie the shell back to the dune that made it fragile.",
+      "whatToDo": "Use the shell only at the exact spot where the dune is failing, and ask donors what would happen to shells like it if that sand line moves again.",
+      "whyItMatters": "Concrete detail should carry meaning, not distract from it. The shell earns its place only when it points back to the preserve choice."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "made-to-stick-ch03-q01",
+        "prompt": "A hospital campaign tells staff to improve patient dignity, but each unit defines dignity differently. Which move best makes the idea concrete?",
+        "choices": [
+          "Show a two-minute room-entry scene and ask each unit which action protects dignity there.",
+          "Print the word dignity in larger type on every badge card.",
+          "Add three more abstract values beside dignity so the message feels complete."
+        ],
+        "correctIndex": 0,
+        "explanation": "A specific room-entry scene gives everyone the same reference. Larger labels or more values do not solve private translation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q02",
+        "prompt": "A climate presenter uses only global tons and charts. The audience agrees, then forgets the issue. Which change fits concreteness best?",
+        "choices": [
+          "Add more charts with longer time spans.",
+          "Translate one number into a local place or object the audience can picture accurately.",
+          "Remove all numbers and use only emotional music."
+        ],
+        "correctIndex": 1,
+        "explanation": "The number still matters, but it needs a concrete carrier. A local object or place gives scale a place to land.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q03",
+        "prompt": "A team remembers a funny mascot from training but forgets the process change it was meant to teach. What failed?",
+        "choices": [
+          "The mascot was not vivid enough.",
+          "The process change was too practical for memory.",
+          "The concrete detail detached from the meaning it was supposed to carry."
+        ],
+        "correctIndex": 2,
+        "explanation": "Vividness can become a souvenir. The carrier must point back to the core action or it starts competing with the lesson.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q04",
+        "prompt": "A teacher says photosynthesis is energy conversion, and students repeat the phrase without understanding. Which next move is strongest?",
+        "choices": [
+          "Walk through one leaf, one lamp, and one sugar cube as a visible chain.",
+          "Ask students to memorize the definition twice.",
+          "Replace the phrase with a shorter phrase, plant power."
+        ],
+        "correctIndex": 0,
+        "explanation": "The visible chain gives students something to picture and replay. Repetition and a shorter label may still leave meaning vague.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q05",
+        "prompt": "A manager says the new service should feel premium. Engineering, support, and design all make different changes. What should she do first?",
+        "choices": [
+          "Ask each team to defend its own definition of premium.",
+          "Pick one customer moment or object that shows premium in action.",
+          "Ban the word premium and use no replacement."
+        ],
+        "correctIndex": 1,
+        "explanation": "A shared reference reduces divergent translation. The team needs a concrete example before debating execution.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q06",
+        "prompt": "A nonprofit uses a single child’s backpack to explain school supply needs. What must it protect to stay honest?",
+        "choices": [
+          "The backpack should represent a real pattern, not distort the broader need.",
+          "The backpack should be new and visually perfect.",
+          "The backpack should replace every budget number."
+        ],
+        "correctIndex": 0,
+        "explanation": "Concrete detail should carry the truth, not bend it. The object works best beside honest scale and context.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q07",
+        "prompt": "A policy memo says streamline intake, and every department builds a different fix. Which diagnosis fits?",
+        "choices": [
+          "The phrase invited private pictures instead of one shared scene.",
+          "The departments lacked enough enthusiasm.",
+          "The memo was too concrete for a policy setting."
+        ],
+        "correctIndex": 0,
+        "explanation": "Abstract language can hide disagreement. A shared scene or object would give the departments one thing to improve.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q08",
+        "prompt": "A museum educator wants visitors to understand erosion, not just hear the term. Which exhibit choice best fits?",
+        "choices": [
+          "A paragraph defining erosion in formal language.",
+          "A tray where visitors pour water over sand and watch a marker collapse.",
+          "A sign that says erosion matters more than you think."
+        ],
+        "correctIndex": 1,
+        "explanation": "The tray lets visitors see and replay the process. It turns a label into an observable change.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "made-to-stick-ch03-q09",
+        "prompt": "A leader chooses between a dramatic object and a plain object to explain a supply failure. The dramatic object is memorable but unrelated. Which should she choose?",
+        "choices": [
+          "The dramatic object because attention matters most.",
+          "Neither object because concrete examples are risky.",
+          "The plain object if it shows the actual failure people must fix."
+        ],
+        "correctIndex": 2,
+        "explanation": "Concrete details earn their place by serving the meaning. A less flashy object that shows the process is stronger than a vivid distraction.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "made-to-stick-ch03-rc01",
+      "front": "An abstract phrase gets repeated but not understood. What should you retrieve?",
+      "back": "Find a scene, object, or example that lets people picture the idea and test their actions against the same reference.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "made-to-stick-ch03-rc02",
+      "front": "A vivid prop is remembered but behavior does not change. What went wrong?",
+      "back": "The prop became separate from the meaning. Reconnect the object to the process, choice, or consequence it was meant to carry.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "made-to-stick-ch03-rc03",
+      "front": "A team splits after hearing one strategy phrase. What concrete repair helps?",
+      "back": "Bring in a shared example of the moment to improve. A shared picture reduces private translation and makes debate productive.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "made-to-stick-ch03-rc04",
+      "front": "How do you keep big numbers from floating away?",
+      "back": "Translate scale into a real place, object, or person without distorting the data. The concrete carrier should make the number easier to judge.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is turning labels into shared reference points. You choose a scene, object, or story that lets people picture the same thing, then keep tying that detail back to the action or truth it carries.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a strategy phrase produces different interpretations, then bring one customer moment, screen recording, or object to the next discussion and make the phrase answer it."
+      },
+      {
+        "context": "health",
+        "plan": "If a health goal sounds vague, then attach it to one visible behavior or object you can inspect daily, such as a pill box filled after breakfast."
+      },
+      {
+        "context": "personal",
+        "plan": "If a personal value feels cloudy, then write one scene from yesterday where the value would have changed what you did."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone hears your concern as a label, then describe the exact moment, place, and action you mean before you name the pattern."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, replace one abstract phrase in a message with a concrete object or scene. Test it by asking someone to sketch what they think you mean.",
+    "weeklyPractice": "Once a week, collect three abstract phrases you used. For each, write the physical detail, scene, or example that would make the meaning shared."
+  },
+  "memorableLines": [
+    {
+      "text": "Concrete detail gives the mind a handle.",
+      "location": "breakdown.fastRead",
+      "why": "It states the memory mechanism in plain language."
+    },
+    {
+      "text": "If six people picture six different things, they do not have one idea.",
+      "location": "breakdown.fullRead",
+      "why": "It explains coordination failure cleanly."
+    },
+    {
+      "text": "A concrete idea gives memory places to grip.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the lesson into a useful image."
+    }
+  ]
+}

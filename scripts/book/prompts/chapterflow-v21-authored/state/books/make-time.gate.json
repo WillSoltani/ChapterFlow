@@ -1,0 +1,66 @@
+{
+  "bookId": "make-time",
+  "title": "Make Time",
+  "author": "Jake Knapp and John Zeratsky",
+  "promotedAt": "2026-05-12T01:00:40.570Z",
+  "chapterCount": 5,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 0
+  },
+  "bookGate": {
+    "bookId": "make-time",
+    "chapterCount": 5,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        15,
+        15,
+        15
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 45,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

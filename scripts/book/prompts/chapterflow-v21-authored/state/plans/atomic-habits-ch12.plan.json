@@ -1,0 +1,67 @@
+{
+  "chapterId": "atomic-habits-ch12",
+  "number": 12,
+  "title": "The Law of Least Effort",
+  "coreMove": "Redesign the friction around a behavior so the desired action becomes the path of least resistance and the undesired action takes one extra step.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ICU nurse trying to chart patient notes in real time instead of at the end of a twelve-hour shift",
+      "audience": "a clinician whose documentation backlog is eating her breaks",
+      "stakes": "whether charting accuracy slips because notes get written from memory at 6am",
+      "format": "before_after",
+      "requiredBeat": "the nurse moves the charting tablet from the nurses' station to a wheeled cart that follows her, and refuses to add any motivational reminder — only the physical relocation"
+    },
+    {
+      "domain": "a high school orchestra teacher trying to get a sixteen-year-old cellist to practice on weeknights",
+      "audience": "a music teacher coaching a student who keeps saying she 'didn't have time'",
+      "stakes": "whether the student keeps her chair before regional auditions",
+      "format": "dialogue",
+      "requiredBeat": "the teacher walks the student through the actual seconds between walking in the door and bow on string, and they cut three steps by leaving the cello unzipped on a stand by the couch"
+    },
+    {
+      "domain": "a freelance tax preparer who keeps reopening Twitter between client returns during the March crunch",
+      "audience": "a self-employed worker losing two billable hours a day to phone-checking",
+      "stakes": "whether she finishes the season without taking on debt to cover rent in April",
+      "format": "decision_point",
+      "requiredBeat": "she chooses between deleting the app, logging out each time, or putting the phone in a drawer across the room — and reasons explicitly about which adds the most friction without depending on willpower"
+    },
+    {
+      "domain": "a community garden coordinator trying to get volunteers to water plots on Saturday mornings",
+      "audience": "a coordinator who has begged, emailed, and guilted with no result",
+      "stakes": "whether half the summer crop dies in a July heat wave",
+      "format": "vignette",
+      "requiredBeat": "the coordinator stops sending reminder emails and instead coils the hose at the gate with a chalkboard listing three plots; volunteer turnout doubles without a single new message sent"
+    },
+    {
+      "domain": "a retired structural engineer trying to walk thirty minutes a day after a knee replacement",
+      "audience": "a 68-year-old man whose physical therapist set a non-negotiable daily walk",
+      "stakes": "whether his recovery stalls and he loses the ability to climb to his second-floor bedroom",
+      "format": "reflection",
+      "requiredBeat": "he notices that on the days he walks, his sneakers were already by the front door — and on the days he doesn't, they were in the hall closet behind the vacuum"
+    },
+    {
+      "domain": "a line cook prepping mise en place for a Friday dinner service",
+      "audience": "a cook learning that the difference between a calm service and a weeded one is decided at 3pm, not 7pm",
+      "stakes": "whether the kitchen blows ticket times and the chef pulls dishes off the menu",
+      "format": "scene",
+      "requiredBeat": "the cook arranges every container within one arm's reach in the order tickets fire, and the reader sees that 'least effort' was engineered hours before the first order printed"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

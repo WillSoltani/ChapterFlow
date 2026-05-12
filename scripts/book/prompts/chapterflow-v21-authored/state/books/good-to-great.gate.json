@@ -1,0 +1,600 @@
+{
+  "bookId": "good-to-great",
+  "title": "Good to Great",
+  "author": "Jim Collins",
+  "promotedAt": "2026-05-12T01:27:42.352Z",
+  "chapterCount": 9,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 618 am derek\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Gail grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Gail predicts it will save ten minutes, then watches two charts lan…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Sana grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Sana predicts it will save ten minutes, then watches two charts lan…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Erin grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Erin predicts it will save ten minutes, then watches two charts lan…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Jasmine grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Jasmine predicts it will save ten minutes, then watches two char…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"bestat truth economic engine\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Howard grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Howard predicts it will save ten minutes, then watches two charts…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a clear framework and\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Yvonne grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Yvonne predicts it will save ten minutes, then watches two charts…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Grace grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Grace predicts it will save ten minutes, then watches two charts l…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"with a different object\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 5/12 (42%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday, 2:48 p.m., Douglas grips a paper cup at the clinic hallway. The room smells of bleach. The new intake shortcut looks harmless. Douglas predicts it will save ten minutes, then watches two char…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 3 paragraphs open with \"a second\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"you can\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3 paragraphs open with \"the answer\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"practicing the disciplines that\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 44
+  },
+  "bookGate": {
+    "bookId": "good-to-great",
+    "chapterCount": 9,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        27,
+        27,
+        27
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 81,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

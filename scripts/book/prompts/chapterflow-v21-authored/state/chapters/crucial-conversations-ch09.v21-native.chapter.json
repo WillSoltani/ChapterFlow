@@ -1,0 +1,319 @@
+{
+  "chapterId": "crucial-conversations-ch09",
+  "number": 9,
+  "title": "Move to Action: Turning Crucial Conversations Into Results",
+  "readingTimeMinutes": 12,
+  "hook": "The whiteboard can say yes while every calendar in the room says something different.",
+  "counterintuition": "Most people think agreement is the finish line. Instead, agreement without a decision method, owner, deadline, and follow-up is often just a polite pause before drift.",
+  "tryThisNow": "At the end of your next meeting, write four words where everyone can see them: who, does what, by when. Do not leave until each has an answer.",
+  "keyTakeaway": "Moving to action means deciding how decisions will be made, naming who owns each next step, setting deadlines, and checking follow-up before memory rewrites agreement.",
+  "breakdown": {
+    "fastRead": "A whiteboard full of agreement can fail by Friday. Nobody lied. Nobody resisted. The room simply left without converting shared meaning into assignments. Action needs structure. Decide how the decision is being made: command, consult, vote, or consensus. Then name who does what by when. Write it down where the people involved can see it. Set a follow-up that checks results, not vibes. This may feel rote after a rich talk, but it protects the talk from fade. Dialogue creates meaning. Action converts meaning into commitments that can survive a busy week.",
+    "deepRead": "The danger after a good hard talk is relief. People feel heard, the temperature drops, and everyone wants to leave while the room still feels decent. That is exactly when ambiguity sneaks in. One person thinks the leader decided. Another thinks the group agreed. A third thinks the subject will return next month. By Friday, the same conversation has three different endings.\n\nAt the end of the meeting, the first action question is decision method. Some decisions are command decisions, where one person decides after hearing input. Some are consult decisions, where one owner gathers views and decides. Some are votes. Some require consensus because commitment matters more than speed. Trouble starts when people assume different methods.\n\nBefore anyone leaves, the second question is ownership. A task without an owner belongs to nobody. “We should update the checklist” is not an action. “Rina updates the checklist by Thursday noon” is. The third question is follow-up. People need to know how the commitment will be checked and what counts as done.\n\nIn practice, this is not bureaucracy for its own sake. It is respect for the cost of the conversation. If people risked honesty, the outcome deserves enough clarity to change behavior.",
+    "fullRead": "Many teams treat conversation and execution as separate worlds. First we talk, then work happens. The break between the two is where good intentions disappear. People leave with different assumptions because nobody made the ending explicit. The meeting felt aligned, but alignment was never translated into a decision method, owner, deadline, and review.\n\nDecision method matters because expectations shape commitment. If the leader is making a command decision, people can still contribute meaning, but they should know the leader will decide. If the decision is consultative, the owner should say how input will be used and when the call will be made. If the group is voting, the voting rule must be clear. If consensus is required, the group needs to know what counts as blocking concern versus preference. Hidden method creates hidden resentment.\n\nOwnership matters because plural nouns are slippery. We, the team, operations, finance, the family, the committee, everyone, all can sound cooperative while assigning nothing. A named owner is not a scapegoat. It is a point of responsibility. The owner may need help, budget, or authority, but the name prevents the task from dissolving into goodwill.\n\nDeadlines matter because timing is part of meaning. Soon, later, next week, and when things calm down are not commitments. Dates and times turn intention into a promise the group can check. Follow-up matters because memory edits agreement. A check-in, written note, calendar invite, or visible tracker lets people compare action to the actual commitment instead of to the version that now feels convenient.\n\nMoving to action means deciding how decisions will be made, naming who owns each next step, setting deadlines, and checking follow-up before memory rewrites agreement. The sentence sounds procedural because the work is procedural. Procedure is what keeps a meaningful conversation from becoming a warm memory.\n\nAt the edge of the plan, the limit is that not every conversation should end with a heavy action plan. Some talks need grieving, listening, apology, or exploration before assignment. But when the conversation is supposed to change behavior, resources, schedules, standards, or care, clarity is kindness. People should not have to guess what they agreed to after doing the hard work of saying what they meant."
+  },
+  "examples": [
+    {
+      "exampleId": "ch09-ex01-rina",
+      "title": "Rina draws three boxes under the whiteboard yes",
+      "tags": [
+        "clinic",
+        "scene",
+        "owner"
+      ],
+      "planSpec": {
+        "domain": "clinic checklist meeting",
+        "audience": "teams ending a safety conversation with clear ownership",
+        "stakes": "a near miss may recur if the checklist fix has no owner",
+        "format": "scene",
+        "requiredBeat": "Rina writes who does what by when after agreement"
+      },
+      "scenario": "Rina is in the clinic conference room at 4:27 p.m., blue marker squeaking under the word yes on the whiteboard. Everyone agrees the discharge checklist needs a medication line after yesterday's near miss. Chairs are already scraping back. Rina draws three boxes under the yes: owner, task, time. The room sighs. She keeps the marker up until one nurse says, 'I can draft it by Thursday noon.'",
+      "whatToDo": "Convert the agreement before people leave. Name the owner, exact checklist change, deadline, and follow-up review in the same room.",
+      "whyItMatters": "The yes is not yet safer care. Rina protects the near-miss conversation by turning shared meaning into a visible commitment."
+    },
+    {
+      "exampleId": "ch09-ex02-gideon",
+      "title": "Gideon holds the pharmacy calendar at 6:38 p.m.",
+      "tags": [
+        "family",
+        "decision",
+        "method"
+      ],
+      "planSpec": {
+        "domain": "family elder-care planning",
+        "audience": "families choosing a decision method before resentment grows",
+        "stakes": "care work may default to the loudest sibling if no method is named",
+        "format": "decision_point",
+        "requiredBeat": "Gideon chooses consult instead of pretending consensus exists"
+      },
+      "scenario": "Gideon is at his mother's kitchen table at 6:38 p.m., holding the pharmacy calendar while three siblings argue over Saturday visits. Everyone says they want fairness. Nobody agrees on who decides. Gideon can keep searching for consensus that is not in the room, or he can name a method. His mother needs the schedule posted before the nurse arrives tomorrow. Gideon has to choose before the argument becomes another week of texts.",
+      "whatToDo": "State the decision method clearly: gather everyone’s constraints tonight, then Gideon will draft the schedule by 9 a.m. as the temporary owner for two weeks.",
+      "whyItMatters": "The family may not reach consensus under time pressure. Naming consult prevents people from mistaking a temporary decision for a power grab."
+    },
+    {
+      "exampleId": "ch09-ex03-silvana",
+      "title": "Silvana taps the cracked tile with a pencil",
+      "tags": [
+        "construction",
+        "dialogue",
+        "punch-list"
+      ],
+      "planSpec": {
+        "domain": "construction punch-list walk",
+        "audience": "contractors converting walk-through complaints into assignments",
+        "stakes": "defects may remain if responsibility is vague",
+        "format": "dialogue",
+        "requiredBeat": "Silvana refuses plural nouns on the punch list"
+      },
+      "scenario": "Silvana is in unit 3B at 11:16 a.m., tapping a cracked bathroom tile with a pencil while the subcontractors crowd the doorway. 'We will get these cleaned up,' one says. Silvana looks at the punch list. 'Who is we on tile?' she asks. The room goes quiet. 'And what time Thursday is done?' The painter laughs once, then stops when she writes two names and 2 p.m. in black ink.",
+      "whatToDo": "Replace we with names. For each defect, write the owner, repair, deadline, and check time before the walk-through moves to the next room.",
+      "whyItMatters": "The punch list is only useful if it survives the hallway. Silvana turns polite intention into commitments that can be inspected."
+    },
+    {
+      "exampleId": "ch09-ex04-otakar",
+      "title": "Otakar reads the minutes beside unopened name tags",
+      "tags": [
+        "nonprofit",
+        "postmortem",
+        "follow-up"
+      ],
+      "planSpec": {
+        "domain": "nonprofit volunteer launch",
+        "audience": "organizers reviewing why a good meeting produced no action",
+        "stakes": "volunteers may assume different endings if follow-up is missing",
+        "format": "postmortem",
+        "requiredBeat": "Otakar finds three endings in one meeting note"
+      },
+      "scenario": "Otakar sits in the church basement at 8:58 p.m., unopened volunteer name tags spread beside the meeting minutes. The food pantry launch was supposed to start Saturday. The minutes say outreach discussed. The youth pastor thought Otakar owned calls. Otakar thought the board chair was checking permits. The board chair thought the vote was only exploratory. One meeting had three endings because nobody named the decision method or follow-up.",
+      "whatToDo": "Rewrite the launch plan with explicit method, owners, deadlines, and a Friday check. Send the note and ask each owner to confirm their line.",
+      "whyItMatters": "The meeting did not fail from bad will. It failed because agreement was never converted into visible commitments with a shared ending."
+    },
+    {
+      "exampleId": "ch09-ex05-vera",
+      "title": "Vera drags the release card to Friday at 3:00 p.m.",
+      "tags": [
+        "software",
+        "before-after",
+        "deadline"
+      ],
+      "planSpec": {
+        "domain": "software release planning",
+        "audience": "product teams setting deadlines after debate",
+        "stakes": "a decision can drift if done means different things",
+        "format": "before_after",
+        "requiredBeat": "Vera replaces “soon” with a calendar hold"
+      },
+      "scenario": "Vera used to end release debates with 'let us fix it soon' and watch bugs survive into the next sprint. At 3:06 p.m. on Tuesday, after the team finally agreed to patch the export error, she dragged the release card to Friday at 3:00 p.m. and typed: Jules owns test file, Amnon owns deploy note, Vera verifies export on staging. On Friday at 3:04, the bug was gone because soon had become a time.",
+      "whatToDo": "Translate the agreement into named tasks and calendar times immediately. Define done on staging before the team leaves the release board.",
+      "whyItMatters": "The team already had enough dialogue. Vera's change was making time and ownership explicit before the sprint absorbed the promise."
+    },
+    {
+      "exampleId": "ch09-ex06-hussein",
+      "title": "Hussein smells bleach on the mop sink at 12:44 a.m.",
+      "tags": [
+        "restaurant",
+        "reflection",
+        "follow-up"
+      ],
+      "planSpec": {
+        "domain": "restaurant closing duties",
+        "audience": "small teams clarifying follow-up after recurring conflict",
+        "stakes": "closing quality will slide if the plan is not checked",
+        "format": "reflection",
+        "requiredBeat": "Hussein writes the follow-up before leaving"
+      },
+      "scenario": "Hussein is alone by the mop sink at 12:44 a.m., bleach sharp in his nose, reading the closing note he almost posted: everyone do better on floors. The staff argued honestly tonight about why the line closes late. They agreed on a new sweep order. Hussein knows what will happen if he stops there. He adds: Lina checks dry storage at 11:30, Tomas signs floors at 12:05, Hussein reviews photos Monday. The tape peels off the wall as he presses the note flat.",
+      "whatToDo": "Write the follow-up mechanism with the plan. Name who checks, what evidence counts, and when the review happens.",
+      "whyItMatters": "A new closing order without follow-up is a wish. Hussein gives the agreement a way to survive tired bodies after midnight."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team leaves a meeting agreeing that “the checklist should change.” Two weeks later nothing changed. What was missing?",
+        "choices": [
+          "A named owner, exact task, deadline, and follow-up.",
+          "More emotional safety during the meeting.",
+          "A longer discussion of why checklists matter."
+        ],
+        "correctIndex": 0,
+        "explanation": "Agreement without action structure often drifts. The task needed who, what, by when, and how it would be checked.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A family cannot reach full agreement on elder-care visits before tomorrow. What decision method may fit?",
+        "choices": [
+          "Pretend consensus exists.",
+          "Consult: gather constraints, name one temporary owner, and set a review date.",
+          "Let whoever texts most decide silently."
+        ],
+        "correctIndex": 1,
+        "explanation": "A consult decision can be clear and temporary while still using everyone’s input.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A committee vote passes, but half the members thought it was only exploratory. What should have been clarified?",
+        "choices": [
+          "The font on the agenda.",
+          "The snacks at the meeting.",
+          "The decision method and what the vote meant."
+        ],
+        "correctIndex": 2,
+        "explanation": "People need to know whether they are exploring, consulting, voting, or deciding by consensus.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Which action line is strongest?",
+        "choices": [
+          "“Marta sends the revised permit form to building staff by Thursday at 2 p.m.”",
+          "“We should get permits handled soon.”",
+          "“Operations will probably make progress next week.”"
+        ],
+        "correctIndex": 0,
+        "explanation": "The first line has owner, task, recipient, and deadline. The others dissolve into vague intention.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Why can relief after a good hard talk be risky?",
+        "choices": [
+          "It proves the issue is solved forever.",
+          "People may leave before turning meaning into commitments.",
+          "It means follow-up would be insulting."
+        ],
+        "correctIndex": 1,
+        "explanation": "Relief can make the room skip the procedural ending that protects action.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A leader assigns a task but never says what counts as done. What problem is likely?",
+        "choices": [
+          "The task will become more motivating.",
+          "The owner will automatically know the standard.",
+          "Different people will remember different finish lines."
+        ],
+        "correctIndex": 2,
+        "explanation": "Done needs a definition. Otherwise memory and convenience rewrite the agreement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A manager wants to use consensus for every decision. What is the risk?",
+        "choices": [
+          "Some decisions need speed or clear ownership more than full agreement.",
+          "Consensus always creates too much accountability.",
+          "Consensus prevents people from speaking."
+        ],
+        "correctIndex": 0,
+        "explanation": "Consensus has a place, but overusing it can stall decisions that need a different method.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A project lead says, “I will decide after hearing everyone, and I will explain the choice by Friday.” What method is this?",
+        "choices": [
+          "Consensus.",
+          "Consult.",
+          "Unclear drift."
+        ],
+        "correctIndex": 1,
+        "explanation": "The owner gathers input and then decides. Naming that method reduces hidden resentment.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A group wants better follow-up after a safety talk. Which plan is strongest?",
+        "choices": [
+          "Ask everyone to remember the spirit of the talk.",
+          "Schedule another open discussion with no tasks.",
+          "Assign one owner to post the fix, one checker to verify it Friday, and a Monday review of evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest plan converts meaning into ownership, verification, and a review point.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch09-rc01",
+      "front": "What four words should end any action-oriented hard talk?",
+      "back": "Who, does what, by when. Add how it will be checked when the stakes justify follow-up.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch09-rc02",
+      "front": "Why name the decision method before or during the decision?",
+      "back": "People commit differently when they know whether the method is command, consult, vote, or consensus. Hidden method creates hidden resentment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch09-rc03",
+      "front": "What is wrong with “we will handle it soon”?",
+      "back": "We has no owner and soon has no deadline. Convert both into a named person, concrete task, specific date, and check point.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch09-rc04",
+      "front": "When is a detailed action plan premature?",
+      "back": "When the conversation still needs listening, grief, apology, or exploration. Action clarity matters when the talk is meant to change behavior or resources.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is turning shared meaning into durable commitments. You learn to clarify decision method, ownership, deadlines, done criteria, and follow-up before people leave.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting produces agreement, then do not close until the group has named owner, task, deadline, and follow-up for each action."
+      },
+      {
+        "context": "health",
+        "plan": "If a care plan changes, then ask who will do each next step, by what date, and how you will know it happened."
+      },
+      {
+        "context": "personal",
+        "plan": "If a household conversation ends with “we should,” then rewrite it into one person, one task, and one time before the day ends."
+      },
+      {
+        "context": "relationships",
+        "plan": "If an apology or repair talk includes a promise, then ask kindly what the first visible action will be and when you will check in."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, take one loose agreement in your life and convert it into a written who-does-what-by-when line with a clear follow-up point.",
+    "weeklyPractice": "Each week, audit one meeting or family plan for drift. Identify the missing owner, deadline, or follow-up, and repair it before the next conversation."
+  },
+  "memorableLines": [
+    {
+      "text": "A whiteboard full of agreement can fail by Friday.",
+      "location": "breakdown.fastRead",
+      "why": "It warns that verbal alignment is not execution."
+    },
+    {
+      "text": "A task without an owner belongs to nobody.",
+      "location": "breakdown.deepRead",
+      "why": "It makes ownership nonnegotiable in plain language."
+    },
+    {
+      "text": "Procedure is what keeps a meaningful conversation from becoming a warm memory.",
+      "location": "breakdown.fullRead",
+      "why": "It reframes process as protection rather than bureaucracy."
+    }
+  ]
+}

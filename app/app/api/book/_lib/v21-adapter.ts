@@ -173,10 +173,19 @@ function adaptChapter(raw: unknown): BookPackageChapter {
   };
 }
 
+const KEBAB_CASE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 function adaptBook(raw: unknown): BookPackageBook {
   const b = isRecord(raw) ? raw : {};
+  const bookIdRaw = asString(b.bookId);
+  // Normalize bookId defensively. v13 packages occasionally shipped with
+  // mixed-case bookIds ("Getting-Things-Done") that would create duplicate
+  // DDB catalog rows separate from the existing lowercase entry. Lower-case
+  // the bookId so downstream ingest writes to the canonical row regardless
+  // of which casing the operator/agent ran the pipeline with.
+  const bookId = KEBAB_CASE.test(bookIdRaw) ? bookIdRaw : bookIdRaw.toLowerCase();
   return {
-    bookId: asString(b.bookId),
+    bookId,
     title: asString(b.title),
     author: asString(b.author),
     categories: asStringArray(b.categories),

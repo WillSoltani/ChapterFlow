@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch02",
+  "number": 2,
+  "title": "How Your Habits Shape Your Identity (and Vice Versa)",
+  "coreMove": "Recast each small action as a vote for a specific identity, then ask which identity that vote is electing",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a pediatric nurse on her third night shift declining the breakroom donut",
+      "audience": "a healthcare worker who has tried and abandoned three diets",
+      "stakes": "whether tonight's refusal counts as deprivation or as one quiet vote for being the kind of person who eats like a nurse who knows what sugar does at 3am",
+      "format": "scene",
+      "requiredBeat": "the nurse hears herself think 'I'm not a donut person tonight' and notices that the sentence did the work the willpower used to do"
+    },
+    {
+      "domain": "a forty-one-year-old high school band director picking up his clarinet for fifteen minutes after dinner",
+      "audience": "a hobbyist who quit an instrument in their twenties and feels embarrassed to start again",
+      "stakes": "whether he is 'getting back into playing' (an outcome that can fail) or 'a person who plays after dinner' (an identity that accrues)",
+      "format": "vignette",
+      "requiredBeat": "he finishes the fifteen minutes badly and still walks away counting it, because the vote was cast by sitting down, not by sounding good"
+    },
+    {
+      "domain": "a regional sales manager and her older brother arguing at Thanksgiving about whether she has 'really changed' since quitting drinking",
+      "audience": "a reader whose family still introduces them as the old version of themselves",
+      "stakes": "whether identity is something other people grant you or something you cast votes for regardless of who is counting",
+      "format": "dialogue",
+      "requiredBeat": "she stops trying to convince him and silently registers that his disbelief does not retract any of the votes already cast"
+    },
+    {
+      "domain": "a second-year law student deciding at 11pm whether to outline one more case or close the laptop",
+      "audience": "a graduate student drowning in 'shoulds'",
+      "stakes": "the difference between 'I need to study more' (an outcome demand that breeds resentment) and 'I am someone who closes the day with one clean page of notes' (a small identity that compounds)",
+      "format": "decision_point",
+      "requiredBeat": "she chooses the smaller version on purpose because the smaller version is still a vote, and a vote that gets cast beats a vote that gets skipped"
+    },
+    {
+      "domain": "a retired postal worker who has called himself 'not a reader' for sixty years sitting down with a library book on a Tuesday",
+      "audience": "an older reader who believes their identity is fixed by now",
+      "stakes": "whether one Tuesday afternoon can begin to outvote a six-decade self-description",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader is asked to count how many votes 'not a reader' has accumulated, and then to notice that the tally is what is being changed, one entry at a time"
+    },
+    {
+      "domain": "a freelance illustrator reviewing her own missed week and resisting the urge to call herself 'lazy'",
+      "audience": "a creative worker who collapses identity every time the streak breaks",
+      "stakes": "whether a missed week deletes the identity or merely fails to add to it",
+      "format": "reflection",
+      "requiredBeat": "she separates the missed sessions from the verdict on her character, and notices that 'I am someone who draws' survives a bad week if she draws on the next available day"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

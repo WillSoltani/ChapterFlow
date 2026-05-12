@@ -1,0 +1,1174 @@
+{
+  "bookId": "essentialism",
+  "title": "Essentialism",
+  "author": "Greg McKeown",
+  "promotedAt": "2026-05-12T00:55:52.564Z",
+  "chapterCount": 20,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:41 p.m., Koji stands beside Engine 3 with a cracked hose coupling in his palm. The mayor is on speaker asking if the crew can staff Saturday's parade booth. \"It would mean a lot,\" she says. Koji…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:12 p.m., Wilton balances a tray of thawing samples while his laptop pings with a fourth collaboration invite. He predicts the invites mean the lab is finally gaining momentum. Then the freezer a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:27 p.m., Soren kneels on the ranger station floor with an ash map weighted by a stapler and a boot brush. A county official has left a voicemail inviting him to a watershed committee because las…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"della shuts the calendar\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:50 a.m., Paloma dusts flour off the bakery scale as her landlord stands by the mixer with a lease addendum. \"Everyone signs this,\" he says. The ovens click awake behind her. She wants to say she…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 11:04 p.m., Neel coils black cable under the stage and predicts the director will be furious if he skips tomorrow's optional paint call. The schedule taped to the prop table shows his name on ever…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:28 p.m., Ingrid stacks paper plates in the church basement while three neighbors ask her to lead cleanup, bylaws, and snacks for the tenants meeting. The signup sheet has twenty empty lines and …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"ivo holds the permission\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 1:44 a.m., Keiko moves colored pins across a storm map while the radio spits out road closures. Three callers demand bottled water updates. A faint text from the ridge says insulin cold packs are …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"soraya draws six circles\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:23 p.m., Nestor sits on a courthouse bench with two plea offers clipped to a yellow pad. One client can go home today with a bad record. Another can fight and risk months inside. The hallway sme…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"bex turns one contract\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:07 p.m., Darian stands in the courthouse stairwell with a legal pad balanced on the rail. His supervisor calls down, \"Quick thoughts on the new filing?\" The hearing outline in Darian's hand has …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:03 p.m., Cora crouches behind the marsh blind with binoculars fogging at the edges. Her tablet keeps lighting with committee messages from town. A bittern steps into the reeds for the first time…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"yael leaves her phone\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:04 p.m., Beata watches the waiting room camera while a resident says, \"Room nine keeps yelling about blankets.\" The monitor shows room nine sitting up and bed three lying too still. Beata points…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:46 a.m., Pavel predicts the slow lane needs another lecture because the splashing looks lazy. He kneels by the pool and sees the lane rope sagging into the swimmers' shoulders. The whistle is al…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:33 p.m., Juno sits in the family room with a paper cup of tea cooling on the windowsill. Three relatives argue about visiting hours. The patient keeps asking for the dog. Juno writes one word, d…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"ansel stops reading the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 9:21 p.m., Eamon holds a rubber duck over a stack of receipts while his intern groans at the spreadsheet. \"Tell the duck what box fourteen is doing,\" he says. \"This is childish,\" she answers. Then…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:57 p.m., Selene predicts the team will hate the paper hats she cut for a checkout workshop. The room is stiff after a failed launch. Then the quiet engineer puts on the cashier hat and starts ac…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 11:18 a.m., Tomas rolls a red playground ball across the rehab mat to a man who has refused another balance drill. The ball thumps softly against the patient's shoe. A smile appears before the fir…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"zora tips the box\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 1:26 a.m., Hamid sits at diesel pump four with a paper coffee burning his palm. Dispatch says, \"You can still make Tulsa by eight.\" His eyelids feel sandy. \"I can make Tulsa or I can make it safel…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:49 p.m., Mirek predicts one more tactics set will help his student before the state final. The boy stares at the board and moves the queen into capture twice. The clock ticks louder than usual. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:58 a.m., Dione tapes a handwritten note to the medication cart: check twice after hour twelve. The ward hums blue and low. She knows the note is not enough by itself, so she asks the float nurse…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"greta sets the pager\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:24 a.m., Kenji checks the rope coils in the lodge mudroom while a client asks to join the advanced ridge climb. \"I've hiked a lot,\" the client says. Kenji points to the ice axe on the bench. \"Wo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:15 p.m., Bram stands on the wet turf with a clipboard of tournament invites. Most sound fun. One fits the team's development goal and leaves rest days intact. The others would fill weekends with…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"ulla says the offer\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 8:03 a.m., Reuben stands beside a leaking school boiler while the principal asks for cosmetic hallway paint before parent night. \"Which promise matters more today,\" he asks, \"warm classrooms or bl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 9:14 a.m., Niko predicts the new menu can hold breakfast bowls, noodles, and pastries because customers ask for all three. Then the first cook calls out sick and the ticket rail jams before ten. T…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 1:18 p.m., Sylvie pins a card above the circulation desk: every child leaves with one book they want to open tonight. The staff meeting had sixteen possible goals. This one changes how the librari…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"clio writes one sentence\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 3:31 p.m., Yasmin stands by the clinic fridge with a mother asking if she can join a school wellness committee. \"You would be perfect,\" the mother says. Yasmin touches the lunchbox samples she pro…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:12 p.m., Wolfram predicts the donor will punish a no to the pet project. He calls with the budget open and offers a clear refusal plus the one program that does fit. The donor sighs, then asks w…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 10:38 p.m., Laleh pins a silver cuff to a mannequin while the director texts for three extra sketches by morning. The opening costume is still unfinished, and thread is stuck to her sweater. She w…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"harlan folds the invitation\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:53 p.m., Iris sits in the editing bay with twelve minutes of beautiful footage that does not serve the story. The director says, \"We paid for that helicopter.\" Iris points to the timeline. \"We p…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:03 p.m., Bruno kneels beside the cracked greenhouse frame with a box of screws he bought last spring. The frame has failed twice and shades the tomato beds. A volunteer offers another repair pla…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"wynn stares at the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 11:13 a.m., Kaspar reads a draft aloud in the newsroom kitchen while the kettle hisses. His editor taps paragraph four. \"Why is this here?\" Kaspar says, \"Because I like it.\" The editor waits. He l…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 10:19 a.m., Uma predicts the long proposal will score well because it answers everything. Then she highlights the actual project sentence and finds it buried on page nine. Her yellow marker squeak…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:55 a.m., Dashiell drags a razor icon across the audio waveform while the host's best joke plays in his headphones. The segment is already ninety seconds long, and the caller's trembling answer i…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"odette removes the prettiest\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:03 p.m., Ewan stands by the support board while sales asks for one emergency favor after the cutoff. \"Just this once,\" the rep says. Ewan points to the red line on the board. \"After four, we pro…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:35 p.m., Noemi predicts the parent will be upset if she ends the session on time. The child is tired, rubbing putty into the mat. Noemi closes the toy bin at forty-five minutes anyway. The paren…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:00 a.m., Virgil sets three crates of peaches behind the stall and leaves a chalk sign: two baskets per customer. The festival crowd is already gathering. He could sell out to the first restauran…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"pilar locks the studio\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:07 p.m., Ottilie predicts the afternoon routes will hold because the map says every bus has six minutes between schools. Then a drawbridge lifts on camera. Six minutes becomes none. She pulls th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 10:40 a.m., Sima slides two extra trays of rice into the van beside the wedding order. The guest count says 120. The groom's aunt said, quietly, that cousins keep appearing. Steam fogs the foil li…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"margo packs two extra\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 2:20 p.m., Rowan watches students stare at a setup error on every laptop. \"They need grit,\" an assistant whispers. Rowan points to the red error line. \"They need the broken installer removed.\" He …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 11:44 a.m., Belva predicts the new hires are slow because they keep missing towels. Then she opens the linen closet and finds the towel cart wedged behind banquet chairs. The stopwatch in her pock…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:13 a.m., Nils lies on cold gravel under the hay baler with a flashlight clenched in his teeth. The crew has been cursing the slow harvest for two days. A bent guard plate is shaving twine into k…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"hilda pulls the jammed\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 1:51 p.m., Tej holds a stopwatch while a student finishes the slowest lap in class. \"Still last,\" the boy mutters. Tej points to last week's time written on his clipboard. \"Eight seconds faster.\" …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:33 p.m., Golda predicts her student needs a full algebra review. Then the girl solves one clean equation on the whiteboard after weeks of crossed-out lines. Golda caps the marker and marks the d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 10:07 a.m., Kaito sticks a tiny paper flag on the first shelf the crew clears after months of inventory drift. The aisle still looks bad. The scanner still chirps errors two rows over. But the cle…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"alba tapes one green\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 5:55 a.m., Arlo places his pillbox beside the coffee grinder like he does every treatment day. His brother says, \"You could sleep ten more minutes.\" Arlo shakes the blue compartment. \"If the pills…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:18 p.m., Oksana predicts she needs more motivation to practice scales. Then her teacher moves the music stand beside the kitchen doorway where she passes after dinner. The violin case is already…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:01 a.m., Reza wipes the counter, opens the verification queue, and places a red ruler under the first medication label. Same order every shift. The resident behind him is still talking about a g…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"leonie lays tomorrows shoes\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 10:24 a.m., Amos predicts his daughter needs advice before the final. Then he sees her goggles twisted and her hands shaking. The speech in his head dissolves. He kneels by the wet bench and fixes…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 4:59 p.m., Gwen holds two stamped envelopes as the filing window shade starts to rattle down. One envelope is routine. One keeps a tenant's appeal alive if it is logged today. A coworker waves goo…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"maude points to the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 8:58 p.m., Jun rolls trace paper across his apartment table while his mentor asks why he turned down a prestige competition. \"People will think you lack ambition,\" the mentor says. Jun taps the da…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:17 a.m., Suki predicts stepping back from the launch review will make her feel irrelevant. She sits in the back with tea while her product lead runs the room cleanly. No one looks lost. Her note…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 6:12 p.m., Orson turns the shop sign to closed while a customer waves through the glass. The poetry group starts in eighteen minutes at the community center, and he promised to read the first poem…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"picture a\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"etta puts the old\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 112
+  },
+  "bookGate": {
+    "bookId": "essentialism",
+    "chapterCount": 20,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        60,
+        60,
+        60
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 180,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

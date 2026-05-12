@@ -26,7 +26,7 @@ export type PlanInput = {
   breakdown: BreakdownOutput;
 };
 
-const MAX_PLAN_RETRIES = 1;
+const MAX_PLAN_RETRIES = 2;
 
 export async function runWriterImplementationPlan(input: PlanInput): Promise<ImplementationPlanOutput> {
   const systemPrompt = readFileSync(
@@ -77,7 +77,7 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
         "Reasons:",
         reasons,
         "",
-        "Rewrite the ImplementationPlanOutput JSON. Address the reader directly with concrete if-then triggers; the reader has not seen the source you read.",
+        "Rewrite the ImplementationPlanOutput JSON. Address the reader directly with concrete if-then triggers; the reader has not seen the source you read. Never use the words 'the book', 'the chapter', 'the author', or any reference to written material.",
       ].join("\n");
     }
   }
@@ -104,7 +104,7 @@ function validate(p: ImplementationPlanOutput): ImplementationPlanOutput {
     /\bthe author\b/i,
     /\bthe book\b/i,
     /\bin this (chapter|section|book|law)\b/i,
-    /\bchapter\s+\d+\b/,
+    /\bchapter\s+\d+\b/i,
   ];
   const fullText = [
     p.coreSkill,

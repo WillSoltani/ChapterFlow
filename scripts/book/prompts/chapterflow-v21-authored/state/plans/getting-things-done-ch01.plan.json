@@ -1,0 +1,67 @@
+{
+  "chapterId": "getting-things-done-ch01",
+  "number": 1,
+  "title": "A New Practice for a New Reality",
+  "coreMove": "Diagnose overload as undefined commitments and externalize each one into a place you will revisit.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a public defender opening case files after a crowded arraignment morning",
+      "audience": "a public defender carrying too many client promises at once",
+      "stakes": "whether a court deadline or client follow-up gets missed because every case feels equally urgent",
+      "format": "before_after",
+      "requiredBeat": "the defender stops treating the pressure as a character flaw and sees each worry as an open loop that needs a visible holding place before it can be judged"
+    },
+    {
+      "domain": "two parents coordinating asthma medication, school forms, and a leaking sink on Sunday evening",
+      "audience": "a parent who feels household work is everywhere and nowhere",
+      "stakes": "whether a child's health routine and school paperwork are protected without turning the evening into blame",
+      "format": "dialogue",
+      "requiredBeat": "the conversation shifts from accusing someone of forgetting to asking what each loose item is, what needs to be true, and where the reminder will live"
+    },
+    {
+      "domain": "a restaurant line cook newly responsible for prep before a festival weekend",
+      "audience": "a first-time kitchen lead whose work now includes invisible coordination",
+      "stakes": "whether missing produce orders and vague verbal requests cause service delays and food waste",
+      "format": "postmortem",
+      "requiredBeat": "the cook sees that 'handle prep' failed because it was not a defined commitment with a next visible action, owner, and trusted reminder"
+    },
+    {
+      "domain": "an air-traffic control strip board compared with a controller trying to remember every aircraft unaided",
+      "audience": "a reader skeptical that writing things down changes anything",
+      "stakes": "whether the reader grasps that external systems reduce mental load without doing the thinking for you",
+      "format": "thought_experiment",
+      "requiredBeat": "the example makes the point that trusted containers do not replace judgment; they keep memory from becoming the runway"
+    },
+    {
+      "domain": "a museum registrar preparing loan paperwork while donor emails and shipping questions arrive",
+      "audience": "an arts administrator handling precise work amid constant interruptions",
+      "stakes": "whether insurance terms and shipping dates for a valuable artwork are handled cleanly instead of scattered across attention",
+      "format": "decision_point",
+      "requiredBeat": "the registrar captures new inputs as 'stuff' to clarify rather than letting each arrival hijack the current checklist"
+    },
+    {
+      "domain": "a rural veterinarian returning calls between farm visits with lab results, invoices, and medication questions in play",
+      "audience": "a mobile professional whose commitments arrive away from a desk",
+      "stakes": "whether animal care, client trust, and billing accuracy survive a day spent in motion",
+      "format": "vignette",
+      "requiredBeat": "the vet notices that fatigue comes less from the number of calls than from carrying unparked promises across locations"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 24
+}

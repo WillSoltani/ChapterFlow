@@ -165,26 +165,26 @@ export async function deletePair(
   partnerId: string,
 ): Promise<void> {
   const now = nowIso();
-  // Soft-delete both sides
+  // Soft-delete both sides (ConditionExpression prevents creating stub records)
+  const update = (pk: string, sk: string) =>
+    ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: pk, SK: sk },
+        UpdateExpression: "SET #s = :ended, endedAt = :now, updatedAt = :now",
+        ExpressionAttributeNames: { "#s": "status" },
+        ExpressionAttributeValues: { ":ended": "ended", ":now": now },
+        ConditionExpression: "attribute_exists(PK)",
+      }),
+    ).catch((err: unknown) => {
+      const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
+      if (name === "ConditionalCheckFailedException") return; // no-op if record doesn't exist
+      throw err;
+    });
+
   await Promise.all([
-    ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: { PK: bookUserPk(userId), SK: pairSk(partnerId) },
-        UpdateExpression: "SET #s = :ended, endedAt = :now, updatedAt = :now",
-        ExpressionAttributeNames: { "#s": "status" },
-        ExpressionAttributeValues: { ":ended": "ended", ":now": now },
-      }),
-    ),
-    ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: { PK: bookUserPk(partnerId), SK: pairSk(userId) },
-        UpdateExpression: "SET #s = :ended, endedAt = :now, updatedAt = :now",
-        ExpressionAttributeNames: { "#s": "status" },
-        ExpressionAttributeValues: { ":ended": "ended", ":now": now },
-      }),
-    ),
+    update(bookUserPk(userId), pairSk(partnerId)),
+    update(bookUserPk(partnerId), pairSk(userId)),
   ]);
 }
 

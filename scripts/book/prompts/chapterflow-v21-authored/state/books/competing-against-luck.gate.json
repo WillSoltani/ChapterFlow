@@ -1,0 +1,191 @@
+{
+  "bookId": "competing-against-luck",
+  "title": "Competing Against Luck: The Story of Innovation and Customer Choice",
+  "author": "Clayton M. Christensen, Taddy Hall, Karen Dillon, David S. Duncan",
+  "promotedAt": "2026-05-12T01:11:01.218Z",
+  "chapterCount": 10,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nella grips a paper cup sleeve at 6:42 a.m. inside the Red Hook ferry kiosk, her laptop bag sliding off one shoulder while the horn groans outside. The muffin case is bright and full, but crumbs will…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a banana a bagel\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Oona presses a cereal bowl under the drip at 7:28 a.m. in the third-floor laundry room, water darkening the ceiling tile above her shoulder. The building app promises faster maintenance, but the last…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in the wild the\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Doris sits at 9:24 p.m. under the kitchen pendant light, survey results and churn notes spread around her laptop. Users requested custom categories, so the team built them. Cancellations rose anyway.…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Riko kneels beside a folded stroller at 11:19 a.m. in aisle six, one wheel squeaking as he turns it. \"So lighter is the main thing?\" he asks. Suri nods, then acts out subway stairs with one hand and …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"say the mattress is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the resume\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the progress buyers hired\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tirzah stands at 9:32 a.m. between fulfillment and support, a cracked pump housing in a padded mailer on the conference table. \"Packaging cost is down eighteen percent,\" Fulfillment says. \"Replacemen…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Quentin stands at 3:38 p.m. beside a wall of interview notes, cancellation logs, and photos of homemade workarounds. \"So we found it,\" the founder says, tapping the job statement. \"Launch is safe.\" Q…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"use of the theory\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 6
+  },
+  "bookGate": {
+    "bookId": "competing-against-luck",
+    "chapterCount": 10,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        30,
+        30,
+        30
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 90,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

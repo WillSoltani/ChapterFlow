@@ -1,0 +1,66 @@
+{
+  "chapterId": "getting-things-done-ch13",
+  "number": 13,
+  "title": "The Power of Outcome Focusing",
+  "coreMove": "Declare what 'done' looks like in one concrete sentence before choosing any next action, so every commitment has a visible close condition the system can actually track.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a charge nurse trying to clear a discharge backlog before shift handover",
+      "audience": "a charge nurse at a mid-size regional hospital managing six rooms",
+      "stakes": "whether a medically cleared patient waits another full shift because 'handle Room 14 discharge' stayed vague on the whiteboard",
+      "format": "decision_point",
+      "requiredBeat": "she catches herself writing 'handle Room 14 discharge' and rewrites it as 'patient has signed paperwork, transport is confirmed, and bed is flagged available' — the outcome declared, the next phone call obvious"
+    },
+    {
+      "domain": "a freelance translator reorganizing her open project list on a Sunday afternoon",
+      "audience": "a self-employed translator working across three languages and four simultaneous clients",
+      "stakes": "whether two overdue deliverables stay invisible on the list until a client follows up and the working relationship frays",
+      "format": "before_after",
+      "requiredBeat": "her list moves from category labels like 'Müller contract' to declared outcomes like 'Müller legal brief returned with tracked changes accepted and final invoice sent' — the vagueness that masked the real work becomes visible and the gap between where she is and where she needs to be is suddenly measurable"
+    },
+    {
+      "domain": "a high school drama teacher presenting a budget request in a department meeting",
+      "audience": "a public-school drama teacher with a $2,400 production budget and six weeks until opening night",
+      "stakes": "whether the budget request is approved or bounced back because neither the teacher nor the department head could picture what a successful production actually requires",
+      "format": "dialogue",
+      "requiredBeat": "the teacher says 'we need to pull this show together' and the department head asks 'what does pulled together look like on opening night, specifically' — the question exposes that the outcome has never been declared, and the approval stalls not from budget politics but from a missing sentence"
+    },
+    {
+      "domain": "a fourth-year PhD student staring at a two-week-old 'revise dissertation' item on a Sunday morning",
+      "audience": "a sociology doctoral candidate whose committee has requested methods-section revisions before a November defense",
+      "stakes": "whether the revisions keep stalling while the committee waits and the defense date slips into next semester",
+      "format": "vignette",
+      "requiredBeat": "he writes 'methods section revised with all committee notes addressed and version sent to advisor by Thursday' — the low-grade nagging quiets the moment the outcome exists somewhere outside his head, and the first action surfaces on its own: open the committee email from six weeks ago"
+    },
+    {
+      "domain": "a regional operations manager reconstructing why a full-day territory planning offsite produced nothing actionable",
+      "audience": "a regional manager overseeing fourteen branch locations who just ran a failed all-hands",
+      "stakes": "a wasted day, a frustrated team, and a Q3 plan that still does not exist two weeks before it was due",
+      "format": "postmortem",
+      "requiredBeat": "the review surfaces a single root cause: nobody had declared what a successful offsite looked like before the room filled — without an outcome, the group could not notice when they drifted, could not course-correct, and could not close"
+    },
+    {
+      "domain": "a line cook asked to develop a new small-plates section for a seasonal menu change",
+      "audience": "a line cook at a mid-range restaurant who has cooked from other people's menus for three years but has never led development",
+      "stakes": "whether the chef's deadline is met or the cook hands in a vague draft of half-ideas that the chef has to rebuild from scratch",
+      "format": "thought_experiment",
+      "requiredBeat": "she imagines the printed menu with the section already complete — five dishes listed, portion notes included — and the image makes the first action obvious before any planning happens: write down five candidate dishes tonight before tomorrow's prep shift starts"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 24
+}

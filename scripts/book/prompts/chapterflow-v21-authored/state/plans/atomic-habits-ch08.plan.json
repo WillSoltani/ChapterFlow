@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch08",
+  "number": 8,
+  "title": "How to Make a Habit Irresistible",
+  "coreMove": "Bind the habit you want to do to a craving you already have, so anticipation does the pulling instead of willpower.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ER nurse who wants to start strength training but dreads the gym after a twelve-hour shift",
+      "audience": "a healthcare worker whose energy is already spent before the habit begins",
+      "stakes": "whether the habit ever survives past week two, or joins the pile of abandoned gym memberships",
+      "format": "decision_point",
+      "requiredBeat": "the nurse pairs the gym walk-in with the one podcast she only lets herself listen to on the way there, and notices the gym stops being the thing she's heading toward — the podcast is"
+    },
+    {
+      "domain": "a community college Spanish instructor watching her students light up during the five minutes of telenovela clips and go flat during conjugation drills",
+      "audience": "a teacher trying to redesign a unit without rewriting the curriculum",
+      "stakes": "whether her students keep showing up for the second semester or quietly drop",
+      "format": "vignette",
+      "requiredBeat": "she stops trying to make conjugation fun and instead routes every drill through the telenovela characters her students already want more of, so the drill rides on a craving that was already in the room"
+    },
+    {
+      "domain": "two roommates negotiating who does dishes after dinner",
+      "audience": "a 28-year-old who has tried and failed three chore-chart systems with the same roommate",
+      "stakes": "whether the friendship survives another month or the lease gets broken in August",
+      "format": "dialogue",
+      "requiredBeat": "one roommate proposes that dishes happen only while the show they both watch is playing, so the activity they already crave becomes the trigger and frame for the activity neither wants"
+    },
+    {
+      "domain": "a freelance illustrator trying to finally do her quarterly bookkeeping",
+      "audience": "a self-employed creative whose taxes are six weeks late",
+      "stakes": "whether she gets hit with a late-filing penalty that eats a full commission",
+      "format": "before_after",
+      "requiredBeat": "before: bookkeeping is its own grim Sunday; after: bookkeeping happens only at the cafe with the oat-milk latte she refuses to order at home, and the latte becomes the cue she actually looks forward to"
+    },
+    {
+      "domain": "a recently widowed retiree who has been told by his cardiologist to walk forty minutes a day",
+      "audience": "a 71-year-old who lives alone and has stopped feeling like anything is worth doing",
+      "stakes": "whether he keeps walking past March, when the social pressure of the diagnosis fades",
+      "format": "reflection",
+      "requiredBeat": "he ties the walk to the one part of the day he still anticipates — the call from his daughter — by walking while they talk, and the walk inherits the warmth of the call rather than the dread of doctor's orders"
+    },
+    {
+      "domain": "a regional sales manager trying to get his team to update the CRM after every client call",
+      "audience": "a manager whose team has ignored two prior CRM mandates",
+      "stakes": "whether quarterly forecasts are based on real data or on what reps remember on Friday afternoon",
+      "format": "postmortem",
+      "requiredBeat": "the manager realizes the previous mandates failed because logging was paired with nothing the reps wanted; the fix is to pair logging with the team's existing post-call coffee ritual, so the part they already crave only starts once the log is written"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

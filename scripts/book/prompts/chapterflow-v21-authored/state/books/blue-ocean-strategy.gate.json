@@ -1,0 +1,327 @@
+{
+  "bookId": "blue-ocean-strategy",
+  "title": "Blue Ocean Strategy",
+  "author": "W. Chan Kim; Renée Mauborgne",
+  "promotedAt": "2026-05-12T01:08:22.811Z",
+  "chapterCount": 11,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Idrissa has one hand on the security gate at 8:35 p.m. when a graduate student taps the glass with a bent poster tube tucked under her arm. The chain store beat his prices again this week. The design…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marisol is restacking tomatillos at 5:47 p.m. when the freezer alarm chirps behind the meat case. A chain grocer has opened with marble counters and polished signs. A customer in a bus-driver jacket …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bao is balancing a receipt roll on the register at 12:22 p.m. when the cashier points to the value canvas taped beside the lottery machine. \"Why is checkout speed there twice?\" she asks. The lunch cr…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dion stands in aisle 4 at 6:18 p.m. with two paint rollers in his hand and a new shelf sign clipped to his vest: One-Trip Bathroom Paint Kit. He predicts shoppers will still ask for the cheapest gall…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Celia holds a scratched rental helmet at 9:18 a.m. beside the bike-share dock while a commuter in a suit backs away. \"They work,\" Celia says, then catches herself. The commuter touches the foam edge.…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"bring back only the\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lucienne stands at 5:14 a.m. in the hospital lab with a wax pencil and draws the specimen path on the glass wall: ER fridge, courier basket, elevator, accession tray, analyzer. The turnaround report …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the practical\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and which old habits\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sorin sits at 5:45 p.m. in a strip-mall accounting office when a retired mechanic sets a grocery bag on the chair instead of the desk. Receipts, envelopes, and a cracked calculator spill out. \"This i…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mirela locks her fitness studio at 8:12 p.m. and sees four hotel housekeepers stretching calves at the bus stop, using the shelter rail like a barre. Her studio offers six-week challenges, branded ta…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"at the\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"want more glaze colors\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Arjun has the permit portal open on a conference-room screen at 3:33 p.m., the demo moving cleanly from address to fee payment. A contractor in the back row crosses his arms. \"Who signs off when the …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ingrid wheels a VR headset into the warehouse breakroom at 11:07 a.m. and predicts the forklift trainees will sell the program for her. They laugh, try the near-miss simulation, and ask for another r…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"the sequence\" — vary paragraph openers"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Petra stands by the discharge board at 10:52 a.m., a purple marker uncapped in her fist. Twelve patients are waiting on medication handoff. Two nurses are across the hall doing a duplicate chart revi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Della pushes the broken returns cart into the library board meeting at 4:03 p.m., one wheel screaming against the polished floor. The trustees stop passing cookies. She has photos of late returns and…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"cracked patrol radio on\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marius holds a stack of teal aprons at 7:38 a.m. beside the stockroom door. \"So we're a smoothie shop now?\" a cashier asks. He almost says corporate chose the color. Instead he points to yesterday's …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Oren tapes the new stage plot to the black-box wall at 10:44 p.m. and predicts the crew will accept it because the walkthrough was calm. At rehearsal, the first scene change stalls. Two crew members …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"fair process is not\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Irina holds a plastic printer shell at 3:14 p.m. while the product team cheers the prototype price. \"Families will love it,\" the designer says. Irina taps the ink cartridge bay with a pencil. \"And wh…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Manuela opens the quiet dog-wash room at 10:38 a.m. with rubber mats, warm towels, and no dryers screaming. Owners of anxious dogs sign up fast. She predicts the calm format will sell itself. By noon…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"takes six custom steps\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rowena stands by a corkboard at 2:36 p.m. with clinic programs written on index cards. \"Migraine group is still special,\" the neurologist says. Rowena nods and moves the card from green to yellow. \"S…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Suresh opens the product dashboard at 8:49 a.m. and predicts the roadmap will show plenty of pioneer work. The screen is crowded with releases: faster export, cleaner permissions, better charts, new …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"reservation book is full\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Baxter holds a suitcase sample at 4:04 p.m., brass corners flashing under the showroom lights. The upgrade adds cost, weight, and a premium story for the sales sheet. At the test table, a traveler in…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and low cost can\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 19
+  },
+  "bookGate": {
+    "bookId": "blue-ocean-strategy",
+    "chapterCount": 11,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        33,
+        33,
+        33
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 99,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "chapterId": "make-it-stick-ch02",
+  "number": 2,
+  "title": "To Learn, Retrieve",
+  "readingTimeMinutes": 12,
+  "hook": "The blank card feels mean until it brings back an answer the page never had to prove.",
+  "counterintuition": "Most people treat quizzes as judgment after learning. The twist is that a small, low-stakes quiz can create learning by making memory produce and repair.",
+  "tryThisNow": "Write one question on a blank card, answer it without looking, then check the source and answer it again after a short break.",
+  "keyTakeaway": "Use retrieval before you feel ready: try to produce the answer, check the miss, repair it, and return later so memory learns to come back on demand.",
+  "breakdown": {
+    "fastRead": "Celia spreads damp index cards across a laundromat table at 6:12 a.m. The dryers thump behind her. Her EMT airway notes are in the tote at her feet, but she leaves them zipped and writes every step she can remember. The third card is ugly. That is the point.\n\nRetrieval is not a final exam in miniature. It is a learning move. Memory gets stronger when it has to produce, then gets corrected while the gap is fresh. Rereading can make an answer look familiar. Recall makes the answer work. Pull first, check second, repair third.",
+    "deepRead": "Celia spreads damp index cards across a laundromat table at 6:12 a.m. The orange dryer doors pulse behind her. Her EMT airway notes are close enough to reach, but she keeps the tote zipped. She writes the first step, pauses, crosses out a wrong dose, and keeps going.\n\nThat pause is doing work. A reread would have let her glide over the same line and feel calm. The blank card asks memory to produce. When memory produces, even imperfectly, it strengthens the path back to the idea. When memory fails, the failure points to a precise repair.\n\nNikhil learns it beside rack three at 2:09 a.m. His bakery trainer covers the oven code sheet with a floury towel and asks for the burn-off sequence. Nikhil groans. He wants one more look. Instead he says what he can, checks the sheet, and repeats the missed step after loading rye loaves. By dawn, the code is less like ink and more like a handle.\n\nThe move stays small. Do not turn every recall into a high-pressure event. Ask for one answer, one step, one explanation. Check it right away. Try again after a gap. The feeling may be rougher than reading, but the roughness has a job. It makes memory come back instead of merely nodding at what it sees.\n\nPull first, check second, repair third.\n\nBeata uses the same loop under the marble stair. She does not quiz herself on all six tour dates at once. She whispers two, checks one miss, walks to the coat room, and whispers them again. The loop is small enough to run before visitors arrive. That size matters. A recall habit that fits real life will beat a grand plan that never leaves the notebook.",
+    "fullRead": "Celia spreads damp index cards across a laundromat table at 6:12 a.m. The dryers thump so hard the plastic table trembles. She has an EMT skills check at noon. Her airway notes are zipped in a canvas tote by her left foot. She could read them again and feel steadier. Instead she writes the first card from memory.\n\nThe first two steps come easily. The third step snags. Celia writes the wrong dose, sees that it looks wrong, and draws a box around the card. The moment feels worse than rereading. It is also better evidence. The blank card has found the place where the notes were still doing the work.\n\nRetrieval changes the job of studying. It asks memory to produce an answer before the answer is visible. That act does more than measure memory. It helps build the path back to the idea. A correct recall strengthens access. A failed recall, checked quickly, gives a clean repair target.\n\nNikhil sees the same thing at 2:09 a.m. beside rack three in the bakery. Flour is stuck in the crease of his wrist. The oven code sheet hangs above the proofer. His trainer covers it with a towel and asks for the burn-off sequence. Nikhil laughs because the answer was easy when the sheet was uncovered. Now he has to pull it from his own head. He misses one step, checks it, loads rye loaves, then says the sequence again before the timer rings.\n\nThis is why low-stakes recall matters. The stakes stay low so the mind can work. A harsh test with no repair may only teach dread. A tiny retrieval attempt with feedback teaches memory where to return.\n\nRowena discovers the cost of skipping this move in booth 18 at 5:15 p.m. Her call-center trainees could follow a refund script while it sat on the screen. On the first solo calls, they froze when customers skipped the opening line. The script had been visible too long. Nobody had practiced producing it from memory, in pieces, with correction.\n\nA good retrieval loop is plain: ask, answer, check, fix, return. The first answer can be short. The check should be fast. The return should come after a gap long enough to make memory work again. That gap is where the learning starts to hold.\n\nUse retrieval before you feel ready. Waiting until you feel ready often means waiting until the page has made you comfortable. The blank card is less polite, and more useful.\n\nPull first, check second, repair third.\n\nDima uses the same rule in room 2B with a cracked metronome on the amp. He used to play the chord change first and let students copy. Now he plays once, turns his chair away, and asks for the change from memory. One wrong finger gets corrected. Five minutes later, the student tries again after tuning. The lesson sounds less polished, but the hand has begun to know where to go.\n\nKeep the scale humane. Retrieval works best when it is frequent enough to repeat and small enough to survive the day. A single blank card, one hidden code sheet, one cold chord change, one whispered date. Pull, check, repair, return. That is the engine."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-celia-index-cards",
+      "title": "Celia leaves the EMT notes zipped in the tote",
+      "tags": [
+        "decision_point",
+        "retrieval",
+        "EMT"
+      ],
+      "planSpec": {
+        "domain": "EMT certification practice",
+        "audience": "learners tempted to reread before testing themselves",
+        "stakes": "whether emergency steps can be produced without notes",
+        "format": "decision_point",
+        "requiredBeat": "she must choose between rereading and blank-card recall before a skills check"
+      },
+      "scenario": "Celia spreads damp index cards across a laundromat folding table at 6:12 a.m., lint stuck to her black EMT pants. Her airway protocol notes are zipped in the tote by her foot. The dryers thump while she writes the first step from memory. The third card goes blank and her hand drops toward the zipper. She has to decide whether to look now or let the blank card show the gap before noon skills check.",
+      "whatToDo": "Keep the tote closed for one full attempt. Circle the missing step, check it after the attempt, then answer the same card again after the next dryer cycle.",
+      "whyItMatters": "The recall attempt is the learning event. It makes the weak step visible and gives Celia a precise place to repair before the skill has to run without paper."
+    },
+    {
+      "exampleId": "ch02-ex02-nikhil-oven-codes",
+      "title": "Nikhil says the oven code through flour and steam",
+      "tags": [
+        "dialogue",
+        "bakery",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "commercial bakery training",
+        "audience": "workers learning procedural codes",
+        "stakes": "whether oven safety steps return during a night shift",
+        "format": "dialogue",
+        "requiredBeat": "the trainer covers the code sheet and makes him retrieve the burn-off sequence"
+      },
+      "scenario": "Nikhil wipes flour from his wrist at 2:09 a.m. beside rack three, the proofer breathing warm air into the aisle. \"One more look at the oven sheet,\" he says. Mara drops a towel over the laminated codes. \"Say the burn-off sequence first.\" Nikhil misses the vent step and winces. \"Good,\" Mara says, lifting the towel. \"Now fix that one and tell me again before the rye comes out.\" The timer blinks 7:00.",
+      "whatToDo": "Retrieve the sequence before looking, then use the sheet only for the missed step. Repeat after a real work interval so recall has to return under shift conditions.",
+      "whyItMatters": "The covered sheet turns a familiar code into producible knowledge. Feedback keeps the miss from becoming frustration and makes it a repair target."
+    },
+    {
+      "exampleId": "ch02-ex03-rowena-booth-eighteen",
+      "title": "Rowena hears the refund script vanish on live calls",
+      "tags": [
+        "postmortem",
+        "call center",
+        "scripts"
+      ],
+      "planSpec": {
+        "domain": "customer support onboarding",
+        "audience": "trainers who mistake guided script reading for learning",
+        "stakes": "whether trainees can handle calls when customers break the script",
+        "format": "postmortem",
+        "requiredBeat": "she sees the session never forced employees to retrieve the steps on their own"
+      },
+      "scenario": "Rowena sits in booth 18 at 5:15 p.m., headset foam warm against her cheek, listening to the third refund call fall apart. In training, the script sat open in blue boxes and everyone sounded crisp. On live calls, the first angry customer skipped the greeting and the steps disappeared. Rowena opens the training deck and sees the flaw at once. The script was always visible. She must decide what tomorrow's retraining should test.",
+      "whatToDo": "Break the refund flow into short recall prompts, hide the script for the first answer, then show it for correction and a second try.",
+      "whyItMatters": "If the script only works while visible, it is not ready for a customer. Retrieval turns the flow into something agents can produce when the call changes."
+    },
+    {
+      "exampleId": "ch02-ex04-soren-anatomy-pins",
+      "title": "Soren learns the blank tray beats the glowing atlas",
+      "tags": [
+        "predict_reveal",
+        "medical",
+        "self-test"
+      ],
+      "planSpec": {
+        "domain": "medical anatomy lab",
+        "audience": "students who prefer polished review tools",
+        "stakes": "whether structures can be identified cold under exam pressure",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts atlas review will beat recall with pins, then the cold tray proves otherwise"
+      },
+      "scenario": "Soren stands in lab bay B at 10:44 p.m., blue anatomy pins lined in a kidney dish and formalin sharp in his throat. He predicts twenty more minutes with the glowing atlas will beat the ugly self-test tray. His partner covers the labels and points. Soren misses two branches, checks them, and tries again after cleaning forceps. On Friday, the cold tray returns. The atlas group squints. Soren names the branches before the proctor moves on.",
+      "whatToDo": "Use the blank tray now, even when it feels worse. Name each structure, check misses, and revisit the missed pins after another task.",
+      "whyItMatters": "The atlas keeps recognition close. The covered tray builds the act of bringing the structure back when no label helps."
+    },
+    {
+      "exampleId": "ch02-ex05-beata-marble-stair",
+      "title": "Beata whispers the dates before the tour doors open",
+      "tags": [
+        "vignette",
+        "museum",
+        "recall"
+      ],
+      "planSpec": {
+        "domain": "museum tour preparation",
+        "audience": "presenters who over-rely on notes",
+        "stakes": "whether key dates return in front of visitors",
+        "format": "vignette",
+        "requiredBeat": "she recalls dates from memory before checking the cue card"
+      },
+      "scenario": "Beata stands under the marble stair at 8:31 a.m., visitor stickers stacked like candy in her palm. The museum opens in nine minutes. Her tour card lists six dates, but she turns it against her sleeve and whispers them from memory while the floor polisher hums in the next gallery. She misses the acquisition year, checks it, then whispers the full set again while walking to the coat room. The card goes into her pocket, not her hand.",
+      "whatToDo": "Recall the dates before the visitors arrive, check only the miss, and repeat the whole set once while moving through the actual route.",
+      "whyItMatters": "The pocketed card stops Beata from borrowing confidence from print. The whispered recall gives each date a path back during the tour."
+    },
+    {
+      "exampleId": "ch02-ex06-dima-room-two-b",
+      "title": "Dima changes the lesson from replay to recall",
+      "tags": [
+        "before_after",
+        "music",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "guitar instruction",
+        "audience": "teachers who let students copy demonstrations too long",
+        "stakes": "whether a chord change survives after the demonstration stops",
+        "format": "before_after",
+        "requiredBeat": "he moves from replaying demonstrations to retrieve, check, and retry"
+      },
+      "scenario": "Dima sits in room 2B at 4:06 p.m., a cracked metronome clicking on the amp. For months he played the chord change first and watched students copy it cleanly. They forgot it by next week. Today he plays once, turns his chair away, and asks Lark to finger the change from memory. She misses the second finger, checks his hand, and tries again after tuning. The lesson sounds rougher. The next Tuesday sounds less borrowed.",
+      "whatToDo": "Demonstrate briefly, hide the model, ask for recall, then correct one finger and return after a few minutes. Keep the loop small and repeatable.",
+      "whyItMatters": "Copying can keep the model in charge. Retrieval makes the student rebuild the move so next week starts from memory, not from Dima's hand."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch02-q01",
+        "prompt": "A nurse reviews a medication sequence with the chart open. What would turn review into retrieval practice?",
+        "choices": [
+          "Cover the chart, say the sequence, then check misses",
+          "Read the chart until it feels familiar",
+          "Copy the chart in neater handwriting"
+        ],
+        "correctIndex": 0,
+        "explanation": "Covering the chart makes memory produce. Checking afterward repairs the miss while it is fresh.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q02",
+        "prompt": "Why can a missed flashcard help learning?",
+        "choices": [
+          "It proves the learner should stop testing",
+          "It identifies a precise target for feedback and another attempt",
+          "It makes the card less important later"
+        ],
+        "correctIndex": 1,
+        "explanation": "The miss matters when it is followed by correction. It points to the gap that passive review may hide.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch02-q03",
+        "prompt": "A team leader uses weekly low-pressure quizzes during training. What is the main reason this can work?",
+        "choices": [
+          "Scores make people compete harder",
+          "Quizzes replace all instruction",
+          "Retrieval strengthens access while feedback is still possible"
+        ],
+        "correctIndex": 2,
+        "explanation": "The quiz is useful because it asks memory to produce, then allows repair. The score is secondary.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q04",
+        "prompt": "Which plan best fits a retrieve-check-repair loop?",
+        "choices": [
+          "Answer from memory, compare with source, try missed items later",
+          "Read notes, highlight notes, reread highlights",
+          "Wait until the final exam to learn what failed"
+        ],
+        "correctIndex": 0,
+        "explanation": "The loop starts with production, checks accuracy, repairs gaps, and returns after a delay.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q05",
+        "prompt": "A trainee says retrieval feels worse than rereading, so it must be worse. What should you say?",
+        "choices": [
+          "Feeling worse proves the topic is impossible",
+          "Feeling worse can mean memory is doing the producing instead of the page",
+          "Feeling smooth is always the best sign"
+        ],
+        "correctIndex": 1,
+        "explanation": "Retrieval often feels harder because support is removed. That harder feeling can be useful when correction follows.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q06",
+        "prompt": "A student repeatedly fails recall but never checks the answer. What is missing?",
+        "choices": [
+          "More pressure",
+          "A longer highlighter session",
+          "A feedback and repair step"
+        ],
+        "correctIndex": 2,
+        "explanation": "Repeated misses without correction can stall. Retrieval needs feedback so the learner repairs the path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q07",
+        "prompt": "Which use of flashcards is strongest?",
+        "choices": [
+          "Try the answer first, check, then retest misses after a gap",
+          "Flip fast and count familiar cards as known",
+          "Read both sides before guessing"
+        ],
+        "correctIndex": 0,
+        "explanation": "Trying first makes memory retrieve. Retesting after a gap strengthens what was repaired.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch02-q08",
+        "prompt": "A presenter wants to remember a speech opening. What practice best uses retrieval?",
+        "choices": [
+          "Read the first paragraph five times silently",
+          "Recite the opening without notes, check, then recite again later",
+          "Change the font to make it easier to read"
+        ],
+        "correctIndex": 1,
+        "explanation": "Reciting without notes forces production. Checking and returning later make the opening more available.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q09",
+        "prompt": "What is the best description of retrieval in learning?",
+        "choices": [
+          "A punishment for weak memory",
+          "Only a final measurement after studying",
+          "A way to build recall by making memory produce"
+        ],
+        "correctIndex": 2,
+        "explanation": "Retrieval is a learning move. It builds and tests access when paired with feedback and later return.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch02-rc01",
+      "front": "You want one more reread before a quiz. What recall move should come first?",
+      "back": "Answer a small question from memory before looking. Then check the answer and repair the miss. Retrieval should lead, review should clean up.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch02-rc02",
+      "front": "A flashcard miss makes you feel behind. How do you use it well?",
+      "back": "Mark it as a repair target, check the answer, say it correctly, and bring it back after a short delay. The miss only helps when feedback follows.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-rc03",
+      "front": "Why should training include low-stakes recall before live work?",
+      "back": "Because people must produce steps when prompts are gone. Low-stakes retrieval lets them practice that production while correction is still cheap.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-rc04",
+      "front": "What is the smallest retrieval loop you can run?",
+      "back": "Ask one question, answer without looking, check the source, fix the miss, and return later. Small loops beat grand plans that never happen.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is using recall as part of learning, not only as a final judgment. Ask memory to produce, check the answer, repair the miss, and return after a gap.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you finish reading a procedure, then close it and say the first three steps before you mark the training complete."
+      },
+      {
+        "context": "health",
+        "plan": "If you learn a new exercise cue, then perform or describe it once without the video before the session ends."
+      },
+      {
+        "context": "personal",
+        "plan": "If you study a language, then answer five cards from memory before opening the app lesson."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone gives you important instructions, then repeat them back from memory and ask what you missed."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, create three blank-card questions for something you need to remember. Answer each without looking, check, and retest the weakest one tomorrow.",
+    "weeklyPractice": "This week, run one retrieve-check-repair loop each day. Keep the questions small enough that you actually do them, and track which misses return twice."
+  },
+  "memorableLines": [
+    {
+      "text": "Pull first, check second, repair third.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the practice loop into a memorable command."
+    },
+    {
+      "text": "A tiny retrieval attempt with feedback teaches memory where to return.",
+      "location": "breakdown.fullRead",
+      "why": "It explains why low stakes and correction belong together."
+    },
+    {
+      "text": "The blank card is less polite, and more useful.",
+      "location": "breakdown.fullRead",
+      "why": "It gives retrieval a concrete object and a clear attitude."
+    }
+  ]
+}

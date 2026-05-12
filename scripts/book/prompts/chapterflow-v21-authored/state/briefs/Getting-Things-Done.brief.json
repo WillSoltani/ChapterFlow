@@ -1,0 +1,107 @@
+{
+  "bookId": "Getting-Things-Done",
+  "title": "Getting Things Done",
+  "author": "David Allen",
+  "thesisParagraph": "Getting Things Done argues that personal productivity is less about discipline than about relief from mental static. The mind is a poor storage device: it keeps reheating unfinished commitments, vague intentions, and half-made decisions until everything feels equally urgent. Allen's load-bearing idea is the trusted external system, a complete set of inboxes, lists, calendars, and reviews that lets the brain stop remembering and start choosing. The method works because it forces every commitment through a narrow gate: what is the successful outcome, and what is the next physical action? Its weakness is also its seduction: the machinery can become a hobby if writers treat lists as achievement rather than support for real work. Teach this as a calm, practical method for moving from anxious obligation to clean engagement, not as productivity machismo or app worship.",
+  "coreIdeas": [
+    {
+      "name": "open loops",
+      "oneSentence": "Stress comes from commitments that are captured vaguely or not captured at all, not simply from having a lot to do.",
+      "mentalMove": "Empty your head into a visible inbox before deciding what anything means.",
+      "sourceAnchors": [
+        "open loops",
+        "stuff",
+        "mind like water",
+        "collection phase"
+      ]
+    },
+    {
+      "name": "next physical action",
+      "oneSentence": "A project does not move because you care about it, it moves when you define the very next visible thing someone can do.",
+      "mentalMove": "Translate each vague item into a desired outcome and the next physical action.",
+      "sourceAnchors": [
+        "next action",
+        "What is the next action?",
+        "project planning",
+        "clarifying work"
+      ]
+    },
+    {
+      "name": "trusted system",
+      "oneSentence": "Your mind will keep nagging you until it believes your commitments live somewhere complete, current, and reviewable.",
+      "mentalMove": "Park every commitment in a system you check often enough to trust.",
+      "sourceAnchors": [
+        "trusted system",
+        "weekly review",
+        "organizing reminders",
+        "tickler file"
+      ]
+    },
+    {
+      "name": "contextual action lists",
+      "oneSentence": "Good lists are not moral inventories, they are menus of possible action filtered by where you are, what tools you have, and how much energy remains.",
+      "mentalMove": "Choose work from context, time, energy, and priority instead of from panic.",
+      "sourceAnchors": [
+        "contexts",
+        "calendar",
+        "next actions lists",
+        "four-criteria model"
+      ]
+    },
+    {
+      "name": "vertical control",
+      "oneSentence": "Clean execution needs both runway-level actions and higher-level perspective about projects, roles, goals, and purpose.",
+      "mentalMove": "Scan upward from task to project to responsibility when choosing what deserves attention.",
+      "sourceAnchors": [
+        "horizons of focus",
+        "runway",
+        "project list",
+        "areas of responsibility"
+      ]
+    }
+  ],
+  "targetReader": "This teaches overloaded professionals, founders, managers, students, and household captains who feel busy but not clear. They care because their real problem is not laziness, it is too many undefined commitments competing for attention.",
+  "voiceCharter": {
+    "register": "plainspoken",
+    "person": "second",
+    "cadence": "medium",
+    "signatureMoves": [
+      "Begin with a familiar moment of low-grade overload, then name the practical mechanism underneath it.",
+      "Use office, home, travel, email, calendar, errand, and meeting examples rather than heroic transformations.",
+      "Ask blunt operational questions: What is it, what do you want true, what is the next action, where will the reminder live?",
+      "Keep sentences calm and procedural, with confidence that comes from sequence rather than hype.",
+      "Use Allen-style metaphors sparingly: water, runway, loops, inboxes, maps, and trusted containers."
+    ],
+    "avoidMoves": [
+      "Never write \"the chapter\", \"this chapter\", \"the author\", \"the book\", \"the law\", \"in this chapter\", or any phrasing that narrates the book as an object. Teach the idea directly.",
+      "Never print \"Chapter 1\", \"Chapter 12\", etc. inside prose.",
+      "Never use any of these house-ruled phrases: \"boundary condition\", \"keeps the chapter honest\", \"strips away\", \"is not decorative\", \"is not magic\", \"operating logic\", \"diagnostic discipline\", \"durable practice\", \"turns out to be\", \"That matters because\".",
+      "Never reuse the 20 over-used protagonist names from earlier books. Those are Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi. Use different names.",
+      "Do not make GTD sound like hustle culture, minimalist lifestyle branding, or a software tutorial."
+    ]
+  },
+  "voiceSpecimens": [
+    "If your mind keeps reminding you about printer ink while you are talking to a client, it is not being silly. It is trying to close a loop you have not put anywhere reliable.",
+    "A next action is not a mood, a hope, or a category. It is something you can do with your body, a phone, a keyboard, or a person in front of you.",
+    "You do not need a better memory for the dentist bill, the draft proposal, and the garage shelf. You need a place where each one waits without shouting.",
+    "When an email arrives, slow down for ten seconds. Decide whether it means trash, reference, action, waiting, or calendar, then put it where it belongs.",
+    "The weekly review is where your system earns trust. You look at the whole map, repair the leaks, and leave knowing what you are not doing on purpose.",
+    "A clean list does not tell you who you are. It tells you what can be done next from here."
+  ],
+  "voiceAntiSpecimens": [
+    "Crush your inbox and unlock your highest-performance self by dominating every task before breakfast.",
+    "The cognitive substrate of commitment management requires a meta-architecture of attentional allocation.",
+    "In a world of infinite distraction, productivity is the new spirituality of intentional becoming.",
+    "Just pick the app that sparks joy and let your workflow become a beautiful personal dashboard.",
+    "Busy people often need to reflect on how complexity functions as a mirror of modern identity."
+  ],
+  "teachingArc": "Start with the felt problem: mental overload comes from undefined commitments. Build the method in sequence: capture everything, clarify meaning, organize reminders, review the whole inventory, then choose action from a clean map. Only after the runway is under control should larger goals enter, otherwise purpose talk floats above the actual pile of undone work.",
+  "forbiddenMoves": [
+    "Never write \"the chapter\", \"this chapter\", \"the author\", \"the book\", \"the law\", \"in this chapter\", or any phrasing that narrates the book as an object. Teach the idea directly.",
+    "Never print \"Chapter 1\", \"Chapter 12\", etc. inside prose.",
+    "Never use any of these house-ruled phrases: \"boundary condition\", \"keeps the chapter honest\", \"strips away\", \"is not decorative\", \"is not magic\", \"operating logic\", \"diagnostic discipline\", \"durable practice\", \"turns out to be\", \"That matters because\".",
+    "Never reuse the 20 over-used protagonist names from earlier books. Those are Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi. Use different names.",
+    "No app comparisons, template porn, bullet-journal aesthetics, or tool fetishism.",
+    "No moralizing about laziness, willpower, or ambition. The failure mode is an untrusted system, not a defective person."
+  ]
+}

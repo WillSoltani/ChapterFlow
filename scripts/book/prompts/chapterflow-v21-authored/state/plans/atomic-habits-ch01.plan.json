@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch01",
+  "number": 1,
+  "title": "The Surprising Power of Atomic Habits",
+  "coreMove": "Treat invisible progress as banked rather than absent, and keep acting on the days the graph looks flat",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a high school orchestra teacher tracking a second-violin section that has not improved at concerts for eight weeks",
+      "audience": "a teacher in her fourth year who is privately considering reseating the section",
+      "stakes": "whether she abandons a rehearsal protocol that is actually working three weeks before it would have shown",
+      "format": "vignette",
+      "requiredBeat": "the teacher names what she has banked — intonation drills logged, scale tempos crept up by a metronome click — and decides to keep the protocol for the spring concert"
+    },
+    {
+      "domain": "a line cook saving fifteen seconds per plate on a six-top pasta station",
+      "audience": "a line cook two years out of culinary school working a 180-cover Saturday",
+      "stakes": "whether shaving seconds off mise en place compounds into surviving the rush without the expo screaming",
+      "format": "scene",
+      "requiredBeat": "the cook does the math out loud over a prep table — fifteen seconds times forty plates times five nights — and sees the hour he has been quietly buying back"
+    },
+    {
+      "domain": "a couple six months into paying down twenty-eight thousand dollars of credit card debt",
+      "audience": "a married couple in their early thirties who feel like the balance has barely moved",
+      "stakes": "whether one of them cashes out a small index fund to feel progress, breaking the plan",
+      "format": "dialogue",
+      "requiredBeat": "one partner pulls up the amortization curve and points to where the principal line steepens in month fourteen, and they agree to keep the autopay"
+    },
+    {
+      "domain": "a physical therapist coaching a stroke patient through week eleven of grip-strength exercises",
+      "audience": "a PT working in an outpatient clinic with a patient ready to quit",
+      "stakes": "whether the patient stops three weeks before the dynamometer would have moved",
+      "format": "decision_point",
+      "requiredBeat": "the PT shows the patient her own session notes, where range of motion has crept by two degrees a week, and reframes the flat number on the squeeze gauge as the last thing to change rather than the only thing that matters"
+    },
+    {
+      "domain": "imagine an ice cube sitting in a room you are slowly warming one degree at a time, from twenty-five degrees up",
+      "audience": "any reader who has ever quit a habit at week six",
+      "stakes": "whether the reader sees the difference between thirty-one degrees and thirty-two as the difference between nothing happening and everything happening",
+      "format": "thought_experiment",
+      "requiredBeat": "the temperature crosses thirty-two and the cube melts, and the reader is asked which of the previous seven degrees did the work"
+    },
+    {
+      "domain": "a regional sales manager reviewing a junior rep who has made eighty cold calls a day for two months with three meetings booked",
+      "audience": "a manager about to write a performance improvement plan",
+      "stakes": "whether a rep who is actually building the right habit gets cut the week before her pipeline turns",
+      "format": "postmortem",
+      "requiredBeat": "the manager looks back from month five, sees the meetings booked curve bend upward in week ten, and recognizes the call-quality notes she had dismissed as the leading indicator she should have trusted"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

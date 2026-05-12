@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch06",
+  "number": 6,
+  "title": "Motivation Is Overrated; Environment Often Matters More",
+  "coreMove": "Redesign the physical space around a behavior so the desired action is the path of least resistance and the unwanted action requires friction to reach.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a night-shift ICU nurse trying to drink more water across a twelve-hour shift",
+      "audience": "a healthcare worker whose schedule fights every standard habit advice",
+      "stakes": "chronic dehydration headaches that compound over a three-on-three-off rotation",
+      "format": "vignette",
+      "requiredBeat": "the nurse stops trying to remember and instead moves a labeled water bottle onto the charting cart she touches every forty minutes; the cue does the remembering for her"
+    },
+    {
+      "domain": "a freelance illustrator whose phone sits face-up on the drafting table",
+      "audience": "a creative working from a one-room apartment with no separate studio",
+      "stakes": "a deadline she keeps missing by ninety minutes a day in scattered phone pickups",
+      "format": "before_after",
+      "requiredBeat": "the contrast shows the same person, same willpower, same morning — only the phone has moved to a drawer in the kitchen, and the output doubles without a single new technique"
+    },
+    {
+      "domain": "a regional grocery chain redesigning the checkout lane to reduce candy purchases by parents with children",
+      "audience": "a store operations manager balancing margin against complaints",
+      "stakes": "a small revenue dip against a measurable drop in customer-reported guilt and post-shop returns",
+      "format": "postmortem",
+      "requiredBeat": "the manager realizes the candy was never being chosen — it was being grabbed because it was at hand-height in a five-minute wait, and removing it didn't change anyone's preferences, only their reach"
+    },
+    {
+      "domain": "a recovering insomniac who keeps the bedroom for sleep and sex only and reads in the kitchen",
+      "audience": "a graduate student in a studio apartment where every surface serves five purposes",
+      "stakes": "whether sleep onset improves enough to keep her qualifying-exam prep on track",
+      "format": "decision_point",
+      "requiredBeat": "she chooses to carry the laptop out of the bedroom rather than promise herself she'll stop using it in bed; the rule is enforced by geography, not discipline"
+    },
+    {
+      "domain": "a high school orchestra teacher leaving her violin assembled on a stand in the living room",
+      "audience": "a working musician-parent who has not practiced in eleven months",
+      "stakes": "whether she ever performs again, or quietly stops calling herself a player",
+      "format": "scene",
+      "requiredBeat": "the violin out of the case is the entire intervention — the chapter shows her picking it up on a Tuesday for four minutes while waiting for pasta water, and that being enough to count"
+    },
+    {
+      "domain": "a couple trying to argue less by changing where the argument happens",
+      "audience": "two partners six years in, neither of whom is leaving",
+      "stakes": "whether the relationship's conflict pattern hardens or softens over the next year",
+      "format": "dialogue",
+      "requiredBeat": "they discover that moving hard conversations from the bedroom to a walk around the block changes the conversation itself, because the room was carrying old residue the words couldn't escape"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

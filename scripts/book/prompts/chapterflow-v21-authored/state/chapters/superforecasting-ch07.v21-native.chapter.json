@@ -1,0 +1,319 @@
+{
+  "chapterId": "superforecasting-ch07",
+  "number": 7,
+  "title": "Supernewsjunkies?",
+  "readingTimeMinutes": 12,
+  "hook": "More headlines can make a forecast worse when every alert grabs the steering wheel.",
+  "counterintuition": "Sorcha assumes better forecasting means reading more. The edge is filtering signal from noise, starting from strong priors, and moving only as much as the evidence earns.",
+  "tryThisNow": "Open a note, write one forecast you already believe about a news-driven update, add a percent and a check date, then write what would make you move the number down.",
+  "keyTakeaway": "Do not confuse information volume with judgment; start from the best prior, filter for signal, and update by the weight of the evidence, not the volume of alerts.",
+  "breakdown": {
+    "fastRead": "At 6:08 a.m., Sorcha turns off six news alerts and opens yesterday’s odds. The old number gets first rights before the fresh noise enters. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. An alert is not evidence until it changes what a careful prior would expect.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
+    "deepRead": "At 4:44 p.m., Emiliano, a supply planner, reads a viral port rumor while the customs data loads. The rumor is loud. The data is slow. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. Noise feels urgent because it arrives dressed as now.\n\nPicture Binta weighing a local radio report against ten years of election turnout data. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
+    "fullRead": "At 12:37 p.m., Haruto, a currency analyst, watches three headlines say crisis in three different ways. He writes one actual new fact under them and leaves the number almost still. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 8:26 p.m., Galit, a wildfire planner, waits for the satellite pass instead of chasing every social post. The map changes less often than the feed, and more usefully. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nThe strongest reader is not the person with the most tabs open. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-sorcha-alerts",
+      "title": "Sorcha shuts six alerts before moving the number",
+      "tags": [
+        "decision_point",
+        "political",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "political risk",
+        "audience": "an analyst updating an election forecast",
+        "stakes": "whether headline volume overwhelms the prior",
+        "format": "decision_point",
+        "requiredBeat": "she checks the existing probability before reacting to alerts"
+      },
+      "scenario": "Sorcha silences six phone alerts at 6:08 a.m. in her apartment kitchen, oatmeal steaming beside the poll tracker. Every headline says the debate changed everything. Yesterday her forecast gave the challenger 42 percent, built from turnout, money, and state polling. The first snap poll has a tiny sample. Her thumb is already on the forecast cell. She has to decide whether the noise of now deserves a real move.",
+      "whatToDo": "Read the prior forecast first, then inspect the sample and direction of the new poll. Move the number only if the evidence is strong enough.",
+      "whyItMatters": "Fresh information gets too much power when it arrives loudly. The prior keeps the forecast anchored while new facts earn their weight."
+    },
+    {
+      "exampleId": "ch07-ex02-emiliano-port-rumor",
+      "title": "Emiliano waits for customs data after the port rumor",
+      "tags": [
+        "scene",
+        "supply",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "supply chain",
+        "audience": "a planner updating a shipping-delay forecast",
+        "stakes": "whether a viral rumor moves inventory plans too far",
+        "format": "scene",
+        "requiredBeat": "he waits for slower official data before a large update"
+      },
+      "scenario": "Emiliano holds a printed container list at 4:44 p.m. in the warehouse cage, forklift beeps cutting through the aisle. A viral post says the port strike has already shut Pier 6. The customs feed is still loading on the old desktop. Sales wants him to reroute three trucks before five. He writes rumor on the whiteboard, not fact, and watches the spinning cursor with his hand on the phone.",
+      "whatToDo": "Log the rumor but wait for customs or carrier confirmation before rerouting. If time forces action, make a small hedge, not a full plan change.",
+      "whyItMatters": "A rumor can be early signal or pure noise. Labeling it keeps the team from treating speed as truth."
+    },
+    {
+      "exampleId": "ch07-ex03-binta-radio",
+      "title": "Binta checks turnout history before the radio call",
+      "tags": [
+        "vignette",
+        "local",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "local elections",
+        "audience": "a campaign volunteer estimating turnout",
+        "stakes": "whether a vivid radio report beats the base rate",
+        "format": "vignette",
+        "requiredBeat": "she weighs one report against long turnout history"
+      },
+      "scenario": "Binta sits in the campaign van at 7:19 a.m., clipboard on her knees, while local radio says youth turnout is surging at East High. The announcer sounds thrilled. Binta flips to ten years of precinct turnout in a plastic sleeve. East High always looks busy early because the bus stop is in the same parking lot. She marks the report as watch, not shift, and sends one volunteer to verify the line.",
+      "whatToDo": "Compare the report with the precinct's normal pattern. Verify with one observer before changing the turnout forecast.",
+      "whyItMatters": "A vivid local report matters only against what usually happens there. The base rate prevents one busy parking lot from becoming a whole story."
+    },
+    {
+      "exampleId": "ch07-ex04-haruto-three-headlines",
+      "title": "Haruto writes one fact under three crisis headlines",
+      "tags": [
+        "reflection",
+        "currency",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "currency markets",
+        "audience": "an analyst sorting market headlines",
+        "stakes": "whether repeated framing feels like repeated evidence",
+        "format": "reflection",
+        "requiredBeat": "he identifies the single new fact hiding under many headlines"
+      },
+      "scenario": "Haruto stands at the espresso machine at 12:37 p.m., three crisis headlines stacked on his phone. Different outlets, same cabinet resignation, each written hotter than the last. His yen forecast sits at 58 percent on the terminal. He opens his notebook and writes one new fact: finance minister resigned. Not three facts. One. The number moves to 60, and he feels almost foolish for not doing more.",
+      "whatToDo": "Count the distinct facts, not the number of headlines. Update once for the resignation, then wait for evidence about policy or replacement.",
+      "whyItMatters": "Many reports can echo one event. Treating echoes as separate signals makes the forecast chase volume instead of information."
+    },
+    {
+      "exampleId": "ch07-ex05-galit-satellite",
+      "title": "Galit waits for the satellite pass after the smoke posts",
+      "tags": [
+        "predict_reveal",
+        "wildfire",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "wildfire planning",
+        "audience": "a planner updating fire-spread odds",
+        "stakes": "whether social posts beat verified imagery",
+        "format": "predict_reveal",
+        "requiredBeat": "she waits for satellite data and avoids an overreaction"
+      },
+      "scenario": "Galit pins a fire perimeter map to the trailer wall at 8:26 p.m., ash speckling the tape. Social posts from the ridge show orange sky and the word exploding. The satellite pass is due in fourteen minutes. A mayor wants evacuation odds now. Galit holds at 35 percent for the west road closure and says she will update after the pass. At 8:43, the imagery shows smoke blown sideways, not flame crossing the road. The odds move only to 38.",
+      "whatToDo": "Hold the estimate until the scheduled satellite check unless ground crews report direct flame movement. Then update by what the image actually shows.",
+      "whyItMatters": "Social posts are fast and emotional. Verified imagery may be slower, but it tells the planner whether the risk itself changed."
+    },
+    {
+      "exampleId": "ch07-ex06-cato-tabs",
+      "title": "Cato closes nine tabs after the earnings leak",
+      "tags": [
+        "postmortem",
+        "equity",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "equity research",
+        "audience": "an analyst reviewing an overupdate after a leak",
+        "stakes": "whether news volume caused a bad forecast swing",
+        "format": "postmortem",
+        "requiredBeat": "he finds he counted repeated leaks as separate evidence"
+      },
+      "scenario": "Cato sits under the office stairwell light at 10:51 p.m., laptop balanced on a recycling bin, reviewing why his earnings forecast swung from 55 to 20 in one afternoon. Nine tabs are still open. Seven quote the same leaked supplier email. He had treated each headline as a new blow. The final report missed by a mile. Cato has to decide what tomorrow's update checklist will require.",
+      "whatToDo": "Group reports by source before moving odds. Count the supplier email once, then ask what independent fact would justify another move.",
+      "whyItMatters": "The miss came from counting echoes as evidence. A source check keeps future updates from multiplying the same fact."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch07-q01",
+        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a news-driven update but sees no written odds or date. Which move best fits the skill of filtering signal from noise?",
+        "choices": [
+          "Write a dated probability and ask what result would count as a miss.",
+          "Trust the confident speaker because clear delivery usually means better judgment.",
+          "Wait for perfect proof and refuse to act until uncertainty disappears."
+        ],
+        "correctIndex": 0,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch07-q02",
+        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a news-driven update. Which response keeps the estimate tied to evidence?",
+        "choices": [
+          "Collect more fresh stories until one of them feels complete enough to use.",
+          "Start with the base rate, then list what this case adds or subtracts.",
+          "Ignore the story completely because single cases never teach anything."
+        ],
+        "correctIndex": 1,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q03",
+        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a news-driven update. Which question should come first?",
+        "choices": [
+          "Pick the claim that makes the next step feel least awkward.",
+          "Ask which claim is more inspiring and use that as the guide.",
+          "Ask what record, sample, or past rate each claim can point to."
+        ],
+        "correctIndex": 2,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q04",
+        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a news-driven update has changed for good. Which move improves the forecast?",
+        "choices": [
+          "Compare the surprise with a longer record before moving the odds.",
+          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
+          "Hold the old forecast unchanged so the record looks steady."
+        ],
+        "correctIndex": 0,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q05",
+        "prompt": "A founder on a Monday investor call wants to sound certain about a news-driven update, but the record is thin. Which line is strongest?",
+        "choices": [
+          "Use firm language so the room feels less anxious about the unknowns.",
+          "Give a range, name the unknowns, and promise a date for checking it.",
+          "Hide the range inside a slogan that sounds more decisive."
+        ],
+        "correctIndex": 1,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch07-q06",
+        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a news-driven update. Which update is sized best?",
+        "choices": [
+          "Jump to the new extreme so nobody can accuse the plan of being slow.",
+          "Move nothing because any update before the final outcome is premature.",
+          "Move the number a little unless the new signal is strong and direct."
+        ],
+        "correctIndex": 2,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q07",
+        "prompt": "A student reviewing a missed prediction about a news-driven update wants to learn without protecting ego. Which action helps most?",
+        "choices": [
+          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
+          "Rewrite the old prediction in softer words before saving it.",
+          "Blame the outcome on luck and skip the written review."
+        ],
+        "correctIndex": 0,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q08",
+        "prompt": "A team is split over a news-driven update, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "choices": [
+          "Let the senior person speak last and call that alignment.",
+          "Have each person write private odds first, then compare reasons aloud.",
+          "Vote immediately so disagreement does not slow the meeting."
+        ],
+        "correctIndex": 1,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q09",
+        "prompt": "Someone making a three-month plan for a news-driven update wants to avoid confident blur. Which plan creates the best feedback?",
+        "choices": [
+          "Keep the plan broad so later outcomes cannot embarrass anyone.",
+          "Make one large forecast and check it only after the whole period ends.",
+          "Split the plan into smaller forecasts with dates for checking each one."
+        ],
+        "correctIndex": 2,
+        "explanation": "More information helps only when it changes the estimate for a good reason. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch07-rc01",
+      "front": "You hear a confident claim about a news-driven update. What do you ask before trusting it?",
+      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-rc02",
+      "front": "A fresh story makes your estimate feel wrong. How should you update?",
+      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-rc03",
+      "front": "A team wants one bold answer. What smaller move protects learning?",
+      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-rc04",
+      "front": "A miss is embarrassing. What should the review preserve?",
+      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is deciding which new information deserves to move the number and which should be logged without a move. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a work meeting turns on a news-driven update, then write one dated probability on the agenda and name the result that would prove it wrong."
+      },
+      {
+        "context": "health",
+        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+      },
+      {
+        "context": "personal",
+        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a news-driven update with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
+    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+  },
+  "memorableLines": [
+    {
+      "text": "An alert is not evidence until it changes what a careful prior would expect.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "Noise feels urgent because it arrives dressed as now.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "The strongest reader is not the person with the most tabs open.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    }
+  ]
+}

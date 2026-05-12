@@ -1,0 +1,319 @@
+{
+  "chapterId": "competing-against-luck-ch05",
+  "number": 5,
+  "title": "How to Hear What Your Customers Don't Say",
+  "readingTimeMinutes": 11,
+  "hook": "Anja hears a mattress return in the pause before the receipt prints.",
+  "counterintuition": "Most teams assume the customer quote is the insight. But actually the quote is evidence to interpret against behavior, hesitation, habit, and anxiety.",
+  "tryThisNow": "Replay one recent complaint. Mark one push, one pull, one habit that kept the old way alive, and one anxiety that made change feel risky.",
+  "keyTakeaway": "Strong customer listening treats words as evidence, then checks them against push, pull, habit, anxiety, and the visible tradeoffs in the buyer's situation.",
+  "breakdown": {
+    "fastRead": "Anja hears the customer say the mattress is too firm, but the pause before the receipt prints tells more. He asks whether pickup can happen after his partner leaves for work. The stated complaint is firmness. The job includes avoiding another bedroom argument. Listening for jobs is not transcription. It is interpretation tied to evidence. Watch what pushes the buyer away, what pulls a new option close, what habit holds the old way in place, and what anxiety makes switching feel dangerous.",
+    "deepRead": "Customers often speak in the language available to them. They ask for a feature, blame a price, praise convenience, or offer a neat summary after the decision has already happened. Those words matter. They are just not enough. The listener has to reconstruct the forces around the switch.\n\nAt 11:19 a.m., Riko interviews a mother beside a folded stroller in a store aisle. She says she wants one that is lighter. Then she keeps describing subway stairs, a sleeping toddler, and the fear of strangers watching while she blocks the turnstile. The literal request is weight. The deeper job includes getting through public space without feeling trapped or judged.\n\nThe listening move is disciplined. Capture the quote, then attach it to behavior. What pushed the buyer away from the old answer. What pulled the new one into consideration. What habit makes the old answer hard to abandon. What anxiety makes the new answer risky. The limit is evidence. Do not invent a hidden story just because it sounds rich. A good interpretation can point to a scene, a tradeoff, and an action that confirms it.",
+    "fullRead": "Customer listening fails when it treats words as either perfect truth or useless noise. Words are evidence. They need context. A buyer may say the mattress is too firm because firmness is the acceptable complaint. The less acceptable truth may be that the bed has become a nightly argument. A buyer may say an app is too expensive because price is easy to name. The harder truth may be fear of moving records, admitting confusion, or losing a habit that still feels safe.\n\nThe four-force lens gives listening a structure. Push is the dissatisfaction with the current situation. Pull is the attraction of a new possibility. Habit is the gravity of what the buyer already knows how to do. Anxiety is the worry that the switch will create a new problem. Real decisions often sit where those forces collide. A strong interview does not ask the customer to label them. It listens for stories, pauses, substitutions, delays, and contradictions that reveal them.\n\nMelia, coding cancellation notes at 4:33 p.m., may find that users praise the tool and still quit during setup. If she only records positive sentiment, the team feels safe. If she listens for anxiety, she hears the repeated fear: what happens if the import breaks payroll on Friday. The words and the behavior diverge because the forces are fighting each other.\n\nThis kind of listening also protects teams from overvaluing articulate customers. The person who explains a choice cleanly may be giving a polished after-story. The quiet buyer who kept a receipt, delayed a switch for six months, and built a spreadsheet around a missing feature may show more causal evidence. The job is often clearer in what people do around the decision than in the sentence they use to justify it.\n\nThe objection is that interpretation can become mind reading. It can. The safeguard is visible evidence. A claim about anxiety should connect to a delayed purchase, a question asked twice, a fallback kept nearby, or a refusal to switch when the new option seems better. A claim about habit should connect to a routine the buyer protects. The listener earns the interpretation by showing where it appears in the world.\n\nWhen listening works, the team stops asking customers to be theorists of their own behavior. It lets them be witnesses. The team then does the harder work: connect words, actions, and forces until the progress being hired becomes specific enough to design for."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch05-ex01",
+      "title": "Anja hears the mattress return before the receipt prints",
+      "tags": [
+        "retail",
+        "returns",
+        "anxiety"
+      ],
+      "planSpec": {
+        "domain": "home goods",
+        "audience": "customer researchers",
+        "stakes": "literal complaint hides relationship pressure",
+        "format": "scene",
+        "requiredBeat": "she hears push and anxiety in a return pause"
+      },
+      "scenario": "Anja feeds the receipt into the return printer at 10:08 a.m. in the mattress store, the paper stuttering under the counter. The customer says the queen is too firm. Then he asks, quietly, whether pickup can happen after 8:30, when his partner leaves for work. His thumb rubs the receipt corner flat. Anja faces a choice: log firmness as the reason, or ask what made the bed a problem in the room, not just under his back.",
+      "whatToDo": "Record the stated complaint, then listen for the forces around it. Ask what pushed the return, what anxiety surrounds pickup, and what the old mattress still lets him avoid.",
+      "whyItMatters": "The quote is not false, but it is incomplete. The job may involve ending a conflict with less embarrassment, and that affects service design."
+    },
+    {
+      "exampleId": "competing-against-luck-ch05-ex02",
+      "title": "Riko asks about the turnstile, not the stroller weight",
+      "tags": [
+        "parenting",
+        "interview",
+        "public space"
+      ],
+      "planSpec": {
+        "domain": "baby gear",
+        "audience": "design teams",
+        "stakes": "feature request hides situational anxiety",
+        "format": "dialogue",
+        "requiredBeat": "he hears the job inside a weight request"
+      },
+      "scenario": "Riko kneels beside a folded stroller at 11:19 a.m. in aisle six, one wheel squeaking as he turns it. \"So lighter is the main thing?\" he asks. Suri nods, then acts out subway stairs with one hand and a sleeping toddler with the other. \"People stare when I get stuck,\" she says. Riko stops writing weight in the top box. His next note can chase ounces, or it can reconstruct the turnstile moment before design starts.",
+      "whatToDo": "Move from attribute to circumstance. Ask Suri to replay the last time she got stuck, including the child, the stairs, the crowd, and the feeling of being watched.",
+      "whyItMatters": "The stroller is hired inside a public performance. Reducing ounces helps only if it also helps her pass through the city without feeling trapped."
+    },
+    {
+      "exampleId": "competing-against-luck-ch05-ex03",
+      "title": "Melia codes the praise that still ends in cancellation",
+      "tags": [
+        "SaaS",
+        "cancellation",
+        "forces"
+      ],
+      "planSpec": {
+        "domain": "payroll software",
+        "audience": "product teams",
+        "stakes": "sentiment coding misses switch anxiety",
+        "format": "decision_point",
+        "requiredBeat": "she must code praise against behavior"
+      },
+      "scenario": "Melia highlights cancellation note thirty-seven at 4:33 p.m., blue ink glowing on her monitor in the support pod. \"Loved the reports,\" the customer wrote, then canceled during data import. Three other notes praise the product and mention Friday payroll in the same breath. Her tagging menu is open to positive sentiment. She must decide whether praise means satisfaction or whether anxiety about breaking payroll is louder than the pull of better reports.",
+      "whatToDo": "Code the force conflict, not just sentiment. Tag pull toward better reports and anxiety around payroll risk, then inspect where setup makes that fear spike.",
+      "whyItMatters": "Customers can like the new option and still refuse the switch. Listening has to explain behavior, not simply collect favorable language."
+    },
+    {
+      "exampleId": "competing-against-luck-ch05-ex04",
+      "title": "Tobin predicts price, then the dentist points to habit",
+      "tags": [
+        "healthcare",
+        "predict reveal",
+        "workflow"
+      ],
+      "planSpec": {
+        "domain": "dental software",
+        "audience": "B2B sales",
+        "stakes": "price objection masks old workflow habit",
+        "format": "predict_reveal",
+        "requiredBeat": "his prediction about rejection fails when habit appears"
+      },
+      "scenario": "Tobin waits at 7:51 a.m. in the dental office sterilization alcove, demo laptop balanced on a tray cover. He predicts Dr. Voss will reject the software over price. Instead, she points to a laminated paper route sheet taped by the autoclave. \"New hygienists know this by lunch,\" she says. The reveal lands before the demo starts. The old workflow is not loved, but it is teachable. Tobin needs to choose between discounting and reducing the fear of losing that habit.",
+      "whatToDo": "Treat the route sheet as habit evidence. Show how onboarding, handoffs, and sterilization checks survive the switch before changing price.",
+      "whyItMatters": "The objection may sound financial while the force is operational anxiety. A discount will not beat a paper system people trust under pressure."
+    },
+    {
+      "exampleId": "competing-against-luck-ch05-ex05",
+      "title": "Farai sees the meal-prep offer lose to Sunday habit",
+      "tags": [
+        "food",
+        "postmortem",
+        "habit"
+      ],
+      "planSpec": {
+        "domain": "meal prep",
+        "audience": "founders",
+        "stakes": "new offer ignored old routine strength",
+        "format": "postmortem",
+        "requiredBeat": "he sees habit holding the old way alive"
+      },
+      "scenario": "Farai spreads failed launch notes across a prep table at 8:27 p.m., garlic smell still hanging over the commissary sink. Customers said they wanted healthier lunches, and the bowls were good. Yet orders died after week two. Interviews mention Sunday chopping with a sister, labeled containers, and the small pride of lining lunches in the fridge. The postmortem is not demand denial. The new service asked buyers to give up a habit that already made them feel capable.",
+      "whatToDo": "Map the old routine before replacing it. Identify which part of Sunday prep gives pride, control, or connection, then design around that protected habit.",
+      "whyItMatters": "A better offering can lose when it threatens a routine doing emotional work. Listening must catch what the buyer does not want to surrender."
+    },
+    {
+      "exampleId": "competing-against-luck-ch05-ex06",
+      "title": "Juno changes the sales call after the import question",
+      "tags": [
+        "sales",
+        "before after",
+        "switching"
+      ],
+      "planSpec": {
+        "domain": "sales process",
+        "audience": "go-to-market teams",
+        "stakes": "hearing anxiety changes call structure",
+        "format": "before_after",
+        "requiredBeat": "she changes her call after hearing anxiety and habit"
+      },
+      "scenario": "Juno clicks into the 2:06 p.m. sales call with a neat slide on analytics. Before, she led with the dashboard and waited for excitement. After hearing three prospects ask, \"What happens to our old files?\" before slide four, she opens with a migration map, a rollback plan, and a screenshot of last year's folders intact. The call changes because she finally hears anxiety and habit before pull.",
+      "whatToDo": "Lead with the switch forces. Show what happens to the old files, who checks the migration, and how rollback works before selling the analytics upside.",
+      "whyItMatters": "The pull of a better dashboard cannot work until switching feels survivable. Anxiety and habit set the order of the conversation."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch05-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch05-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying hearing push, pull, habit, and anxiety behind customer language. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch05-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch05-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back listening for forces?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves listening for forces."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "Listening for jobs is not transcription.",
+      "location": "breakdown.fastRead",
+      "why": "It names the central listening shift."
+    },
+    {
+      "text": "Customers often speak in the language available to them.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why literal requests need context."
+    },
+    {
+      "text": "The listener earns the interpretation by showing where it appears in the world.",
+      "location": "breakdown.fullRead",
+      "why": "It guards against mind reading."
+    }
+  ]
+}

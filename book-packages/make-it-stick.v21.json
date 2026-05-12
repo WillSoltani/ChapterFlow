@@ -1,0 +1,2580 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "make-it-stick-v21-1778548154784",
+  "createdAt": "2026-05-12T01:09:14.784Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "make-it-stick",
+    "title": "Make It Stick",
+    "author": "Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel",
+    "categories": [
+      "Education",
+      "Productivity",
+      "Psychology",
+      "Personal Development"
+    ],
+    "tags": [
+      "learning-science",
+      "retrieval-practice",
+      "spaced-repetition",
+      "interleaving",
+      "metacognition",
+      "study-skills",
+      "skill-building"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "make-it-stick-ch01",
+      "number": 1,
+      "title": "Learning Is Misunderstood",
+      "readingTimeMinutes": 12,
+      "hook": "The highlighted page feels friendly until the notebook shuts and the idea has to walk alone.",
+      "counterintuition": "Most people assume a smooth study session is good evidence. The twist is that smoothness can come from visible cues, while rough recall may tell the truth sooner.",
+      "tryThisNow": "Close one set of notes for sixty seconds and write the three ideas you think you know best. Open the notes only after the blank page has shown what was real.",
+      "keyTakeaway": "Do not score learning by how smooth it feels while the answer is visible, score it by what memory can recover later and use when the setting changes.",
+      "breakdown": {
+        "fastRead": "Raisa pinches a laminated airway card at 5:38 a.m. in the Station 12 ambulance bay. Coffee sits on the bumper. The steps look obvious while she reads them. Then she flips the card facedown and the middle of the sequence goes foggy. That fog is useful. It tells her the card was doing part of the work.\n\nEasy review can feel like learning because recognition is easy. Strong learning shows up when the cue is gone. Close the notes, retrieve what you can, check the gaps, and repair them. The rougher minute gives a cleaner answer than the smooth reread.",
+        "deepRead": "Raisa pinches a laminated airway card at 5:38 a.m. in the Station 12 ambulance bay. The diesel heater clicks under the rig. Her exam is in twenty minutes, and the card makes every step feel close. When she turns it over, the easy feeling breaks. She can name the first step and the last step. The middle has gone soft.\n\nThat is the central trap. Recognition is not the same as recall. A page, slide, answer key, or repeated route can make knowledge feel available because the cue is still doing work. The learner feels fluent, but the fluency belongs partly to the room.\n\nBram sees the same thing at 4:20 p.m. beside pallet rack C7. His forklift trainees looked sharp while yellow tape marked the route. When the tape peeled up after lunch, two drivers missed the turn by the freezer doors. The route was not in their heads yet. It was on the floor.\n\nUse the harder check early. Ask memory to produce before the real test asks. Then check what was missing and repair it. The point is not to make study unpleasant. The point is to stop letting a visible cue take credit for learning.\n\nA smooth session can be a weak witness. A short recall attempt is a better one.",
+        "fullRead": "Raisa pinches a laminated airway card at 5:38 a.m. in the Station 12 ambulance bay. Coffee sits on the rear bumper, going cold in the paper cup. She has read the pediatric airway steps three times. Each pass feels calmer. The words look settled. Then she turns the card facedown on the bumper and tries to say the sequence out loud. Step one comes. Step two comes. Step three does not.\n\nThe failure feels small and rude. It is also the first honest result of the morning. A moment ago the card made the steps feel near. Now the missing step shows that nearness was not the same as access. The card was part of the memory system, and she had mistaken that support for mastery.\n\nThis is why comfortable study can mislead. Rereading, highlighting, and repeating one blocked drill can raise confidence fast because the material stays present. The learner recognizes the line, the spot on the page, the rhythm of the example. That recognition is real, but it is cheap evidence. It does not prove the idea can return later. It does not prove the learner can use it after a gap or in a new case.\n\nBram learns this at 4:20 p.m. beside pallet rack C7. His forklift trainees had followed the onboarding route cleanly all week. He thought the route was learned. Then a strip of yellow floor tape tore loose and curled against his boot. Without that cue, two drivers missed the freezer turn and one stopped under the wrong scanner. Bram looks at the tape and sees the problem. The room had been coaching them.\n\nThe better scorecard is delayed recall and flexible use. Close the notes. Change the order. Remove the arrows. Ask for an explanation without the screen. Then put the support back and fix the miss. The first attempt may feel worse, but it tells the truth sooner.\n\nInez hears the same lesson in the church choir room at 11:06 a.m. A teen vocalist can sing the practice playlist in order, but when Inez calls the bridge first, the melody falls apart. The singer did not know the song yet. She knew the path she had walked six times.\n\nThere is a limit. Harder does not always mean better. A confusing task with no feedback can waste effort. Useful difficulty has a job. It makes memory retrieve, compare, or repair. If the struggle does none of those things, it is just noise.\n\nSo keep the rule plain. When a study method feels smooth, ask what is making it smooth. If the answer is still visible, if the order has not changed, if the cue is taped to the floor, do not trust the feeling yet. Make memory carry the idea for a minute. Then check and repair.\n\nThe rougher minute gives a cleaner answer than the smooth reread."
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01-raisa-airway-card",
+          "title": "Raisa turns the airway card facedown on the bumper",
+          "tags": [
+            "decision_point",
+            "paramedic",
+            "recall"
+          ],
+          "planSpec": {
+            "domain": "paramedic skills check",
+            "audience": "learners who trust rereading because it feels calm",
+            "stakes": "whether a life-critical sequence survives without the laminated card",
+            "format": "decision_point",
+            "requiredBeat": "she must choose between rereading laminated steps or closing them and recalling the sequence before a skills check"
+          },
+          "scenario": "Raisa pinches a laminated airway card at 5:38 a.m. in the Station 12 ambulance bay, coffee cooling on the rear bumper. Her pediatric skills check starts in twenty minutes. The steps look obvious while she reads them. When she turns the card facedown, the middle of the sequence goes blank. Her thumb slides toward the card edge. She has to decide whether to reread until calm returns or say the sequence from memory and expose the miss now.",
+          "whatToDo": "Keep the card facedown, say the sequence out loud, mark the missing step, then check and repeat once more without looking. Let recall go first and review clean up second.",
+          "whyItMatters": "The card can make recognition feel like learning. A recall attempt shows whether the steps can stand without that support, which is the only version that matters in the rig."
+        },
+        {
+          "exampleId": "ch01-ex02-bram-floor-tape",
+          "title": "Bram finds the forklift route was on the floor",
+          "tags": [
+            "postmortem",
+            "training",
+            "cues"
+          ],
+          "planSpec": {
+            "domain": "warehouse onboarding",
+            "audience": "trainers whose sessions look smooth with aids still visible",
+            "stakes": "whether drivers can run the route when the floor cues disappear",
+            "format": "postmortem",
+            "requiredBeat": "he sees that trainees looked fluent only while the route arrows stayed taped to the floor"
+          },
+          "scenario": "Bram kneels beside pallet rack C7 at 4:20 p.m. on Thursday, a torn strip of yellow floor tape stuck to his shoe. At noon the forklift trainees looked perfect following the taped arrows to the freezer doors. After the tape curled loose, two drivers missed the turn and one stopped under the wrong scanner. Bram holds the tape in his fist and replays the morning. He must decide what the smooth practice actually proved.",
+          "whatToDo": "Write the postmortem around the cue, not the trainees. Retest the route tomorrow with arrows removed, then add spaced route recalls before anyone graduates.",
+          "whyItMatters": "The taped floor was carrying part of the skill. Removing it shows whether learning lives in the driver or in the training setup."
+        },
+        {
+          "exampleId": "ch01-ex03-inez-playlist-order",
+          "title": "Inez asks whether the song knows the singer back",
+          "tags": [
+            "dialogue",
+            "music",
+            "order"
+          ],
+          "planSpec": {
+            "domain": "choir rehearsal",
+            "audience": "people who confuse repeated order with flexible command",
+            "stakes": "whether a singer can enter anywhere in the song during performance",
+            "format": "dialogue",
+            "requiredBeat": "she asks whether the singer knows the song or only knows the order on the practice playlist"
+          },
+          "scenario": "Inez taps a pencil on the piano ledge at 11:06 a.m. in the church choir room, gray dust under her fingers. \"Start at the bridge,\" she says. Corbin, seventeen, stares at the hymnal. \"I always start from the track.\" Inez turns the playlist printout facedown. \"Then do you know the song, or do you know the road into the song?\" The radiator knocks twice. Corbin has to choose whether to restart from the top or find the bridge cold.",
+          "whatToDo": "Have Corbin enter from three random spots, miss openly, then check the score after each try. Break the playlist path so recall has to find the song itself.",
+          "whyItMatters": "A fixed order can carry the singer through practice. Random starts test whether the melody is available when the usual path is gone."
+        },
+        {
+          "exampleId": "ch01-ex04-kaito-sauce-station",
+          "title": "Kaito sees the mixed station survive dinner rush",
+          "tags": [
+            "predict_reveal",
+            "kitchen",
+            "practice"
+          ],
+          "planSpec": {
+            "domain": "restaurant prep training",
+            "audience": "coaches who like clean blocked drills",
+            "stakes": "whether cooks can choose the right sauce under rush conditions",
+            "format": "predict_reveal",
+            "requiredBeat": "he predicts repeated sauce practice will win, then service reveals the mixed station held better"
+          },
+          "scenario": "Kaito wipes vinegar steam from his glasses at 9:47 p.m. beside the expo rail at Ravelin. Before service he predicted the apprentice who repeated bearnaise ten times would beat the one who rotated bearnaise, romesco, and pan jus. Now the tickets are spitting in mixed order, and the repeater keeps reaching for tarragon on steak plates. The rotator is slower but right. Kaito has to decide what tonight proved about smooth practice.",
+          "whatToDo": "Keep some repetition, but add mixed tickets before the shift ends. Ask cooks to name the sauce from the plate, not from the order of the drill.",
+          "whyItMatters": "Blocked practice can make one move feel automatic while hiding selection. Dinner rush tests whether the cook can choose, not just repeat."
+        },
+        {
+          "exampleId": "ch01-ex05-marisol-bay-nine-cards",
+          "title": "Marisol turns the grammar cards into a blank page",
+          "tags": [
+            "vignette",
+            "language",
+            "calibration"
+          ],
+          "planSpec": {
+            "domain": "adult language study",
+            "audience": "self-learners who trust familiar flashcards",
+            "stakes": "whether familiar cards become usable sentences later",
+            "format": "vignette",
+            "requiredBeat": "her familiar flashcards feel easy until she turns them over and tries to write without cues"
+          },
+          "scenario": "Marisol balances blue grammar cards on her knee at 6:18 a.m. at bus Bay 9, brake hiss rolling under the shelter roof. The cards feel friendly because she has seen them every commute this week. Then she flips the stack over and tries to write three past-tense sentences on a pharmacy receipt. The first line is fine. The second has no verb. The third never starts. The bus sighs at the curb while her confidence changes shape.",
+          "whatToDo": "Turn a few cards over each morning and produce fresh sentences before checking. Use the receipt, not the card face, as the first scorecard.",
+          "whyItMatters": "Familiar cards can reward recognition. Writing without cues shows whether Marisol can use the pattern when life does not hand her the prompt."
+        },
+        {
+          "exampleId": "ch01-ex06-henrik-lane-five",
+          "title": "Henrik stops timing only the smooth laps",
+          "tags": [
+            "before_after",
+            "sports",
+            "spacing"
+          ],
+          "planSpec": {
+            "domain": "youth swim coaching",
+            "audience": "coaches who reward smooth repetition inside one practice block",
+            "stakes": "whether swimmers remember race cues after a break and a changed set",
+            "format": "before_after",
+            "requiredBeat": "he moves from smooth same-stroke laps to delayed recall of race cues after dryland breaks"
+          },
+          "scenario": "Henrik stacks wet kickboards by lane five at 3:32 p.m. on Friday, chlorine sharp in his nose. Last month he praised swimmers for perfect backstroke cues after twenty straight laps. In meets, the cues vanished after a snack break and two heats of waiting. Today he stops the set, sends them to dryland bands for eight minutes, then calls each swimmer back to name the first cue before diving. The pool gets messier. The next meet gets cleaner.",
+          "whatToDo": "Judge the cue after a gap, not after twenty warm repeats. Build short delays and changed conditions into practice, then repair the cue that disappears.",
+          "whyItMatters": "Smooth laps inside one block can borrow from momentum. A delayed cue check shows whether the swimmer can recover the idea when the race interrupts it."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-q01",
+            "prompt": "A licensing student rereads the same statute until it feels easy, then fails to explain it without the page. What was the misleading signal?",
+            "choices": [
+              "The feeling of familiar reading while the statute stayed visible",
+              "The number of minutes spent at the desk",
+              "The fact that legal material is always too hard"
+            ],
+            "correctIndex": 0,
+            "explanation": "The easy feeling came from recognition with the text still present. A closed-page explanation would give better evidence of what the student could recover.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch01-q02",
+            "prompt": "A trainer wants to know if staff learned the evacuation route or only followed wall signs. What should she do?",
+            "choices": [
+              "Print larger signs for the next drill",
+              "Ask them to walk the route once with no signs and then repair misses",
+              "Cancel practice until everyone feels confident"
+            ],
+            "correctIndex": 1,
+            "explanation": "Removing the cue tests whether the route is in memory. Repair after the attempt keeps the test from becoming mere embarrassment.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q03",
+            "prompt": "A student says, \"My notes looked familiar, so I knew I was ready.\" Which response best fits the learning rule?",
+            "choices": [
+              "Familiarity is useful only if it is paired with highlighting",
+              "Familiarity proves readiness when it happens twice",
+              "Familiarity is weak evidence until recall works without cues"
+            ],
+            "correctIndex": 2,
+            "explanation": "Seeing the same notes again can raise confidence faster than memory. The stronger check is recall or use without the notes.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q04",
+            "prompt": "A piano student can play a piece only from the first measure. What practice change would expose the real gap?",
+            "choices": [
+              "Start from random measures and check the score after each attempt",
+              "Play the opening five times more slowly",
+              "Buy a cleaner copy of the sheet music"
+            ],
+            "correctIndex": 0,
+            "explanation": "Random starts remove the usual path and test flexible access. Slow repetition may help later, but it does not reveal whether the student can enter elsewhere.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q05",
+            "prompt": "Which practice result should carry the most weight?",
+            "choices": [
+              "A perfect run while every answer is on the screen",
+              "A later attempt that succeeds with the screen off",
+              "A confident feeling right after rereading"
+            ],
+            "correctIndex": 1,
+            "explanation": "Later success without cues is stronger evidence than smooth guided performance. It shows memory can produce rather than recognize.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch01-q06",
+            "prompt": "A learner tries a blank-page recall and misses half the ideas. What is the best next move?",
+            "choices": [
+              "Treat the miss as proof the method failed",
+              "Return only to rereading because it feels calmer",
+              "Check the source, repair the gaps, and recall again later"
+            ],
+            "correctIndex": 2,
+            "explanation": "The miss is useful because it identifies repair targets. Feedback and another attempt turn the rough check into learning.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q07",
+            "prompt": "A sales trainee handles objections well when cards arrive in the same order. On live calls, she freezes. What likely happened?",
+            "choices": [
+              "The ordered cards trained recognition of sequence more than flexible choice",
+              "The live calls were unfair because practice should always match exactly",
+              "She needed less feedback during practice"
+            ],
+            "correctIndex": 0,
+            "explanation": "The fixed sequence was a cue. Live calls removed it, so the trainee needed practice that required choosing among options.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch01-q08",
+            "prompt": "Which study plan best uses the stronger scorecard?",
+            "choices": [
+              "Reread until the page feels smooth, then stop",
+              "Recall from memory, check the gaps, then retest after a delay",
+              "Highlight every sentence that seems important"
+            ],
+            "correctIndex": 1,
+            "explanation": "This plan scores learning by production after support is removed, then uses review to repair what recall exposed.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q09",
+            "prompt": "A coach says practice should be hard because hard is always better. What is the flaw?",
+            "choices": [
+              "Hard practice is never useful for beginners",
+              "Easy practice always produces the longest retention",
+              "Hard practice helps only when it forces useful recall, comparison, or repair"
+            ],
+            "correctIndex": 2,
+            "explanation": "Difficulty needs a job. If it does not make memory retrieve, choose, or repair, it may just waste effort.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch01-rc01",
+          "front": "Your notes feel easy after three rereads. What should you ask memory to do next?",
+          "back": "Close the notes and retrieve the main ideas from scratch. Then check the misses. The aim is to find out what memory can produce without the page doing part of the work.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch01-rc02",
+          "front": "A team performs well while a checklist is projected. What does that performance fail to prove?",
+          "back": "It fails to prove the team can recall or use the steps when the checklist is gone. Remove the cue briefly, watch what breaks, then repair the missing pieces.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-rc03",
+          "front": "When is a rough study minute more useful than a smooth one?",
+          "back": "When the roughness comes from recall, comparison, or repair. That kind of effort shows what is stable and what is only familiar while support is nearby.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-rc04",
+          "front": "A learner misses several items during recall and wants to quit. What should the miss become?",
+          "back": "A repair list. The learner should check the source, fix the missing pieces, and try another recall after a short gap. The miss is information, not a verdict.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is separating the feeling of smooth study from proof of learning. Use short recall checks to see what memory can produce without visible support, then repair what fails.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a training demo looks smooth while prompts are visible, then hide the prompts for one short round and ask people to run the steps from memory."
+          },
+          {
+            "context": "health",
+            "plan": "If you reread rehab or medication instructions and feel sure, then close the sheet and say the steps out loud before you count them as learned."
+          },
+          {
+            "context": "personal",
+            "plan": "If a language app streak feels easy, then write three fresh sentences without looking before you start the next lesson."
+          },
+          {
+            "context": "relationships",
+            "plan": "If you assume you remember what someone asked of you, then repeat the request from memory and check it before promising the next step."
+          }
+        ],
+        "twentyFourHourChallenge": "Within the next 24 hours, pick one thing you planned to reread. Close it for sixty seconds, write what you can recover, check the gaps, and schedule one more recall tomorrow.",
+        "weeklyPractice": "For seven days, end one study or training session with a no-cue recall check. Track the gap between how ready you felt and what you could actually produce."
+      },
+      "memorableLines": [
+        {
+          "text": "The rougher minute gives a cleaner answer than the smooth reread.",
+          "location": "breakdown.fastRead",
+          "why": "It turns the main contrast into one plain test."
+        },
+        {
+          "text": "The route was not in their heads yet. It was on the floor.",
+          "location": "breakdown.deepRead",
+          "why": "The warehouse image makes hidden cues easy to see."
+        },
+        {
+          "text": "When a study method feels smooth, ask what is making it smooth.",
+          "location": "breakdown.fullRead",
+          "why": "It gives readers a useful question before they trust fluency."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch02",
+      "number": 2,
+      "title": "To Learn, Retrieve",
+      "readingTimeMinutes": 12,
+      "hook": "The blank card feels mean until it brings back an answer the page never had to prove.",
+      "counterintuition": "Most people treat quizzes as judgment after learning. The twist is that a small, low-stakes quiz can create learning by making memory produce and repair.",
+      "tryThisNow": "Write one question on a blank card, answer it without looking, then check the source and answer it again after a short break.",
+      "keyTakeaway": "Use retrieval before you feel ready: try to produce the answer, check the miss, repair it, and return later so memory learns to come back on demand.",
+      "breakdown": {
+        "fastRead": "Celia spreads damp index cards across a laundromat table at 6:12 a.m. The dryers thump behind her. Her EMT airway notes are in the tote at her feet, but she leaves them zipped and writes every step she can remember. The third card is ugly. That is the point.\n\nRetrieval is not a final exam in miniature. It is a learning move. Memory gets stronger when it has to produce, then gets corrected while the gap is fresh. Rereading can make an answer look familiar. Recall makes the answer work. Pull first, check second, repair third.",
+        "deepRead": "Celia spreads damp index cards across a laundromat table at 6:12 a.m. The orange dryer doors pulse behind her. Her EMT airway notes are close enough to reach, but she keeps the tote zipped. She writes the first step, pauses, crosses out a wrong dose, and keeps going.\n\nThat pause is doing work. A reread would have let her glide over the same line and feel calm. The blank card asks memory to produce. When memory produces, even imperfectly, it strengthens the path back to the idea. When memory fails, the failure points to a precise repair.\n\nNikhil learns it beside rack three at 2:09 a.m. His bakery trainer covers the oven code sheet with a floury towel and asks for the burn-off sequence. Nikhil groans. He wants one more look. Instead he says what he can, checks the sheet, and repeats the missed step after loading rye loaves. By dawn, the code is less like ink and more like a handle.\n\nThe move stays small. Do not turn every recall into a high-pressure event. Ask for one answer, one step, one explanation. Check it right away. Try again after a gap. The feeling may be rougher than reading, but the roughness has a job. It makes memory come back instead of merely nodding at what it sees.\n\nPull first, check second, repair third.\n\nBeata uses the same loop under the marble stair. She does not quiz herself on all six tour dates at once. She whispers two, checks one miss, walks to the coat room, and whispers them again. The loop is small enough to run before visitors arrive. That size matters. A recall habit that fits real life will beat a grand plan that never leaves the notebook.",
+        "fullRead": "Celia spreads damp index cards across a laundromat table at 6:12 a.m. The dryers thump so hard the plastic table trembles. She has an EMT skills check at noon. Her airway notes are zipped in a canvas tote by her left foot. She could read them again and feel steadier. Instead she writes the first card from memory.\n\nThe first two steps come easily. The third step snags. Celia writes the wrong dose, sees that it looks wrong, and draws a box around the card. The moment feels worse than rereading. It is also better evidence. The blank card has found the place where the notes were still doing the work.\n\nRetrieval changes the job of studying. It asks memory to produce an answer before the answer is visible. That act does more than measure memory. It helps build the path back to the idea. A correct recall strengthens access. A failed recall, checked quickly, gives a clean repair target.\n\nNikhil sees the same thing at 2:09 a.m. beside rack three in the bakery. Flour is stuck in the crease of his wrist. The oven code sheet hangs above the proofer. His trainer covers it with a towel and asks for the burn-off sequence. Nikhil laughs because the answer was easy when the sheet was uncovered. Now he has to pull it from his own head. He misses one step, checks it, loads rye loaves, then says the sequence again before the timer rings.\n\nThis is why low-stakes recall matters. The stakes stay low so the mind can work. A harsh test with no repair may only teach dread. A tiny retrieval attempt with feedback teaches memory where to return.\n\nRowena discovers the cost of skipping this move in booth 18 at 5:15 p.m. Her call-center trainees could follow a refund script while it sat on the screen. On the first solo calls, they froze when customers skipped the opening line. The script had been visible too long. Nobody had practiced producing it from memory, in pieces, with correction.\n\nA good retrieval loop is plain: ask, answer, check, fix, return. The first answer can be short. The check should be fast. The return should come after a gap long enough to make memory work again. That gap is where the learning starts to hold.\n\nUse retrieval before you feel ready. Waiting until you feel ready often means waiting until the page has made you comfortable. The blank card is less polite, and more useful.\n\nPull first, check second, repair third.\n\nDima uses the same rule in room 2B with a cracked metronome on the amp. He used to play the chord change first and let students copy. Now he plays once, turns his chair away, and asks for the change from memory. One wrong finger gets corrected. Five minutes later, the student tries again after tuning. The lesson sounds less polished, but the hand has begun to know where to go.\n\nKeep the scale humane. Retrieval works best when it is frequent enough to repeat and small enough to survive the day. A single blank card, one hidden code sheet, one cold chord change, one whispered date. Pull, check, repair, return. That is the engine."
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01-celia-index-cards",
+          "title": "Celia leaves the EMT notes zipped in the tote",
+          "tags": [
+            "decision_point",
+            "retrieval",
+            "EMT"
+          ],
+          "planSpec": {
+            "domain": "EMT certification practice",
+            "audience": "learners tempted to reread before testing themselves",
+            "stakes": "whether emergency steps can be produced without notes",
+            "format": "decision_point",
+            "requiredBeat": "she must choose between rereading and blank-card recall before a skills check"
+          },
+          "scenario": "Celia spreads damp index cards across a laundromat folding table at 6:12 a.m., lint stuck to her black EMT pants. Her airway protocol notes are zipped in the tote by her foot. The dryers thump while she writes the first step from memory. The third card goes blank and her hand drops toward the zipper. She has to decide whether to look now or let the blank card show the gap before noon skills check.",
+          "whatToDo": "Keep the tote closed for one full attempt. Circle the missing step, check it after the attempt, then answer the same card again after the next dryer cycle.",
+          "whyItMatters": "The recall attempt is the learning event. It makes the weak step visible and gives Celia a precise place to repair before the skill has to run without paper."
+        },
+        {
+          "exampleId": "ch02-ex02-nikhil-oven-codes",
+          "title": "Nikhil says the oven code through flour and steam",
+          "tags": [
+            "dialogue",
+            "bakery",
+            "feedback"
+          ],
+          "planSpec": {
+            "domain": "commercial bakery training",
+            "audience": "workers learning procedural codes",
+            "stakes": "whether oven safety steps return during a night shift",
+            "format": "dialogue",
+            "requiredBeat": "the trainer covers the code sheet and makes him retrieve the burn-off sequence"
+          },
+          "scenario": "Nikhil wipes flour from his wrist at 2:09 a.m. beside rack three, the proofer breathing warm air into the aisle. \"One more look at the oven sheet,\" he says. Mara drops a towel over the laminated codes. \"Say the burn-off sequence first.\" Nikhil misses the vent step and winces. \"Good,\" Mara says, lifting the towel. \"Now fix that one and tell me again before the rye comes out.\" The timer blinks 7:00.",
+          "whatToDo": "Retrieve the sequence before looking, then use the sheet only for the missed step. Repeat after a real work interval so recall has to return under shift conditions.",
+          "whyItMatters": "The covered sheet turns a familiar code into producible knowledge. Feedback keeps the miss from becoming frustration and makes it a repair target."
+        },
+        {
+          "exampleId": "ch02-ex03-rowena-booth-eighteen",
+          "title": "Rowena hears the refund script vanish on live calls",
+          "tags": [
+            "postmortem",
+            "call center",
+            "scripts"
+          ],
+          "planSpec": {
+            "domain": "customer support onboarding",
+            "audience": "trainers who mistake guided script reading for learning",
+            "stakes": "whether trainees can handle calls when customers break the script",
+            "format": "postmortem",
+            "requiredBeat": "she sees the session never forced employees to retrieve the steps on their own"
+          },
+          "scenario": "Rowena sits in booth 18 at 5:15 p.m., headset foam warm against her cheek, listening to the third refund call fall apart. In training, the script sat open in blue boxes and everyone sounded crisp. On live calls, the first angry customer skipped the greeting and the steps disappeared. Rowena opens the training deck and sees the flaw at once. The script was always visible. She must decide what tomorrow's retraining should test.",
+          "whatToDo": "Break the refund flow into short recall prompts, hide the script for the first answer, then show it for correction and a second try.",
+          "whyItMatters": "If the script only works while visible, it is not ready for a customer. Retrieval turns the flow into something agents can produce when the call changes."
+        },
+        {
+          "exampleId": "ch02-ex04-soren-anatomy-pins",
+          "title": "Soren learns the blank tray beats the glowing atlas",
+          "tags": [
+            "predict_reveal",
+            "medical",
+            "self-test"
+          ],
+          "planSpec": {
+            "domain": "medical anatomy lab",
+            "audience": "students who prefer polished review tools",
+            "stakes": "whether structures can be identified cold under exam pressure",
+            "format": "predict_reveal",
+            "requiredBeat": "he predicts atlas review will beat recall with pins, then the cold tray proves otherwise"
+          },
+          "scenario": "Soren stands in lab bay B at 10:44 p.m., blue anatomy pins lined in a kidney dish and formalin sharp in his throat. He predicts twenty more minutes with the glowing atlas will beat the ugly self-test tray. His partner covers the labels and points. Soren misses two branches, checks them, and tries again after cleaning forceps. On Friday, the cold tray returns. The atlas group squints. Soren names the branches before the proctor moves on.",
+          "whatToDo": "Use the blank tray now, even when it feels worse. Name each structure, check misses, and revisit the missed pins after another task.",
+          "whyItMatters": "The atlas keeps recognition close. The covered tray builds the act of bringing the structure back when no label helps."
+        },
+        {
+          "exampleId": "ch02-ex05-beata-marble-stair",
+          "title": "Beata whispers the dates before the tour doors open",
+          "tags": [
+            "vignette",
+            "museum",
+            "recall"
+          ],
+          "planSpec": {
+            "domain": "museum tour preparation",
+            "audience": "presenters who over-rely on notes",
+            "stakes": "whether key dates return in front of visitors",
+            "format": "vignette",
+            "requiredBeat": "she recalls dates from memory before checking the cue card"
+          },
+          "scenario": "Beata stands under the marble stair at 8:31 a.m., visitor stickers stacked like candy in her palm. The museum opens in nine minutes. Her tour card lists six dates, but she turns it against her sleeve and whispers them from memory while the floor polisher hums in the next gallery. She misses the acquisition year, checks it, then whispers the full set again while walking to the coat room. The card goes into her pocket, not her hand.",
+          "whatToDo": "Recall the dates before the visitors arrive, check only the miss, and repeat the whole set once while moving through the actual route.",
+          "whyItMatters": "The pocketed card stops Beata from borrowing confidence from print. The whispered recall gives each date a path back during the tour."
+        },
+        {
+          "exampleId": "ch02-ex06-dima-room-two-b",
+          "title": "Dima changes the lesson from replay to recall",
+          "tags": [
+            "before_after",
+            "music",
+            "practice"
+          ],
+          "planSpec": {
+            "domain": "guitar instruction",
+            "audience": "teachers who let students copy demonstrations too long",
+            "stakes": "whether a chord change survives after the demonstration stops",
+            "format": "before_after",
+            "requiredBeat": "he moves from replaying demonstrations to retrieve, check, and retry"
+          },
+          "scenario": "Dima sits in room 2B at 4:06 p.m., a cracked metronome clicking on the amp. For months he played the chord change first and watched students copy it cleanly. They forgot it by next week. Today he plays once, turns his chair away, and asks Lark to finger the change from memory. She misses the second finger, checks his hand, and tries again after tuning. The lesson sounds rougher. The next Tuesday sounds less borrowed.",
+          "whatToDo": "Demonstrate briefly, hide the model, ask for recall, then correct one finger and return after a few minutes. Keep the loop small and repeatable.",
+          "whyItMatters": "Copying can keep the model in charge. Retrieval makes the student rebuild the move so next week starts from memory, not from Dima's hand."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-q01",
+            "prompt": "A nurse reviews a medication sequence with the chart open. What would turn review into retrieval practice?",
+            "choices": [
+              "Cover the chart, say the sequence, then check misses",
+              "Read the chart until it feels familiar",
+              "Copy the chart in neater handwriting"
+            ],
+            "correctIndex": 0,
+            "explanation": "Covering the chart makes memory produce. Checking afterward repairs the miss while it is fresh.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q02",
+            "prompt": "Why can a missed flashcard help learning?",
+            "choices": [
+              "It proves the learner should stop testing",
+              "It identifies a precise target for feedback and another attempt",
+              "It makes the card less important later"
+            ],
+            "correctIndex": 1,
+            "explanation": "The miss matters when it is followed by correction. It points to the gap that passive review may hide.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch02-q03",
+            "prompt": "A team leader uses weekly low-pressure quizzes during training. What is the main reason this can work?",
+            "choices": [
+              "Scores make people compete harder",
+              "Quizzes replace all instruction",
+              "Retrieval strengthens access while feedback is still possible"
+            ],
+            "correctIndex": 2,
+            "explanation": "The quiz is useful because it asks memory to produce, then allows repair. The score is secondary.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q04",
+            "prompt": "Which plan best fits a retrieve-check-repair loop?",
+            "choices": [
+              "Answer from memory, compare with source, try missed items later",
+              "Read notes, highlight notes, reread highlights",
+              "Wait until the final exam to learn what failed"
+            ],
+            "correctIndex": 0,
+            "explanation": "The loop starts with production, checks accuracy, repairs gaps, and returns after a delay.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q05",
+            "prompt": "A trainee says retrieval feels worse than rereading, so it must be worse. What should you say?",
+            "choices": [
+              "Feeling worse proves the topic is impossible",
+              "Feeling worse can mean memory is doing the producing instead of the page",
+              "Feeling smooth is always the best sign"
+            ],
+            "correctIndex": 1,
+            "explanation": "Retrieval often feels harder because support is removed. That harder feeling can be useful when correction follows.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch02-q06",
+            "prompt": "A student repeatedly fails recall but never checks the answer. What is missing?",
+            "choices": [
+              "More pressure",
+              "A longer highlighter session",
+              "A feedback and repair step"
+            ],
+            "correctIndex": 2,
+            "explanation": "Repeated misses without correction can stall. Retrieval needs feedback so the learner repairs the path.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q07",
+            "prompt": "Which use of flashcards is strongest?",
+            "choices": [
+              "Try the answer first, check, then retest misses after a gap",
+              "Flip fast and count familiar cards as known",
+              "Read both sides before guessing"
+            ],
+            "correctIndex": 0,
+            "explanation": "Trying first makes memory retrieve. Retesting after a gap strengthens what was repaired.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch02-q08",
+            "prompt": "A presenter wants to remember a speech opening. What practice best uses retrieval?",
+            "choices": [
+              "Read the first paragraph five times silently",
+              "Recite the opening without notes, check, then recite again later",
+              "Change the font to make it easier to read"
+            ],
+            "correctIndex": 1,
+            "explanation": "Reciting without notes forces production. Checking and returning later make the opening more available.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q09",
+            "prompt": "What is the best description of retrieval in learning?",
+            "choices": [
+              "A punishment for weak memory",
+              "Only a final measurement after studying",
+              "A way to build recall by making memory produce"
+            ],
+            "correctIndex": 2,
+            "explanation": "Retrieval is a learning move. It builds and tests access when paired with feedback and later return.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch02-rc01",
+          "front": "You want one more reread before a quiz. What recall move should come first?",
+          "back": "Answer a small question from memory before looking. Then check the answer and repair the miss. Retrieval should lead, review should clean up.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch02-rc02",
+          "front": "A flashcard miss makes you feel behind. How do you use it well?",
+          "back": "Mark it as a repair target, check the answer, say it correctly, and bring it back after a short delay. The miss only helps when feedback follows.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch02-rc03",
+          "front": "Why should training include low-stakes recall before live work?",
+          "back": "Because people must produce steps when prompts are gone. Low-stakes retrieval lets them practice that production while correction is still cheap.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch02-rc04",
+          "front": "What is the smallest retrieval loop you can run?",
+          "back": "Ask one question, answer without looking, check the source, fix the miss, and return later. Small loops beat grand plans that never happen.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is using recall as part of learning, not only as a final judgment. Ask memory to produce, check the answer, repair the miss, and return after a gap.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If you finish reading a procedure, then close it and say the first three steps before you mark the training complete."
+          },
+          {
+            "context": "health",
+            "plan": "If you learn a new exercise cue, then perform or describe it once without the video before the session ends."
+          },
+          {
+            "context": "personal",
+            "plan": "If you study a language, then answer five cards from memory before opening the app lesson."
+          },
+          {
+            "context": "relationships",
+            "plan": "If someone gives you important instructions, then repeat them back from memory and ask what you missed."
+          }
+        ],
+        "twentyFourHourChallenge": "In the next 24 hours, create three blank-card questions for something you need to remember. Answer each without looking, check, and retest the weakest one tomorrow.",
+        "weeklyPractice": "This week, run one retrieve-check-repair loop each day. Keep the questions small enough that you actually do them, and track which misses return twice."
+      },
+      "memorableLines": [
+        {
+          "text": "Pull first, check second, repair third.",
+          "location": "breakdown.deepRead",
+          "why": "It compresses the practice loop into a memorable command."
+        },
+        {
+          "text": "A tiny retrieval attempt with feedback teaches memory where to return.",
+          "location": "breakdown.fullRead",
+          "why": "It explains why low stakes and correction belong together."
+        },
+        {
+          "text": "The blank card is less polite, and more useful.",
+          "location": "breakdown.fullRead",
+          "why": "It gives retrieval a concrete object and a clear attitude."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch03",
+      "number": 3,
+      "title": "Mix Up Your Practice",
+      "readingTimeMinutes": 12,
+      "hook": "The neat stack of same-kind problems feels fast because it has already whispered the method.",
+      "counterintuition": "Most people assume the cleanest practice block is the most efficient. The twist is that mixed practice can look worse because it is training the harder skill: choosing.",
+      "tryThisNow": "Take three similar problems or tasks you normally group together. Shuffle them, hide the labels, and name the method before you solve each one.",
+      "keyTakeaway": "Interleave related tasks so you practice choosing the right move, not just repeating the move the last problem already handed you.",
+      "breakdown": {
+        "fastRead": "Faye holds two glaze tiles at 7:22 p.m. beside kiln shelf four. The blue samples look easy after ten straight blues. Then the instructor slides in a copper green, a white crawl, and an ash glaze with the same shine. Faye slows down. Good. Now she has to see the difference, not just repeat the last answer.\n\nBlocked practice makes you look quick because the category stays warm. Mixed practice asks a harder question: what kind of problem is this? If future work arrives mixed, practice should include that choice.",
+        "deepRead": "Faye holds two glaze tiles at 7:22 p.m. beside kiln shelf four. Clay dust is gray under her nails. After ten straight blue samples, she names the next blue before the tile leaves the instructor's hand. Then the row changes. Copper green, white crawl, ash glaze, blue again. Faye hesitates and laughs.\n\nThat hesitation is the lesson. In a block, the answer category stays active. The learner can get faster without doing much choosing. Interleaving related cases makes the learner identify the case first. That is why it can feel worse while teaching better.\n\nGrover sees the same pattern at 6:05 p.m. in support pod B. His agents drilled password tickets all morning and looked sharp. At 3 p.m., real tickets came mixed with refunds, shipping holds, and account locks. The first agent used the password script on a billing complaint. The drill had trained speed, not sorting.\n\nMixing should be disciplined, not random. The cases need to be close enough that comparison teaches. Too much variety turns practice into fog. A good mix puts lookalikes side by side so the learner has to ask, what makes this one different?\n\nIf the real task requires choice, the practice has to practice choice.\n\nCarys proves the point with scissors in the tutoring center. She cuts a grouped algebra packet into strips and drops related problem types into one folder. Students slow down because the page no longer announces the method. By Friday, the first choice improves, not just the arithmetic.",
+        "fullRead": "Faye holds two glaze tiles at 7:22 p.m. beside kiln shelf four. The studio smells like wet clay and hot dust. Her instructor has handed her ten blue samples in a row, and by the eighth one Faye can name the glaze by shine alone. She feels quick. Then the instructor slides in a copper green, a white crawl, and an ash glaze with nearly the same gloss. Faye pauses so long the tile cools in her fingers.\n\nThe pause tells the truth. The earlier block let the answer category stay warm. Faye was not only seeing blue. She was also being told, by the row itself, that blue was likely. Mixed practice removes that hint. Now she has to notice the features that separate one glaze from another.\n\nThis is the power of interleaving. It does not merely add variety. It trains discrimination, the ability to tell near neighbors apart and choose the right move. That is a different skill from repetition. A math student who solves twenty slope problems in a row may get fast at slope. On a mixed test, the first task is deciding whether this is slope, area, ratio, or rate. If practice never asks that question, the test will.\n\nGrover learns it at 6:05 p.m. in support pod B, where the carpet smells like burnt coffee. His agents practiced password reset tickets all morning. They sounded crisp. After lunch the queue mixed password resets with refunds, account locks, shipping holds, and one angry billing complaint. An agent used the password opening on the billing complaint and the customer went quiet. The agent knew the script. She had not practiced choosing it.\n\nA good mix is not chaos. Roan sorts mushrooms at 8:16 a.m. at a field station because the lookalikes are close. Chanterelle, jack-o-lantern, false chanterelle. Those cases belong together because the differences matter. If the instructor threw in tree bark, bird tracks, and cloud types, the comparison would teach less.\n\nSo mix near neighbors. Ask for the category before the answer. Leave enough repetition to learn the move, then shuffle soon enough that the learner has to select it. Expect the session to look messier. Messier is not the goal, but it may be the sign that selection has entered the room.\n\nIf the real task requires choice, the practice has to practice choice.\n\nCarys brings the same move to the tutoring center with scissors and a red folder. The old algebra packet grouped all slope problems, then all area problems, then all ratio problems. The grouped pages produced neat rows of answers and weak mixed quizzes. She cuts the packet into strips and asks students to name the method before they calculate. At first the room slows down. Students argue with the folder. That argument is the practice.\n\nUse enough blocked practice to learn the move, then mix before the block starts doing the choosing. Ask the learner to say what kind of case it is. Ask why this method fits and the nearby one does not. Review mistakes by pairing confused cases side by side. The goal is not surprise. The goal is recognition under honest conditions.\n\nIf practice always announces the method, later work will feel like a trick. If practice includes selection, later work feels more like another round of the same game."
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01-faye-glaze-tiles",
+          "title": "Faye sees the blue glaze vanish into lookalikes",
+          "tags": [
+            "decision_point",
+            "craft",
+            "interleaving"
+          ],
+          "planSpec": {
+            "domain": "ceramics glaze identification",
+            "audience": "learners fooled by fast blocked practice",
+            "stakes": "whether she can distinguish similar glazes outside the block",
+            "format": "decision_point",
+            "requiredBeat": "she chooses whether to keep same-glaze drills or mix lookalikes"
+          },
+          "scenario": "Faye holds a cobalt glaze tile at 7:22 p.m. beside kiln shelf four, clay dust gray under her thumbnail. After ten blue samples she names the next one before it cools. Then her instructor slides in copper green and ash glaze with the same shine. Faye reaches for the blue label, stops, and sees she was reading the row as much as the tile. She has to decide whether to ask for more blues or shuffle the lookalikes now.",
+          "whatToDo": "Shuffle the close glazes and name the category before checking the label. Keep the samples similar enough that each mistake teaches a visible difference.",
+          "whyItMatters": "The blocked row was giving away the answer. The mixed row trains Faye to notice the features she will need when the shelf is not sorted for her."
+        },
+        {
+          "exampleId": "ch03-ex02-grover-ticket-queue",
+          "title": "Grover watches the password script hit a billing complaint",
+          "tags": [
+            "postmortem",
+            "support",
+            "selection"
+          ],
+          "planSpec": {
+            "domain": "customer support ticket training",
+            "audience": "trainers who overuse same-case drills",
+            "stakes": "whether agents can choose the right response under mixed queues",
+            "format": "postmortem",
+            "requiredBeat": "he reviews mislabeled support tickets and sees blocked drills trained speed but not sorting"
+          },
+          "scenario": "Grover stands over booth 12 at 6:05 p.m. in support pod B, a cold paper cup bending in his fist. The morning password drills sounded perfect. The live queue did not arrive in blocks. Refund, password, account lock, shipping hold, billing complaint. On the billing complaint, an agent opened with the password reset script and the caller went silent. Grover scrolls the call log and has to decide what the drill failed to teach.",
+          "whatToDo": "Redesign practice as mixed ticket triage. Before any script, have agents label the ticket type, explain the cue, then choose the response.",
+          "whyItMatters": "The job is not reciting a script after someone names it. The job is recognizing which script fits when the queue changes shape."
+        },
+        {
+          "exampleId": "ch03-ex03-alma-keon-violin",
+          "title": "Alma makes Keon enter from the wrong measure",
+          "tags": [
+            "dialogue",
+            "music",
+            "variation"
+          ],
+          "planSpec": {
+            "domain": "violin rehearsal",
+            "audience": "performers who polish one sequence",
+            "stakes": "whether the player can recover when performance starts mid-phrase",
+            "format": "dialogue",
+            "requiredBeat": "she challenges him to rotate passages instead of repeating one"
+          },
+          "scenario": "Alma taps measure 47 with a pencil at 11:13 a.m. in practice room C, rosin dust on the black piano lid. \"From here,\" she says. Keon keeps his bow near the opening bar. \"I sound better from the top.\" Alma closes the score. \"Better, or cued by the road in?\" The hallway trumpet blares a wrong note. Keon smiles, then looks back at measure 47. He has to decide whether to protect the polished opening or enter cold.",
+          "whatToDo": "Rotate three nearby passages and name the entry cue before playing. Keep returning to the weak start until it no longer depends on the opening.",
+          "whyItMatters": "A polished sequence can hide weak access. Mixed starts teach Keon to identify the passage and recover the move without the usual runway."
+        },
+        {
+          "exampleId": "ch03-ex04-sibyl-free-throws",
+          "title": "Sibyl learns the free throw block lied politely",
+          "tags": [
+            "predict_reveal",
+            "sports",
+            "transfer"
+          ],
+          "planSpec": {
+            "domain": "basketball shooting practice",
+            "audience": "athletes who trust clean blocked reps",
+            "stakes": "whether shooting form survives game-like changes",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts blocked free throws will transfer, then mixed practice wins under game conditions"
+          },
+          "scenario": "Sibyl wipes orange dust from her palm at 8:58 p.m. in the high school gym, the mop bucket squeaking by the baseline. She predicts fifty straight free throws will beat the station circuit: sprint, corner shot, rebound, free throw, defensive slide. In the block she hits forty-one. In Saturday scrimmage, her legs shake after two fast breaks and the straight-block group misses short. The circuit group looks rough in practice and steadier at the line.",
+          "whatToDo": "Keep form work, but add mixed, game-like stations where the free throw comes after different tasks. Track the shot after the shuffle, not only the clean block.",
+          "whyItMatters": "The straight block warms one motion. The mixed station asks the shooter to recover the motion after the game has changed her body."
+        },
+        {
+          "exampleId": "ch03-ex05-roan-mushroom-table",
+          "title": "Roan sorts the orange mushrooms under a rain tarp",
+          "tags": [
+            "vignette",
+            "fieldwork",
+            "comparison"
+          ],
+          "planSpec": {
+            "domain": "mushroom identification",
+            "audience": "learners handling near-neighbor categories",
+            "stakes": "whether lookalikes are sorted by features instead of labels",
+            "format": "vignette",
+            "requiredBeat": "he sorts close mushroom lookalikes and notices comparison drives learning"
+          },
+          "scenario": "Roan lines three orange mushrooms on a field-station table at 8:16 a.m., rain ticking on the blue tarp overhead. Chanterelle, jack-o-lantern, false chanterelle. The labels stay facedown. He runs a thumb along the gills, sniffs damp earth, and moves one cap left, then back. Nobody has mixed in tree bark or fern fronds. The set is narrow on purpose. The differences are small enough to teach.",
+          "whatToDo": "Compare near neighbors in a tight mix. Say the feature that decides each choice before turning over the label.",
+          "whyItMatters": "Useful mixing needs related cases. Roan learns by seeing fine differences, not by sorting a random pile that has nothing to compare."
+        },
+        {
+          "exampleId": "ch03-ex06-carys-math-packet",
+          "title": "Carys cuts the algebra packet into shuffled strips",
+          "tags": [
+            "before_after",
+            "math",
+            "choice"
+          ],
+          "planSpec": {
+            "domain": "algebra homework design",
+            "audience": "teachers and students using grouped worksheets",
+            "stakes": "whether students choose methods on a mixed assessment",
+            "format": "before_after",
+            "requiredBeat": "she rebuilds grouped drills into mixed choices"
+          },
+          "scenario": "Carys sits at 3:41 p.m. in the tutoring center, scissors beside a packet of grouped algebra drills. Last week the slope page looked perfect and the mixed quiz fell apart. Today she cuts the packet into strips, drops slope, area, ratio, and rate into one red folder, and asks students to name the method before solving. The room slows down. By Friday, the answers are not just faster. The first choices are better.",
+          "whatToDo": "Mix related problem strips and require a method label before any calculation. Review misses by comparing the problems students confused.",
+          "whyItMatters": "Grouped pages train the current method. Shuffled strips train the choice that students need when the assessment stops announcing the category."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-q01",
+            "prompt": "A student finishes twenty identical area problems quickly, then misses mixed geometry questions. What did the block hide?",
+            "choices": [
+              "The need to decide which method each problem required",
+              "The need to memorize every answer",
+              "The fact that practice should avoid feedback"
+            ],
+            "correctIndex": 0,
+            "explanation": "The block kept the method active. The mixed set required selection, which had not been practiced.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q02",
+            "prompt": "Which practice design best builds discrimination?",
+            "choices": [
+              "Ten unrelated tasks thrown together",
+              "Related cases shuffled so the learner names the type before acting",
+              "One problem repeated until it feels automatic"
+            ],
+            "correctIndex": 1,
+            "explanation": "Related mixing lets comparison teach. The learner practices recognizing the case, not just repeating a move.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q03",
+            "prompt": "Why can mixed practice feel worse while working better?",
+            "choices": [
+              "It removes all structure from the session",
+              "It proves the learner has less ability",
+              "It forces the learner to choose before using a method"
+            ],
+            "correctIndex": 2,
+            "explanation": "The added choice slows the session. That choice is often what later performance requires.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch03-q04",
+            "prompt": "A coach rotates serve return, volley, and baseline drills. What should she watch besides total errors?",
+            "choices": [
+              "Whether players identify the situation and choose the right response",
+              "Whether players complain less",
+              "Whether every drill takes the same time"
+            ],
+            "correctIndex": 0,
+            "explanation": "The goal is not a clean-looking block. It is better selection under changing conditions.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch03-q05",
+            "prompt": "What is the risk of mixing cases that are too unrelated?",
+            "choices": [
+              "The learner will become too fast too soon",
+              "The learner may lose the comparison that makes the mix useful",
+              "The learner will avoid all mistakes"
+            ],
+            "correctIndex": 1,
+            "explanation": "Interleaving works best with near neighbors. Random variety can become noise instead of useful comparison.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch03-q06",
+            "prompt": "A language learner practices only past-tense verbs for an hour. What mixed addition would help transfer?",
+            "choices": [
+              "Repeat the same past-tense list twice more",
+              "Switch to unrelated vocabulary with no pattern",
+              "Add present and future prompts that require naming the tense before answering"
+            ],
+            "correctIndex": 2,
+            "explanation": "The mixed prompts ask the learner to classify the tense before forming it, which is closer to real use.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q07",
+            "prompt": "Which result is strongest evidence for interleaving?",
+            "choices": [
+              "A slower mixed practice session followed by better performance on shuffled tasks",
+              "A fast blocked session followed by weak shuffled performance",
+              "A session with no related cases"
+            ],
+            "correctIndex": 0,
+            "explanation": "The delayed or shuffled task reveals whether selection improved, even if practice felt slower.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch03-q08",
+            "prompt": "A software team drills one bug type all morning. What should the next round add?",
+            "choices": [
+              "More copies of the same ticket",
+              "A mixed queue of similar bug reports with type labels hidden",
+              "A break from all practice"
+            ],
+            "correctIndex": 1,
+            "explanation": "A hidden-label mixed queue trains triage. The team must decide what kind of bug each report is.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q09",
+            "prompt": "What does blocked practice often give the learner?",
+            "choices": [
+              "A guarantee of transfer",
+              "A way to skip feedback forever",
+              "A cue about what move to use next"
+            ],
+            "correctIndex": 2,
+            "explanation": "The repeated category itself becomes a cue. That can inflate fluency without training choice.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch03-rc01",
+          "front": "A worksheet groups all problems by type. What hidden help does that give?",
+          "back": "The grouping tells the learner which method is likely. To test learning, mix related problem types and ask for the method before solving.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch03-rc02",
+          "front": "Your mixed practice session looks slower and messier. When is that useful?",
+          "back": "It is useful when the mess comes from choosing among related cases. The learner is practicing recognition and selection, not just repeating a known move.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-rc03",
+          "front": "How do you avoid turning interleaving into random noise?",
+          "back": "Mix near neighbors. The cases should be similar enough that comparing them teaches the differences that matter.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-rc04",
+          "front": "What should you ask before solving a mixed problem?",
+          "back": "Ask what kind of problem it is and which move fits. Naming the type makes selection part of practice.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is practicing selection. Mix related tasks so you have to identify the case before using the method.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If training uses one scenario all afternoon, then add a mixed queue of related cases and ask people to classify each one first."
+          },
+          {
+            "context": "health",
+            "plan": "If you practice one movement in a perfect block, then add a small circuit where you recover that movement after a different task."
+          },
+          {
+            "context": "personal",
+            "plan": "If you study one grammar form or problem type, then shuffle it with two close neighbors before you stop."
+          },
+          {
+            "context": "relationships",
+            "plan": "If you rehearse one response for a hard talk, then practice choosing between three possible openings based on what the other person says first."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, take one blocked drill and mix it with two related cases. Before each attempt, write or say which move fits and why.",
+        "weeklyPractice": "For one week, keep one practice session mixed. Track whether your first choice improves, not only whether your final answer is correct."
+      },
+      "memorableLines": [
+        {
+          "text": "If the real task requires choice, the practice has to practice choice.",
+          "location": "breakdown.deepRead",
+          "why": "It states the practical rule in one sentence."
+        },
+        {
+          "text": "The earlier block let the answer category stay warm.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the hidden cue in blocked practice visible."
+        },
+        {
+          "text": "Messier is not the goal, but it may be the sign that selection has entered the room.",
+          "location": "breakdown.fullRead",
+          "why": "It keeps the reader from worshiping difficulty while accepting useful roughness."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch04",
+      "number": 4,
+      "title": "Embrace Difficulties",
+      "readingTimeMinutes": 12,
+      "hook": "The wrong answer on the whiteboard can be a handle, if someone shows you where to grip it.",
+      "counterintuition": "Most people assume harder practice is automatically better. The twist is that difficulty only helps when it creates a repairable act of retrieval, generation, or comparison.",
+      "tryThisNow": "Before checking an answer, make one honest attempt from memory or judgment. Then mark the exact miss, correct it, and try a similar item once more.",
+      "keyTakeaway": "Seek difficulty with a job: generate, retrieve, compare, or repair, and reject struggle that only adds fog with no route back.",
+      "breakdown": {
+        "fastRead": "Juno holds a dry-erase marker at 1:48 p.m. in trauma classroom 3. The instructor has not shown the chest-tube setup yet. He asks the group to sketch it first. Juno hates the empty diagram. She draws the clamp in the wrong place. Then the instructor circles it and shows why it would fail.\n\nThat is useful difficulty. The mistake is small, visible, and repaired at once. Hard is not holy. Hard helps when it makes the learner try, reveals the miss, and gives a path back. Fog without feedback is just fog.",
+        "deepRead": "Juno holds a dry-erase marker at 1:48 p.m. in trauma classroom 3. The room smells like plastic tubing and old coffee. The instructor asks everyone to sketch the chest-tube setup before he demonstrates it. Juno wants the answer first. She draws anyway and puts the clamp in the wrong place.\n\nThe instructor circles the clamp, then snaps the real clamp onto the tube. Juno can see the failure her drawing would have caused. The wrong answer has become a handle.\n\nDifficulty helps when it forces useful work. Generation makes you try before seeing. Retrieval makes you pull without cues. Spacing makes you recover after time. Corrected errors show exactly what to repair. The discomfort matters only because it serves one of those jobs.\n\nPavel learns the other side at 8:24 p.m. in a flight simulator room. His trainees are overloaded with alarms, weather, and radio calls before they understand the landing checklist. They are not learning. They are drowning. He pauses the sim, strips it back to one crosswind and one checklist step, and runs the miss again with feedback.\n\nThe line is practical. Add challenge when it makes the learner do the work you want. Remove challenge when it hides the work under panic or noise.\n\nFog without feedback is just fog.\n\nSachi keeps the collapsed bowl spinning for the same reason. The ugly clay still contains the motion that failed. One corrected pull teaches more than cutting the evidence off the wheel and starting clean.",
+        "fullRead": "Juno holds a dry-erase marker at 1:48 p.m. in trauma classroom 3. A tray of plastic tubing sits open on the front table. The instructor asks the group to sketch the chest-tube setup before he demonstrates it. Juno hates the request. She wants the answer first, then practice. Instead she draws the tube, the water seal, the clamp, and the wall suction line from her best guess. The clamp lands in the wrong place.\n\nThe instructor does not shame the miss. He circles it, snaps the real clamp onto the tubing, and asks what would happen if the patient coughed. Juno sees it. Her wrong mark is no longer a red X in her head. It is a map of what needed repair.\n\nThat is the useful version of difficulty. It asks the learner to generate before seeing, retrieve before checking, or try after a delay. It creates a miss that can be named. Then feedback arrives while the mind still cares about the answer. The learner repairs and tries again.\n\nThis is different from making practice hard for the sake of hard. Pavel sees the difference at 8:24 p.m. in a flight simulator room that smells like warm electronics. His new pilots face crosswind, radio traffic, two warning lights, and a surprise runway change all at once. The sim looks serious. The learning is poor. They stop hearing the checklist. They mash through steps without seeing why they failed. Pavel freezes the sim and removes two variables. One crosswind, one checklist step, one repair. The next run is still hard, but now the hard part has a job.\n\nMaureen hears the same rule at 10:02 p.m. in a bar prep group. A wrong answer can teach when the group explains why it was tempting and how to spot the trap next time. A wrong answer left hanging only makes people quieter.\n\nSo use a simple test. What work is this difficulty making me do? If it makes you retrieve, generate, compare, or repair, keep it. If it only raises stress, hides the pattern, or blocks feedback, change it. A productive challenge leaves a trail back to the right move.\n\nThe wrong answer on the whiteboard can be a handle, if someone shows you where to grip it. Fog without feedback is just fog.\n\nSachi keeps the same standard at the pottery wheel. Her bowl collapses because her left hand climbs too high. She wants to cut the clay off and start clean. The instructor asks her to leave the wobble spinning, lower the hand, and pull the wall once more. The bowl will not be sold. It will teach. The error is visible, touchable, and close enough to repair.\n\nLinus uses the same rule with pipettes in lab bay 6. He no longer demonstrates three times while students copy with the poster in view. He shows once, covers the poster, watches the blue dye bead on the bench, and corrects one angle at a time. The lab looks less tidy. By Friday, fewer drops miss the tube.\n\nA useful challenge has three parts: an attempt, a signal, and a repair. Remove any one of those and the difficulty weakens. Attempt without signal is guessing in the dark. Signal without repair is discouragement. Repair without another attempt is advice that never enters the hand."
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01-juno-trauma-board",
+          "title": "Juno draws the clamp before seeing the setup",
+          "tags": [
+            "decision_point",
+            "medical",
+            "generation"
+          ],
+          "planSpec": {
+            "domain": "trauma skills course",
+            "audience": "learners who want the model before trying",
+            "stakes": "whether a wrong first attempt becomes a repairable map",
+            "format": "decision_point",
+            "requiredBeat": "she chooses answer-first or generate-first in a trauma course"
+          },
+          "scenario": "Juno grips a blue dry-erase marker at 1:48 p.m. in trauma classroom 3, plastic tubing coiled on the front table. The instructor asks everyone to sketch a chest-tube setup before he shows the model. Juno wants to wait for the answer. Her marker hovers over the blank diagram. If she draws now, she may put the clamp in the wrong place in front of two nurses she admires. She has to decide whether to generate first or stay safe.",
+          "whatToDo": "Draw the best setup before the demo, mark what felt uncertain, then use the instructor's model to repair the exact wrong piece.",
+          "whyItMatters": "Generation creates a visible target for feedback. The wrong clamp location teaches more once it is connected to the real failure it would cause."
+        },
+        {
+          "exampleId": "ch04-ex02-pavel-simulator-room",
+          "title": "Pavel lowers the simulator noise until pilots can repair",
+          "tags": [
+            "postmortem",
+            "aviation",
+            "overload"
+          ],
+          "planSpec": {
+            "domain": "flight simulator training",
+            "audience": "coaches who confuse overload with rigor",
+            "stakes": "whether trainees learn a checklist or only survive stress",
+            "format": "postmortem",
+            "requiredBeat": "he reviews failed flight-sim trainees and finds too much difficulty with too little repair"
+          },
+          "scenario": "Pavel stands in the simulator room at 8:24 p.m., headset cord twisted around his wrist and the console still warm. Three trainees just botched the crosswind landing twice. The scenario had radio chatter, a runway change, and two warning lights before they knew the checklist. On replay, nobody can explain the miss. Pavel stops the tape on a frozen altimeter and sees the problem. The sim was hard, but it was not teaching.",
+          "whatToDo": "Strip the next run to one crosswind variable and one checklist step. Add feedback after the miss, then rebuild complexity only when repair is working.",
+          "whyItMatters": "Difficulty helps when learners can see and fix the failure. Overload hides the learning target under panic."
+        },
+        {
+          "exampleId": "ch04-ex03-maureen-tarek-bar-prep",
+          "title": "Maureen asks Tarek why the wrong answer looked right",
+          "tags": [
+            "dialogue",
+            "law",
+            "error repair"
+          ],
+          "planSpec": {
+            "domain": "bar exam study group",
+            "audience": "students ashamed of wrong answers",
+            "stakes": "whether misses become repair signals or silence",
+            "format": "dialogue",
+            "requiredBeat": "they discuss wrong answers and the need for feedback"
+          },
+          "scenario": "Maureen slides a marked-up torts question across a diner table at 10:02 p.m., syrup drying near the napkin holder. \"I picked C again,\" Tarek says. \"Then tell me why C looked good,\" Maureen says. Tarek shakes his head. \"It was just wrong.\" She taps the phrase he underlined. \"No. This phrase baited you. Say the bait out loud, then we write the repair.\" The waitress refills coffee. Tarek has to decide whether to hide the miss or inspect it.",
+          "whatToDo": "Name the lure in the wrong answer, write the cue that should have warned him, and try a nearby question before the session ends.",
+          "whyItMatters": "An error teaches when it is explained and followed by another attempt. Shame alone only makes the next miss harder to see."
+        },
+        {
+          "exampleId": "ch04-ex04-olwen-climbing-wall",
+          "title": "Olwen sees guided climbing lose to the rough route",
+          "tags": [
+            "predict_reveal",
+            "climbing",
+            "desirable difficulty"
+          ],
+          "planSpec": {
+            "domain": "rock climbing instruction",
+            "audience": "teachers choosing between guided ease and supported challenge",
+            "stakes": "whether climbers can read holds without a coach pointing",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts guided climbing drills will win but supported generation transfers"
+          },
+          "scenario": "Olwen chalks her hands at 6:37 p.m. under the north wall, dust floating in the gym lights. She predicts the coach-marked route will beat the route where beginners must choose handholds before getting feedback. The marked group climbs smoothly. The choice group stalls, points, and downclimbs twice. On Saturday, the tape comes off for a new wall. The smooth group waits for hints. The choice group starts reading holds.",
+          "whatToDo": "Use supported route reading: let climbers choose holds, pause after errors, give feedback, and send them back onto a similar section.",
+          "whyItMatters": "The rougher route trained judgment. The marked route trained following, which looked good until the marks disappeared."
+        },
+        {
+          "exampleId": "ch04-ex05-sachi-pottery-collapse",
+          "title": "Sachi keeps the collapsed bowl on the wheel",
+          "tags": [
+            "vignette",
+            "craft",
+            "repair"
+          ],
+          "planSpec": {
+            "domain": "pottery wheel lesson",
+            "audience": "learners who want to discard errors fast",
+            "stakes": "whether a mistake becomes a repaired movement",
+            "format": "vignette",
+            "requiredBeat": "she repairs a pottery collapse instead of hiding it"
+          },
+          "scenario": "Sachi steadies a collapsed bowl at 9:18 a.m. in the community studio, slip cooling between her fingers and the wheel humming under her palms. The rim folded because her left hand climbed too high. Her first urge is to cut the clay off and start clean. Instead she leaves the wobble spinning, lowers the hand, and pulls the wall once more while the instructor watches. The bowl will not be pretty. The repair will stay in her hands.",
+          "whatToDo": "Keep the failed bowl long enough to replay the movement with correction. Repair the cause once before starting fresh clay.",
+          "whyItMatters": "The mistake is useful because it is still visible and touchable. Sachi can connect the collapsed rim to the hand motion that caused it."
+        },
+        {
+          "exampleId": "ch04-ex06-linus-lab-practice",
+          "title": "Linus adds feedback after the wrong pipette angle",
+          "tags": [
+            "before_after",
+            "lab",
+            "feedback"
+          ],
+          "planSpec": {
+            "domain": "biology lab practice",
+            "audience": "instructors designing useful challenge",
+            "stakes": "whether students learn technique through corrected attempts",
+            "format": "before_after",
+            "requiredBeat": "he redesigns lab practice with feedback after misses"
+          },
+          "scenario": "Linus watches blue dye bead on the bench at 2:26 p.m. in lab bay 6, pipette tips scattered beside the waste cup. Last term he demonstrated the angle three times and students copied him while he stood there. In solo lab, dye splashed everywhere. Today he shows once, covers the poster, and has each student pipette from memory while he corrects one angle at a time. The room looks less tidy. The waste cup fills more slowly by Friday.",
+          "whatToDo": "Ask for an attempt without the poster, correct one visible error, and repeat the same movement soon. Keep challenge tied to a repair path.",
+          "whyItMatters": "The hard part works because feedback is immediate and specific. Students are not just struggling, they are rebuilding the motion."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch04-q01",
+            "prompt": "A teacher asks students to predict an answer before showing the solution. When does this help?",
+            "choices": [
+              "When the attempt is followed by feedback and repair",
+              "When the wrong guesses are ignored",
+              "When the task is unrelated to the lesson"
+            ],
+            "correctIndex": 0,
+            "explanation": "Generation helps when the attempt creates a target for correction. Without feedback, it can become confusion.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q02",
+            "prompt": "A coach adds so many variables that beginners cannot tell why they failed. What should change?",
+            "choices": [
+              "Remove feedback so they toughen up",
+              "Narrow the challenge and repair one miss at a time",
+              "Make the next round even more chaotic"
+            ],
+            "correctIndex": 1,
+            "explanation": "Challenge should reveal a repairable gap. Too many variables hide the learning target.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q03",
+            "prompt": "Which difficulty has the clearest job?",
+            "choices": [
+              "A timed drill with no answers afterward",
+              "A noisy room added to make practice feel serious",
+              "A recall attempt followed by checking and a second try"
+            ],
+            "correctIndex": 2,
+            "explanation": "Recall plus feedback and another attempt creates useful work. Noise and pressure alone do not.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch04-q04",
+            "prompt": "A learner gets a problem wrong and wants to erase it. What is the better first move?",
+            "choices": [
+              "Inspect why the wrong answer was tempting, then try a similar problem",
+              "Erase it quickly to protect confidence",
+              "Switch to a much easier subject"
+            ],
+            "correctIndex": 0,
+            "explanation": "The wrong answer can teach if it reveals the lure and leads to another attempt.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q05",
+            "prompt": "What separates useful difficulty from wasted struggle?",
+            "choices": [
+              "Useful difficulty always feels pleasant",
+              "Useful difficulty forces learning work and preserves a route to repair",
+              "Useful difficulty avoids mistakes"
+            ],
+            "correctIndex": 1,
+            "explanation": "Difficulty needs a mechanism and feedback. Struggle without a way back is poor design.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch04-q06",
+            "prompt": "A safety trainer wants trainees to learn a checklist. Which plan is best?",
+            "choices": [
+              "Give a surprise final test with no practice",
+              "Read the checklist aloud for an hour",
+              "Show the checklist, then immediately ask trainees to reconstruct it and fix misses"
+            ],
+            "correctIndex": 2,
+            "explanation": "Reconstruction plus correction makes the challenge useful while support is still near.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q07",
+            "prompt": "A student says every hard task must be good for memory. What is the correction?",
+            "choices": [
+              "Hard tasks help only when they make memory retrieve, compare, generate, or repair",
+              "Hard tasks are never helpful",
+              "Memory grows best when nothing feels difficult"
+            ],
+            "correctIndex": 0,
+            "explanation": "The value lies in the work the difficulty forces, not in discomfort by itself.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch04-q08",
+            "prompt": "When can an error improve later performance?",
+            "choices": [
+              "When it is hidden to avoid embarrassment",
+              "When it is named, corrected, and followed by another attempt",
+              "When it is repeated without feedback"
+            ],
+            "correctIndex": 1,
+            "explanation": "Errors become useful through diagnosis and repair. They do not help simply by existing.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch04-q09",
+            "prompt": "A training session is calm because learners copy each step from a model. What useful challenge could be added?",
+            "choices": [
+              "Add unrelated distractions",
+              "Stop checking the answers",
+              "Remove the model for a short attempt, then restore it for feedback"
+            ],
+            "correctIndex": 2,
+            "explanation": "A brief model-free attempt creates retrieval or generation, and restoring the model supports repair.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch04-rc01",
+          "front": "Before seeing the answer, you are asked to make a guess. What makes that useful instead of cruel?",
+          "back": "The guess must be close to the target and followed by feedback. It creates a repairable miss, not a public verdict.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch04-rc02",
+          "front": "Practice feels hard. What question tells you whether the difficulty belongs?",
+          "back": "Ask what job the difficulty is doing. Keep it if it forces retrieval, generation, comparison, or repair. Change it if it only adds fog.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-rc03",
+          "front": "A wrong answer is on the board. What is the repair move?",
+          "back": "Name why it was tempting, identify the cue that should have changed the choice, and try a similar item soon.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-rc04",
+          "front": "How do you raise challenge without overloading a beginner?",
+          "back": "Add one useful demand at a time and keep feedback close. Build complexity only after the learner can repair the first miss.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is choosing difficulty that does useful work. Add challenge when it makes you generate, retrieve, compare, or repair, and remove challenge when it only creates fog.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a training task feels too easy, then remove one prompt for a short attempt and restore it for feedback."
+          },
+          {
+            "context": "health",
+            "plan": "If an exercise cue keeps disappearing, then perform one rep from memory, correct the form, and repeat before fatigue hides the signal."
+          },
+          {
+            "context": "personal",
+            "plan": "If you miss a study question, then write why the wrong answer tempted you before you check the next one."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a hard conversation rehearsal feels overwhelming, then practice one opening line, get feedback, and add complexity only after it lands."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, take one task you usually do with full guidance. Try one small part without the guide, mark the miss, correct it, and try again.",
+        "weeklyPractice": "For one week, keep a repair log. Each day, record one useful miss, the feedback you used, and the next attempt you made."
+      },
+      "memorableLines": [
+        {
+          "text": "Fog without feedback is just fog.",
+          "location": "breakdown.fastRead",
+          "why": "It draws the line between useful and useless struggle."
+        },
+        {
+          "text": "The wrong answer has become a handle.",
+          "location": "breakdown.deepRead",
+          "why": "It makes corrected error feel concrete and usable."
+        },
+        {
+          "text": "A productive challenge leaves a trail back to the right move.",
+          "location": "breakdown.fullRead",
+          "why": "It gives a simple test for good practice design."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch05",
+      "number": 5,
+      "title": "Avoid Illusions of Knowing",
+      "readingTimeMinutes": 12,
+      "hook": "The highlighted line smiles back at you, then disappears when the page closes.",
+      "counterintuition": "Most people assume confidence means knowledge is secure. The twist is that confidence can be borrowed from the page, while a blank check gives better evidence.",
+      "tryThisNow": "Pick one thing that feels learned. Explain it out loud with the source closed, then write the first gap you discover before you review.",
+      "keyTakeaway": "Treat confidence as a claim that needs evidence: use recall, explanation, delay, and transfer to test whether knowledge is usable without cues.",
+      "breakdown": {
+        "fastRead": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement. Her neurology notes look familiar in yellow highlighter. The empty diagram does not care. She can label two branches and stalls on the third.\n\nThat stall is calibration. Familiarity can make you feel ready while the page still carries the answer. An honest check removes the cue and asks for use. Close the notes, explain, draw, solve, or apply. Then let confidence answer to what you produced, not to what looked friendly.",
+        "deepRead": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement. The vending machine hums behind the stacks. Her highlighted notes look almost warm from rereading. On the blank diagram, the third branch is gone.\n\nThis is the illusion of knowing. The material looks known because the cues are present: color, location on the page, the sentence before the answer, the shape of the paragraph. Those cues can raise confidence faster than real access.\n\nGeordie sees it at 3:50 p.m. in the safety classroom. Workers nod through the lockout deck because every slide looks familiar from last quarter. When he covers the poster and asks them to place the lock tags on a dead panel, two tags go in the wrong spot. Nobody was lazy. The deck had been doing too much of the remembering.\n\nThe fix is not endless doubt. It is better evidence. Use a no-cue explanation, a delayed self-quiz, a blank diagram, or a transfer task. If confidence survives that, trust it more. If it fails, you have a repair target.\n\nLet confidence answer to what you produced, not to what looked friendly.\n\nMirek adds a delay to make the evidence cleaner. Monday confidence goes in the log, but Thursday recall gets the vote. The delay is uncomfortable because it removes the glow of the last review. That is why it helps.",
+        "fullRead": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement. The table has a carved heart near the edge and a ring from someone's old coffee. Her neurology notes are bright with yellow highlighter. When she rereads them, the branches look familiar. When she covers them, the third branch vanishes.\n\nThe feeling is familiar to anyone who has studied hard and been fooled. The words looked known. The page looked mapped. The answer sat in the same corner each time. Then the cue disappeared and the knowledge did not come with it.\n\nThat is not a character flaw. It is a bad scorecard. Recognition is easy when the cue stays in view. A highlighted sentence can feel like a memory because your eyes know the route back to it. Confidence rises, but the evidence is weak.\n\nGeordie sees the same problem at 3:50 p.m. in the safety classroom. The lockout deck is familiar to every worker. They nod before he finishes the slides. Then he covers the wall poster and rolls a dead electrical panel to the front of the room. Two workers place lock tags on the wrong side of the disconnect. The deck had been clear. Their independent use was not.\n\nBetter calibration asks for production. Draw the diagram. Explain the rule without the notes. Solve a new problem. Teach it to someone who can ask one awkward question. Wait a day and try again. These checks are not meant to make you feel stupid. They are meant to give confidence a receipt.\n\nHanne learns this at a kitchen table with case law spread beside a cold mug. She has highlighted the holding so often that the page feels mastered. Luc asks her to explain how the holding applies to a landlord case with different facts. Her first answer is just a line from the page. The transfer question shows what the highlighter hid.\n\nDo not throw away review. Rereading can reintroduce material. Highlighting can mark what matters. The mistake is letting those moves be the judge. They are preparation for the check, not the check itself.\n\nLet confidence answer to what you produced, not to what looked friendly. When the blank page speaks, listen early enough to repair it.\n\nSameer makes the same point in exam room 4. The patient-transfer poster has been on the wall for a month. Everyone has read it. He turns it to the wall and places a gait belt, buckled wrong on purpose, on a vinyl chair. The first aide reaches for the poster and finds blank wall. The second starts naming the steps. The team learns more in ninety seconds than in another week of nodding at the laminate.\n\nMirek changes his confidence log for the same reason. Monday feelings no longer get the final vote. He writes the rating after review, locks the manual in a desk, and quizzes himself Thursday. Some ratings fall. That is progress. A lower, truer rating is easier to repair than a high rating built on glow.\n\nUse confidence, but make it earn trust. Let it stand after a blank diagram, a delayed quiz, a changed case, or a real object with the poster turned away. Confidence that survives those checks is useful. Confidence that fails has done its job too. It has shown you where to repair."
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01-nola-nerve-diagram",
+          "title": "Nola covers the highlighted nerve notes",
+          "tags": [
+            "decision_point",
+            "medicine",
+            "calibration"
+          ],
+          "planSpec": {
+            "domain": "neurology study",
+            "audience": "learners who trust highlighted familiarity",
+            "stakes": "whether anatomy can be drawn and used without notes",
+            "format": "decision_point",
+            "requiredBeat": "she checks familiar notes against a blank diagram"
+          },
+          "scenario": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement, yellow highlighter dust on her thumb. Her neurology notes feel mastered when the page is open. On the empty diagram, she labels two branches and stalls on the third. The notes sit open beside her elbow, bright and inviting. She has to decide whether to peek or let the blank diagram finish telling her what she does not know.",
+          "whatToDo": "Finish the diagram without peeking, mark the missing branch, then close the notes again and redraw the weak section after checking.",
+          "whyItMatters": "The blank diagram tests access. The highlighted page tests recognition. Nola needs confidence tied to what she can produce without the cue."
+        },
+        {
+          "exampleId": "ch05-ex02-geordie-lockout-deck",
+          "title": "Geordie rolls the dead panel past the safety poster",
+          "tags": [
+            "postmortem",
+            "safety",
+            "transfer"
+          ],
+          "planSpec": {
+            "domain": "industrial safety training",
+            "audience": "trainers who mistake familiar slides for usable knowledge",
+            "stakes": "whether workers can apply lockout steps on equipment",
+            "format": "postmortem",
+            "requiredBeat": "he reviews a safety deck workers recognized but could not use"
+          },
+          "scenario": "Geordie stands in the safety classroom at 3:50 p.m., one hand on a dead electrical panel and the other on a roll of red lock tags. The crew nodded through the lockout deck because they had seen the slides four times. Then he covered the wall poster and asked for the tags. Two went on the wrong side of the disconnect. Geordie looks at the familiar deck on the screen and has to decide what the nods were worth.",
+          "whatToDo": "Replace slide recognition with a no-poster equipment check. Have each worker place the tags, explain the choice, and repeat any missed step after feedback.",
+          "whyItMatters": "Recognition of the deck did not prove usable safety knowledge. The panel shows whether the rule transfers to the place where harm happens."
+        },
+        {
+          "exampleId": "ch05-ex03-hanne-luc-highlighter",
+          "title": "Hanne hears the highlighted holding turn thin",
+          "tags": [
+            "dialogue",
+            "law",
+            "explanation"
+          ],
+          "planSpec": {
+            "domain": "law study",
+            "audience": "students who equate highlighted text with understanding",
+            "stakes": "whether a rule can be applied to changed facts",
+            "format": "dialogue",
+            "requiredBeat": "they argue over highlighted case law and transfer"
+          },
+          "scenario": "Hanne taps a pink highlighter cap at 8:12 p.m. on Luc's kitchen table, cold tea beside three printed cases. \"I know this holding,\" she says. Luc slides over a landlord fact pattern. \"Then use it here.\" Hanne reads her highlighted sentence aloud. Luc waits. \"That is the sentence,\" he says. \"What does it do to these facts?\" The refrigerator clicks on. Hanne has to decide whether to reread the case or build the explanation cold.",
+          "whatToDo": "Close the case and apply the holding to the new facts in plain speech. Then reopen the case to repair the parts that stayed vague.",
+          "whyItMatters": "Highlighting can preserve wording without building use. Transfer exposes whether Hanne understands the rule or only recognizes its sentence."
+        },
+        {
+          "exampleId": "ch05-ex04-berenice-color-cards",
+          "title": "Berenice learns the weekend did not remember the colors",
+          "tags": [
+            "predict_reveal",
+            "language",
+            "delay"
+          ],
+          "planSpec": {
+            "domain": "language vocabulary",
+            "audience": "self-learners who trust color-coded cards",
+            "stakes": "whether vocabulary returns after time without visual cues",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts color-coded flashcards will hold after a weekend"
+          },
+          "scenario": "Berenice fans purple vocabulary cards across a train tray table at 5:44 p.m. on Friday, rain streaking the window. The colors make the verb families feel obvious. She predicts Monday will be fine. On Monday at 7:03 a.m., she covers the colored edges with a grocery receipt and tries to write ten sentences. Four verbs vanish. The colors had helped her sort the stack. They had not made the verbs come back.",
+          "whatToDo": "Hide the colors during recall and write fresh sentences after a delay. Use the color system only after the attempt to repair patterns.",
+          "whyItMatters": "The visual cue can create confidence that depends on the card. Delayed use without color gives a cleaner read on what Berenice can retrieve."
+        },
+        {
+          "exampleId": "ch05-ex05-sameer-transfer-poster",
+          "title": "Sameer turns the patient-transfer poster to the wall",
+          "tags": [
+            "vignette",
+            "clinic",
+            "checklist"
+          ],
+          "planSpec": {
+            "domain": "clinic patient-transfer training",
+            "audience": "teams relying on wall posters",
+            "stakes": "whether transfer steps are usable during patient movement",
+            "format": "vignette",
+            "requiredBeat": "he tests a patient-transfer checklist without the poster"
+          },
+          "scenario": "Sameer turns the laminated patient-transfer poster to the wall at 1:36 p.m. in exam room 4, paper crinkling under the tape. The aides have read it every shift this month. A gait belt lies on the vinyl chair, buckled wrong on purpose. Sameer asks them to set up the transfer from memory. The first aide reaches for the poster and finds blank wall. The second touches the belt, pauses, and starts naming steps.",
+          "whatToDo": "Run one no-poster setup with real equipment, then turn the poster back only to check and repair the missed sequence.",
+          "whyItMatters": "The wall can create borrowed certainty. The equipment check shows whether the team can act when a patient, not a poster, is in front of them."
+        },
+        {
+          "exampleId": "ch05-ex06-mirek-confidence-log",
+          "title": "Mirek makes confidence wait until Thursday",
+          "tags": [
+            "before_after",
+            "software",
+            "delayed quiz"
+          ],
+          "planSpec": {
+            "domain": "software certification study",
+            "audience": "learners rating confidence immediately after review",
+            "stakes": "whether confidence tracks later independent use",
+            "format": "before_after",
+            "requiredBeat": "he replaces confidence ratings with delayed self-quizzes"
+          },
+          "scenario": "Mirek sits at 9:25 p.m. in a coworking booth, a certification manual open beside an empty espresso cup. He used to rate each topic right after reading it, and the scores were always high. Last month the practice exam cut them in half. Now he writes the confidence number on Monday, locks the manual in his desk, and quizzes himself Thursday before changing the number. The ratings drop at first. Then they start telling the truth.",
+          "whatToDo": "Delay confidence ratings until after a no-cue quiz. Let the score change only when independent recall supports it.",
+          "whyItMatters": "Immediate confidence can follow familiarity. Delayed checks make Mirek calibrate against what memory can actually return."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch05-q01",
+            "prompt": "A student feels ready because every highlighted line looks familiar. What evidence should matter more?",
+            "choices": [
+              "A closed-notes explanation in her own words",
+              "The number of colors used",
+              "How neat the notes look"
+            ],
+            "correctIndex": 0,
+            "explanation": "A closed-notes explanation tests access and understanding. Familiar highlights mainly test recognition.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q02",
+            "prompt": "A worker recognizes every slide in safety training but misses the equipment step. What was the illusion?",
+            "choices": [
+              "The equipment was too simple to matter",
+              "Recognition of the slide was mistaken for usable skill",
+              "All slides are harmful"
+            ],
+            "correctIndex": 1,
+            "explanation": "The slide cues made the content feel known. The equipment task showed the knowledge was not ready for use.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q03",
+            "prompt": "Which check best calibrates confidence?",
+            "choices": [
+              "Rereading until the paragraph feels smooth",
+              "Counting how many pages were reviewed",
+              "Trying a new application without cues, then checking the result"
+            ],
+            "correctIndex": 2,
+            "explanation": "New application without cues shows whether the idea can be used, not just recognized.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch05-q04",
+            "prompt": "A learner misses several items on a delayed quiz. What should that change?",
+            "choices": [
+              "Her belief that familiarity was enough evidence",
+              "Her decision to ever quiz herself again",
+              "The need for feedback"
+            ],
+            "correctIndex": 0,
+            "explanation": "The delayed quiz shows confidence outran access. It gives repair targets and a better scorecard.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q05",
+            "prompt": "When can rereading still be useful?",
+            "choices": [
+              "As the final judge of mastery",
+              "As a way to reintroduce material before an honest check",
+              "As a replacement for recall forever"
+            ],
+            "correctIndex": 1,
+            "explanation": "Review can help prepare or repair. It should not be the only evidence that learning is secure.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch05-q06",
+            "prompt": "A musician knows a piece only when the sheet is open. What test fits this idea?",
+            "choices": [
+              "Buy a brighter stand light",
+              "Stare at the same line longer",
+              "Play or describe one passage without the sheet, then repair misses"
+            ],
+            "correctIndex": 2,
+            "explanation": "No-cue production separates actual access from recognition supported by the sheet.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q07",
+            "prompt": "A learner wants confidence that is not just a feeling. What should confidence be tied to?",
+            "choices": [
+              "Evidence from recall, explanation, delay, or transfer",
+              "The most recent easy review",
+              "The prettiest notes"
+            ],
+            "correctIndex": 0,
+            "explanation": "Confidence becomes better calibrated when it answers to performance without cues.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch05-q08",
+            "prompt": "What is the risk of color-coded flashcards?",
+            "choices": [
+              "The cards will always fail",
+              "The colors may become cues that inflate confidence",
+              "The learner will remember too much"
+            ],
+            "correctIndex": 1,
+            "explanation": "Visual cues can help organization but may also prop up recognition. Hide them during recall to test access.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch05-q09",
+            "prompt": "Design a quick illusion check for a familiar article.",
+            "choices": [
+              "Reread the easiest paragraph twice",
+              "Look at the title until it feels known",
+              "Summarize it from memory and answer one new application question"
+            ],
+            "correctIndex": 2,
+            "explanation": "Summary plus application asks for production and transfer, which are stronger evidence than familiarity.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch05-rc01",
+          "front": "Your notes look familiar. What quick check tests whether you actually know the idea?",
+          "back": "Close the notes and explain the idea, draw it, or apply it to a new case. Use the source afterward to repair gaps.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-rc02",
+          "front": "Why can highlighting raise confidence too quickly?",
+          "back": "It makes the important line easy to recognize later. That recognition can feel like memory even when you cannot produce or use the idea.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc03",
+          "front": "A team nods at a familiar training slide. What should you ask them to do?",
+          "back": "Move from recognition to performance. Give them the real object, hide the slide, and ask them to apply the steps before checking.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc04",
+          "front": "How do you build confidence that deserves trust?",
+          "back": "Make confidence wait for evidence: delayed recall, no-cue explanation, transfer to a new case, or performance with support removed.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is calibration. Treat confidence as a claim and test it with no-cue recall, delayed checks, explanations, or transfer tasks.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a process deck feels familiar, then run one no-slide task before calling the team ready."
+          },
+          {
+            "context": "health",
+            "plan": "If instructions for care feel obvious, then explain them from memory before relying on them later."
+          },
+          {
+            "context": "personal",
+            "plan": "If study notes look mastered, then write a summary with the page closed and mark what disappeared."
+          },
+          {
+            "context": "relationships",
+            "plan": "If you feel sure you understand someone's request, then repeat the request in your own words and ask what you missed."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, choose one familiar topic and run a no-cue check: explain, draw, solve, or apply it. Write the first gap and repair that gap.",
+        "weeklyPractice": "For one week, delay your confidence ratings. Rate each topic only after a no-cue check, then compare the result with how ready you felt before."
+      },
+      "memorableLines": [
+        {
+          "text": "The highlighted line smiles back at you, then disappears when the page closes.",
+          "location": "hook",
+          "why": "It captures the illusion in a simple image."
+        },
+        {
+          "text": "Let confidence answer to what you produced, not to what looked friendly.",
+          "location": "breakdown.deepRead",
+          "why": "It turns calibration into a practical standard."
+        },
+        {
+          "text": "When the blank page speaks, listen early enough to repair it.",
+          "location": "breakdown.fullRead",
+          "why": "It frames a miss as timely evidence."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch06",
+      "number": 6,
+      "title": "Get Beyond Learning Styles",
+      "readingTimeMinutes": 12,
+      "hook": "The diagram works because the pump has pipes, not because Aislinn has a label.",
+      "counterintuition": "Most people assume the most personal format is the best format. The twist is that the task itself often knows what representation will teach better than a label does.",
+      "tryThisNow": "Take one topic you are learning and ask what form the material itself needs: diagram, words, demo, example, or practice. Then test recall after using it.",
+      "keyTakeaway": "Choose learning methods by task fit, prior knowledge, and active processing, not by a fixed style label that may explain less than it promises.",
+      "breakdown": {
+        "fastRead": "Aislinn stands at 2:14 p.m. by pump skid 6 with a grease pencil in her hand. She draws the flow path on the metal housing because the pipes loop under the floor. The diagram helps. Not because she is a diagram person. Because the pump is a diagram problem.\n\nStyle labels can feel personal and kind, but they often stop the search too early. Ask what the material demands, what background is missing, and what the learner must do with the idea. Preference can matter. Evidence should lead.",
+        "deepRead": "Aislinn stands at 2:14 p.m. by pump skid 6 with a grease pencil in her hand. The apprentice keeps saying he is not a visual learner. Aislinn draws the flow path on the metal housing anyway because the pipes vanish under the floor and return behind the tank. The drawing helps because the system is spatial.\n\nThat is the better question. What does the task require? Some ideas need a map. Some need words. Some need a worked example, a physical demo, or a chance to explain. A preferred format may feel good and still teach poorly if it does not fit the material.\n\nTomasz sees the cost of the label at 7:40 p.m. in a tutoring room. A student has been called a visual learner for years. The real problem is fractions. Every graph lesson fails because the denominator idea is missing. Once Tomasz repairs that gap, the same graph starts to make sense.\n\nDifferences between learners are real. Labels are just too thin to carry the whole diagnosis. Check prior knowledge. Pick a format that fits the content. Then require retrieval, explanation, comparison, or use.\n\nPreference can matter. Evidence should lead.\n\nBriony proves it in bay 3 with a weld bead under a lamp. The apprentice likes video, but the flaw has to be seen and felt. She has him run a glove over the undercut, name it, then inspect a fresh bead without help. The method is not anti-learner. It is loyal to the work.",
+        "fullRead": "Aislinn stands at 2:14 p.m. by pump skid 6 with a grease pencil in her hand. The apprentice beside her shrugs and says he is not a visual learner. Aislinn nods, then draws the flow path on the metal housing anyway. The pipe leaves the pump, dives under the floor, returns behind the tank, and loops through a valve hidden by a heat shield. The drawing works because the system is spatial. The label did not decide. The pump did.\n\nThat is the cleanest way past the learning-styles trap. Start with the task. If relationships are spatial, use a diagram. If timing matters, use a sequence. If force and feel matter, use a demonstration. If judgment matters, use cases. Then ask the learner to retrieve, explain, compare, or apply.\n\nPreference can still matter at the edges. A learner may pay better attention to audio during a commute or feel less anxious with a diagram. Comfort is not useless. It is just not proof that more learning happened. A favorite format can become a soft chair where the mind rests instead of working.\n\nTomasz sees the deeper issue at 7:40 p.m. in a tutoring room that smells like dry markers. The student has been called a visual learner since third grade. Every teacher has drawn bigger fraction pies. The student still freezes. Tomasz asks her to build three-fourths with paper strips and hears the gap in the word fourths. She does not yet own the denominator. Once that is repaired, the visual model finally helps. The style label had hidden missing background knowledge.\n\nFarah learns the same rule while choosing between a podcast and a map for a neighborhood history walk. The podcast is pleasant. The map is necessary for the route. The better design uses both, then asks visitors to explain why the river bend shaped the old market.\n\nSo ask three questions. What does the material demand? What does the learner already know? What action will prove learning happened? Those questions respect learners more than a label does because they look at the actual work in front of them.\n\nThe diagram works because the pump has pipes, not because Aislinn has a label.\n\nBriony proves the rule in bay 3 before sunrise. The apprentice asks for another video because videos feel safe. Briony angles a weld bead under the lamp, then has him run a leather glove over the undercut. The flaw is a line he can see and a ridge he can feel. A video can introduce it, but the joint asks for touch, sight, naming, and another inspection without help.\n\nNestor later removes style boxes from onboarding and replaces them with task checks. Can the new hire explain the workflow, classify a live ticket, and solve one case without prompts? The sheet looks less personal, but the help is more exact. It points to the next support because it measures the work itself.\n\nThat is the fairer kind of personalization. Do not ask learners to live inside a label. Ask what the task needs, what they already know, and what action will prove the learning held."
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01-aislinn-pump-diagram",
+          "title": "Aislinn draws the pump because the pipes disappear",
+          "tags": [
+            "decision_point",
+            "engineering",
+            "task fit"
+          ],
+          "planSpec": {
+            "domain": "industrial maintenance training",
+            "audience": "trainers tempted by learning-style labels",
+            "stakes": "whether an apprentice understands a spatial system",
+            "format": "decision_point",
+            "requiredBeat": "she chooses diagrams because the pump system needs them"
+          },
+          "scenario": "Aislinn plants a grease pencil against pump skid 6 at 2:14 p.m., oil smell thick under the mezzanine. The apprentice says he is not a visual learner and asks for the manual paragraph instead. The return pipe vanishes under the floor and comes back behind the tank. Aislinn can read him the paragraph or draw the loop on the metal housing. The pencil squeaks once. She has to decide whether the label or the pump should choose the format.",
+          "whatToDo": "Use the diagram because the system is spatial, then ask the apprentice to trace the flow path from memory and explain each valve.",
+          "whyItMatters": "The format should answer to the task. The drawing helps because the pipe relationships matter, not because a style label granted permission."
+        },
+        {
+          "exampleId": "ch06-ex02-tomasz-fraction-gap",
+          "title": "Tomasz finds the fraction gap under the visual label",
+          "tags": [
+            "postmortem",
+            "math",
+            "prior knowledge"
+          ],
+          "planSpec": {
+            "domain": "math tutoring",
+            "audience": "teachers who use style labels as diagnosis",
+            "stakes": "whether the real missing knowledge gets repaired",
+            "format": "postmortem",
+            "requiredBeat": "he finds a visual learner diagnosis hid missing fractions"
+          },
+          "scenario": "Tomasz sits at 7:40 p.m. in Room 204, dry-marker smell hanging over a stack of fraction pies. The student has been called a visual learner for years. Bigger graphs have not helped. Tonight she stares at three-fourths and calls it three pieces. Tomasz stops the graph lesson and pulls out paper strips. The problem is not that the picture is wrong. The word fourths has no grip yet. He has to rewrite the diagnosis.",
+          "whatToDo": "Repair the missing fraction idea before choosing more visuals. Then use diagrams plus recall to test whether the repaired concept holds.",
+          "whyItMatters": "A style label can hide a knowledge gap. Better teaching starts by finding what the learner lacks, then choosing a format that serves the content."
+        },
+        {
+          "exampleId": "ch06-ex03-farah-veda-podcast-map",
+          "title": "Farah asks whether the river walk needs a map",
+          "tags": [
+            "dialogue",
+            "tour design",
+            "preference"
+          ],
+          "planSpec": {
+            "domain": "public history tour design",
+            "audience": "designers choosing between liked formats and task fit",
+            "stakes": "whether visitors understand place rather than merely enjoy narration",
+            "format": "dialogue",
+            "requiredBeat": "they debate podcasts versus maps"
+          },
+          "scenario": "Farah clips a tiny microphone to her jacket at 9:05 a.m. beside the old mill bridge, river mud dark on the stones. \"People love the podcast,\" Veda says, holding the route map. Farah points at the bend where the market used to flood. \"Can they see why the market moved without this?\" Veda taps the map. \"Maybe they need both.\" The first tour group is crossing the street. Farah must choose what leads.",
+          "whatToDo": "Lead with the map for the spatial claim, use audio for the story, then ask visitors to explain the market move at the river bend.",
+          "whyItMatters": "The pleasant format is not automatically the teaching format. The route has spatial logic, so the design should show space and then test use."
+        },
+        {
+          "exampleId": "ch06-ex04-yael-style-match",
+          "title": "Yael watches the style-matched review lose to the task",
+          "tags": [
+            "predict_reveal",
+            "school",
+            "evidence"
+          ],
+          "planSpec": {
+            "domain": "geometry review",
+            "audience": "students betting on preferred formats",
+            "stakes": "whether task-fit practice beats comfort",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts style-matched review will beat task-fit practice"
+          },
+          "scenario": "Yael sharpens a green pencil at 4:33 p.m. in the tutoring lab, triangle proofs spread under the lamp. She predicts the audio summary will help her most because she likes listening. Her tutor gives her two plans: audio summary only, or diagrams with proof steps she must explain from memory. Yael chooses the comfortable plan first. On Friday, the mixed proofs punish her. The diagram-plus-explanation plan wins the retest.",
+          "whatToDo": "Let the proof task choose the representation. Use diagrams for relationships, then retrieve and explain the steps without the model.",
+          "whyItMatters": "Preference predicted comfort. Task-fit plus active processing predicted performance. Yael needs the second kind of evidence."
+        },
+        {
+          "exampleId": "ch06-ex05-briony-weld-joint",
+          "title": "Briony runs a glove over the weld bead",
+          "tags": [
+            "vignette",
+            "trades",
+            "multiple forms"
+          ],
+          "planSpec": {
+            "domain": "welding inspection",
+            "audience": "learners dealing with physical skill",
+            "stakes": "whether format follows material features",
+            "format": "vignette",
+            "requiredBeat": "she uses touch and sight because the joint demands both"
+          },
+          "scenario": "Briony runs a leather glove over the weld bead at 6:11 a.m. in bay 3, sparks ticking out in the sand bucket. The apprentice wants a video because he likes videos. Briony angles the joint under the lamp, then has him feel the undercut with two fingers through the glove. The flaw is visual and tactile. The lesson is both because the metal is both. The label on the learner matters less than the edge under his hand.",
+          "whatToDo": "Match the representation to the joint: look, touch, name the flaw, then inspect a second bead without help.",
+          "whyItMatters": "Physical work often needs more than a preferred channel. The material decides which senses and actions reveal the feature."
+        },
+        {
+          "exampleId": "ch06-ex06-nestor-onboarding-labels",
+          "title": "Nestor removes learning-style boxes from onboarding",
+          "tags": [
+            "before_after",
+            "work",
+            "design"
+          ],
+          "planSpec": {
+            "domain": "employee onboarding redesign",
+            "audience": "managers using style inventories",
+            "stakes": "whether training improves real task performance",
+            "format": "before_after",
+            "requiredBeat": "he redesigns onboarding around task evidence instead of labels"
+          },
+          "scenario": "Nestor opens the onboarding spreadsheet at 8:48 a.m. in a glass phone room, stale coffee in a white mug. The old form sorts hires into visual, auditory, and hands-on boxes. The help desk results do not match the boxes. He deletes the columns and adds three checks: can the hire explain the workflow, classify a live ticket, and solve one case without prompts. The sheet looks less personal at first. The training gets more exact.",
+          "whatToDo": "Replace style boxes with task checks and active practice. Pick formats that fit each workflow, then test explanation, classification, and performance.",
+          "whyItMatters": "Labels feel tailored but can miss the work. Task evidence shows what the new hire can actually do and what support belongs next."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch06-q01",
+            "prompt": "A learner says she is auditory, but the topic is a map route. What should guide the first format choice?",
+            "choices": [
+              "The spatial demands of the route",
+              "The label alone",
+              "The easiest file to send"
+            ],
+            "correctIndex": 0,
+            "explanation": "The material should lead. A route has spatial relationships, so a map may be needed even if audio is also useful.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q02",
+            "prompt": "Why is preference weak evidence by itself?",
+            "choices": [
+              "People never have preferences",
+              "A liked format can feel good without improving later use",
+              "All formats work the same"
+            ],
+            "correctIndex": 1,
+            "explanation": "Comfort does not prove learning. Performance after recall or application gives stronger evidence.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q03",
+            "prompt": "A student struggles with graphs and is called a visual learner. What should the teacher inspect next?",
+            "choices": [
+              "A new style label",
+              "Whether graphs should be banned",
+              "Missing background knowledge that may block the graph"
+            ],
+            "correctIndex": 2,
+            "explanation": "The struggle may come from a prerequisite gap, not a style mismatch. Diagnosis should look below the label.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q04",
+            "prompt": "Which design best follows this idea?",
+            "choices": [
+              "Choose a format by content demands, then require explanation or recall",
+              "Ask students to pick any comfortable format and stop there",
+              "Use only one format for every topic"
+            ],
+            "correctIndex": 0,
+            "explanation": "Task fit plus active processing is stronger than preference matching alone.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch06-q05",
+            "prompt": "A mechanic must learn a hidden fluid path. Which method fits best?",
+            "choices": [
+              "A purely motivational speech",
+              "A flow diagram traced from memory after study",
+              "A style survey with no equipment"
+            ],
+            "correctIndex": 1,
+            "explanation": "The hidden path is spatial and procedural. A diagram plus recall fits the task.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q06",
+            "prompt": "What does active processing add?",
+            "choices": [
+              "It guarantees the favorite format is chosen",
+              "It removes the need for prior knowledge",
+              "It makes the learner retrieve, explain, compare, or use the idea"
+            ],
+            "correctIndex": 2,
+            "explanation": "Learning improves when the learner works with the material. Format alone is not enough.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q07",
+            "prompt": "A training team wants to personalize without style labels. What should they collect?",
+            "choices": [
+              "Evidence from task performance and specific gaps",
+              "Only stated format preferences",
+              "Favorite colors"
+            ],
+            "correctIndex": 0,
+            "explanation": "Task performance shows what people can do and where support is needed. It is more useful than broad labels.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q08",
+            "prompt": "When might a preference still matter?",
+            "choices": [
+              "When it overrides all evidence",
+              "When it helps attention or access, after task fit is considered",
+              "When it replaces practice"
+            ],
+            "correctIndex": 1,
+            "explanation": "Preference can support engagement, but it should not outrank content demands and performance evidence.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch06-q09",
+            "prompt": "Which statement fits best?",
+            "choices": [
+              "Learners have no differences",
+              "Only one teaching format is valid",
+              "Differences matter, but style labels are too thin as the main diagnosis"
+            ],
+            "correctIndex": 2,
+            "explanation": "The point is not to ignore learners. It is to use better evidence than a broad style label.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch06-rc01",
+          "front": "A learner names a preferred style. What should you ask before designing practice?",
+          "back": "Ask what the task demands and what the learner already knows. Then choose a format and require recall, explanation, comparison, or use.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch06-rc02",
+          "front": "Why can a style label hide the real problem?",
+          "back": "It may explain struggle too quickly. The actual issue could be missing background knowledge, poor practice design, or a format that does not fit the material.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-rc03",
+          "front": "When should a diagram lead?",
+          "back": "When the material has spatial relationships that need to be seen or traced. Follow the diagram with no-cue explanation or recall.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-rc04",
+          "front": "What is stronger than matching preference?",
+          "back": "Task fit plus active processing. Pick the representation that serves the content, then test what the learner can produce or use.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is choosing methods by evidence. Start with the task, check prior knowledge, pick a fitting representation, and require active use.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If someone asks for training in their favorite format, then first name what the task requires and add a performance check."
+          },
+          {
+            "context": "health",
+            "plan": "If you learn a movement from a preferred video, then test it by explaining or doing it without the screen."
+          },
+          {
+            "context": "personal",
+            "plan": "If you call yourself a certain kind of learner, then ask what the material itself needs before choosing the study format."
+          },
+          {
+            "context": "relationships",
+            "plan": "If someone says they only understand one communication style, then choose the form that fits the issue and ask them to repeat the decision back."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, take one topic and write three lines: what the task demands, what background knowledge is needed, and how you will test active use.",
+        "weeklyPractice": "For one week, design study by task fit. Each day, write why the chosen format fits the material and how you checked recall or use."
+      },
+      "memorableLines": [
+        {
+          "text": "The diagram works because the pump has pipes, not because Aislinn has a label.",
+          "location": "hook",
+          "why": "It rejects style labels with a concrete object."
+        },
+        {
+          "text": "Preference can matter. Evidence should lead.",
+          "location": "breakdown.fastRead",
+          "why": "It keeps the argument balanced and practical."
+        },
+        {
+          "text": "A favorite format can become a soft chair where the mind rests instead of working.",
+          "location": "breakdown.fullRead",
+          "why": "It makes passive comfort easy to picture."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch07",
+      "number": 7,
+      "title": "Increase Your Abilities",
+      "readingTimeMinutes": 12,
+      "hook": "The first score looks final only if you stop asking what the next practice should change.",
+      "counterintuition": "Most people assume a weak result reveals a ceiling. The twist is that the same result may reveal a changeable flaw in strategy, feedback, or practice design.",
+      "tryThisNow": "Take one recent weak result and write two columns: what it does not prove forever, and what the next practice round should change.",
+      "keyTakeaway": "Read poor performance as information before identity: diagnose the method, use feedback, and redesign the next attempt before calling it a ceiling.",
+      "breakdown": {
+        "fastRead": "Cormac stares at a failed weld coupon at 6:52 a.m. in bay 4. The bend test cracked along the root. His first sentence is, maybe I am not built for this. The better sentence is, what does this crack ask me to change?\n\nAbility is not fixed by the first bad result. It is shaped by method, feedback, repetition, and response after mistakes. This is not empty optimism. Some limits are real. But a weak score is a poor final verdict before the practice has been redesigned.",
+        "deepRead": "Cormac stares at a failed weld coupon at 6:52 a.m. in bay 4. The cracked root is bright under the fluorescent light. He wants the result to mean one clean thing: I am not a welder. His instructor turns the coupon and points to the heat line. The miss is narrower than the verdict in Cormac's head.\n\nThat is the shift. A weak result may contain information about method, timing, prior knowledge, feedback, or effort. It may not be a permanent ceiling. Treating it as identity stops the redesign that could move the next result.\n\nZadie sees the same thing at 5:28 p.m. with a sales cohort everyone called untalented. Their calls failed because practice never included live objections, only script reading. Once the practice changed, two of the weakest reps improved first. The talent story had been too quick.\n\nDo not replace fatalism with slogans. Effort alone is not a plan. The move is diagnosis, feedback, and a changed attempt. Ask what the result says about the next practice, not what it says forever about the person.\n\nA weak score is a poor final verdict before the practice has been redesigned.\n\nGreta adds a second proof point in the tutoring office. Her first score was 61. The new plan changes only three things: retrieval cards, mixed problems, and a feedback meeting. When the retest moves, the lesson is not that limits vanished. It is that the first score was not clean evidence of a limit.",
+        "fullRead": "Cormac stares at a failed weld coupon at 6:52 a.m. in bay 4. The bend test cracked along the root, bright as a paper cut under the fluorescent light. The shop is not loud yet. He has room to hear his own first sentence: maybe I am not built for this.\n\nHis instructor picks up the coupon and turns it sideways. She points to the heat line, then to the travel angle in Cormac's log. The failure is not vague anymore. It has a shape. The next bead needs slower travel and a different angle at the root. Cormac's identity story was faster than the evidence.\n\nThis is the useful reading of ability. Present performance is real, but it is not pure destiny. It includes practice design, prior knowledge, feedback, timing, fatigue, and the learner's response after mistakes. A poor result can be a report, not a sentence.\n\nZadie learns this at 5:28 p.m. in a sales training room with marker stains on the table. The first cohort looked hopeless. Managers said some people just lacked the gift. Then Zadie watched the practice tape. Reps had read scripts to each other, but no one had practiced with live objections, silence, or price pushback. When she rebuilt the training around mixed calls and feedback, the weakest two reps improved first. The old label had been a lazy explanation for a poor design.\n\nThis does not mean everyone can become anything by wanting it. That is a cheap promise and it breaks trust. Bodies differ. Time differs. Starting points differ. The point is narrower and more useful: do not turn the first bad result into a final identity before the method has had a fair redesign.\n\nManon hears it at 8:03 p.m. after missing the same French verb form again. Quentin does not tell her to believe harder. He asks what changed between attempts. Same app, same list, same tired hour. Nothing changed, so the result taught almost nothing new about her ceiling. It taught plenty about the plan.\n\nThe move after a miss is plain. Name the specific failure. Ask what support, spacing, feedback, or variation was missing. Change one part of the next attempt. Then test again.\n\nThe first score looks final only if you stop asking what the next practice should change.\n\nGreta adds a second proof point in the tutoring office. Her first exam score is 61, and she wants to treat it as a ceiling because a ceiling hurts less than another try. Her tutor changes the plan instead of the speech: retrieval cards for missed terms, mixed problems instead of grouped ones, and one feedback meeting before the retest. The retest moves to 78. That number does not promise endless growth. It proves something smaller and more useful: the first score was not clean evidence of a final limit.\n\nJules keeps the same discipline on the lifting platform. He refuses both lazy stories, the lifter is hopeless, and the lifter can do anything by believing. He points to the early arm bend, lowers the weight, and tests the next pull. Hope becomes a cue, a load, and another attempt.\n\nThat is the standard. A growth response does not deny the result. It asks the result to teach the next practice before it is allowed to name the person."
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01-cormac-weld-coupon",
+          "title": "Cormac reads the crack before judging himself",
+          "tags": [
+            "decision_point",
+            "trades",
+            "growth"
+          ],
+          "planSpec": {
+            "domain": "welding certification practice",
+            "audience": "learners turning a weak result into identity",
+            "stakes": "whether a failed bend test becomes a redesign cue",
+            "format": "decision_point",
+            "requiredBeat": "he decides whether a weak welding test is a verdict or a practice signal"
+          },
+          "scenario": "Cormac holds a cracked weld coupon at 6:52 a.m. in bay 4, the root split bright under the fluorescent light. His certification retest is two weeks away. The first sentence in his head is simple: I am not built for this. His instructor points to the heat line and the travel angle in his log. The crack suddenly looks less like a verdict and more like a clue. Cormac has to decide which sentence to write in his practice notebook.",
+          "whatToDo": "Write the specific failure, slower travel at the root, then schedule the next bead around that change before judging ability.",
+          "whyItMatters": "The cracked coupon is real evidence, but not final evidence. It points to a method change that a fixed label would shut down."
+        },
+        {
+          "exampleId": "ch07-ex02-zadie-sales-tape",
+          "title": "Zadie finds practice design under the talent story",
+          "tags": [
+            "postmortem",
+            "sales",
+            "training"
+          ],
+          "planSpec": {
+            "domain": "sales training postmortem",
+            "audience": "managers blaming talent too early",
+            "stakes": "whether weak reps get a better practice design",
+            "format": "postmortem",
+            "requiredBeat": "she reviews a failed sales cohort and finds method gaps"
+          },
+          "scenario": "Zadie sits at 5:28 p.m. in training room B, a call recording paused on the wall screen and marker stains on her sleeve. The managers called the first cohort untalented. On tape, the reps only read scripts to each other. No silence. No price pushback. No angry buyer. The weakest rep freezes on the first real objection because practice never gave him one. Zadie has to decide whether the failure belongs to people or to the design.",
+          "whatToDo": "Redesign practice before writing talent verdicts. Add mixed objections, feedback after each call, and retests that show whether the change moves performance.",
+          "whyItMatters": "A weak cohort may reveal weak practice. If Zadie accepts the talent story too soon, the next group inherits the same broken design."
+        },
+        {
+          "exampleId": "ch07-ex03-manon-quentin-verb-miss",
+          "title": "Manon asks what changed between the two misses",
+          "tags": [
+            "dialogue",
+            "language",
+            "diagnosis"
+          ],
+          "planSpec": {
+            "domain": "adult language learning",
+            "audience": "self-learners discouraged by repeated misses",
+            "stakes": "whether a miss becomes a better plan or a fixed label",
+            "format": "dialogue",
+            "requiredBeat": "they debate whether a language miss proves a limit"
+          },
+          "scenario": "Manon drops her phone on the cafe table at 8:03 p.m., rain beads still on her coat. \"Same verb, wrong again. Maybe languages are not mine.\" Quentin turns the phone so the app timer shows 11:47 p.m. from last night. \"What changed between attempts?\" \"Nothing,\" Manon says. \"Same list, same hour, same tired brain.\" Quentin pushes over a napkin. \"Then the result mostly judged the plan. What do we change first?\"",
+          "whatToDo": "Change one part of the next attempt: earlier time, spaced recall, or a sentence-writing check. Then judge the new result, not the repeated old setup.",
+          "whyItMatters": "Repeating the same poor plan gives weak evidence about ability. A changed method gives Manon a fairer test."
+        },
+        {
+          "exampleId": "ch07-ex04-greta-retest-plan",
+          "title": "Greta watches the second score move after feedback",
+          "tags": [
+            "predict_reveal",
+            "school",
+            "feedback"
+          ],
+          "planSpec": {
+            "domain": "exam retest preparation",
+            "audience": "students who read first scores as ceilings",
+            "stakes": "whether redesigned practice changes performance",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts a redesigned plan will move a retest"
+          },
+          "scenario": "Greta circles a 61 in red at 4:19 p.m. in the tutoring office, pencil shavings stuck to her sweater. She predicts the retest will prove the first score was her ceiling. Her tutor builds a new plan: retrieval cards for missed terms, mixed problems, and one feedback meeting. The first week feels slower than rereading. On retest day, Greta scores 78. The number is not magic. It is a changed method showing up on paper.",
+          "whatToDo": "Compare scores only after changing the practice design. Track which parts of the plan moved the errors, then keep the useful ones.",
+          "whyItMatters": "The retest does not prove limitless ability. It proves the first score was not a final verdict once feedback and practice changed."
+        },
+        {
+          "exampleId": "ch07-ex05-jules-coaching-slogans",
+          "title": "Jules refuses the poster slogan after a missed lift",
+          "tags": [
+            "vignette",
+            "coaching",
+            "realism"
+          ],
+          "planSpec": {
+            "domain": "strength coaching",
+            "audience": "coaches avoiding fatalism and empty optimism",
+            "stakes": "whether feedback leads to a concrete next attempt",
+            "format": "vignette",
+            "requiredBeat": "he coaches without empty slogans"
+          },
+          "scenario": "Jules squats beside platform 2 at 6:06 a.m., chalk dust on his black joggers and a failed clean still rattling in the plates. His lifter waits for the slogan: believe in yourself. Jules does not give it. He taps the video on his tablet, pauses at the early arm bend, and sets two lighter reps for the next set. The room stays quiet. The message is not you can do anything. The message is change the pull and try again.",
+          "whatToDo": "Skip both labels and slogans. Name the technical miss, reduce the load enough to repair it, and make the next attempt test that change.",
+          "whyItMatters": "Real growth needs a changed action. Jules keeps hope tied to evidence instead of mood."
+        },
+        {
+          "exampleId": "ch07-ex06-edda-piano-recording",
+          "title": "Edda turns the bad recording into Tuesday drills",
+          "tags": [
+            "before_after",
+            "music",
+            "practice design"
+          ],
+          "planSpec": {
+            "domain": "piano practice",
+            "audience": "performers discouraged by bad recordings",
+            "stakes": "whether a poor performance leads to targeted practice",
+            "format": "before_after",
+            "requiredBeat": "she turns a bad piano recording into a next-drill plan"
+          },
+          "scenario": "Edda listens to her recital recording at 9:31 p.m. in apartment 5C, one earbud crackling and rain hitting the fire escape. Last year she would have deleted the file and said her hands freeze under pressure. Tonight she timestamps the smeared arpeggio, the rushed page turn, and the missed left-hand entrance after applause. On Tuesday she practices exactly those three transitions with stops between them. The recording still stings. It now has instructions.",
+          "whatToDo": "Timestamp the failures and convert each one into a small drill with feedback. Retest those spots under mild pressure before judging the whole performance.",
+          "whyItMatters": "The recording can become identity or information. Turning it into drills gives the next performance something specific to improve."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch07-q01",
+            "prompt": "A trainee fails a first skills check and says she is not suited for the work. What should happen before that verdict?",
+            "choices": [
+              "Diagnose the failure and redesign the next practice attempt",
+              "Accept the first score as permanent",
+              "Avoid feedback so confidence stays high"
+            ],
+            "correctIndex": 0,
+            "explanation": "A weak first result may reflect method, feedback, or missing background. Redesign gives the next result a fairer test.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q02",
+            "prompt": "What is wrong with replacing fatalism with simple slogans?",
+            "choices": [
+              "Slogans always lower effort",
+              "Slogans do not change the practice design",
+              "Slogans prove ability is fixed"
+            ],
+            "correctIndex": 1,
+            "explanation": "Encouragement helps only when tied to changed strategy, feedback, and another attempt.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch07-q03",
+            "prompt": "A manager blames weak performance on talent before reviewing training. What risk does she run?",
+            "choices": [
+              "Giving too much useful feedback",
+              "Making results too measurable",
+              "Missing a fixable flaw in practice design"
+            ],
+            "correctIndex": 2,
+            "explanation": "The poor result may come from training conditions. Talent labels can end the search too early.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q04",
+            "prompt": "Which response treats a setback as information?",
+            "choices": [
+              "Name the specific miss, change one practice variable, and retest",
+              "Ignore the miss and repeat the same plan",
+              "Turn the miss into a permanent identity label"
+            ],
+            "correctIndex": 0,
+            "explanation": "The setback becomes useful when it drives diagnosis, redesign, and another attempt.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q05",
+            "prompt": "What does a better second score prove?",
+            "choices": [
+              "Anyone can master anything instantly",
+              "The first score was not necessarily a final ceiling",
+              "Feedback is no longer needed"
+            ],
+            "correctIndex": 1,
+            "explanation": "Improvement after changed practice shows the first result was partly shaped by method and conditions.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q06",
+            "prompt": "A learner repeats the same weak plan and gets the same weak result. What is the result mostly judging?",
+            "choices": [
+              "A permanent ceiling with certainty",
+              "The value of never practicing again",
+              "The unchanged plan as much as the learner"
+            ],
+            "correctIndex": 2,
+            "explanation": "Without changing the method, the repeated result gives limited evidence about ability.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q07",
+            "prompt": "Which sentence best fits after a poor performance?",
+            "choices": [
+              "What does this result ask me to change next?",
+              "This proves who I am forever.",
+              "Feedback would only make this worse."
+            ],
+            "correctIndex": 0,
+            "explanation": "The useful question turns the result into a guide for redesign, not a fixed identity.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch07-q08",
+            "prompt": "How should a coach respond to a missed lift?",
+            "choices": [
+              "Give only a motivational speech",
+              "Identify the technical miss, adjust load or cue, and retest",
+              "Call the lifter untalented"
+            ],
+            "correctIndex": 1,
+            "explanation": "Concrete feedback and a changed attempt make improvement possible. Labels and slogans do less.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q09",
+            "prompt": "Design a response to a failed exam that fits this idea.",
+            "choices": [
+              "Reread everything the same way",
+              "Assume the score is permanent",
+              "Review errors, pick two strategy changes, practice them, and retest"
+            ],
+            "correctIndex": 2,
+            "explanation": "The plan treats the score as information for better practice and uses a retest to check the change.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch07-rc01",
+          "front": "A first result is weak. What should you ask before naming a limit?",
+          "back": "Ask what the result says about method, feedback, prior knowledge, timing, and the next attempt. Diagnose before turning performance into identity.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-rc02",
+          "front": "Why is effort alone not enough?",
+          "back": "Effort helps when it changes the work in useful ways. Without strategy, feedback, or a new attempt, effort can repeat the same mistake.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-rc03",
+          "front": "A team is labeled untalented. What should you inspect?",
+          "back": "Inspect the practice design: whether it included realistic cases, feedback, spaced return, and chances to repair. The label may be hiding a design flaw.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-rc04",
+          "front": "How do you turn a setback into a growth move without slogans?",
+          "back": "Name the specific miss, choose one method change, use feedback, and retest. Keep hope tied to a better next action.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is reading results as information before identity. After a miss, diagnose the cause, change the method, and test again.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a presentation or training result is weak, then review the specific failure and change one practice condition before judging ability."
+          },
+          {
+            "context": "health",
+            "plan": "If a workout or rehab metric drops, then check sleep, load, form, and feedback before calling it a permanent limit."
+          },
+          {
+            "context": "personal",
+            "plan": "If a study score disappoints you, then write the next practice change before writing any sentence about who you are."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a hard conversation goes badly, then identify one skill to practice next time instead of labeling yourself bad at conflict."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, pick one disappointing result. Write the specific miss, one possible design flaw, one feedback source, and the next attempt you will run.",
+        "weeklyPractice": "For one week, keep a setback log with only two lines per entry: what happened, and what the next practice changes. Review it at the end of the week."
+      },
+      "memorableLines": [
+        {
+          "text": "A weak score is a poor final verdict before the practice has been redesigned.",
+          "location": "breakdown.deepRead",
+          "why": "It captures the anti-fatalism in practical terms."
+        },
+        {
+          "text": "Cormac's identity story was faster than the evidence.",
+          "location": "breakdown.fullRead",
+          "why": "It names the common mistake through a concrete scene."
+        },
+        {
+          "text": "The first score looks final only if you stop asking what the next practice should change.",
+          "location": "hook",
+          "why": "It turns growth into a specific question."
+        }
+      ]
+    },
+    {
+      "chapterId": "make-it-stick-ch08",
+      "number": 8,
+      "title": "Make It Stick",
+      "readingTimeMinutes": 12,
+      "hook": "The calendar does what inspiration cannot: it makes memory come back after the room has changed.",
+      "counterintuition": "Most people assume the favorite trick is the shortcut. The twist is that learning lasts better when small methods are scheduled to catch one another's misses.",
+      "tryThisNow": "Choose one skill and schedule three short returns this week: one recall, one mixed practice, and one repair check after feedback.",
+      "keyTakeaway": "Make learning stick by building a repeatable cycle: retrieve, space, mix, check, repair, and repeat until the skill can return under changed conditions.",
+      "breakdown": {
+        "fastRead": "Clio writes four boxes on a pharmacy receipt at 7:06 p.m. in the campus cafe: recall, mix, check, repair. Her exam is Friday. A cram block would feel dramatic. The receipt looks dull. It is also a system.\n\nOne method helps. A routine helps more. Retrieval makes memory produce. Spacing makes it return. Interleaving trains choice. Calibration checks confidence. Repair fixes the miss. Put the moves on a calendar and the learning has a place to come back.",
+        "deepRead": "Clio writes four boxes on a pharmacy receipt at 7:06 p.m. in the campus cafe. Recall, mix, check, repair. Her exam is Friday, and a single cram block keeps calling to her because it feels heroic. The receipt is less heroic. It gives Tuesday to recall, Wednesday to mixed problems, Thursday to a no-cue check and repair.\n\nThis is the synthesis. Each method does a different job. Retrieval pulls the idea back. Spacing asks it to return after time. Interleaving makes the learner choose among near neighbors. Calibration tests confidence against performance. Repair turns misses into the next round.\n\nGareth sees why the pieces need one another at 4:55 p.m. in the maintenance shop. His old training tips faded because they lived on posters. The new routine puts a five-minute recall at shift start, one mixed fault card after lunch, and a repair log before clock-out. Nothing is flashy. More faults get fixed without help.\n\nDo not collect tactics like souvenirs. Build a cycle small enough to run. The methods stick when they have a schedule, a trigger, and a repair path.\n\nThe calendar gives memory a place to come back.\n\nSaskia proves the point two weeks later in the staff hall. Her friend remembers the drama of the six-hour cram, but not the code-card sequence. Saskia's weekly cycle feels dull while it runs. It is less dull when the surprise drill arrives and the steps come back.",
+        "fullRead": "Clio writes four boxes on a pharmacy receipt at 7:06 p.m. in the campus cafe. The espresso grinder screams behind the counter. Her exam is Friday. A cram block would feel serious, almost brave. The receipt looks plain: recall Tuesday, mixed problems Wednesday, no-cue check Thursday, repair before bed.\n\nThat plain receipt is the final move. Durable learning is not one favorite trick. It is a cycle. Retrieval makes memory produce instead of recognize. Spacing makes the idea return after some forgetting. Interleaving forces choice among similar cases. Calibration asks whether confidence matches performance. Repair takes the miss and builds the next attempt around it.\n\nGareth sees the difference at 4:55 p.m. in the maintenance shop. Last year he taped training tips above the tool crib. People liked them. Two weeks later, the same faults came back. This year he builds a routine: Monday recall of shutdown steps, Wednesday mixed fault cards, Friday repair log with one retest. The wall looks less inspiring. The machines go down less often for the same mistakes.\n\nA single tactic can fail by being lonely. Retrieval without spacing can become a one-day burst. Spacing without retrieval can become vague good intention. Interleaving without feedback can leave confusion in place. Calibration without repair can make people accurate about weakness but no stronger. The cycle matters because each move catches what another move misses.\n\nPaloma says it plainly at 8:22 a.m. while planning a certification group with Wen. One favorite method is a tool. The weekly routine is the bench, the light, and the habit of picking the tool up again.\n\nKeep the system small. A giant plan dies when the week gets busy. A ten-minute recall, a short mixed set, and one repair note can survive. The point is not to admire learning science. The point is to give memory repeated work under slightly changed conditions until it can return when needed.\n\nThe calendar does what inspiration cannot: it makes memory come back after the room has changed.\n\nSaskia proves the point two weeks later in the staff hall. Her friend remembers the drama of the six-hour cram, but not the code-card sequence. Saskia's weekly cycle felt dull while it ran: Tuesday recall, Thursday scenarios, Saturday repair. It is less dull when the surprise drill arrives and the steps come back after the test room is gone.\n\nThabo adds the missing piece in a restaurant kitchen. His apprentices already practice knife cuts, sauces, and plating. The same errors still return on Fridays. He clips a repair ticket to the station: what missed, when to retry, what changed. The system does not merely find errors. It schedules their return.\n\nInga makes the personal version on her apartment floor. A list of tips becomes two calendar blocks. Tuesday recall. Friday mixed practice and repair. The advice loses shine when it becomes an alarm, but it gains a future.\n\nA learning system should be small enough to run and complete enough to catch the common failures. If it cannot fit on a normal week, it will not survive. If it never checks or repairs, it will only admire itself."
+      },
+      "examples": [
+        {
+          "exampleId": "ch08-ex01-clio-receipt-plan",
+          "title": "Clio writes the learning cycle on a receipt",
+          "tags": [
+            "decision_point",
+            "exam",
+            "system"
+          ],
+          "planSpec": {
+            "domain": "exam week planning",
+            "audience": "students tempted by a single cram block",
+            "stakes": "whether methods become a runnable weekly system",
+            "format": "decision_point",
+            "requiredBeat": "she builds an exam week system instead of a cram block"
+          },
+          "scenario": "Clio writes four boxes on a pharmacy receipt at 7:06 p.m. in the campus cafe, espresso grounds stuck to the heel of her hand. Her pharmacology exam is Friday. The tempting plan is one long Thursday cram with every slide open. The receipt plan is quieter: Tuesday recall, Wednesday mixed cases, Thursday no-cue check, Thursday night repair. She folds the receipt once and has to decide which plan gets the calendar alert.",
+          "whatToDo": "Put the four-box cycle on the calendar and keep each block short: retrieve, mix, check, repair. Let review support the cycle, not replace it.",
+          "whyItMatters": "The cram block leans on intensity. The cycle makes memory return, choose, and repair across time, which is what the exam will demand."
+        },
+        {
+          "exampleId": "ch08-ex02-gareth-tool-crib",
+          "title": "Gareth takes the tips off the tool-crib wall",
+          "tags": [
+            "postmortem",
+            "maintenance",
+            "routine"
+          ],
+          "planSpec": {
+            "domain": "maintenance training",
+            "audience": "managers whose advice fades after posters",
+            "stakes": "whether recurring practice changes shop behavior",
+            "format": "postmortem",
+            "requiredBeat": "he reviews a training routine that faded"
+          },
+          "scenario": "Gareth stands by the tool crib at 4:55 p.m., peeling last year's laminated training tip from the cinderblock wall. The tip was popular. The same shutdown errors returned in two weeks. His new sheet is uglier: Monday recall at shift start, Wednesday mixed fault cards, Friday repair log and retest. He looks at the blank wall where the poster was and has to decide whether workers need another reminder or a routine that keeps calling the skill back.",
+          "whatToDo": "Replace the poster with scheduled practice: brief recall, mixed fault choice, and a repair log with a retest for the missed step.",
+          "whyItMatters": "Advice fades when it has no return path. A routine makes the skill show up again after time, variation, and feedback."
+        },
+        {
+          "exampleId": "ch08-ex03-paloma-wen-cycle",
+          "title": "Paloma asks Wen what the favorite tactic misses",
+          "tags": [
+            "dialogue",
+            "certification",
+            "integration"
+          ],
+          "planSpec": {
+            "domain": "professional certification study group",
+            "audience": "learners attached to one favorite method",
+            "stakes": "whether the group covers different failure modes",
+            "format": "dialogue",
+            "requiredBeat": "they debate one favorite tactic versus a full cycle"
+          },
+          "scenario": "Paloma caps a black marker at 8:22 a.m. in the union hall, bagels cooling beside a stack of certification handouts. \"Flashcards are enough,\" Wen says. Paloma points at the whiteboard columns: recall, spacing, mixed cases, check, repair. \"Flashcards help recall. What handles choosing the right case? What handles overconfidence?\" Wen tears a bagel in half and looks at the board. \"So my tool is good, but it is not the whole bench.\"",
+          "whatToDo": "Keep the flashcards, then add spacing, mixed cases, no-cue checks, and repair rounds. Give each method a job in the weekly cycle.",
+          "whyItMatters": "One tactic catches one weakness. The full cycle catches several: forgetting, poor selection, false confidence, and unrepaired gaps."
+        },
+        {
+          "exampleId": "ch08-ex04-saskia-weekly-system",
+          "title": "Saskia watches the quiet weekly plan beat the burst",
+          "tags": [
+            "predict_reveal",
+            "nursing",
+            "schedule"
+          ],
+          "planSpec": {
+            "domain": "nursing recertification",
+            "audience": "professionals drawn to last-minute pushes",
+            "stakes": "whether a weekly routine beats a dramatic cram",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts the weekly system will beat the burst"
+          },
+          "scenario": "Saskia tapes a recertification checklist above her locker at 6:18 a.m., sanitizer smell sharp in the staff hall. She predicts her quiet weekly plan will beat her usual Sunday burst: Tuesday recall, Thursday mixed scenarios, Saturday repair. Her friend laughs and studies for six hours the night before. On test day, the burst feels fresher. Two weeks later, Saskia still handles a surprise code-card drill. The burst has already gone soft.",
+          "whatToDo": "Trust the later drill, not the drama of the cram. Keep the weekly cycle because it makes the skill return after time and changed cues.",
+          "whyItMatters": "The burst can win the feeling of effort. The system wins when memory has to come back after the test room disappears."
+        },
+        {
+          "exampleId": "ch08-ex05-thabo-repair-loop",
+          "title": "Thabo adds a repair ticket to the apprentice station",
+          "tags": [
+            "vignette",
+            "kitchen",
+            "repair"
+          ],
+          "planSpec": {
+            "domain": "restaurant apprenticeship",
+            "audience": "coaches building repair into recurring practice",
+            "stakes": "whether errors get revisited instead of repeated",
+            "format": "vignette",
+            "requiredBeat": "he designs a repair loop for apprentice cooks"
+          },
+          "scenario": "Thabo clips a repair ticket above the garde-manger station at 2:37 p.m., tape snapping against the steel shelf. The apprentice cooks have practiced knife cuts, sauces, and plating in separate bursts. The same errors return on Fridays. The new ticket has three lines: what missed, when to retry, what changed. A crooked brunoise goes on the ticket before it goes in the compost. By dinner, the station has a memory.",
+          "whatToDo": "Make every recurring miss produce a repair ticket with a scheduled retry. Review the ticket during the next mixed prep block.",
+          "whyItMatters": "A system that finds errors but never revisits them stalls. The repair loop turns inspection into stronger next attempts."
+        },
+        {
+          "exampleId": "ch08-ex06-inga-calendar",
+          "title": "Inga moves the study tips onto Tuesday and Friday",
+          "tags": [
+            "before_after",
+            "personal",
+            "calendar"
+          ],
+          "planSpec": {
+            "domain": "personal study habit",
+            "audience": "readers collecting advice without scheduling it",
+            "stakes": "whether methods become a repeatable routine",
+            "format": "before_after",
+            "requiredBeat": "she moves from tips to a calendar"
+          },
+          "scenario": "Inga opens a notes app at 9:14 p.m. on her apartment floor, laundry warm in a blue basket beside her. The list says retrieve, space, mix, check, repair, but for three weeks it has been only a list. She deletes the heading and creates two calendar blocks: Tuesday ten-minute recall, Friday mixed practice plus repair. The advice loses its shine when it becomes an alarm. It also becomes harder to ignore.",
+          "whatToDo": "Turn each method into a dated appointment with a small trigger and a clear finish line. Keep the routine short enough to survive a normal week.",
+          "whyItMatters": "Tips do not make learning stick until they ask for time. The calendar turns good ideas into repeated contact with memory."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch08-q01",
+            "prompt": "A student wants to use only flashcards for a final. What should be added?",
+            "choices": [
+              "Spacing, mixed cases, checks, and repair so flashcards are part of a cycle",
+              "Only more colors on the cards",
+              "Nothing, because one tactic covers every weakness"
+            ],
+            "correctIndex": 0,
+            "explanation": "Flashcards help retrieval, but the full routine also handles forgetting, selection, calibration, and repair.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q02",
+            "prompt": "Why is a calendar useful for learning?",
+            "choices": [
+              "It guarantees motivation stays high",
+              "It makes methods recur after time and changed conditions",
+              "It removes the need for feedback"
+            ],
+            "correctIndex": 1,
+            "explanation": "A calendar gives retrieval, mixing, checking, and repair a return path. Inspiration alone often fades.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch08-q03",
+            "prompt": "Which routine best fits the synthesis?",
+            "choices": [
+              "One long reread the night before",
+              "Only watching examples in order",
+              "Recall Tuesday, mixed practice Wednesday, no-cue check Thursday, repair Friday"
+            ],
+            "correctIndex": 2,
+            "explanation": "The routine combines the main moves and spreads them over time so memory has to return and improve.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch08-q04",
+            "prompt": "A training program checks errors but never revisits them. What is missing?",
+            "choices": [
+              "A repair loop with another attempt",
+              "A prettier report",
+              "Less feedback"
+            ],
+            "correctIndex": 0,
+            "explanation": "Checking exposes weakness. Repair and retest strengthen it.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q05",
+            "prompt": "What does interleaving add inside the full routine?",
+            "choices": [
+              "A way to avoid retrieval",
+              "Practice choosing among related cases",
+              "A guarantee that practice feels smooth"
+            ],
+            "correctIndex": 1,
+            "explanation": "Interleaving trains selection. It complements retrieval and spacing by making learners choose the right move.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch08-q06",
+            "prompt": "A learner says the cram block felt more intense than the weekly plan. What evidence should decide?",
+            "choices": [
+              "How dramatic the study felt",
+              "How late the learner stayed awake",
+              "Later performance after time and changed cues"
+            ],
+            "correctIndex": 2,
+            "explanation": "Durability is shown by later recall and use, not by the drama of the session.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch08-q07",
+            "prompt": "Design a small weekly cycle for a certification skill.",
+            "choices": [
+              "Schedule recall, mixed cases, a no-cue check, and a repair round",
+              "Read every page once with no check",
+              "Wait until the final day"
+            ],
+            "correctIndex": 0,
+            "explanation": "A small cycle gives each method a job and keeps the skill returning across the week.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q08",
+            "prompt": "Why can one strong tactic still fall short?",
+            "choices": [
+              "Strong tactics never work",
+              "It may address one weakness while leaving others uncovered",
+              "Using a tactic means feedback is impossible"
+            ],
+            "correctIndex": 1,
+            "explanation": "Retrieval, spacing, mixing, calibration, and repair do different jobs. A single tool can leave gaps.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch08-q09",
+            "prompt": "What is the best final measure of a learning system?",
+            "choices": [
+              "Whether the plan looks complex",
+              "Whether every session feels easy",
+              "Whether the skill returns and works under changed conditions"
+            ],
+            "correctIndex": 2,
+            "explanation": "A good system makes knowledge available later, with different cues and real use.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch08-rc01",
+          "front": "You have one favorite study tactic. What should you ask?",
+          "back": "Ask what weakness it does not cover. Add spacing, mixing, checking, or repair so the tactic becomes part of a routine.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch08-rc02",
+          "front": "Why does repair belong in the system?",
+          "back": "Because checks only reveal gaps. Repair schedules another attempt so the gap gets stronger instead of merely named.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch08-rc03",
+          "front": "What does the calendar add that advice lacks?",
+          "back": "It makes the methods return. A scheduled recall or mixed practice block gives memory repeated work after time has passed.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch08-rc04",
+          "front": "How do the main moves reinforce each other?",
+          "back": "Retrieval produces, spacing returns, interleaving chooses, calibration checks, and repair strengthens the miss. Together they cover more failure points than one method alone.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is building a repeatable learning cycle. Schedule retrieval, spacing, interleaving, calibration, and repair so the methods keep working after the first burst of motivation.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If training advice lives only in a document, then schedule a recall check, a mixed case, and a repair round before the next deadline."
+          },
+          {
+            "context": "health",
+            "plan": "If a rehab or fitness cue keeps fading, then put two short return sessions on the calendar with one form check and one repair note."
+          },
+          {
+            "context": "personal",
+            "plan": "If you collect study tips, then convert one tip into a dated recall block and one dated repair block this week."
+          },
+          {
+            "context": "relationships",
+            "plan": "If you are trying to improve a conversation habit, then schedule one recall of the cue, one live attempt, and one repair note afterward."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, choose one skill and create a four-part calendar cycle: recall, mixed practice, no-cue check, and repair. Keep each block under fifteen minutes.",
+        "weeklyPractice": "Run the cycle for one week. At the end, ask what returned more easily, what still failed, and which repair block needs to repeat next week."
+      },
+      "memorableLines": [
+        {
+          "text": "The calendar gives memory a place to come back.",
+          "location": "breakdown.deepRead",
+          "why": "It makes routine design concrete and memorable."
+        },
+        {
+          "text": "A single tactic can fail by being lonely.",
+          "location": "breakdown.fullRead",
+          "why": "It explains why synthesis matters without jargon."
+        },
+        {
+          "text": "The calendar does what inspiration cannot: it makes memory come back after the room has changed.",
+          "location": "hook",
+          "why": "It ties the final practical move to the central learning standard."
+        }
+      ]
+    }
+  ]
+}

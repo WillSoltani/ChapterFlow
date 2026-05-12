@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch16",
+  "number": 16,
+  "title": "How to Stick with Good Habits Every Day",
+  "coreMove": "Build a visible streak you refuse to break twice, using a tracker that proves the identity to yourself",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a hospice nurse marking an X on a wall calendar after each twelve-hour shift she journals about a single patient",
+      "audience": "a clinician trying to keep a reflective practice alive across brutal weeks",
+      "stakes": "whether the practice survives the first week she forgets, or dies the way three previous attempts did",
+      "format": "vignette",
+      "requiredBeat": "the satisfaction of marking the X is shown as the reward that closes the loop, not the journaling itself"
+    },
+    {
+      "domain": "a freight dispatcher who tracks daily back stretches on a paper card taped inside his locker after a herniated disc scare",
+      "audience": "a shift worker in his fifties whose body is the asset",
+      "stakes": "a second injury that would end his ability to work the dock",
+      "format": "before_after",
+      "requiredBeat": "the tracker is shown moving the cue, the response, and the reward into one physical object he passes every morning"
+    },
+    {
+      "domain": "a violin teacher who misses her morning practice on a Tuesday because of a dentist appointment and has to decide whether Wednesday counts as a fresh start or a second miss",
+      "audience": "a working musician whose income depends on her own playing not slipping",
+      "stakes": "the unraveling of a 142-day practice streak that has changed how she introduces herself",
+      "format": "decision_point",
+      "requiredBeat": "she names the rule out loud — never miss twice — and treats Wednesday as the load-bearing day, not Thursday"
+    },
+    {
+      "domain": "a single father of a seven-year-old trying to hold a nightly ten-minute reading habit with his daughter through a custody-week schedule",
+      "audience": "a parent whose habit lives inside someone else's calendar",
+      "stakes": "whether his daughter learns that reading together is what they do, or what they sometimes do",
+      "format": "scene",
+      "requiredBeat": "he designs a tracker the daughter fills in, so the measurement itself becomes the ritual that pulls them both in"
+    },
+    {
+      "domain": "a regional sales manager who notices he has started optimizing for the tracker — logging short, junk workouts just to keep the chain — instead of for the fitness the tracker was meant to prove",
+      "audience": "a goal-driven professional prone to gaming any metric put in front of him",
+      "stakes": "the habit becomes theater while the underlying identity quietly erodes",
+      "format": "postmortem",
+      "requiredBeat": "he separates the measure from the thing measured, and rewrites the rule so a logged session has to meet a floor before it counts"
+    },
+    {
+      "domain": "a recovering gambler choosing whether to tell his sponsor about a single missed check-in call, or quietly skip it and protect the streak number",
+      "audience": "someone whose recovery depends on honesty more than on appearances",
+      "stakes": "the difference between a streak that reflects reality and a streak that hides a relapse in progress",
+      "format": "dilemma",
+      "requiredBeat": "the tracker is reframed as a mirror, not a trophy — useful only to the extent it tells the truth"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13
+}

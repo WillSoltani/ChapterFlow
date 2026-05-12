@@ -1,0 +1,319 @@
+{
+  "chapterId": "superforecasting-ch02",
+  "number": 2,
+  "title": "Illusions of Knowledge",
+  "readingTimeMinutes": 12,
+  "hook": "The answer feels solid when the story is smooth, which is exactly when the trap has teeth.",
+  "counterintuition": "Vesta thinks understanding feels like a clean explanation. The safer test is to separate what she knows, what she inferred, and what still has no proof.",
+  "tryThisNow": "Open a note, write one forecast you already believe about a neat explanation, add a percent and a check date, then write what would make you move the number down.",
+  "keyTakeaway": "When an explanation feels complete, slow down and label facts, guesses, and unknowns so confidence stays the same size as the evidence.",
+  "breakdown": {
+    "fastRead": "At 8:22 a.m., Vesta pushes a cracked tablet across the clinic counter. The patient story sounds complete, but two lab values on the screen do not fit. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. A smooth story is not proof. It is only a story without a snag yet.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
+    "deepRead": "At 3:47 p.m., Qadir, a school counselor, reads a parent email that explains every part of a fight. The sentences are smooth. The hallway camera is still unopened. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. Label the pieces before the feeling of knowing seals them together.\n\nPicture Linh reading a product outage note that blames one server before anyone checks the second log. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
+    "fullRead": "At 7:05 a.m., Edric, a bakery owner, watches a tray of flat croissants slide from the oven. The apprentice blames the butter, and the story feels right until Edric sees the proofing timer still blinking. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 2:18 p.m., Marna, a claims adjuster, has a driver’s account, two photos, and a missing intersection video. She writes fact, guess, and unknown in three columns before calling fault. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nConfidence should grow from checked parts, not from the relief of a finished tale. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-vesta-tablet",
+      "title": "Vesta turns the cracked tablet toward the lab values",
+      "tags": [
+        "decision_point",
+        "urgent",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "urgent care",
+        "audience": "a nurse practitioner facing a tidy patient story",
+        "stakes": "whether a patient is sent home with the wrong cause named",
+        "format": "decision_point",
+        "requiredBeat": "she catches a story that feels complete before the labs fit"
+      },
+      "scenario": "Vesta steadies a cracked tablet at 8:22 a.m. in exam room three, the patient's cough history glowing in neat checkboxes. The story says simple bronchitis: no fever, no chest pain, no travel. Then the oxygen number blinks lower than it should and the pulse is climbing. Her hand is already moving toward the discharge instructions. She has to decide whether the clean story is knowledge or just the first story that stopped the search.",
+      "whatToDo": "Stop the discharge. Mark the story as a guess, not a finding, and list the two numbers that do not fit before choosing the next test.",
+      "whyItMatters": "A neat explanation can feel like closure before the case earns it. The mismatched numbers keep the search open long enough to protect the patient."
+    },
+    {
+      "exampleId": "ch02-ex02-qadir-hallway",
+      "title": "Qadir waits for the hallway video to load",
+      "tags": [
+        "scene",
+        "school",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "school counseling",
+        "audience": "a counselor reviewing a parent’s confident account",
+        "stakes": "whether a student gets punished from a one-sided story",
+        "format": "scene",
+        "requiredBeat": "he separates the email’s claims from evidence before calling home"
+      },
+      "scenario": "Qadir holds a mug of mint tea at 3:47 p.m. in the middle-school counseling office while a parent email fills his screen. It explains the hallway fight perfectly: one child provoked, one child snapped, no mystery left. The video file is still loading in the corner, gray wheel spinning. The assistant principal wants a suspension call before buses leave. Qadir has to decide whether the smooth email counts as evidence or only as someone's map of it.",
+      "whatToDo": "Open a three-column note: seen, said, unknown. Put the email in said, wait for the video, and make no discipline call until the columns stop pretending to be the same.",
+      "whyItMatters": "The parent may be sincere and still incomplete. Sorting the source of each claim prevents the cleanest narrative from outrunning the facts."
+    },
+    {
+      "exampleId": "ch02-ex03-linh-server-log",
+      "title": "Linh reads the second server log after the outage memo",
+      "tags": [
+        "postmortem",
+        "software",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "software operations",
+        "audience": "an incident lead reviewing a too-neat outage explanation",
+        "stakes": "whether the next outage review preserves real uncertainty",
+        "format": "postmortem",
+        "requiredBeat": "she finds the story blamed one server before the second log was checked"
+      },
+      "scenario": "Linh sits on the data-center floor at 11:16 p.m., knees against a cold cabinet door, rereading the outage memo on her phone. The draft says the payment crash came from Server A, clean and final. The second log, still open on her laptop, shows Server B timing out six minutes earlier. Her stomach drops. The neat story was written before the mess was read. She has to decide what rule tomorrow's review will carry.",
+      "whatToDo": "Rewrite the review around known, inferred, and unknown. Keep Server A as a factor, add Server B as unresolved, and assign the next check before closing the incident.",
+      "whyItMatters": "A postmortem that feels finished too soon trains the team to stop looking. Naming the unknown keeps the next outage from inheriting the same blind spot."
+    },
+    {
+      "exampleId": "ch02-ex04-edric-croissants",
+      "title": "Edric sees the proofing timer blinking behind the butter",
+      "tags": [
+        "predict_reveal",
+        "bakery",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "bakery production",
+        "audience": "a bakery owner diagnosing a failed batch before dawn",
+        "stakes": "whether he blames the wrong cause and repeats the error",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts butter failure, then the timer reveals a simpler miss"
+      },
+      "scenario": "Edric slides a tray of flat croissants onto the steel table at 7:05 a.m., steam carrying the sour smell of wasted butter. The apprentice says the new butter supplier is the problem, and Edric believes it for ten full seconds. He starts drafting the vendor text in his head. Then he sees the proofing timer behind the flour bin, still blinking from 3:40. He has to decide whether to keep the supplier story or admit the simpler cause in front of the crew.",
+      "whatToDo": "Check the physical record before blaming the supplier. Read the timer, compare it with the batch sheet, and say the error plainly while everyone can still see the evidence.",
+      "whyItMatters": "The supplier story protects pride because it points outside the room. The timer points to the process, which is the only part the bakery can fix today."
+    },
+    {
+      "exampleId": "ch02-ex05-marna-claims-folder",
+      "title": "Marna draws three boxes on the claims folder",
+      "tags": [
+        "before_after",
+        "insurance",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "insurance claims",
+        "audience": "a claims adjuster sorting a crash account",
+        "stakes": "whether fault is assigned from a vivid but incomplete account",
+        "format": "before_after",
+        "requiredBeat": "she changes from one-story certainty to fact/guess/unknown columns"
+      },
+      "scenario": "At 2:18 p.m., Marna opens a red claims folder beside a dented bumper photo and almost writes driver at fault. The statement is vivid: wet road, sudden swerve, no time. Before, she would have trusted the detail. Today she draws three boxes on the folder: fact, guess, unknown. The missing traffic-camera video goes in unknown. The skid length goes in fact. By 4:00, the video shows a delivery van running the light. Her first story would have charged the wrong driver.",
+      "whatToDo": "Use three boxes before assigning fault. Put each item where it belongs and wait for the missing video or measurement before turning the story into a decision.",
+      "whyItMatters": "Vivid detail feels like accuracy, but it can still point at the wrong person. The boxes keep evidence from borrowing force from a confident narrator."
+    },
+    {
+      "exampleId": "ch02-ex06-sol-photo-wall",
+      "title": "Sol takes the crime-board photo down",
+      "tags": [
+        "reflection",
+        "local",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "local journalism",
+        "audience": "a reporter revising a crime explanation under deadline",
+        "stakes": "whether a thin theory hardens into a published claim",
+        "format": "reflection",
+        "requiredBeat": "he notices the photo wall making the theory feel more proven than it is"
+      },
+      "scenario": "Sol stands in the newsroom at 9:41 p.m., thumbtacks in his palm, looking at the photo wall he built around the burglary series. Red string links the same three faces. It looks convincing because he made it look convincing. The police scanner is quiet, the editor wants copy, and the only confirmed fact is the entry time. Sol pulls one photo down and feels the theory weaken. He has to decide whether to publish the tidy pattern or write what is still unknown.",
+      "whatToDo": "Print the story with the confirmed facts first and the theory clearly marked as a theory. Remove any visual cue that makes thin evidence look solved.",
+      "whyItMatters": "Presentation can create false confidence even for the person who built it. Naming uncertainty protects readers from inheriting the reporter's layout as proof."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch02-q01",
+        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a neat explanation but sees no written odds or date. Which move best fits the skill of separating facts from guesses?",
+        "choices": [
+          "Write a dated probability and ask what result would count as a miss.",
+          "Trust the confident speaker because clear delivery usually means better judgment.",
+          "Wait for perfect proof and refuse to act until uncertainty disappears."
+        ],
+        "correctIndex": 0,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch02-q02",
+        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a neat explanation. Which response keeps the estimate tied to evidence?",
+        "choices": [
+          "Collect more fresh stories until one of them feels complete enough to use.",
+          "Start with the base rate, then list what this case adds or subtracts.",
+          "Ignore the story completely because single cases never teach anything."
+        ],
+        "correctIndex": 1,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q03",
+        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a neat explanation. Which question should come first?",
+        "choices": [
+          "Pick the claim that makes the next step feel least awkward.",
+          "Ask which claim is more inspiring and use that as the guide.",
+          "Ask what record, sample, or past rate each claim can point to."
+        ],
+        "correctIndex": 2,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q04",
+        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a neat explanation has changed for good. Which move improves the forecast?",
+        "choices": [
+          "Compare the surprise with a longer record before moving the odds.",
+          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
+          "Hold the old forecast unchanged so the record looks steady."
+        ],
+        "correctIndex": 0,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q05",
+        "prompt": "A founder on a Monday investor call wants to sound certain about a neat explanation, but the record is thin. Which line is strongest?",
+        "choices": [
+          "Use firm language so the room feels less anxious about the unknowns.",
+          "Give a range, name the unknowns, and promise a date for checking it.",
+          "Hide the range inside a slogan that sounds more decisive."
+        ],
+        "correctIndex": 1,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch02-q06",
+        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a neat explanation. Which update is sized best?",
+        "choices": [
+          "Jump to the new extreme so nobody can accuse the plan of being slow.",
+          "Move nothing because any update before the final outcome is premature.",
+          "Move the number a little unless the new signal is strong and direct."
+        ],
+        "correctIndex": 2,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q07",
+        "prompt": "A student reviewing a missed prediction about a neat explanation wants to learn without protecting ego. Which action helps most?",
+        "choices": [
+          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
+          "Rewrite the old prediction in softer words before saving it.",
+          "Blame the outcome on luck and skip the written review."
+        ],
+        "correctIndex": 0,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch02-q08",
+        "prompt": "A team is split over a neat explanation, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "choices": [
+          "Let the senior person speak last and call that alignment.",
+          "Have each person write private odds first, then compare reasons aloud.",
+          "Vote immediately so disagreement does not slow the meeting."
+        ],
+        "correctIndex": 1,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch02-q09",
+        "prompt": "Someone making a three-month plan for a neat explanation wants to avoid confident blur. Which plan creates the best feedback?",
+        "choices": [
+          "Keep the plan broad so later outcomes cannot embarrass anyone.",
+          "Make one large forecast and check it only after the whole period ends.",
+          "Split the plan into smaller forecasts with dates for checking each one."
+        ],
+        "correctIndex": 2,
+        "explanation": "A fluent story can outrun the evidence, so the move is to label each piece. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch02-rc01",
+      "front": "You hear a confident claim about a neat explanation. What do you ask before trusting it?",
+      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch02-rc02",
+      "front": "A fresh story makes your estimate feel wrong. How should you update?",
+      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-rc03",
+      "front": "A team wants one bold answer. What smaller move protects learning?",
+      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch02-rc04",
+      "front": "A miss is embarrassing. What should the review preserve?",
+      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is resisting the comfort of a neat story and sorting facts from guesses before confidence hardens. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a work meeting turns on a neat explanation, then write one dated probability on the agenda and name the result that would prove it wrong."
+      },
+      {
+        "context": "health",
+        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+      },
+      {
+        "context": "personal",
+        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a neat explanation with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
+    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+  },
+  "memorableLines": [
+    {
+      "text": "A smooth story is not proof. It is only a story without a snag yet.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "Label the pieces before the feeling of knowing seals them together.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "Confidence should grow from checked parts, not from the relief of a finished tale.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    }
+  ]
+}

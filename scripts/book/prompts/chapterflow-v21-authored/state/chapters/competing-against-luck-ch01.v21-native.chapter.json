@@ -1,0 +1,319 @@
+{
+  "chapterId": "competing-against-luck-ch01",
+  "number": 1,
+  "title": "The Milk Shake Dilemma",
+  "readingTimeMinutes": 11,
+  "hook": "Nella passes the muffin case because the cup has to last until the tunnel clears.",
+  "counterintuition": "Most teams assume demand hides inside the product or the customer profile. It rarely does. The clearer signal is the moment of struggle that makes one option feel hireable.",
+  "tryThisNow": "Pick one thing you bought today and write the exact moment before the choice: time, place, what felt hard, and what else you almost used.",
+  "keyTakeaway": "A product makes sense only after you name the progress it is hired to create in a specific circumstance, then compare it with every substitute that could serve that same moment.",
+  "breakdown": {
+    "fastRead": "At 6:42 a.m., a commuter stands in front of muffins, bananas, coffee, and a thick shake. The category says dessert. The drive says breakfast tool. She needs one hand free, ten minutes of quiet, and something that will not dust her coat with crumbs. That is the milk shake lesson in miniature. Choice becomes less mysterious when you stop staring at the object and ask what progress the situation demands. The product is not competing only with similar products. It is competing with every option that could make the same morning easier.",
+    "deepRead": "The useful question is not, who buys this product. It is, what job does the buyer need done right now. A product description can be accurate and still explain almost nothing. A thick drink in a cup is just a thick drink until the commute, hunger, boredom, and one-handed constraint arrive. Then the same drink becomes a practical answer.\n\nPicture a parent at 2:18 p.m. at a Little League snack bar. The child wants a grape slush, and the parent is not buying refreshment. He is buying a small yes after six no answers all week, with a manageable spill risk and a visible sign that he is not the strict parent every inning. That job has a different shape from the morning drive, even if the receipt still says drink.\n\nThe move is to start with circumstance. Name the push in the old situation, the progress desired, and the real substitutes on the table. A banana, a bagel, a skipped breakfast, and a shake can all compete if the job is surviving a dull drive with clean hands. The limit is important: one vivid story does not explain every sale. The job must be tied to the moment, not stretched across every buyer because the product name matches.",
+    "fullRead": "The milk shake case matters because it catches a common research error at the moment it feels sensible. A company asks customers what they want changed about a product. Sweeter, thicker, cheaper, larger, smaller. The answers sound useful, and some of them may be. But they arrive after the real causal question has already been skipped. Why did this buyer choose this option in the first place.\n\nJobs thinking changes the unit of analysis. The buyer is not a profile floating through a store. The buyer is a person in a circumstance trying to make progress. In the morning example, the circumstance carries much of the explanation. The commute is long. Breakfast has to be portable. The driver wants something to occupy the ride, hold off hunger, and stay clean in a car. Those constraints make the shake strong for reasons that are invisible if the team only asks about flavor.\n\nNow change the moment. A parent buys a similar drink for a child after practice. The functional need is smaller. The social need is larger. The parent wants a simple treat, a low-conflict yes, and a purchase that ends the stop without a debate over candy, soda, or a toy. Same product, different progress. This is why the method has to separate occasions before it averages data. Averages can smooth away the very pressure that explains the choice.\n\nThe practical test is competition. Once the job is visible, rivals no longer sit only inside the category. A morning shake may compete with a banana, a bagel, a protein bar, black coffee, or nothing at all. A parent-child treat may compete with ice cream, a dollar store toy, a promise to stop later, or a small lecture about patience. The buyer's situation defines the field.\n\nThe objection is fair: people do care about product features. They do. Thickness, cup shape, price, and taste still matter. The point is sequence. Features matter after the team understands the job they must serve. Without that job, improvements become guesses wearing data. With it, the team can ask whether a change helps the specific progress that made the product worth hiring. The job is the standard that turns product work into judgment."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch01-ex01",
+      "title": "Nella reaches past the muffins before the ferry horn",
+      "tags": [
+        "commute",
+        "breakfast",
+        "substitutes"
+      ],
+      "planSpec": {
+        "domain": "transit food",
+        "audience": "product teams",
+        "stakes": "feature research misses the one-handed commute job",
+        "format": "scene",
+        "requiredBeat": "she reaches past neat breakfast items because the drive needs a one-handed, slow option"
+      },
+      "scenario": "Nella grips a paper cup sleeve at 6:42 a.m. inside the Red Hook ferry kiosk, her laptop bag sliding off one shoulder while the horn groans outside. The muffin case is bright and full, but crumbs will land on her black coat before the tunnel. A banana will be gone before the bridge. She points to the thick vanilla shake, not because she wants dessert, but because it will keep one hand busy until the meeting deck loads. The clerk is already reaching for the lid.",
+      "whatToDo": "Study the moment around Nella's choice before asking which flavor she prefers. List the drive, the hunger, the free hand, and the substitutes she rejected at the counter.",
+      "whyItMatters": "The cup wins because it fits the commute better than nearby breakfast items. The job redraws the market around the situation, not around the menu category."
+    },
+    {
+      "exampleId": "competing-against-luck-ch01-ex02",
+      "title": "Isao names the slush job at field three",
+      "tags": [
+        "parenting",
+        "treats",
+        "social job"
+      ],
+      "planSpec": {
+        "domain": "youth sports",
+        "audience": "service designers",
+        "stakes": "same product hides a parent-child progress job",
+        "format": "dialogue",
+        "requiredBeat": "he names the social job behind a treat, not the product preference"
+      },
+      "scenario": "Isao wipes grape slush from the snack-bar counter at 2:18 p.m. while his daughter Mina waits with cleats in one hand. \"You hate sticky drinks,\" the cashier says. Isao laughs and looks toward field three, where Mina struck out twice and still carried the bats. \"I am not buying grape,\" he says. \"I am buying five quiet minutes where she knows I saw her try.\" He must decide whether to treat the order like a flavor request or like a small repair after a hard game.",
+      "whatToDo": "Separate the flavor from the progress. Ask what the purchase is helping Isao say to his daughter, then judge alternatives by whether they deliver that small social repair cleanly.",
+      "whyItMatters": "The same drink can do a different job after a game than it does on a commute. Treating both as beverage demand erases the reason each one wins."
+    },
+    {
+      "exampleId": "competing-against-luck-ch01-ex03",
+      "title": "Briony pauses the cancellation reel at the backpack",
+      "tags": [
+        "software",
+        "research",
+        "segmentation"
+      ],
+      "planSpec": {
+        "domain": "product research",
+        "audience": "product managers",
+        "stakes": "demographic grouping hides the moment of struggle",
+        "format": "decision_point",
+        "requiredBeat": "she must decide whether to group buyers by profile or by struggling moment"
+      },
+      "scenario": "Briony freezes the video at 11:06 a.m. in the research room, the customer on screen still wearing a bike helmet and a wet backpack. Three cancellers are all thirty-something designers, and the slide template wants one persona. But each quit at a different moment: tax season, a train platform, a handoff with a contractor. Her cursor hovers over the segment label. She must decide whether to sort by who they are or by the moment where the product stopped helping.",
+      "whatToDo": "Build the analysis around the struggling occasion. Keep the helmet, train platform, and contractor handoff separate until the progress each buyer needed is clear.",
+      "whyItMatters": "Similar profiles can hide different jobs. If Briony averages the people first, the team may optimize for a persona that never faced one common problem."
+    },
+    {
+      "exampleId": "competing-against-luck-ch01-ex04",
+      "title": "Kavi guesses caffeine and the receipt tape answers twice",
+      "tags": [
+        "campus retail",
+        "forecasting",
+        "occasion split"
+      ],
+      "planSpec": {
+        "domain": "student store",
+        "audience": "operators",
+        "stakes": "one product category conceals two demand stories",
+        "format": "predict_reveal",
+        "requiredBeat": "his prediction by category fails when two occasions reveal two jobs"
+      },
+      "scenario": "Kavi tears the receipt tape at 4:37 p.m. beside the campus store register, certain the new mango smoothie is winning because students want caffeine-free sweetness. He predicted one afternoon crowd. The tape says otherwise. At 7:50 a.m., rushed lab partners buy it with protein bars and leave fast. After club meetings, students split one cup and linger by the window. Kavi has to decide before tomorrow's order whether one smoothie is one job or two.",
+      "whatToDo": "Let the reveal split the demand. Track the rushed morning hire and the lingering social hire as separate occasions before changing stock, size, or price.",
+      "whyItMatters": "A single SKU can hide more than one progress story. If Kavi forces one explanation, the next stocking decision will serve neither moment well."
+    },
+    {
+      "exampleId": "competing-against-luck-ch01-ex05",
+      "title": "Greer finds the missing dinner job after the redesign",
+      "tags": [
+        "meal kits",
+        "postmortem",
+        "after work"
+      ],
+      "planSpec": {
+        "domain": "home cooking",
+        "audience": "founders",
+        "stakes": "product polish failed because the job was misread",
+        "format": "postmortem",
+        "requiredBeat": "she sees the team improved the product while missing the after-work job"
+      },
+      "scenario": "Greer sits at her kitchen island at 9:11 p.m., foil seals and customer notes spread around a cold skillet. Her meal-kit team added prettier cards, fresher herbs, and QR videos, yet renewals fell in February. In the notes, tired parents mention 6:20 p.m., math homework, and one pan already soaking. The postmortem lands hard: they improved cooking theater when buyers had hired the kit to make a weeknight feel survivable.",
+      "whatToDo": "Rewrite the failure around the after-work circumstance. Ask what the kit was hired to remove, compress, or calm during that narrow dinner window.",
+      "whyItMatters": "Better product attributes can still miss the job. The redesign lost because it added polish to the wrong part of the buyer's evening."
+    },
+    {
+      "exampleId": "competing-against-luck-ch01-ex06",
+      "title": "Selah changes the locker-room snack pile",
+      "tags": [
+        "healthcare",
+        "night shift",
+        "personal choice"
+      ],
+      "planSpec": {
+        "domain": "hospital shift work",
+        "audience": "individual learners",
+        "stakes": "naming the job changes the substitute set",
+        "format": "before_after",
+        "requiredBeat": "she moves from favorite snacks to job-fit snacks after naming the real shift need"
+      },
+      "scenario": "Selah lines up crackers, oranges, and a thermos on the locker-room bench at 6:05 p.m. before the Tuesday night shift. Last month she packed whatever tasted good and hit the vending machine at 2:00 a.m. After watching herself chart with sticky fingers and a crashing stomach, she names the real job: stay steady through admissions without a mess at the desk. The orange goes back in the bag. The thermos stays.",
+      "whatToDo": "Choose against the shift job, not against snack preference. Name the messy desk, the 2:00 a.m. dip, and the need for slow energy before judging options.",
+      "whyItMatters": "The clearer job changes what counts as good. Selah is not choosing the best snack in general, she is choosing the best answer to a specific night."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch01-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying the milkshake move from product to circumstance. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying the milkshake move from product to circumstance. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying the milkshake move from product to circumstance. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying the milkshake move from product to circumstance. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying the milkshake move from product to circumstance. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying the milkshake move from product to circumstance. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying the milkshake move from product to circumstance. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying the milkshake move from product to circumstance. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch01-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying the milkshake move from product to circumstance. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch01-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch01-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back the commute job?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves the commute job."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "The buyer is a person in a circumstance trying to make progress.",
+      "location": "breakdown.fullRead",
+      "why": "It states the main lens in plain causal language."
+    },
+    {
+      "text": "The buyer's situation defines the field.",
+      "location": "breakdown.fullRead",
+      "why": "It turns competition from category logic into circumstance logic."
+    },
+    {
+      "text": "The job is the standard that turns product work into judgment.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the practical test for feature decisions."
+    }
+  ]
+}

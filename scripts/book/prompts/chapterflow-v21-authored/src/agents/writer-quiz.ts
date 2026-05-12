@@ -45,7 +45,7 @@ export async function runWriterQuiz(input: QuizInput): Promise<QuizOutput> {
 
   let attempt = 0;
   let lastErr: Error | null = null;
-  while (attempt < 2) {
+  while (attempt < 3) {
     attempt += 1;
     try {
       const reasons = lastErr
@@ -62,6 +62,7 @@ export async function runWriterQuiz(input: QuizInput): Promise<QuizOutput> {
               reasons,
               "",
               "Rewrite the QuizOutput JSON. Every question must have exactly 3 choices. Each prompt asks the reader to apply the idea to a new situation; do not pose questions about a written artifact. Speak to the reader.",
+              "CRITICAL: Distribute correctIndex values evenly — each position (0, 1, 2) must appear in roughly one-third of questions. No single position may appear in more than 50% of questions. Before writing, plan out your correctIndex sequence explicitly (e.g. 0,2,1,0,2,1,...) and stick to it.",
             ].join("\n");
       const result = await callClaude<QuizOutput>({
         tier: "writer",

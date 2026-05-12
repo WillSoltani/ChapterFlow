@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch04",
+  "number": 4,
+  "title": "The Man Who Didn't Look Right",
+  "coreMove": "Surface the invisible cues already steering your behavior by naming them out loud before trying to change them.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a paramedic glancing at a patient's skin tone in a doorway and calling a cardiac event before any instrument confirms it",
+      "audience": "a reader who assumes expert intuition is mystical",
+      "stakes": "a life saved or lost in the first ninety seconds, and the reader's belief that cues can be learned",
+      "format": "vignette",
+      "requiredBeat": "the paramedic later reconstructs the specific cue (a particular gray pallor) that her conscious mind had not yet labeled, showing intuition as pattern recognition made invisible by repetition"
+    },
+    {
+      "domain": "a pediatric dentist whose afternoon snacking spikes every Tuesday and Thursday",
+      "audience": "a reader who blames willpower for evening eating",
+      "stakes": "thirty pounds gained over four years and a growing sense of self-betrayal",
+      "format": "postmortem",
+      "requiredBeat": "the dentist walks her own clinic and discovers the candy bowl at reception, the coffee station near the breakroom fridge, and the specific 2pm patient gap that triggers the route, then names each cue on a sticky note before changing anything"
+    },
+    {
+      "domain": "a high school band director and his student trumpeter discussing why the kid practices scales at home but not articulation drills",
+      "audience": "a parent or coach watching a young person stall on the boring fundamentals",
+      "stakes": "whether the student auditions for regionals or quietly drops out",
+      "format": "dialogue",
+      "requiredBeat": "the director asks the student to describe, minute by minute, what happens when he opens his case, surfacing that the metronome lives in a drawer while the music stand sits open — a cue audit done out loud"
+    },
+    {
+      "domain": "a freight rail dispatcher running a pointing-and-calling protocol on a midnight shift",
+      "audience": "a reader skeptical that saying obvious things out loud could matter",
+      "stakes": "a missed signal and a derailment, or eight hours of uneventful coordination",
+      "format": "scene",
+      "requiredBeat": "the dispatcher points at a signal, says 'clear, eastbound,' and the reader sees in real time how verbalizing converts an automatic glance into a deliberate observation"
+    },
+    {
+      "domain": "a graduate student writing his dissertation who cannot explain why he opens his laptop and ends up on Wikipedia for an hour",
+      "audience": "a knowledge worker losing afternoons to drift",
+      "stakes": "a defense date six months out and a partner who has stopped asking how it's going",
+      "format": "decision_point",
+      "requiredBeat": "he runs a habits scorecard on a single Wednesday — every action gets a plus, minus, or equals — and catches the moment the browser tab opens without any conscious decision, naming it as the cue rather than the failure"
+    },
+    {
+      "domain": "a recently retired regional sales manager who keeps reaching for her phone at red lights",
+      "audience": "a reader who thinks small habits don't add up to anything",
+      "stakes": "the texture of a life she has six more years before grandchildren arrive to notice",
+      "format": "reflection",
+      "requiredBeat": "she sits in her parked car after a short errand and lists the cues she noticed in twenty minutes of driving — the buzz, the stoplight, the empty cupholder — without yet trying to fix any of them"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

@@ -1,0 +1,317 @@
+{
+  "chapterId": "competing-against-luck-ch04",
+  "number": 4,
+  "title": "Job Hunting",
+  "readingTimeMinutes": 11,
+  "hook": "Ilya finds the job in a wad of refund slips beside washer twelve.",
+  "counterintuition": "Most teams assume customers will state the opportunity directly. But actually the best clues often appear in delays, workarounds, and tolerated pain.",
+  "tryThisNow": "Spend one minute looking for a workaround near you: taped cord, copied note, backup app, saved box. Write what struggle it is carrying.",
+  "keyTakeaway": "Job hunting means looking for moments where current answers break down enough that people improvise, postpone, complain, or pay a cost to make progress anyway.",
+  "breakdown": {
+    "fastRead": "Ilya does not find the laundromat chance in a survey. He finds it in refund slips, wet socks, and a taped sign on washer twelve. Job hunting starts where the current answer strains. People work around, delay, overpay, ask a friend, or tolerate shame because no better path feels safe yet. Those behaviors are stronger evidence than a wish list. Look for the old setup failing in public, then ask what progress the person is still trying to protect.",
+    "deepRead": "Job hunting begins before the customer turns struggle into a feature request. By the time someone asks for a button, a discount, or an app, the original pressure may already be translated into solution language. The hunt has to move upstream. Watch the moment where the old way becomes awkward, risky, slow, costly, or humiliating.\n\nAt 8:02 a.m., Freya sits beside a bus rider who has three transit apps open and a paper timetable folded into his phone case. He is not asking for another map. He is trying to arrive at work without being the person who is late again after daycare drop-off. The workaround stack shows urgency, anxiety, and the substitutes he trusts when each digital answer fails.\n\nWith the work in front of you, the move is to collect evidence from struggle. Record what people almost do, what they keep despite complaints, what they patch together, and what finally makes the old answer intolerable. The limit is complaint volume. A loud complaint is not automatically a job. A job needs circumstance, repeated pressure, real alternatives, and a clear better state. Without those, the team is chasing noise.",
+    "fullRead": "A team that wants to find jobs on purpose has to stop waiting for customers to hand over perfect causal language. Customers usually speak from inside the current mess. They name the thing that annoyed them most recently. They request the feature they can imagine. They compare with the last option they tried. Those clues matter, but they are not the full job.\n\nThe strongest field evidence often looks indirect. A workaround means the buyer has already built a crude solution. A delay means the buyer wants progress but has not trusted any answer enough to switch. A tolerated cost means the current path is painful but still safer than the unknown. A substitute outside the category means the buyer's real frame is wider than the company's frame. Job hunting treats those signals as the map.\n\nChetan, behind a farm equipment counter at 5:17 a.m., may learn less from asking which seed monitor farmers want and more from watching them photograph the old display with a cracked phone before leaving. The phone is not a better monitor. It is a patch for remembering field sections while standing in mud with gloves on. That patch points to a job: keep enough confidence during a long morning that the wrong row does not get replanted.\n\nGood hunting also asks what changed. Why now. What made the old way stop being acceptable this week. What anxiety keeps the buyer from switching today. What substitute nearly won. These questions turn observations into a causal story the team can test.\n\nThe objection is that every inconvenience can be made to sound like an opportunity. That is the trap. A weak job claim floats above evidence. A strong one has a scene, a tradeoff, a repeated workaround, and a substitute set. It also has a buyer who is already spending time, money, attention, reputation, or patience to make progress. If nobody is paying any cost, the hunt has probably found curiosity, not demand.\n\nJob hunting is not a treasure hunt for clever anecdotes. It is disciplined attention to strain. The team follows the frayed tape, the backup spreadsheet, the second phone call, and the skipped purchase until the real progress battle comes into view."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch04-ex01",
+      "title": "Ilya reads washer twelve through the refund slips",
+      "tags": [
+        "laundromat",
+        "workaround",
+        "field evidence"
+      ],
+      "planSpec": {
+        "domain": "local services",
+        "audience": "operators",
+        "stakes": "survey misses visible strain",
+        "format": "scene",
+        "requiredBeat": "he finds a job in refund slips and wet laundry"
+      },
+      "scenario": "Ilya kneels at 7:36 p.m. beside washer twelve, refund slips stuck to his palm and wet socks heaped in a blue plastic basket. The customer survey says people want cleaner machines. The slips tell another story: parents keep starting loads during the thirty-minute daycare window, then lose the cycle when a card reader stalls. Ilya has to decide whether to replace stainless drums or study the panicked moment when a broken payment steals the evening.",
+      "whatToDo": "Follow the refund slips back to the circumstance. Watch payment failures, pickup deadlines, and backup cash habits before deciding what equipment problem is real.",
+      "whyItMatters": "The opportunity appears where the old arrangement fails under time pressure. The job is not cleaner steel, it is getting laundry done inside a narrow family window."
+    },
+    {
+      "exampleId": "competing-against-luck-ch04-ex02",
+      "title": "Freya asks why the rider keeps the paper timetable",
+      "tags": [
+        "transit",
+        "interview",
+        "workaround"
+      ],
+      "planSpec": {
+        "domain": "public transit",
+        "audience": "research teams",
+        "stakes": "feature requests hide trust gaps",
+        "format": "dialogue",
+        "requiredBeat": "she interviews around three apps and one paper fallback"
+      },
+      "scenario": "Freya sits at 8:02 a.m. on the cold bench outside Bay 5, rain beads on the paper timetable tucked into Ren's phone case. \"You have three apps,\" she says. Ren keeps watching the corner. \"And none of them gets yelled at by my supervisor.\" He taps the folded paper. \"This one was right when the daycare bus detoured.\" Freya has to decide whether to ask what app feature he wants or why paper still earns a place in his pocket.",
+      "whatToDo": "Ask Ren to replay the morning when paper won. Capture the daycare constraint, supervisor risk, detour memory, and trust standard before proposing another digital feature.",
+      "whyItMatters": "The workaround is a clue to the job. He is hiring certainty under blame risk, not simply more arrival predictions on a screen."
+    },
+    {
+      "exampleId": "competing-against-luck-ch04-ex03",
+      "title": "Chetan watches farmers photograph the cracked monitor",
+      "tags": [
+        "agriculture",
+        "observation",
+        "substitute"
+      ],
+      "planSpec": {
+        "domain": "farm equipment",
+        "audience": "B2B product teams",
+        "stakes": "buyer workaround widens evidence beyond requests",
+        "format": "decision_point",
+        "requiredBeat": "he must decide what to observe at the counter"
+      },
+      "scenario": "Chetan pours burnt coffee at 5:17 a.m. behind the seed counter while two growers photograph a cracked planter monitor before loading parts. The annual survey asks which new dashboard they prefer. The photo ritual happens every morning, gloves off, boots leaving mud on the mat. Chetan's clipboard is open. He must decide whether to keep asking about dashboards or ride along to learn why a phone picture feels safer than memory in the field.",
+      "whatToDo": "Treat the phone photo as a substitute worth studying. Watch the field sequence, the glove problem, the row decisions, and the fear of replanting wrong.",
+      "whyItMatters": "Job hunting follows behavior that already carries cost. The growers are spending attention before dawn because the current system fails in a precise moment."
+    },
+    {
+      "exampleId": "competing-against-luck-ch04-ex04",
+      "title": "Pavel predicts late checkout and hears luggage anxiety",
+      "tags": [
+        "hotel",
+        "predict reveal",
+        "travel"
+      ],
+      "planSpec": {
+        "domain": "hospitality",
+        "audience": "service designers",
+        "stakes": "complaint label misses underlying travel job",
+        "format": "predict_reveal",
+        "requiredBeat": "his complaint prediction is corrected by observation"
+      },
+      "scenario": "Pavel marks complaint cards at 10:44 a.m. behind the hotel front desk, predicting guests want cheaper late checkout. The lobby camera shows something else: conference guests dragging roller bags into breakfast, then asking the clerk to watch them for twelve minutes. The reveal changes the problem. They are not hiring another hour in the room. They are hiring a way to move through the last meeting without guarding luggage. Pavel has to choose the next test before noon.",
+      "whatToDo": "Test luggage confidence before pricing another hour. Offer secure bag handoff, meeting-room pickup, and text confirmation, then watch whether late-checkout complaints fall.",
+      "whyItMatters": "The complaint names a symptom. The observed workaround points to the job, which may be solved outside the room product entirely."
+    },
+    {
+      "exampleId": "competing-against-luck-ch04-ex05",
+      "title": "Doris finds the budget app job after the survey fails",
+      "tags": [
+        "fintech",
+        "postmortem",
+        "delay"
+      ],
+      "planSpec": {
+        "domain": "personal finance",
+        "audience": "founders",
+        "stakes": "feature survey misses anxiety and delay"
+      },
+      "scenario": "Doris sits at 9:24 p.m. under the kitchen pendant light, survey results and churn notes spread around her laptop. Users requested custom categories, so the team built them. Cancellations rose anyway. The notes mention unopened bank envelopes, spouses asleep upstairs, and fear of seeing the real number. The postmortem is plain: people were not hunting for a prettier budget. They needed a first look that did not make them shut the laptop.",
+      "whatToDo": "Reframe the failure around the avoided moment. Study first login anxiety, spouse conversations, and envelope piles before adding another planning feature.",
+      "whyItMatters": "A feature request can be downstream of fear. The team improved categorization when the job was helping people face the numbers without fleeing."
+    },
+    {
+      "exampleId": "competing-against-luck-ch04-ex06",
+      "title": "Zelie moves library help after seeing extension cords",
+      "tags": [
+        "library",
+        "before after",
+        "study space"
+      ],
+      "planSpec": {
+        "domain": "public library",
+        "audience": "public service teams",
+        "stakes": "physical workaround reveals a hidden job",
+        "format": "before_after",
+        "requiredBeat": "she changes service after reading taped cords as evidence"
+      },
+      "scenario": "Zelie peels gray tape from an extension cord at 6:18 p.m. under the library's east window, where students have been dragging chairs into the draft. Before, she logged it as a facilities nuisance. After watching them guard outlets during online exams, she moves the help desk cart, power strips, and quiet signs to that corner. The service stops being about available tables and starts being about safe exam space when home is too loud.",
+      "whatToDo": "Read the cords as demand evidence. Map outlet access, noise, camera angles, and test timing before deciding what study support to add.",
+      "whyItMatters": "Improvised space shows a job already in motion. Students are paying discomfort to protect exam focus, so the library can design around that pressure."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch04-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch04-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying finding jobs through struggling moments, workarounds, and substitutes. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch04-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch04-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back job hunting?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves job hunting."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "Job hunting starts where the current answer strains.",
+      "location": "breakdown.fastRead",
+      "why": "It states where to look first."
+    },
+    {
+      "text": "The strongest field evidence often looks indirect.",
+      "location": "breakdown.fullRead",
+      "why": "It legitimizes workarounds as evidence."
+    },
+    {
+      "text": "A loud complaint is not automatically a job.",
+      "location": "breakdown.deepRead",
+      "why": "It prevents weak opportunity claims."
+    }
+  ]
+}

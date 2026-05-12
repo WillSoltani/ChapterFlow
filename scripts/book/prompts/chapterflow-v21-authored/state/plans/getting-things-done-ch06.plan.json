@@ -1,0 +1,74 @@
+{
+  "chapterId": "getting-things-done-ch06",
+  "number": 6,
+  "title": "Processing: Getting \"In\" to Empty",
+  "coreMove": "Process each captured item to empty by deciding what it is, whether it is actionable, what outcome or next action it requires, and where its reminder belongs.",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "a charge nurse sorting the paper tray after a double-booked clinic morning",
+      "audience": "a hospital nurse responsible for patient follow-up",
+      "stakes": "a lab callback, a supply request, or a patient instruction could disappear into the same pile and create real risk",
+      "format": "scene",
+      "requiredBeat": "the nurse processes one item at a time and refuses to put anything back undecided, routing each paper to trash, reference, calendar, waiting-for, or a next-action list"
+    },
+    {
+      "domain": "a family court attorney opening twelve voicemails before a filing deadline",
+      "audience": "a lawyer with client calls, court dates, and delegated paralegal work converging at once",
+      "stakes": "a client affidavit could be late because the attorney confuses listening to messages with deciding what each one means",
+      "format": "dialogue",
+      "requiredBeat": "the attorney states the desired outcome and next physical action for each actionable message, then parks delegated pieces on a waiting-for list instead of trusting memory"
+    },
+    {
+      "domain": "a sous-chef reviewing the prep clipboard after a chaotic lunch rush",
+      "audience": "a restaurant kitchen lead preparing for dinner service",
+      "stakes": "service could stall if vague notes like 'fix station' remain as complaints rather than defined actions",
+      "format": "before_after",
+      "requiredBeat": "the example shows vague kitchen notes becoming either discarded noise, reference, a project outcome, or a visible next action such as 'ask produce vendor about missing basil before 3 p.m.'"
+    },
+    {
+      "domain": "a parent emptying second-grade backpacks and the kitchen mail counter on Sunday evening",
+      "audience": "a household captain managing school forms, bills, invitations, and small errands",
+      "stakes": "a permission slip, a bill, and a birthday response can keep nagging all week if they stay in a mixed pile",
+      "format": "decision_point",
+      "requiredBeat": "the parent uses the two-minute rule only for truly quick completions and otherwise sends each item to calendar, next action, someday-maybe, reference, or trash until the counter is empty"
+    },
+    {
+      "domain": "a museum registrar returning from a donor meeting with notes, business cards, and photo requests",
+      "audience": "a cultural-institution administrator who handles commitments across donors, curators, and shipping staff",
+      "stakes": "a loan agreement can become ambiguous if meeting notes are treated as processed merely because they were rewritten neatly",
+      "format": "postmortem",
+      "requiredBeat": "the postmortem identifies the failure as a processed-looking pile with no decisions, then repairs it by assigning every note to reference, action, calendar, or waiting-for"
+    },
+    {
+      "domain": "a freelance cellist between rehearsals with texts about gigs, sheet music, travel, and an instrument repair receipt",
+      "audience": "an independent musician juggling commitments without an office staff",
+      "stakes": "a double booking or missing score could happen if messages are repeatedly reread but not clarified",
+      "format": "predict_reveal",
+      "requiredBeat": "the reveal shows that relief comes not from rereading or answering everything, but from putting hard dates on the calendar and physical next actions on the right lists"
+    },
+    {
+      "domain": "a shelter coordinator processing donation offers after a storm",
+      "audience": "a nonprofit operations coordinator facing urgent community messages",
+      "stakes": "needed supplies could be delayed while the inbox fills with duplicates, unsuitable offers, and half-commitments",
+      "format": "dilemma",
+      "requiredBeat": "the coordinator resists treating every urgent-looking message as equal and routes each one as trash, reference, delegated pickup, waiting-for, calendar, or a deferred next action"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 24
+}

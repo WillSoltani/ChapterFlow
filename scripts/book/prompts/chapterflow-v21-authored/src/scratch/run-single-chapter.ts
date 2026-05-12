@@ -47,6 +47,7 @@ const CHAPTER = {
   number: 5,
   title: "Cognitive Ease",
 };
+const BREAKDOWN_TIERS = ["fastRead", "deepRead", "fullRead"] as const;
 
 function log(msg: string) {
   const ts = new Date().toISOString().slice(11, 19);
@@ -105,7 +106,7 @@ async function main() {
   // Step 3: breakdown
   log(`breakdown: generating three tiers (opus)…`);
   const breakdown = await runWriterBreakdown({ brief, plan });
-  log(`breakdown: done — easy=${breakdown.easy.length}c, medium=${breakdown.medium.length}c, hard=${breakdown.hard.length}c`);
+  log(`breakdown: done — fastRead=${breakdown.fastRead.length}c, deepRead=${breakdown.deepRead.length}c, fullRead=${breakdown.fullRead.length}c`);
 
   // Step 4: examples — sequential so each call sees names already chosen.
   // Takes ~15s per example × N examples. Parallelism is not worth name collisions.
@@ -160,7 +161,7 @@ async function main() {
   const findings: Array<{ unit: string; findings: any[] }> = [];
 
   // Breakdown: register + banned-phrase
-  for (const tier of ["easy", "medium", "hard"] as const) {
+  for (const tier of BREAKDOWN_TIERS) {
     const text = breakdown[tier];
     const metaF = checkNoMetaReference(text);
     const chF = checkNoChapterNumberLiteral(text);

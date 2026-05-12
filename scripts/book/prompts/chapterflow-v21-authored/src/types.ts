@@ -234,6 +234,8 @@ export type CriticCheckId =
   | "narrative.named_protagonist"
   | "narrative.specific_scene"
   | "narrative.decision_point"
+  | "narrative.example_templating"
+  | "narrative.title_templating"
   | "register.no_meta_reference"
   | "register.no_chapter_number_literal"
   | "register.no_banned_phrase"

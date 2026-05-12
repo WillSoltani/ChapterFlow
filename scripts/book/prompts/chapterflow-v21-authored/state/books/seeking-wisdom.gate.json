@@ -1,0 +1,285 @@
+{
+  "bookId": "seeking-wisdom",
+  "title": "Seeking Wisdom: From Darwin to Munger",
+  "author": "Peter Bevelin",
+  "promotedAt": "2026-05-12T00:49:16.724Z",
+  "chapterCount": 6,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A clinic director must choose whether to accept a tidy explanation for late charts when overtime bonuses changed last month. Which action tests the situation best? Name the repeated mistake shape, th…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 542 am willa\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "Fatou stands at the ward whiteboard Tuesday at 6:05 a.m., marker cap in her teeth, while the night nurse says, \"It's just easier if Mara takes my Friday.\" The hallway smells like toast from the staff…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A clinic director must choose whether to accept a tidy explanation for late charts when overtime bonuses changed last month. Which action tests the situation best? Map the payoffs, fears, favors, and…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 732 am lior\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nkem lifts two mortgage files from the shared printer at 4:11 p.m., toner still warm on his thumb. One borrower has a tidy promotion story and a bright cover letter. The other file is messy, with sea…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A clinic director must choose whether to accept a tidy explanation for late charts when overtime bonuses changed last month. Which action tests the situation best? Start with the rate from similar ca…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 137 am marisol\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A clinic director must choose whether to accept a tidy explanation for late charts when overtime bonuses changed last month. Which action tests the situation best? Trace the immediate result, the nex…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 847 am estelle\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A clinic director must choose whether to accept a tidy explanation for late charts when overtime bonuses changed last month. Which action tests the situation best? Use a short checklist for the few c…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 708 am thandi\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "banned phrase \"tidy explanation\" — 10 hits across 6 books — borderline tic.",
+            "evidence": "A clinic director must choose whether to accept a tidy explanation for late charts when overtime bonuses changed last month. Which action tests the situation best? Create a short pause that keeps fea…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at 917 pm roswitha\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 26
+  },
+  "bookGate": {
+    "bookId": "seeking-wisdom",
+    "chapterCount": 6,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        18,
+        18,
+        18
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 54,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

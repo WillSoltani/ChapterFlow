@@ -1,0 +1,295 @@
+{
+  "chapterId": "super-thinking-ch01",
+  "number": 1,
+  "title": "Being Wrong Less",
+  "readingTimeMinutes": 7,
+  "hook": "Packing tape on Maire's sleeve catches before the missing receipt catches her eye.",
+  "counterintuition": "Most people try to be right more often by sounding surer. The stronger move is to be wrong less by finding the weak assumption while the cost is still small.",
+  "tryThisNow": "Pick one live decision and write the sentence, \"This fails if I am wrong about ___.\" Fill the blank, then choose one cheap test you can run before the next commitment.",
+  "keyTakeaway": "Cut avoidable mistakes by rebuilding claims from what you actually know, testing the weakest assumption early, and keeping the first cost of being wrong small.",
+  "breakdown": {
+    "fastRead": "Maire has one strip of packing tape stuck to her sleeve at 6:27 p.m. when a museum crate is ready to ship. The provenance story looks clean until one receipt is missing. Being wrong less starts there. Do not ask, \"How confident do I feel?\" Ask, \"What has to be true for this to work?\" Then test that point while the bill is low.\n\nA small test is not timid. It is contact with reality before pride gets expensive. Rebuild from the facts, name the guess, and let one cheap check hit the idea before the full move does.",
+    "deepRead": "Kwame kneels in wet grass beside the north goal and asks his striker what she saw before the pass left her foot. She wants to blame the mud. He points to the defender's heel mark and the open wing. The missed pass was not fate. It was a playable ball given away.\n\nThat is the heart of being wrong less. Many mistakes are not caused by chaos. They come from skipped checks, borrowed stories, or early commitment. First-principles thinking helps because it makes you rebuild the claim from the ground up: what do you know, what are you assuming, and which part carries the weight?\n\nJanel's bakery sign-up sheet teaches the next move. Compliments sounded like demand until five names appeared on the page. A cheap test hurts less than a full subscription launch. The point is not to hide from stress. Useful stress finds the weak part early. Bad stress arrives late, after you have spent money, status, or trust.\n\nHand your next idea one small encounter with reality. If it bends, you learned. If it breaks, you saved yourself from a larger break. If it holds, you have earned more confidence than a smooth story could give.",
+    "fullRead": "Soraya sets six dead radios in a row at 11:05 p.m. and writes one sentence on the drill report: assumed batteries held charge. That sentence is the whole failure. The evacuation map was clear. The staff knew their posts. The rain plan worked. Then the radios died because nobody had tested the part everyone treated as boring.\n\nBeing wrong less is the discipline of finding that sentence before the drill, launch, exam, or hard talk. It begins with the unforced error, the mistake you hand yourself while the situation was still playable. You will still face bad luck. You will still meet hard cases. The useful work is to stop adding preventable mistakes on top of them.\n\nFirst-principles thinking gives you the first tool. Take the clean story apart. List what you know without drama. Then list what you are guessing. A good claim can survive that treatment. A weak claim often starts to wobble as soon as the hidden guess is named. The missing receipt, the untested radio battery, the customer compliment that may not become a paid order, each one asks for a lower layer of proof.\n\nBram feels the blue resistance band pull under his shoe at Bayview Rehab. The first rep burns, and his old habit is to call pain a warning to stop. His therapist asks him to rate it and repeat once. The second rep is steadier. Some bounded stress teaches the system. The trick is to tell that apart from blind exposure. A small rep with a therapist watching is information. Carrying a sofa alone three weeks after surgery is damage.\n\nLinnea spreads tile photos across her kitchen table and starts to quote a full restaurant mural from instinct. Before sending the number, she draws a paid sample panel into the proposal. The sample protects both sides. The owner sees the style on real tile. Linnea learns how the paint behaves before forty square feet are promised. The large bet waits for the small test to speak.\n\nYou do not need to make every choice small forever. You need the first contact with reality to be small enough to teach. When an idea sounds strong, ask what would make it false. When a plan feels urgent, ask which assumption can be checked today. When a risk looks scary, ask whether a controlled hit would make the system better. Confidence that has survived a test is different from confidence that has only survived a meeting."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-maire-crate-receipt",
+      "title": "Maire stops the crate over one missing receipt",
+      "tags": ["first principles", "assumption check"],
+      "planSpec": {
+        "domain": "museum operations",
+        "audience": "registrars handling high-trust records",
+        "stakes": "a shipment could lock in a false provenance claim",
+        "format": "decision_point",
+        "requiredBeat": "she catches one polished provenance story resting on a missing receipt and decides whether to approve the shipment"
+      },
+      "scenario": "Packing tape sticks to Maire's wool sleeve at 6:27 p.m. in the Fenwick Museum crate room while the bronze fox waits in foam. The donor file has glossy photos, a clean appraisal, and one gap where the 1988 receipt should be. The courier is tapping a pen on the clipboard. Maire's cursor rests over approve shipment. She has to decide whether a smooth story is enough when the one paper that would carry it is gone.",
+      "whatToDo": "Stop the shipment and rebuild the claim from the lowest facts: object, dates, owners, and missing proof. Ask which assumption bears the most weight, then test that assumption before release.",
+      "whyItMatters": "The expensive mistake is not uncertainty. It is treating an untested link as if it were proof. One paused crate is cheaper than a public correction after the object leaves."
+    },
+    {
+      "exampleId": "ch01-ex02-kwame-muddy-pass",
+      "title": "Kwame asks what the mud did not explain",
+      "tags": ["unforced error", "coaching"],
+      "planSpec": {
+        "domain": "youth sports",
+        "audience": "coaches teaching young players judgment",
+        "stakes": "a player may blame bad luck and miss the fixable read",
+        "format": "dialogue",
+        "requiredBeat": "he asks a player to name what she knows before blaming the missed pass on bad luck"
+      },
+      "scenario": "\"Mud,\" Nola says at Saturday 8:12 a.m., cleats black beside Dunbar Park's north goal. Kwame squats by the ball, wipes rain from his whistle, and points at the defender's heel mark. \"Before your foot hit it, what did you know?\" She looks toward the open wing and then back at the rut. \"I saw Ina free,\" she says. Kwame nods. \"So what part was the field, and what part was us?\"",
+      "whatToDo": "Separate the outside difficulty from the playable mistake. Have Nola name the cue she saw, the choice she made, and the next low-pressure rep that tests the better pass.",
+      "whyItMatters": "Blaming mud teaches nothing if the read was available. Owning the fixable part turns a missed pass into practice instead of a story about bad conditions."
+    },
+    {
+      "exampleId": "ch01-ex03-janel-blank-signup",
+      "title": "Janel watches the compliment list stay blank",
+      "tags": ["cheap test", "MVP"],
+      "planSpec": {
+        "domain": "small business",
+        "audience": "owners testing new offers",
+        "stakes": "a full launch could follow praise that is not real demand",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts demand from compliments, then sees the sign-up sheet stay nearly blank"
+      },
+      "scenario": "Flour dusts Janel's wrist at Tuesday 5:46 a.m. behind Loaf Street Bakery's counter as she tapes up a card for a monthly sourdough club. Last week twelve customers praised the rye and she predicted thirty paid sign-ups by lunch. At 1:20 p.m., the pen still lies across two names and one coffee ring. The reveal stings, and she must choose whether to order subscription boxes anyway.",
+      "whatToDo": "Treat compliments as a hypothesis, not demand. Keep the sign-up test open another week, ask for deposits, and order supplies only after payment proves the pattern.",
+      "whyItMatters": "Praise is easy to give and cheaper than bread. A small demand test lets reality speak before cardboard boxes, labels, and pride turn a guess into inventory."
+    },
+    {
+      "exampleId": "ch01-ex04-soraya-dead-radios",
+      "title": "Soraya lines up the radios after the drill",
+      "tags": ["postmortem", "load-bearing assumption"],
+      "planSpec": {
+        "domain": "emergency planning",
+        "audience": "public safety teams reviewing failures",
+        "stakes": "a hidden assumption could break the next real evacuation",
+        "format": "postmortem",
+        "requiredBeat": "she finds the untested radio battery assumption that broke the drill"
+      },
+      "scenario": "Six radios sit dead in a row at 11:05 p.m. in the county operations room, their rubber antennas pointing at Soraya's cold tea. The evacuation drill failed at minute nine, not because the map was wrong, but because the spare batteries had sat in a drawer since hurricane season. She writes the after-action note slowly: everyone assumed charged meant checked. The next decision is what must be tested before any future drill starts.",
+      "whatToDo": "Name the exact assumption that failed and turn it into a preflight check. Put battery testing beside maps and staff roles, where it cannot hide as boring logistics.",
+      "whyItMatters": "A postmortem only helps if it finds the preventable miss. The dead battery was small, but it carried the whole plan when radio contact became necessary."
+    },
+    {
+      "exampleId": "ch01-ex05-bram-blue-band",
+      "title": "Bram lets one blue band rep teach him",
+      "tags": ["bounded stress", "antifragility"],
+      "planSpec": {
+        "domain": "physical therapy",
+        "audience": "patients rebuilding capacity after injury",
+        "stakes": "avoiding every strain could make recovery more fragile",
+        "format": "vignette",
+        "requiredBeat": "he treats one small painful rep as useful feedback, not a reason to avoid all stress"
+      },
+      "scenario": "A blue resistance band hums under Bram's shoe at Thursday 2:33 p.m. in Bayview Rehab, and the scar above his knee turns pale when he lifts. He grips the vinyl table hard enough to squeak. The pain is a four, not an eight. His therapist watches the angle of his foot, not the clock. Bram breathes once, lowers the leg, and learns that this small strain is information instead of proof that all pressure is unsafe.",
+      "whatToDo": "Keep the stress bounded and measured. Rate the pain, adjust the angle, repeat only the controlled rep, and stop treating all discomfort as the same warning.",
+      "whyItMatters": "A system can get stronger from the right small stress. Removing every challenge protects comfort today while leaving the knee less ready for ordinary life."
+    },
+    {
+      "exampleId": "ch01-ex06-linnea-sample-panel",
+      "title": "Linnea prices the sample before the mural",
+      "tags": ["de-risking", "scope test"],
+      "planSpec": {
+        "domain": "freelance design",
+        "audience": "creative workers quoting uncertain work",
+        "stakes": "a full quote could hide unknown material and client risks",
+        "format": "before_after",
+        "requiredBeat": "she shifts from quoting the whole job on instinct to testing a paid sample panel first"
+      },
+      "scenario": "Tile photos spread across Linnea's kitchen table at Monday 9:18 a.m., curling beside a chipped mug. Before, she would have guessed a full mural price and hoped the restaurant wall behaved. Now she writes a two-hour paid sample panel into the estimate. The owner will see color on real tile, and Linnea will learn whether the glaze drinks paint before her name, weekend, and rent depend on one blind quote.",
+      "whatToDo": "Quote the sample as the first deliverable. Use it to test the wall, the paint, and the client's taste before committing to the whole surface and schedule.",
+      "whyItMatters": "The sample shrinks the cost of being wrong. Both sides get evidence while the job is still adjustable, which makes a later full quote less like a guess."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch01-q01",
+        "prompt": "Rhea is about to approve a vendor because the demo looked polished, but the integration data is still missing. What is the best next move?",
+        "choices": [
+          "Ask what has to be true for the vendor to work, then test the missing integration point first.",
+          "Approve the vendor because polish is useful evidence of quality.",
+          "Reject every vendor until a perfect option appears."
+        ],
+        "correctIndex": 0,
+        "explanation": "The move is to find the load-bearing assumption and test it cheaply. A polished demo may be useful, but it cannot stand in for the part that could break the rollout.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q02",
+        "prompt": "A student memorizes a clean solution but cannot solve the same problem when the numbers change. Which diagnosis fits best?",
+        "choices": [
+          "The student needs a longer answer key.",
+          "The student should rebuild the solution from the basic facts and assumptions.",
+          "The student should avoid problems with changed numbers."
+        ],
+        "correctIndex": 1,
+        "explanation": "The weakness is borrowed fluency. Rebuilding from basic facts shows whether the student understands the structure or only remembers the surface.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q03",
+        "prompt": "A team can launch a pilot in one store or roll out to all forty stores at once. The idea is promising but untested. What should they do?",
+        "choices": [
+          "Roll out everywhere so feedback arrives faster.",
+          "Skip the idea until there is no uncertainty.",
+          "Use the one-store pilot to learn while the downside is still contained."
+        ],
+        "correctIndex": 2,
+        "explanation": "A pilot gives the idea a real test without making the first mistake expensive. The point is learning under bounded stress, not avoiding action.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q04",
+        "prompt": "Dorian calls every failed plan bad luck. In his latest miss, he skipped the checklist he had written himself. What should he notice?",
+        "choices": [
+          "The checklist skip was an avoidable error inside a hard situation.",
+          "The situation was impossible because all plans fail sometimes.",
+          "The checklist was useless because it did not guarantee success."
+        ],
+        "correctIndex": 0,
+        "explanation": "Bad luck may exist, but the skipped checklist is the fixable part. Being wrong less starts by separating outside difficulty from self-created misses.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch01-q05",
+        "prompt": "A founder keeps adding features before anyone has paid for the first version. Which action best matches the core skill?",
+        "choices": [
+          "Add the features that make the product look complete.",
+          "Ask potential users for compliments about the vision.",
+          "Charge for a small version that tests whether demand is real."
+        ],
+        "correctIndex": 2,
+        "explanation": "Payment is a stronger test than praise. A small paid version checks demand before the founder turns a hopeful story into a larger cost.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q06",
+        "prompt": "A runner avoids all hill work because hills feel uncomfortable. Her race still includes hills. What is the better interpretation?",
+        "choices": [
+          "All discomfort is a sign that the plan is wrong.",
+          "Controlled hill practice can be useful stress if the dose is small enough to recover from.",
+          "She should only train on race day so the feedback is realistic."
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful stress is bounded and recoverable. Avoiding every strain can leave the system fragile, while too much exposure creates damage.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q07",
+        "prompt": "A committee has one impressive success story for a new policy but no count of how often the problem happens. What is the safest first question?",
+        "choices": [
+          "Who tells the success story most confidently?",
+          "How can the policy be made permanent today?",
+          "What do we know for sure, and what assumption is doing the most work?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The first-principles question separates known facts from the assumption carrying the claim. That makes the next test clearer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch01-q08",
+        "prompt": "A manager says, \"We already debated this, and the story still feels right.\" What response best reduces avoidable error?",
+        "choices": [
+          "Name the one fact that would change the decision, then go look for it.",
+          "Trust the feeling because debate has already happened.",
+          "Delay forever because no story can be fully proven."
+        ],
+        "correctIndex": 0,
+        "explanation": "The manager needs contact with reality, not another round of vague confidence. A change-the-decision fact points the team toward a useful test.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch01-q09",
+        "prompt": "A nonprofit wants to buy a full software suite before testing whether volunteers will use even one shared form. Which choice is strongest?",
+        "choices": [
+          "Buy the suite so volunteers know leadership is serious.",
+          "Test one shared form with one team and inspect the adoption problems.",
+          "Avoid software completely because volunteers resist change."
+        ],
+        "correctIndex": 1,
+        "explanation": "The small form test exposes the adoption assumption while the cost is low. If it fails, the nonprofit learns before a large purchase locks in the mistake.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch01-rc01",
+      "front": "A plan feels convincing, but one hidden assumption could break it. What should you ask first?",
+      "back": "Ask what has to be true for the plan to work. Then name the assumption carrying the most weight and test that point while the cost is still low.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch01-rc02",
+      "front": "You are blaming bad luck for a miss. What check helps you find the fixable part?",
+      "back": "Separate outside difficulty from the playable mistake. The useful question is where your own skipped check, early commitment, or weak assumption entered the result.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc03",
+      "front": "A small test hurts your pride but reveals a weak claim. How should you read that pain?",
+      "back": "Read it as useful stress if the dose is bounded and recoverable. The sting is cheaper than finding the same weakness after a full commitment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc04",
+      "front": "You want to make a large commitment from one vivid signal. What move protects judgment?",
+      "back": "Turn the signal into a hypothesis and run the smallest real test that could disconfirm it. Scale only after the idea survives contact with reality.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is reducing self-created mistakes before they become expensive. Rebuild claims from facts, name the fragile assumption, and design a first test small enough to teach.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a proposal sounds ready after one strong meeting, then write the assumption that would break it and run a small test before assigning budget."
+      },
+      {
+        "context": "health",
+        "plan": "If discomfort makes you want to stop a recovery or training plan, then rate the discomfort, check whether the dose is controlled, and adjust before quitting."
+      },
+      {
+        "context": "personal",
+        "plan": "If a purchase feels like proof that a new habit is real, then practice the habit for seven days with what you already own before buying more."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you are sure the other person caused the whole problem, then name one part of the pattern that came from your timing, wording, or skipped check."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, pick one decision you are leaning toward and write the weakest assumption on paper. Before you commit, send one email, run one trial, or check one record that could prove that assumption wrong.",
+    "weeklyPractice": "For one week, keep a short unforced-error log. Each day, write one avoidable miss, the assumption behind it, and the smallest earlier test that would have caught it."
+  },
+  "memorableLines": [
+    {
+      "text": "A small test is not timid.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the practical attitude clear in five plain words."
+    },
+    {
+      "text": "Being wrong less is the discipline of finding that sentence before the drill, launch, exam, or hard talk.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the model into a concrete search for the hidden failure sentence."
+    },
+    {
+      "text": "Confidence that has survived a test is different from confidence that has only survived a meeting.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a sharp way to tell evidence from talk."
+    }
+  ]
+}

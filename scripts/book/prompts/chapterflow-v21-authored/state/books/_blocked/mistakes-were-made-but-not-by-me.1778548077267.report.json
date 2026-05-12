@@ -1,0 +1,536 @@
+{
+  "bookId": "mistakes-were-made-but-not-by-me",
+  "title": "Mistakes Were Made (but Not by Me)",
+  "author": "Carol Tavris; Elliot Aronson",
+  "promotedAt": "2026-05-12T01:07:56.917Z",
+  "chapterCount": 9,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Imre kneels by the soaked artificial-turf field at 4:06 p.m. Sunday, rainwater darkening the knees of his track pants. On the tablet, the goal happens again. He has spent ten minutes saying the low s…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"an error was made\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ambrose taps his pen against a paper cup at 7:32 p.m. Tuesday in the district media room. He told three parents the reading app pilot would prove the board had been bold. The slide changes. The lowes…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A mentor tells you, Judge your decision like it belonged to a stranger. What does that move mainly do?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the new oven was\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Oriana sits behind the black rehearsal screen at 2:05 p.m. Saturday, pencil resting on a clipboard with the singer numbers only. Voice 17 enters on the high G cleanly, with a tremor that warms rather…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Reva sits at the triage desk at 11:44 a.m., the waiting-room printer clicking behind her. The intake form says chest tightness, pain six of ten. The attached photo shows a young man in a party shirt,…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nurse notices a patient photo making a complaint feel less serious. What should she do next?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says its promotion process is fair because nobody on the panel dislikes anyone. What question is more useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is “I am not biased” a weak safeguard by itself?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Beren taps the old voicemail at 8:04 p.m. on his kitchen speaker, a dish towel twisted in his left hand. He predicts it will prove his sister never warned him about the loan. The message crackles, th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can a vivid memory still be unreliable after a conflict?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before accusing a coworker, you decide what evidence would change your mind. What skill are you using?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A photo supports part of your memory but not the whole story. What is the right use of it?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the danger of retelling a conflict for years without checking records?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Basil sets the foam step under the mirror at 6:18 p.m., after Lina tells him the knee program is finally working. He predicts the step-down test will look clean. She smiles, lowers once, and the knee…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A doctor judges a new protocol by the patients who return smiling. Which group is missing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A tutor feels successful because a student is calmer, but quiz scores are flat. What should change?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before starting a new coaching plan, what should the coach write down?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A caseworker writes, family engaged well. Why is that weak by itself?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A surgeon says a complication is rare and not worth tracking locally. What is the better response?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes a helping loop “closed”?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A vet’s usual dose comes to mind before she weighs the animal. What should she do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does good intent make bad evidence harder to see?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A detective says a new DNA test is unnecessary because the suspect confessed. What should the review team do first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A juror hears new evidence and says, We did our best. What response fits the lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lab analyst says her report was technically cautious, but the trial used it as strong proof. What should be reviewed?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A review board packet gives ten pages to denial and one paragraph to new mitigation. What should a member request?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the danger when a case theory becomes part of someone’s identity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which rule best balances finality with correction?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the shirt was never\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "During a chore fight, you can list twelve examples of your partner failing. What should you do before listing them?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A spouse says, You always panic, after a medical scare. What is the hidden self-protection?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A partner brings receipts to bed at 7 a.m. and starts a money fight. Which revision best fits the repair move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does “my part is” do in an ordinary conflict?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person uses every old disappointment during tonight’s late-arrival fight. What is the likely effect?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When is shared ownership language unsafe or misplaced?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A couple each remembers their own patience and the other’s tone. What practice can interrupt this?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the main risk of case-building in love?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pavitra peels masking tape from the school mural at 3:31 p.m., sunlight cutting across the auditorium dust. Under a layer of blue paint, a student name appears in gold: Corwin Reed, 1978 walkout chai…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A union leader says threats against temp workers should stay private because management lied first. What is the danger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When can calls for “both sides” become evasive?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A school wants to honor a student leader who later harmed other students. What caption best fits this lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Two market groups collect money only for their own losses. What design supports repair?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is group self-justification especially persuasive?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does loyal truth-telling mean in a group conflict?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"still in the envelope\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sorina stands at the library podium at 6:05 p.m., reading glasses low on her nose, the first row filled with parents holding overdue notices. The draft says unexpected revenue conditions required ser…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nurse made a medication late and wants to start with staffing problems. What should come first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A brother missed a party and has true logistical reasons. His sister starts describing how it felt. What should he do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What are the four useful parts of narrow ownership?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A friend damaged a borrowed item and waited two days to admit it. What must the apology include?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does ownership not guarantee forgiveness?"
+          },
+          {
+            "catalogId": "A4",
+            "severity": "major",
+            "unit": "quiz",
+            "message": "quiz answer-position skew: idx 0 wins 56% (max 50%)"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"owning up\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"i gave the medication\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 54
+  },
+  "bookGate": {
+    "bookId": "mistakes-were-made-but-not-by-me",
+    "chapterCount": 9,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "F3",
+        "severity": "major",
+        "message": "Book-wide answer position drift: idx 0 wins 46% of 81 questions (ceiling 45%). Quiz balance fix needed."
+      },
+      {
+        "catalogId": "F1",
+        "severity": "blocker",
+        "message": "1 protagonist name(s) appear as named characters in multiple chapters: For(ch7,8). Regenerate affected examples with distinct names."
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        37,
+        27,
+        17
+      ],
+      "answerPositionPctMax": 0.4567901234567901,
+      "totalQuizQuestions": 81,
+      "duplicatedNames": [
+        {
+          "name": "For",
+          "chapters": [
+            7,
+            8
+          ]
+        }
+      ],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

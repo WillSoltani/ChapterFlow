@@ -1,0 +1,295 @@
+{
+  "chapterId": "super-thinking-ch06",
+  "number": 6,
+  "title": "Decisions, Decisions",
+  "readingTimeMinutes": 8,
+  "hook": "Color-coded magnets on a staffing board can turn one awful feeling into three visible paths.",
+  "counterintuition": "Most hard choices feel hard because too many futures are packed into one mood. A decision tree does not remove uncertainty, but it makes the paths clear enough to compare.",
+  "tryThisNow": "Take one decision you keep describing as stressful. Draw three options, then write the main consequence and unknown under each one.",
+  "keyTakeaway": "Improve hard choices by splitting the decision into options, branches, consequences, and unknowns, then compare the paths instead of trusting one global feeling.",
+  "breakdown": {
+    "fastRead": "Leandra moves color-coded magnets across the staffing board at 5:29 a.m. One sentence, \"the weekend is unsafe,\" hides three choices: overtime, float nurses, or delayed elective cases. Each path creates a different risk.\n\nA decision tree makes the hidden branches visible. It does not tell the future. It shows what you are choosing between. Name the options, trace the likely consequences, mark what is still unknown, and compare path by path. A vague fear cannot do that work for you.",
+    "deepRead": "Sacha sits in the guidance office at 1:14 p.m. while rain taps the window air conditioner. He keeps saying both apprenticeships feel scary. The counselor draws two boxes and asks what each one changes by Christmas. The welding track means paid hours sooner and a longer bus ride. The electrical track means a harder first semester and a license path his uncle understands.\n\nThat is the value of a decision tree. It turns a mood into branches. Each option opens its own consequences, tradeoffs, and unknowns. Once the branches are visible, judgment has something to work on.\n\nNuri's cafe postmortem shows why this matters. She once said yes to a second lease as if it were one decision. In truth, she was accepting rent risk, hiring strain, uncertain foot traffic, and her own exhaustion at once. Bundled choices hide the place where the real risk lives.\n\nThe limit is just as important. A clean diagram can tempt you to pretend the future is cleaner than it is. Catrin's sticky notes look neat at midnight, but some numbers are still guesses. A good tree does not fake certainty. It shows where the uncertainty sits so the next question, test, or delay can be chosen on purpose.",
+    "fullRead": "Hester leans over a laminated marsh map at 4:03 a.m. while her headlamp cuts a white circle through the dark. The animal relocation team has two routes, three tide windows, and a storm line moving faster than the forecast said. Her first instinct is to pick the shortest road. Then she draws the branches.\n\nThe short road saves forty minutes if the bridge stays open. If the bridge closes, the team loses the safe release window. The inland route is slower but keeps two fallback stops. The ferry route looks calm until wind delays make the crates sit too long. The safest-looking path changes once the downstream consequences are visible.\n\nHard choices often arrive as a single heavy feeling. Move, stay, hire, quit, launch, wait. That feeling may contain useful information, but it also compresses too much. A decision tree unpacks the compression. Option A leads to branch A1 or A2. Option B opens different costs. One unknown matters a lot. Another unknown is noise.\n\nBao uses this at his dining table with apartment listings tucked under a bowl of oranges. Moving closer to his mother is not one question. It is caregiving time, his son's school stability, rent, commute, and his sister's schedule. When he separates the branches, the choice becomes less dramatic and more honest. He can see which path helps his mother while breaking the fewest other promises.\n\nThe tree also helps a group talk without collapsing into slogans. Instead of \"too risky\" or \"obviously worth it,\" people can point to a branch and say, \"This is the cost I am worried about.\" That changes the meeting. The argument moves from personality to structure.\n\nDo not worship the tree. The boxes are not facts just because they are rectangular. Some probabilities are guesses. Some consequences cannot be scored cleanly. Some values matter even when they resist numbers. The tree earns trust only when it keeps those limits visible.\n\nUse the method when a choice feels like fog. Name the options. Split the broad branches again if they still hide different futures. Attach consequences to the path that creates them. Mark unknowns plainly. Then decide what evidence would clarify the branch that matters most. A visible choice is not an easy choice, but it is finally a choice you can inspect."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-leandra-staffing-board",
+      "title": "Leandra splits the unsafe weekend into branches",
+      "tags": ["decision tree", "staffing"],
+      "planSpec": {
+        "domain": "hospital operations",
+        "audience": "managers making high-pressure staffing choices",
+        "stakes": "a vague staffing fear could hide different risks by option",
+        "format": "decision_point",
+        "requiredBeat": "she breaks one vague staffing worry into branches for overtime, float nurses, and delayed elective cases"
+      },
+      "scenario": "Color-coded magnets slide under Leandra's fingers at 5:29 a.m. in the staffing office. The whiteboard says weekend unsafe in red marker, but that phrase hides three doors: pay overtime, pull float nurses from pediatrics, or delay four elective cases. Each magnet changes a different ward. Her coffee has gone cold, and she has to decide whether to keep arguing from the red phrase or map the branches.",
+      "whatToDo": "Draw the three options and list the main consequence under each one. Compare overtime fatigue, pediatric coverage, and delayed-case risk as separate branches before choosing.",
+      "whyItMatters": "One vague label hides different harms. Branching lets Leandra see which risk belongs to which option instead of treating all danger as one blob."
+    },
+    {
+      "exampleId": "ch06-ex02-sacha-rain-window",
+      "title": "Sacha stops calling both paths scary",
+      "tags": ["career choice", "branching"],
+      "planSpec": {
+        "domain": "school counseling",
+        "audience": "students choosing training paths",
+        "stakes": "a student may confuse a global feeling with specific tradeoffs",
+        "format": "dialogue",
+        "requiredBeat": "a counselor makes Sacha name the branches instead of saying the choice feels scary"
+      },
+      "scenario": "\"It just feels scary,\" Sacha says at Tuesday 1:14 p.m. in the guidance office while rain taps the window air conditioner. Ms. Errol draws two boxes on a legal pad. \"Scary how?\" Welding means paid hours by summer and a longer bus ride. Electrical means a harder test and a license path. Sacha watches her draw arrows and realizes the fear is not one thing. It has branches.",
+      "whatToDo": "Name the specific consequences under each apprenticeship. Put pay, commute, exam risk, and license path in separate branches so the choice can be compared.",
+      "whyItMatters": "A feeling can warn Sacha that stakes are real, but it cannot compare paths. The branches show what each fear is attached to."
+    },
+    {
+      "exampleId": "ch06-ex03-nuri-receipt-tape",
+      "title": "Nuri unbundles the lease she already signed",
+      "tags": ["postmortem", "bundled decisions"],
+      "planSpec": {
+        "domain": "small business expansion",
+        "audience": "owners reviewing growth decisions",
+        "stakes": "a failed expansion may have bundled several risks into one yes",
+        "format": "postmortem",
+        "requiredBeat": "she sees that she bundled rent, staffing, foot traffic, and owner fatigue into one yes"
+      },
+      "scenario": "Receipt tape curls around Nuri's calculator at Monday 8:47 p.m. on a closed cafe table. The second-location lease failed, and for weeks she called it one bad bet. Tonight she writes the branches she never drew: rent jump, new baker, foot traffic after 3 p.m., her own double shifts. The yes was not one yes. It was four risks braided together, and one snapped first.",
+      "whatToDo": "Redo the decision as a tree. Separate rent, staffing, demand, and owner time, then identify which branch failed and which test could have checked it earlier.",
+      "whyItMatters": "A bundled postmortem teaches too little. Unbundling shows where the real weakness lived, so the next expansion can test that branch before signing."
+    },
+    {
+      "exampleId": "ch06-ex04-hester-marsh-map",
+      "title": "Hester finds the bridge hidden in the shortcut",
+      "tags": ["uncertainty", "field planning"],
+      "planSpec": {
+        "domain": "wildlife fieldwork",
+        "audience": "teams planning under changing conditions",
+        "stakes": "a route that seems safest may hide a severe weather-delay branch",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts the safest path, then a branch map shows the weather-delay consequence she missed"
+      },
+      "scenario": "Hester's headlamp shines on a laminated map at Thursday 4:03 a.m. beside the marsh truck. She predicts the river road is safest because it is shortest. Then the branch map adds bridge closure, crate time, tide window, and inland backup stops. The reveal is blunt: if the storm reaches the bridge first, the shortcut strands the team past release time. The slower inland road now looks safer.",
+      "whatToDo": "Compare routes by branch, not distance alone. Include bridge closure, tide timing, crate stress, and fallback stops before choosing the path.",
+      "whyItMatters": "The shortcut looked safe while one consequence was hidden. A tree exposes the branch where a small delay becomes the deciding risk."
+    },
+    {
+      "exampleId": "ch06-ex05-bao-orange-bowl",
+      "title": "Bao sorts the move under the oranges",
+      "tags": ["family decision", "tradeoffs"],
+      "planSpec": {
+        "domain": "family caregiving",
+        "audience": "readers balancing personal and family obligations",
+        "stakes": "a move could help one duty while damaging others",
+        "format": "dilemma",
+        "requiredBeat": "he separates caregiving, commute, school stability, and finances before judging the move"
+      },
+      "scenario": "Apartment listings slide under a bowl of oranges at Sunday 6:58 p.m. while Bao circles addresses near his mother's building. Moving closer would make medication checks easier. It would also add thirty minutes to his commute, pull his son from a steady school, and raise rent. His sister can cover Tuesdays but not nights. Bao has to decide whether the word closer is hiding too many different branches.",
+      "whatToDo": "Split the move into caregiving coverage, commute, school, rent, and sibling support. Compare each branch before treating closeness as the whole answer.",
+      "whyItMatters": "A family decision can feel morally simple while its consequences are not. Branching helps Bao honor care without hiding costs that others will pay."
+    },
+    {
+      "exampleId": "ch06-ex06-catrin-sticky-notes",
+      "title": "Catrin sees what the neat tree still cannot know",
+      "tags": ["limits", "uncertainty"],
+      "planSpec": {
+        "domain": "software leadership",
+        "audience": "leaders using decision tools",
+        "stakes": "a clean diagram may create fake certainty",
+        "format": "reflection",
+        "requiredBeat": "she notices the tree has made uncertainty visible, not removed it"
+      },
+      "scenario": "Sticky notes glow under Catrin's desk lamp at Friday 11:36 p.m. in a dark coworking booth. The release tree is neat: ship now, delay two weeks, cut the sync feature. Each branch has costs in black ink. Still, the churn estimate is a guess, the enterprise promise is fragile, and the migration bug may be worse than anyone knows. The tree has not solved the future. It has shown her where she is still guessing.",
+      "whatToDo": "Keep the unknowns visible on the tree. Mark guesses as guesses, choose which branch needs more evidence, and resist turning tidy boxes into certainty.",
+      "whyItMatters": "A decision tree is useful because it locates uncertainty. If Catrin treats the diagram as proof, the tool becomes a cleaner way to hide risk."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch06-q01",
+        "prompt": "A team says a launch feels risky but cannot say why. What should they do first?",
+        "choices": [
+          "Draw the launch options and attach risks to the branch that creates each one.",
+          "Vote immediately while feelings are fresh.",
+          "Avoid the launch because any risk is too much."
+        ],
+        "correctIndex": 0,
+        "explanation": "The vague feeling needs structure. Branching shows which option creates which risk, making comparison possible.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q02",
+        "prompt": "A neat decision tree includes numbers that are mostly guesses. What should the team do?",
+        "choices": [
+          "Treat the numbers as facts because they are in the diagram.",
+          "Delete the tree and trust instinct.",
+          "Mark the guesses and decide which uncertainty needs evidence before action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The tree should reveal uncertainty, not hide it. Guesses belong on the map, but they must be labeled as guesses.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q03",
+        "prompt": "A student says, \"College A just feels better,\" but College B is cheaper and closer to family. Which move helps most?",
+        "choices": [
+          "List branches for cost, support, program fit, and daily life under each college.",
+          "Pick College A because a feeling is always enough.",
+          "Ignore fit and pick only the cheapest option."
+        ],
+        "correctIndex": 0,
+        "explanation": "The tree separates consequences so the student can see what the feeling may contain and what tradeoffs each path creates.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q04",
+        "prompt": "A business owner reviews a failed expansion and calls it one bad decision. What is the better postmortem?",
+        "choices": [
+          "Separate lease cost, staffing, demand, and owner time to find the branch that failed.",
+          "Blame luck and move on.",
+          "Open a third location to prove confidence."
+        ],
+        "correctIndex": 0,
+        "explanation": "Unbundling the decision teaches more than one broad label. It identifies which risk was misunderstood and what to test next time.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q05",
+        "prompt": "A project has three options, but one branch under option two is still broad and vague. What should happen?",
+        "choices": [
+          "Split that branch again until the consequences are discussable.",
+          "Leave it vague because detail slows the meeting.",
+          "Delete option two so the diagram is cleaner."
+        ],
+        "correctIndex": 0,
+        "explanation": "A branch that still hides multiple futures needs more decomposition. The goal is comparison, not a tidy but vague drawing.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q06",
+        "prompt": "A parent deciding on a move focuses only on rent. What is missing from the decision tree?",
+        "choices": [
+          "Other consequences such as commute, school stability, care duties, and support.",
+          "A prettier apartment photo.",
+          "A rule that money is the only branch."
+        ],
+        "correctIndex": 0,
+        "explanation": "Rent is one branch, not the whole tree. The decision needs the other consequences that the move will create.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch06-q07",
+        "prompt": "A route is shortest but has one bridge that may close. A longer route has two fallback stops. What does tree thinking add?",
+        "choices": [
+          "It attaches the bridge-closure consequence to the short route instead of judging distance alone.",
+          "It proves the shortest route is always best.",
+          "It removes weather uncertainty completely."
+        ],
+        "correctIndex": 0,
+        "explanation": "The tree shows how one event changes downstream outcomes. It organizes uncertainty rather than pretending the weather can be known.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q08",
+        "prompt": "A meeting keeps circling between \"too risky\" and \"worth it.\" What would improve the discussion?",
+        "choices": [
+          "Ask each person to point to the exact branch and consequence they mean.",
+          "Repeat the slogans until one side gets tired.",
+          "Hide the tradeoffs so the group stays upbeat."
+        ],
+        "correctIndex": 0,
+        "explanation": "Pointing to branches moves the discussion from mood and identity to structure. People can then compare the actual consequences.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q09",
+        "prompt": "A decision tree shows one unknown that would change the choice if answered. What is the best next action?",
+        "choices": [
+          "Ignore it because the tree is already complete.",
+          "Find the smallest test or source that can reduce that specific unknown.",
+          "Add more unrelated branches."
+        ],
+        "correctIndex": 1,
+        "explanation": "The tree has located the key uncertainty. The next move is targeted evidence, not more general worry.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch06-rc01",
+      "front": "A decision feels like one heavy mood. What should you draw first?",
+      "back": "Draw the main options as separate branches. Then attach the likely consequence and unknown under each one so the choice becomes inspectable.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch06-rc02",
+      "front": "A branch still feels vague after you draw it. What is the next move?",
+      "back": "Split it again. A branch earns its place only when the consequence is clear enough for people to discuss and compare.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-rc03",
+      "front": "A clean tree makes the future look settled. What warning should you remember?",
+      "back": "The diagram organizes uncertainty, but it does not erase it. Mark guesses as guesses and decide which unknown needs evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-rc04",
+      "front": "A past choice failed and everyone calls it one bad decision. How do you learn from it?",
+      "back": "Unbundle the choice into branches. Find whether demand, cost, timing, capacity, or another branch failed, then design a sharper test for next time.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is decomposing a hard choice until its paths can be compared. A good decision tree makes options, consequences, and unknowns visible without pretending uncertainty disappeared.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a team says a choice feels risky, then I will ask which branch creates the risk and write it on the decision tree."
+      },
+      {
+        "context": "health",
+        "plan": "If I face a treatment or routine choice, then I will list the main options, likely benefits, costs, and unknowns before reacting to fear."
+      },
+      {
+        "context": "personal",
+        "plan": "If I am stuck between two paths, then I will draw the branches and mark the one unknown that would most change my decision."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a family decision feels morally obvious but practically messy, then I will separate duties, costs, timing, and support before choosing."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, draw a decision tree for one live choice. Include at least three options or branches, one consequence under each, and one unknown you can investigate this week.",
+    "weeklyPractice": "For one week, turn every stuck decision into a small tree before discussing it. Review whether the tree located a hidden consequence or a key unknown."
+  },
+  "memorableLines": [
+    {
+      "text": "A vague fear cannot do that work for you.",
+      "location": "breakdown.fastRead",
+      "why": "It contrasts mood with visible reasoning in plain language."
+    },
+    {
+      "text": "A good tree does not fake certainty.",
+      "location": "breakdown.deepRead",
+      "why": "It states the limit of the tool clearly."
+    },
+    {
+      "text": "A visible choice is not an easy choice, but it is finally a choice you can inspect.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the value of decision structure without overselling it."
+    }
+  ]
+}

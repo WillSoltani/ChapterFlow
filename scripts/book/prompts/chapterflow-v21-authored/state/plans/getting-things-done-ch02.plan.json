@@ -1,0 +1,74 @@
+{
+  "chapterId": "getting-things-done-ch02",
+  "number": 2,
+  "title": "Getting Control of Your Life: The Five Stages of Mastering Workflow",
+  "coreMove": "Run every piece of stuff through capture, clarify, organize, review, and engage before trusting your choices.",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "a hospital charge nurse clearing end-of-shift scraps from pockets and handoff notes",
+      "audience": "a nurse responsible for keeping patient follow-ups from disappearing between shifts",
+      "stakes": "whether a family callback, medication question, or supply request gets lost because it stayed as a half-memory",
+      "format": "scene",
+      "requiredBeat": "the nurse captures every loose reminder into one visible inbox before deciding importance, showing that collection comes before judgment"
+    },
+    {
+      "domain": "a public defender leaving a crowded arraignment calendar with vague case notes",
+      "audience": "a lawyer carrying many live obligations with court deadlines attached",
+      "stakes": "whether a client’s next filing stalls because 'handle Rivera matter' is not yet a defined outcome or action",
+      "format": "dilemma",
+      "requiredBeat": "the lawyer turns a vague note into the desired outcome and one next physical action instead of rereading it as if concern were progress"
+    },
+    {
+      "domain": "a high school band director preparing for a spring concert while fielding permission slips, instrument repairs, and parent emails",
+      "audience": "a teacher who has many small commitments arriving through many channels",
+      "stakes": "whether concert logistics become a noisy pile or a set of reminders that can be found when needed",
+      "format": "before_after",
+      "requiredBeat": "the director sorts clarified items into calendar, next-action, waiting-for, and reference places rather than keeping one mixed master list"
+    },
+    {
+      "domain": "a regional warehouse supervisor doing a Friday review before next week's inventory audit",
+      "audience": "an operations lead whose work depends on seeing the whole map before Monday starts",
+      "stakes": "whether missing vendor confirmations and staffing gaps surface early enough to fix",
+      "format": "reflection",
+      "requiredBeat": "the supervisor reviews projects, waiting-fors, calendars, and action lists until the system feels current enough to stop mentally reheating the audit"
+    },
+    {
+      "domain": "a traveling medical-device repair technician stuck in an airport delay with a phone, thirty minutes, and low energy",
+      "audience": "a field technician who must choose useful work from changing conditions",
+      "stakes": "whether the delay becomes anxious scrolling or a realistic choice among calls, forms, and parts requests",
+      "format": "decision_point",
+      "requiredBeat": "the technician chooses from context, time, energy, and priority instead of from whichever reminder shouts loudest"
+    },
+    {
+      "domain": "a restaurant line cook newly promoted to shift lead after a chaotic weekend service",
+      "audience": "a first-time supervisor learning why busyness alone does not create control",
+      "stakes": "whether repeated shortages, schedule questions, and prep mistakes keep recurring because no stage of workflow is being completed",
+      "format": "postmortem",
+      "requiredBeat": "the shift lead traces the breakdown to skipped capture, unclear next actions, and unreviewed waiting-fors rather than blaming people for not trying hard enough"
+    },
+    {
+      "domain": "a small-town building inspector talking with a homeowner after a storm-damage visit",
+      "audience": "a municipal worker balancing public service, forms, field visits, and callbacks",
+      "stakes": "whether a resident gets a clear repair-permit path or another vague promise to 'look into it'",
+      "format": "dialogue",
+      "requiredBeat": "the inspector names what the item is, what done would look like, where the reminder will live, and the very next contact to make"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "remember": 1,
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 28
+}

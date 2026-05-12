@@ -9,17 +9,17 @@ import type { JourneyDefinition, BookUserJourneyItem } from "@/app/app/api/book/
 type JourneyWithProgress = JourneyDefinition & { progress?: BookUserJourneyItem };
 type JourneysResponse = { journeys: JourneyWithProgress[] };
 
-function isDismissed(): boolean {
+function isDismissed(journeyId: string): boolean {
   try {
-    return localStorage.getItem("cf-journey-banner-dismissed") === "1";
+    return localStorage.getItem(`cf-journey-dismissed-${journeyId}`) === "1";
   } catch {
     return false;
   }
 }
 
-function persistDismiss() {
+function persistDismiss(journeyId: string) {
   try {
-    localStorage.setItem("cf-journey-banner-dismissed", "1");
+    localStorage.setItem(`cf-journey-dismissed-${journeyId}`, "1");
   } catch {}
 }
 
@@ -39,7 +39,8 @@ export function JourneyBanner({ enabled }: { enabled: boolean }) {
         const active = data.journeys.find(
           (j) => j.progress && !j.progress.completedAt,
         );
-        if (!active || isDismissed()) {
+        if (!active) return;
+        if (isDismissed(active.journeyId)) {
           setDismissed(true);
           return;
         }
@@ -65,7 +66,7 @@ export function JourneyBanner({ enabled }: { enabled: boolean }) {
       <button
         type="button"
         onClick={() => {
-          persistDismiss();
+          persistDismiss(journey.journeyId);
           setDismissed(true);
         }}
         className="absolute right-3 top-3 text-xs text-(--cf-text-3) hover:text-(--cf-text-1)"

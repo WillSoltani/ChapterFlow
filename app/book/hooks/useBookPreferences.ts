@@ -150,7 +150,7 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     defaultChapterTab: "summary",
     fontSize: 16,
     lineSpacing: 155,
-    contentWidth: 760,
+    contentWidth: 680,
     paragraphDensity: "balanced",
     focusModeDefault: false,
     showProgressBar: true,

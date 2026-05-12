@@ -1,0 +1,325 @@
+{
+  "chapterId": "smarter-faster-better-ch05",
+  "number": 5,
+  "title": "Managing Others",
+  "readingTimeMinutes": 12,
+  "hook": "The scanner chirps in aisle K-14, and the morning plan starts losing to reality.",
+  "counterintuition": "Most people assume managing uncertainty means tighter control. Instead, strong management often means shorter learning loops and enough trust for people to report reality while it can still change the work.",
+  "tryThisNow": "Pick one plan you manage, ask where fresh evidence first appears, and create a five-minute check that lets that evidence revise the next block of work.",
+  "keyTakeaway": "Good managers build systems where truthful feedback travels quickly, standards stay clear, and plans can change before pride turns yesterday's map into today's mistake.",
+  "breakdown": {
+    "fastRead": "A warehouse route map can be beautiful at 7 a.m. and wrong by 9:22. The blocked door does not care how carefully the map was drawn. The scanner chirps, the pickers detour, and the manager has a choice: defend the plan or learn from the work.\n\nManaging others is not only giving orders. It is designing how truth travels. A manager gets the truth the room believes it is safe to send.\n\nShort loops matter because reality changes while work is still movable. Trust matters because people will not feed the loop with bad news if the loop bites them. The plan should be strong enough to coordinate and humble enough to learn.",
+    "deepRead": "Uncertain work punishes long delays between action and correction. A team can spend weeks obeying a plan that stopped fitting the field on day two. By the time the review arrives, the mistake is no longer a small adjustment. It is built into the walls.\n\nShort learning loops are the answer. Do a small piece of work. Look at what happened. Let the evidence revise the next piece. This is not disorder. It is disciplined adaptation. The warehouse route changes for the next two hours. The reading intervention changes on Friday, not at the end of the quarter. The search grid changes before daylight disappears.\n\nTrust is the fuel for those loops. If reporting a warped wall earns a glare, the next wall will stay quiet until drywall hides it. If servers get snapped at for naming a software bug during rush, the next bug becomes a guest complaint instead of a live fix. Control can make the room quieter while making the work dumber.\n\nThat does not mean standards soften. The wall still has to be straight. The rescue grid still needs command. The violin shop still needs careful repair. Trust does not replace accountability. It makes accountability accurate because the manager is working with fresher facts.\n\nThe manager's first reaction to bad news teaches the reporting rule. Thank the signal. Verify it. Adjust the work. Save blame, if needed, for a later moment when the team can learn without hiding. If reality enters early and changes the plan, future reality gets braver.",
+    "fullRead": "The old fantasy of management is a perfect plan pushed through a compliant room. It is tempting because it makes leadership feel clean. The manager thinks, the team executes, the report confirms. Real work is rarely that polite. Doors block. Walls bow. Software breaks. Weather shifts. Students misunderstand. A missing hiker leaves evidence outside the grid.\n\nWhen conditions move, management becomes signal design. The leader is shaping what gets reported, how fast it arrives, how honestly it is framed, and whether the plan changes when the evidence earns it. That is a harder job than command because it demands both standards and revision.\n\nShort loops keep the work close to reality. The loop can be a scanner review, a daily standup, a weekly reading board, a bench card, or a field report. The form matters less than the timing. Evidence must arrive while the next action is still adjustable. A postmortem may teach. A live loop can prevent.\n\nThe obstacle is pride disguised as order. A manager often hears new evidence as criticism of the plan. The field report says the original grid is wrong. The carpenter says the wall is not straight. The server says the system is failing during the rush. The easiest emotional move is to protect authority by treating the report as a problem with the reporter. That move teaches the room to polish reality before sending it upward.\n\nA manager gets the truth the room believes it is safe to send. If the room believes bad news creates punishment, the manager receives delay, softening, and silence. The manager may mistake that quiet for discipline. It is not discipline. It is information loss.\n\nThe opposite failure is drift. Adaptation is not every person improvising in a different direction. The plan still has to coordinate effort. Standards still have to define quality. The search crew cannot chase every rumor. The warehouse cannot redraw routes every seven minutes. The repair bench cannot accept sloppy work in the name of openness.\n\nThe useful balance is a plan with a visible revision channel. Here is the standard. Here is the next block of work. Here is the evidence that should interrupt us. Here is what happens when someone reports it. That last sentence is culture in miniature.\n\nWhen the report comes, slow your first reaction. Thank the signal before you judge it. Ask for the evidence. Decide what changes now and what waits for review. Then tell the room what changed because the signal arrived. People do not keep risking honesty for a process that never learns.\n\nManagement strength is not the absence of surprise. It is the ability to turn surprise into better coordination before the work hardens around a false picture. The manager who can do that has not lost control. He has made control more intelligent."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-aitor-k14",
+      "title": "Aitor walks to the chirping scanner",
+      "tags": [
+        "decision_point",
+        "warehouse",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "a warehouse manager deciding whether to revise a picking route from live scanner evidence",
+        "audience": "a manager proud of the morning plan but responsible for learning while work is still movable",
+        "stakes": "whether the shift keeps obeying a route that is already failing or corrects before late trucks stack up",
+        "format": "decision_point",
+        "requiredBeat": "he chooses a short feedback loop at the scanner instead of defending the morning plan"
+      },
+      "scenario": "Aitor crouches by a bent pallet tag at 9:22 a.m. in aisle K-14, the handheld scanner chirping error after error while the morning route map sits folded in his back pocket. The pickers are detouring around a blocked cold-storage door. His plan assumed that door was clear. A lead asks if they should keep following the route anyway. Aitor feels the old reflex, defend the map until lunch. The scanner chirps again. The choice in front of him is not pride or chaos. It is whether live evidence gets a two-hour revision.",
+      "whatToDo": "Stop the route for five minutes, watch the failed scans, redraw the next two hours around the blocked door, and tell the team exactly what evidence changed the plan.",
+      "whyItMatters": "Adaptive management depends on feedback while work can still move. If the manager defends yesterday's map, the team learns that reporting reality only creates trouble."
+    },
+    {
+      "exampleId": "ch05-ex02-tuvia-laser-level",
+      "title": "Tuvia changes the wall before the drywall cart arrives",
+      "tags": [
+        "dialogue",
+        "construction",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "a construction superintendent responding to a carpenter's report about a warped partition",
+        "audience": "a superintendent whose reaction will teach the crew whether field truth is welcome",
+        "stakes": "whether the wall is corrected in two hours or hidden behind drywall for three expensive weeks",
+        "format": "dialogue",
+        "requiredBeat": "he makes the report safe and changes the next two-hour work block before the wall closes"
+      },
+      "scenario": "Tuvia wipes chalk dust off a laser level at 1:07 p.m. Thursday on the fourth-floor buildout, the drywall cart rattling near the elevator. \"Partition 4C is bowed,\" a carpenter says, not quite meeting his eyes. \"How bad?\" Tuvia asks. \"Half inch at the top track.\" The foreman groans. Tuvia looks at the open studs, then at the schedule taped to a column. \"Good catch before board,\" he says. \"Show me the line.\" He is already changing the next two-hour block while the wall is still naked.",
+      "whatToDo": "Thank the report first, verify it at the wall, and change the immediate work block before drywall hides the defect. Make the correction public enough that future bad news travels faster.",
+      "whyItMatters": "Trust is built by the manager's first reaction to unwelcome facts. A crew that gets punished for field truth will wait until the wall is closed."
+    },
+    {
+      "exampleId": "ch05-ex03-selvi-host-stand",
+      "title": "Selvi finds the bug under the receipt paper",
+      "tags": [
+        "postmortem",
+        "restaurant",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "a restaurant floor manager reviewing why servers hid a point-of-sale bug during dinner service",
+        "audience": "a manager who wants discipline but has trained the staff to soften bad news",
+        "stakes": "whether the next bug surfaces during service or gets hidden until tips and tickets collapse",
+        "format": "postmortem",
+        "requiredBeat": "she sees her earlier blame trained the staff to protect her from bad news"
+      },
+      "scenario": "Selvi stands at the host stand at 12:18 a.m. Saturday, receipt paper pooled on the floor like streamers after a wrecked dinner service. The point-of-sale bug had doubled table 18's order and delayed six checks. Three servers knew by 7:40. No one told her until guests were already angry. In the postmortem, Selvi writes the timeline, then remembers last month, when she snapped, \"Stop bringing me problems during rush.\" The staff had obeyed. They stopped bringing her reality while it was still usable.",
+      "whatToDo": "Name her earlier reaction as part of the system, then set a rush rule: bugs get reported on sight, with blame held until after service and fixes assigned immediately.",
+      "whyItMatters": "A manager shapes the truth channel. If bad news feels dangerous, people do not create fewer problems. They create a cleaner story until the problems are expensive."
+    },
+    {
+      "exampleId": "ch05-ex04-kasia-literacy-closet",
+      "title": "Kasia moves the reading plan to weekly magnets",
+      "tags": [
+        "before_after",
+        "school",
+        "learning-loop"
+      ],
+      "planSpec": {
+        "domain": "an elementary principal revising a reading intervention plan from quarterly review to weekly teacher feedback",
+        "audience": "a principal who needs structure that learns from classrooms before students lose months",
+        "stakes": "whether struggling readers get timely adjustments or wait for a polished report after the window closes",
+        "format": "before_after",
+        "requiredBeat": "she moves from quarterly review to a weekly evidence board that teachers can change"
+      },
+      "scenario": "Kasia presses colored magnets onto a filing cabinet at 3:36 p.m. Monday in the literacy closet, cardboard leveled readers stacked against her knees. Before, she reviewed intervention data every quarter, neat and too late. Teachers whispered in hallways that two groups were guessing through vowel teams, but the plan stayed official. After the change, every Friday a teacher moves one magnet: working, stuck, needs switch. By the second week, a stuck group gets a new decoding block before the quarter ever has a chance to bury them.",
+      "whatToDo": "Keep the intervention goal, but shorten the learning loop. Let teachers update a visible weekly board and require one adjustment for every group marked stuck.",
+      "whyItMatters": "Management under uncertainty needs evidence before the plan hardens. A quarterly review can explain failure; a weekly loop can still change it."
+    },
+    {
+      "exampleId": "ch05-ex05-domen-command-trailer",
+      "title": "Domen lets the drone mark redraw the grid",
+      "tags": [
+        "predict_reveal",
+        "rescue",
+        "adaptation"
+      ],
+      "planSpec": {
+        "domain": "a search-and-rescue coordinator updating a search grid after field evidence conflicts with the original plan",
+        "audience": "a coordinator balancing command discipline with rapid revision from live evidence",
+        "stakes": "whether crews keep searching the wrong ravine after a missing hiker's heat mark appears elsewhere",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts the original grid will hold, then sees the field team's report should revise it now"
+      },
+      "scenario": "Domen pins a soaked grid map to corkboard at 6:14 p.m. in the fairground command trailer, rain ticking on the roof and radios hissing over muddy boots. He predicts the original ravine plan will hold until dark. Then the drone operator brings a thermal printout: a faint heat mark beyond the north fence, where yesterday's route notes said impassable. The field team confirms a fresh boot scrape at the fence wire. Domen can keep crews in the clean grid, or redraw while daylight is bleeding out of the sky.",
+      "whatToDo": "Update the grid in public, send one crew to verify the heat mark, and explain which evidence overrode the original plan. Keep command clear while letting reality revise it.",
+      "whyItMatters": "A plan earns trust by learning, not by pretending new evidence is disobedience. Fast revision keeps coordination tied to the field instead of to command pride."
+    },
+    {
+      "exampleId": "ch05-ex06-yarden-spruce",
+      "title": "Yarden puts the cracked soundpost on the bench mat",
+      "tags": [
+        "scene",
+        "craft",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "a violin shop owner training a repair tech to report a bench mistake without fear",
+        "audience": "a craft manager whose response will decide whether errors surface early or get hidden inside instruments",
+        "stakes": "whether delicate repairs improve through feedback or mistakes disappear until customers hear them",
+        "format": "scene",
+        "requiredBeat": "he lets the tech report a cracked soundpost without punishment and uses it to adjust the bench process"
+      },
+      "scenario": "Yarden brushes spruce shavings from his apron at 4:49 p.m. Friday by the back repair bench, a student violin open under the lamp and rosin dust sweet in the air. The new repair tech holds up a cracked soundpost between tweezers. \"I tightened too fast,\" she says. Her voice is thin. Yarden can feel the cost of the replacement and the urge to lecture. Instead he sets the cracked post on the bench mat, asks her to show the clamp angle, and marks a slower check on the setup card before the next violin comes out of its case.",
+      "whatToDo": "Treat the cracked post as data first. Have the tech reconstruct the step, adjust the setup card, and practice the clamp angle before any blame conversation happens.",
+      "whyItMatters": "Craft quality improves when mistakes become visible early. Punishment may feel like standards, but hidden errors are worse standards with better manners."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A shipping supervisor learns at 10 a.m. that a loading dock is blocked, but the original route plan was approved at 7 a.m. Which response best fits adaptive management?",
+        "choices": [
+          "Revise the next work block around the blocked dock and say which evidence changed the plan.",
+          "Keep the plan until the end of shift so the team sees leadership consistency.",
+          "Ask workers to move faster on the old route so the delay does not show up in reports."
+        ],
+        "correctIndex": 0,
+        "explanation": "The blocked dock is live evidence. Revising the next block keeps coordination while teaching the team that reality can update the plan before mistakes harden.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A lab manager says she wants honesty, but every time a technician reports a failed assay she opens with blame. Failed assays now appear only in monthly summaries. What is the main system problem?",
+        "choices": [
+          "Technicians need a longer form so failed assays can be described in more detail.",
+          "The manager's first reaction has made live bad news unsafe to send.",
+          "Monthly summaries are always better than live reports for scientific work."
+        ],
+        "correctIndex": 1,
+        "explanation": "The reporting channel has been trained by reaction. People are not hiding because they lack forms; they are hiding because live truth feels personally costly.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A principal gets quarterly reading reports and discovers a small group was misplaced for eleven weeks. Teachers had noticed by week two. What would prevent the same failure?",
+        "choices": [
+          "Ask teachers to wait for more data before raising placement worries.",
+          "Make the quarterly report more polished so errors stand out visually.",
+          "Create a weekly evidence board where teachers can flag stuck groups and trigger a review."
+        ],
+        "correctIndex": 2,
+        "explanation": "The issue is feedback timing. A weekly loop gives the plan a chance to learn while the intervention can still change, not after the quarter is already lost.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A kitchen manager punishes cooks for surfacing shortages during dinner rush, then complains that shortages are only discovered at closing. Which lesson should he take?",
+        "choices": [
+          "He has taught cooks to protect him from bad news until it is too late to use.",
+          "The cooks are probably inventing shortages to avoid accountability.",
+          "Dinner rush is the wrong time for any information to move."
+        ],
+        "correctIndex": 0,
+        "explanation": "His reaction shapes the channel. If shortage reports are punished during the only useful window, staff will wait until the safer window, even though the information is then less useful.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A software lead lets every engineer change priorities whenever new data appears. Work scatters. Which correction keeps learning without drift?",
+        "choices": [
+          "Ban all priority changes until the next quarterly planning cycle.",
+          "Define the evidence that can interrupt the sprint and the person who approves the change.",
+          "Tell engineers to use their best judgment without documenting changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Adaptation still needs structure. A visible revision channel keeps new evidence from being ignored or turning into uncoordinated improvisation.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A home-care coordinator wants aides to report small changes in patient mobility before falls happen. Aides worry that reports will create extra paperwork and blame. What should she design?",
+        "choices": [
+          "A rule that only major falls should be reported so small notes do not overload the office.",
+          "A private reminder that aides should be more responsible about patient safety.",
+          "A short no-blame mobility note reviewed daily, with visible care-plan changes when patterns appear."
+        ],
+        "correctIndex": 2,
+        "explanation": "The design lowers the cost of early signal and proves the signal changes action. That combination is what keeps reporting useful and trusted.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A factory supervisor is proud that the line never brings him problems. Scrap rates are rising, and workers fix defects quietly at their stations. Which question should he ask first?",
+        "choices": [
+          "What have my reactions taught people about naming problems while they are still small?",
+          "Which worker is most likely responsible for the defects and needs discipline?",
+          "How can I make the line quieter so problems feel less disruptive?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The quiet line may be filtering reality. The supervisor needs to inspect the reporting culture before assuming the problem is one bad worker or too much noise.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A museum install team finds that a wall label layout is confusing visitors. The exhibit opens tomorrow. Which response best joins accountability and learning?",
+        "choices": [
+          "Ignore the visitor confusion because the approved design should not change this late.",
+          "Run a thirty-minute test of two revised labels, choose the clearer one, and record why the original missed.",
+          "Blame the designer publicly so the rest of the team knows accuracy matters."
+        ],
+        "correctIndex": 1,
+        "explanation": "The late signal should revise the work quickly, and the miss should still be learned from. That keeps standards high without punishing the report that made improvement possible.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A field organizer keeps receiving upbeat volunteer updates, then discovers canvassers skipped hard apartment buildings all week. What reporting change would improve signal quality?",
+        "choices": [
+          "Ask for only total doors knocked so volunteers keep morale high.",
+          "Tell volunteers to work harder and stop making excuses about hard buildings.",
+          "Require each shift report to include one obstacle, one skipped location, and the next adjustment."
+        ],
+        "correctIndex": 2,
+        "explanation": "The new report makes reality part of the job. It invites bad news early and ties it to adjustment, so optimism cannot hide avoidable gaps.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch05-rc01",
+      "front": "A plan was right this morning and wrong by noon. What should a manager retrieve?",
+      "back": "Retrieve the live feedback loop. Ask what evidence changed, what work block can still be revised, and how to explain the update so the team trusts reality more than the old map.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch05-rc02",
+      "front": "People delay bad news until it is too late. What is the first management diagnosis?",
+      "back": "Look at the reaction cost. Teams learn whether bad news is safe by watching the manager's first response, so delayed reporting often reflects culture, not character alone.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc03",
+      "front": "A team adapts so often that coordination collapses. What does strong management add?",
+      "back": "Add a visible revision channel: the evidence that can interrupt the plan, who decides, and how the next block changes. Adaptation needs structure to stay useful.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc04",
+      "front": "A manager wants accountability after a mistake. Why should blame wait until after the live fix?",
+      "back": "Because the live moment needs signal and repair. If blame arrives first, future signals hide. Accountability is stronger when the facts are fresh and the team has not been trained to conceal them.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch05-rc05",
+      "front": "A leader says, 'No news means the plan is working.' What risk should you remember?",
+      "back": "No news can mean the room has learned to filter reality. Look for silent workarounds, private complaints, and late surprises before treating quiet as proof of control.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is building fast, trustworthy feedback loops. Decide where evidence first appears, make it safe to report, and define how it can change the next block of work. Keep standards clear while making revision normal.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a plan depends on field conditions, then schedule a short evidence check before the next work block and state what kind of signal can change the plan."
+      },
+      {
+        "context": "health",
+        "plan": "If you coordinate care for yourself or someone else, then create a daily note for one small change and decide in advance who sees it and what action it can trigger."
+      },
+      {
+        "context": "personal",
+        "plan": "If a personal system keeps failing late, then find the first place reality diverges from the plan and make a two-minute check there for the next week."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone tells you inconvenient truth, then thank the report, ask for the evidence, and decide the next adjustment before explaining your own intent."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, choose one plan you manage and add a live feedback point: who reports, when they report, what they report, and what kind of evidence can change the next action.",
+    "weeklyPractice": "Once a week, review one surprise that reached you late. Trace where the signal first appeared, what made it costly to send, and how you will shorten that loop next time."
+  },
+  "memorableLines": [
+    {
+      "text": "A manager gets the truth the room believes it is safe to send.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses trust and signal flow into one practical warning."
+    },
+    {
+      "text": "Control can make the room quieter while making the work dumber.",
+      "location": "breakdown.deepRead",
+      "why": "It names the hidden cost of overcontrol with plain force."
+    },
+    {
+      "text": "The plan should be strong enough to coordinate and humble enough to learn.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the balance between structure and adaptation."
+    }
+  ]
+}

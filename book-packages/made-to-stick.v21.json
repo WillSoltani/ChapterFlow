@@ -1,0 +1,1943 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "made-to-stick-v21-1778547554346",
+  "createdAt": "2026-05-12T00:59:14.346Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "made-to-stick",
+    "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+    "author": "Chip Heath, Dan Heath",
+    "categories": [
+      "Communication",
+      "Psychology",
+      "Business",
+      "Leadership"
+    ],
+    "tags": [
+      "communication",
+      "messaging",
+      "persuasion",
+      "storytelling",
+      "ideas",
+      "stickiness",
+      "presentation",
+      "change"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "made-to-stick-ch01",
+      "number": 1,
+      "title": "Simple",
+      "readingTimeMinutes": 11,
+      "hook": "A wet boarding pass, a blinking storm map, and six priorities cannot all fit in one hand.",
+      "counterintuition": "Most people assume a simple message is a shorter message, but actually it is a ranked message. The hard part is choosing what must win when real life forces a tradeoff.",
+      "tryThisNow": "Take one message you need to use today. Cross out every nice-to-have point, then write the one sentence someone should use when plans change.",
+      "keyTakeaway": "A simple idea is not thin. It is the core priority, kept honest enough that people can use it when the script breaks and choices start costing something.",
+      "breakdown": {
+        "fastRead": "Rikke pinches a wet boarding pass at 1:22 a.m. while the Terminal B storm map blinks red. Six priorities sit in her delay update: families first, crews first, bags first, fuel first, gates first, safety first. The gate agents need one rule before the next wave of passengers reaches the desk. She writes it in plain words: keep families together unless safety says no. The sentence is not cute. It tells people what wins when the line starts shouting.\n\nA simple message earns its keep at the point of choice. Short is not enough. A slogan can be short and still leave people guessing. The core has to settle the next tradeoff without lying about the cost.",
+        "deepRead": "Rikke pinches a wet boarding pass at 1:22 a.m. while the Terminal B storm map blinks red. The full plan has weather holds, crew clocks, bag routing, gate swaps, hotel rules, and one safety note in bold. None of that will fit in a gate agent's head when a father with two sleeping kids asks what happens now. Rikke needs the line that survives the crowd. She chooses: keep families together unless safety says no.\n\nThat is the real test of simple. It is not a word-count test. It is a pressure test. People can carry one ranked priority into a messy scene. They cannot carry six equal priorities and still act fast. If every detail claims first place, the listener has to rebuild the hierarchy alone. That is where drift starts.\n\nPicture a bakery after a holiday rush. Signe finds her eight-point service memo taped to the register and a stack of angry pickup slips beside it. The memo said greet warmly, check names, offer samples, protect the pastry case, answer phones, wipe counters, restock ribbons, and speed the line. It never said what wins when the phone rings while a customer points at the wrong cake. The staff guessed. Each guess made sense alone and chaos together.\n\nThe move is to cut down to the governing choice, then keep the one limit that makes the choice true. Keep families together unless safety says no. Serve the person at the counter before the ringing phone unless the phone is a delivery driver at the curb. The limit matters because compression can become a lie. A simple idea should travel light, but it still has to arrive with its truth intact.",
+        "fullRead": "Rikke pinches a wet boarding pass at 1:22 a.m. while the Terminal B storm map blinks red. Her operations binder is thick enough to prop open a door. It has legal rules, crew rules, fuel rules, hotel rules, bag rules, and weather rules. The next announcement cannot carry all of that. The gate agents have two minutes before the line reaches them, and the line is full of people who will ask different versions of the same question: what matters now?\n\nRikke writes one sentence on the top of the update: keep families together unless safety says no. That sentence does not solve every case. It does something more useful. It ranks the next choice. If a rebooked flight splits a parent from a child, the agent knows to keep looking. If the only option left violates a safety rule, the agent knows where the limit sits. The message works because it chooses a winner and keeps the edge visible.\n\nA short sentence without rank is just a short sentence. A team can be told to be excellent, fast, kind, careful, cheap, bold, and flexible. Those words sound good until two of them collide. Then the listener has to guess which one was real. Simple means the message has a spine. It tells people what should bend and what should not.\n\nSigne sees the same failure at 9:55 p.m. in her bakery. Her service memo was neat and friendly. It named eight good behaviors, so no one could accuse it of being unclear. Yet the holiday rush exposed the missing choice. One clerk answered phones because responsiveness was on the memo. One clerk stayed with the counter because warmth was on the memo. One clerk guarded the pastry case because waste was on the memo. The customers did not see eight values. They saw a line that stopped moving.\n\nA useful core would have changed the room: serve the person in front of you before anything else, unless food safety is at risk. Now the clerk has a rule for the call, the crumb on the tray, and the customer holding a pickup number. The rule is small because the moment is loud. It is honest because the exception protects the real constraint.\n\nThe danger is cutting too far. Torben, a youth coach, once told his players that hustle beats talent. The line fired them up for two weeks. Then his smallest defender sprinted through a dangerous ankle pain because the line had no limit. Torben did not need a longer speech. He needed a truer core: hustle beats talent when the body is safe enough to train tomorrow. That version is less catchy, but it makes better choices.\n\nHand someone a core that ranks the tradeoff and names the edge. Leave out either part and the message will fail in opposite ways. With no rank, people freeze or improvise in different directions. With no edge, people act on a slogan after it has stopped being true. The best simple idea is the one that still helps at the messy counter, under bad weather, with a decision due now."
+      },
+      "examples": [
+        {
+          "exampleId": "made-to-stick-ch01-ex01",
+          "title": "Rikke rewrites the storm-delay rule",
+          "tags": [
+            "operations",
+            "airline",
+            "priorities"
+          ],
+          "planSpec": {
+            "domain": "airline operations",
+            "audience": "frontline gate agents",
+            "stakes": "stranded families and safety rules collide",
+            "format": "decision_point",
+            "requiredBeat": "cut six priorities to the one rule agents should use"
+          },
+          "scenario": "Rikke pinches a wet boarding pass at 1:22 a.m. at the Terminal B operations desk while rain ticks against the glass. Her storm update lists crew clocks, hotel vouchers, bags, fuel, safety, and families. Gate 18 is already shouting. She is about to send the whole list, then sees the agent on camera holding a toddler and a radio. Rikke must decide whether to send six careful priorities or one rule: keep families together unless safety says no.",
+          "whatToDo": "Write the single rule first, then attach only the exception that keeps it true. Send the full details as backup, but make the tradeoff winner impossible to miss.",
+          "whyItMatters": "The gate agent cannot run a policy seminar while passengers press the desk. One ranked core gives her a usable choice in the moment and the exception prevents the shortcut from turning reckless."
+        },
+        {
+          "exampleId": "made-to-stick-ch01-ex02",
+          "title": "Bellamy points to the red towel hook",
+          "tags": [
+            "camp",
+            "health",
+            "training"
+          ],
+          "planSpec": {
+            "domain": "camp infirmary",
+            "audience": "new counselors",
+            "stakes": "injured children need fast sorting",
+            "format": "dialogue",
+            "requiredBeat": "replace a long safety lecture with a triage rule"
+          },
+          "scenario": "Bellamy wipes pine sap from the infirmary counter at Saturday 6:40 a.m., wet towels piled by the sink. Two new counselors clutch clipboards. \"If three kids come in crying, what do we do first?\" Bellamy asks. One starts reading the binder. Bellamy points to the red towel hook. \"Blood, breathing, head, then homesick.\" The screen door bangs. A boy is already outside with a scraped chin, and Bellamy has to choose whether to keep teaching the binder or drill the four-word order.",
+          "whatToDo": "Stop the lecture and practice the order on the next real child who walks in. Let the binder stay on the shelf while the counselors say the rule aloud and use it.",
+          "whyItMatters": "A scared counselor needs a sorting rule, not a complete manual. The order protects the highest-risk cases first, which keeps speed from becoming panic."
+        },
+        {
+          "exampleId": "made-to-stick-ch01-ex03",
+          "title": "Signe finds the memo under the cake slips",
+          "tags": [
+            "bakery",
+            "service",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "retail bakery",
+            "audience": "shop owner and clerks",
+            "stakes": "holiday pickup chaos exposed missing hierarchy",
+            "format": "postmortem",
+            "requiredBeat": "see that an eight-point memo failed because no tradeoff was named"
+          },
+          "scenario": "Signe sits at the flour-dusted prep table Tuesday at 9:55 p.m., reading the service memo she taped by the register before the holiday rush. Eight bullet points stare back at her while pink pickup slips curl near the mixer. The clerks followed the memo and still lost the line. One answered the phone, one guarded the eclairs, one helped a customer compare ribbons. Signe circles the blank spot: no sentence told them what won when the counter, phone, and pastry case all shouted at once.",
+          "whatToDo": "Rewrite the memo around one counter rule: serve the person in front of you first, unless food safety is at risk. Put the other behaviors under that rule.",
+          "whyItMatters": "The old memo named good behaviors without ranking them. A core rule turns scattered virtues into a choice the clerk can make while holding a cake box."
+        },
+        {
+          "exampleId": "made-to-stick-ch01-ex04",
+          "title": "Idris tests the claw with one sentence",
+          "tags": [
+            "robotics",
+            "school",
+            "design"
+          ],
+          "planSpec": {
+            "domain": "robotics lab",
+            "audience": "student builders",
+            "stakes": "a broad design aim will split the build",
+            "format": "predict_reveal",
+            "requiredBeat": "predict misbuild unless the aim becomes one testable sentence"
+          },
+          "scenario": "Idris kneels beside a milk crate of aluminum brackets in the robotics lab Thursday at 4:36 p.m. The team keeps saying the claw should be strong, light, fast, and elegant. He predicts they will build four different claws by dinner. On the whiteboard he writes, lift a full soda can from carpet in under two seconds. Fifteen minutes later, the first prototype fails on the carpet while the pretty hinge survives in the air. The team has to decide which aim is real.",
+          "whatToDo": "Turn the vague aim into one visible test before anyone cuts more metal. Let the test sort design choices faster than opinions can.",
+          "whyItMatters": "Strong, light, fast, and elegant all sound worthy. One test ranks them in a way the team can see, so the build stops splitting into private meanings."
+        },
+        {
+          "exampleId": "made-to-stick-ch01-ex05",
+          "title": "Maribel moves the mayor story below the bake sale",
+          "tags": [
+            "newsroom",
+            "editing",
+            "local"
+          ],
+          "planSpec": {
+            "domain": "local newsroom",
+            "audience": "neighborhood editor",
+            "stakes": "limited space and local relevance",
+            "format": "before_after",
+            "requiredBeat": "replace broad importance with a local-name rule"
+          },
+          "scenario": "Maribel arrived Monday at 8:10 a.m. to a proof table covered with red pencil marks and six possible leads. The mayor had a regional transit quote. The bake sale had thirty-two neighborhood names and a photo of the school custodian counting quarters. Before the rule, the mayor story always rose because it sounded important. After Maribel wrote names on our streets beat titles on any podium, the bake sale led. By noon, four callers had asked for extra copies.",
+          "whatToDo": "Use a local-name rule before judging polish or prestige. Sort the stack by whose life and street the reader can recognize, then spend your best edit there.",
+          "whyItMatters": "The rule makes importance concrete for that paper. It stops the editor from chasing broad weight when the audience is held by local consequence."
+        },
+        {
+          "exampleId": "made-to-stick-ch01-ex06",
+          "title": "Torben hears his slogan under the field lights",
+          "tags": [
+            "coaching",
+            "sports",
+            "limits"
+          ],
+          "planSpec": {
+            "domain": "youth soccer",
+            "audience": "coach and players",
+            "stakes": "a catchy slogan caused unsafe choices",
+            "format": "reflection",
+            "requiredBeat": "realize a simple slogan became false without its limit"
+          },
+          "scenario": "Torben sits in his minivan Friday at 10:18 p.m., shin guards rattling in the back and the field lights buzzing over the empty turf. His players love the line he painted on the whiteboard: hustle beats talent. Tonight a defender limped through ankle pain because she wanted to prove it. Torben rewinds the moment, his thumb resting on the marker cap. The line was simple, but it cut away the condition that made it safe. He is deciding what truth should replace it before Monday practice.",
+          "whatToDo": "Keep the useful core and restore the missing edge: hustle beats talent when the body can train tomorrow. Put the limit inside the line, not in a later warning.",
+          "whyItMatters": "A compressed rule invites action. If it drops the condition that keeps the action wise, the team will obey the memorable version and miss the truth."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "made-to-stick-ch01-q01",
+            "prompt": "A warehouse lead has a safety plan with nine equal priorities, and a forklift battery starts smoking during a busy unload. Which message best fits the simple move?",
+            "choices": [
+              "Evacuate the battery aisle first unless moving someone creates a bigger hazard.",
+              "Review all nine priorities before anyone moves.",
+              "Tell each worker to use judgment and report back later."
+            ],
+            "correctIndex": 0,
+            "explanation": "The first choice ranks the next action and keeps a safety limit visible. A long list or vague judgment request leaves people sorting the hierarchy during the emergency.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q02",
+            "prompt": "A teacher tells her class to be curious, precise, kind, fast, creative, and neat during a one-hour lab. Students keep asking which matters most. Which fix is strongest?",
+            "choices": [
+              "Add a poster that defines every value in larger type.",
+              "Name the one priority for this lab and put the rest under it.",
+              "Let each table choose its own priority so they feel ownership."
+            ],
+            "correctIndex": 1,
+            "explanation": "The problem is not missing definitions. The class needs a ranked core for this lab, so tradeoffs do not become six separate debates.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q03",
+            "prompt": "A clinic director cuts a discharge checklist to the slogan, send patients home quickly. Two nurses skip a needed teach-back. What went wrong?",
+            "choices": [
+              "The slogan was too plain for clinical work.",
+              "The nurses lacked enough motivation to follow policy.",
+              "The compressed rule lost the condition that kept it true."
+            ],
+            "correctIndex": 2,
+            "explanation": "The sentence traveled, but it dropped the safety edge. Useful simplicity keeps the limit that prevents a shortcut from becoming harmful.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q04",
+            "prompt": "A founder wants a launch memo people can use when support tickets, sales requests, and bug fixes collide on Friday afternoon. Which opening line helps most?",
+            "choices": [
+              "Fix bugs that block current customers before adding new demos, unless the bug has a safe workaround.",
+              "Our launch must balance quality, growth, speed, and customer happiness.",
+              "Everyone should communicate clearly and act with urgency."
+            ],
+            "correctIndex": 0,
+            "explanation": "The first line ranks a live tradeoff and names a limit. The other options sound worthy but do not settle the next choice.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q05",
+            "prompt": "A parent gives a teenager five house rules that often collide. The fights continue because each rule sounds equally final. Which response uses the core idea best?",
+            "choices": [
+              "Explain the five rules more calmly at a family meeting.",
+              "Name the one household priority the smaller rules protect, then revise the rules around it.",
+              "Remove every rule except the easiest one to remember."
+            ],
+            "correctIndex": 1,
+            "explanation": "A simple home rule still needs hierarchy and truth. Naming the priority gives the smaller rules a center without pretending one tiny rule can handle everything.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q06",
+            "prompt": "A nonprofit director says, our cause is dignity, urgency, fairness, access, voice, and hope. Volunteers nod, then split in different directions at the event. Why?",
+            "choices": [
+              "The words were too emotional for volunteers.",
+              "The event needed more branded signs.",
+              "The message had no ranked choice for the moment of action."
+            ],
+            "correctIndex": 2,
+            "explanation": "The volunteers received values, not a decision rule. When action started, each person had to choose a private hierarchy.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q07",
+            "prompt": "A designer uses an analogy to explain a payment system, and the team finally gets it. What should she check before sending the analogy companywide?",
+            "choices": [
+              "Whether the analogy also shows where the comparison stops being true.",
+              "Whether the analogy is funny enough to quote.",
+              "Whether every detail of the payment system appears in the analogy."
+            ],
+            "correctIndex": 0,
+            "explanation": "A familiar frame helps only if it keeps the important edge. The goal is a portable core, not total detail or a clever line.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q08",
+            "prompt": "A restaurant owner wants servers to act faster during rush. Which rule is most likely to work at the pass?",
+            "choices": [
+              "Serve better with energy and care during peak demand.",
+              "Run hot food first, unless a guest safety issue is in front of you.",
+              "Remember every step of the full service manual."
+            ],
+            "correctIndex": 1,
+            "explanation": "The hot-food rule is ranked, concrete, and bounded by a higher safety concern. It can be used while plates are cooling.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch01-q09",
+            "prompt": "A student group keeps rewriting its mission into shorter and shorter taglines, yet meetings still drift. What diagnosis best fits?",
+            "choices": [
+              "They have not made the tagline visually memorable enough.",
+              "They should add more inspirational words to create energy.",
+              "They shortened the language without choosing what wins in tradeoffs."
+            ],
+            "correctIndex": 2,
+            "explanation": "Shortening alone does not create a core. The mission must rank choices, or the group will keep drifting when options compete.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "made-to-stick-ch01-rc01",
+          "front": "A team has six equal priorities and one messy deadline. What should you retrieve first?",
+          "back": "Retrieve the governing priority: the one thing that should win when the deadline forces a choice. Then add the limit that keeps the rule true.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "made-to-stick-ch01-rc02",
+          "front": "A slogan feels clear but leads people into a bad call. What repair move helps?",
+          "back": "Keep the useful core, then put the missing condition inside the sentence so the shortcut cannot outrun the truth.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch01-rc03",
+          "front": "A policy manual is complete, but frontline staff freeze under pressure. What is missing?",
+          "back": "They need a ranked core they can carry into the moment. Detail can sit behind the rule, but the first line has to settle the tradeoff.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch01-rc04",
+          "front": "An analogy makes an idea easy to grasp. What question protects accuracy?",
+          "back": "Ask what the analogy hides or bends. If it drops the condition that makes the idea true, revise the frame before it spreads.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is forced prioritization with an honest edge. You cut a message until the next choice has a clear winner, then you restore the one condition that keeps the winner from becoming reckless.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a meeting stalls because every priority sounds urgent, then write the live tradeoff on the board and choose the one priority that should decide it today."
+          },
+          {
+            "context": "health",
+            "plan": "If a health rule turns into a harsh slogan, then add the safety limit inside the rule before you act on it again."
+          },
+          {
+            "context": "personal",
+            "plan": "If your plan for the day has more than three first-place items, then name the one result that should still matter at 6 p.m."
+          },
+          {
+            "context": "relationships",
+            "plan": "If household rules keep colliding, then ask what shared priority the rules are meant to protect and rewrite one rule around that priority."
+          }
+        ],
+        "twentyFourHourChallenge": "Within the next day, choose one message you keep repeating and rewrite it as one ranked sentence plus one honest exception. Use it once in a real decision.",
+        "weeklyPractice": "Once a week, audit one recurring message. Mark the tradeoff it should settle, the audience that must use it, and the condition that keeps it true."
+      },
+      "memorableLines": [
+        {
+          "text": "A simple message earns its keep at the point of choice.",
+          "location": "breakdown.fastRead",
+          "why": "It ties simplicity to action instead of style."
+        },
+        {
+          "text": "A short sentence without rank is just a short sentence.",
+          "location": "breakdown.fullRead",
+          "why": "It gives readers a clean test for false simplicity."
+        },
+        {
+          "text": "Hand someone a core that ranks the tradeoff and names the edge.",
+          "location": "breakdown.fullRead",
+          "why": "It captures both halves of the move in one directive."
+        }
+      ]
+    },
+    {
+      "chapterId": "made-to-stick-ch02",
+      "number": 2,
+      "title": "Unexpected",
+      "readingTimeMinutes": 11,
+      "hook": "The silent fire alarm works only because the room expected a bell.",
+      "counterintuition": "Most people assume surprise means being louder or stranger, but actually it works when it breaks a real expectation and opens a gap the listener wants to close.",
+      "tryThisNow": "Before your next explanation, write what the listener already expects. Break that expectation in one honest line, then answer the gap you created.",
+      "keyTakeaway": "Unexpectedness works when a truthful pattern break makes people feel a specific missing answer, then pays it off with the core idea instead of random shock.",
+      "breakdown": {
+        "fastRead": "Nolan holds a silent fire alarm in the museum lobby at 8:05 a.m. The guards expect a bell. Instead, every exit sign flashes blue, and the room turns its head. That is why the drill works. The break is not random. It exposes the question the guards now need answered: what does blue mean, and where do I send people?\n\nA surprise gets attention by violating a pattern. It keeps attention by pointing to a gap worth closing. If the break has no link to the point, it feels like a stunt. If the listener lacks enough context, it feels like fog. The best surprise makes the old script fail, then gives the mind a clean new one.",
+        "deepRead": "Nolan holds a silent fire alarm in the museum lobby at 8:05 a.m. The guards expect the bell they hear every drill. Instead, the exit signs flash blue and the security desk prints one word: north. Every guard looks up because the room has broken a pattern. They keep looking because the break opens a precise gap. Blue means something. North means something. They need the answer before visitors arrive.\n\nUnexpectedness is a two-part move. First, interrupt the listener's prediction. Then, make the interruption matter. Loudness alone is cheap. Weirdness alone is thin. A real break points back to the core, so the listener feels that the surprise was necessary.\n\nPicture Inga, a journalism teacher, sliding a police report onto a classroom projector at 10:12 a.m. Her students expect a lesson about who, what, when, where. She asks them to write the lead. They bury the real fact: school is closed tomorrow. When she reveals it, the room groans. The surprise is not a trick. It shows them that background can hide the only fact readers needed first.\n\nThe limit is context. If the students had no idea what a lead is, the reveal would only confuse them. Curiosity needs a visible blank space, not a blank wall. Give people enough of the pattern to make a prediction. Break it honestly. Then let the answer pull them toward the idea you needed them to see.",
+        "fullRead": "Nolan holds a silent fire alarm in the museum lobby at 8:05 a.m. The guards expect a bell because every drill has started with one. Their bodies are ready for the old script: hear the bell, check the nearest gallery, move visitors toward the main doors. This time the bell never comes. The exit signs flash blue, the security desk prints one word, north, and every guard stops mid-step.\n\nThat pause is attention. The guards are not alert because the signal is louder. They are alert because their prediction failed. The room has told them that the old script is incomplete. Now they want the missing rule: what does blue mean? The answer matters because visitors will arrive in twenty minutes.\n\nA useful surprise does not merely startle. It creates a clean gap. The listener knows enough to expect one thing, sees that the expectation is wrong, and feels the need for a better pattern. That is why random oddness burns out fast. A purple goat in a slide deck may wake people up for five seconds. If it has no honest tie to the point, attention turns into suspicion or boredom.\n\nInga creates a better break at 10:12 a.m. in a journalism classroom. She gives students a police report and asks for the lead. Most begin with the facts that look official: location, names, meeting time, speakers. Then she tells them the buried consequence: school is closed tomorrow. The room groans because the gap snaps shut. They do not need a lecture on buried leads. They feel the cost of missing the fact that mattered to the reader.\n\nCuriosity works the same way. A puzzle holds attention when the missing piece is specific enough to itch. Uma, a product trainer, once opened with, our best customers are using only twelve percent of what they pay for. The account team leaned in because the number broke their success story and raised a clear question: which twelve percent, and why does it work? She had a path into the training.\n\nThe limit is confusion. If the audience lacks the base pattern, they cannot feel the break. A novice who has never seen the old alarm protocol will not understand why blue exit signs matter. A student who has never written a lead will not feel the mistake. Before you break a pattern, make sure the pattern is alive in the room.\n\nThe strongest opener is honest, relevant, and paid off. It makes the old script stumble, names the missing piece through action or evidence, and then answers that gap with the core idea. The listener should feel awake and oriented, not tricked."
+      },
+      "examples": [
+        {
+          "exampleId": "made-to-stick-ch02-ex01",
+          "title": "Nolan tests the alarm without a bell",
+          "tags": [
+            "safety",
+            "museum",
+            "attention"
+          ],
+          "planSpec": {
+            "domain": "museum safety",
+            "audience": "security guards",
+            "stakes": "drill attention and real evacuation readiness",
+            "format": "scene",
+            "requiredBeat": "show a pattern break that opens a clear gap"
+          },
+          "scenario": "Nolan holds a silent fire alarm in the museum lobby at 8:05 a.m., thumb on the blue test switch while floor wax dries in stripes near the doors. The guards expect the usual bell. Instead, every exit sign flashes blue and the printer at the security desk spits out north stairwell. Nolan watches two guards freeze, then turn to him. He has to decide whether to explain the whole system now or let the broken expectation pull the first question from them.",
+          "whatToDo": "Let the guards name the question first, then teach the new rule that answers it. Keep the surprise tied to evacuation behavior, not to theatrics.",
+          "whyItMatters": "The failed prediction creates attention. The printed word gives that attention a direction, so the lesson starts from a real gap instead of a forced announcement."
+        },
+        {
+          "exampleId": "made-to-stick-ch02-ex02",
+          "title": "Inga buries the closed-school lead",
+          "tags": [
+            "journalism",
+            "classroom",
+            "lead"
+          ],
+          "planSpec": {
+            "domain": "journalism class",
+            "audience": "student writers",
+            "stakes": "students miss what readers care about",
+            "format": "predict_reveal",
+            "requiredBeat": "use reveal to show buried lead cost"
+          },
+          "scenario": "Inga slides a police report onto the projector at 10:12 a.m., chalk dust on her black sleeve and twenty freshmen opening laptops. She asks for the lead. Three students write about the superintendent, the meeting room, and the late vote. Inga predicts they will miss the only sentence that matters. Then she taps the bottom line: school is closed tomorrow. The room groans. She must choose whether to lecture on news judgment or let the groan do the first teaching.",
+          "whatToDo": "Pause after the reveal. Ask the class what they would have wanted to know first, then rebuild the lead around that answer.",
+          "whyItMatters": "The surprise lands because students had made a prediction and then saw it fail. The missing fact was not trivia, it was the reader’s real stake."
+        },
+        {
+          "exampleId": "made-to-stick-ch02-ex03",
+          "title": "Uma opens with the twelve-percent dashboard",
+          "tags": [
+            "software",
+            "training",
+            "curiosity"
+          ],
+          "planSpec": {
+            "domain": "customer success training",
+            "audience": "account managers",
+            "stakes": "team complacency blocks learning",
+            "format": "decision_point",
+            "requiredBeat": "break a success story with a gap worth closing"
+          },
+          "scenario": "Uma stands by a wall screen at 9:30 a.m. in the customer-success bullpen, holding a clicker sticky from a spilled latte. The dashboard says renewals are high. Her first slide says celebration. Her second slide says our best customers use twelve percent of the product. The account managers are still smiling from the renewal number. Uma is about to decide which slide to show first, the warm one that confirms the room or the cold one that makes the room ask why.",
+          "whatToDo": "Open with the twelve-percent fact, then answer the gap with usage data the team can act on. Do not use surprise as a scold.",
+          "whyItMatters": "The renewal story gives people a pattern. The usage fact breaks it and creates a specific question, which gives the training a reason to exist."
+        },
+        {
+          "exampleId": "made-to-stick-ch02-ex04",
+          "title": "Bettina sees the shark poster fail",
+          "tags": [
+            "public health",
+            "clinic",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "dental clinic",
+            "audience": "patients and hygienists",
+            "stakes": "shock poster draws attention without useful gap",
+            "format": "postmortem",
+            "requiredBeat": "diagnose random shock versus relevant surprise"
+          },
+          "scenario": "Bettina pulls the shark poster from the clinic wall at 6:18 p.m., after the last patient has left and mint rinse still hangs in the air. The poster showed bloody teeth and the line, floss or else. People noticed it. Two teenagers took photos. Nobody asked for floss samples. In her notebook Bettina writes the failure: the shock had no puzzle, no link to tonight’s choice at the sink, and no answer a patient wanted. The poster was loud, then empty.",
+          "whatToDo": "Replace the poster with a small test that breaks an expectation patients already hold, such as staining missed plaque after they brush.",
+          "whyItMatters": "Shock can buy a glance, but it does not buy curiosity. A useful break has to expose a missing answer tied to the behavior you want changed."
+        },
+        {
+          "exampleId": "made-to-stick-ch02-ex05",
+          "title": "Quentin cuts the first minute of the rescue briefing",
+          "tags": [
+            "search",
+            "emergency",
+            "briefing"
+          ],
+          "planSpec": {
+            "domain": "rescue training",
+            "audience": "volunteer search team",
+            "stakes": "overlong setup hides the urgent gap",
+            "format": "before_after",
+            "requiredBeat": "lead with missing answer that matters"
+          },
+          "scenario": "Quentin used to begin river-rescue briefings with maps, weather, and radio channels. At 5:50 a.m. one March morning, volunteers in orange helmets stared past him at the fog. After a failed drill, he changed the first minute. He held up a child’s red mitten found downstream and asked, which bank gets searched first if we have nine minutes? Heads turned. The map mattered now. The weather mattered now. The old facts had become answers to a gap the mitten opened.",
+          "whatToDo": "Lead with the live question, then give only the facts that help people close it. Let the gap pull the details into place.",
+          "whyItMatters": "The same information lands differently after people know what is missing. Curiosity turns background from clutter into needed tools."
+        },
+        {
+          "exampleId": "made-to-stick-ch02-ex06",
+          "title": "Reva watches the riddle collapse",
+          "tags": [
+            "parenting",
+            "homework",
+            "reflection"
+          ],
+          "planSpec": {
+            "domain": "kitchen table",
+            "audience": "parent helping with homework",
+            "stakes": "too little context creates confusion not curiosity",
+            "format": "reflection",
+            "requiredBeat": "notice that a puzzle without enough pattern fails"
+          },
+          "scenario": "Reva watches her son stare at a math riddle at 7:46 p.m., one socked foot tapping under the kitchen table and peas cooling on his plate. She thought the odd question would make fractions fun. Instead his pencil stops. He has not learned the base pattern yet, so the twist has nothing to twist against. Reva feels the moment turn from curiosity to fog. She is deciding whether to add another hint or back up and build the pattern first.",
+          "whatToDo": "Back up to one normal example, let him predict the next step, then introduce the twist only after the pattern is live.",
+          "whyItMatters": "A gap works when the learner can almost close it. Without enough context, surprise does not invite effort, it only signals that the task is out of reach."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "made-to-stick-ch02-q01",
+            "prompt": "A safety trainer begins with a bizarre joke that has no link to the drill. People laugh, then forget the rule. Which change best uses unexpectedness?",
+            "choices": [
+              "Break a real expectation inside the drill and make the missing answer matter to the next action.",
+              "Make the joke stranger so people talk about it later.",
+              "Add more background before the joke so the room feels prepared."
+            ],
+            "correctIndex": 0,
+            "explanation": "The useful move breaks a relevant pattern and opens a gap. A detached joke only startles, which fades before it teaches.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q02",
+            "prompt": "A product lead has strong renewal numbers but needs the team to learn a hidden usage problem. Which opener creates the best curiosity gap?",
+            "choices": [
+              "Start with the full renewal trend and thank the team.",
+              "Show that the happiest customers use only a small slice of the product, then ask why.",
+              "Begin with a random industry statistic about software waste."
+            ],
+            "correctIndex": 1,
+            "explanation": "The second choice breaks the team’s success story and opens a clear question tied to the training. The gap is relevant, not random.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q03",
+            "prompt": "A chemistry teacher shows a strange reaction before students know the normal reaction. The class looks confused, not curious. What is the likely cause?",
+            "choices": [
+              "The reaction was not colorful enough to hold attention.",
+              "Students dislike being surprised during science lessons.",
+              "There was no live pattern for the surprise to violate."
+            ],
+            "correctIndex": 2,
+            "explanation": "Curiosity needs a prediction to break. If students do not know the base case, the twist feels like noise.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q04",
+            "prompt": "A city planner wants residents to care about water loss from old pipes. Which first move best avoids random shock?",
+            "choices": [
+              "Ask residents to guess how many gallons leaked under their street last night, then reveal the meter reading.",
+              "Open with a dramatic photo of a volcano because it grabs attention.",
+              "List the full repair history before showing any current leak data."
+            ],
+            "correctIndex": 0,
+            "explanation": "The guess makes residents form a prediction about their own street. The reveal breaks that prediction and points to the core issue.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q05",
+            "prompt": "A writer has a surprising first sentence, but readers feel tricked by paragraph three. Which diagnosis fits best?",
+            "choices": [
+              "The surprise interrupted a pattern but did not connect to the real point.",
+              "The readers needed a longer headline before the surprise.",
+              "The topic was too practical for surprise to work."
+            ],
+            "correctIndex": 0,
+            "explanation": "Surprise must pay off. If the break does not lead to the core, readers read it as a stunt.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q06",
+            "prompt": "A nurse educator asks trainees to predict which patient will crash first, then reveals a quiet chart detail they missed. Why does this work?",
+            "choices": [
+              "It makes trainees feel embarrassed enough to remember.",
+              "It avoids all explanation and relies on drama.",
+              "It creates a specific missing answer tied to a real care decision."
+            ],
+            "correctIndex": 2,
+            "explanation": "The prediction commits attention. The reveal matters because it changes the trainee’s next clinical choice.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q07",
+            "prompt": "A manager says, here is a fact that will surprise you, then states something everyone already expected. What should she fix first?",
+            "choices": [
+              "Find the audience’s current script and break that script honestly.",
+              "Use a louder voice before the fact.",
+              "Hide the topic until the end of the meeting."
+            ],
+            "correctIndex": 0,
+            "explanation": "Unexpectedness depends on the audience’s actual expectation. Without that, the opener cannot create a gap.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q08",
+            "prompt": "A coach wants players to study a new defensive rule. Which setup best creates attention that lasts?",
+            "choices": [
+              "Tell players the rule is very important before practice starts.",
+              "Run the old drill, let them predict the pass lane, then show why the new rule changes it.",
+              "Start with a loud whistle and immediately hand out the rule sheet."
+            ],
+            "correctIndex": 1,
+            "explanation": "The old drill gives the players a pattern. The reveal shows the pattern failing, so the new rule answers a felt need.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch02-q09",
+            "prompt": "A museum guide hides the most interesting fact for fifteen minutes of background. Visitors drift before the reveal. What would the stronger structure do?",
+            "choices": [
+              "Add even more background so the reveal feels earned.",
+              "Use a more dramatic tone while giving the background.",
+              "Expose the stake early enough that the background becomes useful answers."
+            ],
+            "correctIndex": 2,
+            "explanation": "A gap has to start soon enough to pull attention through the details. Background without a live question feels like delay.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "made-to-stick-ch02-rc01",
+          "front": "A listener expects one thing. What makes a surprise useful instead of random?",
+          "back": "The break must reveal a specific missing answer and point back to the core idea. Startle is only the doorway.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "made-to-stick-ch02-rc02",
+          "front": "A class looks confused after a twist. What should you retrieve?",
+          "back": "Check whether the base pattern was alive first. If people had no prediction, there was nothing meaningful to violate.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch02-rc03",
+          "front": "A fact is shocking but nobody changes behavior. What likely failed?",
+          "back": "The shock did not connect to a relevant gap. The audience noticed it, then had no reason to keep thinking.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch02-rc04",
+          "front": "How do you use background without boring the room?",
+          "back": "Open a clear gap first, then make the background answer that gap. Details get lighter when people know why they need them.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is breaking a real expectation and then closing the gap with the idea you want to teach. You are not trying to be odd. You are making the listener feel that the old script needs an update.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a presentation begins with background nobody asked for, then write the question the room should want answered and open with the fact that creates that question."
+          },
+          {
+            "context": "health",
+            "plan": "If you need someone to notice a risk, then ask for their prediction first and reveal the one result that changes the next action."
+          },
+          {
+            "context": "personal",
+            "plan": "If advice keeps sounding familiar, then name the expectation your listener already has and show the honest case that breaks it."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a repeated conversation goes numb, then begin with one true detail that does not fit the old story and invite the other person to explain it with you."
+          }
+        ],
+        "twentyFourHourChallenge": "In the next 24 hours, rewrite one opener around a prediction. Write what the listener expects, the honest break, and the answer that closes the gap.",
+        "weeklyPractice": "Each week, collect one surprise that worked and one that felt cheap. For each, write the expectation, the gap, and whether the payoff served the main point."
+      },
+      "memorableLines": [
+        {
+          "text": "A surprise gets attention by violating a pattern.",
+          "location": "breakdown.fastRead",
+          "why": "It names the first half of the mechanism plainly."
+        },
+        {
+          "text": "Curiosity needs a visible blank space, not a blank wall.",
+          "location": "breakdown.deepRead",
+          "why": "It gives a memorable test for context."
+        },
+        {
+          "text": "The listener should feel awake and oriented, not tricked.",
+          "location": "breakdown.fullRead",
+          "why": "It marks the ethical and practical line."
+        }
+      ]
+    },
+    {
+      "chapterId": "made-to-stick-ch03",
+      "number": 3,
+      "title": "Concrete",
+      "readingTimeMinutes": 11,
+      "hook": "A chipped mug can carry more meaning than a paragraph called customer value.",
+      "counterintuition": "Most people assume abstract words make an idea sound bigger, but actually they often make people translate it in private. Concrete detail gives everyone the same thing to point at.",
+      "tryThisNow": "Pick one abstract phrase you use often. Replace it with an object, scene, or example a listener could sketch in thirty seconds.",
+      "keyTakeaway": "Concrete ideas stick because people can see, handle, repeat, and coordinate around them, as long as the visible detail keeps serving the meaning.",
+      "breakdown": {
+        "fastRead": "Della sets a chipped blue mug on the claims counter at 8:48 a.m. The training slide says customer value. The mug says something sharper: Mrs. Kwan waited six weeks for a replacement after the warehouse sent the wrong box twice. Everyone can see the hairline crack. Everyone can imagine the call.\n\nConcrete detail gives the mind a handle. Abstract words can be repeated while people picture different things. A visible object, a named scene, or a small story makes the idea shared. The danger is letting the detail become a souvenir. The mug works only if it keeps pointing to the service failure it was chosen to show.",
+        "deepRead": "Della sets a chipped blue mug on the claims counter at 8:48 a.m. The training slide behind her says customer value, but the room has heard that phrase all quarter. The mug is harder to ignore. It belongs to Mrs. Kwan, who waited six weeks for a replacement after the wrong box shipped twice. The crack gives the idea a shape people can hold in memory.\n\nConcrete language matters because minds do not store labels as cleanly as scenes. A person can repeat customer value and still picture speed, discounts, kindness, quality, or apology. Put the mug on the counter and the team has one shared reference. They can argue about what to do, but they are arguing over the same object.\n\nPicture Rafiq in a city planning room at 2:17 p.m. He wants neighbors to care about floodplain restoration. Acres and projections make the project sound large and far away. He tapes a grocery receipt to the map, marked with the aisle where floodwater reached last April. Now the scale has a shelf, a floor, and a person who had to throw out cereal.\n\nThe move is not to decorate an abstract idea. It is to choose a carrier that preserves the idea. A fable works because the fox, the grapes, and the shrug replay the lesson without a lecture. A receipt works because it turns flood risk into a lived place. The limit comes when the carrier is remembered alone. If people remember only the cute mug and not the broken replacement process, concreteness has slipped from meaning into prop.",
+        "fullRead": "Della sets a chipped blue mug on the claims counter at 8:48 a.m. The slide behind her says customer value in clean gray type. The phrase has been in four trainings, three memos, and one quarterly goal. People nod when they hear it. Then they return to different private meanings. For one rep, customer value means speed. For another, it means politeness. For another, it means not giving refunds too easily.\n\nThe mug narrows the room. It belongs to Mrs. Kwan, who ordered a replacement for her kitchen set and got the wrong box twice. The hairline crack runs through a painted bird. The second shipment arrived with the same crack because the warehouse reused the old item code. Now customer value is not floating above the counter. It is the difference between closing a ticket and fixing the thing a person actually sees every morning.\n\nConcrete detail helps because it creates shared mental furniture. People can point to it, replay it, and test language against it. An abstract phrase may sound flexible, but flexibility can hide disagreement. If six people picture six different things, they do not have one idea. They have six labels wearing the same name.\n\nRafiq uses the same move in a city planning room at 2:17 p.m. He has maps, rainfall models, and acre counts for a floodplain project. The numbers are real, but neighbors keep hearing them as distant scale. Then he tapes a grocery receipt to the map. The receipt is from the store where water reached aisle six last April. Suddenly the flood has cereal boxes, wet cardboard, and a clerk who closed early. The large number has a place to land.\n\nConcrete carriers also help teams coordinate. A product team can say make onboarding warmer and each person will alter a different part of the flow. Show them a screen recording of a first-time user hovering over a gray button for nine seconds, and the discussion changes. The button, the pause, and the cursor become a common reference.\n\nThe risk is souvenir thinking. A vivid detail can travel so well that it detaches from the lesson. People may remember the blue mug because it is charming, then forget the broken item code. The carrier has to keep pulling attention back to the core. Choose details that make the meaning easier to use, not details that merely make the room admire your storytelling.\n\nA concrete idea gives memory places to grip. It lets people see the same problem, tell the same story, and correct the same process. When the object keeps serving the point, the idea stops being a cloud and starts being something people can carry."
+      },
+      "examples": [
+        {
+          "exampleId": "made-to-stick-ch03-ex01",
+          "title": "Della sets Mrs. Kwan’s mug on the counter",
+          "tags": [
+            "service",
+            "object",
+            "training"
+          ],
+          "planSpec": {
+            "domain": "customer service",
+            "audience": "claims representatives",
+            "stakes": "abstract value language hides a broken process",
+            "format": "scene",
+            "requiredBeat": "turn customer value into a visible object"
+          },
+          "scenario": "Della sets a chipped blue mug on the claims counter at 8:48 a.m., next to a stack of unopened claim forms. The slide behind her says customer value. The mug belongs to Mrs. Kwan, who waited six weeks while the warehouse sent the wrong replacement box twice. The crack runs through a painted bird. Della sees the reps glance from the phrase to the mug. She has to decide whether to keep explaining value or tell the room how that crack reached the counter.",
+          "whatToDo": "Start with the mug and the shipment trail, then tie each service rule to the visible failure it would have prevented.",
+          "whyItMatters": "The mug gives the abstract phrase one shared referent. The team can now connect value to a process choice instead of nodding at a label."
+        },
+        {
+          "exampleId": "made-to-stick-ch03-ex02",
+          "title": "Rafiq tapes the grocery receipt to the flood map",
+          "tags": [
+            "planning",
+            "public",
+            "scale"
+          ],
+          "planSpec": {
+            "domain": "city planning",
+            "audience": "neighborhood residents",
+            "stakes": "large numbers feel distant",
+            "format": "decision_point",
+            "requiredBeat": "turn floodplain scale into a lived place"
+          },
+          "scenario": "Rafiq tapes a warped grocery receipt to the flood map at 2:17 p.m. in the library meeting room. Rain taps the skylight while neighbors stare at shaded acres and twenty-year flood lines. The receipt is from aisle six of the Market Basket store, the aisle that stood in brown water last April. Rafiq is about to decide whether to keep describing acreage or point to the cereal, batteries, and baby formula printed on the damp paper.",
+          "whatToDo": "Use the receipt to anchor the scale, then explain the map through that aisle. Let the big numbers answer what happened in a place people know.",
+          "whyItMatters": "Concrete scale lets residents picture consequence without pretending the numbers are smaller. The receipt turns acreage into a room they have walked through."
+        },
+        {
+          "exampleId": "made-to-stick-ch03-ex03",
+          "title": "Blythe hears six meanings of warmer onboarding",
+          "tags": [
+            "software",
+            "coordination",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "product design",
+            "audience": "startup team",
+            "stakes": "abstract strategy caused divergent work",
+            "format": "postmortem",
+            "requiredBeat": "show how a shared concrete reference fixes coordination"
+          },
+          "scenario": "Blythe replays the design review at 6:05 p.m., one cold slice of pizza beside her laptop and six sticky notes reading warmer onboarding. The engineer changed button color. The writer added jokes. The designer rounded the cards. The support lead wanted a help bubble. Nobody was lazy. The phrase let each person picture a different repair. Blythe pauses the screen recording at the nine-second cursor hover over the gray Continue button and sees what the team should have shared first.",
+          "whatToDo": "Bring the screen recording into the next review and name the concrete moment: nine seconds of hesitation at Continue. Make every proposal answer that moment.",
+          "whyItMatters": "A shared picture reduces private translation. Once the team can see the same hesitation, warmer has a test instead of six separate guesses."
+        },
+        {
+          "exampleId": "made-to-stick-ch03-ex04",
+          "title": "Oksana swaps the moral for the fox",
+          "tags": [
+            "classroom",
+            "fable",
+            "memory"
+          ],
+          "planSpec": {
+            "domain": "elementary classroom",
+            "audience": "students learning proverbs",
+            "stakes": "moral slogan is too thin to carry meaning",
+            "format": "dialogue",
+            "requiredBeat": "use replayable scene to preserve abstract truth"
+          },
+          "scenario": "Oksana holds a purple grape stem over the reading rug Tuesday at 11:03 a.m. \"What does sour grapes mean?\" she asks. A boy says, \"Being mean.\" A girl says, \"Not liking fruit.\" Oksana smiles and moves a cardboard fox away from a paper vine. \"He can’t reach them,\" she says. \"Now listen to what he says.\" The room leans forward. She must decide whether to define the phrase again or let the fox, the grapes, and the shrug carry the idea.",
+          "whatToDo": "Act out the scene before naming the moral. Ask students to retell what the fox wanted, failed to get, and pretended not to want.",
+          "whyItMatters": "The scene stores the pattern. Students can replay wanting, failing, and dismissing later, which a bare definition cannot do as well."
+        },
+        {
+          "exampleId": "made-to-stick-ch03-ex05",
+          "title": "Gareth brings the brake pad to the budget table",
+          "tags": [
+            "transit",
+            "maintenance",
+            "evidence"
+          ],
+          "planSpec": {
+            "domain": "public transit",
+            "audience": "budget committee",
+            "stakes": "maintenance requests sound abstract",
+            "format": "before_after",
+            "requiredBeat": "use a worn object to align judgment"
+          },
+          "scenario": "Before Thursday, Gareth’s maintenance requests sounded like gray columns: deferred replacements, rider risk, fleet reliability. At 7:25 a.m. he walked into the budget room carrying a worn brake pad sealed in a plastic lunch container. The pad was thin as a coin at one edge. He set it beside the coffee urn and said it came off bus 412 yesterday. After that, every dollar question pointed back to the object on the table. The committee still debated cost, but nobody debated what worn meant.",
+          "whatToDo": "Bring the object that shows the condition, then use it as the reference for the budget choice. Keep the numbers nearby, but let the object ground them.",
+          "whyItMatters": "The brake pad gives the claim a shared visual standard. It does not replace the budget math, it makes the math easier to judge."
+        },
+        {
+          "exampleId": "made-to-stick-ch03-ex06",
+          "title": "Sabine pockets the seashell after the donor tour",
+          "tags": [
+            "fundraising",
+            "nature",
+            "reflection"
+          ],
+          "planSpec": {
+            "domain": "coastal preserve",
+            "audience": "donor guide",
+            "stakes": "vivid object risks becoming souvenir",
+            "format": "reflection",
+            "requiredBeat": "notice when concrete detail detaches from meaning"
+          },
+          "scenario": "Sabine pockets a striped seashell at 4:44 p.m. after the donor tour, standing by the preserve gate with sand in her shoes. Everyone loved the shell story. They passed it hand to hand and took photos. Nobody asked about the eroding dune behind the boardwalk. Sabine feels the small shell in her palm and sees the problem. The object was memorable, but it floated free. She is deciding how to make tomorrow’s tour tie the shell back to the dune that made it fragile.",
+          "whatToDo": "Use the shell only at the exact spot where the dune is failing, and ask donors what would happen to shells like it if that sand line moves again.",
+          "whyItMatters": "Concrete detail should carry meaning, not distract from it. The shell earns its place only when it points back to the preserve choice."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "made-to-stick-ch03-q01",
+            "prompt": "A hospital campaign tells staff to improve patient dignity, but each unit defines dignity differently. Which move best makes the idea concrete?",
+            "choices": [
+              "Show a two-minute room-entry scene and ask each unit which action protects dignity there.",
+              "Print the word dignity in larger type on every badge card.",
+              "Add three more abstract values beside dignity so the message feels complete."
+            ],
+            "correctIndex": 0,
+            "explanation": "A specific room-entry scene gives everyone the same reference. Larger labels or more values do not solve private translation.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q02",
+            "prompt": "A climate presenter uses only global tons and charts. The audience agrees, then forgets the issue. Which change fits concreteness best?",
+            "choices": [
+              "Add more charts with longer time spans.",
+              "Translate one number into a local place or object the audience can picture accurately.",
+              "Remove all numbers and use only emotional music."
+            ],
+            "correctIndex": 1,
+            "explanation": "The number still matters, but it needs a concrete carrier. A local object or place gives scale a place to land.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q03",
+            "prompt": "A team remembers a funny mascot from training but forgets the process change it was meant to teach. What failed?",
+            "choices": [
+              "The mascot was not vivid enough.",
+              "The process change was too practical for memory.",
+              "The concrete detail detached from the meaning it was supposed to carry."
+            ],
+            "correctIndex": 2,
+            "explanation": "Vividness can become a souvenir. The carrier must point back to the core action or it starts competing with the lesson.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q04",
+            "prompt": "A teacher says photosynthesis is energy conversion, and students repeat the phrase without understanding. Which next move is strongest?",
+            "choices": [
+              "Walk through one leaf, one lamp, and one sugar cube as a visible chain.",
+              "Ask students to memorize the definition twice.",
+              "Replace the phrase with a shorter phrase, plant power."
+            ],
+            "correctIndex": 0,
+            "explanation": "The visible chain gives students something to picture and replay. Repetition and a shorter label may still leave meaning vague.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q05",
+            "prompt": "A manager says the new service should feel premium. Engineering, support, and design all make different changes. What should she do first?",
+            "choices": [
+              "Ask each team to defend its own definition of premium.",
+              "Pick one customer moment or object that shows premium in action.",
+              "Ban the word premium and use no replacement."
+            ],
+            "correctIndex": 1,
+            "explanation": "A shared reference reduces divergent translation. The team needs a concrete example before debating execution.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q06",
+            "prompt": "A nonprofit uses a single child’s backpack to explain school supply needs. What must it protect to stay honest?",
+            "choices": [
+              "The backpack should represent a real pattern, not distort the broader need.",
+              "The backpack should be new and visually perfect.",
+              "The backpack should replace every budget number."
+            ],
+            "correctIndex": 0,
+            "explanation": "Concrete detail should carry the truth, not bend it. The object works best beside honest scale and context.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q07",
+            "prompt": "A policy memo says streamline intake, and every department builds a different fix. Which diagnosis fits?",
+            "choices": [
+              "The phrase invited private pictures instead of one shared scene.",
+              "The departments lacked enough enthusiasm.",
+              "The memo was too concrete for a policy setting."
+            ],
+            "correctIndex": 0,
+            "explanation": "Abstract language can hide disagreement. A shared scene or object would give the departments one thing to improve.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q08",
+            "prompt": "A museum educator wants visitors to understand erosion, not just hear the term. Which exhibit choice best fits?",
+            "choices": [
+              "A paragraph defining erosion in formal language.",
+              "A tray where visitors pour water over sand and watch a marker collapse.",
+              "A sign that says erosion matters more than you think."
+            ],
+            "correctIndex": 1,
+            "explanation": "The tray lets visitors see and replay the process. It turns a label into an observable change.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch03-q09",
+            "prompt": "A leader chooses between a dramatic object and a plain object to explain a supply failure. The dramatic object is memorable but unrelated. Which should she choose?",
+            "choices": [
+              "The dramatic object because attention matters most.",
+              "Neither object because concrete examples are risky.",
+              "The plain object if it shows the actual failure people must fix."
+            ],
+            "correctIndex": 2,
+            "explanation": "Concrete details earn their place by serving the meaning. A less flashy object that shows the process is stronger than a vivid distraction.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "made-to-stick-ch03-rc01",
+          "front": "An abstract phrase gets repeated but not understood. What should you retrieve?",
+          "back": "Find a scene, object, or example that lets people picture the idea and test their actions against the same reference.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "made-to-stick-ch03-rc02",
+          "front": "A vivid prop is remembered but behavior does not change. What went wrong?",
+          "back": "The prop became separate from the meaning. Reconnect the object to the process, choice, or consequence it was meant to carry.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch03-rc03",
+          "front": "A team splits after hearing one strategy phrase. What concrete repair helps?",
+          "back": "Bring in a shared example of the moment to improve. A shared picture reduces private translation and makes debate productive.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch03-rc04",
+          "front": "How do you keep big numbers from floating away?",
+          "back": "Translate scale into a real place, object, or person without distorting the data. The concrete carrier should make the number easier to judge.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is turning labels into shared reference points. You choose a scene, object, or story that lets people picture the same thing, then keep tying that detail back to the action or truth it carries.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a strategy phrase produces different interpretations, then bring one customer moment, screen recording, or object to the next discussion and make the phrase answer it."
+          },
+          {
+            "context": "health",
+            "plan": "If a health goal sounds vague, then attach it to one visible behavior or object you can inspect daily, such as a pill box filled after breakfast."
+          },
+          {
+            "context": "personal",
+            "plan": "If a personal value feels cloudy, then write one scene from yesterday where the value would have changed what you did."
+          },
+          {
+            "context": "relationships",
+            "plan": "If someone hears your concern as a label, then describe the exact moment, place, and action you mean before you name the pattern."
+          }
+        ],
+        "twentyFourHourChallenge": "Today, replace one abstract phrase in a message with a concrete object or scene. Test it by asking someone to sketch what they think you mean.",
+        "weeklyPractice": "Once a week, collect three abstract phrases you used. For each, write the physical detail, scene, or example that would make the meaning shared."
+      },
+      "memorableLines": [
+        {
+          "text": "Concrete detail gives the mind a handle.",
+          "location": "breakdown.fastRead",
+          "why": "It states the memory mechanism in plain language."
+        },
+        {
+          "text": "If six people picture six different things, they do not have one idea.",
+          "location": "breakdown.fullRead",
+          "why": "It explains coordination failure cleanly."
+        },
+        {
+          "text": "A concrete idea gives memory places to grip.",
+          "location": "breakdown.fullRead",
+          "why": "It turns the lesson into a useful image."
+        }
+      ]
+    },
+    {
+      "chapterId": "made-to-stick-ch04",
+      "number": 4,
+      "title": "Credible",
+      "readingTimeMinutes": 12,
+      "hook": "The cracked helmet on the conference table beats a perfect safety claim.",
+      "counterintuition": "Most people assume credibility comes from sounding authoritative, but actually trust grows when the audience can inspect the proof, test it, or feel the cost behind it.",
+      "tryThisNow": "Find one claim you need people to trust. Add a proof device they can inspect: a test, a witness, a concrete detail, or a human-scale number.",
+      "keyTakeaway": "A credible idea gives people evidence they can judge for themselves, close enough to test, inspect, or feel without turning proof into theater.",
+      "breakdown": {
+        "fastRead": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m. His safety slide says our design passed. The helmet says something harder: this is what the old latch did in the curb test. The room can inspect the split foam and bent strap. Trust moves closer when evidence leaves the claim and enters the room.\n\nCredibility is not just a confident voice. People believe more when proof becomes judgeable. That proof can be a test, a lived witness, a vivid detail, or a number translated to human scale. The limit is honesty. If the proof device exaggerates or distracts, it becomes theater and trust starts leaking out.",
+        "deepRead": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m. The product team has seen the safety claim on slides for weeks. The helmet changes the claim’s location. It is no longer a sentence asking for belief. It is split foam, a bent strap, and a latch that failed under a curb test they can repeat.\n\nCredibility grows when the audience can judge the evidence instead of merely admire the speaker. Authority helps, but it is not the only path. A testable claim lets doubt do useful work. People can ask, what would prove this wrong? A witness who has paid the cost can also carry force because the warning is attached to lived consequence, not just expertise.\n\nPicture Liora, a diabetes educator, at 3:20 p.m. in a clinic classroom. She can say uncontrolled blood sugar damages feet. Instead, she places two socks on the table: one clean, one cut open by an orthotic seam that a patient never felt. Then she explains nerve loss. The sock is not a scare tactic by itself. It is a judgeable door into the claim.\n\nNumbers need the same care. A big statistic may show scale while failing to create judgment. Translate it into a day, a room, a household, or a repeated action. Keep the math honest. A vivid proof that bends the data wins attention and loses trust. The goal is not to overwhelm doubt. The goal is to give doubt a fair place to look and a reason to settle.",
+        "fullRead": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m. The slide behind him says our design passed, and the phrase is technically true for the old lab standard. The helmet makes the claim more serious. In the curb test, the latch popped, the strap twisted, and the foam split where a child’s temple would be. Anyone in the room can pick it up. Anyone can ask to rerun the test.\n\nThat is credibility by inspection. The claim stops depending on Harlan’s confidence and starts depending on evidence the audience can judge. A strong proof device changes the listener’s job. Instead of deciding whether Harlan sounds convincing, the listener can examine the latch, the test, and the failure. Doubt has a place to go.\n\nAuthority still matters in many settings. A trained surgeon, a certified engineer, or a careful auditor can earn trust through expertise. But authority alone often feels distant. People hear the title and still wonder whether the claim touches the case in front of them. Internal proof closes that distance. A test, a sharp detail, or a visible structure lets the message carry some of its own weight.\n\nLiora uses lived proof in a clinic classroom at 3:20 p.m. She teaches foot care to people with diabetes. A lecture on nerve damage is accurate, but easy to file away. She places two socks on the table. One is clean. One is cut open along the side where an orthotic seam rubbed a patient’s skin raw without pain. Then she explains how numbness changes the morning shoe check. The sock is quiet evidence. It does not replace medical facts. It makes the facts near.\n\nA witness can do similar work. A person who paid the cost of an error may be more believable than a person with a title because the audience can see what disbelief has already cost. That path has to be handled with care. Pain should clarify the claim, not be used as a blunt instrument.\n\nStatistics need translation too. A number like 3.2 million missed doses may be true and still hard to judge. A nurse might say, in this clinic, that is one skipped pill cup on every breakfast tray for eleven days. Now the scale has a room and a routine. The number has not been softened. It has been made available to judgment.\n\nThe danger is proof theater. A dramatic image can overstate a small risk. A single witness can be treated as if one case proves every case. A human-scale number can bend the math if the translation is loose. Credibility depends on the proof staying faithful. The evidence should let the audience test the claim, not trap them into agreement.\n\nGive people something close enough to inspect and honest enough to survive inspection. When proof enters the room that way, belief is not begged for. It is earned in front of the listener."
+      },
+      "examples": [
+        {
+          "exampleId": "made-to-stick-ch04-ex01",
+          "title": "Harlan sets the split helmet beside the slide",
+          "tags": [
+            "safety",
+            "product",
+            "proof"
+          ],
+          "planSpec": {
+            "domain": "product safety",
+            "audience": "design review team",
+            "stakes": "a generic claim needs inspectable evidence",
+            "format": "scene",
+            "requiredBeat": "move credibility from assertion to testable proof"
+          },
+          "scenario": "Harlan sets a cracked bike helmet on the conference table at 7:32 a.m., flakes of black foam caught in the hinge. The slide says our design passed. The helmet came from yesterday’s curb test, where the latch popped and the strap twisted. Harlan watches the room go quiet. He has to decide whether to keep defending the claim in words or invite the team to pick up the helmet and rerun the test.",
+          "whatToDo": "Put the failed object and test method in front of the team. Let questions attach to the latch, the foam, and the repeatable test instead of to your confidence.",
+          "whyItMatters": "Proof becomes credible when people can inspect it. The helmet gives doubt a fair object to examine and a way to check the claim."
+        },
+        {
+          "exampleId": "made-to-stick-ch04-ex02",
+          "title": "Liora cuts open the sock at the clinic table",
+          "tags": [
+            "health",
+            "witness",
+            "test"
+          ],
+          "planSpec": {
+            "domain": "diabetes education",
+            "audience": "patients learning foot care",
+            "stakes": "accurate warning feels distant",
+            "format": "decision_point",
+            "requiredBeat": "use lived object to make proof near"
+          },
+          "scenario": "Liora lays two socks on the clinic classroom table at 3:20 p.m., one white and folded, one cut open along a bloody seam. The air smells faintly of alcohol wipes. Twelve patients wait for the foot-care talk. Her script says nerve damage reduces pain response. The cut sock belonged to a man who never felt the rub until the skin opened. Liora is deciding whether to begin with the definition or with the sock and the morning shoe check it demands.",
+          "whatToDo": "Begin with the sock, then explain the nerve damage that makes the sock matter. Ask each patient to practice the morning shoe check before leaving.",
+          "whyItMatters": "The sock turns a medical claim into a judgeable consequence. It lets people see why an invisible loss of feeling changes a daily action."
+        },
+        {
+          "exampleId": "made-to-stick-ch04-ex03",
+          "title": "Petra translates the missed doses into breakfast trays",
+          "tags": [
+            "hospital",
+            "numbers",
+            "scale"
+          ],
+          "planSpec": {
+            "domain": "hospital quality",
+            "audience": "nursing staff",
+            "stakes": "large statistics fail to guide behavior",
+            "format": "before_after",
+            "requiredBeat": "translate raw magnitude into human-scale routine"
+          },
+          "scenario": "Before Petra changed the briefing, the number 3.2 million missed doses sat on slide nine like weather over another country. At Wednesday 6:55 a.m., she rolled a breakfast cart into the staff room and placed eleven empty pill cups on one tray. In this clinic, she said, our share looks like one tray missing a cup every morning for eleven days. The nurses leaned in, not because the number shrank, but because it had a tray, a room, and a shift.",
+          "whatToDo": "Translate the statistic into the routine people already know, then show the original number beside it so the scale stays honest.",
+          "whyItMatters": "Human-scale math gives the audience a way to judge magnitude. It keeps the number true while moving it close enough to feel operational."
+        },
+        {
+          "exampleId": "made-to-stick-ch04-ex04",
+          "title": "Crispin hears the expert badge fail",
+          "tags": [
+            "legal",
+            "credibility",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "tenant court",
+            "audience": "legal aid attorney",
+            "stakes": "authority alone does not settle doubt",
+            "format": "postmortem",
+            "requiredBeat": "diagnose why title-based proof was distant"
+          },
+          "scenario": "Crispin sits on the courthouse stairs at 5:12 p.m., his legal-aid badge clipped crooked and a denied repair order folded in his hand. In court he said, I’m an attorney, and cited the housing code. The landlord’s lawyer smiled. The judge asked for photos, dates, and the inspector’s test sheet. Crispin had the title and the right rule, but not the proof close enough to inspect. He circles the empty evidence line on his notes and knows what must come next time.",
+          "whatToDo": "Build the next filing around dated photos, a repeatable temperature log, and the inspector sheet. Let the title support the evidence, not replace it.",
+          "whyItMatters": "Authority can open the door, but judgeable proof carries the claim. The court needed evidence tied to the apartment, not just a person with credentials."
+        },
+        {
+          "exampleId": "made-to-stick-ch04-ex05",
+          "title": "Nerissa lets the scale test answer",
+          "tags": [
+            "food",
+            "quality",
+            "dialogue"
+          ],
+          "planSpec": {
+            "domain": "commercial kitchen",
+            "audience": "catering client",
+            "stakes": "client doubts portion claim",
+            "format": "dialogue",
+            "requiredBeat": "use a live test instead of assertion"
+          },
+          "scenario": "Nerissa places a digital scale on the stainless counter at 11:08 a.m., while the catering client taps a pen against the tasting menu. \"Your portions look light,\" he says. \"They meet contract weight,\" she answers, then stops. A tray of salmon portions waits under plastic wrap. \"Pick any three,\" she says, sliding the scale forward. The client points to the corner pieces. Nerissa has to choose whether to keep explaining yield or let the scale answer in ounces.",
+          "whatToDo": "Run the test in front of the client with pieces he chooses. Record the weights and adjust if the claim fails.",
+          "whyItMatters": "A live test lowers the fight over trust. The client gets a fair way to judge the claim, and Nerissa accepts the same standard if the result goes against her."
+        },
+        {
+          "exampleId": "made-to-stick-ch04-ex06",
+          "title": "Wesley lowers the photo after the donor gasps",
+          "tags": [
+            "fundraising",
+            "ethics",
+            "reflection"
+          ],
+          "planSpec": {
+            "domain": "arts nonprofit",
+            "audience": "donor presentation",
+            "stakes": "vivid proof risks overstating the case",
+            "format": "reflection",
+            "requiredBeat": "notice when proof turns theatrical"
+          },
+          "scenario": "Wesley lowers the flood-damaged violin photo at 8:41 p.m. in the rehearsal hall, after a donor gasps and reaches for her checkbook. The photo is real. So is the repair backlog. But the violin belonged to one school, not all nine in the campaign. Wesley feels the room tilt toward a bigger conclusion than the evidence supports. His thumb rests on the remote. He is deciding whether to let the gasp carry the pledge or put the repair list and count back on screen.",
+          "whatToDo": "Keep the photo, then immediately place it beside the repair count and school list. Let vivid evidence clarify scale, not inflate it.",
+          "whyItMatters": "Credibility dies when proof outruns the claim. The photo can make damage real, but only honest context keeps the trust it wins."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "made-to-stick-ch04-q01",
+            "prompt": "A startup claims its new filter catches defects better than the old one. Investors look skeptical. Which proof device best builds credibility?",
+            "choices": [
+              "Run a blind test on sample parts in the room and show the misses.",
+              "Add more confident language to the pitch.",
+              "Quote a famous founder who likes quality."
+            ],
+            "correctIndex": 0,
+            "explanation": "A judgeable test gives the audience evidence it can inspect. Confidence and borrowed status are weaker when the claim itself can be tested.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q02",
+            "prompt": "A doctor warns patients about a risk with a huge national statistic, and the room goes flat. Which revision fits human-scale credibility?",
+            "choices": [
+              "Use a larger national statistic so the danger feels bigger.",
+              "Translate the statistic into a daily clinic routine while keeping the original number visible.",
+              "Remove the statistic and rely only on a sad story."
+            ],
+            "correctIndex": 1,
+            "explanation": "Human-scale translation makes the number judgeable. Keeping the original number protects accuracy.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q03",
+            "prompt": "A campaign uses one intense witness story to imply every case is identical. The audience later feels misled. What failed?",
+            "choices": [
+              "The witness lacked emotion.",
+              "The campaign should have used no human stories.",
+              "The proof device overstated what the evidence could support."
+            ],
+            "correctIndex": 2,
+            "explanation": "A lived witness can clarify a claim, but it must not be used to prove more than one case can honestly prove.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q04",
+            "prompt": "A manager says, trust me, I checked the numbers, before asking for budget. Which next move would create internal credibility?",
+            "choices": [
+              "Show the small audit trail, the sample checked, and where an error would appear.",
+              "Repeat the request with a firmer tone.",
+              "Tell the team that trust is part of the culture."
+            ],
+            "correctIndex": 0,
+            "explanation": "Internal credibility lets the message carry evidence inside itself. The audit trail gives people something to judge.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q05",
+            "prompt": "A teacher wants students to believe a bridge design is weak. Which classroom demonstration is strongest?",
+            "choices": [
+              "Tell students the design violates a rule.",
+              "Place weights on a model until the weak joint bends, then connect the bend to the rule.",
+              "Ask students to memorize the name of the weak joint."
+            ],
+            "correctIndex": 1,
+            "explanation": "The live model makes the claim inspectable. The rule lands better after students see what it explains.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q06",
+            "prompt": "A nonprofit shares a dramatic photo from one site. What must be added to keep trust high?",
+            "choices": [
+              "A more dramatic photo from the same site.",
+              "A celebrity quote placed under the photo.",
+              "Context showing how the photo relates to the full data and where it does not."
+            ],
+            "correctIndex": 2,
+            "explanation": "Context keeps vivid evidence faithful. Without it, a real image can still lead to a false scale judgment.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q07",
+            "prompt": "A quality lead has a correct claim but only her title to support it. The floor supervisor resists. What is the better move?",
+            "choices": [
+              "Remind the supervisor that titles exist for a reason.",
+              "Escalate immediately without showing evidence.",
+              "Bring the repeatable inspection result and let the supervisor check the sample."
+            ],
+            "correctIndex": 2,
+            "explanation": "The inspection result moves credibility from status to judgeable proof. It gives doubt a useful path.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q08",
+            "prompt": "A restaurant promises portion sizes are fair. A client doubts it. Which response best uses testability?",
+            "choices": [
+              "Explain average yield in general terms.",
+              "Let the client choose samples, weigh them in front of him, and accept the result.",
+              "Show photos of happy customers eating the portions."
+            ],
+            "correctIndex": 1,
+            "explanation": "A test the client partly controls is harder to dismiss. It turns the claim into something both sides can inspect.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch04-q09",
+            "prompt": "A safety video uses shocking crash footage but never shows the tested equipment or method. What is the strongest critique?",
+            "choices": [
+              "The video creates emotion without giving the audience judgeable proof.",
+              "The footage should be shorter to keep attention.",
+              "Safety claims cannot use visual evidence."
+            ],
+            "correctIndex": 0,
+            "explanation": "The problem is not visual evidence. The problem is a lack of inspectable proof tied to the specific claim.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "made-to-stick-ch04-rc01",
+          "front": "Someone doubts your claim. What proof should you retrieve first?",
+          "back": "Find evidence the audience can judge: a test, object, witness, detail, or human-scale number tied directly to the claim.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "made-to-stick-ch04-rc02",
+          "front": "A statistic is true but too large to feel useful. What move helps?",
+          "back": "Translate it into a familiar room, day, routine, or unit while keeping the original number nearby for honesty.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch04-rc03",
+          "front": "A vivid story wins attention but may mislead. What check protects credibility?",
+          "back": "Ask whether the story supports the exact claim being made. Add scope and context before the audience draws a bigger conclusion.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "made-to-stick-ch04-rc04",
+          "front": "Authority is present but trust is low. What should change?",
+          "back": "Let authority point to the evidence, not stand in for it. Give people something they can inspect or test themselves.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is moving proof close enough for the audience to judge. You support claims with tests, visible details, human-scale numbers, or lived witnesses, while keeping scope honest.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a stakeholder doubts a claim, then bring the test method, sample, or audit trail and invite them to inspect the weak point with you."
+          },
+          {
+            "context": "health",
+            "plan": "If a health statistic feels distant, then translate it into one daily action or room-level count before deciding what to do."
+          },
+          {
+            "context": "personal",
+            "plan": "If you are tempted to say trust me, then replace the phrase with the receipt, log, photo, or result that made you trust the claim."
+          },
+          {
+            "context": "relationships",
+            "plan": "If someone doubts your memory of an event, then offer the concrete record you have and name what it can and cannot prove."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, choose one claim you planned to assert and add one proof device: a test, object, witness, detail, or human-scale number.",
+        "weeklyPractice": "Each week, review one message that asks for trust. Mark the claim, the evidence, what the audience can inspect, and where the proof should stop."
+      },
+      "memorableLines": [
+        {
+          "text": "Trust moves closer when evidence leaves the claim and enters the room.",
+          "location": "breakdown.fastRead",
+          "why": "It captures the credibility shift in a concrete image."
+        },
+        {
+          "text": "Doubt has a place to go.",
+          "location": "breakdown.fullRead",
+          "why": "It explains why inspectable proof reduces resistance."
+        },
+        {
+          "text": "Give people something close enough to inspect and honest enough to survive inspection.",
+          "location": "breakdown.fullRead",
+          "why": "It is the chapter’s practical standard in one line."
+        }
+      ]
+    },
+    {
+      "chapterId": "made-to-stick-ch05",
+      "number": 5,
+      "title": "Emotional",
+      "readingTimeMinutes": 12,
+      "hook": "The cold lunch tray matters only when someone sees who had to eat it.",
+      "counterintuition": "Most people assume importance creates care by itself, but actually people act when the stake gets a face, a self-interest link, or an identity they want to live up to.",
+      "tryThisNow": "Take one important message that feels flat. Attach it to one person, one self-interest, or one identity standard your audience already cares about.",
+      "keyTakeaway": "Emotion makes significance felt, not by adding sentiment to facts, but by showing the human stake that gives people a reason to care and act.",
+      "breakdown": {
+        "fastRead": "Bea lifts a cold lunch tray at 12:06 p.m. in the school cafeteria. The spreadsheet says unpaid meal balances. The tray shows Juno, a sixth grader, trying to hide an apple in her sleeve because her account is locked. The problem now has a face, a sound, and a place in the lunch line.\n\nCare needs a target. Big numbers can be true and still leave feeling scattered. One person can focus it. Self-interest can focus it too. So can identity: the wish to act like the kind of person or team we claim to be. The limit is manipulation. Emotion should reveal the real human stake, not bend facts until guilt does the work.",
+        "deepRead": "Bea lifts a cold lunch tray at 12:06 p.m. in the school cafeteria. Her report says unpaid meal balances, but the phrase has become background noise. The tray belongs to Juno, a sixth grader who tried to hide an apple in her sleeve after the register beeped red. Bea does not need to make the number sadder. She needs to make the consequence visible enough to care about.\n\nEmotion works because facts alone do not always create motive. A large problem can float above feeling. One person gives concern a direction. The mind can picture a child, a patient, a neighbor, a driver, a parent. That picture does not replace scale. It gives scale somewhere to land.\n\nPicture Tomas at 5:38 p.m. in a union hall, trying to persuade electricians to report near-misses. He could say reporting improves safety metrics. Instead he holds up a melted glove from a panel flash and says, this is the glove you want your apprentice to still be wearing at dinner. Now self-interest and identity meet. The workers care because the rule touches people they train and the standard they claim.\n\nEmotion is broader than pity. People respond to pride, dignity, belonging, fear for someone they love, and the wish to be consistent with who they think they are. The limit is truth. If the cold tray is rare, say so. If the glove is one case, keep the case in scope. Emotion should sharpen the real stake, not inflate it.",
+        "fullRead": "Bea lifts a cold lunch tray at 12:06 p.m. in the school cafeteria. The report in her folder says unpaid meal balances and account lockouts. The words are accurate. They are also easy to file under budget trouble. The tray is harder to file away. It belongs to Juno, a sixth grader who tried to hide an apple in her sleeve after the register beeped red and the line behind her went quiet.\n\nThe tray focuses care. A large problem can leave people unsure where to put their feeling. The number may show scale, but scale is not the same as motive. One person gives the consequence a face and a direction. When Bea describes Juno without hiding the larger count, the count becomes easier to care about, not less true.\n\nAnalysis can sometimes cool action. A committee may study balances, eligibility rules, reimbursement rates, and vendor contracts until the human stake gets pushed to the edge of the table. Reason is still needed. The point is not to replace reason with tears. The point is to keep reason connected to what the decision will do to people.\n\nTomas uses a different emotional path in a union hall at 5:38 p.m. He wants electricians to report near-misses. The old pitch was metric-driven: more reports improve prevention. True, but thin. He holds up a melted glove from a panel flash and says, this is the glove you want your apprentice to still be wearing at dinner. The room changes because the stake touches self-interest, care for a younger worker, and craft identity. Good electricians do not let apprentices learn danger by getting burned.\n\nSelf-interest is not selfish in this setting. People care when a cost or benefit touches their own life. Identity is even deeper. A message can ask, what kind of person are you when this moment arrives? A nurse may act to protect the dignity of the profession. A neighbor may help because this is what our street does. A cook may plate the meal carefully because feeding people well is part of who he is.\n\nFloyd Lee’s mess hall lesson fits here without needing sentimentality. A meal in a hard place is not just calories. It can mean respect, morale, and the feeling that someone remembered the person eating it. The emotional force comes from the human meaning carried by the act.\n\nThe danger is manipulation. One face can distort scale if it is used to stand in for every case. A personal story can pressure people into a choice the facts do not support. A message can flatter identity until people stop asking what is true. That is not sticky communication. That is a shortcut through guilt or vanity.\n\nUse emotion to reveal the stake that was already there. Show the person, the self-interest, or the identity standard that makes the fact matter. Then keep the evidence in view. The best emotional message does not ask people to stop thinking. It gives thinking a reason to move."
+      },
+      "examples": [
+        {
+          "exampleId": "made-to-stick-ch05-ex01",
+          "title": "Bea carries Juno’s cold tray to the board room",
+          "tags": [
+            "school",
+            "food",
+            "care"
+          ],
+          "planSpec": {
+            "domain": "school cafeteria",
+            "audience": "school board members",
+            "stakes": "budget issue lacks human stake",
+            "format": "scene",
+            "requiredBeat": "make one person’s consequence visible without hiding scale"
+          },
+          "scenario": "Bea carries a cold lunch tray into the board room at 12:06 p.m., the milk carton sweating onto a manila folder. The folder says unpaid meal balances. The tray belonged to Juno, a sixth grader who tried to hide an apple in her sleeve when the register beeped red. Bea can hear the cafeteria line in her head, trays sliding, chairs scraping, nobody speaking. Before the vote starts, she must choose: lead with the district total or with the tray and Juno’s name.",
+          "whatToDo": "Open with Juno’s tray, then show the total balances beside it. Keep the single case tied to the real count and the policy choice.",
+          "whyItMatters": "One child gives concern a place to land. The total keeps the emotion honest, so care does not turn into a misleading exception."
+        },
+        {
+          "exampleId": "made-to-stick-ch05-ex02",
+          "title": "Tomas holds up the melted apprentice glove",
+          "tags": [
+            "safety",
+            "identity",
+            "union"
+          ],
+          "planSpec": {
+            "domain": "union hall",
+            "audience": "electricians",
+            "stakes": "near-miss reporting feels bureaucratic",
+            "format": "dialogue",
+            "requiredBeat": "connect safety rule to self-interest and craft identity"
+          },
+          "scenario": "Tomas holds up a melted leather glove at 5:38 p.m. in the union hall, its fingertips curled like burnt paper. \"Near-miss forms are paperwork,\" someone calls from the back. Tomas nods. \"This was paperwork until Davi pulled his hand out in time.\" The room smells of coffee and wet coats. \"Whose apprentice do you want wearing this at dinner?\" he asks. The men stop shifting. His next sentence will decide whether metrics stay center stage or the glove asks what kind of electricians they are.",
+          "whatToDo": "Tie the report form to the apprentice the workers feel responsible for. Ask them to act like the craft protectors they already claim to be.",
+          "whyItMatters": "Identity supplies motive where metrics feel thin. The glove makes reporting about protecting one of their own, not feeding a dashboard."
+        },
+        {
+          "exampleId": "made-to-stick-ch05-ex03",
+          "title": "Coralie sees the donation chart go flat",
+          "tags": [
+            "nonprofit",
+            "giving",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "fundraising office",
+            "audience": "donor team",
+            "stakes": "analysis cooled giving impulse",
+            "format": "postmortem",
+            "requiredBeat": "see how abstraction drained motive"
+          },
+          "scenario": "Coralie sits at 9:14 p.m. under the buzzing lights of the donor office, studying two appeals side by side. The bar chart appeal was precise: 4,812 families, six services, three zip codes. Giving fell. The letter about one grandmother, Etta, keeping insulin cold in a cooler raised twice as much, even with the same facts at the bottom. Coralie circles the chart title. It proved scale, but it gave feeling nowhere to go.",
+          "whatToDo": "Build the next appeal around one truthful person, then place the scale after the reader knows whom the help is for.",
+          "whyItMatters": "A single person focuses concern. The larger count matters more once the reader has a face and a scene for the consequence."
+        },
+        {
+          "exampleId": "made-to-stick-ch05-ex04",
+          "title": "Suleika changes the recycling pitch at the condo meeting",
+          "tags": [
+            "community",
+            "self-interest",
+            "decision"
+          ],
+          "planSpec": {
+            "domain": "condo association",
+            "audience": "residents",
+            "stakes": "climate appeal feels distant",
+            "format": "decision_point",
+            "requiredBeat": "link action to local self-interest without falsehood"
+          },
+          "scenario": "Suleika stands by the condo recycling bins at 7:02 p.m., holding a cracked chute sign and a stack of rejected pickup notices. Her climate slide did not move the room last month. Tonight the basement smells sour because three contaminated bags made the hauler skip pickup. Owners are fanning their noses with agendas. Suleika is about to decide whether to repeat the climate numbers or start with the fee increase and the smell they all walked through.",
+          "whatToDo": "Start with the skipped pickup, odor, and fee, then connect cleaner sorting to the broader environmental reason. Let self-interest open the door.",
+          "whyItMatters": "People care faster when the cost touches their own hallway and wallet. That does not cheapen the larger goal, it gives the first action a reason."
+        },
+        {
+          "exampleId": "made-to-stick-ch05-ex05",
+          "title": "Orla places the name tag on the empty chair",
+          "tags": [
+            "hospital",
+            "dignity",
+            "before_after"
+          ],
+          "planSpec": {
+            "domain": "hospital ward",
+            "audience": "nursing team",
+            "stakes": "patient dignity policy feels abstract",
+            "format": "before_after",
+            "requiredBeat": "use a named patient to awaken identity"
+          },
+          "scenario": "Before Orla changed rounds, the dignity checklist was a laminated card clipped to the medication cart. At Friday 6:25 a.m., she placed Mr. Iversen’s paper name tag on an empty chair in the nurses’ station. He had died the night before, after asking three times for someone to close his curtain during a bed bath. Orla read the note aloud once. By the next week, curtain checks happened before gloves snapped on, not after someone remembered the card.",
+          "whatToDo": "Tie the checklist to the named patient and the professional identity at stake. Keep the action small: curtain before gloves.",
+          "whyItMatters": "The name tag turns dignity from a policy word into a standard nurses can feel. It connects the task to the kind of caregivers they mean to be."
+        },
+        {
+          "exampleId": "made-to-stick-ch05-ex06",
+          "title": "Keaton stops before using the most painful photo",
+          "tags": [
+            "advocacy",
+            "ethics",
+            "reflection"
+          ],
+          "planSpec": {
+            "domain": "advocacy office",
+            "audience": "campaign director",
+            "stakes": "emotion risks manipulation",
+            "format": "reflection",
+            "requiredBeat": "notice when emotional evidence bends the truth"
+          },
+          "scenario": "Keaton stops at 11:27 p.m. in the advocacy office, his cursor hovering over the most painful photo in the folder. The image would raise money. He knows it. But the case is rare, and the campaign is about a common paperwork delay, not the emergency shown in the photo. The radiator clicks behind him. He imagines donors opening the email and drawing the wrong lesson. The send window closes in nine minutes, and he faces a choice: borrow the photo’s force or choose a quieter image that tells the truth.",
+          "whatToDo": "Choose the quieter truthful image and state the common delay plainly. Use emotion to reveal the real stake, not to borrow pain from a different problem.",
+          "whyItMatters": "Emotion builds motive only while trust holds. If the image pushes people toward a false scale, it spends credibility for a short burst of response."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "made-to-stick-ch05-q01",
+            "prompt": "A charity appeal lists thousands of people helped, but donors skim past it. Which change most directly uses emotional design?",
+            "choices": [
+              "Introduce one truthful person’s situation, then connect that person to the larger count.",
+              "Remove all numbers and rely only on sad language.",
+              "Add more categories to prove the program is complex."
+            ],
+            "correctIndex": 0,
+            "explanation": "One person gives care a target. Keeping the larger count nearby protects scale and honesty.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q02",
+            "prompt": "A workplace safety memo says incidents are rising by 12 percent. Employees ignore it. Which revision connects to identity without manipulation?",
+            "choices": [
+              "Use graphic injury photos from unrelated industries.",
+              "Show a near-miss involving a trainee and ask what senior workers owe people they train.",
+              "Threaten anyone who skips the reporting form."
+            ],
+            "correctIndex": 1,
+            "explanation": "The trainee case links the rule to craft identity and responsibility. It does not need unrelated shock or threat to create motive.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q03",
+            "prompt": "A policy advocate has one extreme case that is moving but rare. She wants to use it as the face of a common issue. What is the main risk?",
+            "choices": [
+              "People may care too much about the issue.",
+              "The story may be too concrete to remember.",
+              "The emotional case may distort what the evidence honestly supports."
+            ],
+            "correctIndex": 2,
+            "explanation": "Emotion should reveal the stake, not bend the claim. A rare case can mislead if treated as typical.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q04",
+            "prompt": "A manager wants staff to care about answering customer emails faster. Which appeal uses self-interest cleanly?",
+            "choices": [
+              "Show how slow replies create repeat calls that fill the staff queue after lunch.",
+              "Say that good people always answer quickly.",
+              "Use a tearful customer story unrelated to email delay."
+            ],
+            "correctIndex": 0,
+            "explanation": "The queue shows a direct cost staff already feel. Self-interest can create motive without guilt or distortion.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q05",
+            "prompt": "A neighborhood group says park maintenance matters for community health. Attendance stays low. Which emotional route could make the message stronger?",
+            "choices": [
+              "Ask residents to memorize the maintenance budget.",
+              "Show one Saturday soccer team losing its field, then invite residents to protect what their block says it values.",
+              "Describe parks as vital infrastructure in formal language."
+            ],
+            "correctIndex": 1,
+            "explanation": "The soccer team gives a face, and the block identity gives people a role to live up to.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q06",
+            "prompt": "A donor analyst argues that emotional appeals are anti-reason. What response best fits the sticky move?",
+            "choices": [
+              "Emotion should replace evidence whenever action is needed.",
+              "Reason is useless when people need to care.",
+              "Emotion should reveal the human stake while evidence keeps the claim honest."
+            ],
+            "correctIndex": 2,
+            "explanation": "Emotion and reason do different jobs. The strongest message keeps motive connected to truthful evidence.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q07",
+            "prompt": "A school principal wants parents to care about attendance. Which opener gives the statistic a face without hiding the data?",
+            "choices": [
+              "Tell the story of one student missing breakfast after late arrival, then show the schoolwide absence pattern.",
+              "Announce that attendance is a key metric and move to policy.",
+              "Show only the district ranking and ask parents to be responsible."
+            ],
+            "correctIndex": 0,
+            "explanation": "The student scene focuses attention. The schoolwide pattern keeps the message from becoming one isolated anecdote.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q08",
+            "prompt": "A climate team tries to motivate apartment residents with polar ice data. They nod but do nothing. Which first bridge is strongest?",
+            "choices": [
+              "Make the polar ice graph larger.",
+              "Connect sorting errors to the skipped pickup fee and smell in their own basement.",
+              "Tell residents they are bad citizens if they do not act."
+            ],
+            "correctIndex": 1,
+            "explanation": "Local self-interest can open action. It can then connect to the broader value without shame.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch05-q09",
+            "prompt": "A leader uses identity by saying, real professionals never make mistakes. What is wrong with that emotional appeal?",
+            "choices": [
+              "It is too concrete to motivate adults.",
+              "It fails because identity never motivates people.",
+              "It sets a false identity standard that may hide errors instead of improving behavior."
+            ],
+            "correctIndex": 2,
+            "explanation": "Identity appeals work when the standard is honest and useful. A false standard can make people protect image over truth.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "made-to-stick-ch05-rc01",
+          "front": "An important fact fails to move people. What emotional target should you retrieve?",
+          "back": "Look for one person, one direct self-interest, or one identity standard that makes the consequence felt without bending the facts.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "made-to-stick-ch05-rc02",
+          "front": "A story is powerful but rare. What check protects the message?",
+          "back": "State its scope honestly and pair it with the broader evidence. Do not let one intense case pretend to be every case.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "made-to-stick-ch05-rc03",
+          "front": "A team ignores a metric until it affects their own day. What route is this?",
+          "back": "Self-interest. It is legitimate when the cost or benefit is real and used to open action, not to hide the larger reason.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch05-rc04",
+          "front": "How can identity make a message stick?",
+          "back": "Ask people to act in line with a standard they already value, such as good craft, care, fairness, or neighborliness.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is finding the human stake inside a true claim. You make care easier by giving it a person, a direct self-interest, or an identity standard, then you keep the evidence honest.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a metric is being ignored, then find the person, customer moment, or team identity that the metric touches and open there."
+          },
+          {
+            "context": "health",
+            "plan": "If a health warning feels abstract, then connect it to one daily person-level consequence you can picture without exaggerating the risk."
+          },
+          {
+            "context": "personal",
+            "plan": "If a goal feels flat, then write who benefits, what cost you personally avoid, or what identity you want the action to express."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a request sounds like nagging, then connect it to the shared identity or care standard both of you already want to protect."
+          }
+        ],
+        "twentyFourHourChallenge": "Today, take one flat but important message and rewrite the opener around one person, self-interest, or identity standard. Keep one evidence line beside it.",
+        "weeklyPractice": "Once a week, review a message that did not move people. Mark whether it lacked a face, a direct stake, an identity link, or honest scope."
+      },
+      "memorableLines": [
+        {
+          "text": "Care needs a target.",
+          "location": "breakdown.fastRead",
+          "why": "It compresses the emotional mechanism without sentimentality."
+        },
+        {
+          "text": "Emotion should reveal the real human stake, not bend facts until guilt does the work.",
+          "location": "breakdown.fastRead",
+          "why": "It states the ethical limit clearly."
+        },
+        {
+          "text": "The best emotional message does not ask people to stop thinking.",
+          "location": "breakdown.fullRead",
+          "why": "It keeps emotion linked to reason."
+        }
+      ]
+    },
+    {
+      "chapterId": "made-to-stick-ch06",
+      "number": 6,
+      "title": "Stories",
+      "readingTimeMinutes": 12,
+      "hook": "The dented toolbox teaches the repair rule better than the poster above it.",
+      "counterintuition": "Most people assume a story is a softer wrapper around a lesson, but actually a good story stores the lesson inside a sequence people can replay and transfer.",
+      "tryThisNow": "Turn one lesson into a three-beat story: trouble, action, result. Remove any moral that does not already live inside the beats.",
+      "keyTakeaway": "Stories stick because they package guidance in events people can replay, retell, and adapt, as long as the plot carries the right lesson.",
+      "breakdown": {
+        "fastRead": "Marta sets a dented toolbox on the garage bench at 6:11 a.m. The poster above it says check the latch twice. Nobody reads the poster. Everyone remembers how the toolbox burst open on the stairwell, scattering sockets while a customer waited. The rule lives inside the sequence: skipped latch, spill, delay, embarrassment.\n\nA story carries a lesson by making it replayable. The point is not stapled on afterward. It is built into what happened. That is why stories teach action better than bare advice. The risk is that a vivid plot can carry the wrong meaning just as well as the right one. Choose the sequence with care.",
+        "deepRead": "Marta sets a dented toolbox on the garage bench at 6:11 a.m. The poster above it says check the latch twice, and the apprentices have stopped seeing it. The toolbox still gets attention. Last winter, Soren skipped the latch, turned on the stairwell, and watched sockets bounce down three flights while a customer waited at the door. The rule is inside the events.\n\nStories solve a transfer problem. Advice often stays tied to the person who gave it. A story can travel because listeners can replay the situation, the choice, and the result. When a similar moment appears later, the sequence offers a model.\n\nPicture Naya, a school counselor, at 1:35 p.m. with two peer mentors. She could say include quiet students. Instead she tells them about the lunch table where one invite to chess club changed a boy’s whole semester. The mentors remember the tray, the empty chair, and the invitation. They can use that sequence tomorrow without reciting a rule.\n\nThe lesson has to be embedded. If you tell a thrilling rescue story and then tack on teamwork matters, the moral may slide off. If the rescue only succeeds because two people share a radio check, teamwork is inside the plot. Challenge stories, connection stories, and creativity stories work because they show people overcoming, relating, or inventing in ways others can copy. The limit is drift. A story that spreads fast can also spread the wrong lesson fast.",
+        "fullRead": "Marta sets a dented toolbox on the garage bench at 6:11 a.m. A laminated poster above the bench says check the latch twice. The poster is clean because nobody touches it. The toolbox is scarred because everyone has. Last winter, Soren carried it up a customer’s stairwell without snapping the side latch. On the second-floor turn, the lid flew open. Sockets bounced down three flights. The customer opened the door to metal clattering at her feet.\n\nThe apprentices remember that story. They remember the stairwell, the sound, Soren’s red face, and the ten minutes spent finding the missing socket under a radiator. They do not need Marta to end with a moral. The rule lives inside the plot. Skipped latch, spill, delay, embarrassment. Check the latch twice.\n\nStories work because they package guidance in sequence. A rule can be understood and still not be available when needed. A story gives the mind a small simulation. It shows a situation, an action, and a consequence. Later, when a similar situation appears, the listener can replay the old sequence and borrow its guidance.\n\nNaya uses this at 1:35 p.m. with peer mentors in a middle school counseling office. She wants them to include quiet students. The sentence is fine, but weak. So she tells them about a lunch table where one eighth grader left an empty chair open, invited a boy to chess club, and changed his semester. The mentors remember the tray, the empty chair, the small invitation, and the later club photo. The next day, they know what inclusion can look like without asking for a definition.\n\nA story is strongest when the lesson is embedded. A stapled moral forces listeners to carry two things: the events and a separate rule. If the rule is already inside the events, memory does less work. The plot itself teaches. The repair shop story teaches care through failure. The lunch table story teaches connection through a specific invitation.\n\nDifferent plots move people in different ways. A challenge plot shows someone beating an obstacle and can create resolve. A connection plot shows people crossing a gap and can create care. A creativity plot shows a new way around a stuck problem and can create possibility. These labels are useful only if they help you choose the right sequence for the behavior you want to spread.\n\nThe danger is drift. A vivid story can survive while the intended lesson mutates. If the toolbox story becomes a joke about Soren being clumsy, the repair rule is lost. If the lunch table story becomes proof that one invitation fixes loneliness, the lesson becomes too simple and false. Narrative travels with power, so the cargo has to be checked before it leaves.\n\nChoose stories whose actions demonstrate the lesson, not stories that merely decorate it. Keep the sequence short enough to retell, concrete enough to picture, and honest enough to guide the next similar moment. A good story is not a wrapper for advice. It is advice with legs."
+      },
+      "examples": [
+        {
+          "exampleId": "made-to-stick-ch06-ex01",
+          "title": "Marta taps the dent in the toolbox",
+          "tags": [
+            "repair",
+            "training",
+            "story"
+          ],
+          "planSpec": {
+            "domain": "garage training",
+            "audience": "apprentice technicians",
+            "stakes": "poster rule is ignored",
+            "format": "scene",
+            "requiredBeat": "embed the repair rule inside a replayable sequence"
+          },
+          "scenario": "Marta taps the dent in the toolbox at 6:11 a.m. on the garage bench, while apprentices pull on cold work gloves. The poster above them says check the latch twice. Nobody looks up. Marta tells the stairwell story: Soren skipped the latch, turned too fast, and sent sockets bouncing past a customer’s slippers. One apprentice laughs, then snaps his own latch shut. Marta must decide whether to point back to the poster or let the toolbox story carry the rule.",
+          "whatToDo": "Tell the short sequence, then ask each apprentice to retell the action that would have prevented the spill. Keep the poster as backup.",
+          "whyItMatters": "The story makes the rule replayable. The apprentices can picture the skipped latch and spilled sockets when their own toolbox is in hand."
+        },
+        {
+          "exampleId": "made-to-stick-ch06-ex02",
+          "title": "Naya leaves one chair empty in the lunch story",
+          "tags": [
+            "school",
+            "connection",
+            "mentoring"
+          ],
+          "planSpec": {
+            "domain": "middle school counseling",
+            "audience": "peer mentors",
+            "stakes": "include others is too abstract",
+            "format": "dialogue",
+            "requiredBeat": "use connection story to transfer action"
+          },
+          "scenario": "Naya slides a cafeteria tray photo across her desk at 1:35 p.m., two peer mentors leaning in while rain streaks the counseling-office window. \"What does include quiet students mean tomorrow?\" she asks. One shrugs. Naya points to the empty chair in the photo and tells how Renata left it open, invited a boy to chess club, and found him there every Thursday after. The mentors are deciding whether inclusion is a feeling or a move they can copy at lunch.",
+          "whatToDo": "Use the story to name the transferable action: leave a real seat open and make a specific invitation. Ask the mentors where that move fits tomorrow.",
+          "whyItMatters": "The plot turns a soft value into a repeatable sequence. Empty chair, invitation, return visit is easier to carry than a general reminder to be kind."
+        },
+        {
+          "exampleId": "made-to-stick-ch06-ex03",
+          "title": "Benedict watches the rescue moral slide off",
+          "tags": [
+            "training",
+            "rescue",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "lifeguard station",
+            "audience": "junior lifeguards",
+            "stakes": "stapled moral fails to teach",
+            "format": "postmortem",
+            "requiredBeat": "see that the lesson must live inside events"
+          },
+          "scenario": "Benedict sits in the lifeguard station at 8:22 p.m., sunscreen smell baked into the towels, reviewing why his rescue story failed. The juniors loved the part where the kayak flipped. They repeated the wave height and the whistle blast. None remembered the radio check he tacked on at the end as the moral. In the logbook margin, Benedict writes the problem: the radio check did not cause the rescue in the story, so the lesson slid off.",
+          "whatToDo": "Choose or rewrite a story where the radio check changes the outcome. Let the needed behavior cause the result inside the plot.",
+          "whyItMatters": "A moral added after the action competes with the action. If the behavior matters in the sequence, listeners can recover the lesson from memory."
+        },
+        {
+          "exampleId": "made-to-stick-ch06-ex04",
+          "title": "Saskia predicts which sales story will spread",
+          "tags": [
+            "sales",
+            "challenge",
+            "predict_reveal"
+          ],
+          "planSpec": {
+            "domain": "sales floor",
+            "audience": "new sales reps",
+            "stakes": "abstract advice does not transfer",
+            "format": "predict_reveal",
+            "requiredBeat": "predict story spread by replayable challenge sequence"
+          },
+          "scenario": "Saskia stands at 4:07 p.m. by the sales floor snack cabinet, holding two onboarding scripts. One says persistence wins. The other tells how a rep lost an account, noticed the buyer’s warehouse calendar, called before inventory day, and saved the reorder. Saskia predicts the second script will be repeated by Friday. By Friday, three reps are saying warehouse calendar before calls. She has to decide whether to make the phrase a rule or preserve the full sequence.",
+          "whatToDo": "Keep the full sequence in training: loss, noticed calendar, timed call, saved reorder. Let the phrase point back to the story, not replace it.",
+          "whyItMatters": "The challenge plot gives reps a small simulation for timing a call. If the phrase replaces the events, the guidance gets thinner."
+        },
+        {
+          "exampleId": "made-to-stick-ch06-ex05",
+          "title": "Aveline hears the wrong lesson in the hallway",
+          "tags": [
+            "culture",
+            "retelling",
+            "before_after"
+          ],
+          "planSpec": {
+            "domain": "hospital hallway",
+            "audience": "charge nurse",
+            "stakes": "story spreads but bends",
+            "format": "before_after",
+            "requiredBeat": "correct narrative drift before it hardens"
+          },
+          "scenario": "Before rounds, Aveline heard residents retelling the famous hallway story: the surgeon who ignored protocol and saved a patient by improvising. At 6:52 a.m., she heard the new ending. People were using it to excuse skipping checklists. She stopped by the supply cart and retold the missing middle: the surgeon improvised after the checklist caught the allergy. By noon, the story had a different hero. Not lone genius. Prepared improvisation.",
+          "whatToDo": "Retell the story with the missing causal beat restored. Make the checklist part of why the save happened, not the boring part before the hero moment.",
+          "whyItMatters": "Stories travel, and drift changes what they teach. Restoring the causal beat protects the behavior the organization needs copied."
+        },
+        {
+          "exampleId": "made-to-stick-ch06-ex06",
+          "title": "Pavel chooses the cracked pot story for the garden",
+          "tags": [
+            "community",
+            "creativity",
+            "decision_point"
+          ],
+          "planSpec": {
+            "domain": "community garden",
+            "audience": "volunteer group",
+            "stakes": "stuck group needs possibility",
+            "format": "decision_point",
+            "requiredBeat": "choose creativity plot that shows usable workaround"
+          },
+          "scenario": "Pavel holds a cracked clay pot at 9:09 a.m. beside the community garden shed, soil under his fingernails and six volunteers waiting for the irrigation meeting. The budget is short, and the hose plan failed twice. He can lecture on resourcefulness. Instead he remembers how Lotte buried cracked pots beside tomato roots last summer and cut water use by a third. Pavel has to decide whether to give the rule or tell the pot story and let the workaround become visible.",
+          "whatToDo": "Tell the cracked pot sequence: short water, failed hose, buried pots, stronger tomatoes. Then ask volunteers where the same pattern could work now.",
+          "whyItMatters": "A creativity story gives people a model for solving under limits. The plot carries possibility because the workaround is visible and copyable."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "made-to-stick-ch06-q01",
+            "prompt": "A manager tells employees, treat customers with care, and nobody remembers it. Which story structure would transfer the lesson best?",
+            "choices": [
+              "A sequence where a specific employee notices a customer problem, acts, and the result shows care.",
+              "A funny anecdote followed by the sentence, care matters.",
+              "A long list of service values with no events."
+            ],
+            "correctIndex": 0,
+            "explanation": "The lesson should live inside the events. A sequence with action and result gives people something to replay.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q02",
+            "prompt": "A coach tells a thrilling comeback story, then adds the moral, hydrate well. Players remember the comeback but not hydration. What should change?",
+            "choices": [
+              "Make the comeback more dramatic.",
+              "Use a story where hydration affects the outcome inside the sequence.",
+              "Repeat the hydration moral three times after the story."
+            ],
+            "correctIndex": 1,
+            "explanation": "If the behavior does not cause anything in the plot, the moral slides off. Put the lesson inside the events.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q03",
+            "prompt": "A team keeps retelling a founder story as proof that rules do not matter. The original event depended on a checklist. What is the best repair?",
+            "choices": [
+              "Ban the story so no one can misuse it.",
+              "Add more abstract values beside the story.",
+              "Retell the missing causal beat so the checklist becomes part of the save."
+            ],
+            "correctIndex": 2,
+            "explanation": "Narrative drift changes behavior. Restoring the causal beat protects the lesson the story should carry.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q04",
+            "prompt": "A teacher wants students to try a hard skill. Which story type best fits the need for effort through obstacles?",
+            "choices": [
+              "A challenge story showing someone struggling, trying a move, and improving.",
+              "A disconnected joke that makes the room relax.",
+              "A definition of perseverance written on the board."
+            ],
+            "correctIndex": 0,
+            "explanation": "A challenge plot gives students a simulation of effort and payoff. It is more transferable than a label.",
+            "bloomsLevel": "apply",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q05",
+            "prompt": "A nonprofit wants volunteers to welcome isolated seniors. Which plot is most aligned?",
+            "choices": [
+              "A story about winning a grant through clever accounting.",
+              "A story about one volunteer crossing a social gap with a specific invitation.",
+              "A story about a famous athlete overcoming injury."
+            ],
+            "correctIndex": 1,
+            "explanation": "A connection plot matches the desired behavior. The events show how to cross the gap volunteers will face.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q06",
+            "prompt": "A vivid story is spreading fast, but people draw a harmful lesson from it. What does that show?",
+            "choices": [
+              "Stories are weaker than abstract rules.",
+              "The story needs better background music.",
+              "Narrative power can carry distortion as easily as guidance."
+            ],
+            "correctIndex": 2,
+            "explanation": "Stories travel well, so the embedded lesson matters. A strong plot with the wrong lesson spreads the wrong behavior.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q07",
+            "prompt": "A supervisor wants a maintenance rule to be remembered during morning setup. Which approach best uses story as carrier?",
+            "choices": [
+              "Tell the short failure sequence that the rule prevents, then have workers retell the key action.",
+              "Post a longer policy above the bench.",
+              "Say the rule once in a serious voice."
+            ],
+            "correctIndex": 0,
+            "explanation": "The failure sequence makes the rule replayable at the moment of use. Retelling strengthens transfer.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q08",
+            "prompt": "A startup wants people to invent under tight limits. Which story would be strongest?",
+            "choices": [
+              "A connection plot about friendship unrelated to the work.",
+              "A creativity plot where a real constraint forced a new workaround that others can copy.",
+              "A challenge plot about endurance with no new method."
+            ],
+            "correctIndex": 1,
+            "explanation": "A creativity plot fits the desired behavior because it shows a new path around a real constraint.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "made-to-stick-ch06-q09",
+            "prompt": "A leader is choosing between a beautiful story with no link to the lesson and a plainer story where the needed behavior causes the result. Which should win?",
+            "choices": [
+              "The beautiful story because beauty always improves memory.",
+              "Neither story because lessons should never use narrative.",
+              "The plainer story because the lesson is embedded in the causal sequence."
+            ],
+            "correctIndex": 2,
+            "explanation": "The story’s job is transfer, not ornament. Embedded causality makes the behavior easier to recover and use later.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "made-to-stick-ch06-rc01",
+          "front": "A rule is understood but not used later. What story move should you retrieve?",
+          "back": "Build a short sequence where the situation, action, and result carry the rule. The listener can replay the sequence when a similar moment appears.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "made-to-stick-ch06-rc02",
+          "front": "A moral feels stapled onto a story. What is the repair?",
+          "back": "Choose or rewrite events so the desired behavior causes the outcome. The lesson should be recoverable from the plot itself.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "made-to-stick-ch06-rc03",
+          "front": "A story spreads but teaches the wrong behavior. What should you check?",
+          "back": "Find the causal beat people are retelling. Restore missing context or replace the story before the wrong lesson hardens.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "made-to-stick-ch06-rc04",
+          "front": "How do challenge, connection, and creativity plots differ in use?",
+          "back": "Use challenge for effort through obstacles, connection for crossing social gaps, and creativity for finding new paths under limits.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The skill is embedding guidance inside a replayable sequence. You choose events where the desired behavior changes the outcome, then keep the story short and honest enough to retell.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a rule is not being used, then find a real moment where following or missing the rule changed the result and tell that sequence in under one minute."
+          },
+          {
+            "context": "health",
+            "plan": "If a health habit feels like advice, then tell the trouble, action, and result from one day when the habit mattered."
+          },
+          {
+            "context": "personal",
+            "plan": "If you want to remember a lesson, then write the smallest story that proves it: what happened, what you did, and what changed."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a value like kindness or respect sounds vague, then tell a specific story where one action showed it and changed the next moment."
+          }
+        ],
+        "twentyFourHourChallenge": "In the next 24 hours, turn one piece of advice into a three-beat story: trouble, action, result. Cut any moral that is not visible in the beats.",
+        "weeklyPractice": "Once a week, collect one story you heard retold. Write what behavior it teaches, whether that behavior caused the result, and what drift risk it carries."
+      },
+      "memorableLines": [
+        {
+          "text": "A story carries a lesson by making it replayable.",
+          "location": "breakdown.fastRead",
+          "why": "It states why narrative transfers better than advice alone."
+        },
+        {
+          "text": "The rule lives inside the plot.",
+          "location": "breakdown.fullRead",
+          "why": "It names embedded meaning in a short concrete way."
+        },
+        {
+          "text": "A good story is not a wrapper for advice.",
+          "location": "breakdown.fullRead",
+          "why": "It rejects the common weak use of story."
+        }
+      ]
+    }
+  ]
+}

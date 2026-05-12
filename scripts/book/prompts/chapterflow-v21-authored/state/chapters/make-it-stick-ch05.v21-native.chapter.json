@@ -1,0 +1,319 @@
+{
+  "chapterId": "make-it-stick-ch05",
+  "number": 5,
+  "title": "Avoid Illusions of Knowing",
+  "readingTimeMinutes": 12,
+  "hook": "The highlighted line smiles back at you, then disappears when the page closes.",
+  "counterintuition": "Most people assume confidence means knowledge is secure. The twist is that confidence can be borrowed from the page, while a blank check gives better evidence.",
+  "tryThisNow": "Pick one thing that feels learned. Explain it out loud with the source closed, then write the first gap you discover before you review.",
+  "keyTakeaway": "Treat confidence as a claim that needs evidence: use recall, explanation, delay, and transfer to test whether knowledge is usable without cues.",
+  "breakdown": {
+    "fastRead": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement. Her neurology notes look familiar in yellow highlighter. The empty diagram does not care. She can label two branches and stalls on the third.\n\nThat stall is calibration. Familiarity can make you feel ready while the page still carries the answer. An honest check removes the cue and asks for use. Close the notes, explain, draw, solve, or apply. Then let confidence answer to what you produced, not to what looked friendly.",
+    "deepRead": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement. The vending machine hums behind the stacks. Her highlighted notes look almost warm from rereading. On the blank diagram, the third branch is gone.\n\nThis is the illusion of knowing. The material looks known because the cues are present: color, location on the page, the sentence before the answer, the shape of the paragraph. Those cues can raise confidence faster than real access.\n\nGeordie sees it at 3:50 p.m. in the safety classroom. Workers nod through the lockout deck because every slide looks familiar from last quarter. When he covers the poster and asks them to place the lock tags on a dead panel, two tags go in the wrong spot. Nobody was lazy. The deck had been doing too much of the remembering.\n\nThe fix is not endless doubt. It is better evidence. Use a no-cue explanation, a delayed self-quiz, a blank diagram, or a transfer task. If confidence survives that, trust it more. If it fails, you have a repair target.\n\nLet confidence answer to what you produced, not to what looked friendly.\n\nMirek adds a delay to make the evidence cleaner. Monday confidence goes in the log, but Thursday recall gets the vote. The delay is uncomfortable because it removes the glow of the last review. That is why it helps.",
+    "fullRead": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement. The table has a carved heart near the edge and a ring from someone's old coffee. Her neurology notes are bright with yellow highlighter. When she rereads them, the branches look familiar. When she covers them, the third branch vanishes.\n\nThe feeling is familiar to anyone who has studied hard and been fooled. The words looked known. The page looked mapped. The answer sat in the same corner each time. Then the cue disappeared and the knowledge did not come with it.\n\nThat is not a character flaw. It is a bad scorecard. Recognition is easy when the cue stays in view. A highlighted sentence can feel like a memory because your eyes know the route back to it. Confidence rises, but the evidence is weak.\n\nGeordie sees the same problem at 3:50 p.m. in the safety classroom. The lockout deck is familiar to every worker. They nod before he finishes the slides. Then he covers the wall poster and rolls a dead electrical panel to the front of the room. Two workers place lock tags on the wrong side of the disconnect. The deck had been clear. Their independent use was not.\n\nBetter calibration asks for production. Draw the diagram. Explain the rule without the notes. Solve a new problem. Teach it to someone who can ask one awkward question. Wait a day and try again. These checks are not meant to make you feel stupid. They are meant to give confidence a receipt.\n\nHanne learns this at a kitchen table with case law spread beside a cold mug. She has highlighted the holding so often that the page feels mastered. Luc asks her to explain how the holding applies to a landlord case with different facts. Her first answer is just a line from the page. The transfer question shows what the highlighter hid.\n\nDo not throw away review. Rereading can reintroduce material. Highlighting can mark what matters. The mistake is letting those moves be the judge. They are preparation for the check, not the check itself.\n\nLet confidence answer to what you produced, not to what looked friendly. When the blank page speaks, listen early enough to repair it.\n\nSameer makes the same point in exam room 4. The patient-transfer poster has been on the wall for a month. Everyone has read it. He turns it to the wall and places a gait belt, buckled wrong on purpose, on a vinyl chair. The first aide reaches for the poster and finds blank wall. The second starts naming the steps. The team learns more in ninety seconds than in another week of nodding at the laminate.\n\nMirek changes his confidence log for the same reason. Monday feelings no longer get the final vote. He writes the rating after review, locks the manual in a desk, and quizzes himself Thursday. Some ratings fall. That is progress. A lower, truer rating is easier to repair than a high rating built on glow.\n\nUse confidence, but make it earn trust. Let it stand after a blank diagram, a delayed quiz, a changed case, or a real object with the poster turned away. Confidence that survives those checks is useful. Confidence that fails has done its job too. It has shown you where to repair."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-nola-nerve-diagram",
+      "title": "Nola covers the highlighted nerve notes",
+      "tags": [
+        "decision_point",
+        "medicine",
+        "calibration"
+      ],
+      "planSpec": {
+        "domain": "neurology study",
+        "audience": "learners who trust highlighted familiarity",
+        "stakes": "whether anatomy can be drawn and used without notes",
+        "format": "decision_point",
+        "requiredBeat": "she checks familiar notes against a blank diagram"
+      },
+      "scenario": "Nola presses a sticky note onto a blank nerve diagram at 10:27 p.m. in the library basement, yellow highlighter dust on her thumb. Her neurology notes feel mastered when the page is open. On the empty diagram, she labels two branches and stalls on the third. The notes sit open beside her elbow, bright and inviting. She has to decide whether to peek or let the blank diagram finish telling her what she does not know.",
+      "whatToDo": "Finish the diagram without peeking, mark the missing branch, then close the notes again and redraw the weak section after checking.",
+      "whyItMatters": "The blank diagram tests access. The highlighted page tests recognition. Nola needs confidence tied to what she can produce without the cue."
+    },
+    {
+      "exampleId": "ch05-ex02-geordie-lockout-deck",
+      "title": "Geordie rolls the dead panel past the safety poster",
+      "tags": [
+        "postmortem",
+        "safety",
+        "transfer"
+      ],
+      "planSpec": {
+        "domain": "industrial safety training",
+        "audience": "trainers who mistake familiar slides for usable knowledge",
+        "stakes": "whether workers can apply lockout steps on equipment",
+        "format": "postmortem",
+        "requiredBeat": "he reviews a safety deck workers recognized but could not use"
+      },
+      "scenario": "Geordie stands in the safety classroom at 3:50 p.m., one hand on a dead electrical panel and the other on a roll of red lock tags. The crew nodded through the lockout deck because they had seen the slides four times. Then he covered the wall poster and asked for the tags. Two went on the wrong side of the disconnect. Geordie looks at the familiar deck on the screen and has to decide what the nods were worth.",
+      "whatToDo": "Replace slide recognition with a no-poster equipment check. Have each worker place the tags, explain the choice, and repeat any missed step after feedback.",
+      "whyItMatters": "Recognition of the deck did not prove usable safety knowledge. The panel shows whether the rule transfers to the place where harm happens."
+    },
+    {
+      "exampleId": "ch05-ex03-hanne-luc-highlighter",
+      "title": "Hanne hears the highlighted holding turn thin",
+      "tags": [
+        "dialogue",
+        "law",
+        "explanation"
+      ],
+      "planSpec": {
+        "domain": "law study",
+        "audience": "students who equate highlighted text with understanding",
+        "stakes": "whether a rule can be applied to changed facts",
+        "format": "dialogue",
+        "requiredBeat": "they argue over highlighted case law and transfer"
+      },
+      "scenario": "Hanne taps a pink highlighter cap at 8:12 p.m. on Luc's kitchen table, cold tea beside three printed cases. \"I know this holding,\" she says. Luc slides over a landlord fact pattern. \"Then use it here.\" Hanne reads her highlighted sentence aloud. Luc waits. \"That is the sentence,\" he says. \"What does it do to these facts?\" The refrigerator clicks on. Hanne has to decide whether to reread the case or build the explanation cold.",
+      "whatToDo": "Close the case and apply the holding to the new facts in plain speech. Then reopen the case to repair the parts that stayed vague.",
+      "whyItMatters": "Highlighting can preserve wording without building use. Transfer exposes whether Hanne understands the rule or only recognizes its sentence."
+    },
+    {
+      "exampleId": "ch05-ex04-berenice-color-cards",
+      "title": "Berenice learns the weekend did not remember the colors",
+      "tags": [
+        "predict_reveal",
+        "language",
+        "delay"
+      ],
+      "planSpec": {
+        "domain": "language vocabulary",
+        "audience": "self-learners who trust color-coded cards",
+        "stakes": "whether vocabulary returns after time without visual cues",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts color-coded flashcards will hold after a weekend"
+      },
+      "scenario": "Berenice fans purple vocabulary cards across a train tray table at 5:44 p.m. on Friday, rain streaking the window. The colors make the verb families feel obvious. She predicts Monday will be fine. On Monday at 7:03 a.m., she covers the colored edges with a grocery receipt and tries to write ten sentences. Four verbs vanish. The colors had helped her sort the stack. They had not made the verbs come back.",
+      "whatToDo": "Hide the colors during recall and write fresh sentences after a delay. Use the color system only after the attempt to repair patterns.",
+      "whyItMatters": "The visual cue can create confidence that depends on the card. Delayed use without color gives a cleaner read on what Berenice can retrieve."
+    },
+    {
+      "exampleId": "ch05-ex05-sameer-transfer-poster",
+      "title": "Sameer turns the patient-transfer poster to the wall",
+      "tags": [
+        "vignette",
+        "clinic",
+        "checklist"
+      ],
+      "planSpec": {
+        "domain": "clinic patient-transfer training",
+        "audience": "teams relying on wall posters",
+        "stakes": "whether transfer steps are usable during patient movement",
+        "format": "vignette",
+        "requiredBeat": "he tests a patient-transfer checklist without the poster"
+      },
+      "scenario": "Sameer turns the laminated patient-transfer poster to the wall at 1:36 p.m. in exam room 4, paper crinkling under the tape. The aides have read it every shift this month. A gait belt lies on the vinyl chair, buckled wrong on purpose. Sameer asks them to set up the transfer from memory. The first aide reaches for the poster and finds blank wall. The second touches the belt, pauses, and starts naming steps.",
+      "whatToDo": "Run one no-poster setup with real equipment, then turn the poster back only to check and repair the missed sequence.",
+      "whyItMatters": "The wall can create borrowed certainty. The equipment check shows whether the team can act when a patient, not a poster, is in front of them."
+    },
+    {
+      "exampleId": "ch05-ex06-mirek-confidence-log",
+      "title": "Mirek makes confidence wait until Thursday",
+      "tags": [
+        "before_after",
+        "software",
+        "delayed quiz"
+      ],
+      "planSpec": {
+        "domain": "software certification study",
+        "audience": "learners rating confidence immediately after review",
+        "stakes": "whether confidence tracks later independent use",
+        "format": "before_after",
+        "requiredBeat": "he replaces confidence ratings with delayed self-quizzes"
+      },
+      "scenario": "Mirek sits at 9:25 p.m. in a coworking booth, a certification manual open beside an empty espresso cup. He used to rate each topic right after reading it, and the scores were always high. Last month the practice exam cut them in half. Now he writes the confidence number on Monday, locks the manual in his desk, and quizzes himself Thursday before changing the number. The ratings drop at first. Then they start telling the truth.",
+      "whatToDo": "Delay confidence ratings until after a no-cue quiz. Let the score change only when independent recall supports it.",
+      "whyItMatters": "Immediate confidence can follow familiarity. Delayed checks make Mirek calibrate against what memory can actually return."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch05-q01",
+        "prompt": "A student feels ready because every highlighted line looks familiar. What evidence should matter more?",
+        "choices": [
+          "A closed-notes explanation in her own words",
+          "The number of colors used",
+          "How neat the notes look"
+        ],
+        "correctIndex": 0,
+        "explanation": "A closed-notes explanation tests access and understanding. Familiar highlights mainly test recognition.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q02",
+        "prompt": "A worker recognizes every slide in safety training but misses the equipment step. What was the illusion?",
+        "choices": [
+          "The equipment was too simple to matter",
+          "Recognition of the slide was mistaken for usable skill",
+          "All slides are harmful"
+        ],
+        "correctIndex": 1,
+        "explanation": "The slide cues made the content feel known. The equipment task showed the knowledge was not ready for use.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q03",
+        "prompt": "Which check best calibrates confidence?",
+        "choices": [
+          "Rereading until the paragraph feels smooth",
+          "Counting how many pages were reviewed",
+          "Trying a new application without cues, then checking the result"
+        ],
+        "correctIndex": 2,
+        "explanation": "New application without cues shows whether the idea can be used, not just recognized.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q04",
+        "prompt": "A learner misses several items on a delayed quiz. What should that change?",
+        "choices": [
+          "Her belief that familiarity was enough evidence",
+          "Her decision to ever quiz herself again",
+          "The need for feedback"
+        ],
+        "correctIndex": 0,
+        "explanation": "The delayed quiz shows confidence outran access. It gives repair targets and a better scorecard.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q05",
+        "prompt": "When can rereading still be useful?",
+        "choices": [
+          "As the final judge of mastery",
+          "As a way to reintroduce material before an honest check",
+          "As a replacement for recall forever"
+        ],
+        "correctIndex": 1,
+        "explanation": "Review can help prepare or repair. It should not be the only evidence that learning is secure.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch05-q06",
+        "prompt": "A musician knows a piece only when the sheet is open. What test fits this idea?",
+        "choices": [
+          "Buy a brighter stand light",
+          "Stare at the same line longer",
+          "Play or describe one passage without the sheet, then repair misses"
+        ],
+        "correctIndex": 2,
+        "explanation": "No-cue production separates actual access from recognition supported by the sheet.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch05-q07",
+        "prompt": "A learner wants confidence that is not just a feeling. What should confidence be tied to?",
+        "choices": [
+          "Evidence from recall, explanation, delay, or transfer",
+          "The most recent easy review",
+          "The prettiest notes"
+        ],
+        "correctIndex": 0,
+        "explanation": "Confidence becomes better calibrated when it answers to performance without cues.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch05-q08",
+        "prompt": "What is the risk of color-coded flashcards?",
+        "choices": [
+          "The cards will always fail",
+          "The colors may become cues that inflate confidence",
+          "The learner will remember too much"
+        ],
+        "correctIndex": 1,
+        "explanation": "Visual cues can help organization but may also prop up recognition. Hide them during recall to test access.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch05-q09",
+        "prompt": "Design a quick illusion check for a familiar article.",
+        "choices": [
+          "Reread the easiest paragraph twice",
+          "Look at the title until it feels known",
+          "Summarize it from memory and answer one new application question"
+        ],
+        "correctIndex": 2,
+        "explanation": "Summary plus application asks for production and transfer, which are stronger evidence than familiarity.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch05-rc01",
+      "front": "Your notes look familiar. What quick check tests whether you actually know the idea?",
+      "back": "Close the notes and explain the idea, draw it, or apply it to a new case. Use the source afterward to repair gaps.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch05-rc02",
+      "front": "Why can highlighting raise confidence too quickly?",
+      "back": "It makes the important line easy to recognize later. That recognition can feel like memory even when you cannot produce or use the idea.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc03",
+      "front": "A team nods at a familiar training slide. What should you ask them to do?",
+      "back": "Move from recognition to performance. Give them the real object, hide the slide, and ask them to apply the steps before checking.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch05-rc04",
+      "front": "How do you build confidence that deserves trust?",
+      "back": "Make confidence wait for evidence: delayed recall, no-cue explanation, transfer to a new case, or performance with support removed.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is calibration. Treat confidence as a claim and test it with no-cue recall, delayed checks, explanations, or transfer tasks.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a process deck feels familiar, then run one no-slide task before calling the team ready."
+      },
+      {
+        "context": "health",
+        "plan": "If instructions for care feel obvious, then explain them from memory before relying on them later."
+      },
+      {
+        "context": "personal",
+        "plan": "If study notes look mastered, then write a summary with the page closed and mark what disappeared."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you feel sure you understand someone's request, then repeat the request in your own words and ask what you missed."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one familiar topic and run a no-cue check: explain, draw, solve, or apply it. Write the first gap and repair that gap.",
+    "weeklyPractice": "For one week, delay your confidence ratings. Rate each topic only after a no-cue check, then compare the result with how ready you felt before."
+  },
+  "memorableLines": [
+    {
+      "text": "The highlighted line smiles back at you, then disappears when the page closes.",
+      "location": "hook",
+      "why": "It captures the illusion in a simple image."
+    },
+    {
+      "text": "Let confidence answer to what you produced, not to what looked friendly.",
+      "location": "breakdown.deepRead",
+      "why": "It turns calibration into a practical standard."
+    },
+    {
+      "text": "When the blank page speaks, listen early enough to repair it.",
+      "location": "breakdown.fullRead",
+      "why": "It frames a miss as timely evidence."
+    }
+  ]
+}

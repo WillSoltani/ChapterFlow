@@ -83,8 +83,9 @@ console.log(`\nem dashes anywhere in chapter: ${(wholeText.match(/—/g) ?? []).
 
 // Metaphor density (crude: count known metaphor-carrier words)
 const metaphorWords = ["leak", "leakage", "drag", "engine", "vote", "votes", "voting", "grease", "glow", "warmth", "scaffold", "scaffolding", "machinery", "pollute"];
+const joinedBreakdown = `${ch.breakdown.fastRead} ${ch.breakdown.deepRead} ${ch.breakdown.fullRead}`;
 const metaphorCount = metaphorWords.reduce((acc, w) => {
   const re = new RegExp(`\\b${w}\\b`, "gi");
-  return acc + (ch.breakdown.fastRead + " " + ch.breakdown.deepRead + " " + ch.breakdown.fullRead).match(re)?.length || 0 ? acc + ((ch.breakdown.fastRead + " " + ch.breakdown.deepRead + " " + ch.breakdown.fullRead).match(re) ?? []).length : acc;
+  return acc + (joinedBreakdown.match(re) ?? []).length;
 }, 0);
 console.log(`metaphor-carrier words across breakdown: ${metaphorCount}`);

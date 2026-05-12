@@ -1,0 +1,67 @@
+{
+  "chapterId": "atomic-habits-ch03",
+  "number": 3,
+  "title": "How to Build Better Habits in 4 Simple Steps",
+  "coreMove": "Decompose any stuck or successful habit into cue, craving, response, and reward, then point to which of the four is doing the heavy lifting.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a pediatric night-shift nurse who reaches for the vending machine every time a code blue ends",
+      "audience": "a healthcare worker whose schedule keeps overriding her food plans",
+      "stakes": "whether she keeps gaining weight she blames on willpower when the loop is actually adrenaline-crash hunger paired with the only food source still open at 3am",
+      "format": "postmortem",
+      "requiredBeat": "the nurse maps her vending-machine run onto cue (post-code adrenaline drop), craving (regulation, not sugar), response (the nearest food), reward (a body that finally stops shaking) and sees that the response slot is the only one she can change at work"
+    },
+    {
+      "domain": "a high school band director trying to get students to actually practice between rehearsals",
+      "audience": "a teacher who has tried sticker charts, lectures, and parent emails",
+      "stakes": "whether the spring concert sounds like a group of musicians or a group of kids who only play on Tuesdays",
+      "format": "decision_point",
+      "requiredBeat": "the director decides between fixing the cue (a practice-time text from a section leader) and fixing the reward (a recorded clip the student can send to a grandparent), and chooses the reward because that is the slot the loop is missing"
+    },
+    {
+      "domain": "two roommates arguing about the dishes after a long week",
+      "audience": "adults sharing a small apartment where one person always cracks first",
+      "stakes": "whether a five-year friendship survives a sink that is never empty",
+      "format": "dialogue",
+      "requiredBeat": "the conversation moves from blame to loop-mapping out loud, ending when one roommate names that the cue is invisible to the other person because the sink is around a corner from the second bedroom"
+    },
+    {
+      "domain": "a freelance illustrator who opens Instagram every time a drawing gets hard",
+      "audience": "a creative working alone from a studio apartment",
+      "stakes": "a book cover deadline she has already pushed twice",
+      "format": "vignette",
+      "requiredBeat": "a tight scene of the moment her stylus hovers, the difficulty registers as a flicker of dread, and the phone is already in her hand — narrated so the reader can name cue, craving, response, and reward in order without the text labeling them",
+      "mode": "scene"
+    },
+    {
+      "domain": "a recently retired structural engineer who cannot get himself to walk the dog before noon",
+      "audience": "a 68-year-old whose identity used to come from a job site",
+      "stakes": "a knee his doctor says will lock up if he stops moving daily",
+      "format": "thought_experiment",
+      "requiredBeat": "the reader is asked to predict which of the four slots is broken before the chapter reveals that the cue (the alarm that used to mean 'site visit') has been deleted with retirement, not the response"
+    },
+    {
+      "domain": "a line cook who has quietly stopped drinking after shifts and wants to understand why this attempt stuck when three earlier ones failed",
+      "audience": "a 31-year-old in the first eight months of sobriety",
+      "stakes": "a streak he is afraid to examine too closely in case he breaks the spell",
+      "format": "reflection",
+      "requiredBeat": "he walks back through the loop and finds that the reward slot changed — the post-shift unwind is now a long shower and a podcast, not abstinence-as-deprivation — and recognizes that earlier attempts failed because they only attacked the response"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 4,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

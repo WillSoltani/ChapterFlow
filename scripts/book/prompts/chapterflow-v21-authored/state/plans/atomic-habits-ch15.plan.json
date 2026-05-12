@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch15",
+  "number": 15,
+  "title": "The Cardinal Rule of Behavior Change",
+  "coreMove": "Attach an immediate, sensory reward to a behavior whose real payoff is delayed, so the present self casts a vote the future self will thank it for.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a pediatric ICU nurse trying to drink water across a twelve-hour shift after three years of chronic dehydration headaches",
+      "audience": "a shift worker whose job punishes any pause",
+      "stakes": "whether she finishes the rotation without the 4pm migraine that has cost her two sick days a month",
+      "format": "vignette",
+      "requiredBeat": "she ties each finished water bottle to dropping a paperclip from one scrub pocket to the other, and notices that the small clink is what actually keeps her going, not the distant promise of feeling better"
+    },
+    {
+      "domain": "a freelance illustrator who keeps blowing through her quarterly tax set-aside",
+      "audience": "a self-employed creative with irregular income",
+      "stakes": "a $4,200 tax bill in April she has no plan to cover",
+      "format": "decision_point",
+      "requiredBeat": "after each client payment hits, she must choose between the dopamine of an immediate purchase and a same-day transfer to a 'Future Me' account whose name and balance she sees every time she opens her banking app"
+    },
+    {
+      "domain": "a high school orchestra teacher trying to give one specific piece of praise to every student each week",
+      "audience": "a teacher with 140 students across five sections",
+      "stakes": "three of his seniors are quietly deciding whether to drop music next semester",
+      "format": "postmortem",
+      "requiredBeat": "after a week where he failed, he reconstructs why the gold-star sticker he gave himself on a desk calendar — not the abstract goal of 'being a better teacher' — was the satisfying signal that had been carrying the streak"
+    },
+    {
+      "domain": "a recently widowed retiree trying to walk to the corner mailbox each morning after eight months of barely leaving the house",
+      "audience": "a 71-year-old whose grief has hardened into immobility",
+      "stakes": "her cardiologist's warning that another sedentary quarter will likely mean a second stent",
+      "format": "scene",
+      "requiredBeat": "she places a single butterscotch candy on the kitchen counter to unwrap only on return, and the unwrapping — the foil, the smell — is what her body learns to walk toward, not the cardiologist's chart"
+    },
+    {
+      "domain": "a line cook studying for the food-handler recertification exam he has failed twice",
+      "audience": "an adult learner with shaky reading confidence",
+      "stakes": "losing the kitchen lead position he was promised if he passes by June",
+      "format": "dialogue",
+      "requiredBeat": "his sister, on a phone call, helps him design a thirty-minute study block that ends with him crossing off the day on a wall calendar in red marker, and they argue about whether the red mark is 'silly' until he admits the streak is the only reason he opened the book on Tuesday"
+    },
+    {
+      "domain": "a city bus driver trying to stop snapping at his teenage daughter during the evening handoff",
+      "audience": "a parent of a 14-year-old whose patience is gone by 5pm",
+      "stakes": "a relationship that has gone from daily conversation to one-word answers in four months",
+      "format": "reflection",
+      "requiredBeat": "he writes one sentence in a pocket notebook each night naming a moment he stayed calm, and realizes the act of writing it — not the daughter's reaction, which is still cold — is the reward keeping the new response alive long enough for her to eventually notice"
+    }
+  ],
+  "quizFocus": {
+    "count": 10,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14
+}

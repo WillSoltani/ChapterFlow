@@ -1,0 +1,340 @@
+{
+  "bookId": "made-to-stick",
+  "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+  "author": "Chip Heath, Dan Heath",
+  "promotedAt": "2026-05-12T00:59:14.208Z",
+  "chapterCount": 6,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A restaurant owner wants servers to act faster during rush. Which rule is most likely to work at the pass?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"rikke pinches a wet\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A city planner wants residents to care about water loss from old pipes. Which first move best avoids random shock?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"nolan holds a silent\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team remembers a funny mascot from training but forgets the process change it was meant to teach. What failed?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit uses a single child’s backpack to explain school supply needs. What must it protect to stay honest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A policy memo says streamline intake, and every department builds a different fix. Which diagnosis fits?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A museum educator wants visitors to understand erosion, not just hear the term. Which exhibit choice best fits?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"della sets a chipped\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit shares a dramatic photo from one site. What must be added to keep trust high?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A restaurant promises portion sizes are fair. A client doubts it. Which response best uses testability?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"harlan sets a cracked\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A donor analyst argues that emotional appeals are anti-reason. What response best fits the sticky move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader uses identity by saying, real professionals never make mistakes. What is wrong with that emotional appeal?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"bea lifts a cold\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"deepRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"fastRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "E2",
+            "severity": "major",
+            "unit": "breakdown",
+            "message": "breakdown: tiers \"deepRead\" and \"fullRead\" open with identical sentence — tiers must progress"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Naya slides a cafeteria tray photo across her desk at 1:35 p.m., two peer mentors leaning in while rain streaks the counseling-office window. \"What does include quiet students mean tomorrow?\" she ask…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit wants volunteers to welcome isolated seniors. Which plot is most aligned?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A vivid story is spreading fast, but people draw a harmful lesson from it. What does that show?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A supervisor wants a maintenance rule to be remembered during morning setup. Which approach best uses story as carrier?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A startup wants people to invent under tight limits. Which story would be strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"marta sets a dented\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 34
+  },
+  "bookGate": {
+    "bookId": "made-to-stick",
+    "chapterCount": 6,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        20,
+        17,
+        17
+      ],
+      "answerPositionPctMax": 0.37037037037037035,
+      "totalQuizQuestions": 54,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": []
+    }
+  }
+}

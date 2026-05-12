@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Users, CheckCircle, AlertCircle } from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
@@ -42,9 +42,11 @@ function PairAcceptInner() {
     }
   }, [code]);
 
-  // Auto-accept on mount when code is present
+  // Auto-accept on mount when code is present (ref guards against strict-mode double-fire)
+  const startedRef = useRef(false);
   useEffect(() => {
-    if (code && state === "idle") {
+    if (code && state === "idle" && !startedRef.current) {
+      startedRef.current = true;
       handleAccept();
     }
   }, [code, state, handleAccept]);

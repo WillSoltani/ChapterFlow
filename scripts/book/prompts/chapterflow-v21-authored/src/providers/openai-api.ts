@@ -40,6 +40,10 @@ const PRICE_PER_M: Record<string, { in: number; out: number }> = {
   "gpt-5.5":     { in: 5.00, out: 20.00 },
 };
 
+function usesCompletionTokenLimit(model: string): boolean {
+  return /^(gpt-5|o[134]|o\d)/.test(model);
+}
+
 let _client: OpenAI | null = null;
 function client(): OpenAI {
   if (_client) return _client;
@@ -72,13 +76,19 @@ export const OpenAiApiProvider: Provider = {
     messages.push({ role: "user", content: userText });
 
     const startedAt = Date.now();
-    const response = await client().chat.completions.create({
+    const tokenLimit = opts.maxTokens ?? 4096;
+    const request: OpenAI.ChatCompletionCreateParamsNonStreaming = {
       model,
       messages,
-      max_tokens: opts.maxTokens ?? 4096,
-      temperature: opts.temperature ?? 0.7,
       response_format: opts.jsonMode ? { type: "json_object" } : undefined,
-    });
+    };
+    if (usesCompletionTokenLimit(model)) {
+      request.max_completion_tokens = tokenLimit;
+    } else {
+      request.max_tokens = tokenLimit;
+      request.temperature = opts.temperature ?? 0.7;
+    }
+    const response = await client().chat.completions.create(request);
     const durationMs = Date.now() - startedAt;
 
     const raw = response.choices[0]?.message?.content ?? "";

@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch11",
+  "number": 11,
+  "title": "Walk Slowly, but Never Backward",
+  "coreMove": "When stuck preparing, convert the next hour into reps performed rather than time logged.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a community college ceramics student deciding whether to throw fifty rough pots this month or perfect one",
+      "audience": "a learner who confuses studying a craft with practicing it",
+      "stakes": "whether her end-of-semester portfolio shows real skill growth or one polished beginner piece",
+      "format": "decision_point",
+      "requiredBeat": "she catches herself preparing — sketching glazes, rereading the textbook — and reframes the question as how many times her hands touch clay this week"
+    },
+    {
+      "domain": "a junior associate at an immigration law firm who keeps re-outlining a brief instead of writing a draft",
+      "audience": "a knowledge worker mistaking research for progress",
+      "stakes": "a filing deadline three days out and a partner who will read whatever exists at 9am Friday",
+      "format": "vignette",
+      "requiredBeat": "the scene lands on the moment she opens a blank document and writes one bad paragraph, registering that the bad paragraph is the habit forming"
+    },
+    {
+      "domain": "two friends planning a half-marathon training block over text messages",
+      "audience": "a beginner runner who has bought gear three times without ever finishing a week",
+      "stakes": "whether September's race is real or another aborted plan",
+      "format": "dialogue",
+      "requiredBeat": "one friend pushes back on the elaborate training spreadsheet and proposes thirty short runs in thirty days, even ones under a mile, with the explicit logic that frequency builds the runner"
+    },
+    {
+      "domain": "a high school band director rebuilding the brass section after a year of cancelled rehearsals",
+      "audience": "a teacher choosing between long perfect rehearsals and short frequent ones",
+      "stakes": "a winter concert eight weeks away and students who have lost the embouchure",
+      "format": "before_after",
+      "requiredBeat": "the shift from one ninety-minute weekly rehearsal to four twenty-minute daily ones, with the specific observation that the students stopped dreading the horn case"
+    },
+    {
+      "domain": "a dispatcher at a regional ambulance service journaling about her abandoned watercolor practice",
+      "audience": "a hobbyist who treats the absence of a perfect setup as permission to skip",
+      "stakes": "whether the painting habit survives a third move in two years",
+      "format": "reflection",
+      "requiredBeat": "she names the precise lie — that she needs the right desk, the right light — and decides that ten minutes on the kitchen counter counts as a rep"
+    },
+    {
+      "domain": "a hospital pharmacist reviewing a six-month attempt to learn conversational Tagalog",
+      "audience": "an adult learner whose progress has stalled",
+      "stakes": "whether she can hold a basic conversation with her father-in-law at his birthday in July",
+      "format": "postmortem",
+      "requiredBeat": "she audits her log and sees that the eleven days of perfect hour-long sessions taught her less than the forty days of five-minute flashcard reps would have"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.78
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12
+}

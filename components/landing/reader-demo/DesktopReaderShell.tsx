@@ -19,7 +19,6 @@ import {
   DEMO_CHAPTER_ID,
   DEMO_EXAMPLES,
   DEMO_IMPLEMENTATION_PLAN,
-  DEMO_KEY_QUOTE,
   DEMO_KEY_TAKEAWAY_CARD,
   DEMO_PREDICTION_PROMPT_BY_DEPTH,
   DEMO_QUIZ_BY_DEPTH,
@@ -57,7 +56,6 @@ export function DesktopReaderShell() {
   const [bookmarkedTakeaways, setBookmarkedTakeaways] = useState<Set<number>>(
     new Set()
   );
-  const [showRecap, setShowRecap] = useState(false);
   const [exampleFilter, setExampleFilter] = useState<ExampleFilter>("all");
 
   const hasInteracted = useRef(false);
@@ -115,11 +113,6 @@ export function DesktopReaderShell() {
     },
     [markInteracted]
   );
-
-  const handleToggleRecap = useCallback(() => {
-    markInteracted();
-    setShowRecap((v) => !v);
-  }, [markInteracted]);
 
   const handleSaveTakeaways = useCallback(() => {
     markInteracted();
@@ -202,10 +195,7 @@ export function DesktopReaderShell() {
                 <SummaryCard
                   blocks={summaryBlocks}
                   takeaways={takeaways}
-                  keyQuote={DEMO_KEY_QUOTE}
                   recap={recap}
-                  showRecap={showRecap}
-                  onToggleRecap={handleToggleRecap}
                   onSaveTakeaways={handleSaveTakeaways}
                   bookmarkedTakeaways={bookmarkedTakeaways}
                   onToggleBookmarkTakeaway={handleToggleBookmark}

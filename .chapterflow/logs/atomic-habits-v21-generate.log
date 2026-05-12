@@ -1,0 +1,1182 @@
+[17:37:14] === generateBook: Atomic Habits (20 chapters) ===
+[17:37:14] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[17:37:14] brief[atomic-habits]: generating…
+[17:38:03] plan[atomic-habits-ch01]: generating…
+[17:38:30] plan: 6 examples, formats: vignette, scene, dialogue, decision_point, thought_experiment, postmortem
+[17:38:30] source: ch1 source metadata loaded (342c)
+[17:38:30] hook + breakdown: generating in parallel…
+[17:39:05] hook: "At thirty-one degrees the ice cube looks exactly like it did at twenty-six, and then one more degree changes everything."
+[17:39:05] draft breakdown: fastRead=606c, deepRead=1570c, fullRead=2838c
+[17:39:05] voice pass: iterating (max 3)…
+[17:39:24] voice pass iter 1 done (fastRead=575c, deepRead=1593c, fullRead=2971c)
+[17:39:24] voice pass iter 2: 1 findings, re-running
+[17:39:52] voice pass iter 3: 1 findings, re-running
+[17:40:28] line editor: surgical polish pass…
+[17:40:41] line editor: done (fastRead=583c, deepRead=1374c, fullRead=2860c)
+[17:40:41] librarian: 549 forbidden names from recent books
+[17:40:41] examples: over-generating 6 × 3…
+[17:41:35]   example[0] [vignette] "Liesel and the Second Violins Three Weeks Before Spring" (54.0s)
+[17:42:38]   example[1] [scene] "Mihail Counts an Hour He Has Been Buying Back" (62.8s)
+[17:44:09]   example[2] [dialogue] "Wendolyn and Asa at the Kitchen Table on Month Six" (90.8s)
+[17:46:42]   example[3] [decision_point] "Padma's patient is ready to quit at week eleven" (153.0s)
+[17:48:47]   example[4] [thought_experiment] "The Room You Warm One Degree at a Time" (125.0s)
+[17:50:07]   example[5] [postmortem] "Ingerose almost cuts Pip the week before her pipeline turns" (80.7s)
+[17:50:07] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[17:50:36] Chapter 1 FAILED: cards invalid: rc0 contains meta-reference "the chapter"
+[17:50:36] Aborting book generation. Pass continueOnError=true to skip and continue.
+[17:50:36] 
+=== Book gate (0 chapters succeeded, 1 failed) ===
+[17:50:36] Book gate: PASS (atomic-habits, 0 chapters)
+  Quiz answer positions: 0 / 0 / 0 (max 0.0%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[17:50:36] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[17:50:36] 
+=== generateBook done in 803s (13.4 min) ===
+[17:51:15] === generateBook: Atomic Habits (20 chapters) ===
+[17:51:15] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[17:51:15] brief[atomic-habits]: reusing cached
+[17:51:15] plan[atomic-habits-ch01]: reusing cached
+[17:51:15] plan: 6 examples, formats: vignette, scene, dialogue, decision_point, thought_experiment, postmortem
+[17:51:15] source: ch1 source metadata loaded (342c)
+[17:51:15] hook + breakdown: generating in parallel…
+[17:51:52] hook: "At thirty-one degrees the ice cube looks exactly like it did at twenty-five, and then one more degree changes everything."
+[17:51:52] draft breakdown: fastRead=547c, deepRead=1305c, fullRead=2777c
+[17:51:52] voice pass: iterating (max 3)…
+[17:52:15] voice pass iter 1 done (fastRead=546c, deepRead=1238c, fullRead=2803c)
+[17:52:15] voice pass iter 2: 1 findings, re-running
+[17:52:29] voice pass: clean after iter 2, stopping
+[17:52:29] line editor: surgical polish pass…
+[17:52:41] line editor: done (fastRead=525c, deepRead=1246c, fullRead=2754c)
+[17:52:41] librarian: 559 forbidden names from recent books
+[17:52:41] examples: over-generating 6 × 3…
+[17:54:06]   example[0] [vignette] "Ottavia Watches Her Second Violins After Eight Flat Concerts" (85.5s)
+[17:54:51]   example[1] [scene] "Ronan Buys Back an Hour at the Pasta Station" (44.6s)
+[17:55:17]   example[2] batch 1 all failed: example invalid: reused name "Look" already present in prior example of this chapter; reused name "Wendell" already present in prior example of this chapter | example invalid: reused name "Down" already present in prior example of this chapter; reused name "Let" already present in prior example of this chapter; reused name "Look" already present in prior example of this chapter | example invalid: reused name "Look" already present in prior example of this chapter; reused name "Twenty" already present in prior example of this chapter
+[17:55:17]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[17:56:47]   example[2] [dialogue] "Imani and Darius Argue Over the Index Fund at the Kitchen Table" (115.8s)
+[17:59:13] Chapter 1 FAILED: claude CLI timed out after 120000ms
+[17:59:13] Aborting book generation. Pass continueOnError=true to skip and continue.
+[17:59:13] 
+=== Book gate (0 chapters succeeded, 1 failed) ===
+[17:59:13] Book gate: PASS (atomic-habits, 0 chapters)
+  Quiz answer positions: 0 / 0 / 0 (max 0.0%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[17:59:13] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[17:59:13] 
+=== generateBook done in 478s (8.0 min) ===
+[18:02:03] === generateBook: Atomic Habits (20 chapters) ===
+[18:02:03] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[18:02:03] brief[atomic-habits]: reusing cached
+[18:02:03] plan[atomic-habits-ch01]: reusing cached
+[18:02:03] plan: 6 examples, formats: vignette, scene, dialogue, decision_point, thought_experiment, postmortem
+[18:02:03] source: ch1 source metadata loaded (342c)
+[18:02:03] hook + breakdown: generating in parallel…
+[18:03:07] hook: "The ice cube does not melt at thirty-one degrees, and people quit habits in exactly that one-degree gap."
+[18:03:07] draft breakdown: fastRead=418c, deepRead=1558c, fullRead=2816c
+[18:03:07] voice pass: iterating (max 3)…
+[18:04:16] voice pass iter 1 done (fastRead=471c, deepRead=1471c, fullRead=2676c)
+[18:04:16] voice pass iter 2: 2 findings, re-running
+[18:04:30] voice pass iter 3: 1 findings, re-running
+[18:05:09] line editor: surgical polish pass…
+[18:05:26] line editor: done (fastRead=512c, deepRead=1464c, fullRead=2665c)
+[18:05:26] librarian: 601 forbidden names from recent books
+[18:05:26] examples: over-generating 6 × 3…
+[18:06:49]   example[0] [vignette] "Bregje watches her second violins miss the same passage again" (82.5s)
+[18:08:41]   example[1] [scene] "Tomasz Does the Math at the Pasta Station Before Service" (112.5s)
+[18:09:53]   example[2] [dialogue] "Oksana and Ezekiel at the kitchen table, month six in" (72.1s)
+[18:11:38]   example[3] [decision_point] "Sylvie's Stroke Patient Wants to Quit at Week Eleven" (104.6s)
+[18:13:19]   example[4] [thought_experiment] "Astrid Warms a Sealed Chamber One Degree at a Time" (100.7s)
+[18:14:31]   example[5] [postmortem] "Lorenza Reopens the PIP She Almost Filed on Dembe" (72.2s)
+[18:14:31] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[18:14:59] Chapter 1 FAILED: cards invalid: rc0 contains meta-reference "the chapter"
+[18:14:59] Aborting book generation. Pass continueOnError=true to skip and continue.
+[18:14:59] 
+=== Book gate (0 chapters succeeded, 1 failed) ===
+[18:14:59] Book gate: PASS (atomic-habits, 0 chapters)
+  Quiz answer positions: 0 / 0 / 0 (max 0.0%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[18:14:59] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[18:14:59] 
+=== generateBook done in 776s (12.9 min) ===
+[18:15:59] === generateBook: Atomic Habits (20 chapters) ===
+[18:15:59] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[18:15:59] brief[atomic-habits]: reusing cached
+[18:15:59] plan[atomic-habits-ch01]: reusing cached
+[18:15:59] plan: 6 examples, formats: vignette, scene, dialogue, decision_point, thought_experiment, postmortem
+[18:15:59] source: ch1 source metadata loaded (342c)
+[18:15:59] hook + breakdown: generating in parallel…
+[18:17:29] hook: "The orchestra has not sounded better in eight weeks, and that is exactly when most teachers reseat the section."
+[18:17:29] draft breakdown: fastRead=506c, deepRead=1318c, fullRead=2932c
+[18:17:29] voice pass: iterating (max 3)…
+[18:17:55] voice pass iter 1 done (fastRead=561c, deepRead=1278c, fullRead=3178c)
+[18:17:55] voice pass iter 2: 1 findings, re-running
+[18:18:10] voice pass iter 3: 1 findings, re-running
+[18:18:58] line editor: surgical polish pass…
+[18:19:11] line editor: done (fastRead=581c, deepRead=1217c, fullRead=3125c)
+[18:19:11] librarian: 636 forbidden names from recent books
+[18:19:11] examples: over-generating 6 × 3…
+[18:21:13]   example[0] [vignette] "Brisa Closes the Notebook on the Reseating Roster" (122.4s)
+[18:22:48]   example[1] [scene] "Sefu Does the Napkin Math Before the Saturday Rush" (94.8s)
+[18:23:46]   example[2] batch 1 all failed: example invalid: reused name "From" already present in prior example of this chapter | example invalid: reused name "Look" already present in prior example of this chapter; reused name "Right" already present in prior example of this chapter | example invalid: reused name "Let" already present in prior example of this chapter; reused name "Look" already present in prior example of this chapter
+[18:23:46]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[18:24:32]   example[2] [dialogue] "Ines and Davit Argue Over the Index Fund at Month Six" (104.2s)
+[18:25:43]   example[3] [decision_point] "Aravind shows the dynamometer reading to a patient ready to quit" (70.5s)
+[18:26:53]   example[4] [thought_experiment] "You, the dial, and an ice cube that will not move" (70.2s)
+[18:27:39]   example[5] [postmortem] "Ingrith reopens the file on the rep she almost cut" (45.4s)
+[18:27:39] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[18:29:05] quiz=9q, cards=4, plan=4 if-thens, tryThisNow=yes
+[18:29:05] memorable lines: marking 3 quotable lines…
+[18:29:45] memorable lines: 3 marked
+[18:29:45] Ship gate: PASS
+  blockers: 0
+  majors: 5
+  minors: 1
+[18:29:45] librarian: ingested. Book now has 16 unique names across 1 chapters.
+[18:29:45] chapter done: 825.8s wall
+[18:29:45] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[18:29:45] brief[atomic-habits]: reusing cached
+[18:29:45] plan[atomic-habits-ch02]: generating…
+[18:30:11] plan: 6 examples, formats: scene, vignette, dialogue, decision_point, thought_experiment, reflection
+[18:30:11] source: ch2 source metadata loaded (186c)
+[18:30:11] hook + breakdown: generating in parallel…
+[18:31:25] hook: "Every small action is a ballot, and the question is not whether you voted but which person you elected."
+[18:31:25] draft breakdown: fastRead=500c, deepRead=1317c, fullRead=3351c
+[18:31:25] voice pass: iterating (max 3)…
+[18:32:10] voice pass iter 1 done (fastRead=486c, deepRead=1282c, fullRead=3142c)
+[18:32:10] voice pass iter 2: 1 findings, re-running
+[18:32:24] voice pass iter 3: 1 findings, re-running
+[18:32:55] line editor: surgical polish pass…
+[18:33:07] line editor: done (fastRead=507c, deepRead=1304c, fullRead=3105c)
+[18:33:07] librarian: 665 forbidden names from recent books
+[18:33:07] examples: over-generating 6 × 3…
+[18:34:22]   example[0] [scene] "Bryndis Skips the Breakroom Donut at 3 a.m." (74.1s)
+[18:35:57]   example[1] [vignette] "Rasmus, Band Director, Plays Fifteen Bad Minutes After Dinner" (95.5s)
+[18:37:08]   example[2] [dialogue] "Ottavia quits convincing her brother she has actually changed" (71.3s)
+[18:39:00]   example[3] [decision_point] "Zara at 11pm chooses one clean page over one more case" (111.3s)
+[18:39:53]   example[4] batch 1 all failed: example invalid: reused name "For" already present in prior example of this chapter; contains meta-reference "the book" — teach the idea, don't narrate the chapter | example invalid: reused name "Picture" already present in prior example of this chapter; contains meta-reference "the book" — teach the idea, don't narrate the chapter | example invalid: reused name "Picture" already present in prior example of this chapter
+[18:39:53]   example[4] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[18:40:46]   example[4] [thought_experiment] "Thaddeus, sixty years 'not a reader,' opens chapter one" (106.0s)
+[18:42:11]   example[5] [reflection] "Ilse opens her sketchbook after seven empty days" (84.8s)
+[18:42:11] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[18:43:55] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[18:43:55] memorable lines: marking 3 quotable lines…
+[18:44:46] memorable lines: 3 marked
+[18:44:46] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 1
+[18:44:46] librarian: ingested. Book now has 31 unique names across 2 chapters.
+[18:44:46] chapter done: 901.5s wall
+[18:44:46] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[18:44:46] brief[atomic-habits]: reusing cached
+[18:44:46] plan[atomic-habits-ch03]: generating…
+[18:45:15] plan: 6 examples, formats: postmortem, decision_point, dialogue, vignette, thought_experiment, reflection
+[18:45:15] source: ch3 source metadata loaded (431c)
+[18:45:15] hook + breakdown: generating in parallel…
+[18:45:55] hook: "A nurse blames willpower for the vending machine at 3am, but the loop blames adrenaline, and only one of them is right."
+[18:45:55] draft breakdown: fastRead=545c, deepRead=1470c, fullRead=3419c
+[18:45:55] voice pass: iterating (max 3)…
+[18:46:12] voice pass iter 1 done (fastRead=636c, deepRead=1546c, fullRead=3360c)
+[18:46:12] voice pass iter 2: 1 findings, re-running
+[18:46:51] voice pass iter 3: 1 findings, re-running
+[18:47:08] line editor: surgical polish pass…
+[18:47:39] line editor: done (fastRead=724c, deepRead=1617c, fullRead=3390c)
+[18:47:39] librarian: 711 forbidden names from recent books
+[18:47:39] examples: over-generating 6 × 3…
+[18:49:08]   example[0] [postmortem] "Jendayi reconstructs the vending machine run after a code blue" (88.6s)
+[18:50:25]   example[1] [decision_point] "Thandiwe picks the lever that will fill the practice room" (77.4s)
+[18:51:47]   example[2] [dialogue] "Pavlina and Bashir map the sink loop at midnight" (81.9s)
+[18:53:44]   example[3] [vignette] "Yusrah's stylus hovers over a cover that will not resolve" (116.3s)
+[18:54:55]   example[4] batch 1 all failed: example invalid: reused name "Suppose" already present in prior example of this chapter | example invalid: reused name "Picture" already present in prior example of this chapter | example invalid: reused name "Will" already present in prior example of this chapter
+[18:54:55]   example[4] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[18:55:34]   example[4] [thought_experiment] "Haruto, Retired, and the Leash That Waits by the Door" (110.0s)
+[18:56:50]   example[5] [reflection] "Emeka, eight months in, finally looks at the loop" (76.3s)
+[18:56:50] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[18:59:00] quiz=10q, cards=5, plan=4 if-thens, tryThisNow=yes
+[18:59:00] memorable lines: marking 3 quotable lines…
+[18:59:32] memorable lines: 3 marked
+[18:59:32] Ship gate: PASS
+  blockers: 0
+  majors: 2
+  minors: 1
+[18:59:32] librarian: ingested. Book now has 43 unique names across 3 chapters.
+[18:59:32] chapter done: 885.6s wall
+[18:59:32] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[18:59:32] brief[atomic-habits]: reusing cached
+[18:59:32] plan[atomic-habits-ch04]: generating…
+[19:00:00] plan: 6 examples, formats: vignette, postmortem, dialogue, scene, decision_point, reflection
+[19:00:00] source: ch4 source metadata loaded (261c)
+[19:00:00] hook + breakdown: generating in parallel…
+[19:00:54] hook: "A paramedic calls a cardiac event from the doorway, before any instrument agrees, because she has seen that exact gray before."
+[19:00:54] draft breakdown: fastRead=442c, deepRead=1466c, fullRead=2931c
+[19:00:54] voice pass: iterating (max 3)…
+[19:01:21] voice pass iter 1 done (fastRead=464c, deepRead=1380c, fullRead=2867c)
+[19:01:21] voice pass iter 2: 1 findings, re-running
+[19:01:37] voice pass iter 3: 1 findings, re-running
+[19:02:15] line editor: surgical polish pass…
+[19:02:28] line editor: done (fastRead=521c, deepRead=1403c, fullRead=2844c)
+[19:02:28] librarian: 720 forbidden names from recent books
+[19:02:28] examples: over-generating 6 × 3…
+[19:03:36]   example[0] [vignette] "Zubeyde Names the Gray She Saw in the Doorway" (67.9s)
+[19:04:01]   example[1] [postmortem] "Dr. Mireia walks her own clinic looking for the cue" (25.3s)
+[19:04:28]   example[2] batch 1 all failed: example invalid: reused name "Same" already present in prior example of this chapter; reused name "Drawer" already present in prior example of this chapter | example invalid: reused name "Almost" already present in prior example of this chapter; reused name "Walk" already present in prior example of this chapter | example invalid: reused name "Same" already present in prior example of this chapter; reused name "Walk" already present in prior example of this chapter
+[19:04:28]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[19:05:26]   example[2] [dialogue] "Desmond and his band director audit the trumpet case" (84.9s)
+[19:06:12]   example[3] [scene] "Orinda Points at the Eastbound Signal at 3 a.m." (45.2s)
+[19:07:34]   example[4] [decision_point] "Tobin Runs a Scorecard on a Drifting Wednesday" (82.4s)
+[19:09:27]   example[5] [reflection] "Helka Parks the Car and Lists What Pulled at Her" (113.0s)
+[19:09:27] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[19:11:30] Chapter 4 FAILED: quiz invalid: correctIndex position 1 wins 67% (max 50%)
+[19:11:30] Aborting book generation. Pass continueOnError=true to skip and continue.
+[19:11:30] 
+=== Book gate (3 chapters succeeded, 1 failed) ===
+[19:11:30] Book gate: PASS (atomic-habits, 3 chapters)
+  Quiz answer positions: 8 / 11 / 9 (max 39.3%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[19:11:30] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[19:11:30] 
+=== generateBook done in 3331s (55.5 min) ===
+[19:12:14] === generateBook: Atomic Habits (20 chapters) ===
+[19:12:14] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[19:12:14] resume: atomic-habits-ch01 already generated AND ingested — skipping
+[19:12:14] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[19:12:14] resume: atomic-habits-ch02 already generated AND ingested — skipping
+[19:12:14] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[19:12:14] resume: atomic-habits-ch03 already generated AND ingested — skipping
+[19:12:14] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[19:12:14] brief[atomic-habits]: reusing cached
+[19:12:14] plan[atomic-habits-ch04]: reusing cached
+[19:12:14] plan: 6 examples, formats: vignette, postmortem, dialogue, scene, decision_point, reflection
+[19:12:14] source: ch4 source metadata loaded (261c)
+[19:12:14] hook + breakdown: generating in parallel…
+[19:13:17] hook: "A paramedic calls a cardiac event from the doorway, before a single instrument confirms it, on a cue she cannot yet name."
+[19:13:17] draft breakdown: fastRead=531c, deepRead=1473c, fullRead=3351c
+[19:13:17] voice pass: iterating (max 3)…
+[19:14:00] voice pass iter 1 done (fastRead=516c, deepRead=1389c, fullRead=3026c)
+[19:14:00] voice pass iter 2: 1 findings, re-running
+[19:14:55] voice pass: clean after iter 2, stopping
+[19:14:55] line editor: surgical polish pass…
+[19:15:09] line editor: done (fastRead=511c, deepRead=1408c, fullRead=2943c)
+[19:15:09] librarian: 720 forbidden names from recent books
+[19:15:09] examples: over-generating 6 × 3…
+[19:16:17]   example[0] [vignette] "Bexley names the gray she saw before she knew she saw it" (68.1s)
+[19:16:42]   example[1] [postmortem] "Marisha Walks Her Own Office Looking for the Cue" (24.9s)
+[19:17:25]   example[2] [dialogue] "Merritt and his trumpet student audit a practice routine out loud" (42.6s)
+[19:18:07]   example[3] [scene] "Tamsyn Points at the Eastbound Signal at 2:14 a.m." (42.4s)
+[19:19:16]   example[4] [decision_point] "Rashed Catches the Tab That Opens Itself on a Wednesday" (68.6s)
+[19:19:59]   example[5] [reflection] "Orinthia parks the Subaru and counts what tugged at her" (43.1s)
+[19:19:59] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[19:22:28] Chapter 4 FAILED: quiz invalid: correctIndex position 1 wins 67% (max 50%)
+[19:22:28] Aborting book generation. Pass continueOnError=true to skip and continue.
+[19:22:28] 
+=== Book gate (3 chapters succeeded, 1 failed) ===
+[19:22:28] Book gate: PASS (atomic-habits, 3 chapters)
+  Quiz answer positions: 8 / 11 / 9 (max 39.3%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[19:22:28] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[19:22:28] 
+=== generateBook done in 614s (10.2 min) ===
+[19:23:13] === generateBook: Atomic Habits (20 chapters) ===
+[19:23:13] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[19:23:13] resume: atomic-habits-ch01 already generated AND ingested — skipping
+[19:23:13] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[19:23:13] resume: atomic-habits-ch02 already generated AND ingested — skipping
+[19:23:13] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[19:23:13] resume: atomic-habits-ch03 already generated AND ingested — skipping
+[19:23:13] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[19:23:13] brief[atomic-habits]: reusing cached
+[19:23:13] plan[atomic-habits-ch04]: reusing cached
+[19:23:13] plan: 6 examples, formats: vignette, postmortem, dialogue, scene, decision_point, reflection
+[19:23:13] source: ch4 source metadata loaded (261c)
+[19:23:13] hook + breakdown: generating in parallel…
+[19:24:08] hook: "A paramedic calls a cardiac event from the doorway, before the monitor, before the pulse, on a shade of gray she cannot yet name."
+[19:24:08] draft breakdown: fastRead=504c, deepRead=1276c, fullRead=2965c
+[19:24:08] voice pass: iterating (max 3)…
+[19:24:22] voice pass iter 1 done (fastRead=509c, deepRead=1280c, fullRead=3056c)
+[19:24:22] voice pass iter 2: 1 findings, re-running
+[19:25:00] voice pass: clean after iter 2, stopping
+[19:25:00] line editor: surgical polish pass…
+[19:25:12] line editor: done (fastRead=499c, deepRead=1280c, fullRead=3003c)
+[19:25:12] librarian: 720 forbidden names from recent books
+[19:25:12] examples: over-generating 6 × 3…
+[19:26:02]   example[0] [vignette] "Fionnula Reads a Doorway Before the Monitor Speaks" (49.3s)
+[19:27:12]   example[1] [postmortem] "Vianne walks her own clinic looking for the cues" (70.8s)
+[19:27:55]   example[2] batch 1 all failed: example invalid: reused name "Walk" already present in prior example of this chapter | example invalid: reused name "Walk" already present in prior example of this chapter | example invalid: reused name "Walk" already present in prior example of this chapter
+[19:27:55]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[19:29:18]   example[2] [dialogue] "Desmond and Mr. Halverson Walk Through the First Five Minutes" (125.2s)
+[19:29:41]   example[3] [scene] "Tomasz Points at the Eastbound Signal at 2:14 a.m." (23.8s)
+[19:31:04]   example[4] [decision_point] "Tarquin Runs a Scorecard on a Wednesday Afternoon" (82.2s)
+[19:31:48]   example[5] [reflection] "Merritt Parks the Car and Counts What Pulled Her" (44.4s)
+[19:31:48] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[19:34:42] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[19:34:42] memorable lines: marking 3 quotable lines…
+[19:35:13] memorable lines: 3 marked
+[19:35:13] Ship gate: PASS
+  blockers: 0
+  majors: 4
+  minors: 0
+[19:35:13] librarian: ingested. Book now has 62 unique names across 4 chapters.
+[19:35:13] chapter done: 720.5s wall
+[19:35:13] 
+--- Chapter 5/20: The Best Way to Start a New Habit ---
+[19:35:13] brief[atomic-habits]: reusing cached
+[19:35:13] plan[atomic-habits-ch05]: generating…
+[19:35:42] plan: 6 examples, formats: scene, dialogue, vignette, decision_point, before_after, reflection
+[19:35:42] source: ch5 source metadata loaded (358c)
+[19:35:42] hook + breakdown: generating in parallel…
+[19:36:23] hook: "You will not start the habit on the day you decide to. You will start it the first time you say when and where."
+[19:36:23] draft breakdown: fastRead=491c, deepRead=1488c, fullRead=3091c
+[19:36:23] voice pass: iterating (max 3)…
+[19:37:14] voice pass iter 1 done (fastRead=513c, deepRead=1504c, fullRead=2827c)
+[19:37:14] voice pass iter 2: 1 findings, re-running
+[19:37:45] voice pass iter 3: 1 findings, re-running
+[19:38:09] line editor: surgical polish pass…
+[19:38:22] line editor: done (fastRead=513c, deepRead=1548c, fullRead=2834c)
+[19:38:22] librarian: 736 forbidden names from recent books
+[19:38:22] examples: over-generating 6 × 3…
+[19:39:48]   example[0] [scene] "Thomasina signs the last chart and finds her notebook" (86.5s)
+[19:41:07]   example[1] [dialogue] "Rhiannon and Soledad in the Kitchen Over the Forgotten Physio Sheet" (79.0s)
+[19:42:19]   example[2] [vignette] "Mr. Okafor Hands the Habit Formula to a Ninth Grader" (71.7s)
+[19:45:11]   example[3] [decision_point] "Tabitha picks the cue that survives a bad week" (172.0s)
+[19:46:22]   example[4] [before_after] "Osvald lets the coffee maker decide his walks" (70.7s)
+[19:48:25]   example[5] [reflection] "Eero Notices the 7:42 Has Been Carrying His Habit" (123.7s)
+[19:48:25] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[19:50:24] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[19:50:24] memorable lines: marking 3 quotable lines…
+[19:51:22] memorable lines: 3 marked
+[19:51:22] Ship gate: PASS
+  blockers: 0
+  majors: 4
+  minors: 1
+[19:51:22] librarian: ingested. Book now has 82 unique names across 5 chapters.
+[19:51:22] chapter done: 968.9s wall
+[19:51:22] 
+--- Chapter 6/20: Motivation Is Overrated; Environment Often Matters More ---
+[19:51:22] brief[atomic-habits]: reusing cached
+[19:51:22] plan[atomic-habits-ch06]: generating…
+[19:51:51] plan: 6 examples, formats: vignette, before_after, postmortem, decision_point, scene, dialogue
+[19:51:51] source: ch6 source metadata loaded (422c)
+[19:51:51] hook + breakdown: generating in parallel…
+[19:52:27] hook: "Move the candy to eye level and watchful parents become impulse buyers; move it away and nothing about them changes but their hands."
+[19:52:27] draft breakdown: fastRead=539c, deepRead=1503c, fullRead=2965c
+[19:52:27] voice pass: iterating (max 3)…
+[19:52:55] voice pass iter 1 done (fastRead=585c, deepRead=1593c, fullRead=2904c)
+[19:52:55] voice pass iter 2: 1 findings, re-running
+[19:53:11] voice pass iter 3: 1 findings, re-running
+[19:53:25] line editor: surgical polish pass…
+[19:53:39] line editor: done (fastRead=579c, deepRead=1724c, fullRead=3009c)
+[19:53:39] librarian: 755 forbidden names from recent books
+[19:53:39] examples: over-generating 6 × 3…
+[19:54:06]   example[0] [vignette] "Svana stops trying to remember water on the night shift" (27.1s)
+[19:55:09]   example[1] [before_after] "Doviana doubles her output by moving one phone six feet" (62.5s)
+[19:56:07]   example[2] [postmortem] "Agata Reads the Q3 Numbers and Recasts the Candy Problem" (58.1s)
+[19:57:38]   example[3] [decision_point] "Liesel Carries the Laptop Out of the Bedroom" (91.3s)
+[19:59:02]   example[4] [scene] "Mireia picks up the violin while the pasta water heats" (83.2s)
+[19:59:51]   example[5] batch 1 all failed: example invalid: reused name "Put" already present in prior example of this chapter | example invalid: reused name "Shoes" already present in prior example of this chapter | example invalid: reused name "April" already present in prior example of this chapter; reused name "February" already present in prior example of this chapter; reused name "Outside" already present in prior example of this chapter; reused name "Shoes" already present in prior example of this chapter; reused name "Take" already present in prior example of this chapter
+[19:59:51]   example[5] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[20:00:25]   example[5] [dialogue] "Inés and Bram move the fight out of the bedroom" (83.7s)
+[20:00:25] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[20:02:52] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[20:02:52] memorable lines: marking 3 quotable lines…
+[20:03:35] memorable lines: 3 marked
+[20:03:35] Ship gate: PASS
+  blockers: 0
+  majors: 2
+  minors: 0
+[20:03:35] librarian: ingested. Book now has 94 unique names across 6 chapters.
+[20:03:35] chapter done: 732.8s wall
+[20:03:35] 
+--- Chapter 7/20: The Secret to Self-Control ---
+[20:03:35] brief[atomic-habits]: reusing cached
+[20:03:35] plan[atomic-habits-ch07]: generating…
+[20:04:03] plan: 6 examples, formats: vignette, decision_point, before_after, dialogue, postmortem, reflection
+[20:04:03] source: ch7 source metadata loaded (406c)
+[20:04:03] hook + breakdown: generating in parallel…
+[20:04:55] hook: "The nurse did not beat the cookies. She asked the clerk to move the basket across the hall, and the craving went with it."
+[20:04:55] draft breakdown: fastRead=573c, deepRead=1344c, fullRead=2950c
+[20:04:55] voice pass: iterating (max 3)…
+[20:05:53] voice pass iter 1 done (fastRead=562c, deepRead=1294c, fullRead=2908c)
+[20:05:53] voice pass iter 2: 1 findings, re-running
+[20:06:17] voice pass: clean after iter 2, stopping
+[20:06:17] line editor: surgical polish pass…
+[20:06:29] line editor: done (fastRead=551c, deepRead=1150c, fullRead=2853c)
+[20:06:29] librarian: 763 forbidden names from recent books
+[20:06:29] examples: over-generating 6 × 3…
+[20:07:05]   example[0] [vignette] "Meren and the Cookie Basket by the Coffee Maker" (35.9s)
+[20:08:50]   example[1] [decision_point] "Rooney deletes the betting app at his kitchen table" (104.8s)
+[20:10:10]   example[2] [before_after] "Hesperia rearranges the orchestra room before second period" (80.5s)
+[20:10:58]   example[3] [dialogue] "Roisin and Cosmin Trade a Rule for a Basket" (47.5s)
+[20:12:26]   example[4] [postmortem] "Zephyrine reconstructs a wasted week of inbox refreshes" (88.0s)
+[20:12:54]   example[5] [reflection] "Jirair walks past the bodega and reads the urge" (28.1s)
+[20:12:54] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[20:15:43] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[20:15:43] memorable lines: marking 3 quotable lines…
+[20:16:25] memorable lines: 3 marked
+[20:16:25] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 0
+[20:16:25] librarian: ingested. Book now has 107 unique names across 7 chapters.
+[20:16:25] chapter done: 769.5s wall
+[20:16:25] 
+--- Chapter 8/20: How to Make a Habit Irresistible ---
+[20:16:25] brief[atomic-habits]: reusing cached
+[20:16:25] plan[atomic-habits-ch08]: generating…
+[20:16:51] plan: 6 examples, formats: decision_point, vignette, dialogue, before_after, reflection, postmortem
+[20:16:51] source: ch8 source metadata loaded (433c)
+[20:16:51] hook + breakdown: generating in parallel…
+[20:18:03] hook: "You will not start craving the gym. You will start craving the podcast you only let yourself hear on the walk there."
+[20:18:03] draft breakdown: fastRead=494c, deepRead=1532c, fullRead=3285c
+[20:18:03] voice pass: iterating (max 3)…
+[20:18:18] voice pass iter 1 done (fastRead=494c, deepRead=1523c, fullRead=3196c)
+[20:18:18] voice pass: clean after iter 1, stopping
+[20:18:18] line editor: surgical polish pass…
+[20:18:33] line editor: done (fastRead=494c, deepRead=1518c, fullRead=3161c)
+[20:18:33] librarian: 776 forbidden names from recent books
+[20:18:33] examples: over-generating 6 × 3…
+[20:19:32]   example[0] [decision_point] "Suvi at the curb, podcast in one ear, gym two blocks away" (58.7s)
+[20:21:07]   example[1] [vignette] "Romina routes Spanish drills through the telenovela her students crave" (95.3s)
+[20:53:49] Chapter 8 FAILED: claude CLI timed out after 240000ms
+[20:53:49] Aborting book generation. Pass continueOnError=true to skip and continue.
+[20:53:49] 
+=== Book gate (7 chapters succeeded, 1 failed) ===
+[20:53:49] Book gate: PASS (atomic-habits, 7 chapters)
+  Quiz answer positions: 20 / 23 / 21 (max 35.9%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[20:53:49] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[20:53:49] 
+=== generateBook done in 5436s (90.6 min) ===
+[20:54:38] === generateBook: Atomic Habits (20 chapters) ===
+[20:54:38] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[20:54:38] resume: atomic-habits-ch01 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[20:54:38] resume: atomic-habits-ch02 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[20:54:38] resume: atomic-habits-ch03 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[20:54:38] resume: atomic-habits-ch04 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 5/20: The Best Way to Start a New Habit ---
+[20:54:38] resume: atomic-habits-ch05 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 6/20: Motivation Is Overrated; Environment Often Matters More ---
+[20:54:38] resume: atomic-habits-ch06 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 7/20: The Secret to Self-Control ---
+[20:54:38] resume: atomic-habits-ch07 already generated AND ingested — skipping
+[20:54:38] 
+--- Chapter 8/20: How to Make a Habit Irresistible ---
+[20:54:38] brief[atomic-habits]: reusing cached
+[20:54:38] plan[atomic-habits-ch08]: reusing cached
+[20:54:38] plan: 6 examples, formats: decision_point, vignette, dialogue, before_after, reflection, postmortem
+[20:54:38] source: ch8 source metadata loaded (433c)
+[20:54:38] hook + breakdown: generating in parallel…
+[20:55:11] hook: "You do not need more willpower for the gym. You need the podcast you only let yourself hear on the walk in."
+[20:55:11] draft breakdown: fastRead=499c, deepRead=1296c, fullRead=2663c
+[20:55:11] voice pass: iterating (max 3)…
+[20:56:30] voice pass iter 1 done (fastRead=570c, deepRead=1253c, fullRead=2496c)
+[20:56:30] voice pass iter 2: 1 findings, re-running
+[20:57:20] voice pass iter 3: 1 findings, re-running
+[20:58:01] line editor: surgical polish pass…
+[20:58:13] line editor: done (fastRead=588c, deepRead=1275c, fullRead=2441c)
+[20:58:13] librarian: 776 forbidden names from recent books
+[20:58:13] examples: over-generating 6 × 3…
+[20:58:52]   example[0] [decision_point] "Mireet leaves her shift and reaches for the gym, or the podcast" (38.5s)
+[21:00:10]   example[1] [vignette] "Belkis routes the conjugation drill through the telenovela" (78.8s)
+[21:01:23]   example[2] [dialogue] "Brigit and her roommate negotiate dishes during their show" (73.0s)
+[21:03:09]   example[3] [before_after] "Zinnia ties bookkeeping to the latte she refuses to make at home" (105.7s)
+[21:05:06]   example[4] [reflection] "Ezekiel learns to walk inside the four o'clock call" (117.0s)
+[21:06:48]   example[5] [postmortem] "Rohit reads the dead CRM logs and finds the missing craving" (101.5s)
+[21:06:48] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[21:08:42] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[21:08:42] memorable lines: marking 3 quotable lines…
+[21:09:32] memorable lines: 3 marked
+[21:09:32] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 1
+[21:09:32] librarian: ingested. Book now has 121 unique names across 8 chapters.
+[21:09:32] chapter done: 893.8s wall
+[21:09:32] 
+--- Chapter 9/20: The Role of Family and Friends in Shaping Your Habits ---
+[21:09:32] brief[atomic-habits]: reusing cached
+[21:09:32] plan[atomic-habits-ch09]: generating…
+[21:09:56] plan: 6 examples, formats: scene, dialogue, vignette, decision_point, predict_reveal, reflection
+[21:09:56] source: ch9 source metadata loaded (383c)
+[21:09:56] hook + breakdown: generating in parallel…
+[21:10:32] hook: "The two people you take your 3am break with will out-vote the friends you see on Saturday, every time."
+[21:10:32] draft breakdown: fastRead=508c, deepRead=1463c, fullRead=3134c
+[21:10:32] voice pass: iterating (max 3)…
+[21:11:29] voice pass iter 1 done (fastRead=535c, deepRead=1483c, fullRead=3148c)
+[21:11:29] voice pass iter 2: 1 findings, re-running
+[21:12:08] voice pass iter 3: 1 findings, re-running
+[21:12:22] line editor: surgical polish pass…
+[21:14:23] line editor: done (fastRead=522c, deepRead=1464c, fullRead=3063c)
+[21:14:23] librarian: 790 forbidden names from recent books
+[21:14:23] examples: over-generating 6 × 3…
+[21:14:50]   example[0] batch 1 all failed: example invalid: reused name "Saturdays" already present in prior example of this chapter | example invalid: reused name "Mireille" already present in prior example of this chapter; reused name "With" already present in prior example of this chapter | example invalid: reused name "Reggie" already present in prior example of this chapter
+[21:14:50]   example[0] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[21:15:35]   example[0] [scene] "Ingrid Picks a New Break Partner at Three in the Morning" (71.8s)
+[21:16:36]   example[1] batch 1 all failed: example invalid: reused name "Saturdays" already present in prior example of this chapter; reused name "Sure" already present in prior example of this chapter | example invalid: reused name "Wells" already present in prior example of this chapter | example invalid: reused name "Brunch" already present in prior example of this chapter; reused name "For" already present in prior example of this chapter; reused name "Roan" already present in prior example of this chapter; reused name "Twelve" already present in prior example of this chapter
+[21:16:36]   example[1] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[21:17:37]   example[1] [dialogue] "Rohan and Saskia at the Kitchen Table About a 6am Ride" (122.1s)
+[21:18:04]   example[2] [vignette] "Orinthia Notices Her Daughter's Library Bag Stays Packed" (27.7s)
+[21:18:52]   example[3] [decision_point] "Tomasso picks a Sunday meal-prep crew over moving out" (47.6s)
+[21:19:38]   example[4] [predict_reveal] "Sigbritt predicts which lunch table won her best quarter" (46.5s)
+[21:22:02]   example[5] [reflection] "Radek sorts bar friends from the people he actually knew" (143.2s)
+[21:22:02] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[21:24:30] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[21:24:30] memorable lines: marking 3 quotable lines…
+[21:25:20] memorable lines: 3 marked
+[21:25:20] Ship gate: PASS
+  blockers: 0
+  majors: 2
+  minors: 0
+[21:25:20] librarian: ingested. Book now has 138 unique names across 9 chapters.
+[21:25:20] chapter done: 948.2s wall
+[21:25:20] 
+--- Chapter 10/20: How to Find and Fix the Causes of Your Bad Habits ---
+[21:25:20] brief[atomic-habits]: reusing cached
+[21:25:20] plan[atomic-habits-ch10]: generating…
+[21:25:45] plan: 6 examples, formats: vignette, decision_point, dialogue, postmortem, reflection, thought_experiment
+[21:25:45] source: ch10 source metadata loaded (406c)
+[21:25:45] hook + breakdown: generating in parallel…
+[21:26:45] hook: "The pretzels were never about hunger, and the scratch ticket was never about money."
+[21:26:45] draft breakdown: fastRead=464c, deepRead=1380c, fullRead=2810c
+[21:26:45] voice pass: iterating (max 3)…
+[21:27:00] voice pass iter 1 done (fastRead=472c, deepRead=1358c, fullRead=2761c)
+[21:27:00] voice pass iter 2: 1 findings, re-running
+[21:27:12] voice pass iter 3: 1 findings, re-running
+[21:27:46] line editor: surgical polish pass…
+[21:28:03] line editor: done (fastRead=575c, deepRead=1422c, fullRead=2715c)
+[21:28:03] librarian: 803 forbidden names from recent books
+[21:28:03] examples: over-generating 6 × 3…
+[21:29:09]   example[0] [vignette] "Eilidh names what the salt was really for" (65.6s)
+[21:30:35]   example[1] [decision_point] "Yuki's thumb hovers over the lock screen as the client email lands" (86.6s)
+[21:31:19]   example[2] [dialogue] "Tarek and his assistant trace the delivery-day yelling" (43.8s)
+[21:32:33]   example[3] [postmortem] "Roald's Five Evenings in the Garage and One Unsent Call" (74.1s)
+[21:33:23]   example[4] [reflection] "Sieta sits with the first sip and asks what it is really promising" (50.1s)
+[21:34:17]   example[5] batch 1 all failed: example invalid: reused name "Picture" already present in prior example of this chapter | example invalid: reused name "Line" already present in prior example of this chapter | example invalid: reused name "Picture" already present in prior example of this chapter; reused name "Route" already present in prior example of this chapter; reused name "Same" already present in prior example of this chapter; reused name "Write" already present in prior example of this chapter
+[21:34:17]   example[5] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[21:35:25]   example[5] [thought_experiment] "You, the Bus Driver, and the Scratch Ticket at Route's End" (121.7s)
+[21:35:25] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[21:37:52] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[21:37:52] memorable lines: marking 3 quotable lines…
+[21:38:15] memorable lines: 3 marked
+[21:38:15] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 1
+[21:38:15] librarian: ingested. Book now has 154 unique names across 10 chapters.
+[21:38:15] chapter done: 774.7s wall
+[21:38:15] 
+--- Chapter 11/20: Walk Slowly, but Never Backward ---
+[21:38:15] brief[atomic-habits]: reusing cached
+[21:38:15] plan[atomic-habits-ch11]: generating…
+[21:38:42] plan: 6 examples, formats: decision_point, vignette, dialogue, before_after, reflection, postmortem
+[21:38:42] source: ch11 source metadata loaded (297c)
+[21:38:42] hook + breakdown: generating in parallel…
+[21:39:12] hook: "The pot you ruin today teaches more than the one you sketch all month, and your hands know the difference."
+[21:39:12] draft breakdown: fastRead=584c, deepRead=1533c, fullRead=3535c
+[21:39:12] voice pass: iterating (max 3)…
+[21:39:43] voice pass iter 1 done (fastRead=637c, deepRead=1643c, fullRead=3480c)
+[21:39:43] voice pass iter 2: 1 findings, re-running
+[21:39:59] voice pass iter 3: 1 findings, re-running
+[21:40:15] line editor: surgical polish pass…
+[21:42:31] line editor: done (fastRead=669c, deepRead=1528c, fullRead=3203c)
+[21:42:31] librarian: 816 forbidden names from recent books
+[21:42:31] examples: over-generating 6 × 3…
+[21:43:49]   example[0] [decision_point] "Marisa stalls at the wheel sketching glazes she has not earned" (77.4s)
+[21:45:09]   example[1] [vignette] "Soraida at her desk, three days from filing" (80.8s)
+[21:45:41]   example[2] batch 1 all failed: example invalid: reused name "Bao" already present in prior example of this chapter; reused name "September" already present in prior example of this chapter | example invalid: reused name "June" already present in prior example of this chapter; reused name "March" already present in prior example of this chapter | example invalid: reused name "Day" already present in prior example of this chapter; reused name "March" already present in prior example of this chapter; reused name "Out" already present in prior example of this chapter; reused name "Thirty" already present in prior example of this chapter; reused name "Twelve" already present in prior example of this chapter
+[21:45:41]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[21:46:18]   example[2] [dialogue] "Junie Texts Her Friend a Color-Coded Half-Marathon Spreadsheet" (69.1s)
+[21:46:41]   example[3] [before_after] "Hennie rebuilds the brass section in twenty-minute bursts" (22.3s)
+[21:48:25]   example[4] [reflection] "Ottoline names the lie about the perfect painting desk" (104.3s)
+[21:49:31]   example[5] [postmortem] "Yumi audits six months of Tagalog before her father-in-law's birthday" (65.8s)
+[21:49:31] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[21:49:53] Chapter 11 FAILED: implementation plan invalid: contains meta-reference "the book"
+[21:49:53] Aborting book generation. Pass continueOnError=true to skip and continue.
+[21:49:53] 
+=== Book gate (10 chapters succeeded, 1 failed) ===
+[21:49:53] Book gate: PASS (atomic-habits, 10 chapters)
+  Quiz answer positions: 29 / 32 / 30 (max 35.2%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[21:49:53] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[21:49:53] 
+=== generateBook done in 3315s (55.3 min) ===
+[21:50:33] === generateBook: Atomic Habits (20 chapters) ===
+[21:50:33] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[21:50:33] resume: atomic-habits-ch01 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[21:50:33] resume: atomic-habits-ch02 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[21:50:33] resume: atomic-habits-ch03 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[21:50:33] resume: atomic-habits-ch04 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 5/20: The Best Way to Start a New Habit ---
+[21:50:33] resume: atomic-habits-ch05 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 6/20: Motivation Is Overrated; Environment Often Matters More ---
+[21:50:33] resume: atomic-habits-ch06 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 7/20: The Secret to Self-Control ---
+[21:50:33] resume: atomic-habits-ch07 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 8/20: How to Make a Habit Irresistible ---
+[21:50:33] resume: atomic-habits-ch08 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 9/20: The Role of Family and Friends in Shaping Your Habits ---
+[21:50:33] resume: atomic-habits-ch09 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 10/20: How to Find and Fix the Causes of Your Bad Habits ---
+[21:50:33] resume: atomic-habits-ch10 already generated AND ingested — skipping
+[21:50:33] 
+--- Chapter 11/20: Walk Slowly, but Never Backward ---
+[21:50:33] brief[atomic-habits]: reusing cached
+[21:50:33] plan[atomic-habits-ch11]: reusing cached
+[21:50:33] plan: 6 examples, formats: decision_point, vignette, dialogue, before_after, reflection, postmortem
+[21:50:33] source: ch11 source metadata loaded (297c)
+[21:50:33] hook + breakdown: generating in parallel…
+[21:51:06] hook: "The hour you spend perfecting the plan is the hour the habit was supposed to be forming."
+[21:51:06] draft breakdown: fastRead=546c, deepRead=1295c, fullRead=2725c
+[21:51:06] voice pass: iterating (max 3)…
+[21:51:21] voice pass iter 1 done (fastRead=598c, deepRead=1245c, fullRead=2779c)
+[21:51:21] voice pass: clean after iter 1, stopping
+[21:51:21] line editor: surgical polish pass…
+[21:51:33] line editor: done (fastRead=608c, deepRead=1239c, fullRead=2789c)
+[21:51:33] librarian: 816 forbidden names from recent books
+[21:51:33] examples: over-generating 6 × 3…
+[21:52:44]   example[0] [decision_point] "Hawa decides between fifty rough pots or one perfect bowl" (70.5s)
+[21:53:32]   example[1] [vignette] "Sunaina Opens the Blank Document at 11:47 p.m." (48.8s)
+[21:53:54]   example[2] batch 1 all failed: example invalid: reused name "August" already present in prior example of this chapter; reused name "September" already present in prior example of this chapter; reused name "Sundays" already present in prior example of this chapter; reused name "Tuesdays" already present in prior example of this chapter | example invalid: reused name "August" already present in prior example of this chapter; reused name "March" already present in prior example of this chapter; reused name "Thirty" already present in prior example of this chapter | example invalid: reused name "Done" already present in prior example of this chapter; reused name "September" already present in prior example of this chapter; reused name "Thirty" already present in prior example of this chapter; reused name "Try" already present in prior example of this chapter
+[21:53:54]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[21:54:35]   example[2] [dialogue] "Yusra Texts Back About the Color-Coded Spreadsheet" (63.0s)
+[21:55:20]   example[3] [before_after] "Fenwick rebuilds the brass section in twenty-minute bursts" (44.4s)
+[21:56:18]   example[4] [reflection] "Pernille names the lie about the perfect painting desk" (58.0s)
+[21:58:13]   example[5] [postmortem] "Mireilla audits six months of Tagalog before her father-in-law's birthday" (115.5s)
+[21:58:13] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[22:00:05] quiz=9q, cards=4, plan=4 if-thens, tryThisNow=yes
+[22:00:05] memorable lines: marking 3 quotable lines…
+[22:00:42] memorable lines: 3 marked
+[22:00:42] Ship gate: PASS
+  blockers: 0
+  majors: 2
+  minors: 1
+[22:00:42] librarian: ingested. Book now has 170 unique names across 11 chapters.
+[22:00:42] chapter done: 608.2s wall
+[22:00:42] 
+--- Chapter 12/20: The Law of Least Effort ---
+[22:00:42] brief[atomic-habits]: reusing cached
+[22:00:42] plan[atomic-habits-ch12]: generating…
+[22:01:01] plan: 6 examples, formats: before_after, dialogue, decision_point, vignette, reflection, scene
+[22:01:01] source: ch12 source metadata loaded (317c)
+[22:01:01] hook + breakdown: generating in parallel…
+[22:01:33] hook: "The nurse who charts in real time did not find more discipline, she put the tablet on wheels."
+[22:01:33] draft breakdown: fastRead=505c, deepRead=1737c, fullRead=3539c
+[22:01:33] voice pass: iterating (max 3)…
+[22:01:51] voice pass iter 1 done (fastRead=460c, deepRead=1699c, fullRead=3641c)
+[22:01:51] voice pass iter 2: 1 findings, re-running
+[22:02:24] voice pass: clean after iter 2, stopping
+[22:02:24] line editor: surgical polish pass…
+[22:02:40] line editor: done (fastRead=477c, deepRead=1700c, fullRead=3603c)
+[22:02:40] librarian: 829 forbidden names from recent books
+[22:02:40] examples: over-generating 6 × 3…
+[22:04:02]   example[0] [before_after] "Adaeze Moves the Charting Tablet onto a Wheeled Cart" (82.5s)
+[22:04:28]   example[1] batch 1 all failed: example invalid: reused name "Walk" already present in prior example of this chapter | example invalid: reused name "Shoes" already present in prior example of this chapter | example invalid: scenario too long (709 > 700); reused name "Walk" already present in prior example of this chapter; reused name "Yeah" already present in prior example of this chapter
+[22:04:28]   example[1] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[22:05:19]   example[1] [dialogue] "Mr. Halvorsen Counts Soren's Steps from Door to Bow" (76.7s)
+[22:05:51]   example[2] [decision_point] "Yuliana Picks the Friction That Doesn't Need Willpower" (31.6s)
+[22:06:16]   example[3] [vignette] "Maeve coils the hose and stops sending emails" (25.7s)
+[22:06:49]   example[4] [reflection] "Tadeusz Notices Where His Sneakers Sleep" (32.3s)
+[22:08:12]   example[5] [scene] "Bartholomew lines up the rail before a Friday rush" (83.4s)
+[22:08:12] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[22:09:34] quiz=10q, cards=5, plan=4 if-thens, tryThisNow=yes
+[22:09:34] memorable lines: marking 3 quotable lines…
+[22:11:04] memorable lines: 3 marked
+[22:11:04] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 0
+[22:11:04] librarian: ingested. Book now has 187 unique names across 12 chapters.
+[22:11:04] chapter done: 622.1s wall
+[22:11:04] 
+--- Chapter 13/20: How to Stop Procrastinating by Using the Two-Minute Rule ---
+[22:11:04] brief[atomic-habits]: reusing cached
+[22:11:04] plan[atomic-habits-ch13]: generating…
+[22:11:28] plan: 6 examples, formats: scene, before_after, decision_point, dialogue, vignette, thought_experiment
+[22:11:28] source: ch13 source metadata loaded (346c)
+[22:11:28] hook + breakdown: generating in parallel…
+[22:11:58] hook: "A habit you cannot finish in two minutes is not a habit yet, it is a wish wearing workout clothes."
+[22:11:58] draft breakdown: fastRead=577c, deepRead=1499c, fullRead=3143c
+[22:11:58] voice pass: iterating (max 3)…
+[22:12:13] voice pass iter 1 done (fastRead=618c, deepRead=1574c, fullRead=3171c)
+[22:12:13] voice pass iter 2: 1 findings, re-running
+[22:12:41] voice pass iter 3: 1 findings, re-running
+[22:12:55] line editor: surgical polish pass…
+[22:13:21] line editor: done (fastRead=623c, deepRead=1528c, fullRead=3162c)
+[22:13:21] librarian: 842 forbidden names from recent books
+[22:13:21] examples: over-generating 6 × 3…
+[22:15:09]   example[0] [scene] "Thalia opens the notebook and writes only the date" (108.1s)
+[22:16:24]   example[1] [before_after] "Sevinch closes Figma after thirty seconds and calls it a win" (75.0s)
+[22:18:10]   example[2] [decision_point] "Severin lowers the bow on the third morning" (105.8s)
+[22:18:52]   example[3] [dialogue] "Marisha defends one paragraph to her skeptical husband" (42.5s)
+[22:19:13]   example[4] [vignette] "Brenton in the parking lot, swim trunks on, engine running" (20.6s)
+[22:19:39]   example[5] batch 1 all failed: example invalid: reused name "August" already present in prior example of this chapter; reused name "February" already present in prior example of this chapter; reused name "March" already present in prior example of this chapter | example invalid: reused name "Version" already present in prior example of this chapter | example invalid: reused name "October" already present in prior example of this chapter
+[22:19:39]   example[5] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[22:20:26]   example[5] [thought_experiment] "Rashad Picks the Breath He Can Still Take in December" (73.1s)
+[22:20:26] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[22:21:29] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[22:21:29] memorable lines: marking 3 quotable lines…
+[22:21:56] memorable lines: 3 marked
+[22:21:56] Ship gate: PASS
+  blockers: 0
+  majors: 1
+  minors: 1
+[22:21:56] librarian: ingested. Book now has 207 unique names across 13 chapters.
+[22:21:56] chapter done: 652.2s wall
+[22:21:56] 
+--- Chapter 14/20: How to Make Good Habits Inevitable and Bad Habits Impossible ---
+[22:21:56] brief[atomic-habits]: reusing cached
+[22:21:56] plan[atomic-habits-ch14]: generating…
+[22:22:17] plan: 6 examples, formats: decision_point, before_after, vignette, predict_reveal, thought_experiment, dialogue
+[22:22:17] source: ch14 source metadata loaded (318c)
+[22:22:17] hook + breakdown: generating in parallel…
+[22:22:45] hook: "Hand the phone to your roommate at 10pm with a note that says do not return it until 7am, no matter what I say."
+[22:22:45] draft breakdown: fastRead=463c, deepRead=1279c, fullRead=3044c
+[22:22:45] voice pass: iterating (max 3)…
+[22:23:11] voice pass iter 1 done (fastRead=460c, deepRead=1234c, fullRead=3039c)
+[22:23:11] voice pass iter 2: 1 findings, re-running
+[22:23:26] voice pass: clean after iter 2, stopping
+[22:23:26] line editor: surgical polish pass…
+[22:23:51] line editor: done (fastRead=483c, deepRead=1234c, fullRead=3027c)
+[22:23:51] librarian: 874 forbidden names from recent books
+[22:23:51] examples: over-generating 6 × 3…
+[22:25:33]   example[0] [decision_point] "Saskue hands her phone to her roommate at ten" (102.0s)
+[22:25:57]   example[1] [before_after] "Gareth deletes the mail icon at five on Friday" (24.7s)
+[22:27:01]   example[2] [vignette] "Iolanthe Tapes the Pantry Shut at Her Kitchen Table" (64.0s)
+[22:27:21]   example[3] batch 1 all failed: example invalid: reused name "Tonight" already present in prior example of this chapter; contains meta-reference "the book" — teach the idea, don't narrate the chapter | example invalid: reused name "Predict" already present in prior example of this chapter | example invalid: reused name "Picture" already present in prior example of this chapter; reused name "Word" already present in prior example of this chapter
+[22:27:21]   example[3] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[22:28:56]   example[3] [predict_reveal] "Desmond's 5am Hour and the Coach Who Only Cashes On Pages" (114.7s)
+[22:29:45]   example[4] batch 1 all failed: example invalid: reused name "Suppose" already present in prior example of this chapter | example invalid: reused name "Route" already present in prior example of this chapter; reused name "Suppose" already present in prior example of this chapter | example invalid: reused name "Route" already present in prior example of this chapter; reused name "Sketch" already present in prior example of this chapter
+[22:29:45]   example[4] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[22:30:06]   example[4] [thought_experiment] "Rashad's commute past the OTB parlor he cannot unsee" (70.1s)
+[22:31:20]   example[5] [dialogue] "Rhoswen asks her office manager to lock the door at 6:01pm" (74.0s)
+[22:31:20] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[22:32:39] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[22:32:39] memorable lines: marking 3 quotable lines…
+[22:33:15] memorable lines: 3 marked
+[22:33:15] Ship gate: PASS
+  blockers: 0
+  majors: 4
+  minors: 0
+[22:33:15] librarian: ingested. Book now has 220 unique names across 14 chapters.
+[22:33:15] chapter done: 678.9s wall
+[22:33:15] 
+--- Chapter 15/20: The Cardinal Rule of Behavior Change ---
+[22:33:15] brief[atomic-habits]: reusing cached
+[22:33:15] plan[atomic-habits-ch15]: generating…
+[22:33:37] plan: 6 examples, formats: vignette, decision_point, postmortem, scene, dialogue, reflection
+[22:33:37] source: ch15 source metadata loaded (394c)
+[22:33:37] hook + breakdown: generating in parallel…
+[22:35:33] Chapter 15 FAILED: breakdown invalid: fullRead contains meta-reference "the book" — teach the idea, don't narrate the chapter
+[22:35:33] Aborting book generation. Pass continueOnError=true to skip and continue.
+[22:35:33] 
+=== Book gate (14 chapters succeeded, 1 failed) ===
+[22:35:33] Book gate: BLOCK (atomic-habits, 14 chapters)
+  Quiz answer positions: 41 / 45 / 42 (max 35.2%)
+  Cross-chapter name duplications: 1
+  Hook-opener duplications: 0
+  Findings:
+    [F1 blocker] 1 protagonist name(s) appear as named characters in multiple chapters: Not(ch4,14). Regenerate affected examples with distinct names.
+[22:35:33] 
+=== Skipping promotion: 1 chapter(s) failed during generation ===
+[22:35:33] 
+=== generateBook done in 2699s (45.0 min) ===
+[22:37:53] === generateBook: Atomic Habits (20 chapters) ===
+[22:37:53] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[22:37:53] resume: atomic-habits-ch01 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[22:37:53] resume: atomic-habits-ch02 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[22:37:53] resume: atomic-habits-ch03 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[22:37:53] resume: atomic-habits-ch04 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 5/20: The Best Way to Start a New Habit ---
+[22:37:53] resume: atomic-habits-ch05 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 6/20: Motivation Is Overrated; Environment Often Matters More ---
+[22:37:53] resume: atomic-habits-ch06 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 7/20: The Secret to Self-Control ---
+[22:37:53] resume: atomic-habits-ch07 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 8/20: How to Make a Habit Irresistible ---
+[22:37:53] resume: atomic-habits-ch08 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 9/20: The Role of Family and Friends in Shaping Your Habits ---
+[22:37:53] resume: atomic-habits-ch09 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 10/20: How to Find and Fix the Causes of Your Bad Habits ---
+[22:37:53] resume: atomic-habits-ch10 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 11/20: Walk Slowly, but Never Backward ---
+[22:37:53] resume: atomic-habits-ch11 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 12/20: The Law of Least Effort ---
+[22:37:53] resume: atomic-habits-ch12 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 13/20: How to Stop Procrastinating by Using the Two-Minute Rule ---
+[22:37:53] resume: atomic-habits-ch13 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 14/20: How to Make Good Habits Inevitable and Bad Habits Impossible ---
+[22:37:53] resume: atomic-habits-ch14 already generated AND ingested — skipping
+[22:37:53] 
+--- Chapter 15/20: The Cardinal Rule of Behavior Change ---
+[22:37:53] brief[atomic-habits]: reusing cached
+[22:37:53] plan[atomic-habits-ch15]: reusing cached
+[22:37:53] plan: 6 examples, formats: vignette, decision_point, postmortem, scene, dialogue, reflection
+[22:37:53] source: ch15 source metadata loaded (394c)
+[22:37:53] hook + breakdown: generating in parallel…
+[22:38:41] hook: "The future self is a stranger you keep voting against, because the present self is the only one in the room holding a ballot."
+[22:38:41] draft breakdown: fastRead=507c, deepRead=1388c, fullRead=3045c
+[22:38:41] voice pass: iterating (max 3)…
+[22:38:56] voice pass iter 1 done (fastRead=472c, deepRead=1374c, fullRead=3037c)
+[22:38:56] voice pass: clean after iter 1, stopping
+[22:38:56] line editor: surgical polish pass…
+[22:39:10] line editor: done (fastRead=479c, deepRead=1350c, fullRead=3041c)
+[22:39:10] librarian: 884 forbidden names from recent books
+[22:39:10] examples: over-generating 6 × 3…
+[22:39:58]   example[0] [vignette] "Bishara's paperclip clinks across a twelve-hour PICU shift" (47.5s)
+[22:40:56]   example[1] [decision_point] "Cressida's Thumb Hovers Between the Cart and Future Me" (57.5s)
+[22:42:05]   example[2] [postmortem] "Rasvan reconstructs the week his praise streak quietly died" (69.4s)
+[22:43:29]   example[3] [scene] "Helka places a butterscotch at the door before her walk" (84.5s)
+[22:43:59]   example[4] [dialogue] "Darnell, his sister, and the red marker argument" (29.8s)
+[22:44:49]   example[5] [reflection] "Radomir's pocket notebook on the depot bench after route 47" (50.0s)
+[22:44:49] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[22:46:32] quiz=10q, cards=5, plan=4 if-thens, tryThisNow=yes
+[22:46:32] memorable lines: marking 3 quotable lines…
+[22:47:24] memorable lines: 3 marked
+[22:47:24] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 0
+[22:47:24] librarian: ingested. Book now has 232 unique names across 15 chapters.
+[22:47:24] chapter done: 571.0s wall
+[22:47:24] 
+--- Chapter 16/20: How to Stick with Good Habits Every Day ---
+[22:47:24] brief[atomic-habits]: reusing cached
+[22:47:24] plan[atomic-habits-ch16]: generating…
+[22:47:51] plan: 6 examples, formats: vignette, before_after, decision_point, scene, postmortem, dilemma
+[22:47:51] source: ch16 source metadata loaded (368c)
+[22:47:51] hook + breakdown: generating in parallel…
+[22:48:42] hook: "The violin teacher's rule is four words long: never miss twice. Wednesday, not Thursday, is the day that holds."
+[22:48:42] draft breakdown: fastRead=504c, deepRead=1346c, fullRead=2522c
+[22:48:42] voice pass: iterating (max 3)…
+[22:48:57] voice pass iter 1 done (fastRead=552c, deepRead=1366c, fullRead=2693c)
+[22:48:57] voice pass iter 2: 1 findings, re-running
+[22:49:10] voice pass iter 3: 1 findings, re-running
+[22:49:23] line editor: surgical polish pass…
+[22:49:35] line editor: done (fastRead=578c, deepRead=1353c, fullRead=2569c)
+[22:49:35] librarian: 896 forbidden names from recent books
+[22:49:35] examples: over-generating 6 × 3…
+[22:50:36]   example[0] [vignette] "Itzel marks the calendar after shift seven of a brutal stretch" (61.4s)
+[22:51:56]   example[1] [before_after] "Tomislav tapes a stretch card inside locker 42" (80.3s)
+[22:52:45]   example[2] [decision_point] "Roswitha Faces a Wednesday After a Missed Tuesday" (49.2s)
+[22:53:07]   example[3] batch 1 all failed: example invalid: reused name "Card" already present in prior example of this chapter; contains meta-reference "the chapter" — teach the idea, don't narrate the chapter | example invalid: reused name "Tonight" already present in prior example of this chapter; reused name "Wren" already present in prior example of this chapter | example invalid: contains meta-reference "the book" — teach the idea, don't narrate the chapter
+[22:53:07]   example[3] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[22:55:21]   example[3] [scene] "Desmond Builds a Reading Chart His Daughter Fills In" (155.3s)
+[22:55:40]   example[4] [postmortem] "Bertil Realizes the Gym Streak Has Become Performance Art" (19.6s)
+[22:56:28]   example[5] [dilemma] "Jovan weighs a quiet skip against telling his sponsor" (47.8s)
+[22:56:28] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[22:58:19] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[22:58:19] memorable lines: marking 3 quotable lines…
+[22:59:13] memorable lines: 3 marked
+[22:59:13] Ship gate: PASS
+  blockers: 0
+  majors: 2
+  minors: 0
+[22:59:13] librarian: ingested. Book now has 243 unique names across 16 chapters.
+[22:59:13] chapter done: 708.3s wall
+[22:59:13] 
+--- Chapter 17/20: How an Accountability Partner Can Change Everything ---
+[22:59:13] brief[atomic-habits]: reusing cached
+[22:59:13] plan[atomic-habits-ch17]: generating…
+[22:59:33] plan: 6 examples, formats: decision_point, vignette, dialogue, thought_experiment, before_after, scene
+[22:59:33] source: ch17 source metadata loaded (418c)
+[22:59:33] hook + breakdown: generating in parallel…
+[23:00:23] hook: "A private deadline is a suggestion. The same deadline, sent to one person who will notice, is a fact."
+[23:00:23] draft breakdown: fastRead=504c, deepRead=1442c, fullRead=3189c
+[23:00:23] voice pass: iterating (max 3)…
+[23:00:48] voice pass iter 1 done (fastRead=531c, deepRead=1377c, fullRead=3201c)
+[23:00:48] voice pass iter 2: 2 findings, re-running
+[23:01:02] voice pass iter 3: 1 findings, re-running
+[23:01:30] line editor: surgical polish pass…
+[23:01:43] line editor: done (fastRead=507c, deepRead=1473c, fullRead=3125c)
+[23:01:43] librarian: 920 forbidden names from recent books
+[23:01:43] examples: over-generating 6 × 3…
+[23:02:44]   example[0] [decision_point] "Hospice nurse Briallen texts the bet before she can take it back" (61.5s)
+[23:04:16]   example[1] [vignette] "Lazlo sees 4:35 on the line clock and keeps chopping" (92.0s)
+[23:04:42]   example[2] [dialogue] "Saphira and her former classmate on the Thursday video call" (25.7s)
+[23:05:35]   example[3] [thought_experiment] "Aleksy, the $200 Bet, and the Text That Actually Stings" (52.6s)
+[23:07:00]   example[4] [before_after] "Yetunde turns a private Friday into a sent email" (85.2s)
+[23:08:05]   example[5] [scene] "Arto and his neighbor meet at the corner on a cold Tuesday" (64.7s)
+[23:08:05] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[23:08:50] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[23:08:50] memorable lines: marking 3 quotable lines…
+[23:09:49] memorable lines: 3 marked
+[23:09:49] Ship gate: PASS
+  blockers: 0
+  majors: 4
+  minors: 1
+[23:09:49] librarian: ingested. Book now has 254 unique names across 17 chapters.
+[23:09:49] chapter done: 636.2s wall
+[23:09:49] 
+--- Chapter 18/20: The Truth About Talent (When Genes Matter and When They Don't) ---
+[23:09:49] brief[atomic-habits]: reusing cached
+[23:09:49] plan[atomic-habits-ch18]: generating…
+[23:10:11] plan: 6 examples, formats: decision_point, vignette, before_after, reflection, dialogue, thought_experiment
+[23:10:11] source: ch18 source metadata loaded (403c)
+[23:10:11] hook + breakdown: generating in parallel…
+[23:11:51] hook: "You do not need more discipline. You need a habit cut to the shape of the person you already are."
+[23:11:51] draft breakdown: fastRead=430c, deepRead=1511c, fullRead=3093c
+[23:11:51] voice pass: iterating (max 3)…
+[23:12:16] voice pass iter 1 done (fastRead=518c, deepRead=1339c, fullRead=3124c)
+[23:12:16] voice pass iter 2: 1 findings, re-running
+[23:12:49] voice pass: clean after iter 2, stopping
+[23:12:49] line editor: surgical polish pass…
+[23:13:15] line editor: done (fastRead=538c, deepRead=1395c, fullRead=3077c)
+[23:13:15] librarian: 931 forbidden names from recent books
+[23:13:15] examples: over-generating 6 × 3…
+[23:14:33]   example[0] [decision_point] "Torsten watches a stocky freshman finish mid-pack again" (77.6s)
+[23:15:30]   example[1] [vignette] "Rasul rebuilds the garde manger station around his left hand" (57.3s)
+[23:16:09]   example[2] batch 1 all failed: example invalid: reused name "Christmas" already present in prior example of this chapter; reused name "Eleven" already present in prior example of this chapter | example invalid: reused name "March" already present in prior example of this chapter; reused name "Rafferty" already present in prior example of this chapter; contains meta-reference "the author" — teach the idea, don't narrate the chapter | example invalid: contains meta-reference "The book" — teach the idea, don't narrate the chapter
+[23:16:09]   example[2] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[23:17:28]   example[2] [before_after] "Ingrid and Soren read the same book, build different writing habits" (118.2s)
+[23:19:02]   example[3] [reflection] "Petronella, the Kettlebell, and the Coffee Maker at Dawn" (93.8s)
+[23:20:49]   example[4] [dialogue] "Tycho, fifty-four, asks his piano teacher what is still possible" (107.2s)
+[23:21:28]   example[5] batch 1 all failed: example invalid: reused name "Imagine" already present in prior example of this chapter | example invalid: reused name "Picture" already present in prior example of this chapter | example invalid: reused name "Different" already present in prior example of this chapter; reused name "Same" already present in prior example of this chapter; reused name "Suppose" already present in prior example of this chapter
+[23:21:28]   example[5] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[23:22:33]   example[5] [thought_experiment] "Yusra Picks Between Two Reps for One Territory" (103.7s)
+[23:22:33] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[23:24:16] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[23:24:16] memorable lines: marking 3 quotable lines…
+[23:25:27] memorable lines: 3 marked
+[23:25:27] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 0
+[23:25:27] librarian: ingested. Book now has 270 unique names across 18 chapters.
+[23:25:27] chapter done: 938.1s wall
+[23:25:27] 
+--- Chapter 19/20: The Goldilocks Rule: How to Stay Motivated in Life and Work ---
+[23:25:27] brief[atomic-habits]: reusing cached
+[23:25:27] plan[atomic-habits-ch19]: generating…
+[23:25:46] plan: 6 examples, formats: scene, reflection, decision_point, vignette, thought_experiment, dialogue
+[23:25:46] source: ch19 source metadata loaded (349c)
+[23:25:46] hook + breakdown: generating in parallel…
+[23:26:20] hook: "Boredom is not a verdict on the work, it is a difficulty signal that the rep has fallen behind you."
+[23:26:20] draft breakdown: fastRead=495c, deepRead=1488c, fullRead=2909c
+[23:26:20] voice pass: iterating (max 3)…
+[23:26:35] voice pass iter 1 done (fastRead=510c, deepRead=1510c, fullRead=2974c)
+[23:26:35] voice pass iter 2: 1 findings, re-running
+[23:26:59] voice pass iter 3: 1 findings, re-running
+[23:27:13] line editor: surgical polish pass…
+[23:27:27] line editor: done (fastRead=505c, deepRead=1439c, fullRead=2949c)
+[23:27:27] librarian: 946 forbidden names from recent books
+[23:27:27] examples: over-generating 6 × 3…
+[23:28:17]   example[0] [scene] "Saoirla's Étude Stops Being Boring at 92 Beats" (50.2s)
+[23:28:50]   example[1] [reflection] "Ilaria, twelve years on the unit, names the skill she keeps avoiding" (33.4s)
+[23:29:30]   example[2] [decision_point] "Rasmund picks the wall he cannot climb yet" (39.9s)
+[23:31:03]   example[3] [vignette] "Rasheed Asks the Chef for a Harder Rep at Family Meal" (93.2s)
+[23:31:29]   example[4] batch 1 all failed: example invalid: reused name "Picture" already present in prior example of this chapter; reused name "Replaying" already present in prior example of this chapter; reused name "Version" already present in prior example of this chapter | example invalid: reused name "Imagine" already present in prior example of this chapter; reused name "May" already present in prior example of this chapter; reused name "Picture" already present in prior example of this chapter | example invalid: scenario too long (702 > 700); reused name "March" already present in prior example of this chapter; reused name "Suppose" already present in prior example of this chapter
+[23:31:29]   example[4] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…
+[23:32:02]   example[4] [thought_experiment] "Yseult's Clean Win and the Two Versions of Next Year" (58.8s)
+[23:32:53]   example[5] [dialogue] "Ottoline and Jorin notice bedtime has gone numb" (50.6s)
+[23:32:53] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[23:34:05] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[23:34:05] memorable lines: marking 3 quotable lines…
+[23:34:54] memorable lines: 3 marked
+[23:34:54] Ship gate: PASS
+  blockers: 0
+  majors: 1
+  minors: 0
+[23:34:54] librarian: ingested. Book now has 283 unique names across 19 chapters.
+[23:34:54] chapter done: 567.3s wall
+[23:34:54] 
+--- Chapter 20/20: The Downside of Creating Good Habits ---
+[23:34:54] brief[atomic-habits]: reusing cached
+[23:34:54] plan[atomic-habits-ch20]: generating…
+[23:35:20] plan: 6 examples, formats: scene, reflection, decision_point, dialogue, postmortem, before_after
+[23:35:20] source: ch20 source metadata loaded (498c)
+[23:35:20] hook + breakdown: generating in parallel…
+[23:35:50] hook: "The nurse who has run the checklist four thousand times is the one most likely to miss the alarm."
+[23:35:50] draft breakdown: fastRead=595c, deepRead=1595c, fullRead=3063c
+[23:35:50] voice pass: iterating (max 3)…
+[23:36:33] voice pass iter 1 done (fastRead=651c, deepRead=1539c, fullRead=2890c)
+[23:36:33] voice pass iter 2: 1 findings, re-running
+[23:36:48] voice pass: clean after iter 2, stopping
+[23:36:48] line editor: surgical polish pass…
+[23:37:02] line editor: done (fastRead=765c, deepRead=1526c, fullRead=2976c)
+[23:37:02] librarian: 970 forbidden names from recent books
+[23:37:02] examples: over-generating 6 × 3…
+[23:37:38]   example[0] [scene] "Yseulta signs the handoff and hears the pump that isn't beeping" (35.2s)
+[23:38:06]   example[1] [reflection] "Booker's midnight practice that stopped teaching him anything new" (28.6s)
+[23:38:57]   example[2] [decision_point] "Ondrea's 5am routine runs the bakery without her" (50.7s)
+[23:40:46]   example[3] [dialogue] "Jovi and Rhetta retire the Sunday script they wrote themselves" (109.1s)
+[23:42:07]   example[4] [postmortem] "Kalinda's eight-second diagnosis and the forty-hour bounce-back" (80.7s)
+[23:44:23]   example[5] [before_after] "Halla tears up her training log after three plateau seasons" (135.8s)
+[23:44:23] quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…
+[23:46:27] quiz=9q, cards=5, plan=4 if-thens, tryThisNow=yes
+[23:46:27] memorable lines: marking 3 quotable lines…
+[23:47:02] memorable lines: 3 marked
+[23:47:02] Ship gate: PASS
+  blockers: 0
+  majors: 3
+  minors: 0
+[23:47:02] librarian: ingested. Book now has 294 unique names across 20 chapters.
+[23:47:02] chapter done: 727.9s wall
+[23:47:02] 
+=== Book gate (20 chapters succeeded, 0 failed) ===
+[23:47:02] Book gate: BLOCK (atomic-habits, 20 chapters)
+  Quiz answer positions: 60 / 64 / 59 (max 35.0%)
+  Cross-chapter name duplications: 2
+  Hook-opener duplications: 0
+  Findings:
+    [F1 blocker] 2 protagonist name(s) appear as named characters in multiple chapters: Soren(ch12,18), Version(ch13,19). Regenerate affected examples with distinct names.
+[23:47:02] 
+=== Skipping promotion: book gate has blockers ===
+[23:47:02] 
+=== generateBook done in 4149s (69.2 min) ===
+[23:48:56] === generateBook: Atomic Habits (20 chapters) ===
+[23:48:56] 
+--- Chapter 1/20: The Surprising Power of Atomic Habits ---
+[23:48:56] resume: atomic-habits-ch01 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 2/20: How Your Habits Shape Your Identity (and Vice Versa) ---
+[23:48:56] resume: atomic-habits-ch02 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 3/20: How to Build Better Habits in 4 Simple Steps ---
+[23:48:56] resume: atomic-habits-ch03 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 4/20: The Man Who Didn't Look Right ---
+[23:48:56] resume: atomic-habits-ch04 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 5/20: The Best Way to Start a New Habit ---
+[23:48:56] resume: atomic-habits-ch05 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 6/20: Motivation Is Overrated; Environment Often Matters More ---
+[23:48:56] resume: atomic-habits-ch06 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 7/20: The Secret to Self-Control ---
+[23:48:56] resume: atomic-habits-ch07 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 8/20: How to Make a Habit Irresistible ---
+[23:48:56] resume: atomic-habits-ch08 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 9/20: The Role of Family and Friends in Shaping Your Habits ---
+[23:48:56] resume: atomic-habits-ch09 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 10/20: How to Find and Fix the Causes of Your Bad Habits ---
+[23:48:56] resume: atomic-habits-ch10 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 11/20: Walk Slowly, but Never Backward ---
+[23:48:56] resume: atomic-habits-ch11 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 12/20: The Law of Least Effort ---
+[23:48:56] resume: atomic-habits-ch12 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 13/20: How to Stop Procrastinating by Using the Two-Minute Rule ---
+[23:48:56] resume: atomic-habits-ch13 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 14/20: How to Make Good Habits Inevitable and Bad Habits Impossible ---
+[23:48:56] resume: atomic-habits-ch14 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 15/20: The Cardinal Rule of Behavior Change ---
+[23:48:56] resume: atomic-habits-ch15 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 16/20: How to Stick with Good Habits Every Day ---
+[23:48:56] resume: atomic-habits-ch16 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 17/20: How an Accountability Partner Can Change Everything ---
+[23:48:56] resume: atomic-habits-ch17 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 18/20: The Truth About Talent (When Genes Matter and When They Don't) ---
+[23:48:56] resume: atomic-habits-ch18 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 19/20: The Goldilocks Rule: How to Stay Motivated in Life and Work ---
+[23:48:56] resume: atomic-habits-ch19 already generated AND ingested — skipping
+[23:48:56] 
+--- Chapter 20/20: The Downside of Creating Good Habits ---
+[23:48:56] resume: atomic-habits-ch20 already generated AND ingested — skipping
+[23:48:56] 
+=== Book gate (20 chapters succeeded, 0 failed) ===
+[23:48:56] Book gate: PASS (atomic-habits, 20 chapters)
+  Quiz answer positions: 60 / 64 / 59 (max 35.0%)
+  Cross-chapter name duplications: 0
+  Hook-opener duplications: 0
+  No findings.
+[23:48:56] 
+=== Categorizer ===
+[23:49:21] categories: Psychology, Self-Help, Productivity
+[23:49:21] tags: habit-formation, behavior-change, identity, environment-design, self-control, motivation, procrastination, consistency
+[23:49:21] 
+=== Library promotion ===
+[23:49:21] ✓ PROMOTED: atomic-habits
+  PROMOTED: 20 chapter(s) shipped to /Users/willsoltani/dev/chapterflow-siliconx/book-packages/atomic-habits.v21.json. Majors logged: 57 ship + 0 book.
+  Package: /Users/willsoltani/dev/chapterflow-siliconx/book-packages/atomic-habits.v21.json
+  Report: /Users/willsoltani/dev/chapterflow-siliconx/scripts/book/prompts/chapterflow-v21-authored/state/books/atomic-habits.gate.json
+  Ship gate: 0 blockers, 57 majors
+  Book gate: 0 blockers, 0 majors
+[23:49:21] 
+=== generateBook done in 25s (0.4 min) ===

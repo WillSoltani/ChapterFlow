@@ -1,0 +1,319 @@
+{
+  "chapterId": "playing-to-win-ch07",
+  "number": 7,
+  "title": "Think Through Strategy",
+  "readingTimeMinutes": 14,
+  "hook": "Noam has sixty pages of research and an options column with three lonely words in it.",
+  "counterintuition": "Most teams mistake more analysis for better strategy. Analysis helps only when it tests real options and changes what the team might choose. Instead, the work gets sharper when evidence has real options to test.",
+  "tryThisNow": "Take the plan closest to your hand and underline the sentence that claims to be a choice. Beside it, write what it would make you stop doing this week.",
+  "keyTakeaway": "Strategic thinking improves when options and evidence work together, because facts gain force only when they pressure a real choice.",
+  "breakdown": {
+    "fastRead": "Noam scrolls through sixty pages at 11:19 p.m. in a hotel business center. Market data, interviews, and cost tables fill the deck. The options slide has three lonely words: expand, partner, wait.\n\nAnalysis is not the work by itself. It needs live options to judge.\n\nIf evidence never has to change a choice, the room may be studying instead of thinking.\n\nNoam does not need a longer appendix. He needs a fork in the road that makes the appendix useful.",
+    "deepRead": "Shaila runs a campus food pantry survey and feels prepared until a volunteer asks which three service models are still alive. She has hunger data, class schedules, bus routes, and donor notes. She does not have options. The question changes the meeting.\n\nThinking through strategy is a loop. Generate possibilities, ask what would need to be true, test the most important conditions, then revise the options. The loop should narrow or improve the choices. If it only creates more binders, it is avoiding the cut.\n\nPicture Judson at a repair shop counter with two estimates. One path adds mobile service. One doubles down on faster in-shop turnaround. A third partners with a tow company. Now the customer data can do work. It can show which option fits actual breakdown patterns.\n\nThe limit is false precision. A spreadsheet can make a weak option look mature. Keep asking what decision the evidence changes.\n\nA product team can spend weeks studying churn and still avoid the strategic question. Are they building deeper onboarding for new users, cutting weak features for power users, or changing pricing for small teams? Once those options are named, the churn data starts to sort. Some facts matter more. Some facts stop mattering. The work gets lighter because the choice set has shape.\n\nIteration should leave marks. After each pass, one option should look stronger, weaker, merged, or dead. If the option list never changes, the process is not learning.",
+    "fullRead": "Vikram tapes five index cards to a conference-room wall at 8:33 a.m. Each card has a possible path for the regional bank: serve medical practices, specialize in farm loans, build digital tools for freelancers, buy a small competitor, or stay broad and cut costs. For the first time all week, the data has something to do.\n\nGood strategy thinking is not a march from facts to answer. It is a conversation between options and evidence. Options without evidence become guessing. Evidence without options becomes display. The useful loop keeps making the choice set better.\n\nAlthea sees the failure mode in a city arts grant. Her committee has a thick folder on audience decline, venue costs, and school partnerships. The folder is impressive. When she asks what options the folder is testing, the room gets quiet. More research will not fix that silence. The committee needs possible strategies: school residencies, touring micro-stages, neighborhood festivals, or fewer grants with deeper support. Then the evidence can start sorting.\n\nRaquel gets the same lesson in her career notebook. She has salary charts, program rankings, alumni interviews, and skill lists. The pages keep growing because they never have to choose among paths. She writes three live options on one page and marks the condition that would make each one work. The research pile stops being a hiding place and starts becoming a test bench.\n\nA strong loop has movement. It creates options, exposes what must be true, tests the load-bearing parts, and then changes the options. Sometimes an option dies. Sometimes two merge. Sometimes the best evidence says the original aim was wrong. That is progress.\n\nWhen a strategy process feels smart but stuck, ask what options are alive and what evidence could change them by Friday. If nobody can answer, the process needs a fork in the road.\n\nThe first option set does not need to be perfect. It needs to be real enough to invite criticism. A rough option with a clear logic is better than a polished research deck with no path inside it. Once the option exists, people can ask what would have to be true, where it is weak, and what test would teach the most.\n\nThis style of thinking also changes meetings. Instead of asking whether everyone likes the recommendation, the leader asks which option the evidence has improved and which condition still worries the room. The conversation becomes less personal. People are not defending status. They are improving the choice set.\n\nBe careful with options that differ only in wording. Serve premium customers, focus on high-value customers, and pursue affluent buyers may be one option wearing three jackets. Real options make different choices. They require different capabilities, carry different risks, and would change the next test."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-noam-finds-the-empty-options-slide-at-the-bu",
+      "title": "Noam finds the empty options slide at the business center",
+      "tags": [
+        "bank",
+        "analysis",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "regional bank strategy",
+        "audience": "strategy lead",
+        "stakes": "option generation",
+        "format": "decision_point",
+        "requiredBeat": "analysis has no real options"
+      },
+      "scenario": "Noam scrolls through sixty pages at 11:19 p.m. in the hotel business center, the printer warming behind him. Market data, branch maps, and customer interviews fill the deck. Slide fifty-eight says options and lists expand, partner, wait. The words look like labels, not choices. He can send the deck before breakfast, or he can pull the team back to write real paths the evidence can test.",
+      "whatToDo": "Pause the deck and create a small set of real options with different choices, costs, and success conditions. Then attach the evidence to those options.",
+      "whyItMatters": "The research cannot think for the team. Noam needs options sharp enough that the facts can strengthen, weaken, or kill them."
+    },
+    {
+      "exampleId": "ch07-ex02-shaila-labels-the-pantry-binders-after-the-v",
+      "title": "Shaila labels the pantry binders after the volunteer question",
+      "tags": [
+        "campus",
+        "food",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "campus food pantry",
+        "audience": "student organizer",
+        "stakes": "service model choice",
+        "format": "postmortem",
+        "requiredBeat": "survey data lacks service models"
+      },
+      "scenario": "Shaila sits on the pantry floor at 7:46 p.m., labeling binders of survey data while canned beans line the wall. A volunteer had asked which service models were still possible: pop-up tables, dorm delivery, or grocery cards. Shaila had no answer. She had class schedules, bus routes, and hunger data, but no live options. The binders suddenly look less like preparation and more like delay.",
+      "whatToDo": "Turn the data into tests for two or three service models. Decide what each model would need to be true, then use the next survey pass to pressure those conditions.",
+      "whyItMatters": "The pantry does not need more information in general. It needs information aimed at a choice the team might actually make."
+    },
+    {
+      "exampleId": "ch07-ex03-vikram-makes-the-five-bank-cards-argue-with-",
+      "title": "Vikram makes the five bank cards argue with the data",
+      "tags": [
+        "banking",
+        "dialogue",
+        "options"
+      ],
+      "planSpec": {
+        "domain": "bank planning workshop",
+        "audience": "facilitator",
+        "stakes": "choice set quality",
+        "format": "dialogue",
+        "requiredBeat": "options and evidence interact"
+      },
+      "scenario": "Vikram tapes five index cards to the conference-room wall at 8:33 a.m. \"Medical practices, farm loans, freelancers, acquisition, broad cost cut,\" he says. The CFO points to the freelancer card. \"Our branch staff cannot sell that.\" Vikram hands her a marker. \"Good. Write the condition that would have to change.\" For the first time, the data tables on the screen have opponents.",
+      "whatToDo": "Put the options where the room can test them. For each objection, write the condition that would have to hold instead of letting the objection stay vague.",
+      "whyItMatters": "Options make evidence useful by giving it something to challenge. Vikram turns disagreement into a sharper test of the strategy paths."
+    },
+    {
+      "exampleId": "ch07-ex04-althea-watches-the-arts-grant-folder-fail-to",
+      "title": "Althea watches the arts grant folder fail to choose",
+      "tags": [
+        "arts",
+        "grant",
+        "reveal"
+      ],
+      "planSpec": {
+        "domain": "city arts grant",
+        "audience": "committee chair",
+        "stakes": "funding strategy",
+        "format": "predict_reveal",
+        "requiredBeat": "thick evidence folder has no tested paths"
+      },
+      "scenario": "Althea predicted the thick arts-grant folder would settle the debate. At 2:24 p.m., she opens it in city hall: audience decline, venue costs, school contacts, donor notes. Then a sculptor asks which funding model the evidence supports. The room goes quiet except for a page sliding off the table. The folder is full. The choice set is empty.",
+      "whatToDo": "Name the possible funding models first, then use the evidence to compare them. Stop treating the folder as progress until it changes an option.",
+      "whyItMatters": "Evidence cannot choose unless the room gives it options to work on. Althea needs the folder to test paths, not impress the committee."
+    },
+    {
+      "exampleId": "ch07-ex05-judson-compares-mobile-repairs-with-faster-s",
+      "title": "Judson compares mobile repairs with faster shop turnaround",
+      "tags": [
+        "repair",
+        "before_after",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "appliance repair shop",
+        "audience": "owner",
+        "stakes": "service model decision",
+        "format": "before_after",
+        "requiredBeat": "options make customer data useful"
+      },
+      "scenario": "At 4:18 p.m., Judson used to stare at service tickets and complain that customers were unpredictable. Then he wrote three options on butcher paper: mobile same-day, faster in-shop turnaround, tow-company partner. The same ticket pile changed. Breakdowns clustered by neighborhood, not appliance age. Two weeks later he tested mobile calls in one zip code instead of guessing across the whole shop.",
+      "whatToDo": "Frame the live options, then read the data against them. Let the pattern suggest a test that narrows the choice.",
+      "whyItMatters": "The tickets were always there. They became strategic only after Judson gave them a fork in the road to judge."
+    },
+    {
+      "exampleId": "ch07-ex06-raquel-trims-her-career-notebook-to-three-li",
+      "title": "Raquel trims her career notebook to three live paths",
+      "tags": [
+        "career",
+        "personal",
+        "scene"
+      ],
+      "planSpec": {
+        "domain": "career planning",
+        "audience": "professional",
+        "stakes": "decision progress",
+        "format": "scene",
+        "requiredBeat": "research pile becomes option test"
+      },
+      "scenario": "Raquel sits at 6:02 a.m. in a quiet train car with salary charts, alumni notes, and program rankings spread across her tablet. The research has grown for months. Her stop is twelve minutes away. She opens a blank note and writes three paths: stay and specialize, switch firms, apply to a part-time program. Under each, she adds one condition that would make it worth doing. The pile finally has a job.",
+      "whatToDo": "Reduce the research to live paths and conditions. Use the next call or search to test one condition, not to add more general material.",
+      "whyItMatters": "Personal research can become a hiding place. Raquel makes it useful by forcing it to pressure choices she might actually make."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch07-q01",
+        "prompt": "A manager is staring at a planning slide with eight equal priorities and one budget line already cut. The team wants language that keeps every group happy before the Thursday review. Which action best applies the move?",
+        "choices": [
+          "Force the slide to name the one choice that decides the rest.",
+          "Add a sentence saying all priorities remain important.",
+          "Delay the review until every leader has edited the slide."
+        ],
+        "correctIndex": 0,
+        "explanation": "The right move makes the choice visible. A strategy that protects every claim cannot guide scarce money or attention.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch07-q02",
+        "prompt": "A teacher is picking projects for a six-week unit. Three options are useful, but only one fits the students she most wants to serve this term. What should she do first?",
+        "choices": [
+          "Run all three as shorter projects.",
+          "Choose the project that fits the chosen students and let the others wait.",
+          "Ask students to vote without naming the learning target."
+        ],
+        "correctIndex": 1,
+        "explanation": "The useful option is not always the strategic option. Fit to the chosen aim should lead the decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q03",
+        "prompt": "A founder has a new offer, a thin cash balance, and two customer groups asking for different features by Friday. Which response best keeps the strategy coherent?",
+        "choices": [
+          "Promise both groups a lighter version.",
+          "Build the feature requested by the louder group.",
+          "Pick the customer group tied to the win and say no to the other request."
+        ],
+        "correctIndex": 2,
+        "explanation": "The move protects the chosen game. Saying yes to the wrong buyer can spend the same resources while weakening the path to win.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q04",
+        "prompt": "A clinic team notices its dashboard is full of green marks, but patients in the chosen service line still wait too long. Which action fits the lesson?",
+        "choices": [
+          "Change the measure so it tracks the wait that decides the chosen service line.",
+          "Celebrate the green dashboard to keep morale high.",
+          "Add a second dashboard for every department."
+        ],
+        "correctIndex": 0,
+        "explanation": "Measures should support the actual choice. A green report that misses the chosen result trains the team to drift politely.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q05",
+        "prompt": "A parent is helping a teenager plan summer activities. The list has sports, coding, travel, work, and test prep, all marked urgent. What is the best next move?",
+        "choices": [
+          "Rank the activities by how impressive they sound.",
+          "Name the one summer outcome that should lead the schedule.",
+          "Keep all activities and shorten sleep for two weeks."
+        ],
+        "correctIndex": 1,
+        "explanation": "A clear leading aim makes the rest easier to sort. Without it, every good option claims the same space.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch07-q06",
+        "prompt": "A nonprofit board wants to serve seniors, new immigrants, artists, and local schools with one small grant. Which plan best follows the move?",
+        "choices": [
+          "Split the grant into four equal mini-programs.",
+          "Use the grant on the group with the loudest advocate.",
+          "Choose one audience and design the program to win trust there first."
+        ],
+        "correctIndex": 2,
+        "explanation": "Small resources need a field. Equal spread can feel fair while making the work too weak for anyone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q07",
+        "prompt": "A restaurant owner is choosing between faster lunch service, a deeper dinner menu, and catering. The kitchen can support only one new habit this month. What should she do?",
+        "choices": [
+          "Choose the habit that reinforces the desired position with customers.",
+          "Try all three and review after staff burn out.",
+          "Let each shift choose its own priority."
+        ],
+        "correctIndex": 0,
+        "explanation": "The best action reinforces the same edge. A kitchen cannot learn three different games at once.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q08",
+        "prompt": "A student group has survey data, interview notes, and pricing guesses, but nobody has written the actual options on the wall. Which move should come next?",
+        "choices": [
+          "Collect more survey answers before speaking.",
+          "Write two or three real options and use the evidence to test them.",
+          "Pick the safest option because it has fewer objections."
+        ],
+        "correctIndex": 1,
+        "explanation": "Evidence needs options to judge. More facts do not help until the group names the paths it might take.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q09",
+        "prompt": "A designer wants confidence before narrowing a product concept. She can test one assumption with five users tomorrow. Which plan best fits the move?",
+        "choices": [
+          "Wait until the full prototype is polished.",
+          "Ask friends which concept sounds more exciting.",
+          "Test the assumption that would kill the concept if it fails."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest test puts pressure on the condition that carries the decision. It improves the odds faster than broad reassurance.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch07-card-01",
+      "front": "You see a plan with many good options and no lead choice. What question should you ask first?",
+      "back": "Ask which result or customer is allowed to decide the next tradeoff. The answer should make at least one attractive option fall behind.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-card-02",
+      "front": "A team says every priority matters equally. How do you test whether think through strategy is real?",
+      "back": "Look for a resource shift, a narrower field, or a changed routine. If nothing changes after the words are approved, the choice is still soft.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card-03",
+      "front": "A colleague objects that narrowing the plan feels risky. What answer keeps the work practical?",
+      "back": "Say that narrowing is not about being small. It is about putting force behind the field where the team has the best chance to win.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card-04",
+      "front": "You have one week before a review and too many claims in the plan. What should be on your scratch pad?",
+      "back": "Write the chosen win, field, edge, needed capabilities, and management checks. Then mark any claim that does not support that chain.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The skill is option-driven analysis. You learn to make evidence test live possibilities so the choice set gets sharper.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts with a list of equal priorities, then ask which one choice should receive money, people, or calendar time first."
+      },
+      {
+        "context": "health",
+        "plan": "If you add a new routine, then name the one health result it serves and remove one routine that does not help that result this month."
+      },
+      {
+        "context": "personal",
+        "plan": "If your weekend plan has more than three serious goals, then choose the one goal that would make Sunday night feel won and schedule it first."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a shared plan is getting broad and polite, then ask what both of you are willing to stop doing so the chosen aim has room."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next planning conversation, write two real options for a current decision and the one piece of evidence that could change which option leads. Circle the one answer that should force a real tradeoff, then bring only that circled choice to the room.",
+    "weeklyPractice": "For seven days, keep a one-page choice log. Each time a plan grows wider, write the choice, the option you refused, and what changed because you refused it."
+  },
+  "memorableLines": [
+    {
+      "text": "Analysis is not the work by itself. It needs live options to judge.",
+      "location": "breakdown.fastRead",
+      "why": "This line carries the practical test in plain language."
+    },
+    {
+      "text": "Options without evidence become guessing. Evidence without options becomes display.",
+      "location": "breakdown.fullRead",
+      "why": "This line carries the practical test in plain language."
+    },
+    {
+      "text": "If nobody can answer, the process needs a fork in the road.",
+      "location": "breakdown.fullRead",
+      "why": "This line carries the practical test in plain language."
+    }
+  ]
+}

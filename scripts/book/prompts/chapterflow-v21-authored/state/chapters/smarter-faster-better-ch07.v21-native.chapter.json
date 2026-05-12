@@ -1,0 +1,325 @@
+{
+  "chapterId": "smarter-faster-better-ch07",
+  "number": 7,
+  "title": "Innovation",
+  "readingTimeMinutes": 12,
+  "hook": "A bicycle brake cable crosses the prototype bench, and the toy finally opens its wings.",
+  "counterintuition": "Most people assume innovation means protecting originality from outside influence. Instead, strong creative work often imports useful fragments, reshapes them under constraint, and cuts what no longer earns a place.",
+  "tryThisNow": "Choose one stuck problem, borrow a working pattern from a different field, and write exactly what must change before that pattern fits your constraint.",
+  "keyTakeaway": "Innovation grows when useful ideas travel across boundaries and then survive hard revision, because originality comes from fit, not from isolation.",
+  "breakdown": {
+    "fastRead": "The toy team's original gear train is beautiful and failing. The bicycle brake cable is foreign and useful. The breakthrough is not copying the bike. It is changing the toy around the one mechanism that finally works.\n\nOriginality is not isolation. New work often starts when an old pattern enters a new room. Then the hard part begins. The pattern has to be cut, tested, and rebuilt until it serves the new problem.\n\nPressure can help by ending the fantasy that every beloved piece will survive. It can also make a room panic. Pressure sharpens creativity only when the work can still move.",
+    "deepRead": "Idea brokers matter because rooms get trapped in their own materials. The hospital equipment tech has watched carts fail for months until a pit-crew staging pattern gives him a new structure. The pastry chef sees a textile pleat and gains a way to test dough. The teacher borrows blocking from rehearsal and makes orbit visible.\n\nA borrowed idea is only raw material until the new constraint changes it. The source does not make the result creative. The transformation does. If the game designer bolts on a card mechanic whole, the mechanic remains foreign. If the toy team cuts the gear train and rebuilds around a brake cable, the outside idea becomes part of the new thing.\n\nCreative desperation adds pressure. A deadline can make weak drafts harder to protect. It forces the room to ask which pieces actually work and which are beloved because they have been around longest. Frozen is useful here as a public reminder that finished creative work often hides many rounds of reshaping. The polished version is not proof that the path was pure. It is proof that the path survived cuts.\n\nThe limit is important. Pressure alone does not create invention. A rigid room under deadline just gets louder. A useful room keeps ideas moving, borrows without shame, and cuts without worshiping the first draft. Transfer opens the field. Revision earns the result.",
+    "fullRead": "Innovation is surrounded by myths of purity. The lone creator. The untouched idea. The original spark guarded from contamination. These stories are flattering and mostly unhelpful. Real creative work often looks less like pristine invention and more like traffic: fragments moving from one field to another, breaking, sticking, being cut, and taking on a new job.\n\nThat is why idea brokers matter. A broker is not merely someone with many ideas. It is someone who carries a working pattern across a boundary. A pit crew knows staging. A textile pleater knows repeated folds. A theater director knows blocking. A bicycle brake solves tension through a cable. None of these patterns is automatically useful in a hospital, pastry bench, classroom, or toy shop. Their value appears only when someone sees a possible fit.\n\nFit is the difficult word. Borrowing is easy at the surface. You can copy the language, the layout, the ritual, the mechanic, or the look. That often produces imitation. Recombination asks a harsher question: what job must this borrowed thing do here, and what must be changed before it can do that job?\n\nA borrowed idea is only raw material until the new constraint changes it. In the game studio, the card mechanic failed because it had not been transformed. It kept the weight of its old game and disrupted the new one. In the pastry kitchen, the pleat was promising but tore the dough. The chef did not praise the origin. She made the fold answer to the croissant.\n\nPressure changes the room. With unlimited time, weak features can survive as future promises. Under deadline, the promises lose cover. The prototype shop has thirty-six hours. The library exhibit opens tomorrow. The room has to choose what works together now. That urgency can be brutal, but it can also reveal the draft hiding under the draft.\n\nThe danger is that pressure becomes panic. Then people cling to the first idea because changing feels too risky, or they chase every new fragment because movement feels like progress. Useful pressure does something narrower. It forces comparison. It asks what function must survive, what can be cut, and which borrowed piece helps the whole thing cohere.\n\nFrozen makes the pattern easy to see in a familiar way. The admired final artifact did not arrive as a sealed jewel. It was shaped by changed songs, changed relationships, and repeated attempts to make the emotional engine work. The value of that example is not gossip about production. It is a reminder that polished outcomes often depend on unglamorous revision.\n\nThe practical move is to invite foreign material and then be ruthless about fit. Bring in the pattern. Name the job. Test under the new constraint. Cut what the borrowed piece breaks. Cut what your original idea cannot justify. Keep revising until the combination does something neither part could do alone.\n\nInnovation is not the worship of novelty. It is the disciplined movement of useful fragments toward fitness."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01-tavi-equipment-cage",
+      "title": "Tavi changes the pit-crew pattern before it reaches the ward",
+      "tags": [
+        "decision_point",
+        "hospital",
+        "transfer"
+      ],
+      "planSpec": {
+        "domain": "a hospital equipment tech importing a pit-crew staging pattern into pump-cart handoffs",
+        "audience": "a technician who sees a useful pattern but must rebuild it for the ward's constraints",
+        "stakes": "whether the handoff gets faster through transformed borrowing or fails as copied theater",
+        "format": "decision_point",
+        "requiredBeat": "he imports a pit-crew staging pattern, then decides what to change so it fits the ward instead of copying it"
+      },
+      "scenario": "Tavi loops an orange extension cord over a pump cart at 5:38 a.m. in the basement equipment cage, the elevator doors clanking behind him. He watched a pit-crew video last night and sketched the same tool zones on tape. The idea is good, but ward nurses do not move like mechanics, and pumps must be wiped between hands. His supervisor wants the tape down before rounds. Tavi's finger rests on the blue zone. Copying would be fast. Rebuilding means fewer zones, a wipe step, and a nurse signoff before the pattern earns the floor.",
+      "whatToDo": "Import the staging pattern, then adapt it to pump cleaning, nurse reach, and elevator timing before rollout. Borrow the structure, not the surface show.",
+      "whyItMatters": "Innovation often starts with transfer, but copied patterns fail when the new setting has different constraints. The borrowed idea has to be rebuilt until it fits."
+    },
+    {
+      "exampleId": "ch07-ex02-mouna-marble-bench",
+      "title": "Mouna makes the pleat earn the croissant",
+      "tags": [
+        "dialogue",
+        "pastry",
+        "recombination"
+      ],
+      "planSpec": {
+        "domain": "a pastry chef testing a dough fold inspired by textile pleating",
+        "audience": "a chef who values craft and does not want novelty to become decoration",
+        "stakes": "whether a borrowed fold improves texture or only gives the team a clever story",
+        "format": "dialogue",
+        "requiredBeat": "she makes the borrowed pattern prove it improves the croissant, not just look clever"
+      },
+      "scenario": "Mouna taps cold butter under a rolling pin at 4:22 a.m. Thursday on the marble pastry bench, flour dusting the black cuffs of her coat. \"It's from a pleating video,\" the apprentice says, folding dough like silk. \"Pretty,\" Mouna says, cutting two test strips. \"Now we bake one your way and one house fold.\" Twenty minutes later, the pleated batch lifts higher but tears at the corner. Mouna slides both onto the cooling rack. \"Good idea,\" she says. \"Not done.\" She is not asking where it came from now. She is asking what the croissant needs next.",
+      "whatToDo": "Test the borrowed fold against the house standard, then revise it where the pastry fails. Keep the useful lift, fix the tearing, and make the origin less important than the fit.",
+      "whyItMatters": "Borrowing becomes innovation when the material changes under the new constraint. A clever source is only raw material until the work itself improves."
+    },
+    {
+      "exampleId": "ch07-ex03-pasha-sticky-notes",
+      "title": "Pasha peels the pasted mechanic off the wall",
+      "tags": [
+        "postmortem",
+        "games",
+        "prototype"
+      ],
+      "planSpec": {
+        "domain": "a game designer reviewing why a borrowed mechanic failed in a prototype",
+        "audience": "a designer who must distinguish recombination from pasted-on imitation",
+        "stakes": "whether the next prototype transforms outside material or keeps decorating a weak core",
+        "format": "postmortem",
+        "requiredBeat": "he sees the borrowed mechanic stayed pasted on because the team never rebuilt it for their game"
+      },
+      "scenario": "Pasha stands at 9:09 p.m. Friday in the studio playtest room, red sticky notes covering the wall and the failed prototype still running its menu music. The team had borrowed a card-drafting mechanic from a strategy game they loved. Players hated it. In the postmortem, Pasha rereads the notes: slows combat, breaks tension, rewards hoarding, story vanishes. The mechanic was not wrong. It was foreign. They had bolted it on whole and called the bolt creative. Pasha peels the note labeled drafting and writes, what job must it do here?",
+      "whatToDo": "Stop defending the borrowed mechanic as borrowed. Name the job the game needs, then keep, cut, or rebuild only the pieces that serve that job under this game's pressure.",
+      "whyItMatters": "Recombination is transformation, not attachment. A foreign pattern has to earn a new role or it remains imitation with better vocabulary."
+    },
+    {
+      "exampleId": "ch07-ex04-sorina-foam-planets",
+      "title": "Sorina turns orbit notes into blocking marks",
+      "tags": [
+        "before_after",
+        "school",
+        "adaptation"
+      ],
+      "planSpec": {
+        "domain": "a science teacher adapting a rehearsal-room blocking pattern for a solar-system lesson",
+        "audience": "a teacher trying to make borrowed structure serve understanding instead of novelty",
+        "stakes": "whether students feel orbital relationships or only copy vocabulary from slides",
+        "format": "before_after",
+        "requiredBeat": "she moves from a pure lecture to a borrowed rehearsal-room blocking pattern that students physically adapt"
+      },
+      "scenario": "Sorina catches a foam Mars under the lab table at 1:26 p.m. Tuesday in room 214, the old lecture slides still open on the projector. Before, she talked through orbit, tilt, and distance while students copied terms. After watching the drama teacher block a crowd scene, she tapes arcs on the floor and assigns each student a planet card. The first version is chaos. Then one student moves Saturn farther out and another slows Neptune's walk. The borrowed rehearsal pattern becomes a solar-system model only after the class adapts it with their bodies.",
+      "whatToDo": "Use the blocking pattern as a starting structure, then make students adjust spacing, speed, and position until the movement teaches the science.",
+      "whyItMatters": "A borrowed format helps when it makes the hidden relationship visible. The lesson improves because the class transforms the pattern into a model of the concept."
+    },
+    {
+      "exampleId": "ch07-ex05-zulema-gears",
+      "title": "Zulema lets the bicycle brake rescue the toy",
+      "tags": [
+        "predict_reveal",
+        "prototype",
+        "deadline"
+      ],
+      "planSpec": {
+        "domain": "a toy-company prototype lead using an outside mechanism under trade-show pressure",
+        "audience": "a product lead whose team is tempted to protect the original design because the deadline is close",
+        "stakes": "whether the prototype reaches the trade show working or preserves a failing original mechanism",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts the original mechanism must be protected, then sees a bicycle brake pattern solve the failure after cuts"
+      },
+      "scenario": "Zulema pushes plastic gears into a tray at 8:48 p.m. Monday in the prototype shop, a cold burrito leaking foil beside the drill press. The trade-show demo is in thirty-six hours. She predicts they must protect the original pull-string mechanism because there is no time to rethink. Then an intern rolls a bicycle brake cable across the bench and pinches it once. The toy wing snaps open cleanly. Three beloved gear features die in five minutes. The borrowed brake pattern, cut down hard, is the first version that works.",
+      "whatToDo": "Let the outside mechanism compete with the original, then cut features that prevent it from solving the real failure. Protect the demo's function, not the team's first design.",
+      "whyItMatters": "Deadline pressure helps only when the room can still revise. The borrowed pattern matters because urgency forced the team to test, cut, and fit it fast."
+    },
+    {
+      "exampleId": "ch07-ex06-bora-maker-lab",
+      "title": "Bora solders the city down to one moving bridge",
+      "tags": [
+        "scene",
+        "library",
+        "revision"
+      ],
+      "planSpec": {
+        "domain": "a library maker-lab coordinator finishing a children's city exhibit by recombining borrowed ideas under deadline pressure",
+        "audience": "a coordinator who must cut beloved features without killing the exhibit's core effect",
+        "stakes": "whether the exhibit opens as a working experience or a table of unfinished clever pieces",
+        "format": "scene",
+        "requiredBeat": "she uses deadline pressure to cut three beloved features and combine two borrowed ideas into a working exhibit"
+      },
+      "scenario": "Bora holds a soldering iron at 6:02 p.m. Saturday in the library maker lab, smoke curling above a cardboard skyline and children due in the room at ten tomorrow. The team loves the paper subway, the pulley elevator, the blinking harbor, and none of them work together. Bora pulls the museum pop-up book from one pile and a train-set switch from another. The subway dies. The harbor dies. The elevator becomes one drawbridge that rises when a paper boat arrives. She has to choose the working exhibit over the charming pieces scattered across the table.",
+      "whatToDo": "Cut the features that do not join the experience, then combine the pop-up and switch ideas into one reliable interaction. Let the deadline force fit, not panic.",
+      "whyItMatters": "Innovation is often less about keeping every idea than making fragments work together. Pressure sharpens when it makes the room choose and combine."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A clinic team copies an airport boarding process for patient intake. The first trial fails because patients need privacy checks and medication questions. Which revision best fits innovation by transfer?",
+        "choices": [
+          "Keep the queue-staging idea but rebuild it around privacy, medication review, and nurse handoffs.",
+          "Abandon the idea because a process from another field can never help medicine.",
+          "Copy the airport process exactly so the clinic does not dilute the original insight."
+        ],
+        "correctIndex": 0,
+        "explanation": "Transfer is only the start. The useful pattern has to be changed for the clinic's constraints before it becomes innovation rather than imitation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A design team refuses to look at outside products because it wants the new device to feel original. After three weeks, every prototype repeats the same flaw. What is the strongest critique?",
+        "choices": [
+          "The team is protecting creative purity, which is always necessary for breakthrough work.",
+          "The team is starving itself of useful patterns that could be transformed under its own constraints.",
+          "The team should copy a competitor exactly to save time."
+        ],
+        "correctIndex": 1,
+        "explanation": "Originality does not require isolation. Outside patterns can widen the search space, as long as the team transforms them instead of merely copying.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A school club borrows a hackathon format for a poetry event. Students rush, produce shallow work, and hate the timer. What should the organizer ask next?",
+        "choices": [
+          "How can we make the timer harsher so the borrowed format feels authentic?",
+          "Which poetry pieces can be removed so the event fits the original hackathon rules?",
+          "What job was the hackathon format supposed to do here, and which parts need changing for poetry?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The organizer needs to test fit. The borrowed format has to serve the new creative job, not preserve rules that made sense in a different domain.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A team under deadline has six clever prototype features and none of them work together. Which move uses pressure productively?",
+        "choices": [
+          "Name the core function, cut features that do not serve it, and combine the few that can work by tomorrow.",
+          "Keep every feature because cutting during pressure destroys morale.",
+          "Stop testing and wait for inspiration after the deadline passes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Pressure helps when it forces selection and fit. The team should protect the core function, not every beloved fragment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A restaurant borrows a ticket-routing system from a factory. It improves timing but confuses servers because table numbers matter differently than parts bins. What should happen?",
+        "choices": [
+          "Return to the old system because borrowed ideas always carry hidden costs.",
+          "Keep the routing logic, then redesign labels and handoffs for table service constraints.",
+          "Force servers to use factory labels so the system stays pure."
+        ],
+        "correctIndex": 1,
+        "explanation": "The routing logic may be valuable, but the surface details must change. Recombination means preserving the useful structure while adapting to a different job.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A filmmaker says a borrowed scene structure proves the script is unoriginal. The rewrite using that structure finally makes the emotional turn clear. Which response is best?",
+        "choices": [
+          "The filmmaker is right because any borrowed structure cancels creativity.",
+          "The team should hide the source so audiences cannot notice the borrowing.",
+          "The structure became creative once it was transformed to solve this script's emotional problem."
+        ],
+        "correctIndex": 2,
+        "explanation": "Borrowing is not the test. Transformation and fit are the test. If the structure now serves a new emotional job, it is part of the creative work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "An app team imports a swipe mechanic from a dating app into a budgeting tool. Users swipe fast and regret choices. Which evaluation question should come first?",
+        "choices": [
+          "What behavior did the swipe mechanic create in its original setting, and is that behavior useful here?",
+          "How can we make the swipe animation more polished so users trust it?",
+          "Which competitor can we blame if users dislike the mechanic?"
+        ],
+        "correctIndex": 0,
+        "explanation": "A mechanic carries behavior with it. The team must ask whether that behavior fits the budgeting constraint before making the borrowed piece prettier.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A museum exhibit team is stuck until one member brings in a children's pop-up card. The exhibit improves only after they cut half the card mechanics. What principle is at work?",
+        "choices": [
+          "Creative work improves when the source is preserved as faithfully as possible.",
+          "Borrowed material becomes useful through selection, cutting, and fit to the new problem.",
+          "The team should avoid future outside sources because too much cutting was required."
+        ],
+        "correctIndex": 1,
+        "explanation": "The outside source widened the field, but the cuts made it fit. Innovation came from transfer plus revision, not from preserving the source whole.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A deadline makes a team cling to the first design because changing now feels risky. Tests show the first design fails the core function. What should the lead do?",
+        "choices": [
+          "Protect the first design because late changes always create worse outcomes.",
+          "Delay all decisions until the pressure is gone and the team feels creative again.",
+          "Use the deadline to force a cut-and-fit session around any alternative that solves the core function."
+        ],
+        "correctIndex": 2,
+        "explanation": "Urgency should not freeze the failing original. It should force comparison around the core function and make the team revise while the work can still move.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch07-rc01",
+      "front": "A team is stuck and refuses outside examples to stay original. What should you retrieve?",
+      "back": "Retrieve the transfer move. Look for a working pattern in another domain, then ask what must change before it fits your problem. Isolation is not proof of originality.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-rc02",
+      "front": "A borrowed idea feels clever but makes the current work worse. What is the next test?",
+      "back": "Ask what job the idea must do here. Keep only the parts that serve that job under the new constraints, and cut or rebuild the rest.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-rc03",
+      "front": "Deadline pressure is rising. When does it help creativity instead of damaging it?",
+      "back": "It helps when the room can still move ideas, compare alternatives, and cut weak pieces. Pressure without revision only makes a stuck room louder.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-rc04",
+      "front": "A prototype has many beloved parts and no coherent experience. What innovation move matters most?",
+      "back": "Name the core function and cut parts that do not combine around it. Innovation often comes from fit among fragments, not from preserving every clever feature.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch07-rc05",
+      "front": "A team copied a process from another field and it failed. What should the postmortem avoid?",
+      "back": "Avoid concluding that outside ideas are useless. Ask whether the team copied the surface instead of transforming the pattern for the new constraints.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is transfer with revision. Find useful patterns outside the current room, bring them in as raw material, and change them until they fit the job at hand. Under pressure, protect the core function and cut whatever does not serve it.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a project is stuck, then bring in one working pattern from a different team or industry and list three changes needed before testing it."
+      },
+      {
+        "context": "health",
+        "plan": "If a health routine has stalled, then borrow a structure from a different routine, such as a rehearsal cue or checklist, and adapt it to your actual constraints."
+      },
+      {
+        "context": "personal",
+        "plan": "If a creative project feels stale, then pair one outside reference with your draft and write what job the reference could do after you change it."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a shared problem repeats, then borrow a working pattern from another setting and ask together what must change so it fits both people fairly."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, choose one stuck project and find one pattern from a different field. Write the job it could do, the constraints it must fit, and the first cut you would make.",
+    "weeklyPractice": "Once a week, collect one outside pattern and run a fit test: source, useful structure, required changes, and one small experiment that proves whether it belongs."
+  },
+  "memorableLines": [
+    {
+      "text": "New work often starts when an old pattern enters a new room.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the transfer move a concrete image without overexplaining it."
+    },
+    {
+      "text": "A borrowed idea is only raw material until the new constraint changes it.",
+      "location": "breakdown.deepRead",
+      "why": "It defines recombination through transformation and fit."
+    },
+    {
+      "text": "Pressure sharpens creativity only when the work can still move.",
+      "location": "breakdown.fastRead",
+      "why": "It draws the line between useful urgency and panic."
+    }
+  ]
+}

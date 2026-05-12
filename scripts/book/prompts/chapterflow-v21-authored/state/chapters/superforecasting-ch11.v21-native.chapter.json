@@ -1,0 +1,319 @@
+{
+  "chapterId": "superforecasting-ch11",
+  "number": 11,
+  "title": "Are They Really So Super?",
+  "readingTimeMinutes": 12,
+  "hook": "A better forecast is not a force field. It is a sharper way to prepare before surprise arrives.",
+  "counterintuition": "Keshet wants forecasting to promise control. Its real value is narrower: compare options, prepare better, and stay less sloppy when rare events refuse prediction.",
+  "tryThisNow": "Open a note, write one forecast you already believe about a rare-event forecast, add a percent and a check date, then write what would make you move the number down.",
+  "keyTakeaway": "Respect the limits of prediction, especially for rare shocks, but keep the habits that improve comparison, preparation, and response before uncertainty breaks open.",
+  "breakdown": {
+    "fastRead": "At 4:07 p.m., Keshet writes wide range on the museum flood plan. The range does not feel brave, but the sandbags arrive on time. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. Limits do not erase the craft. They tell the craft where to stand.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
+    "deepRead": "At 10:20 a.m., Willem, a port insurer, refuses to price a black-swan story as if he owns it. He can compare exposure without pretending to know the exact shock. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. A forecast can be useful without being a promise.\n\nPicture Rima choosing spare radio batteries because the forecast is useful but not complete. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
+    "fullRead": "At 2:52 a.m., Tolliver, a night editor, watches a sudden coup alert break every neat scenario on his board. The old preparation still helps because the sources and response roles were ready. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 6:49 p.m., Esha, a clinic director, uses a pandemic range to stock masks, not to claim control. The range guides readiness while leaving humility intact. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nPreparation is often the payoff when prediction cannot be exact. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-keshet-flood-plan",
+      "title": "Keshet writes wide range on the flood plan",
+      "tags": [
+        "scene",
+        "museum",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "museum operations",
+        "audience": "a museum registrar planning for flood risk",
+        "stakes": "whether uncertainty blocks preparation or guides it",
+        "format": "scene",
+        "requiredBeat": "she uses a wide range to trigger concrete protection steps"
+      },
+      "scenario": "Keshet smooths a plastic sleeve over the museum flood plan at 4:07 p.m., the basement smelling faintly of stone dust and old paper. The river model gives a wide range, too wide for comfort. The director wants to know whether the rare books will flood. Keshet cannot promise that. She writes wide range in the margin, then circles the trigger for moving crates to the second floor by Sunday. The sandbag order form waits under her elbow.",
+      "whatToDo": "Use the wide range to choose triggers. Move the rare books when the risk crosses the action line, even if the exact flood height stays uncertain.",
+      "whyItMatters": "A forecast can guide preparation without promising control. The crates only need a trigger, not a perfect river height."
+    },
+    {
+      "exampleId": "ch11-ex02-willem-port-policy",
+      "title": "Willem prices exposure without pretending to name the shock",
+      "tags": [
+        "decision_point",
+        "insurance",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "insurance underwriting",
+        "audience": "an insurer reviewing low-probability port failures",
+        "stakes": "whether rare shocks are ignored or overclaimed",
+        "format": "decision_point",
+        "requiredBeat": "he compares exposure while refusing exact-cause certainty"
+      },
+      "scenario": "Willem sets a chipped mug on the underwriting desk at 10:20 a.m., beside a map of port warehouses pinned with blue flags. The client asks what rare event could close all three docks. Strike, cyberattack, storm surge, nobody knows. The policy deadline is noon. Willem has to decide whether to invent a crisp story or price the shared exposure that makes several shocks costly.",
+      "whatToDo": "Price the exposure across scenarios. Name the uncertainty about cause, then reduce the risk by separating storage and routes where possible.",
+      "whyItMatters": "Rare shocks often resist exact naming. Shared exposure is visible enough to manage even when the trigger is not."
+    },
+    {
+      "exampleId": "ch11-ex03-rima-radio",
+      "title": "Rima buys radio batteries for the forecast that might miss",
+      "tags": [
+        "vignette",
+        "community",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "community preparedness",
+        "audience": "a volunteer coordinator preparing for storm outages",
+        "stakes": "whether forecast uncertainty stops basic readiness",
+        "format": "vignette",
+        "requiredBeat": "she treats forecast limits as a reason for flexible preparation"
+      },
+      "scenario": "Rima stands in aisle nine of the hardware store at 7:33 p.m., two packs of radio batteries in one hand and a storm forecast on her phone. The track may turn east. It may not. The cashier is closing in twenty minutes. Rima texts the neighborhood captains: batteries, water, check the elder list. She is not predicting disaster. She is buying cheap readiness for a forecast that could miss either way.",
+      "whatToDo": "Choose low-cost preparations that help across several outcomes. Do not wait for the forecast to become certain before buying the basics.",
+      "whyItMatters": "Uncertainty changes the kind of action, not the need for action. Flexible preparation pays even when the exact track is wrong."
+    },
+    {
+      "exampleId": "ch11-ex04-tolliver-coup-board",
+      "title": "Tolliver keeps the source tree after the coup alert",
+      "tags": [
+        "postmortem",
+        "newsroom",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "newsroom crisis",
+        "audience": "an editor reviewing a surprise political shock",
+        "stakes": "whether a miss means the whole process was useless",
+        "format": "postmortem",
+        "requiredBeat": "he separates failed prediction from useful preparation"
+      },
+      "scenario": "Tolliver sits under the night-desk clock at 2:52 a.m., the coup alert blinking red over a scenario board that did not include tonight. The prediction missed. Badly. But the source tree is current, the translation list is taped to the monitor, and the overnight roles are clear. By 3:10, reporters are calling the right people. Tolliver has to decide what to keep from a process that failed to foresee the spark.",
+      "whatToDo": "Keep the preparation tools and review the prediction separately. Ask what missed the shock, but preserve the source tree and response roles that worked.",
+      "whyItMatters": "A missed forecast does not make every habit worthless. Preparation can still be the reason the response is faster and less confused."
+    },
+    {
+      "exampleId": "ch11-ex05-esha-mask-shelf",
+      "title": "Esha stocks masks from a range, not a promise",
+      "tags": [
+        "before_after",
+        "clinic",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "clinic leadership",
+        "audience": "a clinic director preparing for a disease surge",
+        "stakes": "whether a wide forecast range is dismissed as useless",
+        "format": "before_after",
+        "requiredBeat": "she uses the range to choose scalable stock levels"
+      },
+      "scenario": "Before the winter surge, Esha wanted one number for patient volume. At 6:49 p.m. in the clinic storeroom, she gets a range instead: 80 to 180 extra visits a week. It feels mushy until she stacks masks and tests by tiers: first shelf for 80, second for 130, third vendor call at 160. Two weeks later the count lands at 142. The range did not predict exactly. It kept the clinic from guessing blind.",
+      "whatToDo": "Turn the range into tiered actions. Stock for the lower band now, set vendor triggers for the upper bands, and review weekly.",
+      "whyItMatters": "A range can be more useful than a false point estimate. It lets the clinic scale as reality declares itself."
+    },
+    {
+      "exampleId": "ch11-ex06-silas-bridge",
+      "title": "Silas marks no forecast strong enough on the bridge report",
+      "tags": [
+        "reflection",
+        "infrastructure",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "infrastructure risk",
+        "audience": "an engineer deciding what prediction cannot support",
+        "stakes": "whether weak evidence gets overstated for a funding vote",
+        "format": "reflection",
+        "requiredBeat": "he refuses to make a precise failure date and recommends inspection triggers"
+      },
+      "scenario": "Silas rests his palm on a bridge inspection report at 11:05 a.m., rust flakes in a small envelope beside the keyboard. The council wants a failure date. He has corrosion rates, traffic loads, and too many unknowns inside the old concrete. His cursor blinks after no forecast strong enough to name a date. He has to decide whether to give them fake precision or a monitoring plan with load triggers.",
+      "whatToDo": "Refuse the precise date. Give a risk range, inspection schedule, and load triggers that would force closure or repair.",
+      "whyItMatters": "Some systems do not offer a clean date. Honest limits protect the public better than a number that sounds useful but cannot carry its weight."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch11-q01",
+        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a rare-event forecast but sees no written odds or date. Which move best fits the skill of using forecasts without control fantasy?",
+        "choices": [
+          "Write a dated probability and ask what result would count as a miss.",
+          "Trust the confident speaker because clear delivery usually means better judgment.",
+          "Wait for perfect proof and refuse to act until uncertainty disappears."
+        ],
+        "correctIndex": 0,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch11-q02",
+        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a rare-event forecast. Which response keeps the estimate tied to evidence?",
+        "choices": [
+          "Collect more fresh stories until one of them feels complete enough to use.",
+          "Start with the base rate, then list what this case adds or subtracts.",
+          "Ignore the story completely because single cases never teach anything."
+        ],
+        "correctIndex": 1,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch11-q03",
+        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a rare-event forecast. Which question should come first?",
+        "choices": [
+          "Pick the claim that makes the next step feel least awkward.",
+          "Ask which claim is more inspiring and use that as the guide.",
+          "Ask what record, sample, or past rate each claim can point to."
+        ],
+        "correctIndex": 2,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch11-q04",
+        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a rare-event forecast has changed for good. Which move improves the forecast?",
+        "choices": [
+          "Compare the surprise with a longer record before moving the odds.",
+          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
+          "Hold the old forecast unchanged so the record looks steady."
+        ],
+        "correctIndex": 0,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch11-q05",
+        "prompt": "A founder on a Monday investor call wants to sound certain about a rare-event forecast, but the record is thin. Which line is strongest?",
+        "choices": [
+          "Use firm language so the room feels less anxious about the unknowns.",
+          "Give a range, name the unknowns, and promise a date for checking it.",
+          "Hide the range inside a slogan that sounds more decisive."
+        ],
+        "correctIndex": 1,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch11-q06",
+        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a rare-event forecast. Which update is sized best?",
+        "choices": [
+          "Jump to the new extreme so nobody can accuse the plan of being slow.",
+          "Move nothing because any update before the final outcome is premature.",
+          "Move the number a little unless the new signal is strong and direct."
+        ],
+        "correctIndex": 2,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch11-q07",
+        "prompt": "A student reviewing a missed prediction about a rare-event forecast wants to learn without protecting ego. Which action helps most?",
+        "choices": [
+          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
+          "Rewrite the old prediction in softer words before saving it.",
+          "Blame the outcome on luck and skip the written review."
+        ],
+        "correctIndex": 0,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch11-q08",
+        "prompt": "A team is split over a rare-event forecast, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "choices": [
+          "Let the senior person speak last and call that alignment.",
+          "Have each person write private odds first, then compare reasons aloud.",
+          "Vote immediately so disagreement does not slow the meeting."
+        ],
+        "correctIndex": 1,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch11-q09",
+        "prompt": "Someone making a three-month plan for a rare-event forecast wants to avoid confident blur. Which plan creates the best feedback?",
+        "choices": [
+          "Keep the plan broad so later outcomes cannot embarrass anyone.",
+          "Make one large forecast and check it only after the whole period ends.",
+          "Split the plan into smaller forecasts with dates for checking each one."
+        ],
+        "correctIndex": 2,
+        "explanation": "Limits do not make forecasting useless; they narrow what it can promise. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch11-rc01",
+      "front": "You hear a confident claim about a rare-event forecast. What do you ask before trusting it?",
+      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch11-rc02",
+      "front": "A fresh story makes your estimate feel wrong. How should you update?",
+      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch11-rc03",
+      "front": "A team wants one bold answer. What smaller move protects learning?",
+      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch11-rc04",
+      "front": "A miss is embarrassing. What should the review preserve?",
+      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is using forecasts to prepare and compare, while staying honest about events too rare or tangled to pin down. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a work meeting turns on a rare-event forecast, then write one dated probability on the agenda and name the result that would prove it wrong."
+      },
+      {
+        "context": "health",
+        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+      },
+      {
+        "context": "personal",
+        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a rare-event forecast with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
+    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+  },
+  "memorableLines": [
+    {
+      "text": "Limits do not erase the craft. They tell the craft where to stand.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "A forecast can be useful without being a promise.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "Preparation is often the payoff when prediction cannot be exact.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "chapterId": "make-it-stick-ch04",
+  "number": 4,
+  "title": "Embrace Difficulties",
+  "readingTimeMinutes": 12,
+  "hook": "The wrong answer on the whiteboard can be a handle, if someone shows you where to grip it.",
+  "counterintuition": "Most people assume harder practice is automatically better. The twist is that difficulty only helps when it creates a repairable act of retrieval, generation, or comparison.",
+  "tryThisNow": "Before checking an answer, make one honest attempt from memory or judgment. Then mark the exact miss, correct it, and try a similar item once more.",
+  "keyTakeaway": "Seek difficulty with a job: generate, retrieve, compare, or repair, and reject struggle that only adds fog with no route back.",
+  "breakdown": {
+    "fastRead": "Juno holds a dry-erase marker at 1:48 p.m. in trauma classroom 3. The instructor has not shown the chest-tube setup yet. He asks the group to sketch it first. Juno hates the empty diagram. She draws the clamp in the wrong place. Then the instructor circles it and shows why it would fail.\n\nThat is useful difficulty. The mistake is small, visible, and repaired at once. Hard is not holy. Hard helps when it makes the learner try, reveals the miss, and gives a path back. Fog without feedback is just fog.",
+    "deepRead": "Juno holds a dry-erase marker at 1:48 p.m. in trauma classroom 3. The room smells like plastic tubing and old coffee. The instructor asks everyone to sketch the chest-tube setup before he demonstrates it. Juno wants the answer first. She draws anyway and puts the clamp in the wrong place.\n\nThe instructor circles the clamp, then snaps the real clamp onto the tube. Juno can see the failure her drawing would have caused. The wrong answer has become a handle.\n\nDifficulty helps when it forces useful work. Generation makes you try before seeing. Retrieval makes you pull without cues. Spacing makes you recover after time. Corrected errors show exactly what to repair. The discomfort matters only because it serves one of those jobs.\n\nPavel learns the other side at 8:24 p.m. in a flight simulator room. His trainees are overloaded with alarms, weather, and radio calls before they understand the landing checklist. They are not learning. They are drowning. He pauses the sim, strips it back to one crosswind and one checklist step, and runs the miss again with feedback.\n\nThe line is practical. Add challenge when it makes the learner do the work you want. Remove challenge when it hides the work under panic or noise.\n\nFog without feedback is just fog.\n\nSachi keeps the collapsed bowl spinning for the same reason. The ugly clay still contains the motion that failed. One corrected pull teaches more than cutting the evidence off the wheel and starting clean.",
+    "fullRead": "Juno holds a dry-erase marker at 1:48 p.m. in trauma classroom 3. A tray of plastic tubing sits open on the front table. The instructor asks the group to sketch the chest-tube setup before he demonstrates it. Juno hates the request. She wants the answer first, then practice. Instead she draws the tube, the water seal, the clamp, and the wall suction line from her best guess. The clamp lands in the wrong place.\n\nThe instructor does not shame the miss. He circles it, snaps the real clamp onto the tubing, and asks what would happen if the patient coughed. Juno sees it. Her wrong mark is no longer a red X in her head. It is a map of what needed repair.\n\nThat is the useful version of difficulty. It asks the learner to generate before seeing, retrieve before checking, or try after a delay. It creates a miss that can be named. Then feedback arrives while the mind still cares about the answer. The learner repairs and tries again.\n\nThis is different from making practice hard for the sake of hard. Pavel sees the difference at 8:24 p.m. in a flight simulator room that smells like warm electronics. His new pilots face crosswind, radio traffic, two warning lights, and a surprise runway change all at once. The sim looks serious. The learning is poor. They stop hearing the checklist. They mash through steps without seeing why they failed. Pavel freezes the sim and removes two variables. One crosswind, one checklist step, one repair. The next run is still hard, but now the hard part has a job.\n\nMaureen hears the same rule at 10:02 p.m. in a bar prep group. A wrong answer can teach when the group explains why it was tempting and how to spot the trap next time. A wrong answer left hanging only makes people quieter.\n\nSo use a simple test. What work is this difficulty making me do? If it makes you retrieve, generate, compare, or repair, keep it. If it only raises stress, hides the pattern, or blocks feedback, change it. A productive challenge leaves a trail back to the right move.\n\nThe wrong answer on the whiteboard can be a handle, if someone shows you where to grip it. Fog without feedback is just fog.\n\nSachi keeps the same standard at the pottery wheel. Her bowl collapses because her left hand climbs too high. She wants to cut the clay off and start clean. The instructor asks her to leave the wobble spinning, lower the hand, and pull the wall once more. The bowl will not be sold. It will teach. The error is visible, touchable, and close enough to repair.\n\nLinus uses the same rule with pipettes in lab bay 6. He no longer demonstrates three times while students copy with the poster in view. He shows once, covers the poster, watches the blue dye bead on the bench, and corrects one angle at a time. The lab looks less tidy. By Friday, fewer drops miss the tube.\n\nA useful challenge has three parts: an attempt, a signal, and a repair. Remove any one of those and the difficulty weakens. Attempt without signal is guessing in the dark. Signal without repair is discouragement. Repair without another attempt is advice that never enters the hand."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-juno-trauma-board",
+      "title": "Juno draws the clamp before seeing the setup",
+      "tags": [
+        "decision_point",
+        "medical",
+        "generation"
+      ],
+      "planSpec": {
+        "domain": "trauma skills course",
+        "audience": "learners who want the model before trying",
+        "stakes": "whether a wrong first attempt becomes a repairable map",
+        "format": "decision_point",
+        "requiredBeat": "she chooses answer-first or generate-first in a trauma course"
+      },
+      "scenario": "Juno grips a blue dry-erase marker at 1:48 p.m. in trauma classroom 3, plastic tubing coiled on the front table. The instructor asks everyone to sketch a chest-tube setup before he shows the model. Juno wants to wait for the answer. Her marker hovers over the blank diagram. If she draws now, she may put the clamp in the wrong place in front of two nurses she admires. She has to decide whether to generate first or stay safe.",
+      "whatToDo": "Draw the best setup before the demo, mark what felt uncertain, then use the instructor's model to repair the exact wrong piece.",
+      "whyItMatters": "Generation creates a visible target for feedback. The wrong clamp location teaches more once it is connected to the real failure it would cause."
+    },
+    {
+      "exampleId": "ch04-ex02-pavel-simulator-room",
+      "title": "Pavel lowers the simulator noise until pilots can repair",
+      "tags": [
+        "postmortem",
+        "aviation",
+        "overload"
+      ],
+      "planSpec": {
+        "domain": "flight simulator training",
+        "audience": "coaches who confuse overload with rigor",
+        "stakes": "whether trainees learn a checklist or only survive stress",
+        "format": "postmortem",
+        "requiredBeat": "he reviews failed flight-sim trainees and finds too much difficulty with too little repair"
+      },
+      "scenario": "Pavel stands in the simulator room at 8:24 p.m., headset cord twisted around his wrist and the console still warm. Three trainees just botched the crosswind landing twice. The scenario had radio chatter, a runway change, and two warning lights before they knew the checklist. On replay, nobody can explain the miss. Pavel stops the tape on a frozen altimeter and sees the problem. The sim was hard, but it was not teaching.",
+      "whatToDo": "Strip the next run to one crosswind variable and one checklist step. Add feedback after the miss, then rebuild complexity only when repair is working.",
+      "whyItMatters": "Difficulty helps when learners can see and fix the failure. Overload hides the learning target under panic."
+    },
+    {
+      "exampleId": "ch04-ex03-maureen-tarek-bar-prep",
+      "title": "Maureen asks Tarek why the wrong answer looked right",
+      "tags": [
+        "dialogue",
+        "law",
+        "error repair"
+      ],
+      "planSpec": {
+        "domain": "bar exam study group",
+        "audience": "students ashamed of wrong answers",
+        "stakes": "whether misses become repair signals or silence",
+        "format": "dialogue",
+        "requiredBeat": "they discuss wrong answers and the need for feedback"
+      },
+      "scenario": "Maureen slides a marked-up torts question across a diner table at 10:02 p.m., syrup drying near the napkin holder. \"I picked C again,\" Tarek says. \"Then tell me why C looked good,\" Maureen says. Tarek shakes his head. \"It was just wrong.\" She taps the phrase he underlined. \"No. This phrase baited you. Say the bait out loud, then we write the repair.\" The waitress refills coffee. Tarek has to decide whether to hide the miss or inspect it.",
+      "whatToDo": "Name the lure in the wrong answer, write the cue that should have warned him, and try a nearby question before the session ends.",
+      "whyItMatters": "An error teaches when it is explained and followed by another attempt. Shame alone only makes the next miss harder to see."
+    },
+    {
+      "exampleId": "ch04-ex04-olwen-climbing-wall",
+      "title": "Olwen sees guided climbing lose to the rough route",
+      "tags": [
+        "predict_reveal",
+        "climbing",
+        "desirable difficulty"
+      ],
+      "planSpec": {
+        "domain": "rock climbing instruction",
+        "audience": "teachers choosing between guided ease and supported challenge",
+        "stakes": "whether climbers can read holds without a coach pointing",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts guided climbing drills will win but supported generation transfers"
+      },
+      "scenario": "Olwen chalks her hands at 6:37 p.m. under the north wall, dust floating in the gym lights. She predicts the coach-marked route will beat the route where beginners must choose handholds before getting feedback. The marked group climbs smoothly. The choice group stalls, points, and downclimbs twice. On Saturday, the tape comes off for a new wall. The smooth group waits for hints. The choice group starts reading holds.",
+      "whatToDo": "Use supported route reading: let climbers choose holds, pause after errors, give feedback, and send them back onto a similar section.",
+      "whyItMatters": "The rougher route trained judgment. The marked route trained following, which looked good until the marks disappeared."
+    },
+    {
+      "exampleId": "ch04-ex05-sachi-pottery-collapse",
+      "title": "Sachi keeps the collapsed bowl on the wheel",
+      "tags": [
+        "vignette",
+        "craft",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "pottery wheel lesson",
+        "audience": "learners who want to discard errors fast",
+        "stakes": "whether a mistake becomes a repaired movement",
+        "format": "vignette",
+        "requiredBeat": "she repairs a pottery collapse instead of hiding it"
+      },
+      "scenario": "Sachi steadies a collapsed bowl at 9:18 a.m. in the community studio, slip cooling between her fingers and the wheel humming under her palms. The rim folded because her left hand climbed too high. Her first urge is to cut the clay off and start clean. Instead she leaves the wobble spinning, lowers the hand, and pulls the wall once more while the instructor watches. The bowl will not be pretty. The repair will stay in her hands.",
+      "whatToDo": "Keep the failed bowl long enough to replay the movement with correction. Repair the cause once before starting fresh clay.",
+      "whyItMatters": "The mistake is useful because it is still visible and touchable. Sachi can connect the collapsed rim to the hand motion that caused it."
+    },
+    {
+      "exampleId": "ch04-ex06-linus-lab-practice",
+      "title": "Linus adds feedback after the wrong pipette angle",
+      "tags": [
+        "before_after",
+        "lab",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "biology lab practice",
+        "audience": "instructors designing useful challenge",
+        "stakes": "whether students learn technique through corrected attempts",
+        "format": "before_after",
+        "requiredBeat": "he redesigns lab practice with feedback after misses"
+      },
+      "scenario": "Linus watches blue dye bead on the bench at 2:26 p.m. in lab bay 6, pipette tips scattered beside the waste cup. Last term he demonstrated the angle three times and students copied him while he stood there. In solo lab, dye splashed everywhere. Today he shows once, covers the poster, and has each student pipette from memory while he corrects one angle at a time. The room looks less tidy. The waste cup fills more slowly by Friday.",
+      "whatToDo": "Ask for an attempt without the poster, correct one visible error, and repeat the same movement soon. Keep challenge tied to a repair path.",
+      "whyItMatters": "The hard part works because feedback is immediate and specific. Students are not just struggling, they are rebuilding the motion."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch04-q01",
+        "prompt": "A teacher asks students to predict an answer before showing the solution. When does this help?",
+        "choices": [
+          "When the attempt is followed by feedback and repair",
+          "When the wrong guesses are ignored",
+          "When the task is unrelated to the lesson"
+        ],
+        "correctIndex": 0,
+        "explanation": "Generation helps when the attempt creates a target for correction. Without feedback, it can become confusion.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q02",
+        "prompt": "A coach adds so many variables that beginners cannot tell why they failed. What should change?",
+        "choices": [
+          "Remove feedback so they toughen up",
+          "Narrow the challenge and repair one miss at a time",
+          "Make the next round even more chaotic"
+        ],
+        "correctIndex": 1,
+        "explanation": "Challenge should reveal a repairable gap. Too many variables hide the learning target.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q03",
+        "prompt": "Which difficulty has the clearest job?",
+        "choices": [
+          "A timed drill with no answers afterward",
+          "A noisy room added to make practice feel serious",
+          "A recall attempt followed by checking and a second try"
+        ],
+        "correctIndex": 2,
+        "explanation": "Recall plus feedback and another attempt creates useful work. Noise and pressure alone do not.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q04",
+        "prompt": "A learner gets a problem wrong and wants to erase it. What is the better first move?",
+        "choices": [
+          "Inspect why the wrong answer was tempting, then try a similar problem",
+          "Erase it quickly to protect confidence",
+          "Switch to a much easier subject"
+        ],
+        "correctIndex": 0,
+        "explanation": "The wrong answer can teach if it reveals the lure and leads to another attempt.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q05",
+        "prompt": "What separates useful difficulty from wasted struggle?",
+        "choices": [
+          "Useful difficulty always feels pleasant",
+          "Useful difficulty forces learning work and preserves a route to repair",
+          "Useful difficulty avoids mistakes"
+        ],
+        "correctIndex": 1,
+        "explanation": "Difficulty needs a mechanism and feedback. Struggle without a way back is poor design.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q06",
+        "prompt": "A safety trainer wants trainees to learn a checklist. Which plan is best?",
+        "choices": [
+          "Give a surprise final test with no practice",
+          "Read the checklist aloud for an hour",
+          "Show the checklist, then immediately ask trainees to reconstruct it and fix misses"
+        ],
+        "correctIndex": 2,
+        "explanation": "Reconstruction plus correction makes the challenge useful while support is still near.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q07",
+        "prompt": "A student says every hard task must be good for memory. What is the correction?",
+        "choices": [
+          "Hard tasks help only when they make memory retrieve, compare, generate, or repair",
+          "Hard tasks are never helpful",
+          "Memory grows best when nothing feels difficult"
+        ],
+        "correctIndex": 0,
+        "explanation": "The value lies in the work the difficulty forces, not in discomfort by itself.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch04-q08",
+        "prompt": "When can an error improve later performance?",
+        "choices": [
+          "When it is hidden to avoid embarrassment",
+          "When it is named, corrected, and followed by another attempt",
+          "When it is repeated without feedback"
+        ],
+        "correctIndex": 1,
+        "explanation": "Errors become useful through diagnosis and repair. They do not help simply by existing.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch04-q09",
+        "prompt": "A training session is calm because learners copy each step from a model. What useful challenge could be added?",
+        "choices": [
+          "Add unrelated distractions",
+          "Stop checking the answers",
+          "Remove the model for a short attempt, then restore it for feedback"
+        ],
+        "correctIndex": 2,
+        "explanation": "A brief model-free attempt creates retrieval or generation, and restoring the model supports repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch04-rc01",
+      "front": "Before seeing the answer, you are asked to make a guess. What makes that useful instead of cruel?",
+      "back": "The guess must be close to the target and followed by feedback. It creates a repairable miss, not a public verdict.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch04-rc02",
+      "front": "Practice feels hard. What question tells you whether the difficulty belongs?",
+      "back": "Ask what job the difficulty is doing. Keep it if it forces retrieval, generation, comparison, or repair. Change it if it only adds fog.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-rc03",
+      "front": "A wrong answer is on the board. What is the repair move?",
+      "back": "Name why it was tempting, identify the cue that should have changed the choice, and try a similar item soon.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-rc04",
+      "front": "How do you raise challenge without overloading a beginner?",
+      "back": "Add one useful demand at a time and keep feedback close. Build complexity only after the learner can repair the first miss.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is choosing difficulty that does useful work. Add challenge when it makes you generate, retrieve, compare, or repair, and remove challenge when it only creates fog.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a training task feels too easy, then remove one prompt for a short attempt and restore it for feedback."
+      },
+      {
+        "context": "health",
+        "plan": "If an exercise cue keeps disappearing, then perform one rep from memory, correct the form, and repeat before fatigue hides the signal."
+      },
+      {
+        "context": "personal",
+        "plan": "If you miss a study question, then write why the wrong answer tempted you before you check the next one."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a hard conversation rehearsal feels overwhelming, then practice one opening line, get feedback, and add complexity only after it lands."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, take one task you usually do with full guidance. Try one small part without the guide, mark the miss, correct it, and try again.",
+    "weeklyPractice": "For one week, keep a repair log. Each day, record one useful miss, the feedback you used, and the next attempt you made."
+  },
+  "memorableLines": [
+    {
+      "text": "Fog without feedback is just fog.",
+      "location": "breakdown.fastRead",
+      "why": "It draws the line between useful and useless struggle."
+    },
+    {
+      "text": "The wrong answer has become a handle.",
+      "location": "breakdown.deepRead",
+      "why": "It makes corrected error feel concrete and usable."
+    },
+    {
+      "text": "A productive challenge leaves a trail back to the right move.",
+      "location": "breakdown.fullRead",
+      "why": "It gives a simple test for good practice design."
+    }
+  ]
+}

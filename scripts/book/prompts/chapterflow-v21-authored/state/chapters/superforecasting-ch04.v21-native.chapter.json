@@ -1,0 +1,319 @@
+{
+  "chapterId": "superforecasting-ch04",
+  "number": 4,
+  "title": "Superforecasters",
+  "readingTimeMinutes": 12,
+  "hook": "The best forecaster in the room is often the one still sharpening the question.",
+  "counterintuition": "Zahid expects a special gift. The edge is more ordinary and more demanding: define the question, update often, combine views, and let the scoreboard keep judging.",
+  "tryThisNow": "Open a note, write one forecast you already believe about a tournament forecast, add a percent and a check date, then write what would make you move the number down.",
+  "keyTakeaway": "Superforecasting is a process advantage, not prophecy: ask the exact question, use evidence, update without drama, and let repeated scoring reveal the edge.",
+  "breakdown": {
+    "fastRead": "At 10:14 a.m., Zahid rewrites the question on a clean index card. The first version is too broad to score, so he narrows it until the answer can land. He wants the clean answer now. The paper in front of him will not give it.\n\nWrite the odds where the room can see them. Add the date, the question, and the sign that would make you change your mind. The edge is not a glow around the person. It is a cleaner trail of moves.\n\nA forecast gets useful when it can be checked later. Confidence without a receipt is only weather in someone else's voice. Keep the receipt.",
+    "deepRead": "At 4:02 p.m., Beryl, an energy trader, changes 48 to 52 on a shared sheet. No speech, no victory lap, just a small update after a pipeline report. The easy move is to pick the story that feels whole. The better move is to slow down long enough to ask what the record says before this case arrived.\n\nA number is not a costume for certainty. It is a handle. You can move it when the facts move. You can also leave it alone when the new fact is only loud. Small updates keep the forecast alive without turning every signal into a parade.\n\nPicture Quyen combining three quiet estimates in a flu clinic supply room while the loud doctor keeps talking. The choice is not between swagger and silence. The choice is between a claim that can learn and a claim that can only defend itself.\n\nUse the smallest clean question you can write. Put a date on it. Start from the outside view, the rate for cases like this one, then adjust for what is truly different here. Stop when you can explain the move in plain words.\n\nA limit stays in view. Some events are too tangled, too far out, or too hidden for a sharp answer. The skill is not pretending fog is glass. The skill is knowing when the glass is only dirty enough to wipe.",
+    "fullRead": "At 1:26 p.m., Miko, a newsroom editor, watches two interns debate an election map. She asks them to forecast turnout by county, not who will win the whole night. Everyone at the table can feel the pull of a clean story. It lowers stress. It gives the next meeting a script. It also hides the weak joint in the forecast, the part nobody will remember to test unless someone writes it down now.\n\nHand the room a sharper question. Do not ask whether the whole future will go well. Ask whether a named event will happen by a named date. Ask what would count as yes. Ask what rate similar cases have shown before. The room may groan, because the work feels smaller. The smaller work is the point. It gives reality a place to answer.\n\nA forecaster earns trust by leaving tracks. The first track is the base rate. Before you explain why this case is special, look at how often cases like it have turned out that way. The second track is the update. If a new fact arrives, move the odds by the strength of that fact, not by the size of the feeling it creates. The third track is the review. When the result lands, save the old number and ask which assumption broke.\n\nAt 9:44 a.m., Celso, a crop insurer, averages three field scouts before pricing hail risk. The blended number beats every single scout by a little. This is where the craft starts to feel almost physical. The pen pauses. The number changes from 60 to 55, not from 60 to 10, because the new fact is real but not huge. The team can see the move. Nobody has to pretend the old answer was perfect.\n\nA process that keeps beating the scoreboard deserves more trust than a voice that only sounds large. It keeps judgment from turning into a costume. A person can sound brave while hiding from the record. A quieter person with dates, odds, and reviews may be doing the harder thing.\n\nThe limit matters. Long-range shocks, hidden incentives, and fragile systems can make even careful work miss. A good forecaster does not use that as an excuse to blur every claim. She uses it to sort questions. Some deserve a wide range. Some deserve a backup plan. Some deserve no forecast stronger than a shrug.\n\nTry the move on a live claim today. Take one future sentence you hear at work, at home, or in the news. Cut it into a smaller question. Put a probability on it. Write why you chose that number. Then mark the date when you will look again. The act takes two minutes. The habit changes the room because it makes confidence answerable."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-zahid-index-card",
+      "title": "Zahid rewrites the question on a clean card",
+      "tags": [
+        "scene",
+        "forecasting",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "forecasting tournament",
+        "audience": "a tournament participant sharpening a broad question",
+        "stakes": "whether a vague geopolitical question becomes scoreable",
+        "format": "scene",
+        "requiredBeat": "he narrows the question before making any prediction"
+      },
+      "scenario": "Zahid uncaps a green pen at 10:14 a.m. in the public library study room, a clean index card under his wrist. The tournament prompt asks whether unrest will spread in a region by summer. Too wide. The clock above the copier ticks loud enough to bother him. He writes a smaller version: will the capital see three verified protests over 5,000 people by June 30? Only then does he open the data tab.",
+      "whatToDo": "Narrow the question before estimating. Define the event, threshold, source, and date, then start with the base rate for similar protests.",
+      "whyItMatters": "The narrower question gives evidence a place to attach. Without that work, every later update slides around inside vague words."
+    },
+    {
+      "exampleId": "ch04-ex02-beryl-pipeline",
+      "title": "Beryl moves forty-eight to fifty-two without a speech",
+      "tags": [
+        "vignette",
+        "energy",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "energy trading",
+        "audience": "a trader updating a gas-supply forecast",
+        "stakes": "whether new evidence produces a proportionate update",
+        "format": "vignette",
+        "requiredBeat": "she makes a small numerical move after a modest signal"
+      },
+      "scenario": "Beryl rests her knuckles on the trading desk at 4:02 p.m., pipeline bulletin open beside a half-eaten pear. The report is real, but it is not a shock. She changes the winter supply shortfall forecast from 48 to 52 percent on the shared sheet. The junior trader behind her waits for a bigger move. Beryl just initials the cell and writes: maintenance delay confirmed, effect modest. The room keeps breathing.",
+      "whatToDo": "Move the forecast only as far as the signal earns. Record the reason in the cell so the next update can judge whether the move was too small or too large.",
+      "whyItMatters": "Good updating is often quiet. A modest signal deserves a modest move, and the written reason keeps the team from adding drama later."
+    },
+    {
+      "exampleId": "ch04-ex03-quyen-clipboard",
+      "title": "Quyen averages the quiet flu estimates",
+      "tags": [
+        "dialogue",
+        "public",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "public health",
+        "audience": "a clinic coordinator estimating vaccine demand",
+        "stakes": "whether a loud expert crowds out three useful views",
+        "format": "dialogue",
+        "requiredBeat": "she combines independent estimates before discussing reasons"
+      },
+      "scenario": "Quyen stands in the flu clinic supply room at 8:58 a.m., clipboard balanced on a stack of blue masks. \"We'll need five hundred doses,\" the senior doctor says from the doorway. Quyen points to three folded slips from the front desk lead, the school nurse, and the pharmacy tech. \"Before we talk, I want their numbers on the board,\" she says. The doctor folds his arms. Quyen has to decide whether to hold the process or spare the room the tension.",
+      "whatToDo": "Hold the process. Put all independent estimates on the board, average them, then discuss the reasons that pull the number up or down.",
+      "whyItMatters": "Combining views protects the forecast from rank and volume. The quiet slips may carry signals the doorway declaration misses."
+    },
+    {
+      "exampleId": "ch04-ex04-miko-election-map",
+      "title": "Miko splits the election map into county questions",
+      "tags": [
+        "decision_point",
+        "newsroom",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "newsroom editing",
+        "audience": "an editor guiding election-night forecasts",
+        "stakes": "whether interns forecast a vague winner or measurable turnout pieces",
+        "format": "decision_point",
+        "requiredBeat": "she breaks the big question into smaller scored parts"
+      },
+      "scenario": "Miko leans over the newsroom map at 1:26 p.m., one finger on a county that always reports late. Two interns are arguing about who will win the state. The graphics producer needs a forecast box by three. Miko sees the trap: one grand call, no learning. She pulls a pad from under the keyboard and has to decide whether to ask for the state winner or for turnout ranges in six counties that will actually explain the night.",
+      "whatToDo": "Break the big call into county turnout forecasts with ranges and dates. Let the state call come from the parts, not from the interns' heat.",
+      "whyItMatters": "Smaller pieces reveal where the forecast is strong or weak. A single winner call hides which assumption carried the load."
+    },
+    {
+      "exampleId": "ch04-ex05-celso-hail-risk",
+      "title": "Celso blends three hail-risk notes before pricing",
+      "tags": [
+        "predict_reveal",
+        "crop",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "crop insurance",
+        "audience": "an insurer pricing storm risk from field reports",
+        "stakes": "whether aggregation beats a favorite scout",
+        "format": "predict_reveal",
+        "requiredBeat": "he averages scouts and later sees the blended number beat each one"
+      },
+      "scenario": "Celso sets three damp field notebooks on his truck hood at 9:44 a.m., hail dents still bright on the nearby grain bin. One scout says the damage risk is light, one says severe, one says patchy. Celso likes the severe scout best. He writes each estimate separately, then blends them before pricing the policy rider. By Friday, the claim reports land almost exactly between the three. His favorite scout was too high. The blend was dull and right.",
+      "whatToDo": "Use the independent estimates before choosing a favorite. Blend them, then adjust only for specific evidence that one scout saw more of the field.",
+      "whyItMatters": "Averaging does not make the team clever. It cancels some private errors, which is often enough to beat the person who sounds most sure."
+    },
+    {
+      "exampleId": "ch04-ex06-hanne-scoreboard",
+      "title": "Hanne leaves the scoreboard up after the miss",
+      "tags": [
+        "postmortem",
+        "charity",
+        "forecasting"
+      ],
+      "planSpec": {
+        "domain": "charity planning",
+        "audience": "a nonprofit planner reviewing donor forecasts",
+        "stakes": "whether the team treats one miss as proof of failure",
+        "format": "postmortem",
+        "requiredBeat": "she studies process after a forecast loses instead of hunting excuses"
+      },
+      "scenario": "Hanne sits alone in the church basement at 9:11 p.m., donor-call scoreboard still projected on the cinderblock wall. The campaign forecast missed by 18 percent. She can already hear tomorrow's blame: bad list, bad timing, bad weather. Instead she opens the saved forecast and highlights the one update they skipped after the matching grant was announced. The miss hurts. She has to decide what process changes before the next campaign.",
+      "whatToDo": "Keep the scoreboard visible. Identify the skipped update, write the new rule for grant announcements, and save the miss beside the next forecast template.",
+      "whyItMatters": "A strong process can still miss. The useful question is whether the miss points to a fixable step, not whether the team can explain pain away."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch04-q01",
+        "prompt": "A manager at 8:10 a.m. hears a polished forecast for a tournament forecast but sees no written odds or date. Which move best fits the skill of using process over aura?",
+        "choices": [
+          "Write a dated probability and ask what result would count as a miss.",
+          "Trust the confident speaker because clear delivery usually means better judgment.",
+          "Wait for perfect proof and refuse to act until uncertainty disappears."
+        ],
+        "correctIndex": 0,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch04-q02",
+        "prompt": "An analyst at 2:35 p.m. finds one vivid story pushing the team toward a tournament forecast. Which response keeps the estimate tied to evidence?",
+        "choices": [
+          "Collect more fresh stories until one of them feels complete enough to use.",
+          "Start with the base rate, then list what this case adds or subtracts.",
+          "Ignore the story completely because single cases never teach anything."
+        ],
+        "correctIndex": 1,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q03",
+        "prompt": "A parent at the kitchen table has to choose after hearing two confident claims about a tournament forecast. Which question should come first?",
+        "choices": [
+          "Pick the claim that makes the next step feel least awkward.",
+          "Ask which claim is more inspiring and use that as the guide.",
+          "Ask what record, sample, or past rate each claim can point to."
+        ],
+        "correctIndex": 2,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q04",
+        "prompt": "A coach before practice is tempted to treat last week's surprise as proof that a tournament forecast has changed for good. Which move improves the forecast?",
+        "choices": [
+          "Compare the surprise with a longer record before moving the odds.",
+          "Treat the surprise as a new trend and rewrite the whole forecast around it.",
+          "Hold the old forecast unchanged so the record looks steady."
+        ],
+        "correctIndex": 0,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q05",
+        "prompt": "A founder on a Monday investor call wants to sound certain about a tournament forecast, but the record is thin. Which line is strongest?",
+        "choices": [
+          "Use firm language so the room feels less anxious about the unknowns.",
+          "Give a range, name the unknowns, and promise a date for checking it.",
+          "Hide the range inside a slogan that sounds more decisive."
+        ],
+        "correctIndex": 1,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch04-q06",
+        "prompt": "An emergency planner at 6:20 a.m. gets a new signal about a tournament forecast. Which update is sized best?",
+        "choices": [
+          "Jump to the new extreme so nobody can accuse the plan of being slow.",
+          "Move nothing because any update before the final outcome is premature.",
+          "Move the number a little unless the new signal is strong and direct."
+        ],
+        "correctIndex": 2,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q07",
+        "prompt": "A student reviewing a missed prediction about a tournament forecast wants to learn without protecting ego. Which action helps most?",
+        "choices": [
+          "Save the old forecast, mark the missed assumption, and write one rule for next time.",
+          "Rewrite the old prediction in softer words before saving it.",
+          "Blame the outcome on luck and skip the written review."
+        ],
+        "correctIndex": 0,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch04-q08",
+        "prompt": "A team is split over a tournament forecast, and the loudest person has the cleanest story. Which process makes the group smarter?",
+        "choices": [
+          "Let the senior person speak last and call that alignment.",
+          "Have each person write private odds first, then compare reasons aloud.",
+          "Vote immediately so disagreement does not slow the meeting."
+        ],
+        "correctIndex": 1,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch04-q09",
+        "prompt": "Someone making a three-month plan for a tournament forecast wants to avoid confident blur. Which plan creates the best feedback?",
+        "choices": [
+          "Keep the plan broad so later outcomes cannot embarrass anyone.",
+          "Make one large forecast and check it only after the whole period ends.",
+          "Split the plan into smaller forecasts with dates for checking each one."
+        ],
+        "correctIndex": 2,
+        "explanation": "The stronger move is a repeatable process that survives scoring. The best answer leaves a record, uses comparison, or updates by the amount the new evidence earns.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch04-rc01",
+      "front": "You hear a confident claim about a tournament forecast. What do you ask before trusting it?",
+      "back": "Ask for the dated probability, the base rate, and the outcome that would count as a miss. Forecasts improve when they can be checked, not when they sound smooth.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch04-rc02",
+      "front": "A fresh story makes your estimate feel wrong. How should you update?",
+      "back": "Move the odds by the strength of the new evidence. A vivid story can matter, but it should not erase the older record unless it directly changes the facts.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-rc03",
+      "front": "A team wants one bold answer. What smaller move protects learning?",
+      "back": "Break the issue into dated subquestions. Smaller forecasts show which assumption failed, so the next estimate can improve instead of becoming a blame session.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch04-rc04",
+      "front": "A miss is embarrassing. What should the review preserve?",
+      "back": "Keep the original wording and number. Then mark which assumption failed. The record has to sting a little or it will not teach.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is treating forecasting as a repeatable process instead of a display of special insight. Practice means writing the claim before the outcome arrives, then updating it in small, visible steps. The point is not to look cautious. The point is to give reality a way to train you.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a work meeting turns on a tournament forecast, then write one dated probability on the agenda and name the result that would prove it wrong."
+      },
+      {
+        "context": "health",
+        "plan": "If you are choosing a health step under uncertainty, then write the base rate you know, the personal fact that changes it, and the next check-in date."
+      },
+      {
+        "context": "personal",
+        "plan": "If a personal plan depends on a guess, then split the guess into one small forecast you can check within seven days."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone you care about sounds certain about the future, then ask what evidence would make both of you lower the odds by ten points."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow night, write one live forecast about a tournament forecast with a date, a probability, and two reasons for the number. Put a reminder on the date to check it without rewriting the original line.",
+    "weeklyPractice": "Once this week, review one old forecast before you know the outcome. Move the number only if new evidence deserves it, and write the reason in one sentence."
+  },
+  "memorableLines": [
+    {
+      "text": "The edge is not a glow around the person. It is a cleaner trail of moves.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "Small updates keep the forecast alive without turning every signal into a parade.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    },
+    {
+      "text": "A process that keeps beating the scoreboard deserves more trust than a voice that only sounds large.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the forecasting move into a sentence readers can carry into the next estimate."
+    }
+  ]
+}

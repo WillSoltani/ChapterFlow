@@ -1,0 +1,319 @@
+{
+  "chapterId": "make-it-stick-ch06",
+  "number": 6,
+  "title": "Get Beyond Learning Styles",
+  "readingTimeMinutes": 12,
+  "hook": "The diagram works because the pump has pipes, not because Aislinn has a label.",
+  "counterintuition": "Most people assume the most personal format is the best format. The twist is that the task itself often knows what representation will teach better than a label does.",
+  "tryThisNow": "Take one topic you are learning and ask what form the material itself needs: diagram, words, demo, example, or practice. Then test recall after using it.",
+  "keyTakeaway": "Choose learning methods by task fit, prior knowledge, and active processing, not by a fixed style label that may explain less than it promises.",
+  "breakdown": {
+    "fastRead": "Aislinn stands at 2:14 p.m. by pump skid 6 with a grease pencil in her hand. She draws the flow path on the metal housing because the pipes loop under the floor. The diagram helps. Not because she is a diagram person. Because the pump is a diagram problem.\n\nStyle labels can feel personal and kind, but they often stop the search too early. Ask what the material demands, what background is missing, and what the learner must do with the idea. Preference can matter. Evidence should lead.",
+    "deepRead": "Aislinn stands at 2:14 p.m. by pump skid 6 with a grease pencil in her hand. The apprentice keeps saying he is not a visual learner. Aislinn draws the flow path on the metal housing anyway because the pipes vanish under the floor and return behind the tank. The drawing helps because the system is spatial.\n\nThat is the better question. What does the task require? Some ideas need a map. Some need words. Some need a worked example, a physical demo, or a chance to explain. A preferred format may feel good and still teach poorly if it does not fit the material.\n\nTomasz sees the cost of the label at 7:40 p.m. in a tutoring room. A student has been called a visual learner for years. The real problem is fractions. Every graph lesson fails because the denominator idea is missing. Once Tomasz repairs that gap, the same graph starts to make sense.\n\nDifferences between learners are real. Labels are just too thin to carry the whole diagnosis. Check prior knowledge. Pick a format that fits the content. Then require retrieval, explanation, comparison, or use.\n\nPreference can matter. Evidence should lead.\n\nBriony proves it in bay 3 with a weld bead under a lamp. The apprentice likes video, but the flaw has to be seen and felt. She has him run a glove over the undercut, name it, then inspect a fresh bead without help. The method is not anti-learner. It is loyal to the work.",
+    "fullRead": "Aislinn stands at 2:14 p.m. by pump skid 6 with a grease pencil in her hand. The apprentice beside her shrugs and says he is not a visual learner. Aislinn nods, then draws the flow path on the metal housing anyway. The pipe leaves the pump, dives under the floor, returns behind the tank, and loops through a valve hidden by a heat shield. The drawing works because the system is spatial. The label did not decide. The pump did.\n\nThat is the cleanest way past the learning-styles trap. Start with the task. If relationships are spatial, use a diagram. If timing matters, use a sequence. If force and feel matter, use a demonstration. If judgment matters, use cases. Then ask the learner to retrieve, explain, compare, or apply.\n\nPreference can still matter at the edges. A learner may pay better attention to audio during a commute or feel less anxious with a diagram. Comfort is not useless. It is just not proof that more learning happened. A favorite format can become a soft chair where the mind rests instead of working.\n\nTomasz sees the deeper issue at 7:40 p.m. in a tutoring room that smells like dry markers. The student has been called a visual learner since third grade. Every teacher has drawn bigger fraction pies. The student still freezes. Tomasz asks her to build three-fourths with paper strips and hears the gap in the word fourths. She does not yet own the denominator. Once that is repaired, the visual model finally helps. The style label had hidden missing background knowledge.\n\nFarah learns the same rule while choosing between a podcast and a map for a neighborhood history walk. The podcast is pleasant. The map is necessary for the route. The better design uses both, then asks visitors to explain why the river bend shaped the old market.\n\nSo ask three questions. What does the material demand? What does the learner already know? What action will prove learning happened? Those questions respect learners more than a label does because they look at the actual work in front of them.\n\nThe diagram works because the pump has pipes, not because Aislinn has a label.\n\nBriony proves the rule in bay 3 before sunrise. The apprentice asks for another video because videos feel safe. Briony angles a weld bead under the lamp, then has him run a leather glove over the undercut. The flaw is a line he can see and a ridge he can feel. A video can introduce it, but the joint asks for touch, sight, naming, and another inspection without help.\n\nNestor later removes style boxes from onboarding and replaces them with task checks. Can the new hire explain the workflow, classify a live ticket, and solve one case without prompts? The sheet looks less personal, but the help is more exact. It points to the next support because it measures the work itself.\n\nThat is the fairer kind of personalization. Do not ask learners to live inside a label. Ask what the task needs, what they already know, and what action will prove the learning held."
+  },
+  "examples": [
+    {
+      "exampleId": "ch06-ex01-aislinn-pump-diagram",
+      "title": "Aislinn draws the pump because the pipes disappear",
+      "tags": [
+        "decision_point",
+        "engineering",
+        "task fit"
+      ],
+      "planSpec": {
+        "domain": "industrial maintenance training",
+        "audience": "trainers tempted by learning-style labels",
+        "stakes": "whether an apprentice understands a spatial system",
+        "format": "decision_point",
+        "requiredBeat": "she chooses diagrams because the pump system needs them"
+      },
+      "scenario": "Aislinn plants a grease pencil against pump skid 6 at 2:14 p.m., oil smell thick under the mezzanine. The apprentice says he is not a visual learner and asks for the manual paragraph instead. The return pipe vanishes under the floor and comes back behind the tank. Aislinn can read him the paragraph or draw the loop on the metal housing. The pencil squeaks once. She has to decide whether the label or the pump should choose the format.",
+      "whatToDo": "Use the diagram because the system is spatial, then ask the apprentice to trace the flow path from memory and explain each valve.",
+      "whyItMatters": "The format should answer to the task. The drawing helps because the pipe relationships matter, not because a style label granted permission."
+    },
+    {
+      "exampleId": "ch06-ex02-tomasz-fraction-gap",
+      "title": "Tomasz finds the fraction gap under the visual label",
+      "tags": [
+        "postmortem",
+        "math",
+        "prior knowledge"
+      ],
+      "planSpec": {
+        "domain": "math tutoring",
+        "audience": "teachers who use style labels as diagnosis",
+        "stakes": "whether the real missing knowledge gets repaired",
+        "format": "postmortem",
+        "requiredBeat": "he finds a visual learner diagnosis hid missing fractions"
+      },
+      "scenario": "Tomasz sits at 7:40 p.m. in Room 204, dry-marker smell hanging over a stack of fraction pies. The student has been called a visual learner for years. Bigger graphs have not helped. Tonight she stares at three-fourths and calls it three pieces. Tomasz stops the graph lesson and pulls out paper strips. The problem is not that the picture is wrong. The word fourths has no grip yet. He has to rewrite the diagnosis.",
+      "whatToDo": "Repair the missing fraction idea before choosing more visuals. Then use diagrams plus recall to test whether the repaired concept holds.",
+      "whyItMatters": "A style label can hide a knowledge gap. Better teaching starts by finding what the learner lacks, then choosing a format that serves the content."
+    },
+    {
+      "exampleId": "ch06-ex03-farah-veda-podcast-map",
+      "title": "Farah asks whether the river walk needs a map",
+      "tags": [
+        "dialogue",
+        "tour design",
+        "preference"
+      ],
+      "planSpec": {
+        "domain": "public history tour design",
+        "audience": "designers choosing between liked formats and task fit",
+        "stakes": "whether visitors understand place rather than merely enjoy narration",
+        "format": "dialogue",
+        "requiredBeat": "they debate podcasts versus maps"
+      },
+      "scenario": "Farah clips a tiny microphone to her jacket at 9:05 a.m. beside the old mill bridge, river mud dark on the stones. \"People love the podcast,\" Veda says, holding the route map. Farah points at the bend where the market used to flood. \"Can they see why the market moved without this?\" Veda taps the map. \"Maybe they need both.\" The first tour group is crossing the street. Farah must choose what leads.",
+      "whatToDo": "Lead with the map for the spatial claim, use audio for the story, then ask visitors to explain the market move at the river bend.",
+      "whyItMatters": "The pleasant format is not automatically the teaching format. The route has spatial logic, so the design should show space and then test use."
+    },
+    {
+      "exampleId": "ch06-ex04-yael-style-match",
+      "title": "Yael watches the style-matched review lose to the task",
+      "tags": [
+        "predict_reveal",
+        "school",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "geometry review",
+        "audience": "students betting on preferred formats",
+        "stakes": "whether task-fit practice beats comfort",
+        "format": "predict_reveal",
+        "requiredBeat": "she predicts style-matched review will beat task-fit practice"
+      },
+      "scenario": "Yael sharpens a green pencil at 4:33 p.m. in the tutoring lab, triangle proofs spread under the lamp. She predicts the audio summary will help her most because she likes listening. Her tutor gives her two plans: audio summary only, or diagrams with proof steps she must explain from memory. Yael chooses the comfortable plan first. On Friday, the mixed proofs punish her. The diagram-plus-explanation plan wins the retest.",
+      "whatToDo": "Let the proof task choose the representation. Use diagrams for relationships, then retrieve and explain the steps without the model.",
+      "whyItMatters": "Preference predicted comfort. Task-fit plus active processing predicted performance. Yael needs the second kind of evidence."
+    },
+    {
+      "exampleId": "ch06-ex05-briony-weld-joint",
+      "title": "Briony runs a glove over the weld bead",
+      "tags": [
+        "vignette",
+        "trades",
+        "multiple forms"
+      ],
+      "planSpec": {
+        "domain": "welding inspection",
+        "audience": "learners dealing with physical skill",
+        "stakes": "whether format follows material features",
+        "format": "vignette",
+        "requiredBeat": "she uses touch and sight because the joint demands both"
+      },
+      "scenario": "Briony runs a leather glove over the weld bead at 6:11 a.m. in bay 3, sparks ticking out in the sand bucket. The apprentice wants a video because he likes videos. Briony angles the joint under the lamp, then has him feel the undercut with two fingers through the glove. The flaw is visual and tactile. The lesson is both because the metal is both. The label on the learner matters less than the edge under his hand.",
+      "whatToDo": "Match the representation to the joint: look, touch, name the flaw, then inspect a second bead without help.",
+      "whyItMatters": "Physical work often needs more than a preferred channel. The material decides which senses and actions reveal the feature."
+    },
+    {
+      "exampleId": "ch06-ex06-nestor-onboarding-labels",
+      "title": "Nestor removes learning-style boxes from onboarding",
+      "tags": [
+        "before_after",
+        "work",
+        "design"
+      ],
+      "planSpec": {
+        "domain": "employee onboarding redesign",
+        "audience": "managers using style inventories",
+        "stakes": "whether training improves real task performance",
+        "format": "before_after",
+        "requiredBeat": "he redesigns onboarding around task evidence instead of labels"
+      },
+      "scenario": "Nestor opens the onboarding spreadsheet at 8:48 a.m. in a glass phone room, stale coffee in a white mug. The old form sorts hires into visual, auditory, and hands-on boxes. The help desk results do not match the boxes. He deletes the columns and adds three checks: can the hire explain the workflow, classify a live ticket, and solve one case without prompts. The sheet looks less personal at first. The training gets more exact.",
+      "whatToDo": "Replace style boxes with task checks and active practice. Pick formats that fit each workflow, then test explanation, classification, and performance.",
+      "whyItMatters": "Labels feel tailored but can miss the work. Task evidence shows what the new hire can actually do and what support belongs next."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch06-q01",
+        "prompt": "A learner says she is auditory, but the topic is a map route. What should guide the first format choice?",
+        "choices": [
+          "The spatial demands of the route",
+          "The label alone",
+          "The easiest file to send"
+        ],
+        "correctIndex": 0,
+        "explanation": "The material should lead. A route has spatial relationships, so a map may be needed even if audio is also useful.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q02",
+        "prompt": "Why is preference weak evidence by itself?",
+        "choices": [
+          "People never have preferences",
+          "A liked format can feel good without improving later use",
+          "All formats work the same"
+        ],
+        "correctIndex": 1,
+        "explanation": "Comfort does not prove learning. Performance after recall or application gives stronger evidence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch06-q03",
+        "prompt": "A student struggles with graphs and is called a visual learner. What should the teacher inspect next?",
+        "choices": [
+          "A new style label",
+          "Whether graphs should be banned",
+          "Missing background knowledge that may block the graph"
+        ],
+        "correctIndex": 2,
+        "explanation": "The struggle may come from a prerequisite gap, not a style mismatch. Diagnosis should look below the label.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q04",
+        "prompt": "Which design best follows this idea?",
+        "choices": [
+          "Choose a format by content demands, then require explanation or recall",
+          "Ask students to pick any comfortable format and stop there",
+          "Use only one format for every topic"
+        ],
+        "correctIndex": 0,
+        "explanation": "Task fit plus active processing is stronger than preference matching alone.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q05",
+        "prompt": "A mechanic must learn a hidden fluid path. Which method fits best?",
+        "choices": [
+          "A purely motivational speech",
+          "A flow diagram traced from memory after study",
+          "A style survey with no equipment"
+        ],
+        "correctIndex": 1,
+        "explanation": "The hidden path is spatial and procedural. A diagram plus recall fits the task.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q06",
+        "prompt": "What does active processing add?",
+        "choices": [
+          "It guarantees the favorite format is chosen",
+          "It removes the need for prior knowledge",
+          "It makes the learner retrieve, explain, compare, or use the idea"
+        ],
+        "correctIndex": 2,
+        "explanation": "Learning improves when the learner works with the material. Format alone is not enough.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch06-q07",
+        "prompt": "A training team wants to personalize without style labels. What should they collect?",
+        "choices": [
+          "Evidence from task performance and specific gaps",
+          "Only stated format preferences",
+          "Favorite colors"
+        ],
+        "correctIndex": 0,
+        "explanation": "Task performance shows what people can do and where support is needed. It is more useful than broad labels.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch06-q08",
+        "prompt": "When might a preference still matter?",
+        "choices": [
+          "When it overrides all evidence",
+          "When it helps attention or access, after task fit is considered",
+          "When it replaces practice"
+        ],
+        "correctIndex": 1,
+        "explanation": "Preference can support engagement, but it should not outrank content demands and performance evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch06-q09",
+        "prompt": "Which statement fits best?",
+        "choices": [
+          "Learners have no differences",
+          "Only one teaching format is valid",
+          "Differences matter, but style labels are too thin as the main diagnosis"
+        ],
+        "correctIndex": 2,
+        "explanation": "The point is not to ignore learners. It is to use better evidence than a broad style label.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch06-rc01",
+      "front": "A learner names a preferred style. What should you ask before designing practice?",
+      "back": "Ask what the task demands and what the learner already knows. Then choose a format and require recall, explanation, comparison, or use.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch06-rc02",
+      "front": "Why can a style label hide the real problem?",
+      "back": "It may explain struggle too quickly. The actual issue could be missing background knowledge, poor practice design, or a format that does not fit the material.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-rc03",
+      "front": "When should a diagram lead?",
+      "back": "When the material has spatial relationships that need to be seen or traced. Follow the diagram with no-cue explanation or recall.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch06-rc04",
+      "front": "What is stronger than matching preference?",
+      "back": "Task fit plus active processing. Pick the representation that serves the content, then test what the learner can produce or use.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is choosing methods by evidence. Start with the task, check prior knowledge, pick a fitting representation, and require active use.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If someone asks for training in their favorite format, then first name what the task requires and add a performance check."
+      },
+      {
+        "context": "health",
+        "plan": "If you learn a movement from a preferred video, then test it by explaining or doing it without the screen."
+      },
+      {
+        "context": "personal",
+        "plan": "If you call yourself a certain kind of learner, then ask what the material itself needs before choosing the study format."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone says they only understand one communication style, then choose the form that fits the issue and ask them to repeat the decision back."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, take one topic and write three lines: what the task demands, what background knowledge is needed, and how you will test active use.",
+    "weeklyPractice": "For one week, design study by task fit. Each day, write why the chosen format fits the material and how you checked recall or use."
+  },
+  "memorableLines": [
+    {
+      "text": "The diagram works because the pump has pipes, not because Aislinn has a label.",
+      "location": "hook",
+      "why": "It rejects style labels with a concrete object."
+    },
+    {
+      "text": "Preference can matter. Evidence should lead.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps the argument balanced and practical."
+    },
+    {
+      "text": "A favorite format can become a soft chair where the mind rests instead of working.",
+      "location": "breakdown.fullRead",
+      "why": "It makes passive comfort easy to picture."
+    }
+  ]
+}

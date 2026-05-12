@@ -1,0 +1,319 @@
+{
+  "chapterId": "blue-ocean-strategy-ch04",
+  "number": 4,
+  "title": "Focus on the Big Picture, Not the Numbers",
+  "readingTimeMinutes": 14,
+  "hook": "A wall of sticky notes can reveal what a hundred spreadsheet tabs kept apart.",
+  "counterintuition": "Most people assume more numbers create better strategy. But actually fragmented numbers can hide the whole value pattern, so the room optimizes pieces while the offer stays familiar.",
+  "tryThisNow": "Open one current plan and write its five biggest metrics on a single page. Draw the story those metrics imply before adding another table.",
+  "keyTakeaway": "Make strategy visible as a whole pattern before debating details, because isolated metrics can defend local gains while the overall value curve stays ordinary.",
+  "breakdown": {
+    "fastRead": "At 7:52 a.m., Fara pulls thirty-one spreadsheet printouts from a binder and tapes only five customer quotes beside the value curve. The room finally sees what the columns separated: customers are not angry about one metric, they are tired of a whole pattern. Big-picture strategy is not anti-number. It forces numbers to answer to the shape they create together. The picture does not replace evidence. It gathers evidence until the room can see whether all the local wins add up to a different value curve.",
+    "deepRead": "Fara's team had a metric for everything: wait time, ticket touches, upgrade rate, refund cost, call length, satisfaction by channel. Each number had an owner ready to defend it. None showed the whole experience.\n\nThe big picture changes the conversation by putting the value curve, customer experience, and strategic options on one page. A number can be accurate and still distract if it keeps the room inside a local fix. The visual frame asks whether the offer as a whole has focus, divergence, and a clear message.\n\nA second scene shows the danger. Cedric, a transit planner, improves three bus metrics while riders still miss hospital appointments because transfers do not line up. Each metric improved. The journey did not.\n\nThe move is to use numbers as evidence, then step back until the pattern is visible. Strategy needs the table, but it cannot live inside the table.\n\nVisual communication is the final guardrail. Once the whole pattern is chosen, frontline people need a picture simple enough to guide tradeoffs without reopening the full analysis every morning. The one-page view tells them which requests fit the new curve and which old habits are no longer worth protecting.",
+    "fullRead": "Numbers are seductive because they behave. They sit in columns, accept formulas, and give a room something to argue about that feels precise. The precision can be real and still not be strategic. A team can improve scattered metrics while the value proposition remains blurry, crowded, or indistinguishable.\n\nFara sees this at 7:52 a.m. in a customer-support war room. Refund cost is down. Call length is down. First-response time is down. Yet customers still leave. She tapes five quotes beside the curve: I explain it every time, I never know what happens next, I get transferred when I am already mad, I cannot find the same answer twice, I dread opening another ticket. The numbers were not false. They were sliced too thin to show the experience as a whole.\n\nThe big-picture move has four parts. First, visual awakening: confront the current curve and see where it matches the crowd. Second, visual exploration: leave the room and watch buyers, nonbuyers, and users deal with the offer. Third, visual strategy fair: put possible curves in front of people who can react to the whole shape. Fourth, visual communication: give the organization a simple picture of where to invest and where to stop.\n\nIsobel's catering company shows why this matters. The finance sheet says dessert margins are weak, delivery costs are high, and premium appetizers sell well. If each number gets its own fix, the company cuts dessert, tightens delivery, and pushes appetizers harder. Then Isobel spends one afternoon watching office managers receive lunch orders. The real pattern is different: nobody knows which box belongs to which team, meetings start late, and the person who ordered gets blamed. She draws a new curve around labeled team trays, predictable arrival, fewer premium choices, and a cleanup pickup. The numbers still matter, but now they serve a whole value story.\n\nThe counterargument is that visual strategy can become theater. It can, if the picture is only a poster for a decision already made. The visual work must expose tradeoffs. A canvas that shows every factor high is not a strategy. A fair where insiders praise their own pet option is not exploration. A one-page picture that nobody can use to choose budget is not communication.\n\nThe practical test is whether the visual changes a decision. Does it make the team cut a factor that had a defender? Does it expose a buyer pain that no metric owner owned? Does it help frontline people know which requests to honor and which old habits to stop? If the picture cannot change resource allocation, it is decoration.\n\nUse numbers, but make them stand in the same room. Put the curve, the buyer path, and the strategic alternatives where everyone can see the pattern at once. The goal is not less rigor. It is rigor aimed at the whole shape of value.\n\nThe practical pressure is to make the choice visible before the organization spends around it. Put the current assumption, the buyer evidence, the economic consequence, and the execution risk on one page. If the page still points to the old fight, revise the move. If it points to a new source of value that the model can carry, protect the experiment long enough to learn."
+  },
+  "examples": [
+    {
+      "exampleId": "ch04-ex01-fara-binder",
+      "title": "Fara tapes five quotes over thirty-one tabs",
+      "tags": [
+        "scene",
+        "support",
+        "visual"
+      ],
+      "planSpec": {
+        "domain": "customer support metrics and whole experience mapping",
+        "audience": "a director whose team defends separate dashboard wins",
+        "stakes": "whether churn keeps rising despite better local metrics",
+        "format": "scene",
+        "requiredBeat": "she puts the whole customer pattern on the wall and stops another metric defense"
+      },
+      "scenario": "Fara pulls thirty-one spreadsheet printouts from a binder at 7:52 a.m. and tapes five customer quotes beside the support value curve. Refund cost is down, call length is down, and churn is up. The room smells like dry-erase cleaner. Each manager has a metric to defend. Fara points to the quotes instead: transferred twice, answer changed, no next step. She must decide whether to keep adjudicating columns or force the team to see the whole pattern.",
+      "whatToDo": "Move the debate to one wall. Keep the key numbers, but place them beside the customer path and value curve before approving any local fix.",
+      "whyItMatters": "Fragmented metrics let every owner win a small defense. A visible pattern makes the real strategic weakness harder to miss."
+    },
+    {
+      "exampleId": "ch04-ex02-cedric-transfer",
+      "title": "Cedric times the transfer by the hospital doors",
+      "tags": [
+        "postmortem",
+        "transit",
+        "journey"
+      ],
+      "planSpec": {
+        "domain": "bus route metrics and hospital appointment journeys",
+        "audience": "a planner with pressure to show data-driven progress",
+        "stakes": "whether riders reach appointments or only see better isolated numbers",
+        "format": "postmortem",
+        "requiredBeat": "he realizes the metrics improved while the rider journey stayed broken"
+      },
+      "scenario": "Cedric stands by the hospital doors at 9:27 a.m. with a stopwatch, watching a woman in a gray coat miss the eastbound transfer by forty seconds. His dashboard says on-time performance improved on both routes. The complaint log is still full of missed oncology appointments. On his clipboard, each route looks better alone. On the sidewalk, the journey fails as one piece. Cedric circles the transfer gap and writes, not a route problem, a pattern problem.",
+      "whatToDo": "Reframe the metric around the rider journey. Put route timing, transfer wait, clinic arrival, and missed appointments on one page before changing another schedule.",
+      "whyItMatters": "A number can improve inside its silo while the buyer outcome gets no better. The big picture protects strategy from local optimization."
+    },
+    {
+      "exampleId": "ch04-ex03-isobel-trays",
+      "title": "Isobel sees the meeting start late beside the trays",
+      "tags": [
+        "before_after",
+        "catering",
+        "fieldwork"
+      ],
+      "planSpec": {
+        "domain": "catering spreadsheets versus office lunch handoff observation",
+        "audience": "an operator deciding which cost cuts will preserve value",
+        "stakes": "whether margin fixes damage the part buyers really need",
+        "format": "before_after",
+        "requiredBeat": "field observation changes the strategy from menu tweaks to labeled team trays"
+      },
+      "scenario": "Before 12:05 p.m., Isobel studied dessert margin, delivery mileage, and appetizer mix in separate tabs. After standing beside a conference-room credenza during a late lunch handoff, she watched managers peel lids off twenty identical boxes while a meeting stalled. The premium appetizers were not the issue. The unlabeled trays were. By 12:18 she had sketched team labels, fewer choices, and a cleanup pickup on a napkin.",
+      "whatToDo": "Leave the spreadsheet long enough to watch the full handoff. Build the next curve around meeting reliability, not isolated menu economics.",
+      "whyItMatters": "Visual exploration reveals the buyer's whole job. Without it, the team may optimize profitable pieces while missing the moment customers remember."
+    },
+    {
+      "exampleId": "ch04-ex04-renard-school-map",
+      "title": "Renard lets parents vote on the three school maps",
+      "tags": [
+        "dialogue",
+        "school",
+        "strategy fair"
+      ],
+      "planSpec": {
+        "domain": "after-school strategy maps and parent reaction",
+        "audience": "a school leader deciding how to redesign after-school support",
+        "stakes": "whether families trust the new plan and use it",
+        "format": "dialogue",
+        "requiredBeat": "he runs a visual strategy fair with three maps and hears what families value"
+      },
+      "scenario": "Renard pins three after-school maps to the cafeteria wall at 6:36 p.m., each drawn in thick marker: homework hall, clubs, and pickup bridge. The budget table is folded in his jacket pocket. A grandmother taps the pickup bridge map. \"This one gets him fed and to the late bus,\" she says. Another parent points to homework hall and shakes her head. Renard starts to explain staffing costs, then stops. The vote is happening with fingertips on paper.",
+      "whatToDo": "Use the maps as the decision surface. Let families react to whole options first, then bring cost and staffing back to the option that solves the real day.",
+      "whyItMatters": "A visual fair tests value patterns, not line items. People can respond to an experience shape more clearly than to a budget table."
+    },
+    {
+      "exampleId": "ch04-ex05-lucienne-lab",
+      "title": "Lucienne draws the lab queue on the glass wall",
+      "tags": [
+        "vignette",
+        "hospital",
+        "flow"
+      ],
+      "planSpec": {
+        "domain": "hospital lab turnaround and visible specimen flow",
+        "audience": "a supervisor buried in turnaround reports",
+        "stakes": "whether emergency samples arrive fast enough for treatment decisions",
+        "format": "vignette",
+        "requiredBeat": "she sketches the full specimen path and reveals the handoff nobody owned"
+      },
+      "scenario": "Lucienne stands at 5:14 a.m. in the hospital lab with a wax pencil and draws the specimen path on the glass wall: ER fridge, courier basket, elevator, accession tray, analyzer. The turnaround report blamed the analyzer. The sketch shows twenty-two minutes hiding in the elevator handoff. A courier in a knit cap points at the gap before anyone speaks. The whole delay has a shape now.",
+      "whatToDo": "Keep the path drawing up during the fix. Assign changes to the visible handoff gap before buying equipment or blaming the analyzer.",
+      "whyItMatters": "The big picture can reveal a delay no single report owns. Once the path is visible, resources can move to the real constraint."
+    },
+    {
+      "exampleId": "ch04-ex06-tomas-kiosk",
+      "title": "Tomas predicts the kiosk numbers will settle the argument",
+      "tags": [
+        "predict_reveal",
+        "airport",
+        "whole pattern"
+      ],
+      "planSpec": {
+        "domain": "airport kiosk sales data and passenger anxiety",
+        "audience": "a manager choosing between kiosk placement options",
+        "stakes": "whether travelers buy food or abandon the line before boarding",
+        "format": "predict_reveal",
+        "requiredBeat": "he expects sales by kiosk to decide, then field watching reveals the boarding-clock pattern"
+      },
+      "scenario": "Tomas arrives at Gate C17 at 4:48 p.m. with kiosk sales by hour printed on stiff paper. He predicts the best location will be obvious from the numbers. Then boarding starts, the line bends across the corridor, and three passengers put sandwiches back because they cannot see the gate screen. The top-selling kiosk is also the most stressful one. Tomas folds the printout. He has to choose between the highest sales line and the pattern passengers are showing with their feet.",
+      "whatToDo": "Combine sales with the visible passenger path. Redraw the kiosk curve around sightline, queue shape, and boarding confidence before relocating anything.",
+      "whyItMatters": "The highest local number may hide a weak total experience. Strategy needs the scene that explains why buyers leave money on the shelf."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A manager at a subscription company sees churn rise while response time, refund cost, and renewal email open rates all improve. Which move best fits the big-picture rule?",
+        "choices": [
+          "Map the entire customer path beside the metrics before assigning another local fix.",
+          "Reward each team for its improved metric and wait for churn to fall.",
+          "Add more metrics so the dashboard feels complete."
+        ],
+        "correctIndex": 0,
+        "explanation": "The conflict among metrics and outcome calls for a whole-pattern view. More local fixes may deepen the fragmentation.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A director at a hospital lab has turnaround reports blaming machines, but a wall sketch shows the delay sits between courier pickup and accession. What should change first?",
+        "choices": [
+          "Buy a faster analyzer to improve the reported bottleneck.",
+          "Fix the handoff shown on the path drawing and measure the full specimen journey.",
+          "Ask each department to submit separate improvement ideas."
+        ],
+        "correctIndex": 1,
+        "explanation": "The path reveals the real delay. Acting on the whole flow beats optimizing the machine named by a partial report.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A founder preparing a strategy meeting has fifteen tables and no visual summary of the value proposition. What is the main risk? The team has one week before the budget review and must choose the next move now.",
+        "choices": [
+          "The tables will be too short to impress investors.",
+          "Visual tools will make the company ignore all evidence.",
+          "The team may debate accurate fragments while never confronting whether the overall offer diverges."
+        ],
+        "correctIndex": 2,
+        "explanation": "The risk is fragmented precision. The team needs numbers, but arranged so the whole strategic pattern can be judged.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A teacher has separate scores for attendance, homework, quizzes, and parent messages, but students still fail the final project. Which action is strongest?",
+        "choices": [
+          "Plot the student journey from assignment launch to final submission and place the scores along that path.",
+          "Add another weekly quiz because quizzes are easy to measure.",
+          "Tell parents the data proves the class is working."
+        ],
+        "correctIndex": 0,
+        "explanation": "Putting metrics on the journey may reveal a missing handoff or support point. More measurement alone does not create whole-pattern insight.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A manager at a grocery chain runs a strategy fair with three store-layout sketches and asks shoppers to place stickers where they would actually walk. Why is this useful?",
+        "choices": [
+          "It replaces all financial analysis permanently.",
+          "It lets buyers react to complete value patterns before the team argues over individual fixtures.",
+          "It guarantees the cheapest layout will win."
+        ],
+        "correctIndex": 1,
+        "explanation": "The fair tests the shape of experience. Financial analysis returns after the team learns which pattern buyers understand and value.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A designer says the new service has focus because every factor is rated high on the canvas. What should a reviewer say? The team has one week before the budget review and must choose the next move now.",
+        "choices": [
+          "The canvas proves the service is superior in every way.",
+          "The team should hide the canvas until launch.",
+          "High scores everywhere usually show no focus, because strategy requires choosing where to reduce or stop."
+        ],
+        "correctIndex": 2,
+        "explanation": "A curve that is high everywhere often means cost and confusion. Focus requires visible tradeoffs.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A coach reviewing team performance has perfect drill scores but poor game decisions. Which plan applies the lesson? The team has one week before the budget review and must choose the next move now.",
+        "choices": [
+          "Draw the whole possession sequence and study where drill wins fail inside game flow.",
+          "Add more drill categories to isolate the weakness.",
+          "Punish players for not transferring drills automatically."
+        ],
+        "correctIndex": 0,
+        "explanation": "The game flow is the whole pattern. Drill metrics can be accurate and still fail to explain transfer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A director at a nonprofit has donor, volunteer, and client metrics in separate reports. Service quality is slipping. Which move is most likely to clarify strategy?",
+        "choices": [
+          "Ask each team to improve its own report next month.",
+          "Put the three reports into one visual map of the service promise and mark where one group's metric damages another.",
+          "Stop measuring volunteers because clients matter most."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strategy depends on how the groups interact. One map can reveal tradeoffs that separate reports keep invisible.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A student team watches users with a prototype before deciding which dashboard numbers matter. What principle are they applying? The team has one week before the budget review and must choose the next move now.",
+        "choices": [
+          "User observation is a substitute for all later measurement.",
+          "Dashboards are useful only when they contain no visuals.",
+          "Numbers should be chosen only after the team sees the full user pattern they are meant to explain."
+        ],
+        "correctIndex": 2,
+        "explanation": "Observation helps decide which numbers matter to the whole experience. The goal is not fewer facts, but facts tied to the value pattern.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You have too many metrics and no shared view. What should you build first?",
+      "back": "Build one visual path or canvas that shows how the metrics combine into a buyer experience. Strategy improves when fragments answer to the whole pattern.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A local metric improves while the customer outcome worsens. What do you suspect?",
+      "back": "Suspect local optimization. The metric may be accurate but attached to a slice that does not govern the buyer's full job or journey.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "You run a visual strategy fair and everyone likes every option. What went wrong?",
+      "back": "The options probably lack real tradeoffs. A useful fair makes people choose among distinct value curves, not approve a wall of pleasant variations.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A one-page picture inspires the room but changes no budget. How should you judge it?",
+      "back": "Treat it as unfinished. A strategic picture must guide resource allocation, cuts, and frontline choices, or it is only communication polish.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is pattern-level judgment. You use numbers, quotes, field observation, and value curves together so strategy is judged as an experience, not as scattered proof points. The habit is to make the whole visible before solving the parts.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting contains more than five metrics, then ask someone to draw the customer path those metrics are supposed to improve."
+      },
+      {
+        "context": "health",
+        "plan": "If you track sleep, food, exercise, and mood separately, then map one day from wake-up to bedtime and find the pattern the numbers create together."
+      },
+      {
+        "context": "personal",
+        "plan": "If a project has many tasks but no clear direction, then sketch the final user or recipient experience on one page before adding tasks."
+      },
+      {
+        "context": "relationships",
+        "plan": "If a household argument gets stuck on separate facts, then draw the full week's flow and mark where the real pressure appears."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, choose a decision buried in metrics. Put the five most important facts on one page beside a rough buyer or user journey, then write the pattern in one sentence.",
+    "weeklyPractice": "Each week, run one visual check before a planning decision: current curve, buyer path, two alternative curves, and one sentence that tells people where to invest and where to stop."
+  },
+  "memorableLines": [
+    {
+      "text": "A wall of sticky notes can reveal what a hundred spreadsheet tabs kept apart.",
+      "location": "hook",
+      "why": "The contrast between one visual surface and fragmented data is concrete enough to quote, and it embodies the chapter's entire argument in an image readers can see."
+    },
+    {
+      "text": "Strategy needs the table, but it cannot live inside the table.",
+      "location": "breakdown.deepRead",
+      "why": "It balances respect for numbers with the necessity of pattern judgment in a crisp, clever structure that directly answers the skeptic asking whether visual strategy abandons rigor."
+    },
+    {
+      "text": "Refund cost is down. Call length is down. First-response time is down. Yet customers still leave.",
+      "location": "breakdown.fullRead",
+      "why": "The specific metrics and their paradoxical outcome make the strategic problem concrete and quotable, showing how accurate local wins can mask overall failure."
+    }
+  ]
+}

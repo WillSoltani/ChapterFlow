@@ -1,0 +1,66 @@
+{
+  "chapterId": "atomic-habits-ch05",
+  "number": 5,
+  "title": "The Best Way to Start a New Habit",
+  "coreMove": "Write an implementation intention that names the exact time and place a new habit will happen, then stack it onto a behavior already anchored in your day.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a hospice nurse trying to start a five-minute journaling habit between her last patient visit and the drive home",
+      "audience": "a shift worker whose schedule shifts but whose end-of-shift ritual does not",
+      "stakes": "whether she processes grief or carries it home to her kids for the third year running",
+      "format": "scene",
+      "requiredBeat": "she replaces the vague intention 'I should journal more' with 'After I sign the last chart, I will write three lines in the notebook in my glovebox' and notices the new specificity removes the decision from the moment"
+    },
+    {
+      "domain": "two roommates in a shared kitchen arguing about whose turn it is to actually do the physio exercises the orthopedist prescribed",
+      "audience": "a thirty-something recovering from a knee surgery who keeps 'forgetting' the exercises",
+      "stakes": "a six-week recovery stretching into six months and a permanent limp",
+      "format": "dialogue",
+      "requiredBeat": "one roommate names the missing piece out loud — 'when, exactly, and where' — and the other realizes she has never once attached the exercises to a cue already in her day"
+    },
+    {
+      "domain": "a high school band director introducing a daily five-minute sight-reading habit to ninth graders who have never practiced outside rehearsal",
+      "audience": "a teacher who knows telling teenagers to 'practice more' produces nothing",
+      "stakes": "whether thirty kids learn that practice is a slot in a day, not a mood that strikes them",
+      "format": "vignette",
+      "requiredBeat": "the director writes the formula on the board — 'After I [existing habit], I will [new habit] at [time] in [place]' — and walks one student through filling it in for her own afternoon, with the kitchen counter and the snack she always eats as the anchor"
+    },
+    {
+      "domain": "a freelance bookkeeper deciding where in her week to insert a fifteen-minute habit of reviewing her own invoices, after losing eleven hundred dollars to an unbilled month",
+      "audience": "a self-employed worker with no external schedule to lean on",
+      "stakes": "whether her business survives a year where she keeps doing other people's books better than her own",
+      "format": "decision_point",
+      "requiredBeat": "she rejects 'every Friday' as too vague and instead stacks the review onto the cup of coffee she already pours after dropping her son at preschool, because the coffee is non-negotiable and the review is not, yet"
+    },
+    {
+      "domain": "a recently widowed retiree trying to start a daily walk after his cardiologist warned him about a second event",
+      "audience": "a man in his late sixties whose days have lost their structure",
+      "stakes": "another year on the couch and the heart attack the doctor said is coming",
+      "format": "before_after",
+      "requiredBeat": "the before shows him deciding each morning whether today feels like a walking day; the after shows him lacing up the moment the coffee maker beeps, because the beep is the cue and the decision has already been made"
+    },
+    {
+      "domain": "a software contractor stacking a ten-minute language study habit onto the train ride he already takes from Jersey City to Midtown",
+      "audience": "a commuter whose existing routine is dense and predictable",
+      "stakes": "whether he can speak enough Portuguese to talk to his partner's parents in São Paulo by Christmas",
+      "format": "reflection",
+      "requiredBeat": "he notices that the train, the seat, and the moment the doors close at Grove Street already form a cue stack he has been ignoring, and that habit stacking is less about adding willpower than about hitching a new behavior to a train already leaving the station"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 4,
+      "analyze": 3,
+      "evaluate": 1
+    },
+    "transferEmphasis": 0.8
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12
+}

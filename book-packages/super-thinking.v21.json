@@ -1,0 +1,2217 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "super-thinking-v21-1778548295387",
+  "createdAt": "2026-05-12T01:11:35.387Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "super-thinking",
+    "title": "Super Thinking",
+    "author": "Gabriel Weinberg; Lauren McCann",
+    "categories": [
+      "Decision Making",
+      "Psychology",
+      "Self-Help",
+      "Productivity"
+    ],
+    "tags": [
+      "mental-models",
+      "decision-making",
+      "systems-thinking",
+      "statistics",
+      "conflict"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "super-thinking-ch01",
+      "number": 1,
+      "title": "Being Wrong Less",
+      "readingTimeMinutes": 7,
+      "hook": "Packing tape on Maire's sleeve catches before the missing receipt catches her eye.",
+      "counterintuition": "Most people try to be right more often by sounding surer. The stronger move is to be wrong less by finding the weak assumption while the cost is still small.",
+      "tryThisNow": "Pick one live decision and write the sentence, \"This fails if I am wrong about ___.\" Fill the blank, then choose one cheap test you can run before the next commitment.",
+      "keyTakeaway": "Cut avoidable mistakes by rebuilding claims from what you actually know, testing the weakest assumption early, and keeping the first cost of being wrong small.",
+      "breakdown": {
+        "fastRead": "Maire has one strip of packing tape stuck to her sleeve at 6:27 p.m. when a museum crate is ready to ship. The provenance story looks clean until one receipt is missing. Being wrong less starts there. Do not ask, \"How confident do I feel?\" Ask, \"What has to be true for this to work?\" Then test that point while the bill is low.\n\nA small test is not timid. It is contact with reality before pride gets expensive. Rebuild from the facts, name the guess, and let one cheap check hit the idea before the full move does.",
+        "deepRead": "Kwame kneels in wet grass beside the north goal and asks his striker what she saw before the pass left her foot. She wants to blame the mud. He points to the defender's heel mark and the open wing. The missed pass was not fate. It was a playable ball given away.\n\nThat is the heart of being wrong less. Many mistakes are not caused by chaos. They come from skipped checks, borrowed stories, or early commitment. First-principles thinking helps because it makes you rebuild the claim from the ground up: what do you know, what are you assuming, and which part carries the weight?\n\nJanel's bakery sign-up sheet teaches the next move. Compliments sounded like demand until five names appeared on the page. A cheap test hurts less than a full subscription launch. The point is not to hide from stress. Useful stress finds the weak part early. Bad stress arrives late, after you have spent money, status, or trust.\n\nHand your next idea one small encounter with reality. If it bends, you learned. If it breaks, you saved yourself from a larger break. If it holds, you have earned more confidence than a smooth story could give.",
+        "fullRead": "Soraya sets six dead radios in a row at 11:05 p.m. and writes one sentence on the drill report: assumed batteries held charge. That sentence is the whole failure. The evacuation map was clear. The staff knew their posts. The rain plan worked. Then the radios died because nobody had tested the part everyone treated as boring.\n\nBeing wrong less is the discipline of finding that sentence before the drill, launch, exam, or hard talk. It begins with the unforced error, the mistake you hand yourself while the situation was still playable. You will still face bad luck. You will still meet hard cases. The useful work is to stop adding preventable mistakes on top of them.\n\nFirst-principles thinking gives you the first tool. Take the clean story apart. List what you know without drama. Then list what you are guessing. A good claim can survive that treatment. A weak claim often starts to wobble as soon as the hidden guess is named. The missing receipt, the untested radio battery, the customer compliment that may not become a paid order, each one asks for a lower layer of proof.\n\nBram feels the blue resistance band pull under his shoe at Bayview Rehab. The first rep burns, and his old habit is to call pain a warning to stop. His therapist asks him to rate it and repeat once. The second rep is steadier. Some bounded stress teaches the system. The trick is to tell that apart from blind exposure. A small rep with a therapist watching is information. Carrying a sofa alone three weeks after surgery is damage.\n\nLinnea spreads tile photos across her kitchen table and starts to quote a full restaurant mural from instinct. Before sending the number, she draws a paid sample panel into the proposal. The sample protects both sides. The owner sees the style on real tile. Linnea learns how the paint behaves before forty square feet are promised. The large bet waits for the small test to speak.\n\nYou do not need to make every choice small forever. You need the first contact with reality to be small enough to teach. When an idea sounds strong, ask what would make it false. When a plan feels urgent, ask which assumption can be checked today. When a risk looks scary, ask whether a controlled hit would make the system better. Confidence that has survived a test is different from confidence that has only survived a meeting."
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01-maire-crate-receipt",
+          "title": "Maire stops the crate over one missing receipt",
+          "tags": [
+            "first principles",
+            "assumption check"
+          ],
+          "planSpec": {
+            "domain": "museum operations",
+            "audience": "registrars handling high-trust records",
+            "stakes": "a shipment could lock in a false provenance claim",
+            "format": "decision_point",
+            "requiredBeat": "she catches one polished provenance story resting on a missing receipt and decides whether to approve the shipment"
+          },
+          "scenario": "Packing tape sticks to Maire's wool sleeve at 6:27 p.m. in the Fenwick Museum crate room while the bronze fox waits in foam. The donor file has glossy photos, a clean appraisal, and one gap where the 1988 receipt should be. The courier is tapping a pen on the clipboard. Maire's cursor rests over approve shipment. She has to decide whether a smooth story is enough when the one paper that would carry it is gone.",
+          "whatToDo": "Stop the shipment and rebuild the claim from the lowest facts: object, dates, owners, and missing proof. Ask which assumption bears the most weight, then test that assumption before release.",
+          "whyItMatters": "The expensive mistake is not uncertainty. It is treating an untested link as if it were proof. One paused crate is cheaper than a public correction after the object leaves."
+        },
+        {
+          "exampleId": "ch01-ex02-kwame-muddy-pass",
+          "title": "Kwame asks what the mud did not explain",
+          "tags": [
+            "unforced error",
+            "coaching"
+          ],
+          "planSpec": {
+            "domain": "youth sports",
+            "audience": "coaches teaching young players judgment",
+            "stakes": "a player may blame bad luck and miss the fixable read",
+            "format": "dialogue",
+            "requiredBeat": "he asks a player to name what she knows before blaming the missed pass on bad luck"
+          },
+          "scenario": "\"Mud,\" Nola says at Saturday 8:12 a.m., cleats black beside Dunbar Park's north goal. Kwame squats by the ball, wipes rain from his whistle, and points at the defender's heel mark. \"Before your foot hit it, what did you know?\" She looks toward the open wing and then back at the rut. \"I saw Ina free,\" she says. Kwame nods. \"So what part was the field, and what part was us?\"",
+          "whatToDo": "Separate the outside difficulty from the playable mistake. Have Nola name the cue she saw, the choice she made, and the next low-pressure rep that tests the better pass.",
+          "whyItMatters": "Blaming mud teaches nothing if the read was available. Owning the fixable part turns a missed pass into practice instead of a story about bad conditions."
+        },
+        {
+          "exampleId": "ch01-ex03-janel-blank-signup",
+          "title": "Janel watches the compliment list stay blank",
+          "tags": [
+            "cheap test",
+            "MVP"
+          ],
+          "planSpec": {
+            "domain": "small business",
+            "audience": "owners testing new offers",
+            "stakes": "a full launch could follow praise that is not real demand",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts demand from compliments, then sees the sign-up sheet stay nearly blank"
+          },
+          "scenario": "Flour dusts Janel's wrist at Tuesday 5:46 a.m. behind Loaf Street Bakery's counter as she tapes up a card for a monthly sourdough club. Last week twelve customers praised the rye and she predicted thirty paid sign-ups by lunch. At 1:20 p.m., the pen still lies across two names and one coffee ring. The reveal stings, and she must choose whether to order subscription boxes anyway.",
+          "whatToDo": "Treat compliments as a hypothesis, not demand. Keep the sign-up test open another week, ask for deposits, and order supplies only after payment proves the pattern.",
+          "whyItMatters": "Praise is easy to give and cheaper than bread. A small demand test lets reality speak before cardboard boxes, labels, and pride turn a guess into inventory."
+        },
+        {
+          "exampleId": "ch01-ex04-soraya-dead-radios",
+          "title": "Soraya lines up the radios after the drill",
+          "tags": [
+            "postmortem",
+            "load-bearing assumption"
+          ],
+          "planSpec": {
+            "domain": "emergency planning",
+            "audience": "public safety teams reviewing failures",
+            "stakes": "a hidden assumption could break the next real evacuation",
+            "format": "postmortem",
+            "requiredBeat": "she finds the untested radio battery assumption that broke the drill"
+          },
+          "scenario": "Six radios sit dead in a row at 11:05 p.m. in the county operations room, their rubber antennas pointing at Soraya's cold tea. The evacuation drill failed at minute nine, not because the map was wrong, but because the spare batteries had sat in a drawer since hurricane season. She writes the after-action note slowly: everyone assumed charged meant checked. The next decision is what must be tested before any future drill starts.",
+          "whatToDo": "Name the exact assumption that failed and turn it into a preflight check. Put battery testing beside maps and staff roles, where it cannot hide as boring logistics.",
+          "whyItMatters": "A postmortem only helps if it finds the preventable miss. The dead battery was small, but it carried the whole plan when radio contact became necessary."
+        },
+        {
+          "exampleId": "ch01-ex05-bram-blue-band",
+          "title": "Bram lets one blue band rep teach him",
+          "tags": [
+            "bounded stress",
+            "antifragility"
+          ],
+          "planSpec": {
+            "domain": "physical therapy",
+            "audience": "patients rebuilding capacity after injury",
+            "stakes": "avoiding every strain could make recovery more fragile",
+            "format": "vignette",
+            "requiredBeat": "he treats one small painful rep as useful feedback, not a reason to avoid all stress"
+          },
+          "scenario": "A blue resistance band hums under Bram's shoe at Thursday 2:33 p.m. in Bayview Rehab, and the scar above his knee turns pale when he lifts. He grips the vinyl table hard enough to squeak. The pain is a four, not an eight. His therapist watches the angle of his foot, not the clock. Bram breathes once, lowers the leg, and learns that this small strain is information instead of proof that all pressure is unsafe.",
+          "whatToDo": "Keep the stress bounded and measured. Rate the pain, adjust the angle, repeat only the controlled rep, and stop treating all discomfort as the same warning.",
+          "whyItMatters": "A system can get stronger from the right small stress. Removing every challenge protects comfort today while leaving the knee less ready for ordinary life."
+        },
+        {
+          "exampleId": "ch01-ex06-linnea-sample-panel",
+          "title": "Linnea prices the sample before the mural",
+          "tags": [
+            "de-risking",
+            "scope test"
+          ],
+          "planSpec": {
+            "domain": "freelance design",
+            "audience": "creative workers quoting uncertain work",
+            "stakes": "a full quote could hide unknown material and client risks",
+            "format": "before_after",
+            "requiredBeat": "she shifts from quoting the whole job on instinct to testing a paid sample panel first"
+          },
+          "scenario": "Tile photos spread across Linnea's kitchen table at Monday 9:18 a.m., curling beside a chipped mug. Before, she would have guessed a full mural price and hoped the restaurant wall behaved. Now she writes a two-hour paid sample panel into the estimate. The owner will see color on real tile, and Linnea will learn whether the glaze drinks paint before her name, weekend, and rent depend on one blind quote.",
+          "whatToDo": "Quote the sample as the first deliverable. Use it to test the wall, the paint, and the client's taste before committing to the whole surface and schedule.",
+          "whyItMatters": "The sample shrinks the cost of being wrong. Both sides get evidence while the job is still adjustable, which makes a later full quote less like a guess."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-q01",
+            "prompt": "Rhea is about to approve a vendor because the demo looked polished, but the integration data is still missing. What is the best next move?",
+            "choices": [
+              "Ask what has to be true for the vendor to work, then test the missing integration point first.",
+              "Approve the vendor because polish is useful evidence of quality.",
+              "Reject every vendor until a perfect option appears."
+            ],
+            "correctIndex": 0,
+            "explanation": "The move is to find the load-bearing assumption and test it cheaply. A polished demo may be useful, but it cannot stand in for the part that could break the rollout.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q02",
+            "prompt": "A student memorizes a clean solution but cannot solve the same problem when the numbers change. Which diagnosis fits best?",
+            "choices": [
+              "The student needs a longer answer key.",
+              "The student should rebuild the solution from the basic facts and assumptions.",
+              "The student should avoid problems with changed numbers."
+            ],
+            "correctIndex": 1,
+            "explanation": "The weakness is borrowed fluency. Rebuilding from basic facts shows whether the student understands the structure or only remembers the surface.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q03",
+            "prompt": "A team can launch a pilot in one store or roll out to all forty stores at once. The idea is promising but untested. What should they do?",
+            "choices": [
+              "Roll out everywhere so feedback arrives faster.",
+              "Skip the idea until there is no uncertainty.",
+              "Use the one-store pilot to learn while the downside is still contained."
+            ],
+            "correctIndex": 2,
+            "explanation": "A pilot gives the idea a real test without making the first mistake expensive. The point is learning under bounded stress, not avoiding action.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch01-q04",
+            "prompt": "Dorian calls every failed plan bad luck. In his latest miss, he skipped the checklist he had written himself. What should he notice?",
+            "choices": [
+              "The checklist skip was an avoidable error inside a hard situation.",
+              "The situation was impossible because all plans fail sometimes.",
+              "The checklist was useless because it did not guarantee success."
+            ],
+            "correctIndex": 0,
+            "explanation": "Bad luck may exist, but the skipped checklist is the fixable part. Being wrong less starts by separating outside difficulty from self-created misses.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch01-q05",
+            "prompt": "A founder keeps adding features before anyone has paid for the first version. Which action best matches the core skill?",
+            "choices": [
+              "Add the features that make the product look complete.",
+              "Ask potential users for compliments about the vision.",
+              "Charge for a small version that tests whether demand is real."
+            ],
+            "correctIndex": 2,
+            "explanation": "Payment is a stronger test than praise. A small paid version checks demand before the founder turns a hopeful story into a larger cost.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q06",
+            "prompt": "A runner avoids all hill work because hills feel uncomfortable. Her race still includes hills. What is the better interpretation?",
+            "choices": [
+              "All discomfort is a sign that the plan is wrong.",
+              "Controlled hill practice can be useful stress if the dose is small enough to recover from.",
+              "She should only train on race day so the feedback is realistic."
+            ],
+            "correctIndex": 1,
+            "explanation": "The useful stress is bounded and recoverable. Avoiding every strain can leave the system fragile, while too much exposure creates damage.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q07",
+            "prompt": "A committee has one impressive success story for a new policy but no count of how often the problem happens. What is the safest first question?",
+            "choices": [
+              "Who tells the success story most confidently?",
+              "How can the policy be made permanent today?",
+              "What do we know for sure, and what assumption is doing the most work?"
+            ],
+            "correctIndex": 2,
+            "explanation": "The first-principles question separates known facts from the assumption carrying the claim. That makes the next test clearer.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch01-q08",
+            "prompt": "A manager says, \"We already debated this, and the story still feels right.\" What response best reduces avoidable error?",
+            "choices": [
+              "Name the one fact that would change the decision, then go look for it.",
+              "Trust the feeling because debate has already happened.",
+              "Delay forever because no story can be fully proven."
+            ],
+            "correctIndex": 0,
+            "explanation": "The manager needs contact with reality, not another round of vague confidence. A change-the-decision fact points the team toward a useful test.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch01-q09",
+            "prompt": "A nonprofit wants to buy a full software suite before testing whether volunteers will use even one shared form. Which choice is strongest?",
+            "choices": [
+              "Buy the suite so volunteers know leadership is serious.",
+              "Test one shared form with one team and inspect the adoption problems.",
+              "Avoid software completely because volunteers resist change."
+            ],
+            "correctIndex": 1,
+            "explanation": "The small form test exposes the adoption assumption while the cost is low. If it fails, the nonprofit learns before a large purchase locks in the mistake.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch01-rc01",
+          "front": "A plan feels convincing, but one hidden assumption could break it. What should you ask first?",
+          "back": "Ask what has to be true for the plan to work. Then name the assumption carrying the most weight and test that point while the cost is still low.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch01-rc02",
+          "front": "You are blaming bad luck for a miss. What check helps you find the fixable part?",
+          "back": "Separate outside difficulty from the playable mistake. The useful question is where your own skipped check, early commitment, or weak assumption entered the result.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-rc03",
+          "front": "A small test hurts your pride but reveals a weak claim. How should you read that pain?",
+          "back": "Read it as useful stress if the dose is bounded and recoverable. The sting is cheaper than finding the same weakness after a full commitment.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-rc04",
+          "front": "You want to make a large commitment from one vivid signal. What move protects judgment?",
+          "back": "Turn the signal into a hypothesis and run the smallest real test that could disconfirm it. Scale only after the idea survives contact with reality.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is reducing self-created mistakes before they become expensive. Rebuild claims from facts, name the fragile assumption, and design a first test small enough to teach.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a proposal sounds ready after one strong meeting, then write the assumption that would break it and run a small test before assigning budget."
+          },
+          {
+            "context": "health",
+            "plan": "If discomfort makes you want to stop a recovery or training plan, then rate the discomfort, check whether the dose is controlled, and adjust before quitting."
+          },
+          {
+            "context": "personal",
+            "plan": "If a purchase feels like proof that a new habit is real, then practice the habit for seven days with what you already own before buying more."
+          },
+          {
+            "context": "relationships",
+            "plan": "If you are sure the other person caused the whole problem, then name one part of the pattern that came from your timing, wording, or skipped check."
+          }
+        ],
+        "twentyFourHourChallenge": "Within the next 24 hours, pick one decision you are leaning toward and write the weakest assumption on paper. Before you commit, send one email, run one trial, or check one record that could prove that assumption wrong.",
+        "weeklyPractice": "For one week, keep a short unforced-error log. Each day, write one avoidable miss, the assumption behind it, and the smallest earlier test that would have caught it."
+      },
+      "memorableLines": [
+        {
+          "text": "A small test is not timid.",
+          "location": "breakdown.fastRead",
+          "why": "It makes the practical attitude clear in five plain words."
+        },
+        {
+          "text": "Being wrong less is the discipline of finding that sentence before the drill, launch, exam, or hard talk.",
+          "location": "breakdown.fullRead",
+          "why": "It turns the model into a concrete search for the hidden failure sentence."
+        },
+        {
+          "text": "Confidence that has survived a test is different from confidence that has only survived a meeting.",
+          "location": "breakdown.fullRead",
+          "why": "It gives readers a sharp way to tell evidence from talk."
+        }
+      ]
+    },
+    {
+      "chapterId": "super-thinking-ch02",
+      "number": 2,
+      "title": "Anything That Can Go Wrong, Will",
+      "readingTimeMinutes": 8,
+      "hook": "A split trash bag behind the bike shed tells Ivo his neat new rule has already learned to backfire.",
+      "counterintuition": "Most fixes fail because people assume the rule will be followed in the spirit intended. Systems respond to rewards, penalties, delays, and loopholes, not to the speech that launched them.",
+      "tryThisNow": "Before changing one rule, write the behavior it will reward, the shortcut it may invite, and the future cost it could hide. Fix the worst failure path first.",
+      "keyTakeaway": "Judge a rule by the behavior it will create under pressure, then design guardrails for incentives, workarounds, and delayed costs before the rule goes live.",
+      "breakdown": {
+        "fastRead": "Ivo stands over coffee grounds leaking from a split trash bag at 6:22 p.m. The new pay-per-bag rule did reduce bags at the curb. It also moved garbage behind the bike shed. A rule is not judged by its wording. It is judged by the behavior it creates.\n\nWhen something can go wrong, the useful move is not panic. Trace the path. What does the metric reward? How might people adapt? What cost appears later? The fix that ignores those questions may become part of the problem.",
+        "deepRead": "Galen writes \"closed tickets\" on the support-floor bonus board at 7:41 a.m. The marker squeaks, and three agents glance up. Faster closure sounds clean. Customers hate waiting. But Galen can already picture the failure path: rushed replies, reopened tickets, hard cases pushed aside until the number looks good.\n\nIncentives are not side notes. They are instructions. People tend to serve what the system pays, praises, or punishes. That is why a narrow metric can quietly replace the mission. If ticket count becomes survival, ticket count becomes the work.\n\nFariha sees the same pattern in a school attendance campaign. Perfect-month certificates looked harmless until feverish students sat in algebra coughing into sleeves. The number improved while learning got worse. The visible win hid a cost the dashboard did not count.\n\nA better fix starts before launch. Ask what a tired, scared, ambitious, or rushed person will do with the rule. Ask what shortcut now becomes rational. Ask what looks better this month while making next month weaker. Then add guardrails, change the measure, or choose a different rule.",
+        "fullRead": "Marisol stands by press line three at 5:55 a.m. with orange lockout tags spread across the table. Maintenance hours look easy to cut because they are quiet when they work. Her quarterly report will look cleaner if she trims two Friday crews. The machines will still run this week. That is why the choice is tempting.\n\nShort-termism often wears a practical face. It improves the period being judged while moving the bill into the period nobody is staring at yet. The danger is not that every savings plan is foolish. The danger is that the visible number arrives before the hidden cost. A press that skips service can run fine Monday and fail in July.\n\nMurphy's Law is useful when it is treated as design advice. If a failure path exists, assume the system will find it under pressure. That pressure may be fear, fatigue, ambition, boredom, money, status, or one impossible deadline. A rule that looks clean in a calm room can change shape on the floor.\n\nNello watches the curb at Alder and Ninth after a new no-loading sign goes up. The delivery vans do not vanish. They idle on side streets, block driveways, and make bicyclists swerve around them. The city solved the visible block and created three smaller ones nearby. That is the cobra effect in ordinary clothes: the remedy feeds a version of the problem because the system adapts.\n\nPerverse incentives work the same way. A hospital that rewards speed alone may teach staff to move easy cases first. A school that rewards attendance alone may draw sick children into class. A support team that rewards closed tickets alone may close the door on the customer. The measure has become a magnet.\n\nTovah changes her clinic reminders after watching no-show penalties fail. The old rule charged patients who missed appointments. It felt fair and still left empty chairs. The new design sends bilingual texts, lets patients confirm with one tap, and calls the day before for rideshare-sensitive visits. She stops punishing the outcome and starts removing the failure path.\n\nBefore you launch a fix, run the adaptation test. Who is rewarded? Who is squeezed? What shortcut becomes attractive? What future cost becomes easier to ignore? What does the system do when nobody is watching the speech and everyone is watching the score? A strong rule survives those questions better than a neat rule. It works because it has already made room for human response."
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01-galen-bonus-board",
+          "title": "Galen pauses before writing closed tickets",
+          "tags": [
+            "incentives",
+            "metrics"
+          ],
+          "planSpec": {
+            "domain": "customer support",
+            "audience": "operations leaders setting performance metrics",
+            "stakes": "a narrow bonus could make service look faster while making customers worse off",
+            "format": "decision_point",
+            "requiredBeat": "he sees that rewarding closed tickets alone will invite rushed replies and decides whether to launch the metric"
+          },
+          "scenario": "The marker squeaks in Galen's hand at 7:41 a.m. on the Ellery Support floor as he writes \"closed tickets\" across the bonus board. Two agents are still eating granola bars at their desks. The metric will make the weekly chart simple, but he can already picture hard refunds being parked and easy password resets raced through. His thumb smears the wet ink. He has to decide whether speed alone is the number to pay for.",
+          "whatToDo": "Rewrite the metric before launch. Pair closure speed with reopened-ticket rate, customer notes, and a review of hard cases so the bonus rewards solved work, not hidden work.",
+          "whyItMatters": "A score becomes a set of instructions. If the system pays only for closed tickets, agents can serve the number while the customer problem keeps moving."
+        },
+        {
+          "exampleId": "ch02-ex02-fariha-attendance-campaign",
+          "title": "Fariha counts cough drops beside perfect attendance",
+          "tags": [
+            "metric capture",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "school administration",
+            "audience": "educators reviewing incentive programs",
+            "stakes": "a reward campaign may improve attendance while harming health and learning",
+            "format": "postmortem",
+            "requiredBeat": "she finds that the reward pulled sick students into class and hurt learning"
+          },
+          "scenario": "Cough drops spill beside Fariha's attendance charts at Friday 4:08 p.m. in the nurse's office. The perfect-month campaign worked on paper: absences fell 18 percent. The nurse's log tells the other half. Fever calls rose, two teachers lost review days, and one parent wrote that her son begged to come sick for the pizza party. Fariha circles the award column and sees the rule she built.",
+          "whatToDo": "Review what the campaign rewarded in practice. Keep attendance as a signal, but exclude illness days, track classroom disruption, and stop making sick presence the winning move.",
+          "whyItMatters": "The campaign did not just measure behavior. It changed behavior. A better design rewards the real aim, learning, without pulling children into class when staying home is right."
+        },
+        {
+          "exampleId": "ch02-ex03-ivo-basement-trash",
+          "title": "Ivo hears the bag fee leak downstairs",
+          "tags": [
+            "cobra effect",
+            "workarounds"
+          ],
+          "planSpec": {
+            "domain": "apartment management",
+            "audience": "property owners changing tenant rules",
+            "stakes": "a fee meant to reduce waste may move the mess out of sight",
+            "format": "dialogue",
+            "requiredBeat": "a tenant points out that charging per trash bag has moved garbage behind the bike shed"
+          },
+          "scenario": "\"Smell that?\" Petra asks at Wednesday 6:22 p.m. in the basement laundry room. A split trash bag by the washer leaks coffee grounds into the floor drain. Ivo has just posted the new two-dollar curb bag fee to cut waste. Petra points toward the bike shed window. \"The curb is cleaner because everyone is hiding bags back there.\" Ivo has the violation notices in his pocket and has to decide whether another penalty fixes this.",
+          "whatToDo": "Map the workaround before adding punishment. Check where the trash moved, why the fee made hiding rational, and whether shared bins or pickup changes would remove the dodge.",
+          "whyItMatters": "The first rule changed the path, not the problem. A second penalty may push the mess somewhere else unless the design makes the desired behavior easier."
+        },
+        {
+          "exampleId": "ch02-ex04-marisol-lockout-tags",
+          "title": "Marisol sees the quiet cost wake up",
+          "tags": [
+            "short-termism",
+            "maintenance"
+          ],
+          "planSpec": {
+            "domain": "manufacturing finance",
+            "audience": "leaders balancing savings and capability",
+            "stakes": "maintenance cuts can improve one report while creating future downtime",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts a cleaner quarter, then sees downtime climb the next month"
+          },
+          "scenario": "Orange lockout tags lie on the table by press line three at Monday 5:55 a.m. Marisol's March forecast looked better after she cut two maintenance Fridays. She predicted a clean quarter and got it. Now April's first shift is silent while mechanics open the feeder housing. The supervisor does not say I told you so. He just hands her the downtime sheet, and the saved hours stare back as lost production.",
+          "whatToDo": "Compare the savings across the full repair cycle, not just the reporting window. Restore maintenance where skipped work raises later downtime, and label those hours as capacity protection.",
+          "whyItMatters": "Some costs stay invisible until after the reward period. Short-term savings can be real and still be a bad trade if they drain the system that creates output."
+        },
+        {
+          "exampleId": "ch02-ex05-nello-curb-vans",
+          "title": "Nello watches vans reappear on Alder Street",
+          "tags": [
+            "adaptation",
+            "systems"
+          ],
+          "planSpec": {
+            "domain": "city planning",
+            "audience": "policy teams evaluating public rules",
+            "stakes": "a clean curb rule may displace congestion rather than reduce it",
+            "format": "vignette",
+            "requiredBeat": "he notices the system adapting around a clean rule"
+          },
+          "scenario": "A diesel van idles under the new no-loading sign at Alder and Ninth at Thursday 3:17 p.m., then rolls thirty yards and blocks a driveway. Nello stands with a folded curb map and watches two more vans copy it. The avenue looks clear in the enforcement photo. The side street smells like exhaust and wet cardboard. The rule did not remove deliveries. It taught them where to hide.",
+          "whatToDo": "Observe where the activity moved before declaring success. Redesign loading zones around real delivery needs, enforcement timing, and side-street spillover.",
+          "whyItMatters": "A system adapts around simple commands. If the measured spot improves while nearby streets absorb the cost, the policy has moved the problem rather than solved it."
+        },
+        {
+          "exampleId": "ch02-ex06-tovah-reminder-tray",
+          "title": "Tovah replaces penalties with one-tap reminders",
+          "tags": [
+            "failure path",
+            "service design"
+          ],
+          "planSpec": {
+            "domain": "clinic operations",
+            "audience": "healthcare managers reducing no-shows",
+            "stakes": "punishment may miss the cause of missed appointments",
+            "format": "before_after",
+            "requiredBeat": "she shifts from punishing no-shows to removing the failure path that created them"
+          },
+          "scenario": "Postcard reminders sit in a plastic tray at Tuesday 10:36 a.m. on the Hillbend Clinic front desk. Before, Tovah mailed warnings and charged no-show fees. Empty chairs stayed empty. After three calls with patients, she changes the path: bilingual text reminders, one-tap confirmation, and a ride call for dialysis visits. The next missed slot will be tracked, but the first move is no longer punishment.",
+          "whatToDo": "Find the failure path before raising the penalty. Make confirmation easy, remove obvious access barriers, and reserve fees for cases where reminders and support already worked.",
+          "whyItMatters": "Punishment can feel fair while leaving the cause untouched. Removing the path to failure gives patients a better way to comply before the clinic counts them as careless."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-q01",
+            "prompt": "A sales team pays bonuses only for new accounts. Six weeks later, renewals are neglected. What should the leader change first?",
+            "choices": [
+              "Add renewal health to the reward system so the metric matches the real aim.",
+              "Tell the team to care more about renewals while keeping the bonus unchanged.",
+              "Remove all metrics because people respond badly to measurement."
+            ],
+            "correctIndex": 0,
+            "explanation": "The bonus is shaping behavior. If renewals matter, the system has to reward them instead of hoping a speech beats the visible incentive.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q02",
+            "prompt": "A cafeteria bans snacks from classrooms. Wrappers disappear from desks but pile up in lockers. What does this show?",
+            "choices": [
+              "The ban solved the real problem.",
+              "The behavior adapted around the rule and moved out of sight.",
+              "Students no longer want snacks."
+            ],
+            "correctIndex": 1,
+            "explanation": "The visible measure improved while the underlying behavior shifted location. That is a warning to inspect the whole system, not just the monitored spot.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q03",
+            "prompt": "A director cuts training to meet this quarter's budget, then quality defects rise two months later. What model best explains the mistake?",
+            "choices": [
+              "Short-termism, because the visible gain hid a later capability cost.",
+              "First principles, because the director started from basic truths.",
+              "Network effects, because each trainee increased the system's value."
+            ],
+            "correctIndex": 0,
+            "explanation": "The budget looked better first, while the cost arrived later as defects. The mistake was judging the cut inside too narrow a time window.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch02-q04",
+            "prompt": "A town pays residents for each rat tail delivered. Soon residents start breeding rats. What should a policy designer learn?",
+            "choices": [
+              "Pay more per tail to clear the problem faster.",
+              "Cancel all public health programs.",
+              "Check whether the reward makes the harmful behavior profitable."
+            ],
+            "correctIndex": 2,
+            "explanation": "The reward made the measured output valuable. A policy that pays for evidence of a problem can create more of the problem if adaptation is ignored.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q05",
+            "prompt": "A manager wants to reduce errors by punishing every reported mistake. Which risk should she inspect before launch?",
+            "choices": [
+              "Whether people will hide errors to avoid punishment.",
+              "Whether the punishment sounds strict enough in the memo.",
+              "Whether the error rate looks small this week."
+            ],
+            "correctIndex": 0,
+            "explanation": "Punishing reports can make the dashboard cleaner while making the system more dangerous. The design must reward surfacing problems, not hiding them.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch02-q06",
+            "prompt": "A team adds a response-time target. What guardrail would best prevent metric capture?",
+            "choices": [
+              "A second measure for whether the answer actually solved the case.",
+              "A brighter dashboard that updates every hour.",
+              "A rule that agents must never question the target."
+            ],
+            "correctIndex": 0,
+            "explanation": "A quality guardrail keeps speed from becoming the whole job. It makes the metric serve the goal instead of replacing it.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q07",
+            "prompt": "A neighborhood rule clears scooters from one plaza, but they block the library entrance instead. What should be measured next?",
+            "choices": [
+              "Only the original plaza, since that was the official target.",
+              "How the total scooter pattern changed across nearby spaces.",
+              "Whether residents remember the rule wording."
+            ],
+            "correctIndex": 1,
+            "explanation": "The rule may have displaced the problem. Measuring nearby spaces shows whether the system improved or only moved the cost.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch02-q08",
+            "prompt": "A school wants higher test scores and considers rewards for teachers whose classes improve fastest. What question should come before launch?",
+            "choices": [
+              "How can the fastest teachers be praised publicly?",
+              "What behavior might the reward create if scores become survival?",
+              "How can low-scoring students be removed from testing?"
+            ],
+            "correctIndex": 1,
+            "explanation": "High-stakes metrics can invite distorted behavior. The design should ask how people may serve the score instead of the learning.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch02-q09",
+            "prompt": "A clinic keeps charging missed-visit fees, but no-shows do not fall. Which next move fits best?",
+            "choices": [
+              "Raise the fee until missed visits become impossible.",
+              "Accept no-shows as a permanent market failure.",
+              "Trace the missed-visit path and remove barriers before increasing punishment."
+            ],
+            "correctIndex": 2,
+            "explanation": "If punishment is not changing behavior, the failure path may be access, reminders, transport, or confusion. Fixing the path can work where pressure does not.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch02-rc01",
+          "front": "A new metric looks clean. What should you inspect before trusting it?",
+          "back": "Inspect the behavior it rewards under pressure. A metric can start as measurement and become instruction once pay, praise, or punishment attaches to it.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch02-rc02",
+          "front": "A rule improves the monitored spot while trouble rises nearby. What is the likely failure?",
+          "back": "The system adapted around the rule. Measure the whole pattern, including spillover, before calling the fix successful.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch02-rc03",
+          "front": "A cost cut helps this month and harms next quarter. What question should have been asked?",
+          "back": "Ask what future capability the savings may drain. Short-termism hides damage by placing the reward and the bill in different time windows.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch02-rc04",
+          "front": "A punishment feels fair but does not reduce the behavior. What move comes next?",
+          "back": "Trace the failure path. Find the shortcut, barrier, or workaround that makes the unwanted behavior rational, then redesign that path before adding more pressure.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is reading a rule as a system, not a sentence. Look for incentives, workarounds, spillover, and delayed costs before you trust the first visible improvement.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If I introduce a metric, then I will write the three behaviors it may reward by accident and add at least one guardrail before launch."
+          },
+          {
+            "context": "health",
+            "plan": "If I set a strict personal rule, then I will ask how I might dodge it when tired and design the environment to make the better path easier."
+          },
+          {
+            "context": "personal",
+            "plan": "If a quick fix saves money or time today, then I will check what maintenance, sleep, trust, or capacity it may cost next month."
+          },
+          {
+            "context": "relationships",
+            "plan": "If I use a threat to change someone's behavior, then I will ask what hiding, avoidance, or resentment the threat could reward."
+          }
+        ],
+        "twentyFourHourChallenge": "Within the next 24 hours, choose one rule, metric, or habit you rely on. Write the behavior it rewards, the easiest workaround, and one delayed cost, then adjust the rule to reduce the worst failure path.",
+        "weeklyPractice": "For one week, review one decision each day by asking: what did this reward, where did the problem move, and what cost might arrive later?"
+      },
+      "memorableLines": [
+        {
+          "text": "A rule is not judged by its wording.",
+          "location": "breakdown.fastRead",
+          "why": "It states the systems lens in a sentence readers can reuse."
+        },
+        {
+          "text": "Incentives are not side notes.",
+          "location": "breakdown.deepRead",
+          "why": "It makes the hidden force feel central and urgent."
+        },
+        {
+          "text": "A strong rule survives those questions better than a neat rule.",
+          "location": "breakdown.fullRead",
+          "why": "It gives a clear test for policy quality."
+        }
+      ]
+    },
+    {
+      "chapterId": "super-thinking-ch03",
+      "number": 3,
+      "title": "Spend Your Time Wisely",
+      "readingTimeMinutes": 8,
+      "hook": "A wet pipette rack at 6:04 a.m. is where Odelia's future month is quietly being made.",
+      "counterintuition": "You may assume time wisdom means fitting more into the week. The opposite is usually true: the strongest move is protecting fewer repetitions from attractive alternatives and present comfort.",
+      "tryThisNow": "Choose one repeating action worth protecting this week. Put it on the calendar first, then write the best thing it will displace so the cost is visible.",
+      "keyTakeaway": "Spend time well by protecting the few repetitions that build future capacity, naming the best alternative you are giving up, and designing around present bias.",
+      "breakdown": {
+        "fastRead": "Odelia reaches for the lab log at 6:04 a.m. The daily calibration check takes eight dull minutes, and no one thanks her when it works. Three months from now, those checks decide whether a river sample run can be trusted.\n\nTime compounds through repeated acts. That does not mean every good act deserves a slot. Each yes spends the best thing you did not do. Present comfort then tries to buy the slot back. Protect the repetition that builds the base, name what it costs, and make the better choice easier before the tired moment arrives.",
+        "deepRead": "Meilin stands in practice room B at 3:06 p.m. with rosin dust on the music stand and three ensemble sign-up sheets open on her phone. Each one is good. Chamber group would sharpen listening. Youth orchestra would add polish. The folk trio sounds fun. The problem is not that one option is bad. The problem is that all three will eat the same after-school hours her concerto needs.\n\nOpportunity cost makes time honest. A yes is not just a yes. It is also a no to the strongest use of the same hour. Once that cost is named, busyness loses some of its glamour.\n\nCompounding points to the hours worth defending. Small repetitions change the base you start from tomorrow. Odelia's calibration habit prevents bad lab runs. Arvid's daily repair notes keep the same scooter mistake from returning. The return is not visible every day, but it builds.\n\nKiko's phone buzzes in the locker room after a night shift. One episode feels harmless because sleep is a future need and the couch is a present reward. Present bias works by making now feel heavier than later. The answer is not a heroic mood. Put friction in front of the easy drain and make the protected action the default.\n\nA protected slot also needs an owner. If nobody can say what the hour is for, the hour will be borrowed by whatever feels urgent. Write the purpose on the calendar in plain words: chemistry review, sleep, invoices, practice. A named investment is harder to steal from than a blank square.",
+        "fullRead": "Veda stands beside a laundry basket at 10:44 p.m. with a glowing charging cable in her hand. For months she has told herself she will stop scrolling in bed. For months the phone has won. Tonight she plugs the charger into the kitchen outlet and leaves the bedroom dark. It is not a speech about discipline. It is a change in the path.\n\nTime wisdom usually fails at the moment of action. The long-term plan is clear at lunch and weak at midnight. Present bias makes immediate ease feel more real than tomorrow's strength. If every choice has to be argued again while you are tired, hungry, lonely, or rushed, the present gets too many chances to win.\n\nThat is why compounding needs design. A daily check, ten minutes of practice, one page of notes, a walk after dinner, these actions can look too small to defend. The value is in the base they build. Arvid writes one repair note on a yellow pad each Friday afternoon. The notes feel fussy until August, when a new mechanic opens the binder and fixes a scooter brake without repeating the June mistake. The small record has become a teaching system.\n\nOdelia's lab log works the same way. One calibration mark does not feel like strategy. It feels like a wet sleeve, a cold room, and eight minutes lost before the rush starts. But the month built on those marks is stronger than the month built on memory. Repetition changes the quality of the next decision before that decision even arrives.\n\nOpportunity cost keeps compounding from becoming wishful clutter. You cannot protect every useful habit, join every worthy group, take every meeting, or help every cause at the same level. Reuben learns this on a library stairwell at 11:19 p.m. with add-drop forms in his backpack. Each extra club sounded reasonable. Together they crowded out the statistics course that would unlock his transfer path. His calendar was full, but not honest.\n\nMeilin's practice room adds the same warning in a prettier form. Every ensemble flyer offers growth, friends, and a stage. None of them announces the concerto hours it will take. She has to write the lost practice under each option before the tradeoff becomes real. A cost you refuse to name still gets paid.\n\nThe practical move is to put the tradeoff in plain sight. When you add a commitment, write what it pushes out. When you protect a repetition, say why that one deserves the first slot. When comfort asks for a small exception, notice whether it is stealing from a future you actually want.\n\nThis is not total optimization. You are allowed to rest, wander, and waste some time like a human being. The point is to stop spending your best future-building slots by accident. Protect the few loops that make tomorrow stronger. Make their rivals visible. Shape the room so your tired self can follow the plan your clearer self chose."
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01-odelia-calibration-log",
+          "title": "Odelia signs the wet calibration log",
+          "tags": [
+            "compounding",
+            "small habits"
+          ],
+          "planSpec": {
+            "domain": "environmental lab",
+            "audience": "technical leads protecting quality routines",
+            "stakes": "a skipped small check can undermine future sample runs",
+            "format": "decision_point",
+            "requiredBeat": "she decides whether to skip the small daily check that compounds into fewer failed runs"
+          },
+          "scenario": "A wet pipette rack drips beside Odelia's logbook at 6:04 a.m. in the river lab. The storm samples are stacked high, the intern is late, and the daily calibration check will take eight minutes nobody will notice. Her pen hovers over the blank line. She can skip it once and start faster, or she can protect the dull repetition that keeps bad numbers from spreading through a month of water reports.",
+          "whatToDo": "Do the check before touching the samples. Treat the eight minutes as base-building work, not delay, and make the signed log the entry ticket for each run.",
+          "whyItMatters": "Quality compounds through boring checks. One skipped calibration may look tiny today, but bad measurement can contaminate every decision built on the run."
+        },
+        {
+          "exampleId": "ch03-ex02-reuben-stairwell-forms",
+          "title": "Reuben finds the course hidden under good yeses",
+          "tags": [
+            "opportunity cost",
+            "calendar"
+          ],
+          "planSpec": {
+            "domain": "college planning",
+            "audience": "students choosing commitments",
+            "stakes": "too many worthy commitments can displace the highest-return course",
+            "format": "postmortem",
+            "requiredBeat": "he sees that many good yeses displaced the one course that mattered most"
+          },
+          "scenario": "Add-drop forms bend in Reuben's backpack at Thursday 11:19 p.m. on the library stairwell. His semester did not collapse from one foolish choice. It filled with tutoring, robotics club, an extra lab shift, and a weekend fundraiser. All were defensible. Now the transfer statistics course is the one he may fail. He writes each yes on the back of the form and finally sees what they bought.",
+          "whatToDo": "Run the postmortem by displacement, not blame. List each added commitment and mark which one crowded out the course that mattered most to the transfer path.",
+          "whyItMatters": "Good options still spend scarce hours. The cost of a yes is the best alternative it removes, and that cost often stays hidden until the calendar is already full."
+        },
+        {
+          "exampleId": "ch03-ex03-kiko-locker-phone",
+          "title": "Kiko hears tomorrow morning in the locker room",
+          "tags": [
+            "present bias",
+            "sleep"
+          ],
+          "planSpec": {
+            "domain": "shift work",
+            "audience": "workers protecting recovery routines",
+            "stakes": "immediate comfort can keep stealing the sleep that supports future work",
+            "format": "dialogue",
+            "requiredBeat": "a coworker names the present-bias tradeoff when Kiko reaches for one more episode"
+          },
+          "scenario": "\"One episode,\" Kiko says at Monday 7:32 a.m. in the hospital locker room, wet hair dripping onto her scrub top. Her phone buzzes with the show she saved for after night shift. Bev closes her own locker and points at Kiko's red eyes. \"That episode gets paid from your 5 p.m. self,\" she says. Kiko laughs, then stops. The bus leaves in nine minutes, and the couch is already making its case.",
+          "whatToDo": "Treat the urge as present bias, not a character test. Put the phone in the bag, go straight to the bus, and make sleep the default before the couch can negotiate.",
+          "whyItMatters": "The current reward feels louder than the later cost. Changing the path beats relying on tired willpower to defend tomorrow's energy in real time."
+        },
+        {
+          "exampleId": "ch03-ex04-arvid-yellow-pad",
+          "title": "Arvid's yellow pad pays off in August",
+          "tags": [
+            "process notes",
+            "compounding"
+          ],
+          "planSpec": {
+            "domain": "repair shop",
+            "audience": "owners building team memory",
+            "stakes": "small documentation may prevent repeated mistakes later",
+            "format": "predict_reveal",
+            "requiredBeat": "the small notes look useless, then prevent repeated mistakes months later"
+          },
+          "scenario": "Grease pencil rests on Arvid's yellow pad at Friday 4:51 p.m. beside the scooter repair counter. In March, his daily note about brake cable routing felt like fussing. In August, new hire Celia opens the binder, reads the sketch, and avoids the same frayed cable that once cost three refunds. Arvid predicted the notes might save time someday. The reveal arrives as a quiet repair that never comes back.",
+          "whatToDo": "Keep writing the tiny process note after each unusual repair. File it where the next person will look, and judge the habit by repeated errors avoided over months.",
+          "whyItMatters": "The return comes from accumulation. A single note is small, but a shop memory built note by note changes the base every future repair starts from."
+        },
+        {
+          "exampleId": "ch03-ex05-meilin-signup-sheets",
+          "title": "Meilin names the cost of each ensemble",
+          "tags": [
+            "opportunity cost",
+            "practice"
+          ],
+          "planSpec": {
+            "domain": "music training",
+            "audience": "students choosing among valuable activities",
+            "stakes": "attractive commitments can crowd out the central practice goal",
+            "format": "dilemma",
+            "requiredBeat": "she names the opportunity cost of each extra commitment"
+          },
+          "scenario": "Rosin dust freckles the stand in practice room B at Sunday 3:06 p.m. while Meilin flips between three ensemble sign-up forms. Chamber group would sharpen her ear. Youth orchestra has the conductor her teacher likes. The folk trio meets at a cafe and sounds joyful. Her concerto score is open beside the phone. She must decide which yes is worth the practice hours it will take away.",
+          "whatToDo": "Write the displaced hours under each sign-up form. Choose the ensemble only if its return beats the concerto practice it replaces, not because it is good in isolation.",
+          "whyItMatters": "Opportunity cost is clearest when every option looks attractive. Naming the lost practice time turns a vague full calendar into a real tradeoff."
+        },
+        {
+          "exampleId": "ch03-ex06-veda-kitchen-charger",
+          "title": "Veda moves the charger before midnight wins",
+          "tags": [
+            "environment design",
+            "present bias"
+          ],
+          "planSpec": {
+            "domain": "home routines",
+            "audience": "parents protecting sleep and morning energy",
+            "stakes": "nightly scrolling can drain the routines that make the next day work",
+            "format": "before_after",
+            "requiredBeat": "she shifts from nightly willpower to environment design that protects morning energy"
+          },
+          "scenario": "A charging cable glows beside Veda's laundry basket at Wednesday 10:44 p.m. Before, she left the phone by the pillow and promised she would stop after five minutes. After too many foggy school mornings, she plugs the cable into the kitchen outlet and sets an old alarm clock by the bed. The screen is still tempting, but now it has to win from two rooms away.",
+          "whatToDo": "Move the charger out of the bedroom and remove the late-night negotiation. Protect the morning routine by changing the room before the tired choice arrives.",
+          "whyItMatters": "Present bias wins when the easy reward sits within reach. Environment design turns a repeated willpower fight into a path that favors sleep by default."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-q01",
+            "prompt": "A designer wants to skip her daily file backup because today's deadline is loud. What should she remember?",
+            "choices": [
+              "Small repeated safeguards can compound by preventing large future losses.",
+              "Backups matter only after a file has already failed.",
+              "Urgent work should always beat quiet routines."
+            ],
+            "correctIndex": 0,
+            "explanation": "The backup is a small repetition that protects the base for future work. Its value is often invisible until failure would have been expensive.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q02",
+            "prompt": "A student says yes to three clubs, all worthwhile, and loses time for the credential course she needs. What concept did she miss?",
+            "choices": [
+              "Present bias, because clubs are always short-term pleasures.",
+              "Opportunity cost, because each good yes displaced a stronger use of time.",
+              "Market failure, because no one assigned the clubs a price."
+            ],
+            "correctIndex": 1,
+            "explanation": "The problem is not that the clubs are bad. The issue is the best alternative they crowded out, which is the real cost of each yes.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch03-q03",
+            "prompt": "A runner plans evening workouts but always chooses the couch when tired. Which redesign best addresses present bias?",
+            "choices": [
+              "Call herself lazy until the guilt is strong enough.",
+              "Buy more gear so the plan feels serious.",
+              "Put shoes by the door, schedule a friend, and reduce the choice at 6 p.m."
+            ],
+            "correctIndex": 2,
+            "explanation": "Present bias is strongest in the live moment. Changing the environment and adding a social trigger makes the intended action easier before fatigue negotiates.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q04",
+            "prompt": "A manager protects twenty minutes each morning for customer notes. The return is unclear after two days. What is the right test window?",
+            "choices": [
+              "One morning, because useful routines should pay off at once.",
+              "Several weeks, because repeated notes may improve later decisions.",
+              "Never, because qualitative notes cannot compound."
+            ],
+            "correctIndex": 1,
+            "explanation": "Compounding often appears over time. The habit should be judged by the base it builds across later decisions, not by one early morning.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch03-q05",
+            "prompt": "A parent agrees to every volunteer request, then has no time for the family routine she values most. What should she do before the next yes?",
+            "choices": [
+              "Write the exact routine or rest period the yes would replace.",
+              "Say yes faster so the decision stops feeling stressful.",
+              "Quit all volunteering because tradeoffs are uncomfortable."
+            ],
+            "correctIndex": 0,
+            "explanation": "The tradeoff needs to be visible before commitment. Naming what gets displaced makes the true cost clear enough to judge.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q06",
+            "prompt": "A team wants to add five new recurring meetings to improve communication. Which question is strongest?",
+            "choices": [
+              "Can the meeting titles sound more strategic?",
+              "Will the calendar look fuller after the change?",
+              "Which existing work will these meetings displace, and is that trade worth it?"
+            ],
+            "correctIndex": 2,
+            "explanation": "Recurring meetings spend future attention. The useful question compares the communication gain with the best work those hours would replace.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q07",
+            "prompt": "An analyst saves difficult learning for Friday afternoons, then keeps postponing it. What is the better sequence?",
+            "choices": [
+              "Protect the learning slot earlier, before urgent leftovers claim the week.",
+              "Wait until motivation feels high enough.",
+              "Replace learning with easier tasks that fit the leftover slot."
+            ],
+            "correctIndex": 0,
+            "explanation": "The compounding activity needs a protected slot. Leaving it to leftovers gives present pressure too many chances to push it out.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch03-q08",
+            "prompt": "A musician practices scales for ten minutes daily but feels silly because each session is small. What is the best interpretation?",
+            "choices": [
+              "The session only matters if it feels dramatic.",
+              "Small repetitions can change the base that later performance starts from.",
+              "Practice should happen only when a recital is near."
+            ],
+            "correctIndex": 1,
+            "explanation": "The value is not drama in one session. The repetition builds finger memory and confidence that later work can use.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch03-q09",
+            "prompt": "A founder wants to protect both deep product work and every networking event. Both seem useful. What should decide?",
+            "choices": [
+              "Which choice photographs better for investors.",
+              "Which invitation arrived first.",
+              "Which recurring investment builds the strongest future base relative to what it displaces."
+            ],
+            "correctIndex": 2,
+            "explanation": "When options are good, compare their compounding value and the alternative each one removes. Time wisdom is selective, not merely energetic.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch03-rc01",
+          "front": "A small daily action looks too dull to protect. What should you ask?",
+          "back": "Ask what base it builds over time. Some routines are valuable because each repetition makes later work cleaner, easier, or more reliable.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch03-rc02",
+          "front": "You are about to say yes to something good. What hidden cost should you name?",
+          "back": "Name the best use of the same time that the yes will displace. Opportunity cost makes a crowded calendar honest.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-rc03",
+          "front": "Your tired self keeps choosing immediate comfort over a future-building routine. What helps?",
+          "back": "Change the path before the tired moment arrives. Put friction in front of the tempting choice and make the protected routine easier to start.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch03-rc04",
+          "front": "Two commitments are both attractive. How do you choose without pretending time is unlimited?",
+          "back": "Compare their compounding returns against the best alternative each one removes. Pick the commitment that builds the stronger future base for the cost.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is selecting and protecting high-return repetitions. Treat every recurring yes as a tradeoff, then design the environment so present comfort does not keep raiding the future.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a recurring task builds future capacity, then I will schedule it before meetings and defend it as infrastructure, not leftover work."
+          },
+          {
+            "context": "health",
+            "plan": "If I plan a workout or sleep routine, then I will remove one obvious temptation before the decision moment arrives."
+          },
+          {
+            "context": "personal",
+            "plan": "If I say yes to a new commitment, then I will write the best thing it replaces and decide with that cost visible."
+          },
+          {
+            "context": "relationships",
+            "plan": "If I want a relationship to improve, then I will protect one small repeated act, such as a weekly call, before adding grand promises."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, pick one compounding routine and give it the first protected slot on tomorrow's calendar. Then write the less important activity it will replace so the tradeoff is explicit.",
+        "weeklyPractice": "For one week, review your calendar each night. Mark one compounding action you protected, one opportunity cost you noticed, and one present-bias trap you redesigned."
+      },
+      "memorableLines": [
+        {
+          "text": "Time compounds through repeated acts.",
+          "location": "breakdown.fastRead",
+          "why": "It gives the central model in simple words."
+        },
+        {
+          "text": "A yes is not just a yes. It is also a no to the strongest use of the same hour.",
+          "location": "breakdown.deepRead",
+          "why": "It makes opportunity cost memorable without jargon."
+        },
+        {
+          "text": "The point is to stop spending your best future-building slots by accident.",
+          "location": "breakdown.fullRead",
+          "why": "It turns the lesson into a practical warning."
+        }
+      ]
+    },
+    {
+      "chapterId": "super-thinking-ch04",
+      "number": 4,
+      "title": "Becoming One with Nature",
+      "readingTimeMinutes": 8,
+      "hook": "Lemon-soap jugs under a hand-lettered sign can show whether effort fits the system or fights it.",
+      "counterintuition": "You may assume slow progress means weak effort. Often the opposite is true: the system needs better fit, early pushes that build momentum, or enough buildup to cross a threshold.",
+      "tryThisNow": "Pick one stalled effort and write three checks: what the environment rewards, what would make the next push easier, and what threshold would change the pattern.",
+      "keyTakeaway": "Read the system before forcing effort: look for fit, flywheel cost, thresholds, and reinforcing loops so you know when to persist, adjust, or stop.",
+      "breakdown": {
+        "fastRead": "Corin stacks lemon-soap jugs under a hand-lettered sign at 7:23 a.m. Only three customers used the refill station yesterday. He can rip it out, push harder, or ask a better question: does this setup fit the market yet?\n\nSystems do not always move in a straight line. Early effort can be heavy before momentum helps. A change can stay hidden until a threshold is crossed. Each new user can make the next user more likely. Read those forces before you call the work a failure or keep shoving blindly.",
+        "deepRead": "Ansel holds tangled tomato twine by the compost bins at 6:11 p.m. and hears Leona explain why the garden beds keep going empty. The old layout selected for retirees with free weekday mornings. Younger families did not fail the garden. The garden failed to fit their lives.\n\nNatural selection, used plainly, asks what the environment allows to survive. If the setting rewards one pattern and punishes another, more effort may not fix the mismatch. Change the fit before blaming the people.\n\nFlywheels add a second lesson. The first push can be hard because nothing is moving yet. Pavel's cycling group looks weak until he changes the route so riders finish together, talk in the marina lot, and bring friends. Later rides need less recruiting because the group itself carries some motion.\n\nThresholds explain why a change can look sudden. Zuleika's robotics team did not improve overnight. Better wiring labels, steadier pit roles, and one sensor fix accumulated until the robot finally crossed from fragile to reliable. Outsiders saw the trophy. She saw the buildup.\n\nThe limit is important. Not every slow start deserves patience. Ask whether the environment fits, whether each push is getting cheaper, and whether participation makes the next participant better off. If none of those signs appear, persistence may just be waste with a noble face.",
+        "fullRead": "A barcode scanner chirps at the east-branch help desk at 1:37 p.m. while Hafsa watches the first twelve people join a shared hold-alert group. Today the group is not very useful. One person notices a returned cookbook, another spots a study guide, and most alerts are too late. Hafsa expects that. The value changes if enough regulars join. Each added reader increases the chance that someone sees the shelf at the right time.\n\nThat is a reinforcing loop. Participation can make the system more valuable, and the added value can attract more participation. A phone network, a marketplace, a study group, a neighborhood tool library, all can work this way. The early version may look thin because the loop has not yet started helping itself.\n\nThe danger is that this idea can become an excuse. People love to say they are waiting for a threshold when they are really avoiding evidence. A slow system deserves patience only when the structure could actually change with scale, fit, or momentum. If each new participant does not improve the next person's experience, calling it a network effect is just hopeful language.\n\nCorin's refill station gives a cleaner test. Customers like the soap, but the jugs are on a low shelf behind a bread rack. The problem may not be the idea. The environment may be selecting against use. He moves the station near the checkout, adds a tare scale, and asks the first twenty shoppers what stopped them. If usage rises and refills get easier to explain, the flywheel may be starting. If not, he has evidence, not just stubbornness.\n\nAnsel's garden asks the same fit question. Empty beds looked like weak volunteer spirit until Leona pointed to the water shutoff and the long plots. The design favored people with free weekdays. Once the beds are smaller and evening watering is possible, a different kind of gardener can survive there. The system did not need a better scolding. It needed a better habitat.\n\nPicture a narrow stairwell at 8:02 a.m. You push the fire door and it sticks. Pushing harder is one option. Looking down and seeing the broom wedged under the hinge is better. Systems thinking starts with the hinge. What is blocking the motion? What would make the next push easier? What hidden buildup has to cross a line before anyone can see change?\n\nPavel learns this with his cycling group. Before, he demanded more grit on a lonely hill route. Riders quit after two Sundays. After, he starts at the marina, builds a loop with a sheltered first mile, and ends where coffee is waiting on a pickup tailgate. The same riders work harder once the route, group, and reward fit together.\n\nRead fit before force. Watch whether effort is getting cheaper or only louder. Notice when small gains are building toward a threshold. Ask whether each added person or action makes the next one easier. Nature does not reward desire by itself. It rewards patterns that can survive in the environment they actually meet."
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01-corin-refill-jugs",
+          "title": "Corin moves the refill jugs into the flow",
+          "tags": [
+            "fit",
+            "flywheel"
+          ],
+          "planSpec": {
+            "domain": "local retail",
+            "audience": "operators testing new customer habits",
+            "stakes": "an idea may be killed before fit and momentum are tested",
+            "format": "decision_point",
+            "requiredBeat": "he decides whether the slow early use means bad fit or normal flywheel startup cost"
+          },
+          "scenario": "Lemon-soap jugs sit under a hand-lettered sign at 7:23 a.m. in Harrow Market, half hidden behind the bread rack. Corin counts three refills from yesterday and rubs the tape mark on the counter where the display could go. The station may be a bad idea, or it may be in the wrong current. He has to decide whether to scrap it or move it into the checkout flow and test one more week.",
+          "whatToDo": "Test fit before judging demand. Move the station where shoppers already pause, make the first refill easy, and watch whether each explanation makes the next one smoother.",
+          "whyItMatters": "Early drag can mean mismatch or startup cost. Changing the environment shows whether the idea can begin to carry its own motion."
+        },
+        {
+          "exampleId": "ch04-ex02-zuleika-bus-trophy",
+          "title": "Zuleika traces the overnight win back six weeks",
+          "tags": [
+            "thresholds",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "student robotics",
+            "audience": "coaches reviewing sudden improvement",
+            "stakes": "a visible jump may be misunderstood as luck instead of accumulated system change",
+            "format": "postmortem",
+            "requiredBeat": "she traces the apparent overnight leap back to many small fit and threshold changes"
+          },
+          "scenario": "The trophy is wedged between toolboxes on the school bus at Saturday 9:48 p.m. while Zuleika wipes nacho cheese from the scouting sheet. Parents will call the win sudden. She circles six small changes: color-coded wires, fixed pit roles, battery labels, shorter driver calls, a spare sensor, and quieter repairs. The robot crossed a threshold today, but the climb was hiding in plain sight for weeks.",
+          "whatToDo": "Write the postmortem as accumulated change, not a miracle. Identify which small fixes improved fit and which threshold made the improvement visible all at once.",
+          "whyItMatters": "Sudden results often come from slow buildup. Seeing the buildup helps the team repeat the pattern instead of waiting for luck to return."
+        },
+        {
+          "exampleId": "ch04-ex03-ansel-garden-beds",
+          "title": "Ansel hears what the garden selected for",
+          "tags": [
+            "environment fit",
+            "selection"
+          ],
+          "planSpec": {
+            "domain": "community gardening",
+            "audience": "organizers designing participation systems",
+            "stakes": "a volunteer system may select against the people it says it wants",
+            "format": "dialogue",
+            "requiredBeat": "a gardener explains that the old layout selected for retirees with free weekdays"
+          },
+          "scenario": "\"You built it for people with Tuesdays free,\" Leona says at 6:11 p.m. by the compost bins, while tomato twine tangles around Ansel's fist. The half-empty beds are all twenty feet long and water access shuts off at five. Ansel starts to say families should commit harder. Leona points at the dark school across the fence. \"They arrive after six. Your garden is already closed to them.\"",
+          "whatToDo": "Change the environment before judging commitment. Split some beds, extend water access, and test whether families can survive in the garden's actual schedule.",
+          "whyItMatters": "A system selects for the patterns it can support. If the design favors one kind of volunteer, effort from the excluded group will keep failing."
+        },
+        {
+          "exampleId": "ch04-ex04-hafsa-hold-alerts",
+          "title": "Hafsa waits for the hold alerts to become useful",
+          "tags": [
+            "network effects",
+            "thresholds"
+          ],
+          "planSpec": {
+            "domain": "public library technology",
+            "audience": "teams launching shared tools",
+            "stakes": "a networked tool may look weak before enough users make it valuable",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts slow value until enough members make the alerts useful for everyone"
+          },
+          "scenario": "A barcode scanner chirps at Thursday 1:37 p.m. at the east-branch help desk as Hafsa adds the twelfth reader to the hold-alert group. She predicts the first week will feel thin. By week five, eighty-seven members are texting shelf sightings before staff can reshelve returns. The reveal is not one clever feature. It is that each new pair of eyes makes the group more useful to the next reader.",
+          "whatToDo": "Judge the tool by whether added members increase value for others. Track response speed and useful alerts as the group grows, not just sign-ups on day one.",
+          "whyItMatters": "A networked system may be weak while sparse and strong after a threshold. The key is whether participation improves the payoff for later participants."
+        },
+        {
+          "exampleId": "ch04-ex05-stairwell-hinge",
+          "title": "You find the broom before pushing harder",
+          "tags": [
+            "thought experiment",
+            "systems"
+          ],
+          "planSpec": {
+            "domain": "everyday problem solving",
+            "audience": "readers diagnosing stalled effort",
+            "stakes": "more effort may waste energy if the environment blocks motion",
+            "format": "thought_experiment",
+            "requiredBeat": "compare pushing a stalled door harder with checking whether the hinges are blocked"
+          },
+          "scenario": "A broom handle jams the fire door at 8:02 a.m. in a narrow stairwell, and your shoulder is already against the metal. You can push harder, curse the hinge, or look down. The door is not asking for grit. It is asking for the blocked path to be cleared. Now put a stalled project in that doorway. Before adding force, decide whether the hinge is actually the problem.",
+          "whatToDo": "Pause the push and inspect the blockage. Ask what the current environment rewards, what friction makes every attempt expensive, and what change would make the next push easier.",
+          "whyItMatters": "Effort is only useful when the system can receive it. Finding the jam turns wasted force into a targeted change that lets motion begin."
+        },
+        {
+          "exampleId": "ch04-ex06-pavel-marina-loop",
+          "title": "Pavel changes the route instead of the speech",
+          "tags": [
+            "flywheel",
+            "group design"
+          ],
+          "planSpec": {
+            "domain": "amateur cycling",
+            "audience": "coaches building sustainable groups",
+            "stakes": "demanding more effort may miss the route and social design that create momentum",
+            "format": "before_after",
+            "requiredBeat": "he moves from demanding more effort to changing the route so momentum and group reinforcement help"
+          },
+          "scenario": "Wet helmets line a pickup tailgate at Sunday 6:40 a.m. in the marina lot. Before, Pavel started the beginner ride with a windy hill and gave speeches about grit after riders quit. After, he opens with a sheltered mile, pairs new cyclists with steady ones, and ends beside coffee on the tailgate. The same legs now turn longer because the route and group help the second push.",
+          "whatToDo": "Design for momentum instead of scolding for it. Start with a route that lets riders gather confidence, then use pairs and a visible finish to make return rides easier.",
+          "whyItMatters": "A flywheel starts heavy, but the setup can make later effort cheaper. Group reinforcement and better fit help persistence more than another speech about toughness."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch04-q01",
+            "prompt": "A lunch program fails because pickup is only available during work hours. Parents are blamed for low commitment. What should be checked first?",
+            "choices": [
+              "Whether the program environment selects against the families it wants to serve.",
+              "Whether parents received enough motivational messages.",
+              "Whether the food should be made more expensive."
+            ],
+            "correctIndex": 0,
+            "explanation": "The schedule may make participation hard for the target group. Fit comes before blame when the environment selects who can survive in the system.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q02",
+            "prompt": "A product's first users see little value, but each added user would make the tool more useful. Which model is most relevant?",
+            "choices": [
+              "Present bias.",
+              "Network effects.",
+              "Opportunity cost."
+            ],
+            "correctIndex": 1,
+            "explanation": "The value depends on participation. If each added user improves the payoff for others, early weakness may reflect sparse adoption rather than a bad idea.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch04-q03",
+            "prompt": "A club grows slowly, then suddenly becomes visible after months of small improvements. What should the organizer avoid saying?",
+            "choices": [
+              "The visible jump may have crossed a threshold.",
+              "The win appeared from nowhere, so the earlier work did not matter.",
+              "The buildup should be studied so it can be repeated."
+            ],
+            "correctIndex": 1,
+            "explanation": "Sudden visibility does not mean sudden creation. Thresholds can hide slow buildup until the system changes enough for outsiders to notice.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q04",
+            "prompt": "A team keeps pushing a new habit, but each attempt is just as hard as the first. What question is strongest?",
+            "choices": [
+              "Can the team promise to care more next week?",
+              "Can the habit be renamed so it sounds easier?",
+              "Is the effort building momentum, or is the setup still fighting every push?"
+            ],
+            "correctIndex": 2,
+            "explanation": "Flywheel logic asks whether later pushes get cheaper. If they do not, the environment or design may need to change.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch04-q05",
+            "prompt": "A study group is empty at first, but attendance would make the next session more valuable because members share notes. What is a fair early test?",
+            "choices": [
+              "Cancel after one quiet meeting.",
+              "Recruit to a small target and see whether shared notes improve value.",
+              "Assume growth will happen without checking behavior."
+            ],
+            "correctIndex": 1,
+            "explanation": "The test should reach enough participation to see whether the reinforcing loop is real. Patience needs evidence, not blind faith.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q06",
+            "prompt": "A manager says, \"People just resist change,\" after a tool fails. The login process takes nine steps. What is the better diagnosis?",
+            "choices": [
+              "The environment may be selecting against use through friction.",
+              "Users should be ignored until they adapt.",
+              "Nine steps proves the tool is powerful."
+            ],
+            "correctIndex": 0,
+            "explanation": "High friction can prevent adoption even when the idea has merit. The first check is fit between the tool and the user's real path.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q07",
+            "prompt": "A campaign depends on many people joining, but each new person adds no value for others. What should you be careful about claiming?",
+            "choices": [
+              "That participation numbers matter.",
+              "That the campaign may need outreach.",
+              "That the campaign has a network effect."
+            ],
+            "correctIndex": 2,
+            "explanation": "A network effect exists when added users increase value for others. Without that mechanism, the phrase hides weak thinking.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch04-q08",
+            "prompt": "A new exercise class loses beginners because the first session is punishing. What design change fits best?",
+            "choices": [
+              "Keep the opening harsh to identify serious people.",
+              "Stop tracking who returns.",
+              "Make the opening session easier to enter so early effort can build momentum."
+            ],
+            "correctIndex": 2,
+            "explanation": "The first push is often heavy. A better starting path can help momentum form instead of selecting out the people the class wants to keep.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch04-q09",
+            "prompt": "A founder is unsure whether to keep investing in a slow marketplace. Which evidence matters most?",
+            "choices": [
+              "Whether each added buyer or seller improves the experience for the other side.",
+              "Whether the founder can explain the idea passionately.",
+              "Whether the launch party felt busy."
+            ],
+            "correctIndex": 0,
+            "explanation": "A marketplace can justify patience if participation creates more value for later participants. Passion and launch energy do not prove that loop exists.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch04-rc01",
+          "front": "A behavior keeps failing. What should you inspect before blaming effort?",
+          "back": "Inspect fit. Ask what the environment rewards or blocks, and whether the desired pattern can survive in the conditions you built.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch04-rc02",
+          "front": "Early pushes feel heavy. What sign suggests a flywheel may be starting?",
+          "back": "Later pushes begin to get cheaper or more effective because the system has motion, memory, or reinforcement from earlier effort.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-rc03",
+          "front": "A result looks sudden. What question reveals the hidden buildup?",
+          "back": "Ask which small changes accumulated before the visible jump, and what threshold made the pattern noticeable all at once.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-rc04",
+          "front": "A tool is supposed to get better as more people join. What must be true?",
+          "back": "Each added participant must improve the value for others. Without that loop, early weakness is not a network problem, it may just be weak value.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is reading change as system behavior. Diagnose fit, startup effort, threshold effects, and reinforcing loops before deciding whether to push harder or redesign.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If adoption is slow, then I will watch one user try the path and remove the biggest friction before asking for more effort."
+          },
+          {
+            "context": "health",
+            "plan": "If a routine fails twice, then I will change the environment or starting dose before deciding I lack discipline."
+          },
+          {
+            "context": "personal",
+            "plan": "If a project looks stalled, then I will ask whether the next push is getting easier, harder, or unchanged, and redesign from that answer."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a group habit is weak, then I will create a small shared win that makes the next gathering easier for others to join."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, choose one slow effort and identify whether the problem is fit, startup drag, a missing threshold, or no reinforcing loop. Make one small design change tied to that diagnosis.",
+        "weeklyPractice": "For one week, track one system you are trying to change. Note what the environment rewards, whether effort gets cheaper, and whether each participant makes the next one more likely."
+      },
+      "memorableLines": [
+        {
+          "text": "Read those forces before you call the work a failure or keep shoving blindly.",
+          "location": "breakdown.fastRead",
+          "why": "It states the practical caution against both quitting and forcing."
+        },
+        {
+          "text": "Change the fit before blaming the people.",
+          "location": "breakdown.deepRead",
+          "why": "It makes selection logic usable in human systems."
+        },
+        {
+          "text": "Nature does not reward desire by itself.",
+          "location": "breakdown.fullRead",
+          "why": "It captures the unsentimental voice of the systems lesson."
+        }
+      ]
+    },
+    {
+      "chapterId": "super-thinking-ch05",
+      "number": 5,
+      "title": "Lies, Damned Lies, and Statistics",
+      "readingTimeMinutes": 8,
+      "hook": "A cracked phone screen can make one scary story feel larger than the rate it came from.",
+      "counterintuition": "Most people think skepticism means distrusting numbers. Useful skepticism means asking what the number is being compared with before you let it change your mind.",
+      "tryThisNow": "Take one number you saw today and write its missing comparison: compared with what group, what time period, and what usual rate?",
+      "keyTakeaway": "Before reacting to a vivid number or story, find the base rate, denominator, and comparison group so the evidence has scale instead of just force.",
+      "breakdown": {
+        "fastRead": "Rocio's phone buzzes at 9:11 p.m. with a scary medical story from the family chat. The story feels urgent because it has a face, a hospital room, and a bad ending. Her aunt asks the useful question: what usually happens?\n\nA number or story without a base rate can feel precise and still mislead. Ask compared with what, out of how many, and over what time. The vivid case may still matter. It just should not get to set the scale alone.",
+        "deepRead": "Esma balances her laptop beside a paper coffee cup in the train quiet car at 8:16 a.m. One enterprise customer has sent a furious email about export errors. The message is vivid, specific, and expensive-sounding. Her roadmap cursor is already on the reporting project.\n\nThe first question is not whether the customer is wrong. The first question is how common the failure is. A single case can point to a real issue, but it cannot tell you scale by itself. Base rates give the background pattern: how often does this happen across all exports, all accounts, and all recent weeks?\n\nMireille faces the same trap with a donor chart. A 42 percent lift looks impressive until she asks, from what denominator and against which group? Ten donors becoming fourteen is different from ten thousand becoming fourteen thousand. Both can be called 40 percent growth. Only one can carry the same funding claim.\n\nGood statistical caution does not mean sneering at evidence. It means improving the evidence by giving it context. Find the base rate. Find the denominator. Find the comparison group. Then decide whether the number is large, small, normal, or strange.",
+        "fullRead": "Quillan sits at a diner counter at 7:05 a.m. with cold toast beside his notebook and a police scanner murmuring near the pie case. A burglary on Fern Street has all the details that make a story move: broken basement glass, muddy footprints, a dog barking at 2:13 a.m. He can lead with fear, or he can check the monthly rate before writing the first line.\n\nVivid events carry their own weather. They make rare things feel common and small risks feel near. That does not make the event fake. It means the mind needs an anchor before it decides what the event means. The base rate is that anchor. It asks what usually happens in the wider set.\n\nDax learns this in lab room 214. One quiz score looks disastrous, and his first impulse is to rewrite the unit. Then he pulls last year's scan sheets, the prior three quizzes, and the class average after absences. The score is low, but not strange for the first stoichiometry quiz after a snow day. The fix may be a review exercise, not a full course redesign.\n\nDenominators matter just as much. A percentage without a count can be a costume. \"Complaints doubled\" sounds severe until two complaints became four. \"Only 1 percent failed\" sounds small until the system touches a million people. The right denominator turns a clean-looking figure into a usable one.\n\nComparison groups complete the picture. Tej watches a player hit thirteen shots in a row during Friday drills. The gym is loud, orange cones are under the bleachers, and everyone can feel the streak. Then he checks the season chart: shot quality, defender distance, game attempts, and free throws under fatigue. The streak is worth noting, but the starting lineup should not be rewritten by one hot pocket of time.\n\nThe common overreaction is blanket distrust. Once people notice that numbers can be framed, they sometimes treat every chart as a trick. That is not sharper thinking. It is another shortcut. The better habit is calibrated trust. Ask what is missing, add the missing frame, and then let the improved evidence speak.\n\nUse three questions whenever a number pulls hard. Compared with what usual rate? Out of how many cases? Against which group or time period? If those answers are absent, pause. If they are present, read the claim with scale. A story can warn you. A rate tells you how far the warning should travel."
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01-esma-train-email",
+          "title": "Esma waits before moving the roadmap tile",
+          "tags": [
+            "base rate",
+            "roadmap"
+          ],
+          "planSpec": {
+            "domain": "product management",
+            "audience": "teams prioritizing customer signals",
+            "stakes": "one vivid complaint could displace broader roadmap work",
+            "format": "decision_point",
+            "requiredBeat": "she decides whether the vivid complaint deserves roadmap priority before checking the base rate"
+          },
+          "scenario": "A paper coffee cup trembles beside Esma's laptop at 8:16 a.m. in the train quiet car. The email from Northstar Bank is furious: three export errors, one board packet delayed, a renewal now at risk. Her roadmap tab is open, and the reporting tile can be dragged into next sprint. Before her finger moves, she has to decide whether one loud account is the pattern or the prompt to check the pattern.",
+          "whatToDo": "Hold the roadmap move until the base rate is visible. Count export errors across accounts, recent weeks, and revenue tiers, then decide whether this is a broad failure or a severe edge case.",
+          "whyItMatters": "A vivid account can identify a real issue without proving its scale. Priority should follow frequency, severity, and comparison, not emotional volume alone."
+        },
+        {
+          "exampleId": "ch05-ex02-dax-scan-sheets",
+          "title": "Dax checks the quiz against the old stack",
+          "tags": [
+            "comparison",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "teaching",
+            "audience": "teachers interpreting assessment data",
+            "stakes": "one bad result may trigger the wrong instructional response",
+            "format": "postmortem",
+            "requiredBeat": "he sees that the alarming score lacked comparison to the class's normal pattern"
+          },
+          "scenario": "Goggles sit stacked beside scan sheets at Monday 5:02 p.m. in lab room 214. Dax's third-period chemistry quiz average is a 61, and the number looks like an indictment. Then he pulls last year's first stoichiometry quiz, the two snow-day makeups, and this class's homework completion. The score is still low, but it is no longer floating alone. His first panic note now looks too large for the evidence.",
+          "whatToDo": "Compare the result before redesigning the unit. Check prior cohorts, recent disruptions, and related work so the score has a normal range around it.",
+          "whyItMatters": "A lone number invites overreaction. A baseline tells Dax whether he is seeing a crisis, a normal hard spot, or a smaller gap that needs targeted review."
+        },
+        {
+          "exampleId": "ch05-ex03-rocio-family-chat",
+          "title": "Rocio lets her aunt ask the rate question",
+          "tags": [
+            "risk perception",
+            "base rate"
+          ],
+          "planSpec": {
+            "domain": "family health decisions",
+            "audience": "readers reacting to alarming anecdotes",
+            "stakes": "a scary story may distort personal risk decisions",
+            "format": "dialogue",
+            "requiredBeat": "her aunt pushes her to ask what usually happens before acting on the scary story"
+          },
+          "scenario": "\"Read this,\" Rocio says at Sunday 9:11 p.m., soap bubbles sliding down her cracked phone screen at the kitchen sink. The family chat has a hospital story about a supplement reaction, three crying emojis, and a warning to throw every bottle away. Her aunt Pilar dries a plate and asks, \"How often does that happen, and to whom?\" Rocio looks back at the message. The story has a name. It has no rate.",
+          "whatToDo": "Pause the purge and find the usual rate for people like her. Check dose, age, medication conflicts, and source before turning one family-chat story into a household rule.",
+          "whyItMatters": "Anecdotes travel with emotion, not scale. The rate does not erase the story, but it tells Rocio how much policy that story deserves."
+        },
+        {
+          "exampleId": "ch05-ex04-tej-gym-streak",
+          "title": "Tej checks the streak against the season",
+          "tags": [
+            "sample size",
+            "sports"
+          ],
+          "planSpec": {
+            "domain": "basketball coaching",
+            "audience": "coaches interpreting performance spikes",
+            "stakes": "a short streak could overwrite a better season-long read",
+            "format": "predict_reveal",
+            "requiredBeat": "he predicts a new starter from one streak, then checks season shot quality and attempts"
+          },
+          "scenario": "Orange cones sit under the bleachers at Friday 6:38 p.m. as Tej watches Brynn hit thirteen corner threes in a row. He predicts the starting lineup just changed. Then he opens the season chart: game attempts, defender distance, late-quarter legs, and free throws after contact. The reveal is cooler than the gym. The streak is a signal, but the larger shot profile says sixth player, not starter.",
+          "whatToDo": "Use the streak as a reason to inspect, not decide. Compare it with season attempts, shot quality, and game pressure before changing the lineup.",
+          "whyItMatters": "Small samples can glow. A larger base keeps Tej from treating one hot drill as if it carried the same weight as months of game data."
+        },
+        {
+          "exampleId": "ch05-ex05-mireille-donor-chart",
+          "title": "Mireille asks what sits under forty-two percent",
+          "tags": [
+            "denominator",
+            "comparison group"
+          ],
+          "planSpec": {
+            "domain": "nonprofit analytics",
+            "audience": "grant teams reading performance claims",
+            "stakes": "a clean percentage may hide a weak denominator or missing comparison",
+            "format": "dilemma",
+            "requiredBeat": "she decides whether to accept a percentage increase without knowing denominator and comparison group"
+          },
+          "scenario": "A blue highlighter dries uncapped at Wednesday 2:24 p.m. in the grant-office alcove while Mireille reads \"donor conversion up 42 percent\" on the draft report. The sentence would look strong in the application. The spreadsheet tab with raw counts is missing, and the comparison group says \"spring outreach\" with no dates. Her cursor blinks after the claim. She has to decide whether to let the clean percent stand.",
+          "whatToDo": "Do not approve the sentence until the denominator and comparison group are named. Add raw counts, dates, and the prior campaign rate beside the percentage.",
+          "whyItMatters": "A percentage can look precise while hiding scale. The claim becomes useful only when readers can see how many people changed and what they changed against."
+        },
+        {
+          "exampleId": "ch05-ex06-quillan-diner-counter",
+          "title": "Quillan rewrites the burglary lead with the rate",
+          "tags": [
+            "journalism",
+            "calibration"
+          ],
+          "planSpec": {
+            "domain": "local reporting",
+            "audience": "writers framing public risk",
+            "stakes": "one vivid incident could distort readers' sense of danger",
+            "format": "before_after",
+            "requiredBeat": "he shifts from leading with the vivid incident to anchoring it in the wider rate"
+          },
+          "scenario": "Cold toast sits beside Quillan's notebook at Tuesday 7:05 a.m. at the diner counter while the police scanner murmurs. Before, he led every burglary story with broken glass and fear. Today he calls dispatch for the monthly count, checks last year's same week, and rewrites the lead: Fern Street's break-in is the third this month, down from seven last April. The muddy footprints stay, but now they have scale.",
+          "whatToDo": "Keep the concrete incident, but anchor it in the wider rate. Report the monthly count, year-over-year comparison, and any neighborhood pattern before implying a trend.",
+          "whyItMatters": "The vivid detail earns attention. The rate protects judgment. Together they inform readers without letting one broken window become the whole city."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch05-q01",
+            "prompt": "A manager hears one dramatic client complaint and wants to stop all other work. What should she ask first?",
+            "choices": [
+              "How common is this problem across the full customer base?",
+              "How angry did the client sound?",
+              "Can the complaint be ignored because it is only one story?"
+            ],
+            "correctIndex": 0,
+            "explanation": "The complaint may matter, but scale has to be checked. The base rate tells whether the issue is widespread, rare, or severe but narrow.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q02",
+            "prompt": "A report says failures rose 50 percent, from two to three cases. What is the issue?",
+            "choices": [
+              "The percentage is false.",
+              "The denominator and raw count change the meaning of the percentage.",
+              "The report should use only adjectives."
+            ],
+            "correctIndex": 1,
+            "explanation": "The percentage can be mathematically true and still sound larger than the raw change supports. Counts and denominators give the claim scale.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q03",
+            "prompt": "A health article gives a scary case story but no rate for people with the same age, dose, and conditions. What is the best response?",
+            "choices": [
+              "Share it immediately because stories are more useful than rates.",
+              "Dismiss it because all personal stories are misleading.",
+              "Look for the base rate and relevant subgroup before changing behavior."
+            ],
+            "correctIndex": 2,
+            "explanation": "The story may be a warning, but the rate and subgroup tell how far that warning should travel for a specific person.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q04",
+            "prompt": "A coach sees one athlete dominate a low-pressure drill. Which evidence should be added before a major lineup change?",
+            "choices": [
+              "Season performance in game-like conditions.",
+              "The loudest teammate reaction.",
+              "The athlete's best three clips only."
+            ],
+            "correctIndex": 0,
+            "explanation": "The drill is a useful signal, but game-like season data gives a stronger comparison base for a lineup decision.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch05-q05",
+            "prompt": "A survey headline says satisfaction is high, but it does not say who answered. What is missing?",
+            "choices": [
+              "A louder chart title.",
+              "The sample and comparison group.",
+              "A personal story from the happiest respondent."
+            ],
+            "correctIndex": 1,
+            "explanation": "Without knowing who answered and what they are compared against, the satisfaction number is hard to interpret.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch05-q06",
+            "prompt": "A reader notices that some charts are framed badly and decides to ignore every statistic. What is the flaw?",
+            "choices": [
+              "Blanket distrust is another shortcut; better skepticism asks for context.",
+              "Every chart should be trusted if it has decimals.",
+              "Statistics are only useful in sports."
+            ],
+            "correctIndex": 0,
+            "explanation": "Useful skepticism improves interpretation. It asks for base rates, denominators, and comparisons instead of replacing thought with refusal.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch05-q07",
+            "prompt": "A city says bike thefts doubled near a station. What extra fact would most help residents understand scale?",
+            "choices": [
+              "The raw counts and the usual theft rate for that area.",
+              "A photo of the station sign.",
+              "The mayor's opinion of bicycles."
+            ],
+            "correctIndex": 0,
+            "explanation": "Doubling can mean many different things depending on the starting count and usual rate. Those facts turn the claim into usable risk information.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q08",
+            "prompt": "A fundraiser says donations rose after a new email campaign, but another group got no email. What comparison should be made?",
+            "choices": [
+              "Only compare the best donor quotes.",
+              "Compare the emailed group with a similar group that did not receive it.",
+              "Compare the email font with last year's font."
+            ],
+            "correctIndex": 1,
+            "explanation": "A comparison group helps separate the campaign effect from background changes that might have happened anyway.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch05-q09",
+            "prompt": "A dashboard spike looks exciting. What sequence best protects judgment?",
+            "choices": [
+              "Announce the spike, then look for context later.",
+              "Ignore the spike because dashboards are noisy.",
+              "Check the baseline, denominator, and comparison period before calling it a trend."
+            ],
+            "correctIndex": 2,
+            "explanation": "A spike becomes meaningful only after it is compared with the normal pattern and the size of the underlying set.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch05-rc01",
+          "front": "A scary story grabs your attention. What question gives it scale?",
+          "back": "Ask what usually happens in the relevant group. The base rate does not erase the story, but it anchors how much weight the story should carry.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-rc02",
+          "front": "A percentage sounds impressive. What should you ask before trusting it?",
+          "back": "Ask for the denominator and raw counts. A percent can be true and still mislead if the underlying number is tiny or hidden.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc03",
+          "front": "A chart has no comparison group. What problem does that create?",
+          "back": "You cannot tell whether the change came from the action being praised or from a background pattern that affected everyone.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc04",
+          "front": "You catch one framed statistic and want to distrust all numbers. What is the better move?",
+          "back": "Use calibrated skepticism. Ask for base rates, denominators, and comparison groups, then let the improved evidence guide you.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is giving numbers context before they guide action. Anchor vivid stories and sharp percentages with base rates, denominators, and comparison groups.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If one customer story pushes a priority change, then I will check how often the issue appears across the full customer base before moving the roadmap."
+          },
+          {
+            "context": "health",
+            "plan": "If a health story scares me, then I will find the rate for people like me before changing medicine, diet, or routines."
+          },
+          {
+            "context": "personal",
+            "plan": "If a headline uses a percent without a count, then I will look for the denominator before sharing or reacting."
+          },
+          {
+            "context": "relationships",
+            "plan": "If one vivid conflict makes me label someone's whole pattern, then I will ask how often it happens and what comparison I am using."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, find one headline, dashboard number, or family-chat claim and add the missing frame: usual rate, raw count, denominator, and comparison group.",
+        "weeklyPractice": "For one week, keep a short context log for numbers that move you. Each entry should include the claim, the missing comparison, and whether the added context changed your reaction."
+      },
+      "memorableLines": [
+        {
+          "text": "The vivid case may still matter.",
+          "location": "breakdown.fastRead",
+          "why": "It keeps statistical caution from sounding cold or dismissive."
+        },
+        {
+          "text": "A percentage without a count can be a costume.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the denominator problem concrete and memorable."
+        },
+        {
+          "text": "A story can warn you.",
+          "location": "breakdown.fullRead",
+          "why": "It captures the balance between attention and scale."
+        }
+      ]
+    },
+    {
+      "chapterId": "super-thinking-ch06",
+      "number": 6,
+      "title": "Decisions, Decisions",
+      "readingTimeMinutes": 8,
+      "hook": "Color-coded magnets on a staffing board can turn one awful feeling into three visible paths.",
+      "counterintuition": "Most hard choices feel hard because too many futures are packed into one mood. A decision tree does not remove uncertainty, but it makes the paths clear enough to compare.",
+      "tryThisNow": "Take one decision you keep describing as stressful. Draw three options, then write the main consequence and unknown under each one.",
+      "keyTakeaway": "Improve hard choices by splitting the decision into options, branches, consequences, and unknowns, then compare the paths instead of trusting one global feeling.",
+      "breakdown": {
+        "fastRead": "Leandra moves color-coded magnets across the staffing board at 5:29 a.m. One sentence, \"the weekend is unsafe,\" hides three choices: overtime, float nurses, or delayed elective cases. Each path creates a different risk.\n\nA decision tree makes the hidden branches visible. It does not tell the future. It shows what you are choosing between. Name the options, trace the likely consequences, mark what is still unknown, and compare path by path. A vague fear cannot do that work for you.",
+        "deepRead": "Sacha sits in the guidance office at 1:14 p.m. while rain taps the window air conditioner. He keeps saying both apprenticeships feel scary. The counselor draws two boxes and asks what each one changes by Christmas. The welding track means paid hours sooner and a longer bus ride. The electrical track means a harder first semester and a license path his uncle understands.\n\nThat is the value of a decision tree. It turns a mood into branches. Each option opens its own consequences, tradeoffs, and unknowns. Once the branches are visible, judgment has something to work on.\n\nNuri's cafe postmortem shows why this matters. She once said yes to a second lease as if it were one decision. In truth, she was accepting rent risk, hiring strain, uncertain foot traffic, and her own exhaustion at once. Bundled choices hide the place where the real risk lives.\n\nThe limit is just as important. A clean diagram can tempt you to pretend the future is cleaner than it is. Catrin's sticky notes look neat at midnight, but some numbers are still guesses. A good tree does not fake certainty. It shows where the uncertainty sits so the next question, test, or delay can be chosen on purpose.",
+        "fullRead": "Hester leans over a laminated marsh map at 4:03 a.m. while her headlamp cuts a white circle through the dark. The animal relocation team has two routes, three tide windows, and a storm line moving faster than the forecast said. Her first instinct is to pick the shortest road. Then she draws the branches.\n\nThe short road saves forty minutes if the bridge stays open. If the bridge closes, the team loses the safe release window. The inland route is slower but keeps two fallback stops. The ferry route looks calm until wind delays make the crates sit too long. The safest-looking path changes once the downstream consequences are visible.\n\nHard choices often arrive as a single heavy feeling. Move, stay, hire, quit, launch, wait. That feeling may contain useful information, but it also compresses too much. A decision tree unpacks the compression. Option A leads to branch A1 or A2. Option B opens different costs. One unknown matters a lot. Another unknown is noise.\n\nBao uses this at his dining table with apartment listings tucked under a bowl of oranges. Moving closer to his mother is not one question. It is caregiving time, his son's school stability, rent, commute, and his sister's schedule. When he separates the branches, the choice becomes less dramatic and more honest. He can see which path helps his mother while breaking the fewest other promises.\n\nThe tree also helps a group talk without collapsing into slogans. Instead of \"too risky\" or \"obviously worth it,\" people can point to a branch and say, \"This is the cost I am worried about.\" That changes the meeting. The argument moves from personality to structure.\n\nDo not worship the tree. The boxes are not facts just because they are rectangular. Some probabilities are guesses. Some consequences cannot be scored cleanly. Some values matter even when they resist numbers. The tree earns trust only when it keeps those limits visible.\n\nUse the method when a choice feels like fog. Name the options. Split the broad branches again if they still hide different futures. Attach consequences to the path that creates them. Mark unknowns plainly. Then decide what evidence would clarify the branch that matters most. A visible choice is not an easy choice, but it is finally a choice you can inspect."
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01-leandra-staffing-board",
+          "title": "Leandra splits the unsafe weekend into branches",
+          "tags": [
+            "decision tree",
+            "staffing"
+          ],
+          "planSpec": {
+            "domain": "hospital operations",
+            "audience": "managers making high-pressure staffing choices",
+            "stakes": "a vague staffing fear could hide different risks by option",
+            "format": "decision_point",
+            "requiredBeat": "she breaks one vague staffing worry into branches for overtime, float nurses, and delayed elective cases"
+          },
+          "scenario": "Color-coded magnets slide under Leandra's fingers at 5:29 a.m. in the staffing office. The whiteboard says weekend unsafe in red marker, but that phrase hides three doors: pay overtime, pull float nurses from pediatrics, or delay four elective cases. Each magnet changes a different ward. Her coffee has gone cold, and she has to decide whether to keep arguing from the red phrase or map the branches.",
+          "whatToDo": "Draw the three options and list the main consequence under each one. Compare overtime fatigue, pediatric coverage, and delayed-case risk as separate branches before choosing.",
+          "whyItMatters": "One vague label hides different harms. Branching lets Leandra see which risk belongs to which option instead of treating all danger as one blob."
+        },
+        {
+          "exampleId": "ch06-ex02-sacha-rain-window",
+          "title": "Sacha stops calling both paths scary",
+          "tags": [
+            "career choice",
+            "branching"
+          ],
+          "planSpec": {
+            "domain": "school counseling",
+            "audience": "students choosing training paths",
+            "stakes": "a student may confuse a global feeling with specific tradeoffs",
+            "format": "dialogue",
+            "requiredBeat": "a counselor makes Sacha name the branches instead of saying the choice feels scary"
+          },
+          "scenario": "\"It just feels scary,\" Sacha says at Tuesday 1:14 p.m. in the guidance office while rain taps the window air conditioner. Ms. Errol draws two boxes on a legal pad. \"Scary how?\" Welding means paid hours by summer and a longer bus ride. Electrical means a harder test and a license path. Sacha watches her draw arrows and realizes the fear is not one thing. It has branches.",
+          "whatToDo": "Name the specific consequences under each apprenticeship. Put pay, commute, exam risk, and license path in separate branches so the choice can be compared.",
+          "whyItMatters": "A feeling can warn Sacha that stakes are real, but it cannot compare paths. The branches show what each fear is attached to."
+        },
+        {
+          "exampleId": "ch06-ex03-nuri-receipt-tape",
+          "title": "Nuri unbundles the lease she already signed",
+          "tags": [
+            "postmortem",
+            "bundled decisions"
+          ],
+          "planSpec": {
+            "domain": "small business expansion",
+            "audience": "owners reviewing growth decisions",
+            "stakes": "a failed expansion may have bundled several risks into one yes",
+            "format": "postmortem",
+            "requiredBeat": "she sees that she bundled rent, staffing, foot traffic, and owner fatigue into one yes"
+          },
+          "scenario": "Receipt tape curls around Nuri's calculator at Monday 8:47 p.m. on a closed cafe table. The second-location lease failed, and for weeks she called it one bad bet. Tonight she writes the branches she never drew: rent jump, new baker, foot traffic after 3 p.m., her own double shifts. The yes was not one yes. It was four risks braided together, and one snapped first.",
+          "whatToDo": "Redo the decision as a tree. Separate rent, staffing, demand, and owner time, then identify which branch failed and which test could have checked it earlier.",
+          "whyItMatters": "A bundled postmortem teaches too little. Unbundling shows where the real weakness lived, so the next expansion can test that branch before signing."
+        },
+        {
+          "exampleId": "ch06-ex04-hester-marsh-map",
+          "title": "Hester finds the bridge hidden in the shortcut",
+          "tags": [
+            "uncertainty",
+            "field planning"
+          ],
+          "planSpec": {
+            "domain": "wildlife fieldwork",
+            "audience": "teams planning under changing conditions",
+            "stakes": "a route that seems safest may hide a severe weather-delay branch",
+            "format": "predict_reveal",
+            "requiredBeat": "she predicts the safest path, then a branch map shows the weather-delay consequence she missed"
+          },
+          "scenario": "Hester's headlamp shines on a laminated map at Thursday 4:03 a.m. beside the marsh truck. She predicts the river road is safest because it is shortest. Then the branch map adds bridge closure, crate time, tide window, and inland backup stops. The reveal is blunt: if the storm reaches the bridge first, the shortcut strands the team past release time. The slower inland road now looks safer.",
+          "whatToDo": "Compare routes by branch, not distance alone. Include bridge closure, tide timing, crate stress, and fallback stops before choosing the path.",
+          "whyItMatters": "The shortcut looked safe while one consequence was hidden. A tree exposes the branch where a small delay becomes the deciding risk."
+        },
+        {
+          "exampleId": "ch06-ex05-bao-orange-bowl",
+          "title": "Bao sorts the move under the oranges",
+          "tags": [
+            "family decision",
+            "tradeoffs"
+          ],
+          "planSpec": {
+            "domain": "family caregiving",
+            "audience": "readers balancing personal and family obligations",
+            "stakes": "a move could help one duty while damaging others",
+            "format": "dilemma",
+            "requiredBeat": "he separates caregiving, commute, school stability, and finances before judging the move"
+          },
+          "scenario": "Apartment listings slide under a bowl of oranges at Sunday 6:58 p.m. while Bao circles addresses near his mother's building. Moving closer would make medication checks easier. It would also add thirty minutes to his commute, pull his son from a steady school, and raise rent. His sister can cover Tuesdays but not nights. Bao has to decide whether the word closer is hiding too many different branches.",
+          "whatToDo": "Split the move into caregiving coverage, commute, school, rent, and sibling support. Compare each branch before treating closeness as the whole answer.",
+          "whyItMatters": "A family decision can feel morally simple while its consequences are not. Branching helps Bao honor care without hiding costs that others will pay."
+        },
+        {
+          "exampleId": "ch06-ex06-catrin-sticky-notes",
+          "title": "Catrin sees what the neat tree still cannot know",
+          "tags": [
+            "limits",
+            "uncertainty"
+          ],
+          "planSpec": {
+            "domain": "software leadership",
+            "audience": "leaders using decision tools",
+            "stakes": "a clean diagram may create fake certainty",
+            "format": "reflection",
+            "requiredBeat": "she notices the tree has made uncertainty visible, not removed it"
+          },
+          "scenario": "Sticky notes glow under Catrin's desk lamp at Friday 11:36 p.m. in a dark coworking booth. The release tree is neat: ship now, delay two weeks, cut the sync feature. Each branch has costs in black ink. Still, the churn estimate is a guess, the enterprise promise is fragile, and the migration bug may be worse than anyone knows. The tree has not solved the future. It has shown her where she is still guessing.",
+          "whatToDo": "Keep the unknowns visible on the tree. Mark guesses as guesses, choose which branch needs more evidence, and resist turning tidy boxes into certainty.",
+          "whyItMatters": "A decision tree is useful because it locates uncertainty. If Catrin treats the diagram as proof, the tool becomes a cleaner way to hide risk."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch06-q01",
+            "prompt": "A team says a launch feels risky but cannot say why. What should they do first?",
+            "choices": [
+              "Draw the launch options and attach risks to the branch that creates each one.",
+              "Vote immediately while feelings are fresh.",
+              "Avoid the launch because any risk is too much."
+            ],
+            "correctIndex": 0,
+            "explanation": "The vague feeling needs structure. Branching shows which option creates which risk, making comparison possible.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q02",
+            "prompt": "A neat decision tree includes numbers that are mostly guesses. What should the team do?",
+            "choices": [
+              "Treat the numbers as facts because they are in the diagram.",
+              "Delete the tree and trust instinct.",
+              "Mark the guesses and decide which uncertainty needs evidence before action."
+            ],
+            "correctIndex": 2,
+            "explanation": "The tree should reveal uncertainty, not hide it. Guesses belong on the map, but they must be labeled as guesses.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch06-q03",
+            "prompt": "A student says, \"College A just feels better,\" but College B is cheaper and closer to family. Which move helps most?",
+            "choices": [
+              "List branches for cost, support, program fit, and daily life under each college.",
+              "Pick College A because a feeling is always enough.",
+              "Ignore fit and pick only the cheapest option."
+            ],
+            "correctIndex": 0,
+            "explanation": "The tree separates consequences so the student can see what the feeling may contain and what tradeoffs each path creates.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q04",
+            "prompt": "A business owner reviews a failed expansion and calls it one bad decision. What is the better postmortem?",
+            "choices": [
+              "Separate lease cost, staffing, demand, and owner time to find the branch that failed.",
+              "Blame luck and move on.",
+              "Open a third location to prove confidence."
+            ],
+            "correctIndex": 0,
+            "explanation": "Unbundling the decision teaches more than one broad label. It identifies which risk was misunderstood and what to test next time.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q05",
+            "prompt": "A project has three options, but one branch under option two is still broad and vague. What should happen?",
+            "choices": [
+              "Split that branch again until the consequences are discussable.",
+              "Leave it vague because detail slows the meeting.",
+              "Delete option two so the diagram is cleaner."
+            ],
+            "correctIndex": 0,
+            "explanation": "A branch that still hides multiple futures needs more decomposition. The goal is comparison, not a tidy but vague drawing.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q06",
+            "prompt": "A parent deciding on a move focuses only on rent. What is missing from the decision tree?",
+            "choices": [
+              "Other consequences such as commute, school stability, care duties, and support.",
+              "A prettier apartment photo.",
+              "A rule that money is the only branch."
+            ],
+            "correctIndex": 0,
+            "explanation": "Rent is one branch, not the whole tree. The decision needs the other consequences that the move will create.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q07",
+            "prompt": "A route is shortest but has one bridge that may close. A longer route has two fallback stops. What does tree thinking add?",
+            "choices": [
+              "It attaches the bridge-closure consequence to the short route instead of judging distance alone.",
+              "It proves the shortest route is always best.",
+              "It removes weather uncertainty completely."
+            ],
+            "correctIndex": 0,
+            "explanation": "The tree shows how one event changes downstream outcomes. It organizes uncertainty rather than pretending the weather can be known.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q08",
+            "prompt": "A meeting keeps circling between \"too risky\" and \"worth it.\" What would improve the discussion?",
+            "choices": [
+              "Ask each person to point to the exact branch and consequence they mean.",
+              "Repeat the slogans until one side gets tired.",
+              "Hide the tradeoffs so the group stays upbeat."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pointing to branches moves the discussion from mood and identity to structure. People can then compare the actual consequences.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q09",
+            "prompt": "A decision tree shows one unknown that would change the choice if answered. What is the best next action?",
+            "choices": [
+              "Ignore it because the tree is already complete.",
+              "Find the smallest test or source that can reduce that specific unknown.",
+              "Add more unrelated branches."
+            ],
+            "correctIndex": 1,
+            "explanation": "The tree has located the key uncertainty. The next move is targeted evidence, not more general worry.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch06-rc01",
+          "front": "A decision feels like one heavy mood. What should you draw first?",
+          "back": "Draw the main options as separate branches. Then attach the likely consequence and unknown under each one so the choice becomes inspectable.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch06-rc02",
+          "front": "A branch still feels vague after you draw it. What is the next move?",
+          "back": "Split it again. A branch earns its place only when the consequence is clear enough for people to discuss and compare.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-rc03",
+          "front": "A clean tree makes the future look settled. What warning should you remember?",
+          "back": "The diagram organizes uncertainty, but it does not erase it. Mark guesses as guesses and decide which unknown needs evidence.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-rc04",
+          "front": "A past choice failed and everyone calls it one bad decision. How do you learn from it?",
+          "back": "Unbundle the choice into branches. Find whether demand, cost, timing, capacity, or another branch failed, then design a sharper test for next time.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is decomposing a hard choice until its paths can be compared. A good decision tree makes options, consequences, and unknowns visible without pretending uncertainty disappeared.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a team says a choice feels risky, then I will ask which branch creates the risk and write it on the decision tree."
+          },
+          {
+            "context": "health",
+            "plan": "If I face a treatment or routine choice, then I will list the main options, likely benefits, costs, and unknowns before reacting to fear."
+          },
+          {
+            "context": "personal",
+            "plan": "If I am stuck between two paths, then I will draw the branches and mark the one unknown that would most change my decision."
+          },
+          {
+            "context": "relationships",
+            "plan": "If a family decision feels morally obvious but practically messy, then I will separate duties, costs, timing, and support before choosing."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, draw a decision tree for one live choice. Include at least three options or branches, one consequence under each, and one unknown you can investigate this week.",
+        "weeklyPractice": "For one week, turn every stuck decision into a small tree before discussing it. Review whether the tree located a hidden consequence or a key unknown."
+      },
+      "memorableLines": [
+        {
+          "text": "A vague fear cannot do that work for you.",
+          "location": "breakdown.fastRead",
+          "why": "It contrasts mood with visible reasoning in plain language."
+        },
+        {
+          "text": "A good tree does not fake certainty.",
+          "location": "breakdown.deepRead",
+          "why": "It states the limit of the tool clearly."
+        },
+        {
+          "text": "A visible choice is not an easy choice, but it is finally a choice you can inspect.",
+          "location": "breakdown.fullRead",
+          "why": "It lands the value of decision structure without overselling it."
+        }
+      ]
+    },
+    {
+      "chapterId": "super-thinking-ch07",
+      "number": 7,
+      "title": "Dealing With Conflict",
+      "readingTimeMinutes": 8,
+      "hook": "Punch cards scattered under a time clock can show when another correction only feeds the contest.",
+      "counterintuition": "You may assume conflict improves when the truer thing is said harder. Often the opposite happens: the reply rewards the wrong game unless you read the loop first.",
+      "tryThisNow": "Before your next hard reply, write what the other person is likely to do after hearing it. If your move rewards the wrong response, choose a different move.",
+      "keyTakeaway": "Handle conflict by reading the interaction as a system: notice incentives, legitimacy, and the larger outcome before deciding whether to press, reframe, concede, or walk away.",
+      "breakdown": {
+        "fastRead": "Punch cards fan across the loading-bay floor at 4:58 p.m. Yasuko can correct the late worker again, louder this time, in front of everyone. The question is not whether she is right. The question is what the move will make happen next.\n\nConflict is a response loop. Your move changes the other person's next move. Authority changes how the same words land. Sometimes giving up the small visible point protects the larger result. Read the game before you play it harder.",
+        "deepRead": "Helmi stands over a saucepan soaking in gray water at 10:17 p.m. and hears herself start the dish argument again. Her roommate has already crossed her arms. The dishes are real, but the real game is guests staying until 1 a.m. and leaving the kitchen unusable. If Helmi keeps fighting the saucepan, both of them can avoid the late-night guest rule.\n\nA conflict move is never just content. It is timing, status, incentive, and expected reply. Game theory helps at that simple level: when another person can answer back, your move changes the board.\n\nYasuko sees the board change near the warehouse time clock. A louder correction would let the late worker play to the crew. A private consequence changes what the next move can be. The same rule lands differently when the audience is gone.\n\nRaffi learns the legitimacy piece after his debate-club complaint fails. The same concern about judge assignments might have landed differently from the faculty sponsor. That does not make truth less important. It means social position changes whether a message sounds like repair, rivalry, or defiance.\n\nSamira's label dispute shows the larger-game move. She can win the naming issue and poison the launch meeting, or concede the label and protect the collaboration that matters more. Concession is not always weakness. Sometimes the small loss buys space for the larger outcome.",
+        "fullRead": "Oskar holds a stapled plant newsletter at 5:44 a.m. while copies still feel warm from the break-room machine. A supervisor has mocked the union's safety complaint in a paragraph that everyone will read by lunch. Oskar's first reply is already forming. It is sharp, public, and satisfying. It would also give the supervisor exactly the fight he seems to want.\n\nThe hard part of conflict is that a good sentence can be a bad move. A true correction can reward a public contest. A forceful reply can help the other side perform for its audience. A quiet concession can protect the part of the relationship or system that actually matters. The content is only one layer.\n\nStart with the response loop. If I say this, what is the next move I am inviting? If I press here, whose incentives improve? If I refuse the public fight, where can the real issue be moved? Yasuko sees this by the time clock. Another loud correction may make a late worker perform toughness for the crew. A private reset with a clear consequence may change the pattern without staging a contest.\n\nHelmi's kitchen fight shows how loops hide under objects. The saucepan matters, but it is not the whole conflict. The late guests, noise, and lost kitchen access are the pattern. If she keeps fighting over dishes, the real issue gets another night to grow. A better move changes the level of the conversation.\n\nThen read legitimacy. Some messages need a carrier the room accepts. Raffi's complaint about debate judging is sound, but from him it sounds like a sore captain protecting his team. From the faculty sponsor, with the score sheets attached, it can sound like a process fix. The same claim can land as repair or self-interest depending on who says it, when, and with what standing.\n\nThe loss-leader idea adds one more tool. In business, a small visible loss can protect a larger gain. In conflict, that can mean letting a minor point go so the main outcome survives. Samira lets the partner team keep the label wording because the launch trust matters more than the name. She is not pretending the wording is best. She is choosing the level of conflict that matters.\n\nThere is a moral line. Strategic awareness can slide into manipulation if the aim becomes control instead of cleaner resolution. Eamon knows this at the courthouse vending machine, peppermint wrapper in his palm, after watching a lawyer stay calm only to corner a scared parent. Calm is not automatically wise. Strategy is not automatically decent. The test is whether the move helps the real issue become clearer and fairer, or merely makes the other person easier to beat.\n\nBefore you answer, map the loop. What response will this invite? What authority does the message need? What small point might be worth giving up? What larger outcome are you protecting? Then choose the move that changes the conflict, not the one that only proves you can swing harder."
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01-yasuko-time-clock",
+          "title": "Yasuko stops before the second public correction",
+          "tags": [
+            "response loop",
+            "workplace"
+          ],
+          "planSpec": {
+            "domain": "warehouse operations",
+            "audience": "supervisors handling repeated conflict",
+            "stakes": "a public correction may reward the contest and worsen the pattern",
+            "format": "decision_point",
+            "requiredBeat": "she decides whether another loud correction will improve the response loop or reward the contest"
+          },
+          "scenario": "Paper punch cards fan across the loading-bay floor at 4:58 p.m. while Yasuko stands by the time clock. Nolan is late again and has made a joke for the dock crew before she can speak. Her first correction last week became a performance. Her hand is on the attendance binder. She has to decide whether to correct him louder in public or change the response loop somewhere quieter.",
+          "whatToDo": "Do not feed the public contest. Move the conversation offstage, state the attendance consequence clearly, and remove the audience that turns correction into performance.",
+          "whyItMatters": "The issue is not only lateness. It is the reply pattern the public setting rewards. Changing the loop gives the rule a better chance to work."
+        },
+        {
+          "exampleId": "ch07-ex02-raffi-score-sheets",
+          "title": "Raffi sees why the same complaint needed another carrier",
+          "tags": [
+            "legitimacy",
+            "postmortem"
+          ],
+          "planSpec": {
+            "domain": "student leadership",
+            "audience": "students raising process concerns",
+            "stakes": "a valid complaint can be dismissed if the messenger lacks standing",
+            "format": "postmortem",
+            "requiredBeat": "he sees that the same words from a trusted faculty sponsor would have changed the legitimacy of the move"
+          },
+          "scenario": "Score sheets fold in Raffi's hoodie pocket at Thursday 7:21 p.m. in an empty auditorium row. His complaint about debate judge assignments was accurate. It also landed like a captain angry about losing. He reads the email again and imagines Ms. Ibarra sending the same concern with the pairings attached. The words would not change much. The standing would.",
+          "whatToDo": "Separate the claim from the carrier. Bring the evidence to the faculty sponsor and ask her to raise the process issue from a role the room trusts.",
+          "whyItMatters": "Legitimacy changes how conflict lands. A sound point can trigger defense if it looks self-serving, while the same point from a trusted role can repair the process."
+        },
+        {
+          "exampleId": "ch07-ex03-helmi-saucepan",
+          "title": "Helmi names the late guests under the dishes",
+          "tags": [
+            "reframe",
+            "hidden game"
+          ],
+          "planSpec": {
+            "domain": "roommate conflict",
+            "audience": "readers stuck in repeated domestic fights",
+            "stakes": "the visible dispute may hide the real conflict pattern",
+            "format": "dialogue",
+            "requiredBeat": "she names the hidden game instead of replaying the visible clash"
+          },
+          "scenario": "\"The pan again?\" Noor says at Monday 10:17 p.m. in the galley kitchen, one saucepan soaking in gray water. Helmi has the dish speech ready. Then she hears music through the wall from Noor's guests and stops. \"The pan is annoying,\" Helmi says, \"but the real problem is I lose the kitchen after midnight.\" Noor looks at the water, then the hallway. The argument has moved.",
+          "whatToDo": "Leave the symbolic fight and name the actual pattern. Discuss guest hours, cleanup, and kitchen access instead of replaying the saucepan argument.",
+          "whyItMatters": "Visible clashes can become decoys. Moving to the real level gives both people a chance to change the pattern instead of winning another tiny round."
+        },
+        {
+          "exampleId": "ch07-ex04-oskar-newsletter",
+          "title": "Oskar leaves the taunt out of the newsletter",
+          "tags": [
+            "incentives",
+            "strategic refusal"
+          ],
+          "planSpec": {
+            "domain": "labor relations",
+            "audience": "worker representatives choosing public responses",
+            "stakes": "a public reply could feed the opponent's incentive rather than solve safety",
+            "format": "predict_reveal",
+            "requiredBeat": "he predicts public reply will feel strong, then sees it would feed the opponent's incentive"
+          },
+          "scenario": "Stapled newsletters lie warm from the copier at Wednesday 5:44 a.m. in the break room. Oskar reads the supervisor's jab about the union safety complaint and predicts his reply will feel strong. Then he pictures lunch: everyone quoting the insult, nobody checking the guardrail report. The reveal is sour. The taunt is bait. He slides the newsletter aside and opens the incident log instead.",
+          "whatToDo": "Refuse the bait in public and move the fight to the safety record. Send the documented guardrail issue through the channel that forces a written response.",
+          "whyItMatters": "A public comeback may reward the supervisor's performance. The incident log shifts the conflict to evidence and obligation, where the larger issue has leverage."
+        },
+        {
+          "exampleId": "ch07-ex05-samira-label-wall",
+          "title": "Samira gives up the label to protect launch trust",
+          "tags": [
+            "loss leader",
+            "collaboration"
+          ],
+          "planSpec": {
+            "domain": "cross-functional product launch",
+            "audience": "project leads choosing which conflicts to press",
+            "stakes": "winning a minor point could damage the larger launch relationship",
+            "format": "dilemma",
+            "requiredBeat": "she treats the visible point as a possible loss leader for the larger collaboration"
+          },
+          "scenario": "Product labels are taped to the video-call room wall at Friday 3:09 p.m. while Samira watches the partner team's lead underline \"starter kit\" for the third time. Samira prefers \"setup kit\" and has the user-test notes to defend it. The launch date depends on that same team fixing packaging by Monday. She has to decide whether this label is the hill or the small loss that keeps the larger work moving.",
+          "whatToDo": "Concede the minor label if it protects the launch relationship, then document the user-test concern for the next revision. Spend conflict where the larger outcome depends on it.",
+          "whyItMatters": "Not every visible point is the strategic point. Giving up a small naming win can preserve the trust needed to solve the higher-stakes packaging work."
+        },
+        {
+          "exampleId": "ch07-ex06-eamon-vending-machine",
+          "title": "Eamon keeps calm from becoming a weapon",
+          "tags": [
+            "ethics",
+            "strategy"
+          ],
+          "planSpec": {
+            "domain": "mediation",
+            "audience": "people using strategy in sensitive disputes",
+            "stakes": "strategic calm can become manipulation if it aims only to corner someone",
+            "format": "reflection",
+            "requiredBeat": "he keeps strategic awareness separate from manipulation"
+          },
+          "scenario": "A peppermint wrapper crinkles in Eamon's palm at Tuesday 8:28 p.m. beside the courthouse vending machine. The custody mediation ended calm on paper. Too calm, maybe. One lawyer used silence and soft questions to walk a scared parent into a corner, then called it cooperation. Eamon watches the elevator numbers blink down and thinks about the line he has to hold tomorrow: strategy should clarify the fight, not make fear easier to steer.",
+          "whatToDo": "Keep the ethical test explicit. Use timing, silence, and reframing only to make the real issue clearer and fairer, not to corner someone who lacks power.",
+          "whyItMatters": "Conflict tools are not automatically decent. Without a moral check, strategic awareness can become a cleaner way to dominate."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch07-q01",
+            "prompt": "A supervisor corrects an employee publicly, and the employee turns each correction into a joke for the crew. What should the supervisor change?",
+            "choices": [
+              "Move the correction out of the audience loop and state the consequence privately.",
+              "Correct louder so the crew knows who is in charge.",
+              "Ignore the pattern because public jokes are harmless."
+            ],
+            "correctIndex": 0,
+            "explanation": "The public setting rewards performance. Changing the response loop gives the correction a better chance to affect behavior.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q02",
+            "prompt": "A valid complaint sounds self-serving from the person who lost the vote. What might help it land as a process issue?",
+            "choices": [
+              "Use more insulting language so people pay attention.",
+              "Hide the evidence and appeal to fairness in general.",
+              "Have a trusted neutral role raise it with the evidence."
+            ],
+            "correctIndex": 2,
+            "explanation": "Legitimacy changes how a message is received. A trusted carrier can help the room hear the claim as repair rather than rivalry.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q03",
+            "prompt": "Two roommates keep arguing about a mug, but the real issue is overnight guests. What is the better move?",
+            "choices": [
+              "Win the mug argument with better evidence.",
+              "Name the guest-hours pattern directly and move the discussion there.",
+              "Buy more mugs and avoid the real issue forever."
+            ],
+            "correctIndex": 1,
+            "explanation": "The mug is the visible clash, but not the pattern. Reframing to the real level makes a useful agreement possible.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q04",
+            "prompt": "A public taunt invites a sharp reply that would distract from the safety evidence. What should the representative consider?",
+            "choices": [
+              "Whether the comeback will sound clever.",
+              "Whether evidence matters less than public pride.",
+              "Whether replying rewards the opponent's preferred game."
+            ],
+            "correctIndex": 2,
+            "explanation": "The reply may feel strong while moving attention away from the issue. Strategic refusal can keep the conflict on evidence and obligation.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q05",
+            "prompt": "A project lead can win a minor wording dispute but risks slowing the launch. What model helps her choose?",
+            "choices": [
+              "Loss leader strategy, because giving up a small point may protect the larger outcome.",
+              "Base rates, because the wording has a hidden denominator.",
+              "Compounding, because every word improves with repetition."
+            ],
+            "correctIndex": 0,
+            "explanation": "The visible point may not be the important point. A small concession can protect trust and capacity for the higher-stakes work.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch07-q06",
+            "prompt": "A mediator uses silence to make a frightened person agree faster. What is the ethical problem?",
+            "choices": [
+              "Silence is always weak.",
+              "The tactic is being used to corner rather than clarify.",
+              "Mediation should avoid all structure."
+            ],
+            "correctIndex": 1,
+            "explanation": "Strategic calm is not automatically fair. The test is whether the move clarifies the issue or exploits a power gap.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q07",
+            "prompt": "A manager wants to send a forceful email during a tense thread. What question should come first?",
+            "choices": [
+              "How can the email prove the manager is right?",
+              "Can the message be sent before anyone edits it?",
+              "What reply will this invite, and does that reply help the larger goal?"
+            ],
+            "correctIndex": 2,
+            "explanation": "Conflict happens in loops. The likely next reply matters as much as the truth of the current sentence.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q08",
+            "prompt": "A team keeps debating a small visible issue while trust and role confusion cause the real damage. What is the strongest diagnosis?",
+            "choices": [
+              "The small issue must be solved first no matter what.",
+              "The offered battlefield is hiding the actual conflict.",
+              "The team needs fewer facts."
+            ],
+            "correctIndex": 1,
+            "explanation": "The visible issue may be a safe place to fight. Better conflict work moves to the level where the pattern is actually created.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q09",
+            "prompt": "A leader has authority that could settle a dispute quickly. What should she still check?",
+            "choices": [
+              "Whether using authority now resolves the pattern or only suppresses a response.",
+              "Whether people fear her enough to stop speaking.",
+              "Whether the fastest settlement looks impressive."
+            ],
+            "correctIndex": 0,
+            "explanation": "Authority changes the exchange, but it can settle or silence. The leader should check the response loop and the larger pattern before using it.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch07-rc01",
+          "front": "You are about to make a true correction in public. What should you check?",
+          "back": "Check the response loop. If the setting rewards defiance, performance, or pride, move the correction to a place where it can change behavior.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-rc02",
+          "front": "A valid point keeps getting dismissed as self-serving. What can change its effect?",
+          "back": "Change the carrier or setting. Legitimacy affects whether the same words land as repair, rivalry, or threat.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-rc03",
+          "front": "You can win a small conflict but harm the larger relationship. What option should be on the table?",
+          "back": "Consider conceding the small point to protect the larger outcome. Strategic restraint is not surrender when it preserves the work that matters most.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-rc04",
+          "front": "A conflict tactic is calm and effective. What ethical test still matters?",
+          "back": "Ask whether the tactic clarifies the real issue and treats the other person fairly, or whether it simply makes them easier to control.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": "The core skill is reading conflict as an interactive system. Before responding, inspect the likely next move, the authority structure, the visible battlefield, and the larger outcome.",
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": "If a public correction keeps escalating, then I will move the next conversation offstage and remove the audience reward."
+          },
+          {
+            "context": "health",
+            "plan": "If I disagree with a clinician or caregiver, then I will ask which role or evidence would make the concern land as repair rather than attack."
+          },
+          {
+            "context": "personal",
+            "plan": "If I am tempted by a sharp reply, then I will write the response it is likely to invite before I send it."
+          },
+          {
+            "context": "relationships",
+            "plan": "If we keep fighting over a visible object, then I will name the deeper pattern and ask whether that is the real conflict."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, choose one live or recent conflict and map the loop: your move, their likely reply, the incentive it creates, and the larger outcome you want to protect.",
+        "weeklyPractice": "For one week, pause before hard replies. Label each conflict as press, reframe, concede, or walk away, then review which moves changed the loop."
+      },
+      "memorableLines": [
+        {
+          "text": "The question is not whether she is right.",
+          "location": "breakdown.fastRead",
+          "why": "It shifts conflict away from proof and toward effect."
+        },
+        {
+          "text": "A conflict move is never just content.",
+          "location": "breakdown.deepRead",
+          "why": "It captures the core systems view of conflict."
+        },
+        {
+          "text": "The hard part of conflict is that a good sentence can be a bad move.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the key counterintuition memorable."
+        }
+      ]
+    }
+  ]
+}

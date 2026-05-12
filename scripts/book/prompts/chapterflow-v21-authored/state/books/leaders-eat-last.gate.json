@@ -1,0 +1,264 @@
+{
+  "bookId": "leaders-eat-last",
+  "title": "Leaders Eat Last",
+  "author": "Simon Sinek",
+  "promotedAt": "2026-05-12T00:43:24.951Z",
+  "chapterCount": 27,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 0
+  },
+  "bookGate": {
+    "bookId": "leaders-eat-last",
+    "chapterCount": 27,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "B6",
+        "severity": "minor",
+        "message": "Multiple chapters open hook with same 50-char prefix \"a dented badge on a table can tell you whether the\": chapters 7, 9, 11, 12, 24"
+      },
+      {
+        "catalogId": "B6",
+        "severity": "minor",
+        "message": "Multiple chapters open hook with same 50-char prefix \"a dented badge on a table can tell you whether lea\": chapters 17, 18, 19, 20, 21"
+      },
+      {
+        "catalogId": "B6",
+        "severity": "minor",
+        "message": "Multiple chapters open hook with same 50-char prefix \"a dented badge on a table can tell you whether at \": chapters 22, 23"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        81,
+        81,
+        81
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 243,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [
+        {
+          "opener": "a dented badge on a table can tell you whether the",
+          "chapters": [
+            7,
+            9,
+            11,
+            12,
+            24
+          ]
+        },
+        {
+          "opener": "a dented badge on a table can tell you whether lea",
+          "chapters": [
+            17,
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "opener": "a dented badge on a table can tell you whether at ",
+          "chapters": [
+            22,
+            23
+          ]
+        }
+      ],
+      "schemaInconsistencies": []
+    }
+  }
+}

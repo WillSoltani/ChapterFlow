@@ -108,7 +108,7 @@ const META_REGEXES = [
   /\bthe author\b/i,
   /\bthe book\b/i,
   /\bin this (chapter|section|book|law)\b/i,
-  /\bchapter\s+\d+\b/,
+  /\bchapter\s+\d+\b/i,
 ];
 
 function findMetaReference(text: string): string | null {

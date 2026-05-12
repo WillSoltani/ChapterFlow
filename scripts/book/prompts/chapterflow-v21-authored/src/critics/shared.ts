@@ -62,7 +62,6 @@ export function allTones<T extends string>(v: MaybeToned<T> | undefined): string
 export function pickEvidence<T extends string>(v: MaybeToned<T> | undefined): string {
   const d = resolveDirect(v);
   if (typeof d === "string") return d;
-  if (Array.isArray(d)) return d.join(" ");
   return "";
 }
 

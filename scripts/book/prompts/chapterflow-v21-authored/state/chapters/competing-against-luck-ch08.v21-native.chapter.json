@@ -1,0 +1,319 @@
+{
+  "chapterId": "competing-against-luck-ch08",
+  "number": 8,
+  "title": "Keeping Your Eye on the Job",
+  "readingTimeMinutes": 11,
+  "hook": "Asha sees a dinner rescue turn into a recipe contest at the pickup freezer.",
+  "counterintuition": "Most teams assume alignment lasts after the job is named. But actually habit, metrics, and attractive side goals keep pulling work back inward.",
+  "tryThisNow": "Take one current initiative and write the job it is supposed to protect. Cross out any metric or feature that no longer serves that progress.",
+  "keyTakeaway": "Keeping focus on the job means testing every new feature, metric, exception, and process change against whether it sharpens or blurs the buyer's progress.",
+  "breakdown": {
+    "fastRead": "Asha watches a freezer fill with truffle risotto kits and realizes the grocery pickup service has drifted. Customers at first hired it to rescue dinner between work and bedtime. The new kits photograph well, but they ask for chopping, stirring, and a calm evening. Drift rarely announces itself. It arrives as fair fixes that serve internal hype more than the buyer's progress. The job has to stay an active filter.",
+    "deepRead": "A company can learn the job and still lose sight of it. The danger is not always ignorance. Often it is drift. A familiar metric returns because it is easy to track. A side opportunity looks impressive. A function adds a feature because it can. Each move seems defensible alone. Together they bend the offering away from the progress buyers hired.\n\nAt 7:44 a.m., Brenna, a teacher, points at a cleaner attendance dashboard and says, \"This makes my report prettier, but it makes morning harder.\" The old screen had one ugly button that told the office which children had not eaten breakfast. The redesign served reporting clarity and damaged the job of getting the first twenty minutes calm.\n\nThe move is repeated testing. Ask, does this change make the job sharper, easier, safer, or more complete for the buyer. If it mainly serves internal neatness, status, or measurement, treat it as suspect. The limit is not rigidity. Offers can evolve. But adaptation has to prove it still protects the hired progress.",
+    "fullRead": "Job focus is hard to keep because organizations have memory. They remember categories, metrics, meetings, and habits more easily than they remember a customer's strained moment. After the first insight, old language creeps back. Roadmaps fill with features. Dashboards reward activity. Teams optimize the part they own. Nobody intends to abandon the job, but the offering slowly asks buyers to do more work, accept more confusion, or care about goals they never hired.\n\nThis drift can be subtle. A grocery service that was hired for weeknight rescue starts adding chef-driven kits. A school system that was hired for morning readiness starts optimizing reporting beauty. A bike repair shop that was hired for reliable commuting starts measuring accessory attachment. Each change can be defended as growth or improvement. The job test asks a colder question: did the buyer's desired progress improve.\n\nDillon, opening a bike shop at 8:16 a.m., may see the problem in one metric. The new goal rewards selling tune-up bundles. The commuter at the door needs the brake fixed before a hospital shift. If the bundle script delays that repair, the metric has become a rival to the job. The job should judge the metric, not the other way around.\n\nKeeping focus also requires watching habits. Internal teams fall back to what they know how to discuss. Engineers discuss features. Sales discusses offers. Operations discusses throughput. Finance discusses cost. None of those views is wrong. They become dangerous when they stop answering to the progress buyers hired.\n\nThe objection is that a job filter could make a company timid. It should not. A strong job can support bold change when the change delivers the progress better. The filter blocks drift, not invention. It asks every new move to show its service to the buyer's circumstance.\n\nIn the weekly meeting, the practical discipline is to keep the job visible in recurring decisions. Put it in roadmap reviews, metric reviews, exception decisions, hiring criteria, scripts, and postmortems. Not as a slogan on a wall, but as the test by which tradeoffs are argued. If the job is not used when decisions get hard, it is not focus. It is vocabulary."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch08-ex01",
+      "title": "Asha finds truffle risotto where dinner rescue used to be",
+      "tags": [
+        "grocery",
+        "drift",
+        "weeknight"
+      ],
+      "planSpec": {
+        "domain": "grocery pickup",
+        "audience": "retail teams",
+        "stakes": "premium features blur original job",
+        "format": "scene",
+        "requiredBeat": "she sees service drift away from dinner rescue"
+      },
+      "scenario": "Asha slides open the pickup freezer at 5:58 p.m., frost smoking around trays of truffle risotto and herb-crusted salmon. Two years ago the service won parents with ten-minute taco bags and rotisserie sides. The new kits look beautiful in photos and take forty minutes at home. A toddler is crying by bay three. Asha needs to decide whether the premium line grows the brand or drifts from the dinner rescue customers hired.",
+      "whatToDo": "Test the new kits against the weeknight rescue job. Measure prep time, cleanup, child interruptions, and repeat orders from rushed households before celebrating margin.",
+      "whyItMatters": "A prettier offer can blur the job that earned trust. The buyer hired relief before bedtime, not a project that flatters the merchandiser."
+    },
+    {
+      "exampleId": "competing-against-luck-ch08-ex02",
+      "title": "Brenna says the ugly attendance button did real work",
+      "tags": [
+        "school",
+        "dashboard",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "school software",
+        "audience": "product teams",
+        "stakes": "cleaner reporting damages morning readiness",
+        "format": "dialogue",
+        "requiredBeat": "she resists a cleaner dashboard because it weakens the job"
+      },
+      "scenario": "Brenna taps the new attendance dashboard at 7:44 a.m., cafeteria noise leaking through the classroom door. \"It's cleaner,\" the product manager says. Brenna points to the missing orange button from the old screen. \"That ugly thing told the office who had not eaten.\" A child in row two lays his head on his sleeve. Brenna has to decide whether to accept a prettier report or insist that morning calm is the job the tool must protect.",
+      "whatToDo": "Restore the breakfast signal before polishing reports. Judge the dashboard by whether it helps teachers stabilize the first twenty minutes.",
+      "whyItMatters": "Internal clarity is useful only if it serves the buyer's progress. A clean screen that loses the hungry-child signal has drifted."
+    },
+    {
+      "exampleId": "competing-against-luck-ch08-ex03",
+      "title": "Dillon weighs the tune-up bundle against the brake lever",
+      "tags": [
+        "bike shop",
+        "metrics",
+        "commute"
+      ],
+      "planSpec": {
+        "domain": "bike repair",
+        "audience": "local service leaders",
+        "stakes": "sales metric conflicts with commuter job",
+        "format": "decision_point",
+        "requiredBeat": "he must choose the job over the internal metric"
+      },
+      "scenario": "Dillon unlocks the bike shop at 8:16 a.m., rain dripping from a nurse's helmet onto the rubber mat. Her rear brake lever hits the handlebar. The new metric sheet by the register rewards full tune-up bundles, and the script starts with tire wear. Her hospital shift begins at nine. Dillon's hand rests on the clipboard. He must decide whether to chase the bundle metric or protect the commute job that brought her through the door.",
+      "whatToDo": "Let the commute job overrule the script. Fix the brake first, then offer other work only after the urgent progress is safe.",
+      "whyItMatters": "A metric that delays the hired progress creates drift. The shop is trusted because riders can get moving, not because every visit becomes a bundle."
+    },
+    {
+      "exampleId": "competing-against-luck-ch08-ex04",
+      "title": "Mable predicts loyalty enrollment and sees keys delayed",
+      "tags": [
+        "hotel",
+        "predict reveal",
+        "check-in"
+      ],
+      "planSpec": {
+        "domain": "hotel operations",
+        "audience": "hospitality teams",
+        "stakes": "side goal interrupts the job",
+        "format": "predict_reveal",
+        "requiredBeat": "her loyalty prediction fails when it slows check-in"
+      },
+      "scenario": "Mable watches the 10:13 p.m. check-in line curl past the lobby plants, suitcase wheels ticking on tile. She predicted the new loyalty prompt would help tired guests by unlocking future perks. The first family needs crib sheets and keys. The prompt adds ninety seconds, two declined emails, and a child melting into a coat pile. The reveal is obvious from behind the desk. Guests hired arrival to become rest, and the side goal is blocking it. Mable needs to choose tonight's script.",
+      "whatToDo": "Move loyalty enrollment out of the late-night arrival path. Protect keys, room readiness, and urgent family needs before asking for future engagement.",
+      "whyItMatters": "A useful business goal can still blur the job. At 10:13 p.m., progress is getting from lobby to room with less friction."
+    },
+    {
+      "exampleId": "competing-against-luck-ch08-ex05",
+      "title": "Nate traces the dental chain drift into whitening scripts",
+      "tags": [
+        "dental",
+        "postmortem",
+        "upsell"
+      ],
+      "planSpec": {
+        "domain": "healthcare business",
+        "audience": "executives",
+        "stakes": "upsell habit replaced trusted job",
+        "format": "postmortem",
+        "requiredBeat": "he sees drift from pain relief to cosmetic selling"
+      },
+      "scenario": "Nate reviews call recordings at 9:06 p.m. in the dental chain's empty training room, whitening posters stacked against the wall. Same-day pain visits are down. The script now asks about cosmetic goals before confirming emergency slots. Patients with cracked molars keep hanging up after the third question. The postmortem is not mysterious. The chain was hired for fast relief, then taught the front desk to behave like a beauty counter.",
+      "whatToDo": "Recenter emergency calls on pain relief. Remove cosmetic prompts from urgent scheduling and measure whether scared patients reach a chair faster.",
+      "whyItMatters": "Drift can come from revenue logic. If the first interaction no longer serves the job, buyers stop trusting the organization with the moment that matters."
+    },
+    {
+      "exampleId": "competing-against-luck-ch08-ex06",
+      "title": "Viola shortens the pantry form after the hallway backs up",
+      "tags": [
+        "nonprofit",
+        "before after",
+        "access"
+      ],
+      "planSpec": {
+        "domain": "food pantry",
+        "audience": "nonprofit operators",
+        "stakes": "well-meant process slows core progress",
+        "format": "before_after",
+        "requiredBeat": "she restores flow after intake form hurts the job"
+      },
+      "scenario": "Viola counts twenty-three people in the pantry hallway at 4:31 p.m., shopping carts angled against the wall and a baby bottle rolling under a chair. Before, volunteers added a six-page intake form to understand families better. After watching parents miss buses while proving need they had already proved, she moves two questions to the follow-up call and restores the express table. The pantry returns to its job: get food home before the evening falls apart.",
+      "whatToDo": "Keep the intake process answerable to the food-home job. Collect only what is needed now and move learning questions away from the bottleneck.",
+      "whyItMatters": "Good intentions can still create drift. The pantry's first duty is progress in the family's evening, not the organization's perfect data set."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch08-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying preventing drift back to internal categories and side goals after the job is known. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying preventing drift back to internal categories and side goals after the job is known. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying preventing drift back to internal categories and side goals after the job is known. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch08-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying preventing drift back to internal categories and side goals after the job is known. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying preventing drift back to internal categories and side goals after the job is known. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch08-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying preventing drift back to internal categories and side goals after the job is known. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch08-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying preventing drift back to internal categories and side goals after the job is known. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch08-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying preventing drift back to internal categories and side goals after the job is known. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch08-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying preventing drift back to internal categories and side goals after the job is known. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch08-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch08-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch08-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back job focus?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch08-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves job focus."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "Drift rarely announces itself.",
+      "location": "breakdown.fastRead",
+      "why": "It warns that loss of focus often looks reasonable."
+    },
+    {
+      "text": "The job should judge the metric, not the other way around.",
+      "location": "breakdown.fullRead",
+      "why": "It gives a strong management rule."
+    },
+    {
+      "text": "The filter blocks drift, not invention.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps focus from becoming rigidity."
+    }
+  ]
+}

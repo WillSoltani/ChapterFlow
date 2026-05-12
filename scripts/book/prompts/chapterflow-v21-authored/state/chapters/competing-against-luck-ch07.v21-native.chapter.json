@@ -1,0 +1,319 @@
+{
+  "chapterId": "competing-against-luck-ch07",
+  "number": 7,
+  "title": "Integrating Around a Job",
+  "readingTimeMinutes": 11,
+  "hook": "Arlen sees the discharge folder fail between the wheelchair and the pharmacy window.",
+  "counterintuition": "Most teams assume insight is enough once the job is known. But actually the organization has to coordinate around that job or each local improvement can damage it.",
+  "tryThisNow": "Trace one customer path across three handoffs. Mark where each team optimizes locally, then write the progress the whole path must protect.",
+  "keyTakeaway": "A job becomes useful strategy only when product, service, operations, and support coordinate around the full progress buyers hired, not their separate internal targets.",
+  "breakdown": {
+    "fastRead": "Arlen watches a patient leave with clear discharge instructions, then get stuck at the pharmacy window because one form is missing. The nurse did her job. The printer did its job. The pharmacy followed policy. The patient's job still broke. Integration around a job means the organization judges handoffs by the progress the customer is trying to make, not by whether each department can defend its own step.",
+    "deepRead": "A clear job can still fail in delivery. The customer experiences a path, while the organization often manages pieces. Product owns one part, operations another, service another, finance another. Each piece can improve its own metric and still make the buyer's progress worse.\n\nAt 12:22 p.m., Faye stands beside a cafe pickup shelf while a courier, a regular, and a parent with a stroller all look for unlabeled bags. The app team improved ordering speed. The kitchen improved batch output. The counter team reduced interruptions. The job, getting lunch without uncertainty, got worse because nobody owned the full moment.\n\nThe integration move is to make the job the shared reference point. Ask how each handoff helps or hurts the progress buyers hired. Then change incentives, scripts, tools, and staffing around that shared standard. The limit is scope. This is not a call for endless harmony. It is a demand that local wins lose priority when they weaken the full job.",
+    "fullRead": "Jobs insight can create a new organizational problem. Once a team knows what buyers are hiring, the company may still be built to deliver something else. Departments carry their own metrics, calendars, budgets, and definitions of good work. Those structures are not malicious. They are just partial. The buyer does not experience them as partial. The buyer experiences one path that either helps progress happen or makes it harder.\n\nIntegration around the job means the job becomes the deciding reference point across functions. Product asks whether features protect the progress. Operations asks whether process choices keep the moment reliable. Service asks whether scripts reduce uncertainty at the right time. Finance asks whether rules create friction that defeats the hire. The work is practical, not poetic.\n\nJace, a university advisor at 3:45 p.m., can see this on a student transfer path. Admissions says the portal is complete. Financial aid says the award letter is correct. The registrar says credits are posted. The student still sits in the hallway unable to choose classes because nobody integrated around the job: make transfer feel real enough to plan Monday morning. Each office passed its checklist. The student's progress stalled.\n\nIntegration also protects against attractive local improvements. A faster kitchen can flood pickup shelves with unlabeled bags. A stricter fraud rule can make an insurance claim feel accusatory right when the customer needs stability. A beautiful app can move work onto a customer who was hiring relief from coordination. The right question is not, did this function improve. The right question is, did the buyer's progress become clearer, safer, faster, or more complete.\n\nThe objection is that companies cannot reorganize around every job. True. The discipline is to choose the jobs that define the offering's earned resume and integrate around those. Not every request gets a new structure. But the core hire deserves cross-functional protection because it is what buyers return for.\n\nWhen integration works, tradeoffs become easier to argue. A department can still propose its local win, but it has to show how that win serves the full job. The job becomes the common language for refusing improvements that are good only from the inside."
+  },
+  "examples": [
+    {
+      "exampleId": "competing-against-luck-ch07-ex01",
+      "title": "Arlen watches discharge fail at the pharmacy window",
+      "tags": [
+        "hospital",
+        "handoff",
+        "service path"
+      ],
+      "planSpec": {
+        "domain": "healthcare discharge",
+        "audience": "operations leaders",
+        "stakes": "local completion breaks whole progress",
+        "format": "scene",
+        "requiredBeat": "he sees separate departments succeed while the patient job fails"
+      },
+      "scenario": "Arlen holds a blue discharge folder at 1:18 p.m. outside room 412, wheelchair brakes squeaking under his shoe. The nurse has explained every page. Transport arrives on time. Downstairs, the pharmacy window rejects the refill because a prior authorization form is missing. The patient looks at the parking validation in her lap and starts to cry. Arlen faces a choice: praise the unit's clean handoff or trace the job that broke between departments.",
+      "whatToDo": "Map discharge as one job: leave safely with medicine in hand. Put nursing, transport, pharmacy, and insurance checks on the same path before grading success.",
+      "whyItMatters": "Each function can pass while the patient fails. Integration protects the progress buyers experience across handoffs, not the paperwork each team owns."
+    },
+    {
+      "exampleId": "competing-against-luck-ch07-ex02",
+      "title": "Faye hears three lunches waiting on the same shelf",
+      "tags": [
+        "cafe",
+        "pickup",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "restaurant operations",
+        "audience": "service teams",
+        "stakes": "separate optimizations create uncertainty",
+        "format": "dialogue",
+        "requiredBeat": "she hears pickup uncertainty from several users"
+      },
+      "scenario": "Faye stands at 12:22 p.m. by the cafe pickup shelf, steam fogging the plastic lids. \"Mine said ready eight minutes ago,\" a courier says. A parent rocks a stroller with one foot. A regular opens the wrong bag and winces. \"The app is faster now,\" the barista says from the pass. Faye looks at the unlabeled row of lunches. She has to decide whether faster ordering matters if nobody can tell which meal is theirs without touching three bags.",
+      "whatToDo": "Integrate app timing, kitchen batching, labels, and shelf flow around the pickup job. Measure uncertainty at the shelf, not only order speed.",
+      "whyItMatters": "The buyer hired lunch without confusion. Local speed gains can make the whole path worse when no team owns the final moment."
+    },
+    {
+      "exampleId": "competing-against-luck-ch07-ex03",
+      "title": "Jace stops the transfer checklist in the hallway",
+      "tags": [
+        "university",
+        "advising",
+        "coordination"
+      ],
+      "planSpec": {
+        "domain": "higher education",
+        "audience": "administrators",
+        "stakes": "complete steps do not equal student progress",
+        "format": "decision_point",
+        "requiredBeat": "he must choose between office checklists and the student job"
+      },
+      "scenario": "Jace sits at 3:45 p.m. on a hallway bench with a transfer student, three office stamps lined up on a yellow folder. Admissions says complete. Financial aid says packaged. The registrar says credits posted. She still cannot pick Monday classes because the biology lab credit is unlabeled. Jace's tablet shows every office green. He must decide whether green means done or whether the real job is making transfer feel real enough to plan the first week.",
+      "whatToDo": "Create one transfer path owned around class-ready confidence. Tie admissions, aid, credits, and advising to the student's next planning decision.",
+      "whyItMatters": "The student experiences one transition, not four departments. Integration means the shared job outranks each office's claim that its piece is complete."
+    },
+    {
+      "exampleId": "competing-against-luck-ch07-ex04",
+      "title": "Noemi predicts the app will fix wheelchair assistance",
+      "tags": [
+        "airport",
+        "predict reveal",
+        "accessibility"
+      ],
+      "planSpec": {
+        "domain": "airport service",
+        "audience": "service designers",
+        "stakes": "digital improvement fails without operational integration",
+        "format": "predict_reveal",
+        "requiredBeat": "her app prediction fails when handoffs break"
+      },
+      "scenario": "Noemi checks the new assistance app at 6:06 a.m. near gate B14, predicting fewer wheelchair delays because requests now arrive instantly. The first passenger still waits twenty-two minutes. The alert reached dispatch, but security changed the lane, the chair closet key sat with a contractor, and the gate agent never saw the update. The reveal is blunt. The app improved one signal while the job still depends on a chain of people and locks. Noemi needs to choose the next fix before boarding starts.",
+      "whatToDo": "Redesign the whole assistance chain. Connect alerts, lane changes, chair access, and gate confirmation around the passenger's progress through the airport.",
+      "whyItMatters": "A digital signal cannot deliver the job alone. The buyer needs coordinated movement, and every broken handoff becomes part of the product."
+    },
+    {
+      "exampleId": "competing-against-luck-ch07-ex05",
+      "title": "Brice finds the claim redesign made stability harder",
+      "tags": [
+        "insurance",
+        "postmortem",
+        "rules"
+      ],
+      "planSpec": {
+        "domain": "insurance claims",
+        "audience": "executives",
+        "stakes": "internal fraud goals damaged customer progress",
+        "format": "postmortem",
+        "requiredBeat": "he sees local rule weakened the full job"
+      },
+      "scenario": "Brice reads claim notes at 8:58 p.m. in the storm-response trailer, rain ticking on the roof and a space heater rattling under the folding table. The fraud team tightened photo rules. The app team made upload faster. Customer calls doubled. Families with roof tarps could not tell which photo proved what, so they drove back to damaged houses. The postmortem hurts: the company improved control while making the stability job harder.",
+      "whatToDo": "Integrate fraud control with the customer's need for fast stability. Show exact photo examples, field support, and next-step certainty inside one claim path.",
+      "whyItMatters": "A rule can be rational inside one function and destructive across the job. The claimant hired help to regain stability, not a faster way to feel accused."
+    },
+    {
+      "exampleId": "competing-against-luck-ch07-ex06",
+      "title": "Yoni moves the hardware handoff to the aisle",
+      "tags": [
+        "retail",
+        "before after",
+        "project completion"
+      ],
+      "planSpec": {
+        "domain": "hardware retail",
+        "audience": "store teams",
+        "stakes": "handoffs around a project determine success",
+        "format": "before_after",
+        "requiredBeat": "he changes handoffs after seeing the whole project fail"
+      },
+      "scenario": "Yoni watches a customer at 5:39 p.m. carry tile adhesive, a notched trowel, and the wrong spacer size toward checkout. Before, each aisle had a specialist and the register scanned cleanly. After three weekend returns, he moves a project cart to aisle nine with grout samples, spacer cards, and a clerk who asks about tile size before checkout. The store stops selling items separately and starts protecting the bathroom repair job.",
+      "whatToDo": "Organize the aisle around the project job. Connect advice, compatible parts, and checkout checks so the customer leaves with a complete path, not separate SKUs.",
+      "whyItMatters": "The buyer's progress fails when one missing piece sends the project backward. Integration makes the whole repair more reliable than any single shelf."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch07-q01",
+        "prompt": "At 8:05 a.m., a bakery owner watches three regulars skip the croissants and buy plain coffee before the train doors close. The team is applying coordinating functions around the full customer job instead of local goals. Which next move best follows the jobs lens for this situation?",
+        "choices": [
+          "Name the circumstance, the progress desired, and the substitutes already being used before changing features.",
+          "Rank customers by demographic similarity and average their requests into one roadmap item.",
+          "Ask the loudest buyer which feature would make the product seem more premium."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q02",
+        "prompt": "During a 2:20 p.m. nurse handoff, a patient keeps using a pill organizer even after the app sends perfect reminders. The team is applying coordinating functions around the full customer job instead of local goals. Which interpretation should the team test before changing the product?",
+        "choices": [
+          "Assume the buyer is irrational because the newer option has more features.",
+          "Treat the visible workaround as evidence of a struggling moment, then ask what it helps the buyer avoid or achieve.",
+          "Lower the price first, then look for explanations after volume changes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q03",
+        "prompt": "At 6:35 p.m., a teacher sees parents ignore the polished portal and text photos of homework to each other. The team is applying coordinating functions around the full customer job instead of local goals. Which question would reveal the progress being sought?",
+        "choices": [
+          "Ask which color, size, and interface label each segment prefers.",
+          "Ask whether the buyer likes the brand more than competing brands.",
+          "Ask what changed right before the purchase, what felt hard about the old way, and what would count as progress now."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q04",
+        "prompt": "On a rainy Saturday at 11:10 a.m., a hardware clerk notices renters buying tape, towels, and a cheap fan together. The team is applying coordinating functions around the full customer job instead of local goals. Which sign matters most for judging the real competitor?",
+        "choices": [
+          "The substitute set the buyer compares in the moment, including awkward fixes outside the formal category.",
+          "The products displayed closest on the shelf, because they share the same category label.",
+          "The competitor with the highest advertising spend in the annual report."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q05",
+        "prompt": "At 9:48 p.m., a founder reads cancellation notes that praise the product but mention setup dread in every third line. The team is applying coordinating functions around the full customer job instead of local goals. Which response avoids mistaking polite feedback for causal evidence?",
+        "choices": [
+          "Treat every compliment as proof that the positioning is already clear.",
+          "Separate praise from switching evidence and look for anxiety, habit, push, and pull in the actual story.",
+          "Rewrite the website copy around the most flattering quote."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q06",
+        "prompt": "Before a 7:30 a.m. board review, a transit planner compares riders who buy weekly passes with riders who pay one fare at a time. The team is applying coordinating functions around the full customer job instead of local goals. Which data cut would make the choice pattern less blurry?",
+        "choices": [
+          "Blend all buyers into one persona so the team has a cleaner deck.",
+          "Focus only on lifetime value and ignore the purchase moment.",
+          "Split behavior by occasion and pressure, then compare what each group is trying to get done."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q07",
+        "prompt": "At 4:12 p.m., a dentist sees a teenager use whitening strips carefully but abandon the prescribed night guard. The team is applying coordinating functions around the full customer job instead of local goals. Which design move respects the social and emotional pressure in the moment?",
+        "choices": [
+          "Reduce the friction that makes the buyer feel exposed, guilty, rushed, or incompetent in that setting.",
+          "Add a technically superior feature even if it makes the buyer feel more watched.",
+          "Tell users they should care more about the functional benefit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q08",
+        "prompt": "While closing a library desk at 5:55 p.m., a clerk watches students book tiny rooms even when large tables are empty. The team is applying coordinating functions around the full customer job instead of local goals. Which observation most clearly points to a job rather than a category preference?",
+        "choices": [
+          "The buyer says the category is interesting during a survey.",
+          "The buyer uses the option when a specific situation appears, even when other category choices are available.",
+          "The buyer recognizes the logo without remembering the purchase."
+        ],
+        "correctIndex": 1,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch07-q09",
+        "prompt": "At 10:03 a.m., a farm co-op manager hears growers ask for faster invoices while carrying handwritten notebooks. The team is applying coordinating functions around the full customer job instead of local goals. Which experiment would test whether the stated request matches the real hire?",
+        "choices": [
+          "Ask the sales team to vote on the most elegant feature name.",
+          "Copy the category leader and wait for the market to notice.",
+          "Stage a small test around the moment of struggle and watch whether the buyer switches without being coached."
+        ],
+        "correctIndex": 2,
+        "explanation": "The strongest answer starts with the pressured circumstance and the progress at stake. It treats observed behavior as evidence, then tests whether a real switch happens when that job is served better.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch07-rc01",
+      "front": "A customer praises the product but keeps using a clumsy workaround. What should you retrieve first?",
+      "back": "Retrieve the situation before the quote. Ask when the workaround appears, what progress it protects, and which anxiety keeps the customer from switching cleanly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-rc02",
+      "front": "You see one product used in two different moments. What move keeps the analysis sharp?",
+      "back": "Separate the moments. A shared product name can hide different jobs, different substitutes, and different standards for what good means.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-rc03",
+      "front": "A roadmap debate turns into feature ranking. How do you bring back integration around the job?",
+      "back": "Put the buyer's struggling moment on the table, name the progress being hired, and judge each feature by whether it helps that movement happen.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-rc04",
+      "front": "A team has a beautiful story from one buyer. What question prevents overreach?",
+      "back": "Ask which evidence repeats across similar circumstances and which details are local. A job story earns power through repeated hires, not through one vivid quote.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Practice reading demand from the situation before judging the product. The skill is to name the progress a person is trying to make, list the substitutes already in play, and test whether your offer helps that progress better than the current workaround.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a meeting starts ranking feature ideas, then write the buyer's exact moment of struggle at the top of the notes and force every option to answer how it improves integration around the job."
+      },
+      {
+        "context": "health",
+        "plan": "If you abandon a tool that looked sensible, then pause for one minute and name what the old habit protected before you replace it with another polished option."
+      },
+      {
+        "context": "personal",
+        "plan": "If a repeated purchase feels oddly satisfying or oddly disappointing, then write the time, place, substitute, and desired progress before deciding what to buy next."
+      },
+      {
+        "context": "relationships",
+        "plan": "If someone asks for a surface fix, then ask what situation made the request urgent and what would feel better after the fix works."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, catch one choice while it is happening. Write the clock time, the place, the old workaround, the anxiety around switching, and one sentence naming the progress you are hiring the option to deliver.",
+    "weeklyPractice": "Once this week, interview one person about a recent switch. Do not start with features. Reconstruct the moment, the push away from the old way, the pull of the new way, and the substitute they almost kept."
+  },
+  "memorableLines": [
+    {
+      "text": "The patient's job still broke.",
+      "location": "breakdown.fastRead",
+      "why": "It shows why local success is insufficient."
+    },
+    {
+      "text": "The customer experiences a path, while the organization often manages pieces.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the organizational gap."
+    },
+    {
+      "text": "The job becomes the common language for refusing improvements that are good only from the inside.",
+      "location": "breakdown.fullRead",
+      "why": "It gives integration a practical use."
+    }
+  ]
+}

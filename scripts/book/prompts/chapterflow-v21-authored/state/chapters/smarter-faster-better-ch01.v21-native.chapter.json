@@ -1,0 +1,325 @@
+{
+  "chapterId": "smarter-faster-better-ch01",
+  "number": 1,
+  "title": "Motivation",
+  "readingTimeMinutes": 12,
+  "hook": "A wet floor cone at Bay 3 teaches the first rule: people move when the next move feels theirs.",
+  "counterintuition": "Most people assume motivation starts with more pressure, clearer facts, or a louder deadline. It usually starts smaller: a real choice close enough to the work that action feels like something the person can begin.",
+  "tryThisNow": "Choose one stalled task, write three possible first moves on paper, circle the one you will actually start, and do it for ninety seconds before reopening the larger plan.",
+  "keyTakeaway": "Motivation strengthens when people can claim a concrete first move, because ownership at the launch point turns awareness into action faster than pressure alone.",
+  "breakdown": {
+    "fastRead": "At Bay 3 before sunrise, a supervisor can make the spill cleanup look orderly by reading names from a clipboard. The floor will still get mopped. The deeper question is what the room learns. If every hand waits for the next order, the team has compliance but little launch.\n\nMotivation is not just wanting the result. It is feeling that the next move is available to you. A person can understand the problem and still fail to start if the action feels borrowed.\n\nGive the standard. Keep the safety rule. Then ask for the first move each person will own. Motivation starts when a person can feel a hand on the first move.",
+    "deepRead": "Robert Philippe had a life organized around motion. He built businesses, handled deals, and knew how to act. Then initiation went missing. He could still recognize his world. He could still explain what needed attention. What failed was the small inner bridge from seeing to starting.\n\nInformation can stay intact while initiative fails at the gate. That is the useful distinction. Knowing is one job. Launching is another.\n\nYou can see the same split in ordinary rooms. A rehab aide can know the patient should reach for the cup, then accidentally steal the reach by guiding the hand too soon. A daughter can know her father needs help with bills, then sort, dial, and explain until the one person who needs to start has no starting place left. A manager can know the work must move, then assign every step so tightly that the team learns to wait.\n\nThe move is not to remove structure. Structure matters. The spill still needs a safety standard. The therapy still needs care. The bill still needs the right account number. The point is to keep one meaningful choice close to the person who must act.\n\nAgency is practical. It gives the mind evidence that this next motion belongs to me. Once that evidence appears, effort has a place to attach. Without it, pressure can rise while action stays inert. The live skill is simple and hard: protect the first owned move.",
+    "fullRead": "A person can be surrounded by reasons and still not move. The overdue task is visible. The cost is known. The deadline is close. Someone has explained it twice. From the outside, the stall looks like laziness or denial. From inside the moment, it often feels different. The next move does not feel like a move the person owns. It feels like a demand, a blur, or a trap.\n\nThat distinction matters because it changes the repair. If the problem is ignorance, add information. If the problem is weak pressure, add consequence. But if the problem is launch, more information and more pressure can make the stall heavier. The person can become more aware of the gap and still no closer to action.\n\nRobert Philippe makes that gap visible in an extreme form. Broad understanding remains while initiative fails. The point is not to turn every stall into medicine. The point is to notice a mechanism that appears in smaller ways everywhere. Action has to cross a gate. The gate opens more often when the person can make a real choice that changes what happens next.\n\nThat is why fake autonomy feels so thin. Pick the blue folder or the green folder, while every meaningful part of the task is already locked, does not create ownership. It only decorates control. Real agency is smaller and more consequential. Choose which customer to call first. Choose which cup to reach for. Choose which component to test before the captain touches the robot. The choice does not have to be grand. It has to be live.\n\nThere is a second trap: rescue. Rescue often arrives wearing kindness. The capable person sees the delay and steps in. She sorts the mail, drafts the email, fills the form, moves the hand, chooses the first task. The room gets calmer. The helper feels useful. Yet the action that mattered most has been removed from the person who needed to begin it. The system becomes cleaner and less self-propelling at the same time.\n\nA structure should guide the next action without stealing the authorship that makes action begin. That sentence is the balance. Too little structure can become drift. Unlimited choice can overwhelm. A blank page is not always freedom. Sometimes it is just a larger place to freeze. Strong design gives enough frame that the next move is clear, and enough control that the person can say, honestly, I am the one starting this.\n\nThat is why the bus depot scene is not about being gentle. The fuel spill still has rules. The first bus still leaves soon. The supervisor still owns the standard. What changes is the launch. Instead of turning three mechanics into hands attached to her clipboard, she asks each person to claim a task in the next sixty seconds. The standard remains outside them. The first move comes from them.\n\nWhen a task stalls, do not ask only whether the person cares. Ask where ownership disappeared. Did the plan become so broad that no first move can be felt? Did help arrive so fast that the actor never started? Did control become so complete that compliance replaced initiative?\n\nThe repair is often embarrassingly concrete. Put down the clipboard. Offer two cups. Slide three envelopes across the table. Circle one workbook question. Then let the person begin before you improve the motion. A rough owned start beats a perfect borrowed one, because motivation is built at the instant the person feels the action cross from requirement into choice."
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01-branka-bay3",
+      "title": "Branka leaves the wrench on the floor cone",
+      "tags": [
+        "decision_point",
+        "depot",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "a shift sergeant at a city bus depot deciding how to restart a stalled cleanup after a fuel spill",
+        "audience": "a frontline supervisor who has learned to keep every small decision in her own pocket",
+        "stakes": "whether the mechanics start moving before dispatch or wait for another order at every step",
+        "format": "decision_point",
+        "requiredBeat": "she chooses whether to assign every cleanup task herself or make each mechanic claim one first move"
+      },
+      "scenario": "Branka grips a wet floor cone at 4:58 a.m. in Bay 3 of the Meriden bus depot, diesel sharp in the drain grate and three mechanics staring at the spill kit. The first bus leaves in thirty-seven minutes. Her clipboard already has names beside absorbent pads, mop, filter check, and bay signoff. She can read the list aloud and get neat obedience. Then she sees the men waiting for her mouth to start their hands. She has to decide whether to keep commanding or put the clipboard down and make each mechanic claim the first move.",
+      "whatToDo": "Put the clipboard on the lift rail and ask each mechanic to name the task he will start in the next sixty seconds. Keep the safety standard fixed, but give the launch back to the people doing the work.",
+      "whyItMatters": "Motivation often dies at the handoff between knowing and starting. The depot does not need more awareness of the spill. It needs a first action each person can feel as his own."
+    },
+    {
+      "exampleId": "ch01-ex02-cosimo-cups",
+      "title": "Cosimo lets the blue cup be chosen",
+      "tags": [
+        "dialogue",
+        "rehab",
+        "agency"
+      ],
+      "planSpec": {
+        "domain": "a rehab aide working with a stroke patient who has stopped initiating small movements",
+        "audience": "a caregiver tempted to help so quickly that the patient never owns the next motion",
+        "stakes": "whether therapy becomes passive handling or a place where initiation starts to return",
+        "format": "dialogue",
+        "requiredBeat": "he stops moving the patient's hand for him and asks which cup the patient wants to reach for first"
+      },
+      "scenario": "Cosimo sets two plastic cups on a tray at Tuesday 9:06 a.m. in the north therapy gym, blue on the left, yellow on the right, the rubber mat squeaking under his shoes. The patient's right hand lies open beside the tray. Cosimo reaches to guide it. \"I can help,\" he says. The patient looks past him at the wall clock. Cosimo stops with his fingers an inch above the wrist. \"Which cup do you want first?\" he asks. The patient's thumb twitches toward blue, and Cosimo has to decide whether to wait or finish the reach for him.",
+      "whatToDo": "Ask for a choice before offering help, then wait long enough for the patient to begin the movement. Support the motion after it starts, not before ownership has a chance to appear.",
+      "whyItMatters": "Help can steal the very action it wants to restore. A chosen reach, even a tiny one, trains the bridge from intention to motion better than a perfectly guided hand."
+    },
+    {
+      "exampleId": "ch01-ex03-roksana-shoebox",
+      "title": "Roksana counts the battery packs she kept reclaiming",
+      "tags": [
+        "postmortem",
+        "school",
+        "robotics"
+      ],
+      "planSpec": {
+        "domain": "a middle-school robotics captain reviewing why her team froze during a practice build",
+        "audience": "a capable student leader who confuses helping with taking every decision back",
+        "stakes": "whether the team learns to build without waiting for her or turns into six helpers around one captain",
+        "format": "postmortem",
+        "requiredBeat": "she realizes the team froze because she kept taking every choice back"
+      },
+      "scenario": "Roksana kneels beside a shoebox of battery packs at 5:31 p.m. Friday in the storage closet behind the auditorium, the robot's claw still crooked on the carpet outside. Practice ended with six students watching her solder, cut zip ties, choose code branches, and retighten every screw. In her notebook she writes the stall points in order. The pattern is embarrassing. Every time someone picked a next step, she took it back to make it cleaner. The team did not lack effort. It had learned that every real choice returned to her hand.",
+      "whatToDo": "Mark the moments where she reclaimed a decision, then redesign the next practice so each student owns one component, one first action, and one visible test before she touches the robot.",
+      "whyItMatters": "A leader can drain initiative while looking useful. The team starts moving when ownership stays with the builder long enough to become responsibility, evidence, and pride."
+    },
+    {
+      "exampleId": "ch01-ex04-keon-first-line",
+      "title": "Keon watches the borrowed script slow the room",
+      "tags": [
+        "predict_reveal",
+        "training",
+        "calls"
+      ],
+      "planSpec": {
+        "domain": "a call-center trainer testing whether a tighter script will make new hires start faster",
+        "audience": "a trainer who mistakes clarity on the page for ownership in the headset",
+        "stakes": "whether trainees begin real calls with agency or hide behind words they did not choose",
+        "format": "predict_reveal",
+        "requiredBeat": "he predicts a script will speed trainees up, then sees calls move only after trainees write their own first line"
+      },
+      "scenario": "Keon drops eight laminated scripts beside a knot of headsets at 11:18 a.m. Monday in Training Room B, sure the new hires will start calls faster if the opening line is decided for them. The first practice round crawls. Three trainees read the same sentence in flat voices, then freeze when customers interrupt. Keon asks them to predict what would happen if each person wrote a first line in their own words. They guess it will get messy. Ten minutes later the room is louder, less neat, and every headset is live.",
+      "whatToDo": "Let trainees write the first line they will actually say, then practice with that line under the same call standard. Keep the goal stable while making the opening move theirs.",
+      "whyItMatters": "A script can clarify and still fail to launch. People act faster when the first move sounds like something they chose, not a borrowed sentence they are trying to survive."
+    },
+    {
+      "exampleId": "ch01-ex05-solene-card-table",
+      "title": "Solene stops sorting the envelopes for him",
+      "tags": [
+        "before_after",
+        "family",
+        "bills"
+      ],
+      "planSpec": {
+        "domain": "an adult daughter helping her father with overdue mail after months of stalled calls",
+        "audience": "a family helper who keeps rescuing so completely that the other person never starts",
+        "stakes": "whether her father regains one owned action or becomes more passive under better organized help",
+        "format": "before_after",
+        "requiredBeat": "her rescue routine stalls him, then a single chosen phone call restarts movement"
+      },
+      "scenario": "Solene lines up overdue envelopes at 2:44 p.m. Sunday on her father's card table, the chipped blue mug anchoring the phone bills in a neat stack. Before, she sorted, dialed, explained, and watched him shrink back into the chair. Today she slides three envelopes toward him and asks which call he wants to make before the kettle clicks off. He taps the smallest one, the water bill. After she reads only the number aloud, he presses the digits himself. His voice shakes, but it is his voice starting.",
+      "whatToDo": "Stop turning care into takeover. Offer a small set of real choices, let him choose the first call, and stay close enough to support without becoming the person who acts.",
+      "whyItMatters": "Rescue can make life neater while making initiative weaker. One chosen call restores the link between his decision and the next thing that happens."
+    },
+    {
+      "exampleId": "ch01-ex06-davi-page47",
+      "title": "Davi circles one GED question at 1:12 a.m.",
+      "tags": [
+        "reflection",
+        "study",
+        "nightshift"
+      ],
+      "planSpec": {
+        "domain": "a night janitor trying to restart GED study after months of opening the workbook and doing nothing",
+        "audience": "an adult learner who mistakes a full plan for the felt ownership of one starting move",
+        "stakes": "whether study begins tonight or the workbook becomes another object that proves he is behind",
+        "format": "reflection",
+        "requiredBeat": "he notices the workbook is not the problem, the first chosen question is"
+      },
+      "scenario": "Davi turns page 47 of the GED workbook at 1:12 a.m. in the staff break room, the vending machine humming and floor wax drying on his cuffs. He has opened this book nine nights in a row and shut it after reading the table of contents like it was a verdict. Tonight he notices the pencil in his hand before he notices the exam date. Not the whole math section. Not the whole future. Just question 12, circled once, because he picked it. The workbook has not changed. The first move has.",
+      "whatToDo": "Shrink the study session to one chosen question and do it before reviewing the whole plan. Let the owned start come first, then build the next block from the motion it creates.",
+      "whyItMatters": "A huge plan can freeze the person it is meant to guide. A chosen first question makes action available from inside the moment, where motivation has to begin."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "At 6:20 a.m., a bakery lead sees three prep cooks staring at a printed bake list while the ovens heat. Every task is clear, yet no one has touched the flour bins. Which move best applies the motivation principle?",
+        "choices": [
+          "Ask each cook to claim one first task out loud, then keep the bake standard visible while they start.",
+          "Read the full bake list again so no one can say the instructions were unclear.",
+          "Warn the cooks that the shift will run late if they do not move faster."
+        ],
+        "correctIndex": 0,
+        "explanation": "The block is not missing information. It is missing owned launch. Naming one first task gives each cook a concrete action that belongs to them while the standard still guides the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A physical therapist keeps lifting a patient's elbow into position before the patient tries. The sessions look smooth, but the patient starts fewer movements each week. What is the most likely flaw?",
+        "choices": [
+          "The therapist is choosing exercises that are too simple for the patient's current ability.",
+          "The therapist is helping before the patient's own initiation can appear.",
+          "The patient needs a longer explanation of why the exercise matters."
+        ],
+        "correctIndex": 1,
+        "explanation": "The help is arriving at the wrong moment. Smooth handling can remove the patient's first owned movement, which weakens the very bridge therapy needs to strengthen.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A college student has a clean exam schedule, four color-coded folders, and no completed practice problems. She says she is waiting until she feels ready. Which diagnosis fits best?",
+        "choices": [
+          "She lacks a clear enough overview of the semester calendar.",
+          "She is being irresponsible and needs a larger penalty for delay.",
+          "She has organized awareness without claiming a first action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The folders show visibility, not movement. The fix is to make the first practice problem feel chosen and startable, because motivation is failing at launch rather than at planning.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A warehouse manager gives pickers a new handheld app with three cosmetic color themes, but every route, break, and sequence is locked by software. Morale does not improve. Why not?",
+        "choices": [
+          "The choice is too cosmetic to create authorship over any meaningful next move.",
+          "The team needs more time to compare the three themes before judging the app.",
+          "The route locks are useful because fewer decisions always increase motivation."
+        ],
+        "correctIndex": 0,
+        "explanation": "Agency has to affect what happens next. Cosmetic choice can feel like fake autonomy, because it changes the surface while leaving the actor without ownership at the launch point.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A parent is trying to get a ten-year-old to pack for camp. The child knows the list and keeps wandering away. Which instruction is most likely to restart action without taking over?",
+        "choices": [
+          "Pack the bag for him once so he can see the right final result.",
+          "Ask him to choose whether socks or flashlight goes in first, then let him place it.",
+          "Explain again that the bus leaves early and missing items will be his fault."
+        ],
+        "correctIndex": 1,
+        "explanation": "The choice is small but real. It turns a known list into an owned first move, which is different from doing the work for him or increasing pressure around consequences.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A clinic administrator notices nurses wait for her approval before changing a broken room-turnover routine, even when the fix is obvious. What would a better system protect?",
+        "choices": [
+          "A rule that every possible change must be documented before anyone acts.",
+          "A public praise board for whoever follows the old routine most closely.",
+          "A narrow zone where nurses can choose and test the next improvement safely."
+        ],
+        "correctIndex": 2,
+        "explanation": "The administrator needs a structure that gives live ownership without losing safety. A narrow choice zone lets action begin near the work instead of waiting for permission.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A sales rep spends the first hour rereading account notes and never sends the uncomfortable follow-up. His manager wants one intervention before tomorrow's shift. Which one fits best?",
+        "choices": [
+          "Have him write the first customer's name on a sticky note and send that message before opening the full queue.",
+          "Require a longer end-of-day report describing every account he reviewed.",
+          "Tell him the backlog proves he needs to care more about the pipeline."
+        ],
+        "correctIndex": 0,
+        "explanation": "The sticky note narrows the field to one owned start. More reporting adds awareness, and moral pressure adds weight, but neither directly repairs the launch point.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A volunteer coordinator keeps assigning every detail of a food drive, then complains that volunteers show no initiative. Which question should she ask first?",
+        "choices": [
+          "How can I make the assignment sheet more detailed so they stop asking me questions?",
+          "Where have I removed the next real decision from the person who must act?",
+          "Which volunteer is least motivated and needs a private warning?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The question points at the design of authorship, not the volunteers' character. Initiative often disappears when the leader keeps every meaningful decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A language learner has a thirty-day app plan and a blank streak calendar, but keeps skipping the first lesson. Which replacement goal best follows the motivation logic?",
+        "choices": [
+          "Review the entire thirty-day plan each morning until the sequence feels familiar.",
+          "Promise a large reward at the end of the month to make the plan feel important.",
+          "Pick one phrase to speak aloud before breakfast today, then mark the calendar after the action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The replacement goal makes the first action immediate and owned. The larger plan can matter later, but motivation begins with a move the learner can start now.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch01-rc01",
+      "front": "A task is visible, urgent, and still untouched. What should you check before assuming the person does not care?",
+      "back": "Check whether the next move feels owned and startable. Awareness can be present while launch is missing, so the repair may be one concrete chosen action rather than another explanation.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch01-rc02",
+      "front": "You are helping someone so efficiently that they stop initiating. What is the correction?",
+      "back": "Move support after the first owned action. Offer a small real choice, wait for the person to begin, and then help the motion succeed without taking the launch away.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc03",
+      "front": "A team obeys every order but never starts without the manager. What design flaw should you retrieve?",
+      "back": "The room has compliance without authorship. Keep standards clear, but put a meaningful first decision back with the people doing the work so initiative can attach to action.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc04",
+      "front": "A plan offers many options and still freezes the person using it. How can too much choice weaken motivation?",
+      "back": "A blank field can make launch harder. Strong structure narrows the field enough for the person to feel one live, chosen move instead of facing a fog of equally possible starts.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch01-rc05",
+      "front": "A supervisor wants urgency without passivity. What balance should the next instruction hold?",
+      "back": "State the standard and the time pressure, then ask for a claimed first move. The demand stays real, but the launch comes from the actor instead of from the supervisor's script.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "The core skill is finding the exact place where awareness fails to become action. Look for missing ownership at the launch point, then restore one concrete choice that changes what happens next. Keep enough structure for the action to be clear, but not so much control that the person becomes a passenger.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If a project stalls after everyone agrees on the facts, then ask each owner to name one action they will start before the next meeting and what evidence will show it began."
+      },
+      {
+        "context": "health",
+        "plan": "If a health routine keeps restarting on paper, then choose one action under two minutes, such as filling the water bottle or putting shoes by the door, and do it before planning the full routine."
+      },
+      {
+        "context": "personal",
+        "plan": "If you open a task list and feel pinned by the whole thing, then circle one item, define the first physical move, and work for ninety seconds before editing the list."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you are helping someone you care about, then offer two real starting choices and wait for that person to choose before you advise, dial, carry, type, or fix anything."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, find one place where you keep waiting to feel motivated. Write three possible first moves, circle the one that feels most yours, and complete ninety seconds of it before you do any more planning.",
+    "weeklyPractice": "Once this week, review one stalled task or stalled person and map where ownership disappeared. Then redesign the next attempt so the first move is both specific and genuinely chosen."
+  },
+  "memorableLines": [
+    {
+      "text": "Motivation starts when a person can feel a hand on the first move.",
+      "location": "breakdown.fastRead",
+      "why": "It makes agency concrete by putting motivation at the first physical start."
+    },
+    {
+      "text": "Information can stay intact while initiative fails at the gate.",
+      "location": "breakdown.deepRead",
+      "why": "It separates knowing from launching in one compact distinction."
+    },
+    {
+      "text": "A structure should guide the next action without stealing the authorship that makes action begin.",
+      "location": "breakdown.fullRead",
+      "why": "It states the chapter's central balance as a practical design rule."
+    }
+  ]
+}

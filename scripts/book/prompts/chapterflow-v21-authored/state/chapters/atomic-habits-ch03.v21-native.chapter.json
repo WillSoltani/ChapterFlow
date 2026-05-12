@@ -1,0 +1,338 @@
+{
+  "chapterId": "atomic-habits-ch03",
+  "number": 3,
+  "title": "How to Build Better Habits in 4 Simple Steps",
+  "readingTimeMinutes": 14,
+  "hook": "A nurse blames willpower for the vending machine at 3am, but the loop blames adrenaline, and only one of them is right.",
+  "counterintuition": "Most readers think a stuck habit means a weak response, so they attack the response with more discipline. The loop has four slots, and three of them are usually doing the damage while the response takes the blame.",
+  "tryThisNow": "Pick one habit you've repeated today. Break it down: what made you want it, what triggered you to do it, what you actually did, what you got from it. Which runs the show?",
+  "keyTakeaway": "Every habit runs the same four slots: cue, craving, response, reward. When one stalls, name the slot doing no work and fix that one, not the whole loop.",
+  "breakdown": {
+    "fastRead": "At 3:14 a.m. The code blue ends. Before the nurse has decided anything, her badge is already swinging toward the vending machine. What just ran is a four-part loop. A cue: the body crashing after the adrenaline. A craving: something, anything, to settle. A response: the nearest food. A reward: the shaking stops. In a normal week, most people try to fix the response. Do not buy the chips. Try harder. That almost never works at 3 a.m. In practice, this is not a willpower problem. It is a loop with one weak slot. Name the four parts of a habit you keep. Point at the slot doing the real work. Leave the other three alone, and fix that one. Every habit you keep is a vote for the loop that built it. Find the empty slot before the next code blue.",
+    "deepRead": "A band director has tried sticker charts, lectures, and parent emails. The clarinets still do not practice between rehearsals. He sits at his desk on a Wednesday night and admits he has been pulling the wrong lever.\n\nEvery habit, kept or broken, runs the same four slots. Cue. Craving. Response. Reward. In that order, every time.\n\nMost stuck habits do not fail in all four. They fail in one. You cannot fix the right slot until you have named which one is broken.\n\nThe director's students get the cue. Tuesday rehearsal is loud and clear. They have the craving, sort of. They want to be good. The response is fine for the kid who already practices. What is missing is the reward. Practicing alone in a bedroom feels like nothing. So he makes the reward visible: a one-minute clip the student can send to a grandparent. Same kid, same horn, same cue. Different loop. Two clarinets pick up by Friday. One of them gets a video back from a grandmother in tears.\n\nNow flip it. A retired engineer cannot get himself to walk the dog before noon. His doctor is worried about his knee, and the next visit is in six weeks. He blames laziness. The response was never the problem. He used to walk the dog because the 7 a.m. alarm meant site visit, and the dog came along. Retirement deleted the cue. There is no alarm anymore. The slot did not break. It vanished.\n\nYou do not have a discipline problem. You have a slot problem. When a habit stalls, do not ask why you cannot do it. Ask which of the four is doing no work. Start there, with the version of the habit that ran this morning, before the same loop runs again tonight.",
+    "fullRead": "Two roommates are standing in a small kitchen on a Sunday night. The sink is full. Again.\n\n\"You always do this,\" one says. \"Why is it always me?\"\n\n\"Do what? I literally just walked in.\"\n\nThis is going to go the way it always goes, except one of them stops and tries something different. \"Wait. Where do you even see the sink from your room?\"\n\n\"I don't. My door faces the hallway.\"\n\n\"Right. So you don't see it. You see it when you're already in here making coffee, and by then it's just background.\"\n\nThey stopped arguing about character and started mapping a loop. A cue: seeing the sink. A craving: the small itch to clear it. A response: washing the dishes. A reward: a calmer kitchen, a quieter head. One of those four slots was missing for one of them. Not laziness. Geometry.\n\nThe loop is simple, which is why people skip past it. Cue, craving, response, reward, in that order, every time, for every habit you have ever kept and every one you have ever quit. Brushing your teeth runs it. Checking your phone runs it. The first cigarette and the last one ran it. The loop does not care whether the habit is good for you. It only cares that all four slots are filled.\n\nThe useful question is not whether a habit is good or bad. The useful question is which of the four slots is carrying the habit, and which one is empty.\n\nA freelance illustrator is three weeks from a book cover deadline she has already pushed twice. Miss it again and the contract goes, and so does next year's rent. The drawing gets hard around the jawline. Her stylus hovers. Something flickers, low and uncomfortable, the kind of feeling that wants to be anywhere else. The phone is already in her hand. Instagram opens. The discomfort is gone.\n\nFour slots, in order. The cue was the difficulty. The craving was relief from the dread. The response was the phone. The reward was the dread going quiet. She has been telling herself the problem is discipline. The problem is that the easiest thing within arm's reach fills the response slot, and the reward is real. Telling herself to try harder does not change any of those four facts.\n\nA line cook has quietly stopped drinking after shifts. Three earlier attempts failed. This one, eight months in, has held. He is afraid to look at it too closely.\n\nWhen he does look, he sees the earlier attempts only ever went after the response. Do not drink. Do not go to the bar. White-knuckle home. The cue was still there: the kitchen closing, the body buzzing. The craving was still there: the need to come down. The reward slot was empty, so the loop kept reaching for the old answer. This time the reward slot is filled by something else. A long shower. A podcast he saves for the walk home. The unwind happens. The loop closes. Sobriety stopped being deprivation and started being a different ending to the same evening.\n\nThree habits, three different empty slots. The illustrator's response is wrong. The roommates' cue is hidden. The cook fixed his reward and the rest fell in line.\n\nSo here is the move. Pick one habit you keep failing at, or one you cannot believe you have managed to keep. Walk it through the four slots out loud. Cue. Craving. Response. Reward. Do not generalize. Use today's version, the one that ran this morning. One slot will be doing all the work. One slot will be doing none. Start with the empty one. The other three will fall in behind it.\n\nOn a note beside the work, write the reminders plainly. A habit that reads as neglect is often a missing cue. If the trigger never reaches the eyes, willpower has nothing to act on, and resentment fills the slot that geometry should."
+  },
+  "examples": [
+    {
+      "exampleId": "ch03-ex01-jendayi-vending",
+      "title": "Jendayi reconstructs the vending machine run after a code blue",
+      "tags": [
+        "postmortem",
+        "pediatric",
+        "nurse"
+      ],
+      "planSpec": {
+        "domain": "a pediatric night-shift nurse who reaches for the vending machine every time a code blue ends",
+        "audience": "a healthcare worker whose schedule keeps overriding her food plans",
+        "stakes": "whether she keeps gaining weight she blames on willpower when the loop is actually adrenaline-crash hunger paired with the only food source still open at 3am",
+        "format": "postmortem",
+        "requiredBeat": "the nurse maps her vending-machine run onto cue (post-code adrenaline drop), craving (regulation, not sugar), response (the nearest food), reward (a body that finally stops shaking) and sees that the response slot is the only one she can change at work"
+      },
+      "scenario": "It is Tuesday morning, 7:15, and Jendayi is sitting in her car in the hospital garage with an empty Snickers wrapper on the passenger seat. She has gained eleven pounds since switching to nights in the pediatric ICU, and she has been telling herself it is willpower. This morning she walks the loop backward. The code on bed 4 ended at 3:02. By 3:09 her hands were shaking. By 3:11 she was at the machine in the staff hallway, the only food source still open. By 3:20 the shaking had stopped. She sees, for the first time, that she was never hungry for sugar.",
+      "whatToDo": "Map the run onto cue (post-code adrenaline drop), craving (regulation), response (nearest food), reward (steady hands), then change only the response: stash salted almonds and a banana in her locker.",
+      "whyItMatters": "The cue is built into the job and the reward is non-negotiable physiology. The response slot is the only one she controls at 3am, so that is where the lever has to go."
+    },
+    {
+      "exampleId": "ch03-ex02-thandiwe-spring-concert",
+      "title": "Thandiwe picks the lever that will fill the practice room",
+      "tags": [
+        "decision_point",
+        "school",
+        "trying"
+      ],
+      "planSpec": {
+        "domain": "a high school band director trying to get students to actually practice between rehearsals",
+        "audience": "a teacher who has tried sticker charts, lectures, and parent emails",
+        "stakes": "whether the spring concert sounds like a group of musicians or a group of kids who only play on Tuesdays",
+        "format": "decision_point",
+        "requiredBeat": "the director decides between fixing the cue (a practice-time text from a section leader) and fixing the reward (a recorded clip the student can send to a grandparent), and chooses the reward because that is the slot the loop is missing"
+      },
+      "scenario": "Thandiwe is at her desk in the band room on a Thursday at 4:12 p.m., spring concert eight weeks out, two index cards in front of her. Card one: have section leaders text every player at 6:30 p.m. on practice nights. Card two: ask each kid to record a fifteen-second clip on their phone and send it to one person who would be proud. The clarinets have rehearsal in twenty minutes. Her pen is hovering over the second card, and she has to commit before the bell.",
+      "whatToDo": "Pick the reward card. Have each student record a short clip after practice and send it to a grandparent, an aunt, anyone who will text back something warm within the hour.",
+      "whyItMatters": "Her students already have the cue (a rehearsal calendar), the craving (not letting the section down), and the response (a horn in the closet). The loop has no payoff a fourteen-year-old can feel the same night. Add the slot that is missing, not the one that is already there."
+    },
+    {
+      "exampleId": "ch03-ex03-pavlina-bashir",
+      "title": "Pavlina and Bashir map the sink loop at midnight",
+      "tags": [
+        "dialogue",
+        "roommates",
+        "dishes"
+      ],
+      "planSpec": {
+        "domain": "two roommates arguing about the dishes after a long week",
+        "audience": "adults sharing a small apartment where one person always cracks first",
+        "stakes": "whether a five-year friendship survives a sink that is never empty",
+        "format": "dialogue",
+        "requiredBeat": "the conversation moves from blame to loop-mapping out loud, ending when one roommate names that the cue is invisible to the other person because the sink is around a corner from the second bedroom"
+      },
+      "scenario": "Friday, 11:48 p.m. Pavlina is elbow-deep in suds again. Bashir walks in from the back bedroom holding a kombucha.\n'Five years, and you still wait until I crack.'\n'I'm not waiting. I genuinely don't see them.'\n'How is that possible?'\n'My door, the hallway, my desk. The sink is around the corner. I don't pass it.'\nPavlina sets down the sponge. 'So the cue, the pile, the smell, none of it reaches you?'\n'Not until you sigh from the kitchen.'",
+      "whatToDo": "Stop trading blame and walk the loop out loud: name the cue, craving, response, and reward, then fix the slot that is actually broken. Here that slot is the cue.",
+      "whyItMatters": "A habit that reads as neglect is often a missing cue. If the trigger never reaches the eyes, willpower has nothing to act on, and resentment fills the slot that geometry should."
+    },
+    {
+      "exampleId": "ch03-ex04-mireille-cover",
+      "title": "Yusrah's stylus hovers over a cover that will not resolve",
+      "tags": [
+        "vignette",
+        "freelance",
+        "opens"
+      ],
+      "planSpec": {
+        "domain": "a freelance illustrator who opens Instagram every time a drawing gets hard",
+        "audience": "a creative working alone from a studio apartment",
+        "stakes": "a book cover deadline she has already pushed twice",
+        "format": "vignette",
+        "requiredBeat": "a tight scene of the moment her stylus hovers, the difficulty registers as a flicker of dread, and the phone is already in her hand — narrated so the reader can name cue, craving, response, and reward in order without the text labeling them"
+      },
+      "scenario": "3:14 a.m. in a studio apartment that smells like cold coffee. Yusrah is on the fourteenth pass of a book cover, the deadline already pushed twice. Her stylus drifts above the canvas where a hand should be foreshortened and isn't. A small, familiar tightness blooms behind her sternum, the kind that wants to be anywhere else. Without looking, her thumb is already on the home button of the phone face-down by her wrist. The lock screen lights her knuckles before she has decided anything. The dread eases a quarter inch.",
+      "whatToDo": "Name the four parts out loud at the desk: hard passage (cue), itch to escape (craving), thumb to phone (response), relief (reward). Then move the phone to another room.",
+      "whyItMatters": "The loop runs in under two seconds because every slot is wired. Removing the phone breaks the response slot, which is the only one within reach while the cue (hard work) cannot be deleted without quitting the job."
+    },
+    {
+      "exampleId": "ch03-ex05-haruto-leash",
+      "title": "Haruto, Retired, and the Leash That Waits by the Door",
+      "tags": [
+        "thought_experiment",
+        "recently",
+        "structural"
+      ],
+      "planSpec": {
+        "domain": "a recently retired structural engineer who cannot get himself to walk the dog before noon",
+        "audience": "a 68-year-old whose identity used to come from a job site",
+        "stakes": "a knee his doctor says will lock up if he stops moving daily",
+        "format": "thought_experiment",
+        "requiredBeat": "the reader is asked to predict which of the four slots is broken before the chapter reveals that the cue (the alarm that used to mean 'site visit') has been deleted with retirement, not the response"
+      },
+      "scenario": "Haruto is 68, three months out from his last bridge inspection, and his border collie Biscuit is staring at the leash again. The doctor was clear: walk daily or the knee locks. Haruto has the shoes, the leash, the dog who wants to go, and a body that still works. He has done this walk a thousand times in his head. By 11:50 a.m. he is still in the kitchen. Before reading on, predict which of the four slots, cue, craving, response, or reward, is the one that broke when he retired.",
+      "whatToDo": "Before fixing anything, name which slot is missing. Then attach a new cue to an existing anchor: when the coffee finishes brewing, the leash comes off the hook.",
+      "whyItMatters": "For thirty years the 7 a.m. alarm meant site visit, and the body followed. Retirement deleted the cue, not the legs. A loop without a trigger does not fire, no matter how willing the response."
+    },
+    {
+      "exampleId": "ch03-ex06-emeka-eight-months",
+      "title": "Emeka, eight months in, finally looks at the loop",
+      "tags": [
+        "reflection",
+        "quietly",
+        "drinking"
+      ],
+      "planSpec": {
+        "domain": "a line cook who has quietly stopped drinking after shifts and wants to understand why this attempt stuck when three earlier ones failed",
+        "audience": "a 31-year-old in the first eight months of sobriety",
+        "stakes": "a streak he is afraid to examine too closely in case he breaks the spell",
+        "format": "reflection",
+        "requiredBeat": "he walks back through the loop and finds that the reward slot changed — the post-shift unwind is now a long shower and a podcast, not abstinence-as-deprivation — and recognizes that earlier attempts failed because they only attacked the response"
+      },
+      "scenario": "Emeka is on his fire escape at 1:14 a.m., apron balled in his lap, a glass of cold water sweating on the rail. Eight months. He lets himself ask the question he has been ducking, why this attempt held when three earlier ones cracked by week six. The cue is the same: shift over, line wiped, body still humming from the rail. The craving is the same: come back to himself. What is different is what comes after the long shower. A podcast in his ear, where there used to be a void shaped like a beer.",
+      "whatToDo": "Walk the loop one slot at a time and name which one actually changed. Then keep that slot sacred. The shower and the podcast are the habit, not the absence of the beer.",
+      "whyItMatters": "A response you only subtract leaves the reward slot hollow, and a hollow reward slot fills with whatever is nearest. The earlier tries failed because nothing was waiting on the far side of the shift."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A potter feels the wheel's low hum kick in and reaches automatically to center the clay. Which of the four parts of the habit loop is the hum playing here?",
+        "choices": [
+          "The cue that triggers the loop to start",
+          "The reward that closes the loop",
+          "The craving that pulls the action forward"
+        ],
+        "correctIndex": 0,
+        "explanation": "A cue is the signal that opens the loop. The hum is the trigger that moves her hand before any conscious wanting. Reward arrives at the end of the loop, and craving is the felt pull, not the trigger itself.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A night-shift dispatcher checks Reddit every time the radio goes quiet for more than ten seconds. She wants to alter the cue specifically. Which move is a clean cue-level change?",
+        "choices": [
+          "Promise herself a movie night if she gets through one shift without scrolling.",
+          "Pin a clipboard task list directly over the phone tray so silence sends her hand to the clipboard, not the screen.",
+          "Remind herself that Reddit is beneath her training."
+        ],
+        "correctIndex": 1,
+        "explanation": "Cue work reroutes what the trigger lands on. Putting a different object in the silence's path changes what the silence calls forth. The movie night targets reward, and self-talk does not redesign the loop at all.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A second-year associate wants to install a ten-minute end-of-day review at the office. He keeps forgetting. Targeting the response slot, which design is the strongest first move?",
+        "choices": [
+          "Print a poster about the value of reflection and hang it above his desk.",
+          "Add a 5pm calendar invite titled REVIEW with a long description in the body.",
+          "Pre-open a one-line review template in a sticky window so closing the laptop requires typing one sentence."
+        ],
+        "correctIndex": 2,
+        "explanation": "Response-slot work shrinks the action until refusal is awkward. A pre-opened one-line template makes the action almost zero friction. The poster pushes identity messaging, and the calendar invite is a cue, not a response redesign.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A glassblower wants her after-shift cooldown stretch to feel rewarding instead of like a chore. Which move actually changes the reward slot?",
+        "choices": [
+          "End each stretch by lighting a small beeswax candle she only burns post-stretch, then sitting with it for one minute.",
+          "Set a phone alarm at 6pm every day labeled STRETCH.",
+          "Buy a thicker yoga mat in a color she likes."
+        ],
+        "correctIndex": 0,
+        "explanation": "Reward design tunes what the loop pays out at the end. A signature post-stretch ritual is a true reward bump tied to completion. The alarm changes the cue, and a thicker mat is a response-comfort tweak that does not alter the closing payoff.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A new high school principal wants to write a two-line note to one teacher each morning. The action is small enough; he just never starts. To strengthen the cue, what is the strongest first move?",
+        "choices": [
+          "Buy nicer notecards in a heavier stock.",
+          "Stack the notecards on top of his coffee mug each night so the morning pour is the trigger.",
+          "Commit to writing longer notes on the days he does remember."
+        ],
+        "correctIndex": 1,
+        "explanation": "Cue design ties the new behavior to a trigger he cannot miss. Mug-on-cards forces the behavior into his morning routine. Nicer cards is reward dressing, and longer notes works the response slot in exactly the wrong direction.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A retired electrician used to walk to the corner cafe every morning for the chatter. That cafe closed last spring. He has a new cafe two blocks farther but only goes once a week now. Which slot of his loop most likely broke?",
+        "choices": [
+          "The reward, since the new cafe staff are strangers to him.",
+          "The response, since two extra blocks is too far for someone his age.",
+          "The cue, since the familiar storefront on his usual route is gone."
+        ],
+        "correctIndex": 2,
+        "explanation": "When a habit collapses right after an environmental change, suspect the cue first. The old storefront was the trigger embedded in his daily path. The new cafe still has chatter (reward intact), and two blocks is a thin response excuse for a daily walker.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "An audiobook narrator finds that recording goes smoothly only on days she lights a specific brass lamp before sitting down. On days she skips the lamp, takes pile up. Which slot is doing the heavy lifting in this working loop?",
+        "choices": [
+          "The cue, since the lamp ritual is what reliably opens the focused state.",
+          "The response, since the recording itself is identical regardless of lamp.",
+          "The reward, since a finished take feels the same either way."
+        ],
+        "correctIndex": 0,
+        "explanation": "When one specific trigger correlates with success while the action stays constant, the cue is carrying the loop. The response is held the same across both conditions, and the reward arrives only when the loop completes, so it cannot be what differs upstream.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A junior chef tried three times to quit late-night gaming. The first two failed within a month. The third stuck. The only change the third time was that ending a session now means a fifteen-minute cold shower he actually enjoys. What does the pattern suggest?",
+        "choices": [
+          "The earlier attempts failed because the cue was still active in the apartment.",
+          "The earlier attempts only attacked the response, leaving the reward slot empty so the loop kept hunting for closure.",
+          "Three is roughly how many tries any habit takes before sticking."
+        ],
+        "correctIndex": 1,
+        "explanation": "Attacking only the response (don't game) leaves the craving with nowhere to go, and the loop reopens. A substitute that closes the loop in a new place is a reward-slot change, which matches the only variable he reports altering. The cue claim is plausible but unsupported by the evidence given.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A logistics planner journaled every Sunday for two years, then quit cold when her team moved to a hot-desk office. Nothing else changed: same notebook, same Sunday, same coffee. What is the most likely diagnosis?",
+        "choices": [
+          "Her craving for reflection faded with age.",
+          "The journaling response itself became harder to perform.",
+          "The cue was tied to a specific desk, and hot-desking removed the spatial anchor."
+        ],
+        "correctIndex": 2,
+        "explanation": "When every portable element is intact (notebook, time, coffee) and the habit dies after a workspace change, the missing piece is the spatial cue. Cravings rarely vanish on a schedule, and writing in a notebook does not get harder because the desk rotates.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "A community garden coordinator sees only 30% volunteer show-up rates for assigned watering days. She is choosing between three interventions. Which is the soundest first bet?",
+        "choices": [
+          "Send a heartfelt weekly email about why watering matters, since craving is the deepest lever.",
+          "Place each volunteer's labeled watering can right at the gate they enter, since the cue at the doorway is the slot most often broken in voluntary schedules.",
+          "Pay each volunteer a small stipend per session, since reward is the most reliable lever."
+        ],
+        "correctIndex": 1,
+        "explanation": "Missed shifts in voluntary schedules are usually cue failures: people forget, not refuse. A doorway-level trigger fixes the slot most likely broken. Email attacks craving, rarely the real bottleneck for already-committed volunteers, and stipends change the relationship before the cue has even been tested.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "front": "You want to fix a habit that keeps slipping. What four slots should you break it into before you change anything?",
+      "back": "Decompose the habit into cue, craving, response, and reward. The cue is what triggers it, the craving is what you actually want, the response is what you do, and the reward is what you get. Once the loop is on paper, point to which of the four is doing the heavy lifting and start there.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "front": "A nurse keeps hitting the vending machine after every code blue. She blames her willpower. How do you reframe the loop for her?",
+      "back": "Walk the four slots: the cue is the adrenaline crash, the craving is regulation rather than sugar, the response is the nearest food, the reward is a body that stops shaking. At 3am on shift, only the response slot is changeable, so stage a different food source there instead of fighting the craving.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "front": "Two roommates keep fighting about dishes. One always cracks first. Where do you point them before they assign blame?",
+      "back": "Map the loop out loud together. If the sink is around a corner from one bedroom, the cue is invisible to that person, so the loop never starts for them. The fix is not a chore chart, it is making the cue visible to both, since a missing cue beats any amount of fairness talk.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "front": "A line cook quit drinking after three earlier attempts failed. He is afraid to look too closely. What should he find when he walks the loop?",
+      "back": "The earlier attempts only swapped the response, leaving the same cue and an empty reward slot, so the loop collapsed. This time the reward slot changed: the post-shift unwind is a long shower and a podcast, not abstinence as deprivation. The streak holds because the loop now closes on its own.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "front": "A teacher has tried sticker charts, lectures, and parent emails to get students to practice at home. Nothing sticks. What is the next move?",
+      "back": "Stop adding pressure and ask which of the four slots is missing. If students have a cue and a response but no reward, add one that pays out fast: a recorded clip they can send to a grandparent. Fix the weakest slot in the loop instead of stacking more effort on top of a broken one.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": "Loop mapping. When a habit is stuck or stuck working, you break it into cue, craving, response, and reward, then point at the one slot doing the heavy lifting before you try to change anything. The skill is naming, not fixing. Most failed attempts hit the wrong slot, and most surprising wins came from a slot you did not plan to touch.",
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": "If you reach for your phone the moment a task gets hard at your desk, then before unlocking it, say out loud the cue (difficulty), the craving (relief from dread), the response (phone), and the reward (a small hit of ease), and only then decide whether to keep going."
+      },
+      {
+        "context": "health",
+        "plan": "If you find yourself eating from the nearest available food source after a stressful shift or meeting, then label the craving as regulation rather than hunger, and stash one specific snack in your bag the night before so the response slot has a different default."
+      },
+      {
+        "context": "relationships",
+        "plan": "If you are about to start a fight with a roommate or partner about a recurring chore, then pause and ask whether the cue is even visible to them from where they sit or sleep, before you argue about effort or character."
+      },
+      {
+        "context": "personal",
+        "plan": "If a habit you used to keep has quietly fallen off since a life change (new job, retirement, move), then assume the cue got deleted, not your discipline, and pick one fixed anchor in your new day to attach it to."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one habit you wish were sticking and is not. On a single index card, write the four slots in order, fill each one in plain words, then circle the slot you think is actually broken and resist the urge to fix anything else today.",
+    "weeklyPractice": "Once a week, run a five-minute loop audit on one habit, one you want to grow and one you want to shrink, alternating each week. Write the four slots, mark which one is doing the work, and change exactly one slot for the next seven days. Keep the cards in a stack so you can see what you have already tried."
+  },
+  "memorableLines": [
+    {
+      "text": "You do not have a discipline problem. You have a slot problem.",
+      "location": "breakdown.deepRead",
+      "why": "The core reframe of the chapter—shifts blame from willpower to structure in one sentence"
+    },
+    {
+      "text": "A habit that reads as neglect is often a missing cue. If the trigger never reaches the eyes, willpower has nothing to act on, and resentment fills the slot that geometry should.",
+      "location": "example[3].whyItMatters",
+      "why": "Unexpected insight that explains relationship conflict through structure rather than character; \"the slot that geometry should\" is the author at their best"
+    },
+    {
+      "text": "Sobriety stopped being deprivation and started being a different ending to the same evening.",
+      "location": "breakdown.fullRead",
+      "why": "Captures the chapter's insight applied to real stakes with concrete imagery and a reframe readers didn't see coming"
+    }
+  ]
+}
